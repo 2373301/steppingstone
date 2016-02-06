@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ifc">
+      <UniqueIdentifier>{68d6ae8f-26b8-4133-adba-7abaf5408bf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="pool">
+      <UniqueIdentifier>{05ae1e63-f665-4bcb-95f9-985433b254ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="factory">
+      <UniqueIdentifier>{14440053-e68e-4d71-89e1-5e2fd17047ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="net">
+      <UniqueIdentifier>{7aedde29-e4b7-4f9e-a6ac-bda671fe4e2a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\netcore.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CellSession.cpp">
+      <Filter>pool</Filter>
+    </ClCompile>
+    <ClCompile Include="src\InputSessionPool.cpp">
+      <Filter>pool</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OutputSessionPool.cpp">
+      <Filter>pool</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SessionPoolAssistent.cpp">
+      <Filter>pool</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SessionPoolImp.cpp">
+      <Filter>pool</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SessionPoolFactory.cpp">
+      <Filter>factory</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NetStream.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Session.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="inc\netcore_def.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\SessionPool.h">
+      <Filter>ifc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CellSession.h">
+      <Filter>pool</Filter>
+    </ClInclude>
+    <ClInclude Include="src\InputSessionPool.h">
+      <Filter>pool</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OutputSessionPool.h">
+      <Filter>pool</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SessionPoolAssistent.h">
+      <Filter>pool</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SessionPoolImp.h">
+      <Filter>pool</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\SessionPoolFactory.h">
+      <Filter>factory</Filter>
+    </ClInclude>
+    <ClInclude Include="src\NetStream.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Session.h">
+      <Filter>net</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

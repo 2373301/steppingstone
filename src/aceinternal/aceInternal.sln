@@ -32,6 +32,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "logger_test", "logger_test\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LoggerServer", "LoggerServer\log_collect.vcxproj", "{38F41E0A-1064-4B99-87DE-67058D3B8D79}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "netcore", "netcore\netcore.vcxproj", "{722990BE-125F-47EB-9725-50300673C8D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -186,6 +188,16 @@ Global
 		{38F41E0A-1064-4B99-87DE-67058D3B8D79}.ReleaseD|x64.Build.0 = Release|Win32
 		{38F41E0A-1064-4B99-87DE-67058D3B8D79}.ReleaseD|x86.ActiveCfg = Release|Win32
 		{38F41E0A-1064-4B99-87DE-67058D3B8D79}.ReleaseD|x86.Build.0 = Release|Win32
+		{722990BE-125F-47EB-9725-50300673C8D1}.Debug|x64.ActiveCfg = Debug|x64
+		{722990BE-125F-47EB-9725-50300673C8D1}.Debug|x64.Build.0 = Debug|x64
+		{722990BE-125F-47EB-9725-50300673C8D1}.Debug|x86.ActiveCfg = Debug|Win32
+		{722990BE-125F-47EB-9725-50300673C8D1}.Debug|x86.Build.0 = Debug|Win32
+		{722990BE-125F-47EB-9725-50300673C8D1}.Release|x64.ActiveCfg = Release|Win32
+		{722990BE-125F-47EB-9725-50300673C8D1}.Release|x86.ActiveCfg = Release|Win32
+		{722990BE-125F-47EB-9725-50300673C8D1}.Release|x86.Build.0 = Release|Win32
+		{722990BE-125F-47EB-9725-50300673C8D1}.ReleaseD|x64.ActiveCfg = ReleaseD|Win32
+		{722990BE-125F-47EB-9725-50300673C8D1}.ReleaseD|x86.ActiveCfg = ReleaseD|Win32
+		{722990BE-125F-47EB-9725-50300673C8D1}.ReleaseD|x86.Build.0 = ReleaseD|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
