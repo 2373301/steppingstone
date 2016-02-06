@@ -5,7 +5,7 @@
 #include <boost/bind.hpp>
 #include <boost/array.hpp>
 #include "typedef.h"
-#include "entity/player.pb.h"
+//#include "entity/player.pb.h"
 //#include "entity_ins.h"
 //#include "protocol_ins.h"
 
@@ -427,6 +427,15 @@ class Timer
 	virtual long schemeTimer(int interval_value, TimerCallBack timer_callback) = 0;
 
 	virtual long cancelTimer(long timer_id) = 0;
+};
+
+// Ç°ÖÃÉùÃ÷
+namespace typed
+{
+namespace entity
+{
+	class Player;
+};
 };
 
 class ManageGrid
