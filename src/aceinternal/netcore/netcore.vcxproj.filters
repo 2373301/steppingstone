@@ -11,19 +11,16 @@
     <Filter Include="pool">
       <UniqueIdentifier>{05ae1e63-f665-4bcb-95f9-985433b254ad}</UniqueIdentifier>
     </Filter>
-    <Filter Include="factory">
-      <UniqueIdentifier>{14440053-e68e-4d71-89e1-5e2fd17047ee}</UniqueIdentifier>
-    </Filter>
     <Filter Include="net">
       <UniqueIdentifier>{7aedde29-e4b7-4f9e-a6ac-bda671fe4e2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="session">
+      <UniqueIdentifier>{f9291ffa-0028-4ec8-976b-5d92ab4b994c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\netcore.cpp">
       <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\CellSession.cpp">
-      <Filter>pool</Filter>
     </ClCompile>
     <ClCompile Include="src\InputSessionPool.cpp">
       <Filter>pool</Filter>
@@ -37,25 +34,22 @@
     <ClCompile Include="src\SessionPoolImp.cpp">
       <Filter>pool</Filter>
     </ClCompile>
-    <ClCompile Include="src\SessionPoolFactory.cpp">
-      <Filter>factory</Filter>
-    </ClCompile>
     <ClCompile Include="src\NetStream.cpp">
       <Filter>net</Filter>
     </ClCompile>
+    <ClCompile Include="src\SessionPoolFactory.cpp">
+      <Filter>pool</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CellSession.cpp">
+      <Filter>session</Filter>
+    </ClCompile>
     <ClCompile Include="src\Session.cpp">
-      <Filter>net</Filter>
+      <Filter>session</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="inc\netcore_def.h">
-      <Filter>源文件</Filter>
-    </ClInclude>
     <ClInclude Include="inc\SessionPool.h">
       <Filter>ifc</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CellSession.h">
-      <Filter>pool</Filter>
     </ClInclude>
     <ClInclude Include="src\InputSessionPool.h">
       <Filter>pool</Filter>
@@ -69,14 +63,20 @@
     <ClInclude Include="src\SessionPoolImp.h">
       <Filter>pool</Filter>
     </ClInclude>
-    <ClInclude Include="inc\SessionPoolFactory.h">
-      <Filter>factory</Filter>
-    </ClInclude>
     <ClInclude Include="src\NetStream.h">
       <Filter>net</Filter>
     </ClInclude>
     <ClInclude Include="inc\Session.h">
-      <Filter>net</Filter>
+      <Filter>ifc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\netcore_def.h">
+      <Filter>ifc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\SessionPoolFactory.h">
+      <Filter>ifc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CellSession.h">
+      <Filter>session</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

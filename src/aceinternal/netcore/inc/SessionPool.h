@@ -36,7 +36,8 @@ public:
 	virtual ~SessionPool()
 	{}
 
-	virtual int init(int input_thr_no, int output_thr_no, HandleInput * handle_input = NULL, HandleSessionEvent * handle_session_event = NULL, HandleSessionRouter * handle_session_router = NULL) = 0;
+	virtual int init(int input_thr_no, int output_thr_no, HandleInput * handle_input = NULL,
+					HandleSessionEvent * handle_session_event = NULL, HandleSessionRouter * handle_session_router = NULL) = 0;
 
 	virtual bool connect(const SessionAddrVec_t & session_addr_vec) = 0;
 
@@ -62,6 +63,6 @@ private:
 };
 
 
-}
+} // namespace netcore
 
 #endif
