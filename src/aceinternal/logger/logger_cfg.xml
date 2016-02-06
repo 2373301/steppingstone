@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<logger>
+	<logcfg level="LL_INFO" dir="logs" print="1" log_identify="test" enable_remote="0" remote_addr="127.0.0.1:23000" />
+</logger>

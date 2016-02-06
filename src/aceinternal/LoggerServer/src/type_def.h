@@ -1,0 +1,13 @@
+
+
+#define WM_SOCKET_TO_UI_BASE WM_USER + 1
+
+
+
+#define WM_SOCKET_TO_UI_NEW_CLIENT		WM_SOCKET_TO_UI_BASE + 1	//新连接客户端
+
+#define WM_SOCKET_TO_UI_LOG_COMMING		WM_SOCKET_TO_UI_BASE + 2	//socket来一条新的日志消息
+
+#define WM_SOCKET_TO_UI_CLEAN_LIST		WM_SOCKET_TO_UI_BASE + 3	//清空控件
+
+#define WM_SOCKET_TO_UI_REMOVE_CLIENT	WM_SOCKET_TO_UI_BASE + 4	//关闭客户端展示

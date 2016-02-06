@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="singleton">
+      <UniqueIdentifier>{692943f4-dade-49bb-9671-8bf59d854523}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Packet">
+      <UniqueIdentifier>{3bc685cc-2f51-4926-be3b-773d0d740850}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Net">
+      <UniqueIdentifier>{4c1be442-3857-4fb4-a2c9-4ae33a933e8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="share_fun">
+      <UniqueIdentifier>{719ea449-db25-49a1-84ec-eabb2c9f4490}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Redirect">
+      <UniqueIdentifier>{5d803655-44cc-466a-abc3-dbb170e0677e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\ManageSingleton.cpp">
+      <Filter>singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageSingletonInit.cpp">
+      <Filter>singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Singleton.cpp">
+      <Filter>singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SingletonInit.cpp">
+      <Filter>singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Packet.cpp">
+      <Filter>Packet</Filter>
+    </ClCompile>
+    <ClCompile Include="src\share_fun.cpp">
+      <Filter>share_fun</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Redirect.cpp">
+      <Filter>Redirect</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="inc\ManageSingleton.h">
+      <Filter>singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\ManageSingletonInit.h">
+      <Filter>singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Singleton.h">
+      <Filter>singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\SingletonInit.h">
+      <Filter>singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Packet.h">
+      <Filter>Packet</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\share_fun.h">
+      <Filter>share_fun</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Redirect.h">
+      <Filter>Redirect</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\coredef.h" />
+    <ClInclude Include="inc\Share_def.h" />
+    <ClInclude Include="inc\typedef.h" />
+  </ItemGroup>
+</Project>

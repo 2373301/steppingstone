@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<logger>
+<keys>
+	<key content="LL_DEBUG" color="0,255,0" />
+	<key content="LL_INFO" color="30,144,255" />
+	<key content="LL_WARNING" color="255,255,0" />
+	<key content="LL_TRACE" color="125,125,125" />
+	<key content="LL_ERROR" color="255,0,0" />
+	<key content="LL_FATAL" color="94,38,18" />
+</keys>
+<addr listen_ip="0.0.0.0" listen_port="23000"/>
+<log_dir directory="log_server"/>
+<cache init="200000" reallocate="20000" max="400000"/>
+</logger>

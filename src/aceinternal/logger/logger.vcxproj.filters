@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="log">
+      <UniqueIdentifier>{ca972903-a600-4b00-b6d4-71671b816098}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="remote">
+      <UniqueIdentifier>{a2f44f37-c183-45e1-909a-c2ae85f1e8f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="report">
+      <UniqueIdentifier>{17a2736b-1906-4e24-94d6-83b46053e9db}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\FileLogger.cpp">
+      <Filter>log</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Logger.cpp">
+      <Filter>log</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LoggerFactory.cpp">
+      <Filter>log</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageLogger.cpp">
+      <Filter>log</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LoggerSession.cpp">
+      <Filter>remote</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageLoggerInput.cpp">
+      <Filter>remote</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageLoggerOutput.cpp">
+      <Filter>remote</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RemoteLogger.cpp">
+      <Filter>remote</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Report.cpp">
+      <Filter>report</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\FileLogger.h">
+      <Filter>log</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Logger.h">
+      <Filter>log</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\logger_def.h">
+      <Filter>log</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\LoggerFactory.h">
+      <Filter>log</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\ManageLogger.h">
+      <Filter>log</Filter>
+    </ClInclude>
+    <ClInclude Include="src\LoggerSession.h">
+      <Filter>remote</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageLoggerInput.h">
+      <Filter>remote</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageLoggerOutput.h">
+      <Filter>remote</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RemoteLogger.h">
+      <Filter>remote</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Report.h">
+      <Filter>report</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

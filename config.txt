@@ -1,0 +1,14 @@
+../../../dep/ACE_wrappers/
+../../../dep/ACE_wrappers/lib/ACEd.lib
+
+../../../dep/boost_1_60_0/
+../../../dep/boost_1_60_0/lib64-msvc-14.0/
+
+$(OutDir)
+
+_CRT_SECURE_NO_WARNINGS
+_WINSOCK_DEPRECATED_NO_WARNINGS
+
+
+../../../dep/protobuf-2.6.1/src
+../../../dep/protobuf-2.6.1/lib/libprotobuf.lib
