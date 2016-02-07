@@ -36,6 +36,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "netcore", "netcore\netcore.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GsAssistant", "GsAssistant\GsAssistant.vcxproj", "{D03B3756-4261-4C2D-B3FD-4CBB773C8AFB}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "guidsys", "guidsys\guidsys.vcxproj", "{F01A57B0-0674-4762-A64A-2AAD7DC88CD8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -210,6 +212,16 @@ Global
 		{D03B3756-4261-4C2D-B3FD-4CBB773C8AFB}.ReleaseD|x64.ActiveCfg = ReleaseD|Win32
 		{D03B3756-4261-4C2D-B3FD-4CBB773C8AFB}.ReleaseD|x86.ActiveCfg = ReleaseD|Win32
 		{D03B3756-4261-4C2D-B3FD-4CBB773C8AFB}.ReleaseD|x86.Build.0 = ReleaseD|Win32
+		{F01A57B0-0674-4762-A64A-2AAD7DC88CD8}.Debug|x64.ActiveCfg = Debug|x64
+		{F01A57B0-0674-4762-A64A-2AAD7DC88CD8}.Debug|x64.Build.0 = Debug|x64
+		{F01A57B0-0674-4762-A64A-2AAD7DC88CD8}.Debug|x86.ActiveCfg = Debug|Win32
+		{F01A57B0-0674-4762-A64A-2AAD7DC88CD8}.Debug|x86.Build.0 = Debug|Win32
+		{F01A57B0-0674-4762-A64A-2AAD7DC88CD8}.Release|x64.ActiveCfg = Release|Win32
+		{F01A57B0-0674-4762-A64A-2AAD7DC88CD8}.Release|x86.ActiveCfg = Release|Win32
+		{F01A57B0-0674-4762-A64A-2AAD7DC88CD8}.Release|x86.Build.0 = Release|Win32
+		{F01A57B0-0674-4762-A64A-2AAD7DC88CD8}.ReleaseD|x64.ActiveCfg = ReleaseD|Win32
+		{F01A57B0-0674-4762-A64A-2AAD7DC88CD8}.ReleaseD|x86.ActiveCfg = ReleaseD|Win32
+		{F01A57B0-0674-4762-A64A-2AAD7DC88CD8}.ReleaseD|x86.Build.0 = ReleaseD|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

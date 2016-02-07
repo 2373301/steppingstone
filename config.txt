@@ -8,6 +8,7 @@ $(OutDir)
 
 _CRT_SECURE_NO_WARNINGS
 _WINSOCK_DEPRECATED_NO_WARNINGS
+-D_SCL_SECURE_NO_WARNINGS
 
 
 ../../../dep/protobuf-2.6.1/src
@@ -16,3 +17,6 @@ _WINSOCK_DEPRECATED_NO_WARNINGS
 
 ../share/inc
 ../logger/inc
+../netcore/inc
+../common/inc
+../common/material-cpp

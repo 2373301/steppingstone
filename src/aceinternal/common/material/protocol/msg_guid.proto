@@ -1,0 +1,13 @@
+package typed.protocol;
+
+message RequestGuid
+{
+	required uint32 request_no 	= 1;
+}
+
+message ReturnGuid
+{
+	required uint32 seed_value	= 1;
+	required uint32 return_no	= 2;
+	required uint64 start_index	= 3;
+}
