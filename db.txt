@@ -1,0 +1,13 @@
+cache   serialized msg,  msg name
+cachesys 还是 convertsys 在启动时 进行数据库表格的创建,更新?
+convertsys 的数据来源于cachesys
+所以根据 proto col name 来更新数据比较靠谱(更新之前肯定要 update finish).
+cachesys  1.检测,数据库name, 检测 table, load( 根据 proto col name ),  deserialize
+convertsys 
+
+
+
+show databases like 'game';
+show tables like 'gift';
+show COLUMNS from gift LIKE 'guid'
+query << "SELECT $MEMBER-LIST$ FROM $OBJECT$ WHERE guid=" << ::boost::lexical_cast< ::std::string >(this->obj_.guid());

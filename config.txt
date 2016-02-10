@@ -20,3 +20,4 @@ _WINSOCK_DEPRECATED_NO_WARNINGS
 ../netcore/inc
 ../common/inc
 ../common/material-cpp
+../protobuf_dynamic_parse/inc
