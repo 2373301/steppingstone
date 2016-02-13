@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="serialize">
+      <UniqueIdentifier>{88012be7-51db-4807-b00d-de0d3ec706b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="procotol">
+      <UniqueIdentifier>{60180b3a-17e2-4888-b9d5-c4290c663574}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sqlite">
+      <UniqueIdentifier>{e49a9afc-8bc7-434a-a999-b791fabbee8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="net">
+      <UniqueIdentifier>{1252f6fa-a1ec-43bb-80d7-21404fd97e7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="db">
+      <UniqueIdentifier>{91feab2e-4287-4395-b1ec-0a63bb2af69b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="msg">
+      <UniqueIdentifier>{d1d0613e-46dd-4679-bc24-4f66939211d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="factory">
+      <UniqueIdentifier>{cf8cfb1a-0d07-4739-9298-e301f2bae317}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="protocal\cache_auto_assistant.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cached.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\config.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\serialize\FileNameGenerator.cpp">
+      <Filter>serialize</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageConvertSession.cpp">
+      <Filter>serialize</Filter>
+    </ClCompile>
+    <ClCompile Include="src\serialize\ManageExpiredItem.cpp">
+      <Filter>serialize</Filter>
+    </ClCompile>
+    <ClCompile Include="src\serialize\ManageSerialize.cpp">
+      <Filter>serialize</Filter>
+    </ClCompile>
+    <ClCompile Include="src\serialize\Serialize.cpp">
+      <Filter>serialize</Filter>
+    </ClCompile>
+    <ClCompile Include="src\serialize\SerializeFactory.cpp">
+      <Filter>serialize</Filter>
+    </ClCompile>
+    <ClCompile Include="src\serialize\SQLiteSerialize.cpp">
+      <Filter>serialize</Filter>
+    </ClCompile>
+    <ClCompile Include="src\serialize\sqlite3.c">
+      <Filter>sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageSessionPool.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DataRequestInfo.cpp">
+      <Filter>db</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DbLoader.cpp">
+      <Filter>db</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EntityHander.cpp">
+      <Filter>msg</Filter>
+    </ClCompile>
+    <ClCompile Include="protocal_factory\factory.cpp">
+      <Filter>factory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_binary.pb.cc">
+      <Filter>procotol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_cache.pb.cc">
+      <Filter>procotol</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="protocal\cache_auto_assistant.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cached.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\config.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\stat.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\serialize\FileNameGenerator.h">
+      <Filter>serialize</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageConvertSession.h">
+      <Filter>serialize</Filter>
+    </ClInclude>
+    <ClInclude Include="src\serialize\ManageExpiredItem.h">
+      <Filter>serialize</Filter>
+    </ClInclude>
+    <ClInclude Include="src\serialize\ManageSerialize.h">
+      <Filter>serialize</Filter>
+    </ClInclude>
+    <ClInclude Include="src\serialize\Serialize.h">
+      <Filter>serialize</Filter>
+    </ClInclude>
+    <ClInclude Include="src\serialize\SerializeFactory.h">
+      <Filter>serialize</Filter>
+    </ClInclude>
+    <ClInclude Include="src\serialize\SQLiteSerialize.h">
+      <Filter>serialize</Filter>
+    </ClInclude>
+    <ClInclude Include="src\serialize\sqlite3.h">
+      <Filter>sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageSessionPool.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DataRequestInfo.h">
+      <Filter>db</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DbLoader.h">
+      <Filter>db</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EntityHander.h">
+      <Filter>msg</Filter>
+    </ClInclude>
+    <ClInclude Include="protocal_factory\factory.h">
+      <Filter>factory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_binary.pb.h">
+      <Filter>procotol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_cache.pb.h">
+      <Filter>procotol</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

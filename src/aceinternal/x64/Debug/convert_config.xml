@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<convert>
+	<!--
+		connstr : connpoolnumber :
+	-->
+	<sql serverIP="127.0.0.1" databaseName="game" userName="root" password="root" port="3306" connPoolNumber="1" pingMYSQLInterval="60"/>
+	
+	<caches>
+		<cache addr="127.0.0.1:14000" />
+	</caches>
+	
+	<serialize backup_dir="./backup_binary/" />
+	
+	<log level="LL_DEBUG" print="1" enable_remote="0" />
+	
+	<remotlog addr="127.0.0.1" level="LL_DEBUG" />
+
+</convert>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<logger>
+	<logcfg level="LL_DEBUG" dir="logs" print="1" log_identify="apss 1" enable_remote="0" remote_addr="172.16.32.18:23000" />
+</logger>

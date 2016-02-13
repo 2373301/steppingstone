@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{66d80c38-a383-4b7e-a19f-201233081902}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="serialize">
+      <UniqueIdentifier>{3af55667-75df-4de0-adb7-39f92a266992}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="config">
+      <UniqueIdentifier>{e0375c67-5cdd-49e4-9302-9e49004113a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cache">
+      <UniqueIdentifier>{f16ba7a6-c702-4af1-879b-bd708b6274f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sqlite_file">
+      <UniqueIdentifier>{78140d49-64a8-4049-841a-4ec101d98d2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="entity_to_db">
+      <UniqueIdentifier>{d33efc8b-39f0-47b8-96b0-4933c09f6382}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="factory">
+      <UniqueIdentifier>{bb2ce2d9-7ee3-41f7-884f-9635018267b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="protocol">
+      <UniqueIdentifier>{7d202e5d-5bb6-467f-bb87-87bbbb23ee4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sqlite_to_db">
+      <UniqueIdentifier>{be2c833c-ee23-42f4-b5f2-d0f2019ab60b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\convert.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageFini.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MiniDumper.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageConfig.cpp">
+      <Filter>config</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CacheSession.cpp">
+      <Filter>cache</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageCacheOutput.cpp">
+      <Filter>cache</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageCacheSession.cpp">
+      <Filter>cache</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageSQLiteFile.cpp">
+      <Filter>sqlite_file</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageSQLiteFileToDb.cpp">
+      <Filter>sqlite_to_db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cachesys\protocal_factory\factory.cpp">
+      <Filter>factory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cachesys\protocal\cache_auto_assistant.cpp">
+      <Filter>entity_to_db</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cachesys\src\serialize\Serialize.cpp">
+      <Filter>serialize</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cachesys\src\serialize\SerializeFactory.cpp">
+      <Filter>serialize</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cachesys\src\serialize\sqlite3.c">
+      <Filter>serialize</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cachesys\src\serialize\SQLiteSerialize.cpp">
+      <Filter>serialize</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_binary.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\ManageFini.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MiniDumper.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageConfig.h">
+      <Filter>config</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CacheSession.h">
+      <Filter>cache</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageCacheOutput.h">
+      <Filter>cache</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageCacheSession.h">
+      <Filter>cache</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageSQLiteFile.h">
+      <Filter>sqlite_file</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageSQLiteFileToDb.h">
+      <Filter>sqlite_to_db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cachesys\protocal_factory\factory.h">
+      <Filter>factory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cachesys\protocal\cache_auto_assistant.h">
+      <Filter>entity_to_db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cachesys\src\serialize\Serialize.h">
+      <Filter>serialize</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cachesys\src\serialize\SerializeFactory.h">
+      <Filter>serialize</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cachesys\src\serialize\sqlite3.h">
+      <Filter>serialize</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cachesys\src\serialize\SQLiteSerialize.h">
+      <Filter>serialize</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_binary.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

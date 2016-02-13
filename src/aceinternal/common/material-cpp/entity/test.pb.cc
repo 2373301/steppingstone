@@ -18,12 +18,12 @@
 
 namespace {
 
-const ::google::protobuf::Descriptor* nestTest_descriptor_ = NULL;
+const ::google::protobuf::Descriptor* nesttest_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
-  nestTest_reflection_ = NULL;
-const ::google::protobuf::Descriptor* Test_descriptor_ = NULL;
+  nesttest_reflection_ = NULL;
+const ::google::protobuf::Descriptor* test_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
-  Test_reflection_ = NULL;
+  test_reflection_ = NULL;
 
 }  // namespace
 
@@ -34,45 +34,40 @@ void protobuf_AssignDesc_entity_2ftest_2eproto() {
     ::google::protobuf::DescriptorPool::generated_pool()->FindFileByName(
       "entity/test.proto");
   GOOGLE_CHECK(file != NULL);
-  nestTest_descriptor_ = file->message_type(0);
-  static const int nestTest_offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(nestTest, guid_),
+  nesttest_descriptor_ = file->message_type(0);
+  static const int nesttest_offsets_[1] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(nesttest, guid_),
   };
-  nestTest_reflection_ =
+  nesttest_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
-      nestTest_descriptor_,
-      nestTest::default_instance_,
-      nestTest_offsets_,
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(nestTest, _has_bits_[0]),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(nestTest, _unknown_fields_),
+      nesttest_descriptor_,
+      nesttest::default_instance_,
+      nesttest_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(nesttest, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(nesttest, _unknown_fields_),
       -1,
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
-      sizeof(nestTest));
-  Test_descriptor_ = file->message_type(1);
-  static const int Test_offsets_[10] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Test, t_uint64_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Test, t_int64_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Test, t_int32_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Test, t_uint32_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Test, t_float_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Test, t_double_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Test, t_string_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Test, t_uint32_rep_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Test, test1_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Test, test2_),
+      sizeof(nesttest));
+  test_descriptor_ = file->message_type(1);
+  static const int test_offsets_[5] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(test, guid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(test, t_int32_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(test, t_uint32_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(test, t_string_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(test, t_uint32_rep_),
   };
-  Test_reflection_ =
+  test_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
-      Test_descriptor_,
-      Test::default_instance_,
-      Test_offsets_,
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Test, _has_bits_[0]),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Test, _unknown_fields_),
+      test_descriptor_,
+      test::default_instance_,
+      test_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(test, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(test, _unknown_fields_),
       -1,
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
-      sizeof(Test));
+      sizeof(test));
 }
 
 namespace {
@@ -86,18 +81,18 @@ inline void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-    nestTest_descriptor_, &nestTest::default_instance());
+    nesttest_descriptor_, &nesttest::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-    Test_descriptor_, &Test::default_instance());
+    test_descriptor_, &test::default_instance());
 }
 
 }  // namespace
 
 void protobuf_ShutdownFile_entity_2ftest_2eproto() {
-  delete nestTest::default_instance_;
-  delete nestTest_reflection_;
-  delete Test::default_instance_;
-  delete Test_reflection_;
+  delete nesttest::default_instance_;
+  delete nesttest_reflection_;
+  delete test::default_instance_;
+  delete test_reflection_;
 }
 
 void protobuf_AddDesc_entity_2ftest_2eproto() {
@@ -107,19 +102,16 @@ void protobuf_AddDesc_entity_2ftest_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\021entity/test.proto\"\030\n\010nestTest\022\014\n\004guid\030"
-    "\001 \002(\004\"\313\001\n\004Test\022\020\n\010t_uint64\030\001 \002(\004\022\017\n\007t_in"
-    "t64\030\002 \001(\003\022\017\n\007t_int32\030\003 \001(\005\022\020\n\010t_uint32\030\004"
-    " \001(\r\022\017\n\007t_float\030\005 \001(\002\022\020\n\010t_double\030\006 \001(\001\022"
-    "\020\n\010t_string\030\007 \001(\t\022\024\n\014t_uint32_rep\030\010 \003(\r\022"
-    "\030\n\005test1\030\t \001(\0132\t.nestTest\022\030\n\005test2\030\n \003(\013"
-    "2\t.nestTest", 251);
+    "\n\021entity/test.proto\"\030\n\010nesttest\022\014\n\004guid\030"
+    "\001 \002(\004\"_\n\004test\022\014\n\004guid\030\001 \002(\004\022\017\n\007t_int32\030\003"
+    " \001(\005\022\020\n\010t_uint32\030\004 \001(\r\022\020\n\010t_string\030\007 \001(\t"
+    "\022\024\n\014t_uint32_rep\030\010 \003(\r", 142);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "entity/test.proto", &protobuf_RegisterTypes);
-  nestTest::default_instance_ = new nestTest();
-  Test::default_instance_ = new Test();
-  nestTest::default_instance_->InitAsDefaultInstance();
-  Test::default_instance_->InitAsDefaultInstance();
+  nesttest::default_instance_ = new nesttest();
+  test::default_instance_ = new test();
+  nesttest::default_instance_->InitAsDefaultInstance();
+  test::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_entity_2ftest_2eproto);
 }
 
@@ -133,73 +125,73 @@ struct StaticDescriptorInitializer_entity_2ftest_2eproto {
 // ===================================================================
 
 #ifndef _MSC_VER
-const int nestTest::kGuidFieldNumber;
+const int nesttest::kGuidFieldNumber;
 #endif  // !_MSC_VER
 
-nestTest::nestTest()
+nesttest::nesttest()
   : ::google::protobuf::Message() {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:nestTest)
+  // @@protoc_insertion_point(constructor:nesttest)
 }
 
-void nestTest::InitAsDefaultInstance() {
+void nesttest::InitAsDefaultInstance() {
 }
 
-nestTest::nestTest(const nestTest& from)
+nesttest::nesttest(const nesttest& from)
   : ::google::protobuf::Message() {
   SharedCtor();
   MergeFrom(from);
-  // @@protoc_insertion_point(copy_constructor:nestTest)
+  // @@protoc_insertion_point(copy_constructor:nesttest)
 }
 
-void nestTest::SharedCtor() {
+void nesttest::SharedCtor() {
   _cached_size_ = 0;
   guid_ = GOOGLE_ULONGLONG(0);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
-nestTest::~nestTest() {
-  // @@protoc_insertion_point(destructor:nestTest)
+nesttest::~nesttest() {
+  // @@protoc_insertion_point(destructor:nesttest)
   SharedDtor();
 }
 
-void nestTest::SharedDtor() {
+void nesttest::SharedDtor() {
   if (this != default_instance_) {
   }
 }
 
-void nestTest::SetCachedSize(int size) const {
+void nesttest::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
-const ::google::protobuf::Descriptor* nestTest::descriptor() {
+const ::google::protobuf::Descriptor* nesttest::descriptor() {
   protobuf_AssignDescriptorsOnce();
-  return nestTest_descriptor_;
+  return nesttest_descriptor_;
 }
 
-const nestTest& nestTest::default_instance() {
+const nesttest& nesttest::default_instance() {
   if (default_instance_ == NULL) protobuf_AddDesc_entity_2ftest_2eproto();
   return *default_instance_;
 }
 
-nestTest* nestTest::default_instance_ = NULL;
+nesttest* nesttest::default_instance_ = NULL;
 
-nestTest* nestTest::New() const {
-  return new nestTest;
+nesttest* nesttest::New() const {
+  return new nesttest;
 }
 
-void nestTest::Clear() {
+void nesttest::Clear() {
   guid_ = GOOGLE_ULONGLONG(0);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
 }
 
-bool nestTest::MergePartialFromCodedStream(
+bool nesttest::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:nestTest)
+  // @@protoc_insertion_point(parse_start:nesttest)
   for (;;) {
     ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
@@ -233,17 +225,17 @@ bool nestTest::MergePartialFromCodedStream(
     }
   }
 success:
-  // @@protoc_insertion_point(parse_success:nestTest)
+  // @@protoc_insertion_point(parse_success:nesttest)
   return true;
 failure:
-  // @@protoc_insertion_point(parse_failure:nestTest)
+  // @@protoc_insertion_point(parse_failure:nesttest)
   return false;
 #undef DO_
 }
 
-void nestTest::SerializeWithCachedSizes(
+void nesttest::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:nestTest)
+  // @@protoc_insertion_point(serialize_start:nesttest)
   // required uint64 guid = 1;
   if (has_guid()) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt64(1, this->guid(), output);
@@ -253,12 +245,12 @@ void nestTest::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
   }
-  // @@protoc_insertion_point(serialize_end:nestTest)
+  // @@protoc_insertion_point(serialize_end:nesttest)
 }
 
-::google::protobuf::uint8* nestTest::SerializeWithCachedSizesToArray(
+::google::protobuf::uint8* nesttest::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // @@protoc_insertion_point(serialize_to_array_start:nestTest)
+  // @@protoc_insertion_point(serialize_to_array_start:nesttest)
   // required uint64 guid = 1;
   if (has_guid()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(1, this->guid(), target);
@@ -268,11 +260,11 @@ void nestTest::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:nestTest)
+  // @@protoc_insertion_point(serialize_to_array_end:nesttest)
   return target;
 }
 
-int nestTest::ByteSize() const {
+int nesttest::ByteSize() const {
   int total_size = 0;
 
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
@@ -295,10 +287,10 @@ int nestTest::ByteSize() const {
   return total_size;
 }
 
-void nestTest::MergeFrom(const ::google::protobuf::Message& from) {
+void nesttest::MergeFrom(const ::google::protobuf::Message& from) {
   GOOGLE_CHECK_NE(&from, this);
-  const nestTest* source =
-    ::google::protobuf::internal::dynamic_cast_if_available<const nestTest*>(
+  const nesttest* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const nesttest*>(
       &from);
   if (source == NULL) {
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
@@ -307,7 +299,7 @@ void nestTest::MergeFrom(const ::google::protobuf::Message& from) {
   }
 }
 
-void nestTest::MergeFrom(const nestTest& from) {
+void nesttest::MergeFrom(const nesttest& from) {
   GOOGLE_CHECK_NE(&from, this);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_guid()) {
@@ -317,25 +309,25 @@ void nestTest::MergeFrom(const nestTest& from) {
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
 
-void nestTest::CopyFrom(const ::google::protobuf::Message& from) {
+void nesttest::CopyFrom(const ::google::protobuf::Message& from) {
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void nestTest::CopyFrom(const nestTest& from) {
+void nesttest::CopyFrom(const nesttest& from) {
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool nestTest::IsInitialized() const {
+bool nesttest::IsInitialized() const {
   if ((_has_bits_[0] & 0x00000001) != 0x00000001) return false;
 
   return true;
 }
 
-void nestTest::Swap(nestTest* other) {
+void nesttest::Swap(nesttest* other) {
   if (other != this) {
     std::swap(guid_, other->guid_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
@@ -344,11 +336,11 @@ void nestTest::Swap(nestTest* other) {
   }
 }
 
-::google::protobuf::Metadata nestTest::GetMetadata() const {
+::google::protobuf::Metadata nesttest::GetMetadata() const {
   protobuf_AssignDescriptorsOnce();
   ::google::protobuf::Metadata metadata;
-  metadata.descriptor = nestTest_descriptor_;
-  metadata.reflection = nestTest_reflection_;
+  metadata.descriptor = nesttest_descriptor_;
+  metadata.reflection = nesttest_reflection_;
   return metadata;
 }
 
@@ -356,87 +348,76 @@ void nestTest::Swap(nestTest* other) {
 // ===================================================================
 
 #ifndef _MSC_VER
-const int Test::kTUint64FieldNumber;
-const int Test::kTInt64FieldNumber;
-const int Test::kTInt32FieldNumber;
-const int Test::kTUint32FieldNumber;
-const int Test::kTFloatFieldNumber;
-const int Test::kTDoubleFieldNumber;
-const int Test::kTStringFieldNumber;
-const int Test::kTUint32RepFieldNumber;
-const int Test::kTest1FieldNumber;
-const int Test::kTest2FieldNumber;
+const int test::kGuidFieldNumber;
+const int test::kTInt32FieldNumber;
+const int test::kTUint32FieldNumber;
+const int test::kTStringFieldNumber;
+const int test::kTUint32RepFieldNumber;
 #endif  // !_MSC_VER
 
-Test::Test()
+test::test()
   : ::google::protobuf::Message() {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:Test)
+  // @@protoc_insertion_point(constructor:test)
 }
 
-void Test::InitAsDefaultInstance() {
-  test1_ = const_cast< ::nestTest*>(&::nestTest::default_instance());
+void test::InitAsDefaultInstance() {
 }
 
-Test::Test(const Test& from)
+test::test(const test& from)
   : ::google::protobuf::Message() {
   SharedCtor();
   MergeFrom(from);
-  // @@protoc_insertion_point(copy_constructor:Test)
+  // @@protoc_insertion_point(copy_constructor:test)
 }
 
-void Test::SharedCtor() {
+void test::SharedCtor() {
   ::google::protobuf::internal::GetEmptyString();
   _cached_size_ = 0;
-  t_uint64_ = GOOGLE_ULONGLONG(0);
-  t_int64_ = GOOGLE_LONGLONG(0);
+  guid_ = GOOGLE_ULONGLONG(0);
   t_int32_ = 0;
   t_uint32_ = 0u;
-  t_float_ = 0;
-  t_double_ = 0;
   t_string_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  test1_ = NULL;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
-Test::~Test() {
-  // @@protoc_insertion_point(destructor:Test)
+test::~test() {
+  // @@protoc_insertion_point(destructor:test)
   SharedDtor();
 }
 
-void Test::SharedDtor() {
+void test::SharedDtor() {
   if (t_string_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
     delete t_string_;
   }
   if (this != default_instance_) {
-    delete test1_;
   }
 }
 
-void Test::SetCachedSize(int size) const {
+void test::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
-const ::google::protobuf::Descriptor* Test::descriptor() {
+const ::google::protobuf::Descriptor* test::descriptor() {
   protobuf_AssignDescriptorsOnce();
-  return Test_descriptor_;
+  return test_descriptor_;
 }
 
-const Test& Test::default_instance() {
+const test& test::default_instance() {
   if (default_instance_ == NULL) protobuf_AddDesc_entity_2ftest_2eproto();
   return *default_instance_;
 }
 
-Test* Test::default_instance_ = NULL;
+test* test::default_instance_ = NULL;
 
-Test* Test::New() const {
-  return new Test;
+test* test::New() const {
+  return new test;
 }
 
-void Test::Clear() {
+void test::Clear() {
 #define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(      \
-  &reinterpret_cast<Test*>(16)->f) - \
+  &reinterpret_cast<test*>(16)->f) - \
    reinterpret_cast<char*>(16))
 
 #define ZR_(first, last) do {                              \
@@ -445,60 +426,40 @@ void Test::Clear() {
     ::memset(&first, 0, n);                                \
   } while (0)
 
-  if (_has_bits_[0 / 32] & 127) {
-    ZR_(t_uint64_, t_double_);
-    t_float_ = 0;
+  if (_has_bits_[0 / 32] & 15) {
+    ZR_(guid_, t_uint32_);
     if (has_t_string()) {
       if (t_string_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
         t_string_->clear();
       }
     }
   }
-  if (has_test1()) {
-    if (test1_ != NULL) test1_->::nestTest::Clear();
-  }
 
 #undef OFFSET_OF_FIELD_
 #undef ZR_
 
   t_uint32_rep_.Clear();
-  test2_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
 }
 
-bool Test::MergePartialFromCodedStream(
+bool test::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:Test)
+  // @@protoc_insertion_point(parse_start:test)
   for (;;) {
     ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required uint64 t_uint64 = 1;
+      // required uint64 guid = 1;
       case 1: {
         if (tag == 8) {
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
-                 input, &t_uint64_)));
-          set_has_t_uint64();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(16)) goto parse_t_int64;
-        break;
-      }
-
-      // optional int64 t_int64 = 2;
-      case 2: {
-        if (tag == 16) {
-         parse_t_int64:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
-                 input, &t_int64_)));
-          set_has_t_int64();
+                 input, &guid_)));
+          set_has_guid();
         } else {
           goto handle_unusual;
         }
@@ -529,36 +490,6 @@ bool Test::MergePartialFromCodedStream(
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
                  input, &t_uint32_)));
           set_has_t_uint32();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(45)) goto parse_t_float;
-        break;
-      }
-
-      // optional float t_float = 5;
-      case 5: {
-        if (tag == 45) {
-         parse_t_float:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
-                 input, &t_float_)));
-          set_has_t_float();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(49)) goto parse_t_double;
-        break;
-      }
-
-      // optional double t_double = 6;
-      case 6: {
-        if (tag == 49) {
-         parse_t_double:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
-                 input, &t_double_)));
-          set_has_t_double();
         } else {
           goto handle_unusual;
         }
@@ -598,33 +529,6 @@ bool Test::MergePartialFromCodedStream(
           goto handle_unusual;
         }
         if (input->ExpectTag(64)) goto parse_t_uint32_rep;
-        if (input->ExpectTag(74)) goto parse_test1;
-        break;
-      }
-
-      // optional .nestTest test1 = 9;
-      case 9: {
-        if (tag == 74) {
-         parse_test1:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-               input, mutable_test1()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(82)) goto parse_test2;
-        break;
-      }
-
-      // repeated .nestTest test2 = 10;
-      case 10: {
-        if (tag == 82) {
-         parse_test2:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-                input, add_test2()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(82)) goto parse_test2;
         if (input->ExpectAtEnd()) goto success;
         break;
       }
@@ -643,25 +547,20 @@ bool Test::MergePartialFromCodedStream(
     }
   }
 success:
-  // @@protoc_insertion_point(parse_success:Test)
+  // @@protoc_insertion_point(parse_success:test)
   return true;
 failure:
-  // @@protoc_insertion_point(parse_failure:Test)
+  // @@protoc_insertion_point(parse_failure:test)
   return false;
 #undef DO_
 }
 
-void Test::SerializeWithCachedSizes(
+void test::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:Test)
-  // required uint64 t_uint64 = 1;
-  if (has_t_uint64()) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt64(1, this->t_uint64(), output);
-  }
-
-  // optional int64 t_int64 = 2;
-  if (has_t_int64()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt64(2, this->t_int64(), output);
+  // @@protoc_insertion_point(serialize_start:test)
+  // required uint64 guid = 1;
+  if (has_guid()) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt64(1, this->guid(), output);
   }
 
   // optional int32 t_int32 = 3;
@@ -672,16 +571,6 @@ void Test::SerializeWithCachedSizes(
   // optional uint32 t_uint32 = 4;
   if (has_t_uint32()) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(4, this->t_uint32(), output);
-  }
-
-  // optional float t_float = 5;
-  if (has_t_float()) {
-    ::google::protobuf::internal::WireFormatLite::WriteFloat(5, this->t_float(), output);
-  }
-
-  // optional double t_double = 6;
-  if (has_t_double()) {
-    ::google::protobuf::internal::WireFormatLite::WriteDouble(6, this->t_double(), output);
   }
 
   // optional string t_string = 7;
@@ -700,36 +589,19 @@ void Test::SerializeWithCachedSizes(
       8, this->t_uint32_rep(i), output);
   }
 
-  // optional .nestTest test1 = 9;
-  if (has_test1()) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      9, this->test1(), output);
-  }
-
-  // repeated .nestTest test2 = 10;
-  for (int i = 0; i < this->test2_size(); i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      10, this->test2(i), output);
-  }
-
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
   }
-  // @@protoc_insertion_point(serialize_end:Test)
+  // @@protoc_insertion_point(serialize_end:test)
 }
 
-::google::protobuf::uint8* Test::SerializeWithCachedSizesToArray(
+::google::protobuf::uint8* test::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // @@protoc_insertion_point(serialize_to_array_start:Test)
-  // required uint64 t_uint64 = 1;
-  if (has_t_uint64()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(1, this->t_uint64(), target);
-  }
-
-  // optional int64 t_int64 = 2;
-  if (has_t_int64()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(2, this->t_int64(), target);
+  // @@protoc_insertion_point(serialize_to_array_start:test)
+  // required uint64 guid = 1;
+  if (has_guid()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(1, this->guid(), target);
   }
 
   // optional int32 t_int32 = 3;
@@ -740,16 +612,6 @@ void Test::SerializeWithCachedSizes(
   // optional uint32 t_uint32 = 4;
   if (has_t_uint32()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(4, this->t_uint32(), target);
-  }
-
-  // optional float t_float = 5;
-  if (has_t_float()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(5, this->t_float(), target);
-  }
-
-  // optional double t_double = 6;
-  if (has_t_double()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(6, this->t_double(), target);
   }
 
   // optional string t_string = 7;
@@ -769,44 +631,23 @@ void Test::SerializeWithCachedSizes(
       WriteUInt32ToArray(8, this->t_uint32_rep(i), target);
   }
 
-  // optional .nestTest test1 = 9;
-  if (has_test1()) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      WriteMessageNoVirtualToArray(
-        9, this->test1(), target);
-  }
-
-  // repeated .nestTest test2 = 10;
-  for (int i = 0; i < this->test2_size(); i++) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      WriteMessageNoVirtualToArray(
-        10, this->test2(i), target);
-  }
-
   if (!unknown_fields().empty()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:Test)
+  // @@protoc_insertion_point(serialize_to_array_end:test)
   return target;
 }
 
-int Test::ByteSize() const {
+int test::ByteSize() const {
   int total_size = 0;
 
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required uint64 t_uint64 = 1;
-    if (has_t_uint64()) {
+    // required uint64 guid = 1;
+    if (has_guid()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt64Size(
-          this->t_uint64());
-    }
-
-    // optional int64 t_int64 = 2;
-    if (has_t_int64()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int64Size(
-          this->t_int64());
+          this->guid());
     }
 
     // optional int32 t_int32 = 3;
@@ -823,30 +664,11 @@ int Test::ByteSize() const {
           this->t_uint32());
     }
 
-    // optional float t_float = 5;
-    if (has_t_float()) {
-      total_size += 1 + 4;
-    }
-
-    // optional double t_double = 6;
-    if (has_t_double()) {
-      total_size += 1 + 8;
-    }
-
     // optional string t_string = 7;
     if (has_t_string()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
           this->t_string());
-    }
-
-  }
-  if (_has_bits_[8 / 32] & (0xffu << (8 % 32))) {
-    // optional .nestTest test1 = 9;
-    if (has_test1()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-          this->test1());
     }
 
   }
@@ -860,14 +682,6 @@ int Test::ByteSize() const {
     total_size += 1 * this->t_uint32_rep_size() + data_size;
   }
 
-  // repeated .nestTest test2 = 10;
-  total_size += 1 * this->test2_size();
-  for (int i = 0; i < this->test2_size(); i++) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        this->test2(i));
-  }
-
   if (!unknown_fields().empty()) {
     total_size +=
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
@@ -879,10 +693,10 @@ int Test::ByteSize() const {
   return total_size;
 }
 
-void Test::MergeFrom(const ::google::protobuf::Message& from) {
+void test::MergeFrom(const ::google::protobuf::Message& from) {
   GOOGLE_CHECK_NE(&from, this);
-  const Test* source =
-    ::google::protobuf::internal::dynamic_cast_if_available<const Test*>(
+  const test* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const test*>(
       &from);
   if (source == NULL) {
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
@@ -891,16 +705,12 @@ void Test::MergeFrom(const ::google::protobuf::Message& from) {
   }
 }
 
-void Test::MergeFrom(const Test& from) {
+void test::MergeFrom(const test& from) {
   GOOGLE_CHECK_NE(&from, this);
   t_uint32_rep_.MergeFrom(from.t_uint32_rep_);
-  test2_.MergeFrom(from.test2_);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from.has_t_uint64()) {
-      set_t_uint64(from.t_uint64());
-    }
-    if (from.has_t_int64()) {
-      set_t_int64(from.t_int64());
+    if (from.has_guid()) {
+      set_guid(from.guid());
     }
     if (from.has_t_int32()) {
       set_t_int32(from.t_int32());
@@ -908,69 +718,49 @@ void Test::MergeFrom(const Test& from) {
     if (from.has_t_uint32()) {
       set_t_uint32(from.t_uint32());
     }
-    if (from.has_t_float()) {
-      set_t_float(from.t_float());
-    }
-    if (from.has_t_double()) {
-      set_t_double(from.t_double());
-    }
     if (from.has_t_string()) {
       set_t_string(from.t_string());
-    }
-  }
-  if (from._has_bits_[8 / 32] & (0xffu << (8 % 32))) {
-    if (from.has_test1()) {
-      mutable_test1()->::nestTest::MergeFrom(from.test1());
     }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
 
-void Test::CopyFrom(const ::google::protobuf::Message& from) {
+void test::CopyFrom(const ::google::protobuf::Message& from) {
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void Test::CopyFrom(const Test& from) {
+void test::CopyFrom(const test& from) {
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool Test::IsInitialized() const {
+bool test::IsInitialized() const {
   if ((_has_bits_[0] & 0x00000001) != 0x00000001) return false;
 
-  if (has_test1()) {
-    if (!this->test1().IsInitialized()) return false;
-  }
-  if (!::google::protobuf::internal::AllAreInitialized(this->test2())) return false;
   return true;
 }
 
-void Test::Swap(Test* other) {
+void test::Swap(test* other) {
   if (other != this) {
-    std::swap(t_uint64_, other->t_uint64_);
-    std::swap(t_int64_, other->t_int64_);
+    std::swap(guid_, other->guid_);
     std::swap(t_int32_, other->t_int32_);
     std::swap(t_uint32_, other->t_uint32_);
-    std::swap(t_float_, other->t_float_);
-    std::swap(t_double_, other->t_double_);
     std::swap(t_string_, other->t_string_);
     t_uint32_rep_.Swap(&other->t_uint32_rep_);
-    std::swap(test1_, other->test1_);
-    test2_.Swap(&other->test2_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
   }
 }
 
-::google::protobuf::Metadata Test::GetMetadata() const {
+::google::protobuf::Metadata test::GetMetadata() const {
   protobuf_AssignDescriptorsOnce();
   ::google::protobuf::Metadata metadata;
-  metadata.descriptor = Test_descriptor_;
-  metadata.reflection = Test_reflection_;
+  metadata.descriptor = test_descriptor_;
+  metadata.reflection = test_reflection_;
   return metadata;
 }
 

@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseD|Win32">
+      <Configuration>ReleaseD</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseD|x64">
+      <Configuration>ReleaseD</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{260B6FE8-2AEA-4B7D-A9CF-A8E3B4EAB21C}</ProjectGuid>
+    <RootNamespace>service</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseD|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseD|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseD|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseD|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>14.0.24720.0</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>../output\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseD|Win32'">
+    <OutDir>$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseD|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>./src/serialize;./src;./protocal;./inc;./protocal_factory;./;../../../../common/inc;../../../../common/material-cpp;../../typedef/inc;../../simplexml/inc/;../../logger/inc;../../share/inc;../../netcore/inc;../../common/cachesys/inc;../../common/material-cpp;D:\working\hiso0908\mmosrv\dep\mysql++\lib;D:\working\hiso0908\mmosrv\dep\mysql++\mysql\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;DEBUG;_DEBUG;_CONSOLE;CACHE_HAS_STAT;MYSQLPP_NO_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>libmysql.lib;aced.lib;libSimpleXMLd.lib;libprotobufd.lib;libprotobuf-lited.lib;Mysqlppd.lib;libshared.lib;libloggerd.lib;libnetcored.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>../output/$(ProjectName)d.exe</OutputFile>
+      <AdditionalLibraryDirectories>D:\working\hiso0908\mmosrv\win\VC80\libs;../../../bin/libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>XCOPY ..\..\..\bin\libs\libshared.dll ..\output\ /Y /R /F
+XCOPY ..\..\..\bin\libs\libloggerd.dll ..\output\ /Y /R /F
+XCOPY ..\..\..\bin\libs\libnetcored.dll ..\output\ /Y /R /F
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>./src/serialize;./src;./protocal;./inc;./protocal_factory;./;../common/inc;../common/material-cpp;../typedef/inc;../simplexml/inc/;../logger/inc;../share/inc;../netcore/inc;../../../dep/ACE_wrappers/;../../../dep/boost_1_60_0/;../../../dep/protobuf-2.6.1/src;../../../dep/mysql++-3.2.2/lib;../../../dep/mysql-connector-c-6.1.6/include;../common/cachesys/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;DEBUG;_DEBUG;_CONSOLE;CACHE_HAS_STAT;MYSQLPP_NO_DLL;D_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>../../../dep/mysql++-3.2.2/vc2008/x64/Debug/mysqlpp_d.lib;../../../dep/ACE_wrappers/lib/ACEd.lib;SimpleXML.lib;../../../dep/protobuf-2.6.1/lib/libprotobuf.lib;share.lib;logger.lib;netcore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);../../../dep/boost_1_60_0/lib64-msvc-14.0/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>./src/serialize;./src;./protocal;./inc;./;../../../../common/inc;../../../../common/material-cpp;../../typedef/inc;../../simplexml/inc/;../../share/inc;../../common/cachesys/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;MYSQLPP_NO_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>ace.lib;libSimpleXML.lib;libprotobuf.lib;libprotobuf-lite.lib;Mysqlpp.lib;libmysql.lib;libshare.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>../output/$(ProjectName).exe</OutputFile>
+      <AdditionalLibraryDirectories>../libs/release;../../../bin/libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>./src/serialize;./src;./protocal;./inc;./;../../../../common/inc;../../../../common/material-cpp;../../typedef/inc;../../simplexml/inc/;../../share/inc;../../common/cachesys/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;MYSQLPP_NO_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>ace.lib;libSimpleXML.lib;libprotobuf.lib;libprotobuf-lite.lib;Mysqlpp.lib;libmysql.lib;libshare.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>../output/$(ProjectName).exe</OutputFile>
+      <AdditionalLibraryDirectories>../libs/release;../../../bin/libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseD|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>./src/serialize;./src;./protocal;./inc;./protocal_factory;./;../../../../common/inc;../../../../common/material-cpp;../../typedef/inc;../../simplexml/inc/;../../logger/inc;../../share/inc;../../netcore/inc;../../common/cachesys/inc;../../common/material-cpp;D:\working\hiso0908\mmosrv\dep\mysql++\lib;D:\working\hiso0908\mmosrv\dep\mysql++\mysql\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;MYSQLPP_NO_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>libmysql.lib;ace.lib;libSimpleXML.lib;libprotobuf.lib;libprotobuf-lite.lib;Mysqlpp.lib;libshare.lib;liblogger.lib;libnetcore.lib;libprotocol.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>../output/$(ProjectName).exe</OutputFile>
+      <AdditionalLibraryDirectories>../libs/release;../../../bin/libs;C:\Program Files\MySQL\MySQL Server 5.1\lib\opt;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>XCOPY ..\..\..\bin\libs\libshare.dll ..\output\ /Y /R /F
+XCOPY ..\..\..\bin\libs\liblogger.dll ..\output\ /Y /R /F
+XCOPY ..\..\..\bin\libs\libnetcore.dll ..\output\ /Y /R /F
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseD|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>./src/serialize;./src;./protocal;./inc;./protocal_factory;./;../../../../common/inc;../../../../common/material-cpp;../../typedef/inc;../../simplexml/inc/;../../logger/inc;../../share/inc;../../netcore/inc;../../common/cachesys/inc;../../common/material-cpp;D:\working\hiso0908\mmosrv\dep\mysql++\lib;D:\working\hiso0908\mmosrv\dep\mysql++\mysql\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;MYSQLPP_NO_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>libmysql.lib;ace.lib;libSimpleXML.lib;libprotobuf.lib;libprotobuf-lite.lib;Mysqlpp.lib;libshare.lib;liblogger.lib;libnetcore.lib;libprotocol.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>../output/$(ProjectName).exe</OutputFile>
+      <AdditionalLibraryDirectories>../libs/release;../../../bin/libs;C:\Program Files\MySQL\MySQL Server 5.1\lib\opt;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+    </Link>
+    <PostBuildEvent>
+      <Command>XCOPY ..\..\..\bin\libs\libshare.dll ..\output\ /Y /R /F
+XCOPY ..\..\..\bin\libs\liblogger.dll ..\output\ /Y /R /F
+XCOPY ..\..\..\bin\libs\libnetcore.dll ..\output\ /Y /R /F
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_binary.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_cache.pb.cc" />
+    <ClCompile Include="protocal\cache_auto_assistant.cpp" />
+    <ClCompile Include="protocal_factory\factory.cpp" />
+    <ClCompile Include="src\cached.cpp" />
+    <ClCompile Include="src\config.cpp" />
+    <ClCompile Include="src\DataRequestInfo.cpp" />
+    <ClCompile Include="src\DbLoader.cpp" />
+    <ClCompile Include="src\EntityHander.cpp" />
+    <ClCompile Include="src\ManageConvertSession.cpp" />
+    <ClCompile Include="src\ManageSessionPool.cpp" />
+    <ClCompile Include="src\serialize\FileNameGenerator.cpp" />
+    <ClCompile Include="src\serialize\ManageExpiredItem.cpp" />
+    <ClCompile Include="src\serialize\ManageSerialize.cpp" />
+    <ClCompile Include="src\serialize\Serialize.cpp" />
+    <ClCompile Include="src\serialize\SerializeFactory.cpp" />
+    <ClCompile Include="src\serialize\sqlite3.c" />
+    <ClCompile Include="src\serialize\SQLiteSerialize.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_binary.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_cache.pb.h" />
+    <ClInclude Include="inc\cached.h" />
+    <ClInclude Include="inc\config.h" />
+    <ClInclude Include="inc\stat.h" />
+    <ClInclude Include="protocal\cache_auto_assistant.h" />
+    <ClInclude Include="protocal_factory\factory.h" />
+    <ClInclude Include="src\DataRequestInfo.h" />
+    <ClInclude Include="src\DbLoader.h" />
+    <ClInclude Include="src\EntityHander.h" />
+    <ClInclude Include="src\ManageConvertSession.h" />
+    <ClInclude Include="src\ManageSessionPool.h" />
+    <ClInclude Include="src\serialize\FileNameGenerator.h" />
+    <ClInclude Include="src\serialize\ManageExpiredItem.h" />
+    <ClInclude Include="src\serialize\ManageSerialize.h" />
+    <ClInclude Include="src\serialize\Serialize.h" />
+    <ClInclude Include="src\serialize\SerializeFactory.h" />
+    <ClInclude Include="src\serialize\sqlite3.h" />
+    <ClInclude Include="src\serialize\SQLiteSerialize.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
