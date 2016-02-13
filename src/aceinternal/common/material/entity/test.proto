@@ -1,0 +1,16 @@
+message nesttest
+{
+	required uint64 guid = 1;
+}
+
+message test
+{
+	required uint64 guid = 1;
+	optional int32 t_int32 = 3;
+	optional uint32 t_uint32 = 4;
+	optional string t_string =7;
+	repeated uint32 t_uint32_rep=8;
+	optional nesttest test1= 9;
+	repeated nesttest test2 = 10;
+	repeated nesttest test3 = 11;
+}

@@ -18,6 +18,12 @@ _WINSOCK_DEPRECATED_NO_WARNINGS
 ../share/inc
 ../logger/inc
 ../netcore/inc
+../SimpleXML/inc
 ../common/inc
 ../common/material-cpp
 ../protobuf_dynamic_parse/inc
+
+../../../dep/mysql-connector-c-6.1.6/include
+
+../../../dep/mysql++-3.2.2/lib
+../../../dep/mysql++-3.2.2/vc2008/x64/Debug/mysqlpp_d.lib

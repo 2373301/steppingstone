@@ -39,7 +39,6 @@
     <ClCompile Include="src\Report.cpp">
       <Filter>report</Filter>
     </ClCompile>
-    <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\FileLogger.h">

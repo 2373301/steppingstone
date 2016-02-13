@@ -39,7 +39,6 @@
     <ClCompile Include="src\Redirect.cpp">
       <Filter>Redirect</Filter>
     </ClCompile>
-    <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\ManageSingleton.h">

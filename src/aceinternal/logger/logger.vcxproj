@@ -135,7 +135,6 @@
     <ClCompile Include="src\Logger.cpp" />
     <ClCompile Include="src\LoggerFactory.cpp" />
     <ClCompile Include="src\LoggerSession.cpp" />
-    <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ManageLogger.cpp" />
     <ClCompile Include="src\ManageLoggerInput.cpp" />
     <ClCompile Include="src\ManageLoggerOutput.cpp" />

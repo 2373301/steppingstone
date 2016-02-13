@@ -134,7 +134,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ManageSingleton.cpp" />
     <ClCompile Include="src\ManageSingletonInit.cpp" />
     <ClCompile Include="src\Packet.cpp" />

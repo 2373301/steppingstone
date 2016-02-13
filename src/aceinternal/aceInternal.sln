@@ -39,6 +39,11 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "protobuf_dynamic_parse", "protobuf_dynamic_parse\protobuf_dynamic_parse.vcxproj", "{A3D29751-7405-4EF4-8FA9-3787EC471708}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test", "logger_test\logger_test.vcxproj", "{1B14B5EE-8A39-40C6-9BA4-258C762B0395}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A3D29751-7405-4EF4-8FA9-3787EC471708} = {A3D29751-7405-4EF4-8FA9-3787EC471708}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MakeDB", "makedb\MakeDB.vcxproj", "{A0C55E39-AA3D-4D73-BC78-3E2A4472D33B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -237,6 +242,17 @@ Global
 		{1B14B5EE-8A39-40C6-9BA4-258C762B0395}.ReleaseD|x64.Build.0 = ReleaseD|x64
 		{1B14B5EE-8A39-40C6-9BA4-258C762B0395}.ReleaseD|x86.ActiveCfg = ReleaseD|Win32
 		{1B14B5EE-8A39-40C6-9BA4-258C762B0395}.ReleaseD|x86.Build.0 = ReleaseD|Win32
+		{A0C55E39-AA3D-4D73-BC78-3E2A4472D33B}.Debug|x64.ActiveCfg = Debug|x64
+		{A0C55E39-AA3D-4D73-BC78-3E2A4472D33B}.Debug|x64.Build.0 = Debug|x64
+		{A0C55E39-AA3D-4D73-BC78-3E2A4472D33B}.Debug|x86.ActiveCfg = Debug|Win32
+		{A0C55E39-AA3D-4D73-BC78-3E2A4472D33B}.Debug|x86.Build.0 = Debug|Win32
+		{A0C55E39-AA3D-4D73-BC78-3E2A4472D33B}.Release|x64.ActiveCfg = Release|Win32
+		{A0C55E39-AA3D-4D73-BC78-3E2A4472D33B}.Release|x86.ActiveCfg = Release|Win32
+		{A0C55E39-AA3D-4D73-BC78-3E2A4472D33B}.Release|x86.Build.0 = Release|Win32
+		{A0C55E39-AA3D-4D73-BC78-3E2A4472D33B}.ReleaseD|x64.ActiveCfg = Release|Win32
+		{A0C55E39-AA3D-4D73-BC78-3E2A4472D33B}.ReleaseD|x64.Build.0 = Release|Win32
+		{A0C55E39-AA3D-4D73-BC78-3E2A4472D33B}.ReleaseD|x86.ActiveCfg = Release|Win32
+		{A0C55E39-AA3D-4D73-BC78-3E2A4472D33B}.ReleaseD|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

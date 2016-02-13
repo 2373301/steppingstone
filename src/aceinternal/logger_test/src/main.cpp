@@ -6,6 +6,7 @@
 #include "EffectTest.h"
 #include "ManageSingletonInit.h"
 #include "dynamic_parse.h"
+#include "typedef.h"
 
 void startApplication()
 {
@@ -44,6 +45,21 @@ void TestProto()
 		std::cout << f->key_name
 			<< "    " << f->type1 << "    " << f->type2
 			<< "\n";
+	}
+
+	std::map<std::string, std::set<std::string> > out;
+	parser.querydbDesc("127.0.0.1", 3306, "root", "root", "game", out);
+	
+	std::vector<std::string> changed;
+	parser.checkEntity(out, "game", changed);
+	for (auto it = changed.begin(); it != changed.end(); ++it)
+	{
+		std::cout <<"newline:" <<  *it << "\n";
+	}
+
+	if (changed.size())
+	{
+		parser.updatedbChanged("127.0.0.1", 3306, "root", "root", "game", changed);
 	}
 }
 

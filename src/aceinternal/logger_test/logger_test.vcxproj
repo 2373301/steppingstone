@@ -150,7 +150,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>../../../dep/ACE_wrappers/lib/ACEd.lib;share.lib;logger.lib;protobuf_dynamic_parse.lib;../../../dep/protobuf-2.6.1/lib/libprotobuf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../dep/ACE_wrappers/lib/ACEd.lib;share.lib;logger.lib;protobuf_dynamic_parse.lib;../../../dep/protobuf-2.6.1/lib/libprotobuf.lib;../../../dep/mysql++-3.2.2/vc2008/x64/Debug/mysqlpp_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(OutDir);../../../dep/boost_1_60_0/lib64-msvc-14.0/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
