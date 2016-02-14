@@ -161,7 +161,7 @@ bool LocalCache::loadEntity(const fs::path & file_dir, uint64 guid)
 		fstream f;
 		f.open(file_path.string().c_str(), ios_base::in | ios_base::binary);
 		f.seekg(0, ios_base::end);
-		int file_size = f.tellg();
+		auto file_size = f.tellg();
 		string stream;
 		stream.resize(file_size, 0);
 		f.seekg(0, ios_base::beg);

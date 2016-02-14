@@ -72,7 +72,7 @@ int RemoteCache::wt_stream()
 
 	if (m_output_msg_block.length() > 0)
 	{
-		int send_n = this->peer().send(m_output_msg_block.rd_ptr(), m_output_msg_block.length());
+		int send_n = (int)this->peer().send(m_output_msg_block.rd_ptr(), m_output_msg_block.length());
 		if (send_n <= 0)
 		{
 			int last_error = ACE_OS::last_error();

@@ -103,7 +103,7 @@ void ManageRemoteCache::cacheOutput(Packet * packet, uint64 map_id, uint64 reque
 
 	{
 		ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_output_packet_vec_mutex, );
-		int index = owner_guid % m_cache_vec.size();
+		auto index = owner_guid % m_cache_vec.size();
 		m_cache_vec[index]->output(packet);
 	}
 }
@@ -135,7 +135,7 @@ int ManageRemoteCache::initing()
 		return -1;
 	}
 
-	if (m_manage_remote_cache_output.activate(THR_JOINABLE, m_cache_cfg.remote_cfg.cache_addrs.size()) == -1)
+	if (m_manage_remote_cache_output.activate(THR_JOINABLE, (int)m_cache_cfg.remote_cfg.cache_addrs.size()) == -1)
 	{
 		return -1;
 	}
@@ -189,7 +189,7 @@ int ManageRemoteCache::connectRemoteCache()
 
 	// assign cache reactor
 	int index = 0;
-	int reactor_number = m_reactor_vec.size();
+	int reactor_number = (int)m_reactor_vec.size();
 	for (CacheVec_t::iterator it = m_cache_vec.begin(); it != m_cache_vec.end(); ++it)
 	{
 		ACE_Reactor * reactor = m_reactor_vec[index % reactor_number];

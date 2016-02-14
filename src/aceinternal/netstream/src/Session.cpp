@@ -199,7 +199,7 @@ int Session::rd_stream()
 
 	LOG_INPUT_MSG_SIZE();
 
-	int recv_n = this->peer().recv(m_input_msg_block.wr_ptr(), m_input_msg_block.space());
+	int recv_n = (int)this->peer().recv(m_input_msg_block.wr_ptr(), m_input_msg_block.space());
 	if (recv_n > 0)
 	{
 		//m_save_input_pack_info.save(m_input_msg_block.wr_ptr(), recv_n);
@@ -249,7 +249,7 @@ int Session::wt_stream()
 
 	if (m_output_msg_block.length() > 0)
 	{
-		int send_n = this->peer().send(m_output_msg_block.rd_ptr(), m_output_msg_block.length());
+		auto send_n = this->peer().send(m_output_msg_block.rd_ptr(), m_output_msg_block.length());
 		if (send_n <= 0)
 		{
 			int last_error = ACE_OS::last_error();

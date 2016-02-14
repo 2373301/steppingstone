@@ -71,7 +71,7 @@ int CellSession::wt_stream()
 
 		if ((m_output_msg_block.space() > 0) && (m_outpu_buffer.length() > 0))
 		{
-			int copy_size = m_outpu_buffer.length() < m_output_msg_block.space() ? m_outpu_buffer.length() : m_output_msg_block.space();
+			auto copy_size = m_outpu_buffer.length() < m_output_msg_block.space() ? m_outpu_buffer.length() : m_output_msg_block.space();
 			m_output_msg_block.copy(m_outpu_buffer.rd_ptr(), copy_size);
 			m_outpu_buffer.rd_ptr(copy_size);
 			m_outpu_buffer.crunch();
@@ -80,7 +80,7 @@ int CellSession::wt_stream()
 
 	if (m_output_msg_block.length() > 0)
 	{
-		int send_n = this->peer().send(m_output_msg_block.rd_ptr(), m_output_msg_block.length());
+		auto send_n = this->peer().send(m_output_msg_block.rd_ptr(), m_output_msg_block.length());
 		if (send_n <= 0)
 		{
 			int last_error = ACE_OS::last_error();
