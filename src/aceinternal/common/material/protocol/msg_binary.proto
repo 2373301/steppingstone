@@ -1,0 +1,13 @@
+package protocol;
+
+message msg_binary_file
+{
+	required bytes cache_addr	= 1;
+	required bytes binary_file	= 2;
+}
+
+message msg_binary_record
+{
+	required uint64 guid = 1;
+	required uint64 last_modify_time = 2;
+}

@@ -27,8 +27,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{722990BE-125F-47EB-9725-50300673C8D1}</ProjectGuid>
-    <RootNamespace>netcore</RootNamespace>
+    <ProjectGuid>{04FD55EF-AFC2-496F-8470-45D4E97238D1}</ProjectGuid>
+    <RootNamespace>cache</RootNamespace>
     <Keyword>Win32Proj</Keyword>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -47,13 +47,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <PlatformToolset>v140</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <PlatformToolset>v140</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -118,8 +118,8 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../share/inc;../logger/inc;../../../dep/ACE_wrappers/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NETCORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>./inc;./src;../typedef/inc;../share/inc;../logger/inc;../../../common/inc;../common/material-cpp;../../../common/material-cpp;../common/cachesys/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CACHE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -128,7 +128,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>aced.lib;libshared.lib;libloggerd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libshared.lib;libloggerd.lib;aced.lib;libprotobufd.lib;libprotobuf-lited.lib;libprotocold.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>../../bin/libs/lib$(ProjectName)d.dll</OutputFile>
       <AdditionalLibraryDirectories>../../bin/libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -136,14 +136,14 @@
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <PostBuildEvent>
-      <Command>XCOPY ..\..\bin\libs\libnetcored.dll ..\..\bin\ /Y /R /F</Command>
+      <Command>XCOPY ..\..\bin\libs\lib$(ProjectName)d.dll ..\..\bin\ /Y /R /F</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./inc;../share/inc;../logger/inc;../../../dep/ACE_wrappers/;../../../dep/boost_1_60_0/;../../../dep/protobuf-2.6.1/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NETCORE_EXPORTS;_CRT_SECURE_NO_WARNINGS;_WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>./inc;./src;../typedef/inc;../share/inc;../logger/inc;../common/inc;../common/material-cpp;.../common/material-cpp;../common/cachesys/inc;../../../dep/ACE_wrappers/;../../../dep/boost_1_60_0/;../netstream/inc;../../../dep/protobuf-2.6.1/src;../../../dep/mysql++-3.2.2/lib;../../../dep/mysql-connector-c-6.1.6/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CACHE_EXPORTS;D_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>
@@ -152,7 +152,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>../../../dep/ACE_wrappers/lib/ACEd.lib;share.lib;logger.lib;../../../dep/protobuf-2.6.1/lib/libprotobuf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>share.lib;logger.lib;../../../dep/ACE_wrappers/lib/ACEd.lib;../../../dep/protobuf-2.6.1/lib/libprotobuf.lib;netstream.lib;../../../dep/mysql++-3.2.2/vc2008/x64/Debug/mysqlpp_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(OutDir);../../../dep/boost_1_60_0/lib64-msvc-14.0/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -164,15 +164,15 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>./inc;./src;../typedef/inc;../logger/inc;../share/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;NETCORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>./inc;./src;../typedef/inc;../share/inc;../logger/inc;../../../common/inc;../common/material-cpp;../../../common/material-cpp;../common/cachesys/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CACHE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeader />
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>ace.lib;libshare.lib;liblogger.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libshare.lib;liblogger.lib;ace.lib;libprotobuf.lib;libprotobuf-lite.lib;libprotocol.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>../../bin/libs/lib$(ProjectName).dll</OutputFile>
       <AdditionalLibraryDirectories>../../bin/libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -182,13 +182,13 @@
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <PostBuildEvent>
-      <Command>XCOPY ..\..\bin\libs\libnetcore.dll ..\..\bin\ /Y /R /F</Command>
+      <Command>XCOPY ..\..\bin\libs\lib$(ProjectName).dll ..\..\bin\ /Y /R /F</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>./inc;./src;../typedef/inc;../logger/inc;../share/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;NETCORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>./inc;./src;../typedef/inc;../share/inc;../logger/inc;../../../common/inc;../common/material-cpp;../../../common/material-cpp;../common/cachesys/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CACHE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
@@ -196,7 +196,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>ace.lib;libshare.lib;liblogger.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libshare.lib;liblogger.lib;ace.lib;libprotobuf.lib;libprotobuf-lite.lib;libprotocol.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>../../bin/libs/lib$(ProjectName).dll</OutputFile>
       <AdditionalLibraryDirectories>../../bin/libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -205,21 +205,21 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
     </Link>
     <PostBuildEvent>
-      <Command>XCOPY ..\..\bin\libs\libnetcore.dll ..\..\bin\ /Y /R /F</Command>
+      <Command>XCOPY ..\..\bin\libs\lib$(ProjectName).dll ..\..\bin\ /Y /R /F</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseD|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./inc;./src;../typedef/inc;../logger/inc;../share/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;NETCORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>./inc;./src;../typedef/inc;../share/inc;../logger/inc;../../../common/inc;../common/material-cpp;../../../common/material-cpp;../common/cachesys/inc;../netstream/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CACHE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeader />
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>ace.lib;libshare.lib;liblogger.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libshare.lib;liblogger.lib;ace.lib;libnetstream.lib;libprotobuf.lib;libprotobuf-lite.lib;libprotocol.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>../../bin/libs/lib$(ProjectName).dll</OutputFile>
       <AdditionalLibraryDirectories>../../bin/libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -229,14 +229,14 @@
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <PostBuildEvent>
-      <Command>XCOPY ..\..\bin\libs\libnetcore.dll ..\..\bin\ /Y /R /F</Command>
+      <Command>XCOPY ..\..\bin\libs\lib$(ProjectName).dll ..\..\bin\ /Y /R /F</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseD|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./inc;./src;../typedef/inc;../logger/inc;../share/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;NETCORE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>./inc;./src;../typedef/inc;../share/inc;../logger/inc;../../../common/inc;../common/material-cpp;../../../common/material-cpp;../common/cachesys/inc;../netstream/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CACHE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
@@ -244,7 +244,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>ace.lib;libshare.lib;liblogger.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libshare.lib;liblogger.lib;ace.lib;libnetstream.lib;libprotobuf.lib;libprotobuf-lite.lib;libprotocol.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>../../bin/libs/lib$(ProjectName).dll</OutputFile>
       <AdditionalLibraryDirectories>../../bin/libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -253,30 +253,37 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
     </Link>
     <PostBuildEvent>
-      <Command>XCOPY ..\..\bin\libs\libnetcore.dll ..\..\bin\ /Y /R /F</Command>
+      <Command>XCOPY ..\..\bin\libs\lib$(ProjectName).dll ..\..\bin\ /Y /R /F</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\CellSession.cpp" />
-    <ClCompile Include="src\InputSessionPool.cpp" />
-    <ClCompile Include="src\NetStream.cpp" />
-    <ClCompile Include="src\OutputSessionPool.cpp" />
-    <ClCompile Include="src\Session.cpp" />
-    <ClCompile Include="src\SessionPoolAssistent.cpp" />
-    <ClCompile Include="src\SessionPoolFactory.cpp" />
-    <ClCompile Include="src\SessionPoolImp.cpp" />
+    <ClInclude Include="..\common\material-cpp\entity\player.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_pool.pb.h" />
+    <ClInclude Include="inc\Cache.h" />
+    <ClInclude Include="inc\cached.h" />
+    <ClInclude Include="inc\CacheFactory.h" />
+    <ClInclude Include="inc\CacheInterface.h" />
+    <ClInclude Include="inc\cache_auto_assistant.h" />
+    <ClInclude Include="inc\Cache_def.h" />
+    <ClInclude Include="inc\factory.h" />
+    <ClInclude Include="inc\ManageCache.h" />
+    <ClInclude Include="src\LocalCache.h" />
+    <ClInclude Include="src\ManageLocalCache.h" />
+    <ClInclude Include="src\ManageRemoteCache.h" />
+    <ClInclude Include="src\ManageRemoteCacheOutput.h" />
+    <ClInclude Include="src\RemoteCache.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="inc\netcore_def.h" />
-    <ClInclude Include="inc\Session.h" />
-    <ClInclude Include="inc\SessionPool.h" />
-    <ClInclude Include="inc\SessionPoolFactory.h" />
-    <ClInclude Include="src\CellSession.h" />
-    <ClInclude Include="src\InputSessionPool.h" />
-    <ClInclude Include="src\NetStream.h" />
-    <ClInclude Include="src\OutputSessionPool.h" />
-    <ClInclude Include="src\SessionPoolAssistent.h" />
-    <ClInclude Include="src\SessionPoolImp.h" />
+    <ClCompile Include="..\common\material-cpp\entity\player.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_pool.pb.cc" />
+    <ClCompile Include="inc\cache_auto_assistant.cpp" />
+    <ClCompile Include="inc\factory.cpp" />
+    <ClCompile Include="src\CacheFactory.cpp" />
+    <ClCompile Include="src\LocalCache.cpp" />
+    <ClCompile Include="src\ManageLocalCache.cpp" />
+    <ClCompile Include="src\ManageRemoteCache.cpp" />
+    <ClCompile Include="src\ManageRemoteCacheOutput.cpp" />
+    <ClCompile Include="src\RemoteCache.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

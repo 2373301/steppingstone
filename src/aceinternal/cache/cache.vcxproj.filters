@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="inc">
+      <UniqueIdentifier>{9b3043e0-f4e0-4366-90a6-67e9464f95bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{6ece3129-020e-4fba-8a13-120b598e13e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="local">
+      <UniqueIdentifier>{cebf3e13-5616-445d-84c3-634a5e23b621}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="remote">
+      <UniqueIdentifier>{2b552296-e681-44f5-88bd-d0e4a5098faf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="proto">
+      <UniqueIdentifier>{28c88d41-92e3-449d-b396-b1c9390e3a66}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="inc\Cache.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Cache_def.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\CacheFactory.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\ManageCache.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\LocalCache.h">
+      <Filter>local</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageLocalCache.h">
+      <Filter>local</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageRemoteCache.h">
+      <Filter>remote</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageRemoteCacheOutput.h">
+      <Filter>remote</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RemoteCache.h">
+      <Filter>remote</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_pool.pb.h">
+      <Filter>proto</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cache_auto_assistant.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cached.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\CacheInterface.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\factory.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\player.pb.h">
+      <Filter>proto</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\CacheFactory.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LocalCache.cpp">
+      <Filter>local</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageLocalCache.cpp">
+      <Filter>local</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageRemoteCache.cpp">
+      <Filter>remote</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageRemoteCacheOutput.cpp">
+      <Filter>remote</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RemoteCache.cpp">
+      <Filter>remote</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_pool.pb.cc">
+      <Filter>proto</Filter>
+    </ClCompile>
+    <ClCompile Include="inc\cache_auto_assistant.cpp">
+      <Filter>inc</Filter>
+    </ClCompile>
+    <ClCompile Include="inc\factory.cpp">
+      <Filter>inc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\player.pb.cc">
+      <Filter>proto</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

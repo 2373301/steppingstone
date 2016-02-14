@@ -1,0 +1,18 @@
+package typed.cached.protocol;
+
+message Result {
+
+	/// 定义缓存服务器和GS 之间的错误消息协议
+	enum status_t {
+		STATE_NORMAL           = 0;  /// 正常
+		STATE_ENTITY_NOT_FOUND = 1;  /// 实体没有找到
+		STATE_ENTITY_EXISTS    = 2;  /// 实体已经存在  
+		STATE_ENTITY_LOCKED    = 5;  /// 实体被锁定
+		
+		STATE_PROTOCOL_ERROR  = 104;  /// 协议不正确 
+		STATE_INTERNAL_ERROR  = 105;  /// CACHE 服务器内部错误 
+	}
+	
+	required status_t status    = 1;  /// 代表查询状态 
+	optional bytes   message   = 2;   /// 代表查询结果，如果存在结果的话
+}
