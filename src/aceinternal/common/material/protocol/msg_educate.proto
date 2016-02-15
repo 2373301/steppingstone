@@ -1,0 +1,78 @@
+package typed.protocol;
+
+// 打开培养界面，每一个角色第一次打开培养时都要发送
+message cmsg_open_educate
+{
+	required uint64 role_guid = 1;		//角色guid
+}
+
+message smsg_open_educate
+{
+	required uint64 role_guid	= 1;	//角色guid
+	required uint32	str_attr	= 3;	//外功培养值
+	required uint32	agi_attr	= 4;	//内功培养值
+	required uint32	int_attr	= 5;	//奇术培养值
+	required bool 	unsave_last	= 6;	//上次随即是否保存		
+	optional int32 	str_change	= 7;	//外功培养未保存变化值
+	optional int32 	agi_change	= 8;	//内功培养未保存变化值
+	optional int32 	int_change	= 9;	//奇术培养未保存变化值	
+}
+
+// cmsg_request_cost_educate 没有结构体，第一次打开培养画面时候发送以获取培养消耗
+
+// 获取当前培养金钱消耗
+message smsg_request_cost_educate
+{
+	optional uint32 cost_next_sth	= 1;	//加强培养下次消耗
+	optional uint32 cost_next_adv	= 2;	//高级培养下次消耗 	
+	optional uint32 cost_next_exm	= 3; 	//至尊培养下次消耗	
+}
+
+ 
+ // 培养界面随机
+message cmsg_random_educate
+{
+	required uint64 role_guid	= 1;	//角色guid
+	required uint32 type_edc	= 2;	//培养类型
+}
+
+message smsg_random_educate
+{
+	required uint64 role_guid  		= 1;
+	optional int32 	str_change		= 2;	//外功培养变化值
+	optional int32 	agi_change		= 3;	//内功培养变化值
+	optional int32 	int_change		= 4;	//奇术培养变化值
+	optional uint32 cost_next_sth	= 5;	//加强培养下次消耗
+	optional uint32 cost_next_adv	= 6;	//高级培养下次消耗 	
+	optional uint32 cost_next_exm	= 7; 	//至尊培养下次消耗	
+}
+
+// 保存随机结果
+message cmsg_save_educate
+{
+	required uint64 role_guid	= 1;	//角色guid
+}
+
+//SMSG_SAVE_EDUCATE
+
+// 取消随机结果
+message cmsg_cancle_educate
+{
+	required uint64 role_guid	= 1;	//角色guid
+}
+
+//SMSG_CANCLE_EDUCATE
+
+//SMSG_EDUCATE_NOTIFY,上线时玩家角色培养值下发
+message RoleEducate
+{
+	optional uint64 role_guid	= 1; //角色guid
+	optional uint32 edu_str		= 2; //培养外功值
+	optional uint32 edu_agi		= 3; //培养内功值
+	optional uint32 edu_int		= 4; //培养奇术值
+}
+message smsg_educate_notify
+{
+
+	repeated RoleEducate role_educate = 1;
+}

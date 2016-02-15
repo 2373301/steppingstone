@@ -1,0 +1,23 @@
+package typed.entity;
+
+message EducateTimes
+{
+	required uint64	guid				= 1;	//培养次数实体guid
+	required uint64	player				= 2;	//玩家guid
+	optional uint32	strengthen_times	= 3;	//加强培养当日已培养次数
+	optional uint32	advanced_times		= 4;	//高级培养当日已培养次数
+	optional uint32	extreme_times		= 5;	//至尊培养当日已培养次数
+}
+
+message Educate
+{
+	required uint64	guid				= 1;	//玩家培养属性实体guid
+	required uint64	player				= 2;	//玩家guid
+	required uint32	str_attr			= 3;	//外功培养值
+	required uint32	agi_attr			= 4;	//内功培养值
+	required uint32	int_attr			= 5;	//奇术培养值
+	required uint32 unsave_last			= 6;	//上次随即是否保存，非0:未保存,上次随机种类1普通培养2加强3高级4至尊	
+	optional int32 	str_change			= 7;	//外功培养未保存变化值
+	optional int32 	agi_change			= 8;	//内功培养未保存变化值
+	optional int32 	int_change			= 9;	//奇术培养未保存变化值	
+}

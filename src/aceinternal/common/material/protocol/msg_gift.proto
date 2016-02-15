@@ -1,0 +1,37 @@
+package typed.protocol;
+
+enum gift_status {
+	kGiftStatusLock			= 0;	// 锁定
+	kGiftStatusGift			= 1;	// 可领取
+	kGiftStatusOver			= 2;	// 已领取
+}
+
+//SMSG_GIFT_UPDATE 在玩家上线,或 day change的时候假如有每日登陆的奖品未领取,server会推送此消息
+
+// CMSG_GIFT_STAT/SMSG_GIFT_STAT
+message smsg_gift_stat {
+	// 奖励状态；如数组长度小于配置表长度，则后面的都应该是不可领取状态。
+	repeated uint32 gift_status	= 1;
+}
+
+// SMSG_GIFT_NEXT	下一天可领取
+
+// 服务器下发当前的在线计时奖励
+message smsg_gift_time {
+	// 1-based 当前倒计时是第几次。-1 表示当天已经领取玩所有的奖励。
+	optional int32 phase		= 1;
+	// 毫秒，倒计时。0 表示当前阶段的奖励可领取
+	optional uint32 timeo		= 2;
+}
+
+message cmsg_gift_take {
+	// 领取奖励的类型，策划配置表中的值。
+	optional uint32 type		= 1;
+	optional uint32 param		= 2;	// 连续登陆奖励的第几天（1-based)
+}
+
+message smsg_gift_take {
+	optional uint32 type		= 1;
+	repeated uint32 item_ids	= 2;
+	repeated uint32 item_nums	= 3;
+}

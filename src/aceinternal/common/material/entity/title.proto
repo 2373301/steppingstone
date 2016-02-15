@@ -1,0 +1,15 @@
+package typed.entity;
+
+message TitleBriefContainer
+{
+	required uint64 guid							= 1;
+	repeated uint64 briefs							= 2;
+}
+
+// 周期性称号，需要定期重置，再次做简略信息
+message TitleBrief
+{
+	required uint64 guid							= 1; // guid
+	required uint32 title_id						= 2; // 称号id; 
+	repeated uint64 player							= 3; // 获得该称号的玩家。 定期的。
+}

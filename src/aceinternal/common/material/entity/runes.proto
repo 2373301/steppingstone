@@ -1,0 +1,23 @@
+package typed.entity;
+
+message Runes
+{
+	message Unit
+	{
+		optional uint32 position		= 1;	// 位置
+		optional uint32 class			= 2;	// 阶级
+		optional uint32 level			= 3;	// 等级
+		optional uint32 exp				= 4;	// 当前等级经验值
+	}
+	message Formation
+	{
+		repeated Unit	unit_list		= 1;	// 符文集合
+		optional uint64 role_guid		= 2;	// 伙伴guid
+		optional uint32 blessing_num	= 3;	// 当天已使用祝福次数
+	}
+	required uint64 guid					= 1;	
+	required uint64 player					= 2;
+	repeated Formation 	formation_list		= 3;	// 符阵集合
+	optional uint32 runes_stone				= 4;	// 符文之石
+	optional uint32 runes_fire				= 5;	// 符文之火
+}

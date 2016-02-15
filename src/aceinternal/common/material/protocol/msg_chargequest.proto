@@ -1,0 +1,21 @@
+package typed.protocol;
+
+message smsg_chargequest_state
+{
+	optional uint32 state				= 1; // 1：未解锁，2：已解锁；3：已完成，
+}
+
+// 空消息，领奖
+// message cmsg_chargequest_get_prize
+
+message smsg_chargequest_get_prize
+{
+	required uint32 result				= 1; // 1：ok， 2:背包满
+	repeated uint32 item_id				= 2; // 物品id
+	repeated uint32 item_num			= 3; // 物品数量
+}
+
+message smsg_chargequest_chargecoin
+{
+	required uint32 charge_coin			= 1; // 已经充值的元宝数目
+}

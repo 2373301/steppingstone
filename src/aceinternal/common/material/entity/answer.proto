@@ -1,0 +1,26 @@
+package typed.entity;
+
+message Answer {
+	required uint64 guid			= 1;
+	required uint64 player			= 2;
+
+	optional bool newday			= 3;		// 是否收到过 day_change 消息
+	optional uint32 count			= 4;		// 剩余答题次数
+	repeated uint32 acc_awards		= 5;		// 当日累计奖励
+	repeated uint32 acc_values		= 6;
+	optional uint32 nstep			= 7;		// 当日元宝购买次数
+
+	// 行动力冷却统计
+	optional uint64 power_stamp		= 10;
+	optional uint32 power_times		= 11;
+	optional uint32 power_flags		= 12;
+
+	message record {
+		repeated uint32 questions	= 1;
+	}
+	// 区域及其题目和统计信息
+	repeated uint32 sections		= 15;
+	repeated uint32 questions		= 16;
+	repeated record answereds		= 17;
+	repeated uint32 statistics		= 18;
+}

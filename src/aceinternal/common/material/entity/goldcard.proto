@@ -1,0 +1,30 @@
+package typed.entity;
+
+message GoldCard
+{
+	message Reward
+	{
+		optional uint32 id				= 1;	// 特权卡ID
+		optional uint32 buy_coin		= 2;	// 购买奖励
+
+		// 每日奖励
+		optional uint32 days			= 3;	// 天数
+		repeated uint32 reward_type		= 4;	// 奖励类型（bonus表定义的类型）
+		repeated uint32 reward_value	= 5;	// 奖励值
+		
+		repeated uint32 buy_reward_type		= 6;	// 购买奖励类型（bonus表定义的类型）
+		repeated uint32 buy_reward_value	= 7;	// 购买奖励值
+	}
+	message CardInfo
+	{
+		optional uint32 id				= 1;	// 特权卡ID
+		optional uint32 status			= 2;	// 状态：0 未解锁，1 已解锁未购买，2 已购买
+		optional uint32 coin_count		= 3;	// 累积元宝充值
+		optional uint64 start_time		= 4;	// 开始时间
+	}
+	required uint64 guid					= 1;	
+	required uint64 player					= 2;
+	repeated CardInfo card_list				= 3;	// 特权卡集合
+	repeated Reward new_reward_list			= 4;	// 当前特权卡产生的奖励
+	repeated Reward old_reward_list			= 5;	// 历届特权卡未领取的奖励
+}

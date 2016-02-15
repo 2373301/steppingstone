@@ -1,0 +1,87 @@
+package typed.protocol;
+
+// 服务器向跨服服务器注册
+message smsg_cross_server_register
+{
+	required string line_id				= 1;
+	required string platform			= 2;
+	required string security_key		= 3;
+}
+
+// 服务器断开连接通知消息
+message smsg_cross_server_disconnect
+{
+	required string line_id				= 1;
+	required string platform			= 2;
+}
+
+// 请求跨服赛玩家数据
+message smsg_request_cross_player_fight_data
+{
+	repeated uint64 player_guid						= 1;
+}
+
+// 开始传输玩家数据
+message smsg_cross_deliver_player_data_start
+{
+	required uint64 player_guid			= 1;
+	required string line_id				= 2;
+	required string platform			= 3;
+}
+
+message smsg_cross_deliver_player_data_end
+{
+	required uint64 player_guid			= 1;
+	required string line_id				= 2;
+	required string platform			= 3;
+}
+
+// 传输玩家数据
+message smsg_cross_deliver_player_data
+{
+	required uint64 player_guid			= 1;
+	required uint64 entity_guid			= 2;
+	required string line_id				= 3;
+	required string platform			= 4;
+	required bytes  entity_stream		= 5;
+}
+
+// 跨服赛请求加载玩家数据
+message pmsg_request_cross_player_fight_data
+{
+	message PlayerInfo
+	{
+		required string line_id			= 1;
+		required string platform		= 2;
+		repeated uint64 player_guids	= 3;
+	}
+	repeated PlayerInfo player_info		= 1;
+}
+
+// 跨服赛玩家数据清理
+// message pmsg_clear_cross_player_fight_data 无消息体
+
+// 跨服赛玩家数据加载完成
+// message nmsg_request_cross_player_fight_data_finish 无消息体，加消息体，处理玩家所在线未连接跨服服务器的情况
+message nmsg_request_cross_player_fight_data_finish
+{
+	message PlayerInfo
+	{
+		required string line_id			= 1;
+		required string platform		= 2;
+		repeated uint64 player_guids	= 3;	// failed to get the player fight data info
+	}
+	repeated PlayerInfo player_info		= 1;
+}
+
+message nmsg_line_server_connection
+{
+	required string line_id				= 1;
+	required string platform			= 2;
+}
+
+message nmsg_line_server_disconnection
+{
+	required string line_id				= 1;
+	required string platform			= 2;
+}

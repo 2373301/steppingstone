@@ -1,0 +1,29 @@
+package typed.entity;
+
+
+
+// 超级战力模块实体	
+message SuperPower
+{
+	message Target
+	{ // 描述没一个目标
+		optional uint32 targetid		= 1; // 目标Id.
+		optional uint32 step			= 2; // 目标完成情况（当前正在处理到哪一步）
+		optional uint32 complete		= 3; // 是否全部完成目标（0：正在进行，1：已完成）
+		
+		repeated uint32 prize_step		= 4; // 存储还未领取的奖励
+		optional uint32 target_prize	= 5; // 任务奖励是否已经领取(0:未领取，1：已领取)
+		
+		optional uint32 oa				= 6; // 参数1 // 根据当前任务的类型，此处的参数代表不同的意义
+		optional uint32 ob				= 7; // 参数2
+		optional uint32 oc				= 8; // 参数3
+	}
+
+	required uint64	guid	 			= 1; 		// 
+	required uint64	player	 			= 2; 		// 
+	
+	repeated Target targets				= 3; // 所有的目标
+	optional uint32 login_times			= 4; // 累计登陆天数，所有任务公用该参数
+	
+	optional uint32 track_target		= 5; // 当前在追踪的目标
+}	

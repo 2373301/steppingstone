@@ -1,0 +1,34 @@
+package typed.entity;
+
+message Rankings
+{		
+	// 排行
+	message RankingTopList
+	{
+		required uint64 guid		= 1;
+		required uint32 param		= 2;
+		optional uint32 accpos		= 3;
+	}
+	
+	// 奖励
+	message RankingRewards
+	{
+		required uint64		guid			= 1;
+		required uint32		bonus_id		= 2;
+	}
+		
+	// 1.等级排行
+	// 2.战力排行
+	// 3.仗剑江湖排行
+	// 4.竞技场排行
+	// 5.帮会等级排行(无奖励)
+	// 6.大乱斗排行
+	// 7.鲜花排行
+	// 8.切磋排行榜
+	// 9.天下英雄榜
+	
+	required uint64 			guid			= 1;	// 一种榜单,一条guid
+	repeated RankingTopList		list			= 2;	// 榜单
+	repeated RankingRewards		rewards			= 3;	// 奖励
+	repeated RankingTopList		history_list	= 4;	// 历史榜单, 只有天下英雄榜需要..
+}

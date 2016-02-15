@@ -1,0 +1,81 @@
+package typed.protocol;
+
+// bag to storehouse bag, storehouse to storehouse bag, 堆叠
+message cmsg_item_move
+{
+	required uint64 item		= 1;
+	required uint32 destination	= 2;	// 1 : bag, 2 : storehouse
+	required uint32 pos			= 3;	// 0：双击操作，进行堆叠
+}
+
+// 成功则返回, 失败返回错误消息
+message smsg_item_move
+{
+	required uint64 item		= 1;
+	required uint32 destination	= 2;	// 1 : bag, 2 : storehouse
+	required uint32 pos			= 3;	// 0：该物品堆叠掉了，消失，同时会发送物品删除消息，99999：背包已满，且物品不能堆叠
+}
+
+// 整理背包
+message cmsg_neaten_bag
+{
+	required uint32 destination	= 1;	// 1 : bag, 2 : storehouse
+}
+
+message smsg_neaten_bag
+{
+	required uint32 destination	= 1;	// 1 : bag, 2 : storehouse
+	repeated uint64 items		= 2;
+	repeated uint32 item_num	= 3;	// 物品数量
+}
+
+// 扔掉物品
+message cmsg_bag_item_trash 
+{
+	required uint64 item_guid			= 1;	// 可删除背包物品和仓库物品
+}
+
+message smsg_bag_item_trash 
+{
+	required uint64 item_guid			= 1;
+}
+
+// 解锁背包
+message cmsg_unlock_bag
+{
+	required int32 destination	= 1;	// 1 : bag, 2 : storehouse
+	required int32 pos			= 2;	// 解锁位置pos
+}
+
+// 解锁背包
+message smsg_unlock_bag
+{
+	required int32 destination	= 1;	// 1 : bag, 2 : storehouse
+	required int32 pos			= 2;	// 解锁位置pos
+}
+
+// 更新可堆叠物品的数量
+message smsg_update_item_num
+{
+	required uint64 item_guid	= 1;
+	required uint32	item_num	= 2;
+}
+
+// 上线下发消息，赠送还未解锁的仓库格位
+message smsg_update_vip1_storehouse
+{
+	required uint32 left_num	= 1;	// 剩余的已经赠送而还未解锁的仓库数量
+}
+
+// 上线下发消息，时间解锁背包格位信息
+message smsg_update_time_bag
+{
+	required uint32 total_count_time	= 1;	// 已经累计的在线时间, 单位：秒
+}
+
+// 时间免费解锁背包之后，下发相关信息
+message smsg_update_time_unlock_bag
+{
+	required uint32 total_count_time	= 1;	// 已经累计的在线时间, 单位：秒
+	required uint32 curr_bag_size		= 2;	// 时间解锁以后，背包当前长度
+}

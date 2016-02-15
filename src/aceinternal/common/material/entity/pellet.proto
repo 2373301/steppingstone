@@ -1,0 +1,11 @@
+package typed.entity;
+
+message Pellet
+{
+	required uint64 guid				= 1;
+	required uint64 player				= 2;
+	required uint64 role				= 3;
+	repeated uint32 str_grade			= 4;	// 外功
+	repeated uint32 agi_grade			= 5;	// 内功
+	repeated uint32 int_grade			= 6;	// 奇术
+}

@@ -1,0 +1,10 @@
+package typed.entity;
+
+message Announce
+{
+	required uint64 guid 					= 1;
+	required uint64 player					= 2;
+	repeated uint32 pass_announce_map		= 3;
+	repeated uint32 pass_announce_enemy		= 4;
+	repeated uint32 pass_announce_monster	= 5;
+}

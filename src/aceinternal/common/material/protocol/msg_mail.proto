@@ -1,0 +1,95 @@
+package typed.protocol;
+
+message MailBrief
+{
+	required uint64 guid			= 1;
+	optional uint32 mail_type		= 2;	// 邮件类型 1 : 私信, 2:帮派， 3：系统\
+	optional uint32 is_read			= 3;	// 是否已读标志位， 0 ：未读　1：已读
+	optional uint32 attachment_get	= 4;	// 附件是否已领取
+	optional string title			= 5;	// 标题
+	optional string sender			= 6;	// 发送者
+	optional uint32 attachment		= 7;	// 附件个数
+	optional uint64 time_stamp		= 8;	// 发信时间
+}
+//上线通知未读邮件
+//SMSG_MAIL_UNREAD_NOTIFY
+message smsg_mail_unread_notify
+{
+	optional uint32 unread_self		= 1;	//未读个人邮件个数
+	optional uint32 unread_faction	= 2;	//未读帮派邮件个数
+	optional uint32 unread_system	= 3;	//未读系统邮件个数
+}
+//CMSG_MAIL_OPEN_MAILBOX 打开邮箱
+//SMSG_MAIL_OPEN_MAILBOX
+message smsg_mail_open_mailbox
+{
+	repeated MailBrief mail_brief = 1;
+}
+//CMSG_MAIL_READ 读取邮件
+message cmsg_mail_read
+{
+	required uint64 guid = 1;	//邮件guid
+}
+//
+//SMSG_MAIL_READ
+message smsg_mail_read
+{
+	required uint64 guid			= 1;
+	optional uint32 result			= 2;	// 1：成功，2：无此邮件
+	optional uint32 mail_type		= 3;	// 邮件类型 1 : 私信, 2:帮派， 3：系统\
+	optional uint32 is_read			= 4;	// 是否已读标志位， 0：未读　1：已读
+	optional uint32 attachment_get	= 5;	// 附件是否已领取
+	optional string title			= 6;	// 标题
+	optional string content			= 7;	// 内容
+	optional string sender			= 8;	// 发送者
+	repeated uint32 attachment_id	= 9;	// 附件物品id
+	repeated uint32 attachment_num	= 10;	// 附件物品数量
+	optional uint32 pay_type		= 11;	// 需要支付的货币类型
+	optional uint32 pay_value		= 12;	// 需要支付的货币值
+	optional uint64 time_stamp		= 13;	// 发信时间
+}
+
+//CMSG_MAIL_DELETE 删除邮件
+message cmsg_mail_delete
+{
+	repeated uint64 mail_guid = 1;	//待删除邮件guid
+}
+//SMSG_MAIL_DELETE
+message smsg_mail_delete
+{
+	repeated uint64 mail_guid = 1;	//删除成功的邮件guid
+}
+
+//CMSG_MAIL_SEND 发送邮件
+message cmsg_mail_send
+{
+	optional uint32 mail_type		= 1;	// 邮件类型 1 : 私信, 2:帮派
+	repeated string receiver		= 2;	// 收件人	
+	optional string title			= 3;	// 标题
+	optional string content			= 4;	// 内容
+}
+//SMSG_MAIL_SEND
+message smsg_mail_send
+{
+	repeated string failed_black	= 1;	// 被列入黑名单发送失败
+	repeated string failed_full		= 2;	// 邮箱已满发送失败
+	repeated string failed_unknown	= 3;	// 未知原因
+}
+//SMSG_MAIL_NEW 新邮件通知
+message smsg_mail_new
+{
+	optional MailBrief new_mail		= 1;
+}
+
+//CMSG_MAIL_GET_ATTACH 获取附件
+message cmsg_mail_get_attach
+{
+	required uint64 mail_guid	= 1;	//
+	optional uint32 param		= 2;	//服务器专用，客户端不用填。1：正常领取，2：领取失败
+}
+//SMSG_MAIL_GET_ATTACH
+message smsg_mail_get_attach
+{
+	required uint64 mail_guid	= 1;	//
+	optional uint32 result			= 2;	//结果1：成功，2：失败
+}

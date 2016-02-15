@@ -1,0 +1,45 @@
+package typed.protocol;
+
+// -----拉取每日积分任务列表--------------------------------------------------------------
+// message cmsg_dailypoints_list 只有消息码，没有消息体
+
+// 客服端需监听此消息
+message smsg_dailypoints_list
+{
+	message StartEvent
+	{
+		required uint32 daily_id		= 1;	// 每日积分任务id
+		required uint32 event_id		= 2;	// 事件id
+		optional uint32 complete_value	= 3;	// 完成值
+	}
+	
+	repeated uint32 finish_id				= 1;	// 完成积分每日任务列表
+	repeated StartEvent	start_event_list	= 2;	// 未完成的每日积分任务列表
+	repeated uint32 reward					= 3;	// 奖励列表 0：代表条件未达到，1：代表可领取，2：已经领取
+	optional uint32 points					= 4;	// 积分总值
+	optional uint32 daily_reward_level		= 5;	// 每日奖励层次等级
+}
+
+// -----元宝完成积分任务-------------------------------------------------------------------
+message cmsg_coin_complete_event
+{
+	required uint32 daily_id		= 1;	// 每日积分任务id
+}
+
+message smsg_coin_complete_event
+{
+	optional uint32 status			= 1;	// 0 成功；1 元宝不足，失败; 2 等级不够； 3 超过最大等级
+}
+
+// -----领取奖励----------------------------------------------------------------------------
+message cmsg_get_daily_reward
+{
+	required uint32 reward_id		= 1;	// 奖励id；
+}
+
+message smsg_get_daily_reward
+{
+	repeated uint32 item_id				= 1;	// 道具ID
+	repeated uint32 item_num			= 2;	// 道具数量
+}
+

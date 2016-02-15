@@ -1,0 +1,58 @@
+package typed.entity;
+
+enum Guild_Job_Type
+{
+	JT_Leader			= 1;	// 帮主
+	JT_Deputy_Leader	= 2;	// 副帮主
+	JT_Member			= 3;	// 普通成员
+}
+
+message Guild
+{
+	// 帮会成员详细信息
+	message Guild_Member
+	{
+		required uint64 member_guid				= 1;	// 成员guid
+		optional uint32 job						= 2;	// 职务
+		optional uint32 today_exp		 		= 3;	// 今日贡献帮派经验值
+		optional uint32 all_exp					= 4;	// 总贡献帮派经验值
+		optional uint64 last_login_time			= 5;	// 上次登陆时间
+	}
+
+	// 帮会日志信息
+	message Guild_Logs
+	{
+		required uint32 talk_id					= 1;	// 对应talk表里的ID
+		// param_id 与 param_name 必需等长，当客户端可以通过 param_id 取得名字时，对应的 param_name 可填为空。	
+		repeated uint64 param_id			= 2;
+		repeated string param_name			= 3;
+		optional uint32 create_time			= 4;	// 通知产生时间，单位：秒	
+	}
+	
+	required uint64 guid					= 1;	// 帮会guid
+	optional string name					= 2;	// 帮会名称
+	required uint64 leader_guid				= 3;	// 帮主guid
+	optional string leader_name				= 4;	// 帮主名称
+	optional uint32 level					= 5;	// 帮会等级
+	optional uint32 level_time				= 6;	// 升级时间
+	optional uint32 capacity				= 7;	// 帮会容纳人数 
+	optional string notice					= 8;	// 帮会公告
+	optional uint32 exp						= 9;	// 经验
+	optional uint32 week_exp				= 10;	// 周累计经验
+	optional uint32 badge					= 11;	// 帮会徽章
+	repeated Guild_Member member_list		= 12;	// 帮会成员
+	repeated Guild_Logs logs_list			= 13;	// 帮会日志
+	repeated uint64	applicant_list			= 14;	// 申请人
+	
+	// 弹劾信息
+	optional uint64 delate_guid				= 15; // 弹劾发起者guid
+	optional uint64 effective_times			= 16; // 有效时间
+	repeated uint64 agree_members			= 17; // 同意弹劾
+	repeated uint64 disagree_members		= 18; // 反对弹劾
+}
+
+message Guilds
+{
+	required uint64 guid				= 1;
+	repeated uint64 guild_guid			= 2;
+}

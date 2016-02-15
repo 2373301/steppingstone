@@ -1,0 +1,29 @@
+package typed.protocol;
+
+// 广播通知
+// cmsg_broadcast_push 无消息实体
+message smsg_broadcast_push
+{
+	repeated uint32 push_id_list		= 1;	// 推送id 
+	repeated uint32 push_status_list	= 2;	// 状态 1：解锁未购买 2：解锁已购买 3：解锁未购买超时
+	repeated uint32 cd_times			= 3;	// 限时类型的推送cd（秒）
+}
+
+// 触发推送
+message smsg_touch_push
+{
+	optional uint32 push_id				= 1;	// 解锁的推送
+	optional uint32 cd_times			= 2;	// 限时类型的推送cd（秒）
+}
+
+// 购买推送内容
+message cmsg_buy_push_item
+{
+	required uint32 push_id				= 1;	// 推送配置表id
+}
+
+message smsg_buy_push_item
+{
+	optional uint32 status 				= 1;	// 1 成功；2 元宝不够；3 背包各位不够
+	optional uint32 push_id				= 2;	// 推送配置表id
+}

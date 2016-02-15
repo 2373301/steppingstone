@@ -1,0 +1,25 @@
+package typed.entity;
+
+message Dodge
+{	
+	required uint64 guid			= 1;
+	required uint64 player			= 2;
+
+	//梅花桩
+	optional uint32	times_left		= 3;	//走桩剩余次数
+	optional uint32 times_change	= 4;	//已改运次数
+	repeated uint32 library			= 5;	//步伐系统库, 目前size==6
+	repeated uint32 step			= 6;	//当前走桩步骤
+	optional uint32 num_gold		= 7;	//金罐点数
+	optional uint32 num_silver		= 8;	//银罐点数
+	
+	//轻功
+	optional uint32 dodge_point			= 9;	//轻功点数
+	optional uint32 dodge_id			= 10;	//当前装备轻功id
+	repeated uint32	dodge_unlock_id		= 11;	//解锁的轻功id
+	repeated uint32	part_unlock_id		= 12;	//解锁的残卷id
+	optional uint32	get_gold_item_id	= 13;	//当天已领取金罐对应轻功卷item id，0：没领取
+	optional uint32 get_silver_item_id	= 14;	//当天已领取银罐罐对应轻功卷item id，0：没领取
+	optional bool	first_change_step	= 15;	//第一次梅花桩改运
+	optional uint64	dodge_point_cost	= 16;	//轻功点消耗总值
+}

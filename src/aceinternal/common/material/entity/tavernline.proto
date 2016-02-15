@@ -1,0 +1,15 @@
+package typed.entity;
+
+message TavernLine
+{
+	message TLogs
+	{
+		required uint32 talk_id				= 1;	// 对应talk表里的ID
+		// param_id 与 param_name 必需等长，当客户端可以通过 param_id 取得名字时，对应的 param_name 可填为空。	
+		repeated uint64 param_id			= 2;
+		repeated string param_name			= 3;
+	}
+
+	required uint64 guid			= 1;	// Line酒馆guid
+	repeated TLogs log_list			= 2;	// 招募日志（保存最新20条）
+}

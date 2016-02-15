@@ -1,0 +1,196 @@
+package typed.protocol;
+
+// 强化可能出现的错误，客户端可以根据此值，显示相关信息。
+message smsg_sthen_error {
+	// 0，成功；
+	// 1，招募强化师时，checksum 错误，新的强化师招募列表正在下发；
+	required int32 error				= 1;
+}
+
+// 强化的 flag 意义：
+// 0x01 被置位时，强化队列被冻结，否则该强化队列是可用的；
+// 其他意义待定。
+
+// 玩家登陆时，由服务器下发
+message smsg_sthen_queue {
+	// 剩余冷却时间，单位：毫秒
+	repeated uint32 queue_cd		= 1;
+	repeated uint32 queue_flags		= 2;
+	// 0x01 置位表示强化cd减半；0x02 置位表示强化无cd。
+	optional uint32 flags			= 3;
+}
+
+// 单次强化后某个强化队列的改变 或 服务器对客户端某个队列的矫正
+message smsg_sthen_queue_single {
+	required uint32 queue_pos		= 1;
+	required uint32 queue_cd		= 2;
+	required uint32 queue_flag		= 3;
+}
+
+// 当前服务器的强化成功率
+message smsg_sthen_succ_rate {
+	required uint32 rate			= 1;
+}
+
+// 客户端刷新强化师招募列表(timeout)时，服务器端认为时间尚未到达，会重新下发 timeout.
+message smsg_stheno_timeout {
+	required uint32 timeout         = 1;
+}
+
+message cmsg_sthen_first_open {
+}
+
+message Stheno {
+	required uint64 guid		= 1;
+	required uint64 player		= 2;
+	required uint32 stheno_id	= 3;
+	required uint32 level		= 4;
+	required uint32 exp			= 5;
+	required uint32	functype	= 6;	// 强化师功能分类:1, 增加强化成功; 2, 降低强化消耗; 3, 强化连击
+	required uint32 attrtype	= 7;	// 1, 万分比; 2, 绝对值
+	required uint32 funcprob	= 8;	// 触发几率，万分比，>= 10000表示必定成功
+	required uint32 attrvalue	= 9;
+}
+
+message smsg_sthen_first_open {
+	// 2, 成功率永远百分百（即，VIP强化成功率永远置顶）；
+	// 1，成功率单次百分百；
+	// 0，成功有其他因素决定。
+	optional uint32 sthen_will_succ			= 1;
+	optional uint64 stheno_hire_checksum	= 2;
+	// 数组的大小为已经解锁的格位，通过与配置表内容比较得知锁定的各位
+	repeated uint32 stheno_hire_list		= 3;
+	repeated uint64 stheno_idle_list		= 4;
+	repeated uint64 stheno_equip_list		= 5;
+	repeated Stheno sthenos					= 6;
+	// 强化师招募列表的过期时间，过期后客户端主动发起 cmsg_stheno_refresh 请求。
+	optional uint32 stheno_hire_timeout		= 7;	// 单位毫秒
+}
+
+message cmsg_sthen_equip {
+	required uint64 equip_guid			= 1;
+}
+
+message stheno_upgrade {
+	required uint64 stheno_guid			= 1;
+	optional uint32 curr_exp			= 2;
+	// 强化师未升级时，以下字段都是0
+	optional uint32 stheno_level		= 3;
+	optional uint32 funcprob			= 4;
+	optional uint32 attrvalue			= 5;
+}
+
+// 幻化装备
+//
+// flag:
+//  0x01 置位时表示不足材料使用元宝购买
+message cmsg_color_equip {
+	required uint64 guid				= 1;
+	optional uint32 flag				= 2;
+	optional uint32 id					= 3;	// 配置表illusion.xml的id字段
+}
+
+message smsg_color_equip {
+	required uint64 guid				= 1;
+	optional uint32 newid				= 6;
+	optional uint32 color				= 2;	// *obsolete*
+	optional uint32 price				= 3;
+	repeated uint32 attribute_ids		= 4;
+	repeated uint32 attribute_values	= 5;
+}
+
+message smsg_sthen_equip {
+	required uint64 equip_guid			= 1;
+	required uint32 equip_result		= 2;		// 1, succ; 2, fail.
+	// 失败时，下面四个字段无意义
+	optional uint32 strength_level		= 3;
+	optional uint32 equip_price			= 4;
+	repeated uint32 attribute_id		= 5;
+	repeated uint32 attribute_value		= 6;
+
+	repeated uint64 stheno_guids		= 7;		// 发挥效果的强化师 guid
+	repeated stheno_upgrade upgrades	= 8;
+	optional uint32 sthen_will_succ		= 9;
+	optional uint32 queue_index			= 10;		// 使用的强化队列索引
+}
+
+// 强化师列表分类:
+enum stheno_location {
+	kSthenoLocationHire					= 1;		// 待招募强化师
+	kSthenoLocationIdle					= 2;		// 未装备强化师
+	kSthenoLocationEquip				= 3;		// 已装备强化师
+	kSthenoLocationQueue				= 4;		// 强化队列
+}
+
+message cmsg_sthen_unlock {
+	required uint32 location			= 1;
+	required uint32 position			= 2;
+}
+
+// 元宝消耗由单独模块发送
+message smsg_sthen_unlock {
+	required uint32 location			= 1;
+	required uint32 position			= 2;
+}
+
+// 提升强化成功率至 100%
+message cmsg_sthen_percent100 {
+}
+
+message smsg_sthen_percent100 {
+}
+
+// 清除强化冷却
+message cmsg_sthen_zerocd {
+	required uint32 queue_index			= 1;		// 1-based index
+}
+
+message smsg_sthen_zerocd {
+	required uint32 queue_index			= 1;
+}
+
+message cmsg_stheno_hire {
+	required uint64 checksum			= 1;
+	required uint32 hire_pos			= 2;		// 待招募强化师列表位置
+	optional uint32 stheno_id			= 3;		// useful in development testing
+}
+
+message smsg_stheno_hire {
+	required uint64 stheno_guid			= 1;		// 为新招募的强化师分配的 guid
+	required uint32 stheno_id			= 2;		// 初始属性需要客户端从配置表中读取
+	required uint32 location_type		= 3;		// 强化师装备位置类型 2 强化师仓库 3 强化师装备位
+	required uint32 location_pos		= 4;		// 强化师具体位置
+	required uint32 hire_pos			= 5;		// 清除待招募强化师列表位置
+}
+
+message cmsg_stheno_fire {
+	required uint64 stheno_guid	= 1;
+}
+
+message smsg_stheno_fire {
+	required uint64 stheno_guid	= 1;
+}
+
+message cmsg_stheno_refresh {
+	optional uint32 type				= 1;	// 1, player; 2, timeout.
+}
+
+// 玩家主动刷新的应答；客户端timeout过期的应答；服务器端判断timeout过期后的主动下发
+message smsg_stheno_refresh {
+	required uint64 checksum			= 1;
+	repeated uint32 stheno_ids			= 2;
+	optional uint32 timeout				= 3;	// 0, 继续使用客户端的值；非0值，新的timeout. 单位毫秒
+}
+
+message cmsg_stheno_move {
+	required uint64 stheno_guid			= 1;
+	// 移向的列表及位置
+	required uint32 dst_loc				= 2;
+	required uint32 dst_pos				= 3;
+}
+
+message smsg_stheno_move {
+	required uint64 stheno_guid			= 1;
+	required uint32 dst_loc				= 2;
+	required uint32 dst_pos				= 3;
+}

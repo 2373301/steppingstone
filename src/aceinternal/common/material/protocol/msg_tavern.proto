@@ -1,0 +1,169 @@
+package typed.protocol;
+
+// 卡牌类型
+
+enum Tavern_Card_Type
+{
+	TC_Common_Card			= 1;	// 普通卡牌
+	TC_Gold_Card			= 2;	// 金手指卡牌
+	TC_Diamonds_Card		= 3;	// 钻石指卡牌
+}
+
+// 奖励类型
+enum Tavern_Reward_Type
+{
+	TR_Money		= 1;		// 银两
+	TR_Coin			= 2;		// 元宝
+	TR_seniority	= 3;		// 阅历
+	TR_energy		= 6;		// 体力
+	TR_exp			= 7;		// 经验
+	TR_prestige		= 8;		// 声望
+	TR_luck_points	= 11;		// 机缘点数
+	TR_max_value	= 10000;	// 当奖励类型大于这个值是，为伙伴卡牌id
+}
+
+message HireInfo
+{
+	optional uint32 hire_id			= 1;	// 伙伴id
+	optional uint32 hire_num		= 2;	// 伙伴数量
+}
+	
+// -----打开酒馆-------------------------------------------------------------------------------------
+// message cmsg_open_tavern 只有消息，没有消息体
+
+message smsg_open_tavern
+{
+	repeated uint32 rand_num		= 1;	// 翻牌次数 普通翻牌/金手指/钻石指
+	required uint32 change_num		= 2;	// 改运次数
+	optional uint32 coin_change_num = 3;	// 元宝改运次数
+	repeated HireInfo hire_info		= 4;	// 获得的卡牌
+	optional uint32 luck_points		= 5;	// 机缘点数
+	optional uint32 cooldown		= 6;	// 冷却时间
+	optional uint32 is_use			= 7;	// 是否强制冷却 0 否， 1 是
+	// card_type值在枚举Tavern_Card_Type内时，以下字段有效
+	optional uint32 card_type		= 8;	// 具体值，见枚举Tavern_Card_Type定义
+	repeated uint32 card_data		= 9;	// 卡牌数据 前六张为好坏牌（1 好牌 2 坏牌 ）, 第七张牌为伙伴牌 （无 0， 有 伙伴id）
+	repeated uint32 reward_type		= 10;	// 具体值，见枚举Tavern_Reward_Type定义
+	repeated uint32 reward_num		= 11;	// 奖励数量
+	repeated uint32 gold_rand_num	= 12;	// 普通，金手指、钻石指总翻牌次数 (永久累积值)
+	
+	// 酒馆日志
+	message logs
+	{
+		required uint32 id					= 1;	// 对应talk表里的ID
+		// param_id 与 param_name 必需等长，当客户端可以通过 param_id 取得名字时，对应的 param_name 可填为空。	
+		repeated uint64 param_id			= 2;
+		repeated string param_name			= 3;
+	}
+	repeated logs log_list			= 13;	// 酒馆日志（最多20条记录）
+}
+
+// -----随机----------------------------------------------------------------------------------------
+message cmsg_random_card
+{
+	required uint32 card_type		= 1;	// 具体值，见枚举Tavern_Card_Type定义
+}
+
+message smsg_random_card
+{
+	repeated uint32 random_card		= 1;	// 卡牌数据 前六张为好坏牌（1 好牌 2 坏牌 ）, 第七张牌为伙伴牌 （无 0， 有 伙伴id）
+	// 注意：大于10000的reward_type 为（hire_id + 10000）,reward_type - 10000 为伙伴id
+	repeated uint32 reward_type		= 2;	// 具体值，见枚举Tavern_Reward_Type定义
+	repeated uint32 reward_num		= 3;	// 奖励数量
+}
+
+// -----批量随机----------------------------------------------------------------------------------------
+message cmsg_batch_random_card
+{
+	required uint32 card_type		= 1;	// 具体值，见枚举Tavern_Card_Type定义
+}
+
+message smsg_batch_random_card
+{
+	// 注意：大于10000的reward_type 为（hire_id + 10000）,reward_type - 10000 为伙伴id
+	repeated uint32 reward_type		= 1;	// 具体值，见枚举Tavern_Reward_Type定义
+	repeated uint32 reward_num		= 2;	// 奖励数量
+}
+
+// -----批量100随机----------------------------------------------------------------------------------------
+message cmsg_batch_random_card_100
+{
+	required uint32 card_type		= 1;	// 具体值，见枚举Tavern_Card_Type定义
+}
+
+message smsg_batch_random_card_100
+{
+	// 注意：大于10000的reward_type 为（hire_id + 10000）,reward_type - 10000 为伙伴id
+	repeated uint32 reward_type		= 1;	// 具体值，见枚举Tavern_Reward_Type定义
+	repeated uint32 reward_num		= 2;	// 奖励数量
+}
+
+// -----改运----------------------------------------------------------------------------------------
+// message cmsg_change_card 只有消息，没有消息体
+
+message smsg_change_card
+{
+	repeated uint32 random_card		= 1;	// 卡牌数据 前六张为好坏牌（1 好牌 2 坏牌 ）, 第七张牌为伙伴牌 （无 0， 有 伙伴id）
+	optional uint32 change_num		= 2;	// 改运剩余次数
+	optional uint32 coin_change_num = 3;	// 元宝改运次数
+	// 注意：大于10000的reward_type 为（hire_id + 10000）,reward_type - 10000 为伙伴ids
+	repeated uint32 reward_type		= 4;	// 具体值，见枚举Tavern_Reward_Type定义
+	repeated uint32 reward_num		= 5;	// 奖励数量
+}
+
+// -----收获----------------------------------------------------------------------------------------
+// message cmsg_get_random_reward 只有消息，没有消息体
+
+message smsg_get_random_reward
+{	
+	optional uint32 cooldown		= 1;	// 冷却时间
+	optional uint32 is_use			= 2;	// 是否强制冷却 0 否， 1 是
+}
+
+// -----招募----------------------------------------------------------------------------------------
+message cmsg_recrult_role
+{
+	required uint32 role_id			= 1;	// 招募的伙伴id
+}
+
+message smsg_recrult_role
+{
+	optional uint32 status			= 1;	// 0 成功； 1 失败;
+	optional uint32 role_id			= 2;	// 招募的伙伴id
+}
+
+// -----清楚cd----------------------------------------------------------------------------------------
+//message cmsg_clean_up_cd 只有消息，没有消息体
+
+message smsg_clean_up_cd
+{
+	optional uint32 status			= 1;	// 0 成功； 1 失败； 4 元宝不够；
+}
+
+// -----购买物品----------------------------------------------------------------------------------------
+message cmsg_tavern_shop_buy
+{
+	optional uint32 type		= 1;	// 1 机缘点兑换物品， 2 伙伴卡牌兑换机缘点, 3 机缘点兑换伙伴
+	optional uint32 id			= 2;	// type=1时，物品id；type=2, 3时，卡牌对应的伙伴id；
+}
+
+message smsg_tavern_shop_buy
+{
+	optional uint32 status		= 1;	// 0 成功；
+	optional uint32 type		= 2;	// 1 机缘点兑换物品， 2 伙伴卡牌兑换机缘点, 3 机缘点兑换伙伴
+	optional uint32 id			= 3;	// type=1时，物品id；type=2, 3时，卡牌对应的伙伴id；
+}
+
+
+message smsg_notify_luck_point
+{
+	optional uint32 luck_point	= 1;
+}
+
+message smsg_notify_tavern_log
+{
+	required uint32 id					= 1;	// 对应talk表里的ID
+	// param_id 与 param_name 必需等长，当客户端可以通过 param_id 取得名字时，对应的 param_name 可填为空。	
+	repeated uint64 param_id			= 2;
+	repeated string param_name			= 3;
+}

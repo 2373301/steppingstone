@@ -1,0 +1,6 @@
+package typed.protocol;
+
+message smsg_addiction_notify
+{
+	required uint32	addiction_status		= 1;	// 1 : 在线1小时, 2：在线2小时，3：疲劳时间提示，4：不健康时间提示
+}

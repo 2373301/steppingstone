@@ -1,0 +1,90 @@
+package typed.protocol;
+
+enum RGoldCardStatus
+{
+	rs_success			= 1;	// 成功
+	rs_failure			= 2;	// 失败
+	rs_not_coin			= 3;	// 元宝不够
+	rs_not_unlock		= 4;	// 未解锁		
+	rs_not_bags			= 5;	// 背包已满
+}
+
+message GoldCardReward
+{
+	optional uint32 id					= 1;	// 特权卡ID
+	optional uint32 buy_coin			= 2;	// 购买奖励
+	repeated uint32 buy_reward_type		= 3;	// 购买奖励类型（bonus表定义的类型）
+	repeated uint32 buy_reward_value	= 4;	// 购买奖励值
+	// 每日奖励
+	optional uint32 days				= 5;	// 天数
+	repeated uint32 reward_type			= 6;	// 奖励类型（bonus表定义的类型）
+	repeated uint32 reward_value		= 7;	// 奖励值
+}
+	
+// -----打开特权----------------------------------------------------
+// message cmsg_open_goldcard	只有消息码，没有消息体
+
+message smsg_open_goldcard
+{
+	message CardInfo
+	{
+		optional uint32 id				= 1;	// 特权卡ID
+		optional uint32 status			= 2;	// 状态：0 未解锁，1 已解锁未购买，2 已购买
+		optional uint32 coin_count		= 3;	// 累积元宝充值
+		optional uint64 start_time		= 4;	// 开始时间
+	}
+	repeated CardInfo card_list						= 1;	// 特权卡集合
+	repeated GoldCardReward new_reward_list			= 2;	// 当前特权卡产生的奖励
+	repeated GoldCardReward old_reward_list			= 3;	// 历届特权卡未领取的奖励
+}
+
+// -----状态特权（服务器推送）----------------------------------------------------
+message smsg_update_goldcard
+{
+	repeated uint32 id							= 1;	// 特权卡ID
+	repeated uint32 status						= 2;	// 状态：0 未激活，1 已激活未购买
+	repeated uint32 coin_count					= 3;	// 累积元宝充值
+}
+
+// -----购买特权----------------------------------------------------
+message cmsg_buy_goldcard
+{
+	required uint32 id							= 1;	// 特权卡ID
+}
+
+message smsg_buy_goldcard
+{
+	optional uint32 reture_s					= 1;	// 1、3、4
+	optional uint32 id							= 2;	// 特权卡ID
+	optional uint32 status						= 3;	// 状态：0 未激活，1 已激活未购买，2 已购买
+	optional uint64 start_time					= 4;	// 开始时间
+	optional GoldCardReward new_reward_list		= 5;	// 当前特权卡产生的奖励(全部奖励，非增量)
+}
+
+// -----领取进行中的特权领奖----------------------------------------------------
+message cmsg_new_reward_goldcard
+{
+	optional uint32 id				= 1;	// 特权卡ID
+	optional uint32 source_type		= 2;	// 奖励来源 1 购买奖励 2 日奖励
+}
+
+message smsg_new_reward_goldcard
+{
+	optional uint32 id				= 1;	// 特权卡ID
+	optional uint32 source_type		= 2;	// 奖励来源 1 购买奖励 2 日奖励
+	repeated uint32 reward_type		= 3;	// 奖励类型（bonus表定义的类型）
+	repeated uint32 reward_value	= 4;	// 奖励值
+}
+
+// -----领取历届未领取的特权领奖----------------------------------------------------
+message cmsg_old_reward_goldcard
+{
+	optional uint32 id				= 1;	// 特权卡ID
+}
+
+// smsg_obtain_rewards
+message smsg_old_reward_goldcard
+{
+	optional uint32 reture_s		= 1;	// 1、2、5
+	optional uint32 id				= 2;	// 特权卡ID
+}

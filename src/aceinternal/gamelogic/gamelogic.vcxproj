@@ -1,0 +1,725 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseD|Win32">
+      <Configuration>ReleaseD</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseD|x64">
+      <Configuration>ReleaseD</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{604D9DDF-8436-4A49-8800-64659C7C25FC}</ProjectGuid>
+    <RootNamespace>gamelogic</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseD|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseD|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseD|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseD|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>14.0.24720.0</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseD|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseD|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>./inc;./src;./src/resource;../typedef/inc;../share/inc;../logger/inc;../scene/inc;../common/material-cpp;../../../common/inc;../cache/inc;../../../common/material-cpp;../terminal/inc;../simplexml/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;GAMELOGIC_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>libshared.lib;libloggerd.lib;libprotobufd.lib;libprotobuf-lited.lib;libprotocold.lib;libsimplexmld.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>../../bin/libs/lib$(ProjectName)d.dll</OutputFile>
+      <AdditionalLibraryDirectories>../../bin/libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>XCOPY ..\..\bin\libs\libgamelogicd.dll ..\..\bin\ /Y /R /F</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>./inc;./src;./src/resource;../share/inc;../logger/inc;../netstream/inc;../scene/inc;../common/material-cpp;../common/cachesys/inc;../common/inc;../cache/inc;../terminal/inc;../simplexml/inc;../../../dep/boost_1_60_0/;../../../dep/ACE_wrappers/;../../../dep/protobuf-2.6.1/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;GAMELOGIC_EXPORTS;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>share.lib;logger.lib;../../../dep/protobuf-2.6.1/lib/libprotobuf.lib;simplexml.lib;../../../dep/ACE_wrappers/lib/ACEd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);../../../dep/boost_1_60_0/lib64-msvc-14.0/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>./inc;./src;./src/resource;../typedef/inc;../share/inc;../logger/inc;../scene/inc;../common/material-cpp;../../../common/inc;../cache/inc;../../../common/material-cpp;../terminal/inc;../simplexml/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;GAMELOGIC_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>libshare.lib;liblogger.lib;libprotobuf.lib;libprotobuf-lite.lib;libprotocol.lib;libsimplexml.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>../../bin/libs/lib$(ProjectName).dll</OutputFile>
+      <AdditionalLibraryDirectories>../../bin/libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>XCOPY ..\..\bin\libs\libgamelogic.dll ..\..\bin\ /Y /R /F</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>./inc;./src;./src/resource;../typedef/inc;../share/inc;../logger/inc;../scene/inc;../common/material-cpp;../../../common/inc;../cache/inc;../../../common/material-cpp;../terminal/inc;../simplexml/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;GAMELOGIC_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>libshare.lib;liblogger.lib;libprotobuf.lib;libprotobuf-lite.lib;libprotocol.lib;libsimplexml.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>../../bin/libs/lib$(ProjectName).dll</OutputFile>
+      <AdditionalLibraryDirectories>../../bin/libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+    </Link>
+    <PostBuildEvent>
+      <Command>XCOPY ..\..\bin\libs\libgamelogic.dll ..\..\bin\ /Y /R /F</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseD|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>./inc;./src;./src/resource;../typedef/inc;../share/inc;../logger/inc;../netstream/inc;../scene/inc;../common/material-cpp;../common/cachesys/inc;../../../common/inc;../cache/inc;../../../common/material-cpp;../terminal/inc;../simplexml/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;GAMELOGIC_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>libshare.lib;liblogger.lib;libprotobuf.lib;libprotobuf-lite.lib;libprotocol.lib;libsimplexml.lib;ace.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>../../bin/libs/lib$(ProjectName).dll</OutputFile>
+      <AdditionalLibraryDirectories>../../bin/libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>XCOPY ..\..\bin\libs\libgamelogic.dll ..\..\bin\ /Y /R /F</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseD|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>./inc;./src;./src/resource;../typedef/inc;../share/inc;../logger/inc;../netstream/inc;../scene/inc;../common/material-cpp;../common/cachesys/inc;../../../common/inc;../cache/inc;../../../common/material-cpp;../terminal/inc;../simplexml/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;GAMELOGIC_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>libshare.lib;liblogger.lib;libprotobuf.lib;libprotobuf-lite.lib;libprotocol.lib;libsimplexml.lib;ace.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../bin/libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\gamelogic.cpp" />
+    <ClCompile Include="src\ManageResourceImp.cpp" />
+    <ClCompile Include="src\PlayerFunction.cpp" />
+    <ClCompile Include="src\resource\ManageAccBuyRes.cpp" />
+    <ClCompile Include="src\resource\ManageAccOnlineRes.cpp" />
+    <ClCompile Include="src\resource\ManageAchievementRes.cpp" />
+    <ClCompile Include="src\resource\ManageAmahRes.cpp" />
+    <ClCompile Include="src\resource\ManageAnswerRes.cpp" />
+    <ClCompile Include="src\resource\ManageArenaRes.cpp" />
+    <ClCompile Include="src\resource\ManageArrestControllerRes.cpp" />
+    <ClCompile Include="src\resource\ManageArrestListRes.cpp" />
+    <ClCompile Include="src\resource\ManageBattlegroundBetRes.cpp" />
+    <ClCompile Include="src\resource\ManageBattlegroundBuffRes.cpp" />
+    <ClCompile Include="src\resource\ManageBattlegroundDatetimeRes.cpp" />
+    <ClCompile Include="src\resource\ManageBattlegroundRewardRes.cpp" />
+    <ClCompile Include="src\resource\ManageBillListRes.cpp" />
+    <ClCompile Include="src\resource\ManageBonusRes.cpp" />
+    <ClCompile Include="src\resource\ManageBossExpRes.cpp" />
+    <ClCompile Include="src\resource\ManageBossForRes.cpp" />
+    <ClCompile Include="src\resource\ManageBossGuWuRes.cpp" />
+    <ClCompile Include="src\resource\ManageBossRewardRes.cpp" />
+    <ClCompile Include="src\resource\ManageBufferRes.cpp" />
+    <ClCompile Include="src\resource\ManageCardAndJokerRes.cpp" />
+    <ClCompile Include="src\resource\ManageChakraRes.cpp" />
+    <ClCompile Include="src\resource\ManageChargequestRes.cpp" />
+    <ClCompile Include="src\resource\ManageCondorRes.cpp" />
+    <ClCompile Include="src\resource\ManageDailyBonusRes.cpp" />
+    <ClCompile Include="src\resource\ManageDailyPointsRes.cpp" />
+    <ClCompile Include="src\resource\ManageDailyQuestLibraryRes.cpp" />
+    <ClCompile Include="src\resource\ManageDailyQuestRes.cpp" />
+    <ClCompile Include="src\resource\ManageDanyaoHechengRes.cpp" />
+    <ClCompile Include="src\resource\ManageDodgeMiniRes.cpp" />
+    <ClCompile Include="src\resource\ManageDodgeRes.cpp" />
+    <ClCompile Include="src\resource\ManageDodgeRevokeRes.cpp" />
+    <ClCompile Include="src\resource\ManageDoubleexpRes.cpp" />
+    <ClCompile Include="src\resource\ManageEggRes.cpp" />
+    <ClCompile Include="src\resource\ManageEnemyRes.cpp" />
+    <ClCompile Include="src\resource\ManageEquip_gettingRes.cpp" />
+    <ClCompile Include="src\resource\ManageEscortAgencyRes.cpp" />
+    <ClCompile Include="src\resource\ManageEscortCarRes.cpp" />
+    <ClCompile Include="src\resource\ManageEscortSystemRes.cpp" />
+    <ClCompile Include="src\resource\ManageEscortTerminalRes.cpp" />
+    <ClCompile Include="src\resource\ManageExpAddition.cpp" />
+    <ClCompile Include="src\resource\ManageFailScoreRes.cpp" />
+    <ClCompile Include="src\resource\ManageFiresattackRes.cpp" />
+    <ClCompile Include="src\resource\ManageFiresRes.cpp" />
+    <ClCompile Include="src\resource\ManageFirstBuyRes.cpp" />
+    <ClCompile Include="src\resource\ManageFishingRes.cpp" />
+    <ClCompile Include="src\resource\ManageFlowerResInfo.cpp" />
+    <ClCompile Include="src\resource\ManageFormRes.cpp" />
+    <ClCompile Include="src\resource\ManageFreeTimeBag.cpp" />
+    <ClCompile Include="src\resource\ManageFriendAddInfoRes.cpp" />
+    <ClCompile Include="src\resource\ManageFutureBonusRes.cpp" />
+    <ClCompile Include="src\resource\ManageGamblingRes.cpp" />
+    <ClCompile Include="src\resource\ManageGemgroupRes.cpp" />
+    <ClCompile Include="src\resource\ManageGemsynthesisRes.cpp" />
+    <ClCompile Include="src\resource\ManageGetmoneyRes.cpp" />
+    <ClCompile Include="src\resource\ManageGiftRes.cpp" />
+    <ClCompile Include="src\resource\ManageGoldCardRes.cpp" />
+    <ClCompile Include="src\resource\ManageGoldParamRes.cpp" />
+    <ClCompile Include="src\resource\ManageGuildRes.cpp" />
+    <ClCompile Include="src\resource\ManageGvgRes.cpp" />
+    <ClCompile Include="src\resource\ManageGvgrewardsRes.cpp" />
+    <ClCompile Include="src\resource\ManageHammerRes.cpp" />
+    <ClCompile Include="src\resource\ManageHangUpRes.cpp" />
+    <ClCompile Include="src\resource\ManageHelperInfoRes.cpp" />
+    <ClCompile Include="src\resource\ManageHireRes.cpp" />
+    <ClCompile Include="src\resource\ManageHorseAttrRes.cpp" />
+    <ClCompile Include="src\resource\ManageHorsemanLevelupRes.cpp" />
+    <ClCompile Include="src\resource\ManageHorseRoomRes.cpp" />
+    <ClCompile Include="src\resource\ManageIllusionRes.cpp" />
+    <ClCompile Include="src\resource\ManageInheritInfoRes.cpp" />
+    <ClCompile Include="src\resource\ManageItemRes.cpp" />
+    <ClCompile Include="src\resource\ManageItemStrengRes.cpp" />
+    <ClCompile Include="src\resource\ManageJianZhongRes.cpp" />
+    <ClCompile Include="src\resource\ManageLawRes.cpp" />
+    <ClCompile Include="src\resource\ManageLevelExpRes.cpp" />
+    <ClCompile Include="src\resource\ManageLogingiftRes.cpp" />
+    <ClCompile Include="src\resource\ManageLuckyRewardsRes.cpp" />
+    <ClCompile Include="src\resource\ManageLuckyTurntableRes.cpp" />
+    <ClCompile Include="src\resource\ManageMailRes.cpp" />
+    <ClCompile Include="src\resource\ManageMail_formatRes.cpp" />
+    <ClCompile Include="src\resource\ManageMapRes.cpp" />
+    <ClCompile Include="src\resource\ManageMatecolorRes.cpp" />
+    <ClCompile Include="src\resource\ManageMategateRes.cpp" />
+    <ClCompile Include="src\resource\ManageMateinheritRes.cpp" />
+    <ClCompile Include="src\resource\ManageMateRes.cpp" />
+    <ClCompile Include="src\resource\ManageMateskillRes.cpp" />
+    <ClCompile Include="src\resource\ManageMateupRes.cpp" />
+    <ClCompile Include="src\resource\ManageMazeexplorationRes.cpp" />
+    <ClCompile Include="src\resource\ManageMazeRes.cpp" />
+    <ClCompile Include="src\resource\ManageMazerewardsRes.cpp" />
+    <ClCompile Include="src\resource\ManageMazeroomRes.cpp" />
+    <ClCompile Include="src\resource\ManageMonsterRes.cpp" />
+    <ClCompile Include="src\resource\ManageMultiCopyRes.cpp" />
+    <ClCompile Include="src\resource\ManageNextdayInterestRes.cpp" />
+    <ClCompile Include="src\resource\ManageNpcRes.cpp" />
+    <ClCompile Include="src\resource\ManageOfflinehangupRes.cpp" />
+    <ClCompile Include="src\resource\ManageOpenact1Res.cpp" />
+    <ClCompile Include="src\resource\ManageOpenact2Res.cpp" />
+    <ClCompile Include="src\resource\ManageOpenactRes.cpp" />
+    <ClCompile Include="src\resource\ManagePairGamblingRes.cpp" />
+    <ClCompile Include="src\resource\ManagePairNameRes.cpp" />
+    <ClCompile Include="src\resource\ManagePairRewardsRes.cpp" />
+    <ClCompile Include="src\resource\ManagePairSystemRes.cpp" />
+    <ClCompile Include="src\resource\ManagePelletInfoRes.cpp" />
+    <ClCompile Include="src\resource\ManagePlayerInit.cpp" />
+    <ClCompile Include="src\resource\ManagePlumJarRes.cpp" />
+    <ClCompile Include="src\resource\ManagePlumRes.cpp" />
+    <ClCompile Include="src\resource\ManagePlumRewardRes.cpp" />
+    <ClCompile Include="src\resource\ManagePlumSystemRes.cpp" />
+    <ClCompile Include="src\resource\ManagePracticeRes.cpp" />
+    <ClCompile Include="src\resource\ManagePrandomRes.cpp" />
+    <ClCompile Include="src\resource\ManageProhibitWordRes.cpp" />
+    <ClCompile Include="src\resource\ManagePropertyResInfo.cpp" />
+    <ClCompile Include="src\resource\ManagePushRes.cpp" />
+    <ClCompile Include="src\resource\ManagePvp2Res.cpp" />
+    <ClCompile Include="src\resource\ManagePvpRes.cpp" />
+    <ClCompile Include="src\resource\ManagePvprewardsRes.cpp" />
+    <ClCompile Include="src\resource\ManageQqbragRes.cpp" />
+    <ClCompile Include="src\resource\ManageQqCfgRes.cpp" />
+    <ClCompile Include="src\resource\ManageQqinviteRes.cpp" />
+    <ClCompile Include="src\resource\ManageQqshareRes.cpp" />
+    <ClCompile Include="src\resource\ManageQuestRes.cpp" />
+    <ClCompile Include="src\resource\ManageRaceRes.cpp" />
+    <ClCompile Include="src\resource\ManageRaiseRateRes.cpp" />
+    <ClCompile Include="src\resource\ManageRaiseRes.cpp" />
+    <ClCompile Include="src\resource\ManageRanchCfgRes.cpp" />
+    <ClCompile Include="src\resource\ManageRanchInfoRes.cpp" />
+    <ClCompile Include="src\resource\ManageRandomSkillRes.cpp" />
+    <ClCompile Include="src\resource\ManageRankingRewardRes.cpp" />
+    <ClCompile Include="src\resource\ManageRankingRuleRes.cpp" />
+    <ClCompile Include="src\resource\ManageRankingTalkRes.cpp" />
+    <ClCompile Include="src\resource\ManageRecruitexpRes.cpp" />
+    <ClCompile Include="src\resource\ManageRecruitmentRes.cpp" />
+    <ClCompile Include="src\resource\ManageRingGuildRes.cpp" />
+    <ClCompile Include="src\resource\ManageRingQuestRes.cpp" />
+    <ClCompile Include="src\resource\ManageRingRandomRes.cpp" />
+    <ClCompile Include="src\resource\ManageRingRewardRes.cpp" />
+    <ClCompile Include="src\resource\ManageRoleRes.cpp" />
+    <ClCompile Include="src\resource\ManageRunesClassRes.cpp" />
+    <ClCompile Include="src\resource\ManageRunesExpRes.cpp" />
+    <ClCompile Include="src\resource\ManageRunesLevelRes.cpp" />
+    <ClCompile Include="src\resource\ManageRunesSystemRes.cpp" />
+    <ClCompile Include="src\resource\ManageSectionBonusRes.cpp" />
+    <ClCompile Include="src\resource\ManageSectRes.cpp" />
+    <ClCompile Include="src\resource\ManageShenghuoLingRes.cpp" />
+    <ClCompile Include="src\resource\ManageShlUnlockRes.cpp" />
+    <ClCompile Include="src\resource\ManageShopRes.cpp" />
+    <ClCompile Include="src\resource\ManageShortcutBonusRes.cpp" />
+    <ClCompile Include="src\resource\ManageSkillRes.cpp" />
+    <ClCompile Include="src\resource\ManageSoulCfgRes.cpp" />
+    <ClCompile Include="src\resource\ManageSoulChangeRes.cpp" />
+    <ClCompile Include="src\resource\ManageSoulSetRes.cpp" />
+    <ClCompile Include="src\resource\ManageSoulSoulRes.cpp" />
+    <ClCompile Include="src\resource\ManageSoulStageRes.cpp" />
+    <ClCompile Include="src\resource\ManageSoulSuperRes.cpp" />
+    <ClCompile Include="src\resource\ManageSpecialShopRes.cpp" />
+    <ClCompile Include="src\resource\ManageSplendidRes.cpp" />
+    <ClCompile Include="src\resource\ManageStage1stRes.cpp" />
+    <ClCompile Include="src\resource\ManageStageExpRes.cpp" />
+    <ClCompile Include="src\resource\ManageSuitRes.cpp" />
+    <ClCompile Include="src\resource\ManageSweepStageResInfo.cpp" />
+    <ClCompile Include="src\resource\ManageSynthesisRes.cpp" />
+    <ClCompile Include="src\resource\ManageSystemRes.cpp" />
+    <ClCompile Include="src\resource\ManageSystemUnlockRes.cpp" />
+    <ClCompile Include="src\resource\ManageTalentgroupRes.cpp" />
+    <ClCompile Include="src\resource\ManageTalentRes.cpp" />
+    <ClCompile Include="src\resource\ManageTalentsystemRes.cpp" />
+    <ClCompile Include="src\resource\ManageTalklinkRes.cpp" />
+    <ClCompile Include="src\resource\ManageTalkRes.cpp" />
+    <ClCompile Include="src\resource\ManageTargetquestRes.cpp" />
+    <ClCompile Include="src\resource\ManageTargetRes.cpp" />
+    <ClCompile Include="src\resource\ManageTavernhireRes.cpp" />
+    <ClCompile Include="src\resource\ManageTavernprobabilityRes.cpp" />
+    <ClCompile Include="src\resource\ManageTavernRes.cpp" />
+    <ClCompile Include="src\resource\ManageTavernshopRes.cpp" />
+    <ClCompile Include="src\resource\ManageTavernspebilityRes.cpp" />
+    <ClCompile Include="src\resource\ManageTavern_groupRes.cpp" />
+    <ClCompile Include="src\resource\ManageTitleRes.cpp" />
+    <ClCompile Include="src\resource\ManageTowerBuffRes.cpp" />
+    <ClCompile Include="src\resource\ManageTowerRewardsRes.cpp" />
+    <ClCompile Include="src\resource\ManageTowerStageRes.cpp" />
+    <ClCompile Include="src\resource\ManageTrainingRes.cpp" />
+    <ClCompile Include="src\resource\ManageTreasureShopRes.cpp" />
+    <ClCompile Include="src\resource\ManageVipexpRes.cpp" />
+    <ClCompile Include="src\resource\ManageVipRes.cpp" />
+    <ClCompile Include="src\resource\ManageWarInitRes.cpp" />
+    <ClCompile Include="src\resource\ManageWarJobEnrageRes.cpp" />
+    <ClCompile Include="src\resource\ManageWarScoreRes.cpp" />
+    <ClCompile Include="src\resource\ManageWebVipRes.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="inc\AccBuyRes.h" />
+    <ClInclude Include="inc\AccOnlineRes.h" />
+    <ClInclude Include="inc\AchievementRes.h" />
+    <ClInclude Include="inc\AnswerStruct.h" />
+    <ClInclude Include="inc\AnswerStructMap.h" />
+    <ClInclude Include="inc\ArrestControllerRes.h" />
+    <ClInclude Include="inc\ArrestListRes.h" />
+    <ClInclude Include="inc\ColorStruct.h" />
+    <ClInclude Include="inc\ColorStructMap.h" />
+    <ClInclude Include="inc\CondorStruct.h" />
+    <ClInclude Include="inc\CondorStructMap.h" />
+    <ClInclude Include="inc\DailyPointsRes.h" />
+    <ClInclude Include="inc\DailyQuestLibraryRes.h" />
+    <ClInclude Include="inc\DanyaoHechengRes.h" />
+    <ClInclude Include="inc\DodgeMiniRes.h" />
+    <ClInclude Include="inc\DodgeRes.h" />
+    <ClInclude Include="inc\DodgeRevokeRes.h" />
+    <ClInclude Include="inc\Equip_gettingRes.h" />
+    <ClInclude Include="inc\EscortAgencyRes.h" />
+    <ClInclude Include="inc\EscortCarRes.h" />
+    <ClInclude Include="inc\EscortSystemRes.h" />
+    <ClInclude Include="inc\EscortTerminalRes.h" />
+    <ClInclude Include="inc\FailScoreRes.h" />
+    <ClInclude Include="inc\FirstBuyRes.h" />
+    <ClInclude Include="inc\FishingRes.h" />
+    <ClInclude Include="inc\FlowerRes.h" />
+    <ClInclude Include="inc\FreeTimeBag.h" />
+    <ClInclude Include="inc\FutureBonusRes.h" />
+    <ClInclude Include="inc\GamblingRes.h" />
+    <ClInclude Include="inc\gamelogic_def.h" />
+    <ClInclude Include="inc\GemgroupRes.h" />
+    <ClInclude Include="inc\GemsynthesisRes.h" />
+    <ClInclude Include="inc\GiftStruct.h" />
+    <ClInclude Include="inc\GiftStructR.h" />
+    <ClInclude Include="inc\GoldCardRes.h" />
+    <ClInclude Include="inc\GvgRes.h" />
+    <ClInclude Include="inc\GvgrewardsRes.h" />
+    <ClInclude Include="inc\HangUpRes.h" />
+    <ClInclude Include="inc\JianZhongRes.h" />
+    <ClInclude Include="inc\MailRes.h" />
+    <ClInclude Include="inc\ManageResourceImp.h" />
+    <ClInclude Include="inc\MultiCopyRes.h" />
+    <ClInclude Include="inc\NextdayInterestRes.h" />
+    <ClInclude Include="inc\OfflinehangupRes.h" />
+    <ClInclude Include="inc\PairGamblingRes.h" />
+    <ClInclude Include="inc\PairNameRes.h" />
+    <ClInclude Include="inc\PairRewardsRes.h" />
+    <ClInclude Include="inc\PairSystemRes.h" />
+    <ClInclude Include="inc\PlayerFunction.h" />
+    <ClInclude Include="inc\PlumJarRes.h" />
+    <ClInclude Include="inc\PlumRes.h" />
+    <ClInclude Include="inc\PlumRewardRes.h" />
+    <ClInclude Include="inc\PlumSystemRes.h" />
+    <ClInclude Include="inc\PracticeRes.h" />
+    <ClInclude Include="inc\PushRes.h" />
+    <ClInclude Include="inc\Pvp2Res.h" />
+    <ClInclude Include="inc\PvpRes.h" />
+    <ClInclude Include="inc\PvprewardsRes.h" />
+    <ClInclude Include="inc\RaceRes.h" />
+    <ClInclude Include="inc\RankingRewardRes.h" />
+    <ClInclude Include="inc\RankingRuleRes.h" />
+    <ClInclude Include="inc\Resource.h" />
+    <ClInclude Include="inc\RingGuildRes.h" />
+    <ClInclude Include="inc\RingQuestRes.h" />
+    <ClInclude Include="inc\RingRandomRes.h" />
+    <ClInclude Include="inc\RingRewardRes.h" />
+    <ClInclude Include="inc\RunesClassRes.h" />
+    <ClInclude Include="inc\RunesExpRes.h" />
+    <ClInclude Include="inc\RunesLevelRes.h" />
+    <ClInclude Include="inc\RunesSystemRes.h" />
+    <ClInclude Include="inc\SectionBonusRes.h" />
+    <ClInclude Include="inc\ShenghuoLingRes.h" />
+    <ClInclude Include="inc\ShlUnlockRes.h" />
+    <ClInclude Include="inc\ShortcutBonusRes.h" />
+    <ClInclude Include="inc\SoulChangeRes.h" />
+    <ClInclude Include="inc\SoulSetRes.h" />
+    <ClInclude Include="inc\SoulSoulRes.h" />
+    <ClInclude Include="inc\SoulSuperRes.h" />
+    <ClInclude Include="inc\StageExpRes.h" />
+    <ClInclude Include="inc\SuitRes.h" />
+    <ClInclude Include="inc\SweepStageResInfo.h" />
+    <ClInclude Include="inc\SystemUnlockRes.h" />
+    <ClInclude Include="inc\TalklinkRes.h" />
+    <ClInclude Include="inc\Tavern_groupRes.h" />
+    <ClInclude Include="inc\TowerBuffRes.h" />
+    <ClInclude Include="inc\TowerRewardsRes.h" />
+    <ClInclude Include="inc\TowerStageRes.h" />
+    <ClInclude Include="inc\TrainingRes.h" />
+    <ClInclude Include="inc\TreasureShopRes.h" />
+    <ClInclude Include="inc\VipRes.h" />
+    <ClInclude Include="inc\WebVipRes.h" />
+    <ClInclude Include="src\resource\InheritInfoRes.h" />
+    <ClInclude Include="src\resource\ManageAccBuyRes.h" />
+    <ClInclude Include="src\resource\ManageAccOnlineRes.h" />
+    <ClInclude Include="src\resource\ManageAchievementRes.h" />
+    <ClInclude Include="src\resource\ManageAmahRes.h" />
+    <ClInclude Include="src\resource\ManageArenaRes.h" />
+    <ClInclude Include="src\resource\ManageArrestControllerRes.h" />
+    <ClInclude Include="src\resource\ManageArrestListRes.h" />
+    <ClInclude Include="src\resource\ManageBattlegroundBetRes.h" />
+    <ClInclude Include="src\resource\ManageBattlegroundBuffRes.h" />
+    <ClInclude Include="src\resource\ManageBattlegroundDatetimeRes.h" />
+    <ClInclude Include="src\resource\ManageBattlegroundRewardRes.h" />
+    <ClInclude Include="src\resource\ManageBillListRes.h" />
+    <ClInclude Include="src\resource\ManageBonusRes.h" />
+    <ClInclude Include="src\resource\ManageBossExpRes.h" />
+    <ClInclude Include="src\resource\ManageBossForRes.h" />
+    <ClInclude Include="src\resource\ManageBossGuWuRes.h" />
+    <ClInclude Include="src\resource\ManageBossRewardRes.h" />
+    <ClInclude Include="src\resource\ManageBufferRes.h" />
+    <ClInclude Include="src\resource\ManageCardAndJokerRes.h" />
+    <ClInclude Include="src\resource\ManageChargequestRes.h" />
+    <ClInclude Include="src\resource\ManageDailyBonusRes.h" />
+    <ClInclude Include="src\resource\ManageDailyPointsRes.h" />
+    <ClInclude Include="src\resource\ManageDailyQuestLibraryRes.h" />
+    <ClInclude Include="src\resource\ManageDailyQuestRes.h" />
+    <ClInclude Include="src\resource\ManageDanyaoHechengRes.h" />
+    <ClInclude Include="src\resource\ManageDodgeMiniRes.h" />
+    <ClInclude Include="src\resource\ManageDodgeRes.h" />
+    <ClInclude Include="src\resource\ManageDodgeRevokeRes.h" />
+    <ClInclude Include="src\resource\ManageDoubleexpRes.h" />
+    <ClInclude Include="src\resource\ManageEggRes.h" />
+    <ClInclude Include="src\resource\ManageEnemyRes.h" />
+    <ClInclude Include="src\resource\ManageEquip_gettingRes.h" />
+    <ClInclude Include="src\resource\ManageEscortAgencyRes.h" />
+    <ClInclude Include="src\resource\ManageEscortCarRes.h" />
+    <ClInclude Include="src\resource\ManageEscortSystemRes.h" />
+    <ClInclude Include="src\resource\ManageEscortTerminalRes.h" />
+    <ClInclude Include="src\resource\ManageExpAddition.h" />
+    <ClInclude Include="src\resource\ManageFailScoreRes.h" />
+    <ClInclude Include="src\resource\ManageFiresattackRes.h" />
+    <ClInclude Include="src\resource\ManageFiresRes.h" />
+    <ClInclude Include="src\resource\ManageFirstBuyRes.h" />
+    <ClInclude Include="src\resource\ManageFishingRes.h" />
+    <ClInclude Include="src\resource\ManageFlowerResInfo.h" />
+    <ClInclude Include="src\resource\ManageFormRes.h" />
+    <ClInclude Include="src\resource\ManageFreeTimeBag.h" />
+    <ClInclude Include="src\resource\ManageFriendAddInfoRes.h" />
+    <ClInclude Include="src\resource\ManageFutureBonusRes.h" />
+    <ClInclude Include="src\resource\ManageGamblingRes.h" />
+    <ClInclude Include="src\resource\ManageGemgroupRes.h" />
+    <ClInclude Include="src\resource\ManageGemsynthesisRes.h" />
+    <ClInclude Include="src\resource\ManageGetmoneyRes.h" />
+    <ClInclude Include="src\resource\ManageGoldCardRes.h" />
+    <ClInclude Include="src\resource\ManageGoldParamRes.h" />
+    <ClInclude Include="src\resource\ManageGuildRes.h" />
+    <ClInclude Include="src\resource\ManageGvgRes.h" />
+    <ClInclude Include="src\resource\ManageGvgrewardsRes.h" />
+    <ClInclude Include="src\resource\ManageHammerRes.h" />
+    <ClInclude Include="src\resource\ManageHangUpRes.h" />
+    <ClInclude Include="src\resource\ManageHelperInfoRes.h" />
+    <ClInclude Include="src\resource\ManageHireRes.h" />
+    <ClInclude Include="src\resource\ManageHorseAttrRes.h" />
+    <ClInclude Include="src\resource\ManageHorsemanLevelupRes.h" />
+    <ClInclude Include="src\resource\ManageHorseRoomRes.h" />
+    <ClInclude Include="src\resource\ManageInheritInfoRes.h" />
+    <ClInclude Include="src\resource\ManageItemRes.h" />
+    <ClInclude Include="src\resource\ManageItemStrengRes.h" />
+    <ClInclude Include="src\resource\ManageJianZhongRes.h" />
+    <ClInclude Include="src\resource\ManageLawRes.h" />
+    <ClInclude Include="src\resource\ManageLevelExpRes.h" />
+    <ClInclude Include="src\resource\ManageLogingiftRes.h" />
+    <ClInclude Include="src\resource\ManageLuckyRewardsRes.h" />
+    <ClInclude Include="src\resource\ManageLuckyTurntableRes.h" />
+    <ClInclude Include="src\resource\ManageMailRes.h" />
+    <ClInclude Include="src\resource\ManageMail_formatRes.h" />
+    <ClInclude Include="src\resource\ManageMapRes.h" />
+    <ClInclude Include="src\resource\ManageMatecolorRes.h" />
+    <ClInclude Include="src\resource\ManageMategateRes.h" />
+    <ClInclude Include="src\resource\ManageMateinheritRes.h" />
+    <ClInclude Include="src\resource\ManageMateRes.h" />
+    <ClInclude Include="src\resource\ManageMateupRes.h" />
+    <ClInclude Include="src\resource\ManageMazeexplorationRes.h" />
+    <ClInclude Include="src\resource\ManageMazeRes.h" />
+    <ClInclude Include="src\resource\ManageMazerewardsRes.h" />
+    <ClInclude Include="src\resource\ManageMazeroomRes.h" />
+    <ClInclude Include="src\resource\ManageMonsterRes.h" />
+    <ClInclude Include="src\resource\ManageMultiCopyRes.h" />
+    <ClInclude Include="src\resource\ManageNextdayInterestRes.h" />
+    <ClInclude Include="src\resource\ManageNpcRes.h" />
+    <ClInclude Include="src\resource\ManageOfflinehangupRes.h" />
+    <ClInclude Include="src\resource\ManageOpenactRes.h" />
+    <ClInclude Include="src\resource\ManagePairGamblingRes.h" />
+    <ClInclude Include="src\resource\ManagePairNameRes.h" />
+    <ClInclude Include="src\resource\ManagePairRewardsRes.h" />
+    <ClInclude Include="src\resource\ManagePairSystemRes.h" />
+    <ClInclude Include="src\resource\ManagePelletInfoRes.h" />
+    <ClInclude Include="src\resource\ManagePlayerInit.h" />
+    <ClInclude Include="src\resource\ManagePlumJarRes.h" />
+    <ClInclude Include="src\resource\ManagePlumRes.h" />
+    <ClInclude Include="src\resource\ManagePlumRewardRes.h" />
+    <ClInclude Include="src\resource\ManagePlumSystemRes.h" />
+    <ClInclude Include="src\resource\ManagePracticeRes.h" />
+    <ClInclude Include="src\resource\ManagePrandomRes.h" />
+    <ClInclude Include="src\resource\ManageProhibitWordRes.h" />
+    <ClInclude Include="src\resource\ManagePropertyResInfo.h" />
+    <ClInclude Include="src\resource\ManagePushRes.h" />
+    <ClInclude Include="src\resource\ManagePvp2Res.h" />
+    <ClInclude Include="src\resource\ManagePvpRes.h" />
+    <ClInclude Include="src\resource\ManagePvprewardsRes.h" />
+    <ClInclude Include="src\resource\ManageQuestRes.h" />
+    <ClInclude Include="src\resource\ManageRaceRes.h" />
+    <ClInclude Include="src\resource\ManageRaiseRateRes.h" />
+    <ClInclude Include="src\resource\ManageRaiseRes.h" />
+    <ClInclude Include="src\resource\ManageRanchCfgRes.h" />
+    <ClInclude Include="src\resource\ManageRanchInfoRes.h" />
+    <ClInclude Include="src\resource\ManageRandomSkillRes.h" />
+    <ClInclude Include="src\resource\ManageRankingRewardRes.h" />
+    <ClInclude Include="src\resource\ManageRankingRuleRes.h" />
+    <ClInclude Include="src\resource\ManageRankingTalkRes.h" />
+    <ClInclude Include="src\resource\ManageRecruitexpRes.h" />
+    <ClInclude Include="src\resource\ManageRecruitmentRes.h" />
+    <ClInclude Include="src\resource\ManageRingGuildRes.h" />
+    <ClInclude Include="src\resource\ManageRingQuestRes.h" />
+    <ClInclude Include="src\resource\ManageRingRandomRes.h" />
+    <ClInclude Include="src\resource\ManageRingRewardRes.h" />
+    <ClInclude Include="src\resource\ManageRoleRes.h" />
+    <ClInclude Include="src\resource\ManageRunesClassRes.h" />
+    <ClInclude Include="src\resource\ManageRunesExpRes.h" />
+    <ClInclude Include="src\resource\ManageRunesLevelRes.h" />
+    <ClInclude Include="src\resource\ManageRunesSystemRes.h" />
+    <ClInclude Include="src\resource\ManageSectionBonusRes.h" />
+    <ClInclude Include="src\resource\ManageSectRes.h" />
+    <ClInclude Include="src\resource\ManageShenghuoLingRes.h" />
+    <ClInclude Include="src\resource\ManageShlUnlockRes.h" />
+    <ClInclude Include="src\resource\ManageShopRes.h" />
+    <ClInclude Include="src\resource\ManageShortcutBonusRes.h" />
+    <ClInclude Include="src\resource\ManageSkillRes.h" />
+    <ClInclude Include="src\resource\ManageSoulCfgRes.h" />
+    <ClInclude Include="src\resource\ManageSoulChangeRes.h" />
+    <ClInclude Include="src\resource\ManageSoulSetRes.h" />
+    <ClInclude Include="src\resource\ManageSoulSoulRes.h" />
+    <ClInclude Include="src\resource\ManageSoulStageRes.h" />
+    <ClInclude Include="src\resource\ManageSoulSuperRes.h" />
+    <ClInclude Include="src\resource\ManageSpecialShopRes.h" />
+    <ClInclude Include="src\resource\ManageSplendidRes.h" />
+    <ClInclude Include="src\resource\ManageStage1stRes.h" />
+    <ClInclude Include="src\resource\ManageStageExpRes.h" />
+    <ClInclude Include="src\resource\ManageSuitRes.h" />
+    <ClInclude Include="src\resource\ManageSweepStageResInfo.h" />
+    <ClInclude Include="src\resource\ManageSynthesisRes.h" />
+    <ClInclude Include="src\resource\ManageSystemRes.h" />
+    <ClInclude Include="src\resource\ManageSystemUnlockRes.h" />
+    <ClInclude Include="src\resource\ManageTalentgroupRes.h" />
+    <ClInclude Include="src\resource\ManageTalentRes.h" />
+    <ClInclude Include="src\resource\ManageTalentsystemRes.h" />
+    <ClInclude Include="src\resource\ManageTalklinkRes.h" />
+    <ClInclude Include="src\resource\ManageTalkRes.h" />
+    <ClInclude Include="src\resource\ManageTargetquestRes.h" />
+    <ClInclude Include="src\resource\ManageTargetRes.h" />
+    <ClInclude Include="src\resource\ManageTavernhireRes.h" />
+    <ClInclude Include="src\resource\ManageTavernprobabilityRes.h" />
+    <ClInclude Include="src\resource\ManageTavernRes.h" />
+    <ClInclude Include="src\resource\ManageTavernshopRes.h" />
+    <ClInclude Include="src\resource\ManageTavernspebilityRes.h" />
+    <ClInclude Include="src\resource\ManageTavern_groupRes.h" />
+    <ClInclude Include="src\resource\ManageTowerBuffRes.h" />
+    <ClInclude Include="src\resource\ManageTowerRewardsRes.h" />
+    <ClInclude Include="src\resource\ManageTowerStageRes.h" />
+    <ClInclude Include="src\resource\ManageTrainingRes.h" />
+    <ClInclude Include="src\resource\ManageTreasureShopRes.h" />
+    <ClInclude Include="src\resource\ManageVipexpRes.h" />
+    <ClInclude Include="src\resource\ManageVipRes.h" />
+    <ClInclude Include="src\resource\ManageWarInitRes.h" />
+    <ClInclude Include="src\resource\ManageWarJobEnrageRes.h" />
+    <ClInclude Include="src\resource\ManageWarScoreRes.h" />
+    <ClInclude Include="src\resource\ManageWebVipRes.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

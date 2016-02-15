@@ -1,0 +1,254 @@
+package typed.protocol;
+//打开押镖
+//CMSG_ESCORT_OPEN
+//SMSG_ESCORT_OPEN
+message smsg_escort_open
+{
+	optional uint32 times_left		= 1;	//剩余押镖次数
+	optional uint32 times_rob		= 2;	//剩余打劫次数
+	optional uint32 times_help		= 3;	//剩余帮助次数
+	repeated uint32 agency_id		= 4;	//镖局id，目前固定三个
+	repeated uint32 map_unlock		= 5;	//当前解锁地图
+
+	optional uint32 process			= 6;	//0:无1：正在押镖
+	optional uint32 map_id_cur		= 7;	//当前镖车所在地图
+	optional uint32 pos_x			= 8;	//当前镖车所处位置
+	optional uint32 pos_y			= 9;	//1～100之间随机	
+	optional uint32 speed			= 10;	//当前镖车速度
+	optional uint32 destination		= 11;	//当前押镖目的地
+	optional uint32 agency_type_cur	= 12;	//当前镖局类型
+	optional uint64 helper_guid		= 13;	//当前协助者guid
+	optional string helper_name		= 14;	//当前协助者名字
+	optional uint32 time_left		= 15;	//压镖剩余时间
+	optional uint64	pray_guid		= 16;	//祈福玩家guid
+	optional string pray_name		= 17;	//祈福发起者
+	optional uint32 pray_time_left	= 18;	//祈福剩余时间
+	repeated uint64 enemy			= 19;	//仇人guid
+	optional uint32 pray_role_id	= 20;	//祈福角色role id
+	optional uint32 rob_time_left	= 21;	//打劫剩余时间	
+	optional uint32 car_id_cur		= 22;	//当前镖车id
+	optional uint32 prayed_today	= 23;	//今天是否祈福过1:祈福过 0：无
+	
+}
+//关闭押镖
+//CMSG_ESCORT_CLOSE
+//SMSG_ESCORT_CLOSE
+message EachInfo
+{
+	required uint64 player_guid		= 1;	//押镖者guid
+	required string player_name 	= 2;	//押镖者名字
+	optional uint32 level			= 3;	//押镖者等级
+	optional uint32 car_id			= 4; 	//镖车id
+	optional uint32 agency_id_cur	= 5;	//当前镖局ID
+	optional uint32 destination		= 6;	//当前押镖目的地	
+	optional uint32 speed			= 7;	//当前镖车速度
+	optional uint64 helper_guid		= 8;	//当前协助者guid
+	optional string helper_name		= 9;	//当前协助者名字
+	
+	optional uint32 times_berobbed	= 10;	//被劫次数
+	optional string	family_name		= 11;	//所在帮派名字
+	optional bool	is_robed		= 12;	//自个是否打劫过
+	optional uint32 pos_x			= 13;	//镖车位置x坐标
+	optional uint32 pos_y			= 14;	//镖车位置y坐标，1～100之间
+	optional bool	has_pray		= 15;	//TRUE：大神祈福状态不能被打劫，false：非祈福状态
+	optional uint32 job				= 16;	//职业类型
+	optional uint32 role_id			= 17;	//押镖者role id
+	optional uint32 money			= 18;	//押镖获得基础金钱
+	optional uint32 prestige		= 19;	//押镖获得基础声望
+	optional uint32 seni			= 20;	//押镖获得基础阅历
+	optional uint32 percent_left	= 21;	//押镖获得剩余百分比
+}
+//押镖地图变更
+//CMSG_ESCORT_MAP_CHANGE
+message cmsg_escort_map_change
+{
+	optional uint32 map_id_jmp = 1;		//跳向的地图id
+}
+//跳图错误时发送
+message smsg_escort_map_change
+{
+	optional uint32 result = 1;	//1:没有权限跳图
+}
+//玩家镖车当前所在地图
+message smsg_escort_car_map_current
+{
+	optional uint32 map_cur	= 1;
+}
+//跳图成功时、打开面板时、地图变更时发送
+message smsg_escort_map_info
+{
+	required uint32		map_id		= 1;	//地图id
+	repeated EachInfo	player		= 2;	//每个押镖者信息
+}
+message smsg_escort_add_enemy
+{
+	required uint64 player_guid = 1; //仇人guid
+}
+//押镖者状态变更
+message smsg_escort_state_change
+{
+	optional uint64 player_guid		= 1;	//押镖者
+	optional uint32	state			= 2;	//1,增加，2，消失, 3,修改内容
+	optional EachInfo escort_info	= 3;	//押镖者信息
+	optional uint32 cur_map			= 4;	//玩家当前押镖地图
+}
+//加速
+//CMSG_ESCORT_QUICK
+//SMSG_ESCORT_QUICK
+message smsg_escort_quick
+{
+	optional uint32 time_left	= 1;	//押镖剩余时间
+}
+//直接完成
+//CMSG_ESCORT_CMP_DIR
+//SMSG_ESCORT_CMP_DIR
+//镖局升级
+message cmsg_escort_agency_levelup
+{
+	required uint32 agency_type = 1;	//镖局类型
+}
+message smsg_escort_agency_levelup
+{
+	optional uint32 agency_type		= 1;	//镖局类型
+	optional uint32 agency_id_new	= 2;	//镖局id
+}
+//刷新镖车
+//CMSG_ESCORT_CAR_REFRESH
+
+//SMSG_ESCORT_CAR_REFRESH
+message smsg_escort_car_refresh
+{
+	optional uint32 new_id = 1;	//新镖车id
+	optional uint32 result = 2;	//1镖车升级，2镖车不变
+}
+//直接购买高级镖车
+//CMSG_ESCORT_CAR_BUY_DIR
+//SMSG_ESCORT_CAR_BUY_DIR
+
+
+//开始护送
+//CMSG_ESCORT_START
+message cmsg_escort_start
+{
+	optional uint32 destination = 1;	//押镖目的地 
+	optional uint32 agency_type = 2;	//镖局类型
+}
+
+//CMSG_ESCORT_START_FORCE现在已无效
+
+//SMSG_ESCORT_START
+message smsg_escort_start
+{
+	optional uint64 helper_guid = 1;
+	optional string helper_name = 2;
+	optional uint32 destination = 3;
+	optional uint32 agency_id 	= 4;
+	optional uint32 time_left	= 5;
+	optional uint32 state		= 6;	//1：成功2：压镖次数已用完，
+}
+//CMSG_ESCORT_FRIEND_INFO
+//查看邀请好友相关信息
+message smsg_escort_friend_info
+{
+	message FriendInfo
+	{
+		required uint64 friend_guid = 1;
+		required string friend_name = 2;
+		optional uint32 state		= 3; //0:无1：正在护送中
+		optional uint32 times_left	= 4; //剩余护送次数		
+	}
+	repeated FriendInfo info 		= 1;	//好友押镖相关信息
+}
+//邀请好友押镖
+message cmsg_escort_invite_helper
+{
+	required uint64 friend_guid = 1;	//被邀请者guid
+}
+message smsg_escort_invite_helper
+{
+	required uint64 friend_guid = 1;	
+	optional uint32 result		= 2; //1:同意，2：拒绝，3：被邀请者次数已用完，4：被邀请玩家
+}
+//取消押镖邀请好友
+//CMSG_ESCORT_INVITE_CANCLE
+//SMSG_ESCORT_INVITE_CANCLE
+
+//通知被邀请
+//SMSG_ESCORT_BEINVITE_NOTIFY
+message smsg_escort_beinvite_notify
+{
+	required uint64 from_guid = 1;	//押镖请求者guid
+	required string from_name = 2;	//押镖请求者名字	
+}
+//回复被邀请
+message cmsg_escort_beinvite
+{
+	required uint64 from_guid	= 1;	//押镖请求者guid
+	optional uint32 result		= 2;	//1.同意，2：拒绝
+}
+//
+message smsg_escort_beinvite
+{
+	optional uint32 result = 1;		//1:对方已取消，
+}
+
+//CMSG_ESCORT_PRAY
+//SMSG_ESCORT_PRAY
+//message smsg_escort_pray
+//{
+//	optional uint64 player			= 1;	//祈福玩家guid
+//	optional string name			= 2;	//祈福玩家名字
+//	optional uint32 pray_role_id	= 3;	//角色role id
+//	optional uint32 time_left		= 4;	//祈福剩余时间
+//}
+//
+message smsg_escort_pray_notify
+{
+	required uint64 pray_guid		= 1;	//祈福者guid
+	required string pray_name		= 2;	//祈福者名字
+	optional uint32 pray_role_id	= 3;	//角色role id	
+	optional uint32 time_left		= 4;	//祈福剩余时间
+}
+
+//截镖
+//CMSG_ESCORT_ROB
+message cmsg_escort_rob
+{
+	optional uint64 target_guid = 1;	//待抢劫者guid
+}
+//SMSG_ESCORT_ROB
+message smsg_escort_rob
+{
+	optional uint32 result = 1;		//0:正确，1：你今天的打劫次数已经用完，2：当前打劫处于冷却时间中，3：你已经打劫过此人，4：此人不在押镖（已完成）5：此人已被劫光6：自己人,7未知错误
+	optional uint32 cooling = 2;	//劫镖冷却时间
+}
+//
+//message smsg_escort_rob_notify
+//{
+//	optional uint64 robber		= 1;	//抢劫者
+//	optional uint64 be_robbed	= 2;	//被抢劫者
+//}
+//CMSG_RESET_ROB_COOLING
+//SMSG_RESET_ROB_COOLING
+
+//SMSG_ESCORT_NOTIFY
+message smsg_escort_notify
+{
+	required uint32 id				= 1;
+	repeated uint64 param_id		= 2;// param_id 与 param_name 必需等长，当客户端可以通过 param_id 取得名字时，对应的 param_name 可填为空。
+	repeated string param_name		= 3;	
+}
+
+//SMSG_ESCORT_DAY_CHANGE
+//message smsg_escort_day_change
+//{
+//	optional uint32 times_left		= 1;	//剩余押镖次数
+//	optional uint32 times_rob		= 2;	//剩余打劫次数
+//	optional uint32 times_help		= 3;	//剩余帮助次数
+//}
+
+//SMSG_ESCORT_TIMES_LEFT 剩余次数
+message smsg_escort_times_left
+{
+	optional uint32 times_left = 1;
+}

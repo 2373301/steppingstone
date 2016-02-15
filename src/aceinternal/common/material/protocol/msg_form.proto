@@ -1,0 +1,63 @@
+package typed.protocol;
+
+// 换阵型
+message cmsg_adjust_form
+{
+	required uint32 group = 1;		// 设置form_id为当前阵型
+}
+
+message smsg_adjust_form
+{
+	required uint32 group = 1;		// 设置form_id为当前阵型，成功则返回新的阵型ID，失败返回之前的form_id
+}
+
+// 阵型中调整角色位置
+message cmsg_form_exchange_role
+{
+	required int32	position 	= 1;	// 要换人的阵型位置，为0，角色下阵型，否则为1--9
+	required uint64  role_guid 	= 2;	// 填充到新位置的role guid
+}
+
+message smsg_form_exchange_role
+{
+	required int32	position 	= 1;	// 要换人的阵型位置
+	required uint64  role_guid 	= 2;	// 填充到新位置的role guid
+}
+
+message FormInfo
+{
+	required uint32 group			= 1;
+	required uint32 level			= 2;
+	repeated uint32 p1				= 3;		// 属性ID
+	repeated uint32 v1 				= 4;		// 属性值
+	repeated uint64	role_location	= 5;  		// 0 : 无角色，长度为9，填充阵型1到9的玩家guid
+}
+
+// 玩家上线时，下发玩家的整型信息
+message smsg_create_player_form
+{
+	required uint64		guid	 			= 1; 
+	required uint64		player	 			= 2; 
+	optional uint32 	curr_group			= 3;		// 当前启用阵型ID
+	repeated FormInfo	role_form_location	= 4;		// 角色在各个战斗阵型中的位置
+}
+
+// 阵型升级消息，通知客户端
+message smsg_update_form_info
+{
+	required uint32		group				= 1;		// 阵型group
+	required uint32		level				= 2;		// 升级后的当前级别
+	repeated uint32		p1					= 3;		// 属性ID
+	repeated uint32		v1					= 4;		// 属性值
+	repeated uint32		open_pos			= 5;		// 阵型升级开放的站位
+}
+
+// 失败引导数据计算
+message smsg_fight_failed_guide
+{
+	optional uint32 equipment_weight		= 1;	// 装备权重，0星、1星、2星、3星、4星、5星
+	optional uint32 base_attr_amount		= 2;	// 三围权重
+	optional uint32 attr_weight				= 3;	// 属性
+	optional uint32 dodge_weight			= 4;	// 轻功
+	optional uint32 partner_weight			= 5;	// 伙伴
+}

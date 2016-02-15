@@ -1,0 +1,58 @@
+package typed.entity;
+
+message Task
+{
+	required uint64	guid 				= 1;	//task guid
+	required uint64 player 				= 2;
+	required uint32 id 					= 3;	//task id
+	optional uint32 state 				= 4;	//1解锁不可接 2可接 3已接未完成 4已接已完成 5失败
+	optional uint32 type 				= 5;	//类型
+	optional uint32 isdead 				= 6;	//死亡失败
+	optional uint32 isoffline 			= 7;	//下线失败
+	
+	message CompleteReq
+	{
+		optional uint32 a 				= 1;	//任务需求参数1
+		optional uint32 b 				= 2;	//任务需求参数2
+		optional uint32 c 				= 3;	//任务需求参数3
+		optional uint32 num_cur 		= 4;	//当前已完成数量
+	}
+	repeated CompleteReq complete_req 	= 8;	//任务完成需求
+	optional uint32 main_type			= 9;	//主线，支线，每日，环任务
+	optional uint32 upgrade_times		= 10;	//提升每日任务等级的次数
+	optional uint32 quest_level			= 11;	//每日任务星级
+}
+
+message TasksBrief
+{
+	required uint64 guid 				= 1;
+	required uint64 player				= 2;
+	repeated uint32 unlock_list			= 3;	//已解锁
+	repeated uint32 acceptable			= 4;	//可接
+
+	repeated uint64 unfinished			= 5;	//已接未完成
+	repeated uint64 finished			= 6;	//已完成，未提交
+	repeated uint64 failed				= 7;	//失败
+	
+	repeated uint32 main_finish_list 	= 8;	// 主线已经完成并且提交了的任务
+	repeated uint32 branch_finish_list 	= 9;	// 支线已经完成并且提交了的任务
+	
+	optional uint32 ring_index			= 10;	//环任务第几环
+	optional uint32 ring_sub_index		= 11;	//具体某环第几个
+	optional uint32 ring_loop			= 12;	//具体轮次
+	optional uint32 ring_quest_id		= 13;	//当前任务id
+	optional uint32 ring_refresh_times	= 14;	//刷新次数
+	optional uint32 ring_reward_cur		= 15;	//当前未领取奖励环数
+	repeated uint32 ring_item_id		= 16;	//
+	repeated uint32 ring_item_no		= 17;	//	
+	
+	optional uint32 ring_guild_index			= 18;	//帮派环任务第几环
+	optional uint32 ring_guild_sub_index 		= 19;	//具体某环第几个
+	optional uint32 ring_guild_loop 			= 20;	//具体轮次	
+	optional uint32 ring_guild_quest_id			= 21;	//当前任务id
+	optional uint32 ring_guild_refresh_times	= 22;	//刷新次数
+	optional uint32 ring_guild_reward_cur		= 23;	//当前未领取奖励环数
+	repeated uint32 ring_guild_item_id			= 24;	//
+	repeated uint32 ring_guild_item_no			= 25;	//
+	optional uint32 ring_times_from_item		= 26;	//从物品里获得的环任务使用次数
+}

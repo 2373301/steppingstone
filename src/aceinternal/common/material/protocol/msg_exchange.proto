@@ -1,0 +1,42 @@
+package typed.protocol;
+
+// register msg
+message smsg_exchange_register
+{
+	required uint32 line_id				= 1;
+	required string	security_key		= 2;	
+}
+
+message emsg_exchange_register
+{
+	required uint32 result				= 1;	// 1: success, 2:failed
+}
+
+// query
+message smsg_exchange_remote_query
+{
+	required uint32 line_id				= 1;	
+	required string exchange_code		= 2;	
+}
+
+message emsg_exchange_remote_query
+{
+	required string exchange_code		= 1;
+	required uint32 result				= 2;	// 1:success, available，2：invalidation(line id 不符合)，3：already used，4：overdue(过期)
+	required uint32 item_id				= 3;
+	required uint32 exchange_type		= 4;	// exchange type
+}
+
+message smsg_exchange_remote_used
+{
+	required uint32 line_id				= 1;
+	required string exchange_code		= 2;
+}
+
+message emsg_exchange_remote_used
+{
+	required string exchange_code		= 1;
+}
+
+
+

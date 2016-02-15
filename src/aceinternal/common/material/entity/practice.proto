@@ -1,0 +1,20 @@
+package typed.entity;
+
+message Practice
+{
+	message GourdInfo
+	{
+		optional uint64 start_time		= 1;	// start_time为0，则表示该葫芦还未激活，不为0，则表示该葫芦开始生长日期，单位：秒
+	}
+	
+	message WineTank
+	{
+		optional uint64 start_time		= 1;	// start_time为0，则表示该酒槽还未激活，不为0，则表示该酒槽开始续酒日期，单位：秒
+		optional uint32 gain_percent	= 2;	// 收益率更换成收益等级吧(收益率会更改, 基础等级为一级)
+	}
+	
+	required uint64 guid				= 1;
+	required uint64 player				= 2;
+	repeated GourdInfo gourd_info		= 3;	// 葫芦信息，可以在创建该实体的时候，初始化长度，目前长度为6
+	repeated WineTank  wine_tank		= 4;	// 酒槽信息，可以在创建该实体的时候，初始化长度，目前长度为6
+}

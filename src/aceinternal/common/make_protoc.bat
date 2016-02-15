@@ -1,12 +1,5 @@
+for %i in (./material/protocol/*.proto) do protoc.exe --proto_path=material --cpp_out=material-cpp ./material/protocol/%i
 
-protoc.exe --proto_path=material --cpp_out=material-cpp material/protocol/msg_guid.proto
-protoc.exe --proto_path=material --cpp_out=material-cpp material/protocol/msg_cache.proto
-protoc.exe --proto_path=material --cpp_out=material-cpp material/protocol/msg_binary.proto
-protoc.exe --proto_path=material --cpp_out=material-cpp material/protocol/msg_pool.proto
-
-protoc.exe --proto_path=material --cpp_out=material-cpp material/entity/test.proto
-protoc.exe --proto_path=material --cpp_out=material-cpp material/entity/player.proto
-
-
+for %j in (./material/entity/*.proto) do protoc.exe --proto_path=material --cpp_out=material-cpp ./material/entity/%j 
 
 pause

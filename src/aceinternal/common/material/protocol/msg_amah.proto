@@ -1,0 +1,23 @@
+package typed.protocol;
+
+////////
+
+// 上线推送，以及可能的实时推送
+message smsg_amah_state
+{
+	repeated uint32 act_type					= 1; // 活动类型
+	repeated uint32 is_set						= 2; // 1:未设置，2：设置
+}
+
+message cmsg_amah_set_state
+{
+	required uint32 act_type					= 1; // 活动类型
+	required uint32 is_set						= 2; // 1:未设置，2：设置
+}
+
+message smsg_amah_set_state
+{
+	required uint32 act_type					= 1; // 活动类型、参见state.
+	optional uint32 result						= 2;   // 1：成功，2：vip级别不满足，3：活动未解锁, 4:活动不存在， 10：其他
+	optional uint32 is_set						= 3;   // 成功设置的结果。
+}

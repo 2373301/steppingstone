@@ -1,0 +1,83 @@
+package  LoginServer;
+
+enum smsg_code
+{
+   OP_Success =1; //1	验证成功
+   OP_gametype_error = -1; //-1	游戏类型不正确
+   OP_bus_type_error = -2; //-2	业务类型不正确
+   OP_game_key_error = -3; //-3	游戏key不正确
+   OP_IP_screen = -4; //-4	玩家IP被封
+   OP_MAC_screen = -5; //-5	玩家MAC被封
+   OP_area_id_error = -6; //-6	分区编号不存在
+   OP_USER_PW_error = -7; //-7	用户名或密码不正确
+   OP_USER_AREA_NOACTIVE = -8; //-8	玩家在该分区未激活
+   OP_USER_AREA_SHUTDOWN = -9;
+   OP_USER_UNDER_AGE= -10;
+   OP_USER_NEW_USER_OLD_AREA=-11;
+   OP_GM_USER_CANT_LOGIN=-12;//gm不能登录
+   OP_error_NoGateWaySelect= -30; //-30 no gateway select
+   OP_error_ACCOUNT_ISONLINE= -31;
+   OP_error_auth_pic=-32;
+   OP_error_sys_EXCEPT=-98;//系统异常
+   OP_error_sys_error  =-99; //-99	系统错误
+}
+message cmsg_CreateAccount
+{
+   required bytes Accountname = 1;
+   optional bytes password = 2;
+   optional bytes username = 3;
+}
+message cmsg_LoginAccount
+{
+   required bytes username = 1;
+   optional bytes password = 2;
+}
+message cmsg_login_request
+{
+   required bytes Code =1; //-客户端验证码
+}
+message smsg_loginRequest_reply
+{
+   required bytes code = 1; //-客服端编码code
+}
+message cmsg_ChangePassword
+{
+   required bytes Accountname = 1;
+   optional bytes oldpassword = 2;
+   optional bytes newpassword = 3;
+}
+message smsg_Result
+{
+  required uint32 Opcode = 1;	
+  optional smsg_code rescode = 2;
+}
+message smsg_pic_code
+{
+  required bytes pic_code=1;
+}
+message cmsg_pic
+{
+   required bytes pic=1;
+}
+message smsg_Auth_Success
+{
+  required bytes sessionid = 1;
+  optional uint32 accountID = 2; //账号ID
+  optional bytes gatewayip = 3;
+  optional uint32 port = 4;
+  repeated uint32 line_id=5; //当前分线列表
+  repeated uint32 line_state=6;//当前分线状态 0 - low 1-med 2-busy 3--full
+}
+
+message Gateway_Msg_Update
+{
+   required uint32 ConnNumber = 1; //当前连接数
+}
+message Login_AuthMessageTo_GateWay
+{
+  required uint32 AccoutID = 1; //连接用户名
+  optional bytes sessionID = 2; //Sessionid
+  optional bytes IP =3; 	//客服端ip
+  optional uint32 gm_level = 4 [default = 1]; //GM等级
+  optional uint32 account_level = 5 [default = 1]; //账户等级
+}

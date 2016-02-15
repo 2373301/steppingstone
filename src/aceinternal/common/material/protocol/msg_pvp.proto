@@ -1,0 +1,159 @@
+package typed.protocol;
+
+//打开竞技场面板，只第一次打开调用，客户端需要记录第一次标志位
+//CMSG_OPEN_PVP，，回复的消息有1 SMSG_OPEN_PVP 2 SMSG_ADD_RECORD_PVP 3 SMSG_UPDATE_OPPO_PVP, 4 SMSG_ADD_COUNT_COST, 5 SMSG_RESELECT_OPPO_COST 6 //SMSG_PVP_COOLING
+message cmsg_open_pvp
+{
+	required uint32 first_open = 1;		//标志1：第一次打开竞技场，回复消息1 2 3 4 5 6。
+										//标志0：不是第一次打开竞技场，回复消息1 3 4 5 6。
+}
+message smsg_open_pvp
+{
+	optional uint32	times				= 1;	//剩余次数
+	optional uint32 count_down1			= 2;	//奖励剩余时间1	
+	optional uint32 count_down2 		= 3;	//奖励剩余时间2	
+	optional uint32 ranking				= 4;	//当前排名
+	repeated PlayerInfo player_top 		= 5;	//前三名玩家信息
+	
+	optional uint32 prestige1			= 6;	//2天声望奖励
+	optional uint32 money1				= 7;	//2天铜钱奖励
+	optional uint32 honor1				= 8;	//2天威望奖励
+	optional uint32 prestige2 			= 9;	//1周声望奖励
+	optional uint32 money2				= 10;	//1周铜钱奖励
+	optional uint32 honor2				= 11;	//1周威望奖励
+}
+//SMSG_PVP_REWARD
+message smsg_pvp_reward
+{
+	optional uint32 reward_type		= 1;		//1：2日奖励，2：周奖励
+	optional uint32 prestige		= 2;		//2天声望奖励
+	optional uint32 money			= 3;		//2天铜钱奖励
+	optional uint32 honor			= 4;		//2天威望奖励
+}
+
+//pvp战斗消息，返回 1 SMSG_PVP_FIGHT 2 SMSG_ADD_RECORD_PVP，3 SMSG_UPDATE_OPPO_PVP, 4 SMSG_BATTLE_PLAYBACK
+message cmsg_pvp_fight
+{
+	required uint64 other_player 	= 1;
+}
+
+//当天战斗剩余免费次数
+message smsg_pvp_free_times
+{
+	required uint32  pvp_free_times = 1;
+}
+
+//冷却时间
+message smsg_pvp_cooling
+{
+	required uint32 cooling_time 	= 1;	//冷却时间
+	required bool	cooling_force	= 2;	//0：倒计时显示白色可继续战斗，1：倒计时显示红色，不可战斗
+}
+
+//CMSG_RESELECT_OPPO	//回复的消息有1 SMSG_OPEN_PVP，2 SMSG_UPDATE_OPPO_PVP
+message smsg_reselect_oppo_cost
+{
+	optional uint32 refresh_cost 	= 1;	//刷新消耗	
+}
+
+//CMSG_ADD_COUNT_PVP
+message smsg_add_count_cost
+{
+	optional uint32	add_cost		= 1;	//增加次数消耗
+	optional uint32 times_buy_today = 2;	//今天已经购买的次数
+}
+//CMSG_RESET_COOLING	冷却时间清零
+//SMSG_RESET_COOLING
+
+//SMSG_ADD_RECORD_PVP		//玩家被打时也需要下发
+message smsg_add_record_pvp
+{
+	//战斗历史记录
+	message PvpRecord
+	{
+		required uint32	type_record			= 1;	//战报类型1:主动攻击赢2:主动攻击输3:被动攻击赢4：被动攻击输
+		required uint32 time_record			= 2;	//战斗时间
+		required uint64	oppo_guid			= 3;	//对手guid
+		required string	oppo_name			= 4;	//对手姓名
+		required string	url_record			= 5;	//战报地址
+		required uint32	ranking				= 6;	//当次排名
+	}
+	repeated PvpRecord	record				= 1;	//战斗历史记录	
+}
+//玩家信息
+message PlayerInfo
+{
+			
+	required uint64	oppo_guid			= 1;	//对手guid
+	required string	oppo_name			= 2;	//对手姓名
+	required uint32	oppo_level			= 3;	//对手等级
+	required uint32	role_id				= 4;	//对手头像
+	required uint32	ranking				= 5;	//对手排名
+	optional uint32 fight_power			= 6;	//对手战力
+	optional int32	rank_change			= 7;	//排名变更
+}
+//SMSG_UPDATE_OPPO_PVP
+message smsg_update_oppo_pvp
+{
+	repeated PlayerInfo	oppo_info			= 	1;	//对手信息		
+}
+
+//CMSG_RANKING_LIST
+//SMSG_RANKING_LIST
+message smsg_ranking_list
+{
+	repeated PlayerInfo player_pvp = 1;	//pvp排行榜玩家数据	
+}
+
+//SMSG_PVP_NOTIFY
+message smsg_pvp_notify
+{
+	required uint64 player_guid	= 1;	//通告玩家的guid
+	optional string player_name = 2;	//通告玩家的名字
+	optional uint32 type		= 3;	//通告类型，1：连胜场次 2：连升排名
+	repeated uint32 param		= 4;	//通告相关参数列表
+}
+
+//SMSG_PVP_FIGHT_REWARD
+message smsg_pvp_fight_reward
+{
+	optional uint32 prestige	= 1; //声望
+	optional uint32 money		= 2; //铜钱
+	optional uint32 weiwang		= 3; //威望
+}
+//CMSG_PVP_GET_REWARD
+message cmsg_pvp_get_reward
+{
+	required uint32 reward_type = 1;	//1: 领取两日奖励 2：领取周奖励
+}
+//SMSG_PVP_GET_REWARD
+message smsg_pvp_get_reward
+{
+	required uint32 reward_type = 1;	//1: 领取两日奖励 2：领取周奖励
+	required int32  result		= 2;	//1:成功，0：失败
+}
+
+//登陆后发送当前战斗剩余次数及冷却时间
+//SMSG_PVP_BRIEF_INFO
+message smsg_pvp_brief_info
+{
+	optional uint32	has_open		= 1;	//是否注册了竞技场,1 是， 0 否
+	optional uint32	times			= 2;	//剩余次数	
+	optional uint32 cooling_time 	= 3;	//冷却时间
+	optional bool	cooling_force	= 4;	//0：倒计时显示白色可继续战斗，1：倒计时显示红色，不可战斗	
+}
+//SMSG_PVP_CLEAR_COUNT_DOWN
+message smsg_pvp_clear_count_down
+{
+	optional uint32 sec_time_left = 1;	//竞技场清空倒计时剩余秒数，是0表示已经清空，竞技场清空前两天第一次上线以及每月1号0点发送
+}
+//自身竞技场排名
+message smsg_pvp_self_ranking
+{
+	optional uint32 ranking	= 1;
+}
+
+
+
+
+

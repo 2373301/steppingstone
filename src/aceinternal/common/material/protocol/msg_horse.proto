@@ -1,0 +1,131 @@
+package typed.protocol;
+
+enum HorseCode
+{
+	eHCSUCCESS			= 1;	// 成功
+	eHCInvalidHorseId	= 2;	// 没有这匹马
+	eHCInvalidHelperId	= 3;	// 没有这个援助id
+	eHCLocked			= 4;	// 援助没解锁
+	eHCInvalidRole		= 5;	// 角色非法
+	eHCLackMoney		= 6;	// 银两不足
+	eHCTopLevel			= 7;	// 已到最高等级
+	eHCLackCoin			= 8;	// 元宝不足
+	
+}
+
+//message cmsg_horse_info
+
+// 主动推送
+message smsg_horse_owned	
+{
+	repeated uint32  horse_ids	= 1;	// 已购买的马
+}
+
+// 上马
+message cmsg_horse_geton
+{
+	required uint32 ride_on		= 1;	// 马的id 或 0 (代表下马)
+}
+
+message smsg_horse_geton
+{	
+	required uint32 	ride_on	= 1;
+	required HorseCode code		= 2;
+}
+
+// 主动推送
+message smsg_horse_ride
+{
+	required uint32  riding_on	= 2;	// 被骑的马的id(0 则表示下马)
+}
+
+// 骑术训练
+// message cmsg_horse_tranining
+
+message smsg_horse_training
+{
+	required HorseCode code		= 1;	
+}
+
+// 骑术升级
+// message cmsg_horse_levelup
+message smsg_horse_levelup
+{
+	required HorseCode code		= 1;
+}
+
+
+// 骑术信息,主动推送
+message smsg_horse_horsemanship
+{
+	required uint32 level		= 1;
+	required uint32 exp			= 2;
+}
+
+// 牧场信息,主动推送
+message smsg_horse_ranch
+{
+	required uint32 level		= 1;
+}
+
+// 伙伴援助信息,主动推送
+message smsg_horse_help
+{
+	repeated uint32 helper_ids			= 1;
+	repeated uint32	lockeds				= 2;
+	repeated uint32	buf_ids				= 3;
+	repeated uint64 role_guids			= 4;
+}
+
+// 援助刷新
+// message cmsg_horse_help_refresh
+
+message smsg_horse_help_refresh
+{
+	required HorseCode code		= 1;
+}
+
+// 品质刷新
+// message cmsg_horse_color_refresh
+message smsg_horse_color_refresh
+{
+	required HorseCode code		= 1;
+}
+
+// 累计消费元宝数
+message smsg_horse_amount
+{
+	optional uint32 num	= 1;
+}
+
+// 绑定伙伴
+message cmsg_horse_bind_partner
+{
+	required uint32 helper_id	= 1;
+	required uint64 role_guid	= 2;
+}
+
+message smsg_horse_bind_partner
+{
+	required HorseCode code		= 1;	
+}
+
+// 通知别的玩家 骑乘状态
+message smsg_update_horse_id
+{
+	optional uint64	 player 	= 1;
+	optional uint32  horse_id	= 2;
+}
+
+// 是否显示马
+message cmsg_horse_show
+{
+	required uint32 flag	= 1; // 请求 1:显示 2: 不显示
+}
+
+message smsg_horse_show
+{
+	required uint32 flag	= 1; // 当前状态 1:显示 2: 不显示	
+}
+
+

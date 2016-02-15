@@ -1,0 +1,43 @@
+package typed.entity;
+
+message Boss
+{
+	message BossHurt
+	{
+		optional uint32 boss_id 	= 1;
+		optional uint32 hurt_value	= 2;
+		optional bool boss_killer 	= 3;
+		optional uint64 boss_time	= 4; //打boss的时间
+	}
+	message Reward
+	{
+		optional uint32 money		= 1; //铜钱
+		optional uint32 prestige	= 2; //声望
+		optional uint32 seniority	= 3; //阅历
+		optional uint32 ranking		= 4; //击杀boss排名
+		optional uint32 bonus		= 5; //前10名bonus额外奖励
+		optional uint32 boss_id		= 6; //boss enemy id		
+		optional bool substitute	= 7; //是否是替身娃娃
+		optional uint32 bonus_killer = 8; //最后一击击杀boss获得宝箱奖励, 0为没有击杀
+		optional uint64 time		= 9; //boss奖励的时间，1970年至今的秒数，当是替身娃娃类型时为0
+		optional bool	normal_reward = 10; //是否有普通奖励，仅不是替身娃娃的情况下有效，true：有，false：无
+	}
+	required uint64 guid				= 1; //本实体guid
+	required uint64 player				= 2; //玩家guid
+	optional bool 	has_start			= 3; //是否已开始
+	optional uint32 revive_time_left	= 4; //玩家复活倒计时时间
+	optional uint32 dead_last_time		= 5; //玩家上次死亡时间
+	optional uint32 seni_enc_cooling	= 6; //鼓舞冷却时间
+	optional uint32 seni_enc_forbit		= 7; //强制冷却
+	optional uint32 seni_last_time		= 8; //上次鼓舞时间
+	optional uint32 enc_level			= 9; //鼓舞当前层
+	optional uint32 reborn_times		= 10; //欲火次数
+	optional uint32 last_time 			= 11; //最后一次打boss时间
+	
+	repeated BossHurt hurt_value		= 12; //对boss造成的伤害
+	repeated Reward reward				= 13; //奖励
+	
+	optional bool 	substitute			= 14; //是否使用了娃娃替身	
+	optional uint32 substitute_last		= 15; //最后一次挂娃娃的时间
+	optional bool	seni_enc_unlock		= 16; //阅历鼓舞是否解锁
+}

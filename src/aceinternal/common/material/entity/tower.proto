@@ -1,0 +1,57 @@
+package typed.entity;
+
+//排行榜
+message TopList
+{	
+	message PlayerLevel
+	{
+		required uint64  player = 1;			//玩家guid
+		optional uint32  current_floor = 2;		//当前所在层
+		optional int64  time = 3;				//达到当前层的时间点
+		optional uint32  level = 4;				//达到当前层时的等级
+	}
+	required uint64 guid		= 1;
+	repeated PlayerLevel list = 2;	//top30玩家排行列表
+	
+	repeated PlayerLevel weekly_list = 3;	//周结算的top3玩家排行
+	repeated uint32 bonus = 4;  			// top3 奖励是否已领取
+		
+}
+
+message Tower
+{	
+	
+	message TowerRecord
+	{
+		
+	}
+	
+	required uint64 guid = 1;			//爬塔guid
+	required uint64 player = 2;			//玩家guid
+	
+	optional uint32 top_floor = 3; 		//玩家推的最高层数
+	optional uint32 current_floor = 4;	//当前层数
+	optional uint64 time = 5;			//爬到当前层数的时间点
+	
+	optional uint32 hot_streak = 6;		//连续胜利次数
+	
+	optional uint32 daily_floor = 7;	//昨天结算时所在的层数
+	optional uint32 daily_bonus = 8;	//是否已领取日奖励 0:已发放, 1:未发放, -1:没有
+	optional uint32 weekly_floor = 9;	//上周结算所在的层数
+	optional uint32 weekly_bouns = 10;	// 是否已领取周奖励 0:已发放, 1:未发放, -1:莫有
+	
+	optional uint64 start_time = 11;			//正常推图, start_time = now(); cd 跟 自动推图cd不同
+												//自动推图, start_time = now(); , 过关 start_time = now();
+												//离线推图, start_time += cd; if  start_time > now(),转换为 自动推图模式
+	optional uint32 mode = 12;		// 0:正常推图模式, 1:自动推图, 2:离线推图
+	
+	optional uint32 att_buff_id = 13;			//3攻鼓舞, 用于下一场推图
+	optional uint32 def_buff_id = 14;			//3防鼓舞, 用于下一场推图
+	
+	repeated TowerRecord record = 15; //战报
+	
+	optional uint32 current_map = 16; //当前所在地图
+}
+
+
+

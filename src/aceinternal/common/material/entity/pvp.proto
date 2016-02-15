@@ -1,0 +1,45 @@
+package typed.entity;
+
+//pvp战报
+
+message Pvp
+{
+	message PvpRecord
+	{
+		optional uint32	type_record			= 1;	//战报类型1:主动攻击赢2:主动攻击输3:被动攻击赢4：被动攻击输
+		optional uint64 time_record			= 2;	//战斗时间
+		optional uint64	oppo_guid			= 3;	//对手guid
+		optional string	oppo_name			= 4;	//对手姓名
+		optional string	url_record			= 5;	//战报地址
+		optional uint32	ranking				= 6;	//当次排名
+	}
+	required uint64 guid		= 1;	//pvp
+	optional uint64 player		= 2;	//玩家guid
+	optional uint32 ranking 	= 3;	//排名
+	repeated PvpRecord	record	= 4;	//战斗历史记录
+	repeated uint64 oppo_guid	= 5;	//对手guid	
+	
+	optional uint32	times_buy 		= 6;		//今天买了几次次数
+	optional uint32	times_remaind	= 7;		//当天剩余次数
+	optional uint64	recently_time	= 8;		//上次pvp时间
+	optional uint32	cooling_time	= 9;		//冷却时间积攒
+	optional bool	cooling_force	= 10;		//是否在强制冷却
+	optional uint32 continuous_win	= 11;		//连胜次数
+	
+	optional uint32 day_reward		= 12;		//1：有奖励，0：无奖励
+	optional uint32 prestige_day	= 13;		//2天声望奖励
+	optional uint32 money_day		= 14;		//2天铜钱奖励
+	optional uint32 honor_day		= 15;		//2天威望奖励
+	optional uint32 week_reward		= 16;		//1：有奖励，0：无奖励	
+	optional uint32 prestige_week 	= 17;		//1周声望奖励
+	optional uint32 money_week		= 18;		//1周铜钱奖励
+	optional uint32 honor_week		= 19;		//1周威望奖励
+	optional uint32 ranking_day		= 20;		//产生两日奖励时的排名
+	optional uint32 ranking_week	= 21;		//产生每周奖励时的排名	
+}
+
+message PvpContainer
+{
+	required uint64 guid		= 1;	//
+	repeated uint64 pvp_guid 	= 2;		//
+}

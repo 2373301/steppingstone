@@ -1,0 +1,33 @@
+package typed.protocol;
+
+message smsg_reset_attr	//服务器重置属性结构体
+{
+	optional int32 str_attr				= 1;	//外功值
+	optional int32 agi_attr				= 2;	//内功值
+	optional int32 int_attr				= 3;	//奇术值
+	optional int32 attach_skill_id		= 4;	//附加属性ID
+	optional int32 free_times 			= 5;	//剩余免费次数
+	optional int32 coin_const_next 		= 6;	//随机需要消耗元宝
+}
+
+message cmsg_join_sect
+{
+	required int32 sect_id				= 1;		//门派ID
+}
+
+message smsg_open_panel_reset_attr				//打开属性重置面板
+{
+	optional int32 str_attr					= 1;	//外功值
+	optional int32 agi_attr					= 2;	//内功值
+	optional int32 int_attr					= 3;	//奇术值
+	optional int32 attach_skill_id			= 4;	//附加skillID
+
+	optional int32 rand_str_attr			= 5;	//随机外功值
+	optional int32 rand_agi_attr			= 6;	//随机内功值
+	optional int32 rand_int_attr			= 7;	//随机奇术值
+	optional int32 rand_attach_skill_id		= 8;	//随机附加skillID
+
+	optional int32 is_random_data 			= 9;	//是否是随机值，1：是 0：否
+	optional int32 free_times 				= 10;	//剩余免费次数
+	optional int32 coin_const_next 			= 11;	//随机消耗元宝数
+}

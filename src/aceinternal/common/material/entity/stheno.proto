@@ -1,0 +1,13 @@
+package typed.entity;
+
+message Stheno {
+	required uint64 guid		= 1;
+	required uint64 player		= 2;
+	required uint32 stheno_id	= 3;
+	required uint32 level		= 4;
+	required uint32 exp			= 5;
+	required uint32	functype	= 6;	// 强化师功能分类:1, 增加强化成功; 2, 降低强化消耗; 3, 强化连击
+	required uint32 attrtype	= 7;	// 1, 万分比; 2, 绝对值
+	required uint32 funcprob	= 8;	// 触发几率，万分比，>= 10000表示必定成功
+	required uint32 attrvalue	= 9;
+}

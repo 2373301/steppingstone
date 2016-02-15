@@ -1,0 +1,117 @@
+package typed.protocol;
+
+// 打开主面板
+// message cmsg_open_practice 无消息体
+
+
+
+message smsg_open_practice
+{
+	message WineTank
+	{
+		optional uint32 available		= 1;	// 酒槽剩余酒量,时间表示, -1对应的uint32的值代表未解锁
+		optional uint32 gain_percent	= 2;	// 收益百分比，初始为100，随着酒槽的升级而增加
+	}
+	
+	repeated uint32 gourd				= 1;	// 葫芦生长,时间表示
+	repeated WineTank wine_tank			= 2; 	// 
+	repeated uint32 role_stomach		= 3;	// 角色大胃值, 时间表示
+}
+
+// 消耗酒槽
+message cmsg_drink_wine
+{
+	required uint32 wine_tank			= 1;	// 酒槽的索引ID
+	required uint64 role_guid			= 2;	// 伙伴guid，不能是主要伙伴
+}
+
+message smsg_drink_wine
+{
+	required uint32 wine_tank			= 1;	// 酒槽的索引ID
+	required uint64 role_guid			= 2;	// 伙伴guid，不能是主要伙伴
+	required uint32 result				= 3;	// 1：成功，2：失败，酒槽已空,或id非法,或未解锁，3:角色大胃值不够，4：主角伙伴不能双修, 5.酒槽索引ID非法, 6.伙伴等级>= 主要伙伴等级,7:对应酒槽没有开启
+	optional int32 wine_value			= 4;	//酒槽当前酒量,时间表示( -1 代表此值没有设置)
+	optional int32 stomach_value		= 5;	//大胃值,时间表示( -1 代表此值没有设置)
+}
+
+// 酒槽升级
+message cmsg_wine_tank_levelup
+{
+	required uint32 wine_tank			= 1;	// 酒槽的索引ID
+}
+
+message smsg_wine_tank_levelup
+{
+	required uint32 wine_tank			= 1;	// 酒槽的索引ID
+	required uint32 result				= 2;	// 1：成功，2：失败，元宝不足，3：等级已满, 4:酒槽索引ID非法, 5:vip等级不够, 6:酒槽锁定
+	optional int32 value				= 4;	//酒槽当前酒量,时间表示( -1 代表此值没有设置)
+}
+
+// 酒槽加满
+message cmsg_wine_tank_full
+{
+	required uint32 wine_tank			= 1;	// 酒槽的索引ID
+}
+
+message smsg_wine_tank_full
+{
+	required uint32 wine_tank			= 1;	// 酒槽的索引ID
+	required uint32 result				= 2;	// 1：成功，2：失败，元宝不足，3：酒槽已满, 4:酒槽索引ID非法, 5:酒槽锁定
+	optional int32 value				= 4;	//酒槽当前酒量,时间表示( -1 代表此值没有设置)
+}
+
+// 伙伴加满大胃值
+message cmsg_stomach_full
+{
+	required uint64 role_guid			= 1;	// 角色guid
+}
+
+message smsg_stomach_full
+{
+	required uint64 role_guid			= 1;	// 角色guid
+	required uint32 result				= 2;	// 1：成功，2：失败，元宝不足，3：角色大胃值已满, 4:role_guid 非法, 5:vip等级不足
+	optional int32 value				= 4;	//当前大胃值,时间表示( -1 代表此值没有设置)
+}
+
+// 解锁新的酒槽
+message cmsg_unlock_wine_tank
+{
+	required uint32 wine_tank			= 1;	// 酒槽的索引ID
+}
+
+message smsg_unlock_wine_tank
+{
+	required uint32 wine_tank			= 1;	// 酒槽的索引ID
+	required uint32 result				= 2;	// 1：成功，2：失败，元宝不够，3：已经解锁, 4:vip等级不够, 5:id非法
+}
+
+// 采摘葫芦
+message cmsg_pick_gourd
+{
+	required uint32 gourd				= 1;	// 葫芦索引ID
+	required uint64 role_guid			= 2;	// 角色guid
+}
+
+message smsg_pick_gourd
+{
+	required uint32 gourd				= 1;	// 葫芦索引ID
+	required uint64 role_guid			= 2;	// 角色guid
+	required uint32 result				= 3;	// 1：成功，2：失败，伙伴等级不能超过主角等级，3：失败，葫芦还未成熟, 4: 葫芦索引ID不对, 5:主伙伴不能双修炼, 6:role_guid非法
+	optional int32 value				= 4;	//葫芦成熟度,时间表示( -1 代表此值没有设置)
+}
+
+//大胃值增加,消息推送
+message smsg_stomach_value_update
+{
+	required uint64 role_guid			= 1; // 角色guid
+	required int32 value				= 2; // 当前角色的大胃值, 时间表示( -1 代表此值没有设置)
+}
+
+// 玩家登陆, +vip时, 推送成熟葫芦通知
+message smsg_gourd_ripe_notify
+{
+	repeated uint32 gourd				= 1;	// 葫芦生长,时间表示
+}
+
+
+

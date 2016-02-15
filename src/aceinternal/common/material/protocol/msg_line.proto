@@ -1,0 +1,846 @@
+package typed.protocol;
+
+// pvp
+message lmsg_player_fight_player
+{
+	required uint64 first_player	= 1;
+	required uint64 second_player	= 2;
+}
+
+// collect player short info
+message lmsg_player_first_online
+{
+	optional string name			= 1;
+	optional uint32 level			= 2;
+	optional uint32 role_id			= 3;
+	optional uint32 sex				= 4;
+	optional uint32 job				= 5;
+	optional uint32 map_id			= 6;
+	optional uint32 vip_level		= 7;
+	optional uint32 robot_id		= 8;	//机器人id，正常玩家值为0
+	optional string open_id			= 9;	//open id
+	optional string open_id_referrer = 10;	//邀请者open id
+}
+
+// player level update
+message lmsg_player_upgrade_level
+{
+	required uint32 curr_level		= 1;
+	required uint32 pre_level		= 2;
+}
+
+message lmsg_info_send
+{
+	optional uint32 flag		= 1;
+	repeated uint64 recvers		= 2;
+	optional uint32 template_id	= 3;
+	repeated uint64 iparameters	= 4;
+	repeated string sparameters	= 5;	// String representation of corresponding parameters.
+}
+
+message lmsg_sthen_rate
+{
+	optional uint64 timestamp		= 1;
+	optional uint32 ratevalue		= 2;
+}
+
+// 向scene发送武林大坏蛋周卡片库
+message lmsg_week_sys_card
+{
+	repeated uint32 card_id = 1;
+}
+
+// line向scene发送day change消息
+message lmsg_day_change
+{
+	required uint64	new_day		= 1;
+}
+
+// line向scene发送week change消息
+message lmsg_week_change
+{
+	required uint64	new_week		= 1;
+}
+
+// send vip level up fro scene to line scene
+message lmsg_vip_levleup
+{
+	required uint32 from_vip_level		= 1; 
+	required uint32 to_vip_level		= 2; 
+}
+
+message lmsg_player_charge
+{
+	required uint64 request_index		= 1;
+	required uint64 charge_value		= 2;
+	required uint64 charge_time			= 3;
+}
+
+message lmsg_player_charge_confirm
+{
+	required uint64 request_index		= 1;
+	required uint64 charge_value		= 2;
+	required uint32 result				= 3; 	// 1：成功，2：重复request_index，3：失败
+}
+
+//系统通知
+message lmsg_player_notify
+{
+	required uint32 id					= 1;
+	// param_id 与 param_name 必需等长，当客户端可以通过 param_id 取得名字时，对应的 param_name 可填为空。	
+	repeated uint64 param_id			= 2;
+	repeated string param_name			= 3;
+}
+
+// 关卡解锁组队副本
+message lmsg_unlock_multicopy
+{
+	required uint32 multicopy_id		= 1;
+}
+
+// 解锁玩家城镇
+message lmsg_unlock_town
+{
+	required uint32 map_id				= 1;
+}
+
+// 更新玩家战力
+message lmsg_update_player_fight_power
+{
+	required uint32 fight_power			= 1;
+}
+
+// 组队体力消耗请求
+message stol_query_multicopy_free_times
+{
+	required uint32 query_type		= 1;	// 1：创建team，2：加入team，3：快速加入
+	optional uint32 copy_id			= 2; 	//多人副本id
+	optional uint32 queue_id		= 3; 	//队伍id	
+}
+
+message ltos_query_multicopy_free_times
+{
+	required uint32 query_type		= 1;	//1：创建team，2：加入team，3：快速加入
+	optional uint32 copy_id			= 2; 	//多人副本id
+	optional uint32 queue_id		= 3; 	//队伍id	
+	optional bool	free			= 4;	//查询结果，true:免费，false扣除体力
+	optional uint32 result			= 5;	//1:成功，2：次数已用完
+}
+
+// LS发放奖励请求
+message ltos_update_reward
+{
+	optional int32	money			= 1;
+	optional int32 	coin			= 2;
+	optional int32 	seniority		= 3;	// 阅历
+	optional uint32	prestige 		= 4;	// 声望
+	optional uint32	reverence 		= 5;	// 威望
+	optional uint32 energy			= 6;	// 体力
+	repeated uint32 item_id			= 7;	// 物品ID
+	repeated uint32 item_num		= 8;	// 物品num，这个和ID意义对应
+	optional uint32 source_from		= 9;
+}
+
+message stol_update_reward
+{
+	optional int32	money			= 1;
+	optional int32 	coin			= 2;
+	optional int32 	seniority		= 3;	// 阅历
+	optional uint32	prestige 		= 4;	// 声望
+	optional uint32	reverence 		= 5;	// 威望
+	optional uint32 energy			= 6;	// 体力
+	repeated uint32 item_id			= 7;	// 物品ID
+	repeated uint32 item_num		= 8;	// 物品num，这个和ID意义对应
+	optional uint32 result			= 9;	// 1:玩家在线，消息已经处理，2：玩家不在线，消息未处理
+}
+
+// 送花金钱查询请求
+message stol_query_flower_for_give
+{
+	required uint64 guid			= 1;
+	required uint32 give_type		= 2;	// 1：一朵，2:三朵，3:十一朵，这个依据策划配置
+}
+
+message ltos_query_flower_for_give
+{
+	required uint64 guid			= 1;
+	required uint32 give_type		= 2;	// 1：一朵，2:三朵，3:十一朵，这个依据策划配置
+	required uint32 result			= 3;	// 1:可以送花，2：不可以送花
+	required uint32 cost_type		= 4;	// 消耗类别，1：阅历，2：元宝
+	required uint32 cost_value		= 5;	// 
+}
+
+// 更新玩家鲜花排名信息
+message lmsg_update_flower_rank
+{
+	required uint32 flower_rank		= 1;	// 鲜花排名， 0：清楚排名，1、2、3
+}
+
+// 
+message lmsg_day_change_for_player
+{
+	required uint32	online_status		= 1;		// weeek change发生时，玩家状态，1：在线，2：刚刚上线
+}
+
+message lmsg_week_change_for_player
+{
+	required uint32	online_status		= 1;		// weeek change发生时，玩家状态，1：在线，2：刚刚上线
+}
+
+// 每日积分，LS同步到scene
+message lmsg_dailypoints_event
+{
+	required uint32 event_id			= 1;		// 事件id
+}
+//存储boss排名到short模块
+message stol_modify_boss_ranking
+{
+	optional uint32 index			= 1;	//对应short模块boss信息的序号
+	optional uint32 boss_id			= 2;	//对应boss战bossid
+	optional uint32 boss_ranking	= 3;	//对应boss战玩家排名
+}
+
+// 帮会操作失败，返回操作消耗
+message lmsg_return_guild_consume
+{
+	optional uint32 opcode_id		= 1;	// 操作标识符
+}
+message stol_query_pvp_cost
+{
+	optional uint32 cost_type = 1;	// 1:手动刷新对手2：增加次数3：重置冷却时间
+}
+message ltos_query_pvp_cost
+{
+	optional uint32 cost_type	= 1;	// 1:手动刷新对手2：增加次数3：重置冷却时间
+	optional uint32 cost_value	= 2;	//
+	optional uint32 result		= 3;	//1,成功，0：失败
+	optional uint32 function_id = 4;	//消耗对应的gold表id
+}
+message stol_query_escort_cost
+{
+	optional uint32 cost_type	= 1;	// 1押镖加速，2押镖直接完成，3镖局升级，4刷新镖车，5直接购买高级镖车，6大神祈福，7清除冷却时间
+	optional uint32 param		= 2;	//当type==3时，该字段表示镖局类型
+}
+message ltos_query_escort_cost
+{
+	optional uint32 cost_type	= 1;	// 1押镖加速，2押镖直接完成，3镖局升级，4刷新镖车，5直接购买高级镖车，6大神祈福，7清除冷却时间
+	optional uint32 cost_value	= 2;	//
+	optional uint32 function_id = 3;	//消耗对应的gold表id	
+	optional uint32 result		= 4;	//1,成功，0：失败
+	optional uint32 param		= 5;	//当type==3时，该字段表示镖局类型	
+}
+message stol_add_boss_reward
+{
+	optional uint32 money			= 1; //铜钱
+	optional uint32 prestige		= 2; //声望
+	optional uint32 seniority		= 3; //阅历
+	optional uint32 ranking			= 4; //击杀boss排名
+	optional uint32 bonus			= 5; //前10名bonus额外奖励
+	optional uint32 boss_id			= 6; //boss enemy id		
+	optional bool substitute		= 7; //是否是替身娃娃
+	optional uint32 bonus_killer	= 8; //最后一击击杀boss获得宝箱奖励, 0为没有击杀
+	optional uint64 time			= 9; //boss奖励的时间，1970年至今的秒数，当是替身娃娃类型时为0
+	optional bool	normal_reward	= 10; //是否有普通奖励，仅不是替身娃娃的情况下有效，true：有，false：无
+}
+
+
+//玩家推塔升级通知line scene更新排行榜
+message stol_tower_upgrade_notify
+{
+	required uint64 player = 1;	//玩家guid
+	required uint32 floor = 2;	//玩家推塔的当前层数
+	optional int64  time = 3;	//推到当前层数的时间
+	optional uint32	 level = 4;	//玩家推到当前层数的等级
+}
+//类型是帮派时由场景聊天模块转发给line帮会模块
+message stol_chat_guild
+{
+	required uint32 chat_type		= 1;	//聊天类型
+	optional string chat_content	= 2;	//聊天内容
+	optional uint32 yellow_vip_level	= 3;	//qq黄钻等级
+	optional uint32	is_yellow_vip		= 4;	// 是否为黄钻用户, 0 : 不是, 1:是
+	optional uint32	is_yellow_year_vip	= 5;	// 是否为年费黄钻用户, 0 : 不是, 1:是
+	optional uint32	is_yellow_high_vip	= 6;	// 是否为豪华版黄钻用户 0: 不是, 1:是	
+}
+
+// 更新玩家帮会名称信息
+message ltos_update_player_guild_name
+{
+	optional string guild_name		= 1;	// 帮会名称
+	optional uint32 guild_icon		= 2;	// 帮会图标ID
+}
+
+// ---------------------------------------帮会战开始------------------------------------------------------------------------
+//场景通知line，帮会战结算
+message stol_guildbattle_result
+{
+	optional uint32 is_battle_end			= 1; 	// 帮会战本轮是否结束（0 未结束， 1 已结束）
+	optional uint32 secne_id				= 2;	// 场景id
+	repeated uint64 win_guilds				= 3;	// 胜利的帮会
+	repeated uint64 fail_guilds				= 4;	// 失败的帮会
+}
+
+// 通知line在场景里的人，用于广播帮会成员职位
+message stol_in_scene_all_players
+{
+	optional uint32 scene_id			= 1;	// 场景id
+	repeated uint64 others_guid			= 2;	// 场景里的所有成员
+}
+
+// 帮会战开始，通知场景
+message ltos_guildbattle_join
+{
+	optional uint32 current_battle_num		= 1;	// 当前帮会战轮次
+	repeated uint64 guild					= 2;
+	repeated string name					= 3;
+}
+
+// 本轮帮会战正式开始（计时器驱动）
+// message ltos_guildbattle_start
+
+// 本轮帮会战结束（计时器驱动）
+// message ltos_guildbattle_end
+
+
+// 广播时间
+message ltos_guildbattle_broad_time
+{
+	optional uint32 type		= 1;	// 类型
+	optional uint32 times		= 2;	// 时间（秒）
+}
+
+// ---------------------------------------帮会战结束------------------------------------------------------------------------
+
+//从line到scence发送每日随机金银罐轻功
+message lmsg_day_sys_dodge
+{
+	repeated uint32 id_gold			= 1;	//随机金罐轻功id，与level_gold 一一对应
+	repeated uint32 level_gold		= 2;	//随机金罐轻功leve
+	repeated uint32 id_silver		= 3;	//随机银罐轻功id，与level_silver 一一对应
+	repeated uint32 level_silver	= 4;	//随机银罐轻功level
+}
+
+// 获取阵营战的当前玩家的buff
+message stol_battleground_buff_get
+{
+	required uint32 type		=1;	// 消费类别 1:阅历, 2:元宝
+}
+
+
+message ltos_battleground_buff_get
+{
+	required int32	result		=1;	// 结果 1:已鼓舞 , -1:还未鼓舞
+	optional uint32 type		=2;	// 消费类别
+	optional uint32 buff_id		=3;	// buff id, 假如已鼓舞,  此值保存 buff id
+}
+
+// 通知Line server 用这个 buff 
+message stol_battleground_attach_buff_notify
+{
+	required uint32 buff_id		=1;	 //鼓舞id
+	required uint32 type 		=2;  
+	required uint32 cost		=3;	 //假如玩家不在, 用于返还..
+}
+
+// 获取阵营战当前玩家的押注信息
+message stol_battleground_stake_info
+{
+	required uint32 team			=1;		// 要押注的队伍
+	required uint32 stake			=2;		// 要押注的选项(1~3)
+
+}
+
+message ltos_battleground_stake_info
+{
+	required int32 result		=1;	 //结果 -1: 没有押注记录, 0 :已押注
+	required uint32 team		=2;	 //押注的队伍
+	optional uint32 stake		=3;	 //有押注记录的话,返回押注的银两, 无押注的话, 返回要押注的选项(1~3)
+	optional uint32 phase		=4;  // 当前所处阶段 1:结束时间; 2报名时间; 3:开始时间; 
+}
+
+// line server通知场景 更新每日积分
+message ltos_dailypoints_event_notify
+{
+	required uint32 event_id	= 1;
+}
+
+// 通知 line server 玩家的押注
+message stol_battleground_stake_notify
+{
+	required uint32 team		=1;	
+	required uint32 stake		=2;	// 押注的金额,非选项了....
+}
+
+// line通知玩家领取奖励
+message ltos_get_guildbattle_reward
+{
+	optional uint32 bonus_id		= 1;		// 奖励包id
+}
+
+// 玩家通知line，领取帮会战奖励失败
+// message stol_get_guildbattle_reward_fail
+
+
+// 查询邮件附件消耗
+message stol_query_mail_attach_cost
+{
+	required uint64 mail_guid	= 1;
+}
+// 查询邮件附件消耗回复
+message ltos_query_mail_attach_cost
+{
+	required uint64 mail_guid	= 1;
+	optional uint32 cost_type	= 2;
+	optional uint32 cost_value	= 3;
+	optional uint32 source_from	= 4;
+	optional uint32 result		= 5; //1:成功，0：失败
+	repeated uint32 item_id		= 6;
+	repeated uint32 item_num	= 7;
+}
+
+// 添加活动
+//message gmsg_activity_add			// 使用ltos_activity_add;
+
+message sgmsg_activity_add
+{
+	required uint32 id		= 1; // 活动id
+	required uint32 result		= 2; // 0：成功。
+}
+
+// 删除活动
+message gmsg_activity_remove
+{
+	required uint32 id			= 1; // 活动id
+}
+
+message sgmsg_activity_remove
+{
+	required uint32 id		= 1; // 活动id
+	required uint32 result		= 2; // 0：成功。
+}
+
+// 添加活动
+message ltos_activity_add
+{
+	message Item
+	{
+		optional uint32 item_id				= 1;
+		optional uint32 item_num			= 2;
+	}
+	message Items
+	{
+		repeated Item items		= 1;
+	}
+
+	required uint64 guid			= 1; // 活动guid. gmsg_add可以传0；
+	required uint32 id				= 2; // 活动id
+	optional uint32 level			= 3; // 活动级别
+	optional string name			= 4; // 活动名字
+	optional uint64 begin_time		= 5; // 活动开始时间点，微秒
+	optional uint64 end_time		= 6; // 活动结束时间点，微秒
+	optional uint32 period_begin	= 7; // 周期相对（开始时间点）开始时间，分钟
+	optional uint32 period_end		= 8; // 周期相对（周期开始时间）结束时间，分钟
+	optional uint32 period_type		= 9; // 周期类型，1：不定天间隔；2：不定月间隔；3：无周期
+	optional uint32 period_time		= 10; // 周期间隔时间，单位天或者月
+	optional string ce1				= 11; // 描述1
+	optional string ce2				= 12; // 描述2
+	optional string ce3				= 13; // 描述3
+	optional uint32 type			= 14; // 活动类型，参见策划文档
+	optional uint32 cl1				= 15; // 周期未开始时，活动是否显示
+	optional uint32 cl2				= 16; // 进度条是否显示
+	repeated uint32 value			= 17; // 奖励条件
+	repeated uint32 times			= 18; // 奖励条件2
+	repeated uint32 rewards			= 19; // 每当奖励
+	optional string picture			= 20; // 图片
+	optional uint32 auto_send		= 21; // 活动结束是否自动结算奖励，1：发放；其他：清除
+	optional uint32 num				= 22; // 活动可以持续的轮数（每周期）
+	optional uint32 is_count		= 23;	// 是否显示计数，填1后显示活动计数，填0不显示。
+	optional string target			= 24;	// 活动要完成的目标提示文字，例如：当前充值金额
+	optional uint32 star			= 25;		// 星星的个数
+	optional uint32 link_type		= 26;		// 链接类型：1：网页链接，2：打开界面
+	optional string link			= 27;		// 链接
+	optional string btntxt			= 28;		// 按钮提示文字
+	repeated Items items_per_adv	= 29;		// 活动每档次的奖励（物品的id和数量）
+	repeated uint32 sub_type		= 30;		// 参数3
+	repeated uint32 link_btn		= 31;		// 每个档次的目标链接按钮，可以为空
+	repeated string link_btn_txt	= 32;		// 每个档次目标按钮的名称	
+}
+
+// message ltos_activity_add_over // 添加完毕。
+
+// 删除活动
+message ltos_activity_remove
+{
+	required uint32 id				= 1; // id
+}
+
+// 活动开始
+message ltos_activity_start
+{
+	required uint32 id				= 1;
+}
+
+message ltos_activity_end
+{
+	required uint32 id				= 1;
+}
+
+message ltos_activity_period_start
+{
+	required uint32 id				= 1;
+}
+
+message ltos_activity_period_end
+{
+	required uint32 id				= 1;
+}
+
+// ltos_activity_longtime	// 大时间跳跃，通知sence清理在线玩家数据
+// 活动上周期结束之后直接进入了新的周期（没有检测到结束时间）
+message ltos_acitivty_new_period
+{
+	required uint32 id				= 1;
+}
+
+// 玩家伙伴变动, 更新在队的伙伴至line
+message stol_arrest_roles_update
+{
+	repeated uint64 roles		= 1;
+}
+
+// 更新在队伙伴的详细信息
+message stol_arrest_roles_info
+{
+	message arrest_role_info
+	{
+		optional uint64 guid			= 1;
+		optional string	name			= 2;
+		optional uint32	id				= 3;
+	}
+	
+	required uint64				player_guid		= 1;
+	optional string				player_name		= 2;
+	repeated arrest_role_info   role_info		= 3;
+	optional uint32				type			= 4;	// 类型
+	optional uint32				order_id		= 5;	// 通缉令
+}
+
+
+message ltos_arrest_price_query
+{
+	required uint32	type				= 1;	// 1:元宝刷新通缉令, 2:元宝购买可击杀次数
+	required int32	num					= 2;	// -1: 代表已到顶
+	required int32	vip					= 3;	
+	optional uint32 left_times			= 4;
+	optional uint32 left_refresh_times	= 5;
+}
+
+message stol_arrest_consume_result
+{
+	required uint32 type = 1;
+	required uint32 num  = 2;
+	required uint32 vip	 = 3;
+}
+
+// 功能模块解锁通知，Scene发往Line Scene
+message stol_system_unlock_notify
+{
+	required uint32 system_id				= 1;	// 策划定义的功能模块ID
+}
+
+//世界boss状态更新同步到line
+message stol_boss_info_sync
+{
+	optional uint32 map_id			= 1;	//boss 所在地图id
+	optional uint32 boss_stage		= 2;	//世界boss状态更新
+	optional uint64 killer_guid		= 3;	//击杀者player guid
+	optional uint32 killer_role_id	= 4;	//击杀者role_id
+	optional string killer_name		= 5;	//击杀者名字
+}
+
+message stol_amah_data
+{
+	message Item
+	{
+		required uint32 item_id				= 1; // 物品id
+		required uint32 item_no				= 2; // 物品数量
+	}
+
+	required uint32 type					= 1; /// 活动类型，世界boss：1，大乱斗：2
+	repeated Item items						= 2; // 奖励物品
+	optional uint32 param					= 3; // 参数，未定义
+	
+	repeated uint64 players					= 4; // 参加活动的玩家
+}
+
+// scene请求line scene玩家数据
+message stol_request_player_data
+{
+	required uint32 map_id					= 1;
+}
+
+// 玩家上线，line scene传输player数据到scene
+// message ltos_delivery_player_data 实体同Player
+
+
+
+// sence 向Line的通知：某档奖励多领了一次
+message stol_open_act_addtime
+{
+	required uint32								act_id = 1; // 活动id
+	required uint32								advance_id = 2; // 档次.
+	optional uint32								add_times = 3; // 领取的增加次数
+}
+
+// line 向 secene 通知，某档奖励当前的领取次数
+message ltos_open_act_prize_times
+{
+	repeated uint32								act_id = 1; // 活动id
+	repeated uint32								advance_id = 2; // 档次.
+	repeated uint32								prize_times = 3; // 领取的总次数
+}
+
+// 通知
+message ltos_open_act_state
+{
+	repeated uint32								act_id = 1; // 活动，
+	repeated uint32								state = 2; // 1：未开始，2：正在举行。3：结束
+}
+
+
+// 竞技场排名通知
+message ltos_pvp_ranking
+{
+	optional uint32 ranking_old					= 1; // 玩家名次 （旧的）
+	optional uint32 ranking_new					= 2; // 玩家名次（当前）
+}
+
+//
+message ltos_failed_reason
+{
+	repeated uint64 role_guid = 1;		//第一个role guid 为主角guid
+}
+
+// 帮会申请未审核信息
+message lmsg_update_module_free_time
+{
+	repeated uint64 player_list		= 1;
+	optional uint32 module_id		= 2;
+	optional uint32 free_time		= 3;
+}
+
+message ltos_title_change
+{
+	repeated uint32 curr_title					= 1; // 当前称号
+	optional uint32 title_enable					= 2; // 当前属性生效的title.
+}
+// 排行榜更新通知
+message lmsg_ranking_update_notify
+{	
+	required uint32 type		= 1;
+	required uint32 param		= 2;
+}
+
+// 物品使用
+message stol_title_item_lock
+{
+	required uint32 title_id						= 1;
+}
+
+// splendid clean cool time
+// message stol_splendid_query_cool_time 无消息体
+
+message ltos_splendid_query_cool_time
+{
+	required uint32 need_coin		= 1;
+	optional uint32 status			= 2;	// 1：可以清理，2：强制冷却中
+	optional uint32 cool_left_time	= 3;	// 强制冷却时间
+}
+
+// message stol_query_splendid_canvass
+
+message ltos_query_splendid_canvass
+{
+	required uint32 result			= 1;	// 1：可以拉票，2：拉票冷却中
+	optional uint32 need_coin		= 2;
+}
+
+// 五绝竞选结束，通知称号系统
+message lmsg_splendid_top_five
+{
+	repeated uint64 player_guid		= 1;
+}
+//剑冢
+message ltos_jianzhong_query_buy_cost
+{
+	optional uint32 cost_coin		= 1;	//购买次数消耗的元宝
+	optional uint32 function_id		= 2;	//gold id
+	optional uint32 result			= 3;	//1:成功，2：失败
+}
+//添加积分
+message ltos_add_jifen
+{
+	optional uint32 jifen_add	= 1;	//添加积分
+	optional uint32 source_from	= 2;	//来源
+}
+
+// 五绝朝拜领奖
+message ltos_splendid_worship_get_reward
+{
+	repeated uint32 item_id			= 1;
+	repeated uint32 item_num		= 2;
+}
+
+message stol_splendid_worship_get_reward
+{
+	repeated uint32 item_id			= 1;
+	repeated uint32 item_num		= 2;
+	optional uint32 result			= 3;	// 领取成功，2：失败，背包已满，3：玩家不在线
+}
+
+// 玩家主角获得经验，发送到ls，用于等级排行榜排序
+message stol_player_get_exp
+{
+	required uint32 player_level	= 1;
+	required uint32 player_exp		= 2;
+}
+
+// 通知line.某档次奖励的第一个玩家（可能不是第一个）
+message stol_open_act_prize_player
+{
+	required uint32 openact_id					= 1;
+	required uint32 openact_adv					= 2; // 某档次奖励
+}
+
+// 广播通知各个sen。某档次奖励的第一个玩家
+message ltos_open_act_prize_player
+{
+	repeated uint32 openact_id					= 1;
+	repeated uint32 openact_adv					= 2; // 某档次奖励
+	repeated uint64 player_guid					= 3;
+}
+
+// ls拾取物品，发送消息到scene，该消息为全部拾取消息
+message ltos_pick_up_item
+{
+	required uint32 notify_opcode				= 1;
+	repeated uint32 item_id						= 2;
+	repeated uint32 item_num					= 3;
+	required uint32 source_from					= 4;
+	optional uint64 parameter					= 5;
+}
+
+message stol_pick_up_item
+{
+	required uint32 result						= 1;	// 1:拾取成功，2：失败，背包各位不够，3：失败，玩家不在线
+	repeated uint32 item_id						= 2;
+	repeated uint32 item_num					= 3;
+	optional uint64 parameter					= 4;	// ltos_pick_up_item消息里的parameter
+}
+
+// 更新记录
+message stol_trial_record
+{
+	required uint32 stageid						= 1; 
+	required uint32 record_type					= 2; // 1：初次击杀；2：最快击杀
+	optional uint32 round						= 3; // 记录最快击杀的回合数
+}
+
+// 记录更新
+message ltos_trial_record
+{
+	repeated uint32 stageid						= 1; // 关卡
+	repeated uint64 first_player				= 2; // 第一个的玩家 //  （0：不存在）
+	repeated uint64 fast_player					= 3; // 最快的玩家 （0：不存在）
+	repeated uint32 fast_round					= 4; // 最快的回合 
+}
+
+// 更新奖金池
+message stol_turntable_update_coin_pool
+{
+	required int32 delta	= 1; // 增量
+}
+
+// 更新中奖信息
+message stol_turntable_update_record
+{
+	required uint32 mode		= 1;  // 1:单抽, 2:连抽
+	required string	player_name	= 2;
+	repeated uint32 ids			= 3;	
+	repeated uint32	nums		= 4;
+}
+
+message stol_item_buy
+{
+	required uint32 shop_id			= 1;
+	required uint32 position		= 2;
+	required uint32 item_id			= 3;
+	required uint32 item_num		= 4;
+	required uint32 limit_type		= 5;	// 1 个人 2 全服
+	required uint32 limit_num		= 6;	// 限制购买数量
+}
+
+message ltos_item_buy
+{
+	required uint32 shop_id			= 1;
+	required uint32 position		= 2;
+	required uint32 result			= 3;	// 1 成功 2 已达限购 失败。
+	optional uint32 discount		= 4;	// 折扣（原价 100；九折：90）
+}
+
+message stol_item_buy_result
+{
+	optional uint32 result			= 1;	// 1 成功 2 失败。
+	optional uint32 item_id			= 2;
+	optional uint32 item_num		= 3;
+	required uint32 limit_type		= 4;	// 1 个人 2 全服
+}
+
+message stol_delate_leader
+{
+	optional uint32 money			= 1;	
+	optional uint32 coin			= 2;
+}
+
+message stol_title_unlock_title
+{
+	optional uint32 title_id		= 1; // 
+}
+
+message stol_tavern_log
+{
+	required uint32 talk_id				= 1;	// 对应talk表里的ID
+	// param_id 与 param_name 必需等长，当客户端可以通过 param_id 取得名字时，对应的 param_name 可填为空。	
+	repeated uint64 param_id			= 2;
+	repeated string param_name			= 3;
+}
+
+message ltos_tavern_log_all
+{
+	message TLogs
+	{
+		required uint32 talk_id				= 1;	// 对应talk表里的ID
+		// param_id 与 param_name 必需等长，当客户端可以通过 param_id 取得名字时，对应的 param_name 可填为空。	
+		repeated uint64 param_id			= 2;
+		repeated string param_name			= 3;
+	}
+	repeated TLogs log_list			= 1;	// 招募日志（保存最新20条）
+}
+//查询机器人指定类型的所有角色player guid
+message plmsg_request_robot_by_type
+{
+	optional uint32 robot_type	= 1;	//[in]指定机器人类型
+	repeated uint64 robot_set	= 2;	//[out]指定类型的所有机器人玩家
+}
+
+// 
+message ltos_qqinvite_gen_prize
+{
+	repeated uint32 prize_id	= 1; // 奖励
+}
+
+// sen 告知 Line 自己接收到了奖励
+message stol_qqinvite_recv_prize
+{
+	repeated uint32 prize_id	= 1; // 奖励
+}

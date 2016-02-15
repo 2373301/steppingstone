@@ -1,0 +1,73 @@
+package typed.protocol;
+
+// 打开挑战面板                   
+// message cmsg_hardchallenge_open
+
+message smsg_hardchallenge_open
+{
+	message Map
+	{
+		optional uint32 map_id						= 1;
+		optional uint32 maxenemy_id					= 2; // 历史最高
+		optional uint32 complete					= 3; // 1：通关，其他，未通关
+		optional uint32 is_reset					= 4; // 是否重置过。1:已重置，2：未重置
+	}
+	
+	repeated Map maps								= 1; // 所有的关卡的状态
+	optional uint32 reset_times						= 2; // 今天已经重置了几次
+}
+
+
+// 进入关卡，不用消息
+
+
+
+// 挑战
+message cmsg_hardchallenge_fight
+{
+	optional uint32 map_id							= 1; // 挑战哪个地图
+	optional uint32 fight_enemy						= 2; // 要攻打的怪，该数据不用
+}
+
+message smsg_hardchallenge_fight
+{
+	optional uint32 map_id							= 1; // 挑战哪个地图
+	optional uint32 fight_enemy						= 2; // 要攻打的怪，该数据不用
+	optional uint32 state							= 3; // 1: 正常。 其他：
+	optional uint32 result							= 4; // 1：战胜，2：失败（包括平局）
+	repeated uint32 items							= 5; // 挑战成功的时候，奖励的物品
+	repeated uint32 itemnums						= 6; // 挑战成功的时候，奖励的物品数量
+}
+
+
+// 扫荡
+message cmsg_hardchallenge_clear
+{
+	optional uint32 map_id							= 1; // 扫荡的地图
+}
+
+
+message smsg_hardchallenge_clear
+{
+	message Reward
+	{
+		repeated uint32 items						= 1;
+		repeated uint32 itemnums					= 2; // 
+	}
+	optional uint32 map_id							= 1; // 扫荡的地图
+	repeated Reward rewards							= 2; // 奖励的物品
+}
+
+
+// 重置某地图
+message cmsg_hardchallenge_reset
+{
+	optional uint32 map_id							= 1; // 扫荡的地图
+}
+
+message smsg_hardchallenge_reset
+{
+	optional uint32 map_id							= 1; // 扫荡的地图
+	optional uint32 state							= 2; // 1:重置成功，2：体力不足，3：其他错误
+}
+

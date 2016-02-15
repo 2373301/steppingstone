@@ -1,0 +1,75 @@
+package typed.protocol;
+
+// 主动对某人发起切磋1v1
+message cmsg_initiative_exchange
+{
+	required uint64 pk_guid		= 1; 	// 切磋对象guid
+}
+
+message smsg_initiative_exchange
+{
+	optional uint32 status		= 1;	// 1 成功，等待对方确认； 2 等级不够；3 玩家不在线； 4 玩家等级不够；5 在切磋状态中
+	optional uint64 pk_guid		= 2;	// 对象guid
+	optional string pk_name		= 3;	// 对象名称
+}
+
+// 频道发起切磋
+message cmsg_channel_exchange
+{
+	required uint32 exchange_type	= 1;	// 1到5分别代表1v1，2v2...
+}
+
+message smsg_channel_exchange
+{
+	required uint32 status			= 1;	// 1 成功； 2 等级不够； 3 在切磋状态中
+}
+
+// 是否接受主要发起切磋
+message cmsg_accept_initiative_exchange
+{
+	optional uint32 is_accept	= 1;	// 1 接受， 2 拒绝
+	optional uint64 pk_guid		= 2; 	// 切磋对象guid
+}
+
+message smsg_accept_initiative_exchange
+{
+	optional uint32 status		= 1;	// 1 成功； 2 玩家不在线； 3 对方已取消切磋； 4 在切磋状态中
+}
+
+// 是否接受频道切磋
+message cmsg_accept_channel_exchange
+{
+	optional uint64 pk_guid		= 1; 	// 切磋对象guid
+}
+
+message smsg_accept_channel_exchange
+{
+	optional uint32 status		= 1;	// 1 成功； 2 玩家不在线； 3 对方已取消切磋； 4 在切磋状态中 5 等级不够
+}
+
+// 取消切磋
+// message cmsg_cancel_exchange 无实体
+// message smsg_cancel_exchange	无实体 删除广播信息
+
+
+// 重发切磋频道消息
+// message cmsg_reset_exchange 无实体
+// message smsg_reset_exchange 无实体
+
+// 广播切磋成员信息
+message smsg_broadcast_exchange
+{
+	optional uint32 exchange_type	= 1;	// 1到5分别代表1v1，2v2...
+	optional uint64 guid			= 2;	// 发起者guid
+	optional string name			= 3;	// 发起者名称
+	repeated uint64 guid_list		= 4;	// 接受者guid
+	repeated string name_list		= 5;	// 接受者名称
+}
+
+// 切磋有奖的次数
+// message cmsg_exchange_reward_num
+
+message smsg_exchange_reward_num
+{
+	optional uint32 reward_num	= 1;	// 剩余次数
+}

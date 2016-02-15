@@ -1,0 +1,346 @@
+package typed.protocol;
+
+// 装备物品
+message cmsg_item_equip {
+	required uint64 equip_guid			= 1;
+	required uint64 role_guid			= 2;
+}
+
+message smsg_item_equip {
+	required uint64 equip_guid			= 1;
+	required uint64 role_guid			= 2;
+}
+
+// 装备卸载
+message cmsg_item_unequip {
+	required uint64 equip_guid			= 1;
+	required uint64 role_guid			= 2;
+	required uint32 bag_pos				= 3;		// *obsolete*
+}
+
+message smsg_item_unequip {
+	required uint64 equip_guid			= 1;
+	required uint64 role_guid			= 2;
+	required uint32 bag_pos				= 3;
+}
+
+// 装备合成
+message cmsg_synth_equip {
+	required uint64 synth_guid			= 1;		// 合成卷轴
+	required uint64 equip_guid			= 2;
+	optional uint32 synth_flag			= 3;		// 0x01 置位表示花费元宝购买缺少的材料
+}
+
+// 消耗的物品有其他模块发送
+message smsg_synth_equip {
+	required uint64 equip_guid			= 1;
+	required uint32 equip_id			= 2;
+	required uint32 equip_price			= 3;
+	repeated uint32 attribute_id		= 4;
+	repeated uint32 attribute_value		= 5;
+}
+
+// 物品合成
+message cmsg_synth_item {
+	required uint64 synth_guid			= 1;
+	optional uint32 synth_flag			= 2;		// 0x01 置位表示花费元宝购买缺少的材料
+}
+
+message smsg_synth_item {
+	required uint32 synth_id			= 1;		// 卷轴对应的 item_id
+}
+
+// 使用药剂或其他
+message cmsg_apply_item {
+	required uint64 item_guid			= 1;
+	optional uint64 role_guid			= 2;
+}
+
+// 使用大胃值道具
+message cmsg_stomach_item {
+	required uint32 stomach_id			= 1;	// 大胃值道具ID
+	required uint32 stomach_num			= 2;	// 默认1
+	optional uint64 role_guid			= 3;	// 默认0，该物品使用不针对角色
+}
+
+message smsg_stomach_item
+{
+	optional uint32 status				= 1;	// 0 成功， 1 失败
+	optional uint32 stomach_num			= 2;	// 消耗个数
+}
+
+// 使用道具解锁心法
+message cmsg_item_unlock_law
+{
+	required uint64 item_guid			= 1;	// 道具guid
+}
+
+message smsg_item_unlock_law
+{
+	optional uint32 status				= 1;	// 0 成功；1 心法已解锁 
+	optional uint32 item_id				= 2;	// 道具id
+}
+
+// 使用伙伴卷轴
+message cmsg_role_scroll_item
+{
+	required uint64 item_guid			= 1;	// 道具guid
+}
+
+message smsg_role_scroll_item
+{
+	optional uint32 status				= 1;	// 0 成功；1 伙伴已招募，失败; 
+	optional uint32 item_id				= 2;	// 道具id
+}
+
+// 使用轻功卷轴
+message cmsg_dodge_item
+{
+	required uint64 item_guid			= 1;	// 道具guid
+}
+
+message smsg_dodge_item
+{
+	optional uint32 status				= 1;	// 0 成功；1 失败; 
+	optional uint32 item_id				= 2;	// 道具id
+	optional uint32 used_for			= 3; 	// 1.解锁轻功，2：兑换轻功点
+}
+
+// 使用烟花
+message cmsg_fireworks_item
+{
+	required uint64 item_guid			= 1;
+}
+
+message smsg_fireworks_item
+{
+	optional uint32 status				= 1;	// 0 成功；
+}
+
+// 使用称号道具
+message cmsg_use_title_item
+{
+	required uint64 item_guid			= 1;
+}
+
+message smsg_use_title_item
+{
+	optional uint64 item_guid			= 1;
+}
+
+// 使用宝盒
+message cmsg_open_box_item
+{
+	required uint64 item_guid			= 1;
+	required uint32 open_position		= 2;	// 选择的位置
+}
+
+message smsg_open_box_item
+{
+	optional uint32 status				= 1;	// 1 成功；2 背包各位不够; 3 银两不够； 4 元宝不够； 5 goldblessme ID 不存在
+	optional uint32 box_id				= 2;
+	repeated uint32 item_ids			= 3;
+	repeated uint32 item_nums			= 4;
+	optional uint64 item_guid			= 5;
+}
+
+
+// 广播道具特效
+message cmsg_broadcast_item_effects
+{
+	required uint64 player_guid		= 1;
+	required uint32 item_id			= 2;
+}
+
+// 打开礼包
+message cmsg_unpack_bonus {
+	required uint64 bonus_guid			= 1;
+	optional uint32 bonus_num			= 2;	
+}
+
+message smsg_unpack_bonus {
+	required uint32 bonus_id			= 1;	// 礼包对应的 item_id
+	repeated uint32 item_ids			= 2;
+	repeated uint32 item_nums			= 3;
+	optional uint32 true_num			= 4;	// 实际打开的礼包数量
+	optional uint32 bonus_num			= 5;	// 
+}
+// 分解物品
+message cmsg_item_resolve {
+	required uint64 bonus_guid			= 1;
+	optional uint32 bonus_num			= 2;	
+}
+
+message smsg_item_resolve {
+	required uint32 bonus_id			= 1;	// 物品对应的 bonus_id
+	repeated uint32 item_ids			= 2;
+	repeated uint32 item_nums			= 3;
+	optional uint32 true_num			= 4;	// 实际使用的礼包数量
+	optional uint32 bonus_num			= 5;	// 
+}
+// 元宝购买材料
+message cmsg_purchase_item {	// *obsolete*
+	required uint32 item_id				= 1;
+	required uint32 item_num			= 2;
+}
+
+
+// 装备打孔
+message cmsg_equipment_punch
+{
+	required uint64 equipment_guid			= 1;	// 装备guid
+	optional uint32 is_use_punch_item		= 2;	// 是否使用打孔器道具 0 否 1是
+}
+
+message smsg_equipment_punch
+{
+	optional uint32 status					= 1;	// 1 成功；2 元宝不够； 3 打孔器道具不够； 4 无孔可打
+	optional uint64 equipment_guid			= 2;	// 装备guid
+}
+
+// 宝石镶嵌
+message cmsg_gem_set
+{
+	required uint64 equipment_guid			= 1; 	// 装备guid
+	required uint32 gem_id					= 2;	// 宝石item_id
+	optional uint32 position				= 3;	// 位置
+}
+
+message smsg_gem_set
+{
+	optional uint32 status					= 1;	// 1 成功；2 玩家等级不够；3 同组宝石镶嵌过多；4 未开孔；5 有宝石；6 宝石数量不够
+	optional uint64 equipment_guid			= 2; 	// 装备guid
+	optional uint32 gem_id					= 3;	// 宝石item_id
+	optional uint32 position				= 4;	// 位置
+	optional uint32 equipment_price			= 5;	// 装备价格 
+}
+
+// 取下宝石
+message cmsg_gem_get
+{
+	required uint64 equipment_guid			= 1; 	// 装备guid
+	required uint32 position				= 2;	// 镶嵌位置 
+	optional uint32 is_use_get_item			= 3;	// 是否使用摘石符道具 0 否 1是
+}
+
+message smsg_gem_get
+{
+	optional uint32 status					= 1;	// 1 成功；2 银两不够； 3 摘石符道具不够； 4 位置不对； 5 无宝石可摘取； 6 背包格位不够
+	optional uint64 equipment_guid			= 2; 	// 装备guid
+	optional uint32 position				= 3;	// 镶嵌位置 
+	optional uint32 equipment_price			= 4;	// 装备价格 
+}
+
+// 宝石合成
+message cmsg_gem_synth
+{
+	required uint32	gem_id				= 1;	// 合成前宝石id
+	required uint32 count				= 2;	// 合成数量
+	optional uint32 coin_synth			= 3;	// 元宝合成 1 是；其他 否
+}
+
+message smsg_gem_synth 
+{
+	optional uint32 status				= 1;	// 1 成功；2 材料不够；3 背包各位不够；4 玩家等级小于合成宝石要求的等级；5 银两不够；6 元宝不够； 7 不是元宝购买的宝石
+	optional uint32	gem_synth_id		= 2;	// 合成后宝石id
+	optional uint32 count				= 3;	// 合成数量
+}
+
+
+// 宝石快速合成
+message cmsg_gem_fast_synth
+{
+	required uint64 equipment_guid		= 1;	// 装备guid
+	required uint32 gem_position		= 2;	// 宝石格位
+}
+
+message smsg_gem_fast_synth 
+{
+	optional uint32 status				= 1;	// 1 成功；2 材料不够；3 背包各位不够；4 玩家等级小于合成宝石要求的等级；5 银两不够
+	optional uint64 equipment_guid		= 2;	// 装备guid
+	optional uint32 gem_position		= 3;	// 宝石格位
+	optional uint32	gem_synth_id		= 4;	// 合成后宝石id
+}
+
+
+// 送装备系统主动通知消息
+message smsg_send_equipment
+{
+	repeated uint32 equip		= 1;	//  1 装备可取，2 装备已取
+	repeated uint32 reward		= 2;	//  1 奖励可取，2 奖励已取
+}
+
+// 领取装备
+message cmsg_get_equipment
+{
+	// 装备位置smsg_send_equipment消息中equip 字段的位置：repeated中第1位传1 第2位为2……
+	required uint32 equip_index		= 1;	
+}
+message smsg_get_equipment
+{
+	optional uint32 equip_id		= 1;	
+}
+
+// 领取奖励
+message cmsg_get_reward
+{
+	// 装备位置smsg_send_equipment消息中reward 字段的位置：repeated中第1位传1 第2位为2……
+	required uint32 reward_index	= 1;	
+}
+message smsg_get_reward
+{
+	repeated uint32 reward_type		= 1;	//	奖励类型（bouns表中定义）
+	repeated uint32 reward_num		= 2;	//	奖励数量;	
+}
+
+// 使用特需道具
+message cmsg_use_special_item
+{
+	required uint64 item_guid		= 1;	// 背包道具guid
+}
+
+message smsg_use_special_item
+{
+	optional uint32 item_id			= 1;
+	optional uint32 result			= 2;	// 0 未处理 1 成功 2 失败
+}
+
+// 丹药合成
+message cmsg_danyao_synth
+{
+	required uint32	danyao_id			= 1;	// 合成前丹药id
+	required uint32 count				= 2;	// 合成数量
+	optional uint32 coin_synth			= 3;	// 元宝合成 1 是；其他 否
+}
+
+message smsg_danyao_synth 
+{
+	optional uint32 status				= 1;	// 1 成功；2 材料不够；3 背包格位不够；4 元宝不够；
+	optional uint32	danyao_synth_id		= 2;	// 合成后丹药id
+	optional uint32 count				= 3;	// 合成数量
+}
+
+// 使用坐骑道具
+message cmsg_mount_item
+{
+	required uint64 item_guid			= 1;	// 道具guid
+}
+
+message smsg_mount_item
+{
+	optional uint32 status				= 1;	// 1成功 2失败; 
+	optional uint32 item_id				= 2;	// 道具id
+}
+
+// 使用 宠物道具
+message cmsg_item_pet
+{
+	required uint64 item_guid	= 1;
+}
+
+message smsg_item_pet
+{
+	optional uint32 status		= 1;	// 1:成功 , 2: 失败
+	optional uint32 item_id		= 2;	// 道具id
+}
+

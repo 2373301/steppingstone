@@ -1,0 +1,183 @@
+package typed.protocol;
+
+// 活动结束之后以邮件发送未领取的奖励
+
+
+message smsg_openactivity_open_day
+{
+	required uint64 first_time		= 1; // 开服的时间
+}
+
+ 
+// 发送累计登陆 奖励领取通知
+message smsg_openactivity_acconline_notify
+{		
+	repeated uint32 days			= 1;		// 活动开始后,累计上线的天数列表
+	repeated uint32 flags			= 2;		// 天数对应的奖励 0 未到, 1 可领取,  2 :已领取
+}
+
+// 首充好礼(阶段充值送奖励), 奖励领取通知
+message smsg_openactivity_section_notify
+{
+	required uint32 id			= 1;	// 所在期间的id
+	optional uint32	flags		= 2;	// 0 未到, 1 可领取,  2 :已领取
+}
+
+// 首充返利(首次冲元宝)
+message smsg_openactivity_firstbuy_notify
+{
+	optional int32 first_bonus		= 1; // -1: 未到,  0: 已领取, > 0 为 id
+}
+
+// 充值回礼( 元宝充值 累计奖励), 
+message smsg_openactivity_accbuy_notify
+{
+	repeated uint32 acc_coin		= 1;
+	repeated uint32	acc_flags		= 2; // 0 未到, 1 可领取,  2 :已领取
+	optional uint32 total_coins		= 3; // 活动期间累计充值元宝数
+}	
+
+// 充值返利(次日返还今天的充值的X%元宝) 
+message smsg_openactivity_nextday_notify
+{
+	optional uint32 today_coin		= 1; // 今天充的元宝数
+	optional uint32 today_bonus		= 2; // 今天要返还的元宝数
+	optional uint32 result			= 3; // 0 不可领取, 1 可领取,  2 :已领取
+}
+
+// 聚宝盆投入
+message cmsg_openactivity_future_input
+{
+	required uint32 id			= 1;	// 投资项id
+}
+
+message smsg_openactivity_future_input
+{
+	required uint32 id			= 1;
+	required uint32 result		= 2;  // 结果, 1: 成功, 2: 失败
+}
+
+// 聚宝盆, 截止时间为报名截止时间
+message smsg_openactivity_future_notify
+{	
+	message future
+	{
+		optional uint32 future_id		= 1; // 投入等级(0: 未使用, > 0 为 id)
+		repeated uint32 future_flags	= 2; // 0 未到, 1 可领取,  2 :已领取 (future_bonus 长度为奖励的天数)
+	}
+	
+	repeated future	 futures			= 1;
+}
+
+
+// 快捷方式
+// cmsg_openactivity_shortcut_notify  完成任务..
+message smsg_openactivity_shortcut_notify
+{
+	optional int32	shortcut_bonus	= 1; // 快捷方式奖励 0 未到, 1 可领取,  2 :已领取
+}
+
+// 单笔充值返利
+// cmsg_openactivity_bill_notify
+message smsg_openactivity_bill_notify
+{
+	message Bill
+	{
+		required uint32 type		= 1;	
+		repeated uint32 ids			= 2;	
+		repeated uint32 nums		= 3;	// 已触发次数
+		repeated uint32 dones		= 4;	// 已领取次数
+	}
+	
+	repeated Bill  bill_list		= 1; 
+}
+
+
+
+enum OpenActivityType
+{
+	eOATAccOnline		= 1; 	// 累计登录
+	eOATSection			= 2; 	// 首充好礼(阶段充值送奖励)
+	eOATFirstBuy		= 3; 	// 首充返利(首次充值)
+	eOATAccBuy			= 4; 	// 充值回礼(累计充值, 累计奖励)
+	eOATNextDay			= 5; 	// 充值返利(次日返还)
+	eOATFuture			= 6; 	// 聚宝盆(未来收益..)
+	eOATShortcut		= 7; 	// 快捷方式
+	eOATBill			= 8; 	// 单笔充值返利..
+	
+	eOATYDGrowth		= 9; 	// 黄钻成长礼包
+	eOATYDPet			= 10;	// 黄钻宠物
+	eOATYDDaily			= 11;	// 黄钻日常
+	eOATYDVip			= 12;	// 黄钻豪华
+	eOATYDFresh			= 13;	// 新手礼包
+}
+
+// 黄钻成长礼包
+message cmsg_openactivity_yd_state
+{	
+	required OpenActivityType	type	= 1;
+}
+
+message smsg_openactivity_yd_state
+{	
+	required OpenActivityType	type	= 1;
+	repeated uint32				params	= 2;	
+	
+	//  type			param
+	// eOATYDGrowth		已领取的ids
+	// eOATYDPet		0 : 无, 1: 未领取, 2:已领取
+	// eOATYDDaily		0 : 无, 1: 未领取, 2:已领取
+	// eOATYDVip		0: 未生效 , 1:已生效
+	// eOATYDFresh		0 : 无, 1: 未领取, 2:已领取
+}
+
+// 领取奖励
+message cmsg_openactivity_bonus
+{	
+	required OpenActivityType type		= 1; 
+	
+	optional uint32 param				= 2; // 从1开始
+	optional uint32 param1				= 3;
+	
+	//  type				param		param1		
+	// eOATAccOnline		天数		/	
+	// eOATSection			id			/
+	// eOATFirstBuy			/			/
+	// eOATAccBuy			id			/			
+	// eOATNextDay			/			/
+	// eOATFuture			id			天数
+	// eOATShortcut			/			/
+	// eOATBill				type		id
+	
+	// eOATYDGrowth			id
+	// eOATYDPet			/
+	// eOATYDDaily			/
+	// eOATYDFresh			/
+}
+
+message smsg_openactivity_bonus
+{	
+	required OpenActivityType	type		= 1;	
+	optional uint32 param					= 2;
+	optional uint32 param1					= 6;
+	optional uint32	result					= 3;	// 1: 成功, 2: 失败
+	
+	repeated uint32 item_ids				= 4;
+	repeated uint32 item_nums				= 5;
+}
+
+message smsg_openactivity_yd_bonus
+{	
+	required OpenActivityType	type		= 1;	
+	optional uint32 param					= 2;
+	optional uint32 param1					= 6;
+	optional uint32	result					= 3;	// 1: 成功, 2: 失败, 3:背包格位不足
+	
+	repeated uint32 item_ids				= 4;
+	repeated uint32 item_nums				= 5;
+}
+
+message smsg_openactivity_online_days
+{
+	optional uint32 days					= 1; // 累计登录天数
+}

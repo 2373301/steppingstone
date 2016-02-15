@@ -1,0 +1,969 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="entity">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="protocol">
+      <UniqueIdentifier>{03ef318b-9383-41c9-bb73-463b252d8327}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\common\material-cpp\entity\achievement.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\activity.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\addiction.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\announce.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\answer.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\arrest.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\attach.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\battleground.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\boss.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\buffer.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\chakra.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\condor.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\container.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\dailypoints.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\dodge.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\doubleexp.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\educate.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\eggs.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\escort.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\exchanges.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\fish.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\form.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\friend.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\gift.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\goldcard.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\guild.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\guildbattle.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\horse.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\item.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\jianzhong.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\law.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\logingift.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\mail.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\maze.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\multicopy.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\openact.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\openact1.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\openactivity.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\pair.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\pellet.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\player.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\practice.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\pvp.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\qqspread.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\qualifybattle.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\ranking.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\runes.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\sect.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\shenghuoling.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\shopline.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\short.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\soul.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\soulpve.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\specshop.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\splendid.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\stage.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\stheno.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\superpower.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\talent.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\task.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\tavern.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\tavernline.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\title.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\tower.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\trial.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\turntable.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\vip.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\wife.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\worship.pb.cc">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_achievement.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_activity.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_addiction.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_amah.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_answer.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_arrest.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_bag.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_binary.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_boss.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_cache.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_chakra.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_char.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_chargequest.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_condor.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_cplugin.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_cross.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_dailypoints.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_deliver.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_dodge.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_educate.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_eggs.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_enemy.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_error.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_escort.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_exchange.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_exchanges.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_form.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_friend.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_gate.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_gift.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_goldcard.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_guid.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_guild.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_guildbattle.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_hang.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_hardchallenge.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_horse.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_inherit.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_item.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_jianzhong.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_law.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_line.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_login.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_logingift.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_mail.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_maze.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_member.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_multicopy.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_notify.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_npc.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_open_act.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_openact1.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_openactivity.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_pair.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_pair_plugin.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_partner.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_pellet.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_player.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_plugin.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_pool.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_practice.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_push.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_pvp.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_qqspread.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_qualifybattle.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_query.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_ranking.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_record.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_report.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_runes.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_sect.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_shenghuoling.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_shop.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_soul.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_soulpve.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_splendid.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_sthen.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_superpower.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_talent.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_task.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_tavern.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_title.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_tower.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_training.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_trial.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_turntable.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_vip.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_war.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_wife.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_worship.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\common\material-cpp\entity\achievement.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\activity.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\addiction.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\announce.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\answer.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\arrest.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\attach.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\battleground.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\boss.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\buffer.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\chakra.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\condor.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\container.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\dailypoints.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\dodge.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\doubleexp.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\educate.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\eggs.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\escort.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\exchanges.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\fish.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\form.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\friend.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\gift.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\goldcard.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\guild.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\guildbattle.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\horse.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\item.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\jianzhong.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\law.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\mail.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\maze.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\multicopy.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\openact.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\openact1.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\openactivity.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\pair.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\pellet.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\player.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\practice.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\pvp.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\qualifybattle.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\ranking.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\runes.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\sect.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\shenghuoling.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\shopline.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\short.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\soul.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\soulpve.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\specshop.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\splendid.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\stage.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\stheno.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\superpower.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\task.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\tavern.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\tavernline.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\title.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\tower.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\trial.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\turntable.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\vip.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\wife.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\worship.pb.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_achievement.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_activity.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_addiction.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_amah.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_answer.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_arrest.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_bag.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_binary.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_boss.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_cache.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_chakra.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_char.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_chargequest.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_condor.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_cplugin.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_cross.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_dailypoints.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_deliver.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_dodge.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_educate.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_eggs.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_enemy.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_error.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_escort.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_exchange.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_exchanges.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_form.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_friend.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_gate.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_gift.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_goldcard.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_guid.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_guild.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_guildbattle.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_hang.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_hardchallenge.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_horse.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_inherit.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_item.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_jianzhong.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_law.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_line.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_login.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_logingift.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_mail.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_maze.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_member.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_multicopy.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_notify.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_npc.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_open_act.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_openact1.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_openactivity.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_pair.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_pair_plugin.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_partner.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_pellet.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_player.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_plugin.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_pool.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_practice.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_push.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_pvp.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_qqspread.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_qualifybattle.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_query.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_ranking.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_record.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_report.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_runes.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_sect.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_shenghuoling.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_shop.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_soul.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_soulpve.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_splendid.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_sthen.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_superpower.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_talent.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_task.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_tavern.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_title.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_tower.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_training.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_trial.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_turntable.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_vip.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_war.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_wife.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_worship.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\common\material-cpp\protocol\msg_guild.proto">
+      <Filter>protocol</Filter>
+    </None>
+    <None Include="..\common\material-cpp\protocol\msg_horse.proto">
+      <Filter>protocol</Filter>
+    </None>
+  </ItemGroup>
+</Project>

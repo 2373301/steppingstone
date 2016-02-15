@@ -1,0 +1,55 @@
+package typed.protocol;
+
+//伙伴强化结果
+enum TrainingCode
+{
+	eTrainingSuccess		=1;		//强化成功
+	eTrainingLeader			=2;		//主角不可参与强化
+	eTrainingInvalidRole	=3;		//role guid非法
+	eTrainingLackItem		=4;		//强化材料不足
+	eTrainingLackMoney		=5;		//银两不足
+	eTrainingTopLevel		=6;		//强化等级已满
+	eTrainingFailed			=7;		//强化失败
+	eTrainingDegrade		=8;		//强化失败,降级
+	eTrainingInternalErr	=9;		//内部错误
+	eTrainingInvalidItem	=10;	//强化材料输入非法
+	eTrainingInvalidItemNum	=11;	//强化伙伴, 物品数量输入非法
+	eTrainingLackBagCell	=12;	//背包格位不够, 无法强化(强化失败会返回一些物品安慰下)
+	eTrainingLackLuckPoints	=13;	// 机缘点不足
+}
+
+//自动推送, 推送伙伴的强化等级
+//玩家上线时,推送所有伙伴的
+//玩家让伙伴归队等情况下,会更新个别伙伴的强化等级
+message smsg_training_online_notify
+{
+	repeated uint64 role_guid =1;
+	repeated uint32 level = 2;
+}
+	
+// 打开训练馆界面时，每一个角色第一次打开时都要发送
+message cmsg_open_training
+{
+	required uint64 role_guid	=1;		//伙伴guid
+}
+
+message smsg_open_training
+{
+	required uint64 role_guid			=1;		//伙伴guid
+	required uint32 level				=2;		//强化等级
+}
+
+//强化伙伴请求
+message cmsg_request_training
+{
+	required uint64	role_guid			=1;		//伙伴guid
+	required uint32 param				=2;		// 1 : 消耗卷轴 2:  先消耗卷轴, 后消耗机缘点
+}
+
+message smsg_request_training
+{
+	required uint64 role_guid			=1;		//伙伴guid
+	required TrainingCode result		=2;		//强化结果
+	optional uint32	 level = 3;		//当前强化等级
+}
+

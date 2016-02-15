@@ -1,0 +1,48 @@
+package typed.entity;
+ 
+// line 和 scene 中公用的结构体
+
+
+// 挂在 Line下的实体:
+message QQSpreadShort
+{
+	message QQSpreadState
+	{
+		optional uint32 id								= 1;
+		optional uint32 state							= 2; // 0：未达成，1:可领取，2：已领取
+	}
+	
+	required uint64 guid							= 1;
+	required uint64 player							= 2;
+
+	// 触发产生奖励和每次登陆的时候传递到player身上
+	repeated QQSpreadState invite_prize				= 3; // state,0: sen未接受，1：sen已经接受 
+	
+	optional uint64 inviter							= 4; // 邀请自己的好友
+	repeated uint64 invited_players					= 5; // 被邀请的好友
+}
+
+// 挂在 player 上的实体
+message QQSpreadPlayer
+{
+	message QQSpreadState
+	{
+		optional uint32 id								= 1;
+		optional uint32 state							= 2; // 0：未达成，1:可领取，2：已领取
+	}
+
+	required uint64 guid							= 1;
+	required uint64 player							= 2;
+	
+	// 邀请
+	repeated QQSpreadState invite_state				= 3; // 邀请奖励
+	
+	// 炫耀：
+	optional uint32 brag_id							= 4; // day清理,0:未产生奖励
+	optional uint32 brag_prize_state				= 5; // 炫耀奖励状态，1：未领取，2已经领取
+	
+	// 分享
+	optional uint32 share_num_today					= 6; // 今天的分享次数
+	optional uint32 share_num_all					= 7; // 总的分享天数
+	repeated QQSpreadState share_state				= 8; // 分享奖励状态
+}

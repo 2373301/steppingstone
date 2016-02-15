@@ -1,0 +1,100 @@
+package typed.protocol;
+
+// 获取所有的qq好友中，安装本游戏的人
+//message cmsg_qq_installer
+
+message smsg_qq_installer
+{
+	repeated string qqids = 1;
+}
+
+///////////////////////////////////////////////////////////
+// qq分享
+
+// 上线推送
+message smsg_qqshare_open
+{
+	optional uint32 share_num				= 1; // 今天分享的次数
+	optional uint32 share_all_num			= 2; // 分享总次数
+	repeated uint32 ids						= 3; // 每日：0. day 字段按照顺序取1~n
+	repeated uint32 states					= 4;	// 1：没有领取，2.已领取。3：未达成（客户端默认未达成）
+}
+
+// 客户端通知服务器已经分享
+// message cmsg_qqshare_shared
+
+
+// 领取分享奖励
+message cmsg_qqshare_get_prize
+{
+	optional uint32 id						= 1; // 领取某个项目的奖励
+}
+
+message smsg_qqshare_get_prize
+{
+	optional uint32 id						= 1; // 领取某个项目的奖励
+	optional uint32 result					= 2; // 1:ok; 2:背包满
+	repeated uint32 items_id				= 3; 
+	repeated uint32 items_no				= 4;
+}
+
+
+///////////////////////////////////////////////////////////
+// qq炫耀
+
+// 推送可以领奖
+message smsg_qqbrag_prize
+{
+	optional uint32 id						= 1; // 奖励的id. 0:还没有炫耀。
+	optional uint32 has						= 2; // 是否已经领取. 1:未领取。2：已经领取
+}
+
+// 客户端通知服务器，奖励产生了
+message cmsg_qqbrag_generate_prize
+{
+	optional uint32 id						= 1;
+}
+
+
+//
+// message cmsg_qqbrag_get_prize
+
+message smsg_qqbrag_get_prize
+{
+	optional uint32 id						= 1;
+	optional uint32 result					= 2; // 1:成功，2：背包满，3：失败
+	repeated uint32 items					= 3;
+	repeated uint32 itemNums				= 4;
+}
+
+///////////////////////////////////////////////////////////
+// qq邀请
+// message cmsg_qqinvite_open
+
+message smsg_qqinvite_open
+{
+	repeated uint32 ids						= 1;
+	repeated uint32 state					= 2; // 0：未达成（不发）,1：有奖励，2：已领取，
+}
+
+// 领取分享奖励
+message cmsg_qqinvite_get_prize
+{
+	optional uint32 id						= 1; // 领取某个项目的奖励
+}
+
+message smsg_qqinvite_get_prize
+{
+	optional uint32 id						= 1; // 领取某个项目的奖励
+	optional uint32 result					= 2; // 1:ok. 2:背包满. 3:失败
+	repeated uint32 items					= 3;
+	repeated uint32 nums					= 4;
+}
+
+// message cmsg_qqinvite_friends;
+
+message smsg_qqinvite_friends
+{
+	repeated string names					= 1;
+	repeated uint32 level					= 2;
+}

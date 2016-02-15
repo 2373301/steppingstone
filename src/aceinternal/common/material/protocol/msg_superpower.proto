@@ -1,0 +1,82 @@
+package typed.protocol;
+
+// 上线推送所有目标的完成情况
+message smsg_superpower_state
+{
+	message State
+	{
+		optional uint32 targetid					= 1; // 
+		optional uint32 complete					= 2; // 目标是否全部完成（（0：正在进行，1：已完成））
+		optional uint32 step						= 3; // 当前正在进行的任务.（complete == 1时，无意义）
+		repeated uint32 progress					= 4; // 根据不同的类型，其中的数据代表不同过的意义
+		repeated uint32 prize_step					= 5; // 还未领取奖励的任务
+		optional uint32 target_prize				= 6; // 目标奖励是否已经领取（0：未领取）
+	}
+
+	repeated State states							= 1; // 所有活动的所有状态
+	optional uint32 track_targetid					= 2; //
+}
+
+// 后续主动推送进度
+message smsg_superpower_progress
+{ // 当前任务的进度
+	optional uint32 targetid						= 1;
+	repeated uint32 progress						= 2; // 当前任务的进度，类型同上
+}
+
+// 主动推送完成情况,任务完成，需要维护进度数据
+message smsg_superpower_quest_complete
+{ 
+	optional uint32 targetid						= 1; // 上一个任务已经完成,自动切换到下一个任务
+}
+
+// 领取任务奖励
+message cmsg_superpower_quest_prize
+{
+	optional uint32 targetid						= 1; // 目标id
+	optional uint32 step							= 2; // 奖励对应的任务
+}
+
+message smsg_superpower_quest_prize
+{
+	optional uint32 targetid						= 1; // 目标id
+	optional uint32 step							= 2; // 奖励对应的任务
+	optional uint32 result							= 3; // 1:成功, 2：背包不足
+} // 奖励物品参见配置表
+
+// 领取目标奖励
+message cmsg_superpower_target_prize
+{
+	optional uint32 targetid						= 1; // 目标id
+}
+
+message smsg_superpower_target_prize
+{
+	optional uint32 targetid						= 1; // 目标id
+	optional uint32 result							= 2; // 1:成功，2：背包不足，
+	optional uint32 prize							= 3; // 1：target, 2：special reward
+} // 奖励物品参见配置表
+
+
+// 立即完成 完成所有（客户端要维护奖励和进度数据、任务完成情况数据）
+message cmsg_superpower_clear
+{
+	optional uint32 targetid						= 1; // 需要立即完成的目标
+}
+
+message smsg_superpower_clear
+{
+	optional uint32 targetid						= 1; // 需要立即完成的目标
+	optional uint32 result							= 2; // 1：成功
+}
+
+// 设为追踪
+message cmsg_superpower_set_track
+{
+	optional uint32 targetid						= 1; // 要设置为追踪的目标
+}
+
+message smsg_superpower_set_track
+{
+	optional uint32 tragetid						= 1; // 追踪的目标
+}

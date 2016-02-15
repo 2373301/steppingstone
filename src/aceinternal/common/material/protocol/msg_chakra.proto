@@ -1,0 +1,164 @@
+package typed.protocol;
+
+message smsg_chakra_error {
+	required uint32 opcode				= 1;	// CMSG_XXX
+	required uint32 errnum				= 2;
+	optional string errmsg				= 3;
+}
+
+// Names:
+//  chakra : chakra       脉轮模块
+//  chakre : chakra item  精魄
+//  chakro : chakra body  脉轮师
+//  chakrp : chakra self  穴位
+//  chakrs : chakra store 精魄仓库
+
+message chakre {
+	required uint64 guid			= 1;
+	required uint32 id				= 2;
+	required uint32 exp				= 3;
+	required uint32 point			= 4;	// 穴位
+	required uint32 color			= 5;	// 颜色
+	required uint32 money			= 6;
+}
+
+message chakrp {
+	required uint32 id				= 1;
+	optional uint32 level			= 2;
+	optional uint32 exp				= 3;
+	optional uint32 expmax			= 4;
+	optional uint32 property_id		= 5;
+	optional uint32 property_value	= 6;
+}
+
+message chakro {
+	required uint32 id				= 1;
+	optional uint32 status			= 2;	// 1, inactive; 2, active.
+	optional uint32 consumption		= 3;	// 冲脉所需金钱
+	optional uint32 act_coins		= 4;	// 激活消耗的元宝数。0, 表示不可激活。
+	optional uint32 act_num			= 5;	// 当日激活次数
+	optional uint32 act_max			= 6;	// 当日激活最大次数
+	optional uint32 acc_cur			= 7;	// 当前累积值
+	optional uint32 acc_top			= 8;	// 累积值上限
+}
+
+message smsg_chakra_open {
+	// 下面两个字段如需排序，请以 id 字段的值为准；数组的顺序不保证和 id 的顺序一样。
+	repeated chakrp chakrps			= 1;	// 穴位
+	repeated chakro chakros			= 2;	// 脉轮师
+	repeated uint64 storehouse		= 3;	// 精魄仓库,存储的是精魄的 guid
+	repeated chakre chakres			= 4;	// 精魄
+	optional uint32 chakrp_maxlevel	= 5;
+	repeated uint64 caches			= 6;	// 长度为暂存区大小
+	repeated uint32 owners			= 7;	// 暂存区精魄对应的脉轮师 id
+}
+
+// 冲脉
+message cmsg_chakro_run {
+	required uint32 chakro_id		= 1;
+}
+
+message smsg_chakro_run {
+	required uint32 chakro_id			= 1;
+	// 被激活的脉轮师。0 表示没有激活任何脉轮师。
+	optional uint32 new_chakro_id		= 2;
+	// 获得的精魄
+	optional uint32 chakre_id			= 3;
+	optional uint32 chakre_pos			= 4;	// 1-based
+	optional uint64 chakre_guid			= 5;
+}
+
+// 激活脉轮师
+message cmsg_chakro_act {
+	required uint32 chakro_id			= 1;
+}
+
+message smsg_chakro_act {
+	required uint32 chakro_id			= 1;
+}
+
+// 合并精魄
+//
+// 合并方法：
+//   exp/money 各为双方之和；
+//   color 为双方中的大者；
+//   主动方格位空出；
+//   精魄采用被动方的 guid。
+message cmsg_chakre_merge {
+	required uint64 chakre_guid_src		= 1;	// 主动方
+	required uint64 chakre_guid_dst		= 2;	// 被动方
+}
+
+message smsg_chakre_merge {
+	required uint64 chakre_guid_src		= 1;
+	required uint64 chakre_guid_dst		= 2;
+}
+
+// 一键合并精魄
+message cmsg_chakre_automerge {
+}
+
+message chakre_change {
+	required uint64 guid	= 1;
+	// 0, 无改变; 1, 消失了; 2, 更新exp/money
+	required uint32 status	= 2;
+	optional uint32 exp		= 3;
+	optional uint32 money	= 4;
+}
+
+message smsg_chakre_automerge {
+	repeated chakre_change changes		= 1;
+}
+
+// 将暂存区的精魄存储至仓库
+message cmsg_chakre_store {
+	required uint64 guid				= 1;	// 非灰色精魄的 guid，0 表示一键拾取。
+}
+
+message smsg_chakre_store {
+	repeated uint64 guids				= 1;
+	repeated uint32 positions			= 2;
+}
+
+// 出售灰色精魄
+message cmsg_chakre_trash {
+	required uint64 guid				= 1;	// 灰色精魄的 guid，0 表示一键出售。
+}
+
+message smsg_chakre_trash {
+	repeated uint64 guids				= 2;
+}
+
+// 出售背包中的精魄
+message cmsg_chakre_sell {
+	required uint64 guid				= 1;	// 精魄的 guid，0 表示一键出售。
+}
+
+message smsg_chakre_sell {
+	repeated uint64 guids				= 1;
+}
+
+// 吞噬精魄，成功后精魄消失。
+message cmsg_chakrp_absorb {
+	required uint32 chakrp_id			= 1;	// 穴位
+	required uint64 chakre_guid			= 2;
+}
+
+message smsg_chakrp_absorb {
+	required uint32 chakrp_id			= 1;
+	required uint64 chakre_guid			= 2;
+	optional uint32 chakrp_exp			= 3;
+	// 如果 level 为0，表示未升级。
+	optional uint32 chakrp_level		= 4;
+	optional uint32 chakrp_value		= 5;
+	optional uint32 chakrp_expmax		= 6;
+}
+
+// 解锁精魄仓库格位
+message cmsg_chakrs_unlock {
+	required uint32 position			= 1;
+}
+
+message smsg_chakrs_unlock {
+	required uint32 position			= 1;
+}

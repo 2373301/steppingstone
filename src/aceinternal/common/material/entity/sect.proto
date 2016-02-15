@@ -1,0 +1,20 @@
+package typed.entity;
+
+message Sect	//服务器重置属性结构体
+{
+	required uint64	guid					= 1;
+	required uint64	player					= 2;
+	optional int32 	sect_id					= 3;	//门派ID
+	
+	optional int32 	str_attr				= 4;	//外功值
+	optional int32 	agi_attr				= 5;	//内功值
+	optional int32 	int_attr				= 6;	//奇术值
+	optional int32 	attach_skill_id			= 7;	//附加属性ID
+	
+	optional int32 	rand_str_attr			= 8;	//最后一次随机获得外功值
+	optional int32 	rand_agi_attr			= 9;	//最后一次随机获得内功值
+	optional int32 	rand_int_attr			= 10;	//最后一次随机获得奇术值
+	optional int32 	rand_attach_skill_id	= 11;	//附加属性ID
+	
+	optional int32	rand_count 				= 12;	//随机次数
+}

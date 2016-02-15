@@ -1,0 +1,113 @@
+package typed.protocol;
+
+enum ResourceType
+{
+	eResourceMoney		=1; //银两
+	eResourceCoin		=2; //元宝
+	eResourceSeniority	=3;	//阅历
+	eResourceExp		=7;	//经验
+	eResourcePrestige	=8; //声望
+	eResourceFree 	  =100; //免费
+}
+
+enum CondorCode
+{
+	eCondorSuccess 		=1; //成功
+	eCondorLackResource =2; //失败, 对应资源不足
+	eCondorCoolDown 	=3; //失败, cd中
+	eCondorNoRoundLeft 	=4; //失败, 轮次已用完
+	eCondorHasWeapon	=5; //失败,已有武器
+	eCondorInvalidWeaponID	=6; //失败, weapon id非法
+	eCondorNoTimesLeft	=7; //失败, 射箭次数已用完
+	eCondorInternalErr 	=8; //内部错误
+	eCondorHasTimesLeft =9; //失败, 射箭次数未用完
+	eCondorLowVipLevel 	=10; // vip等级不够
+	eCondorNoWeapon 	=11; // 失败,莫有武器
+}
+
+message condor_round_info
+{
+	optional uint32 max_round 		= 1;	//射雕轮次上限
+	optional uint32 present_round 	= 2;	//当前轮次
+	optional uint32 left_times 		= 3;	//当前轮剩余次数, 0 or >0
+	optional uint32 weapon_id 		= 4;	//当前轮次所选锤子..
+	optional  uint32 cd 			= 5;	//下一轮cd时间, 假如剩余次数为0,  cd != 0 , 表示在cd中
+		
+	//当前轮次剩余次数 = 0 && 未到轮次上限,  下列字段有效
+	//说明当前轮次已用完, 开通下一轮需要的资源
+	optional ResourceType type =6;	//开通下一轮,需要消费的资源类型
+	optional uint32 num	 =7;		//消费的资源数量
+}
+
+//0点重置 或 vip++ 导致轮次变更通知
+//0点重置, 导致当前轮次(present_round)为0
+//vip++ 导致轮次上限(max_round)变更
+message smsg_condor_notify
+{
+	optional condor_round_info msg = 1;
+}
+
+//打开射雕
+// cmsg_condor_open
+
+message smsg_condor_open
+{
+	optional condor_round_info msg = 1;
+}
+
+
+// 请求下一轮
+// cmsg_condor_request_next_round
+
+message smsg_condor_request_next_round
+{	
+	optional CondorCode result =1;	//结果, eCondorSuccess; eCondorLackResource; eCondorCoolDown; eCondorNoRoundLeft;
+	
+	//eCondorSuccess,下2字段有效
+	optional uint32	 round 		=2;	//请求这轮的轮次
+	optional uint32  left_times =3;	//请求这轮的次数
+	
+	//假如结果为 eCondorCoolDown, 返回剩余cd时间
+	optional uint32 cd =4; 
+}
+
+
+// 清除cd
+
+// cmsg_condor_clean_cd
+
+message smsg_condor_clean_cd
+{
+	optional CondorCode code =1;  //结果, eCondorSuccess; eCondorLackResource; eCondorNoRoundLeft
+	
+	//假如清除失败,返回剩余cd时间
+	optional uint32 cd =2;	//cd时间
+}
+
+//选择武器
+message cmsg_condor_choose_weapon
+{
+	required uint32 weapon_id = 1;
+}
+
+message smsg_condor_choose_weapon
+{
+	required CondorCode code	=1;	//结果, eCondorSuccess; eCondorLackResource; eCondorHasWeapon; eCondorInvalidWeaponID
+	optional uint32 weapon_id	=2; //选择的weapon id
+}
+
+
+//射击
+//cmsg_condor_shoot
+
+message smsg_condor_shoot {
+	optional CondorCode code =1; //结果, eCondorSuccess, eCondorNoTimesLeft
+	optional uint32 left =2;	//剩余次数
+	
+	//成功
+	optional uint32 condor_id	= 3;	//射中的鸟
+	repeated uint32 awards		= 4;	//奖励的货币id
+	repeated uint32 values		= 5;	//数量
+	
+	optional uint32 cd =6;   //当 left = 0时,返回下一轮的cd时间
+}

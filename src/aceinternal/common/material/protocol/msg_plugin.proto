@@ -1,0 +1,1434 @@
+package typed.protocol;
+
+////////// notify message /////////////////////////////////////////////
+message nmsg_player_jump_map
+{
+	required uint32	previous_map_id	= 1;	// 玩家之前所在地图id
+	required uint32 target_map_id	= 2;	// 玩家挑往地图
+}
+
+// 招募伙伴广播消息
+message nmsg_role_add
+{
+	required uint64 player_guid		= 1;
+	required uint32 role_id			= 2;
+	required uint32	hire_id			= 3;
+}
+
+// 玩家加入本派广播
+message nmsg_join_sect
+{
+	required uint32 sect_id = 1;	//门派id
+}
+
+//创建Role实体之后的广播
+message nmsg_create_role
+{
+	required uint64 player			= 1;
+	required uint64 create_role		= 2;
+}
+
+// 
+message nmsg_day_change
+{
+	required uint32	day_interval		= 1;		// 离玩家最后一次day change间隔时间
+	required uint32	online_status		= 2;		// day change发生时，玩家状态，1：在线，2：刚刚上线
+}
+
+// 
+message nmsg_week_change
+{
+	required uint32	online_status		= 1;		// week change发生时，玩家状态，1：在线，2：刚刚上线
+}
+
+// vip 升级
+message nmsg_player_vip_level_up
+{
+	required uint32 from_vip_level	= 1;	// 原本的vip等级
+	required uint32 to_vip_level	= 2;	// 升级后的当前vip等级
+}
+
+// 事件触发每日积分
+message nmsg_dailypoints_event
+{
+	required uint32 event_id		= 1;	// 事件id
+}
+
+//声望增加广播协议
+message nmsg_prestige_increase
+{
+	required uint32 curr_prestige		= 1;	// 当前声望
+}
+
+//铜钱增加广播协议
+message nmsg_money_increase
+{
+	required uint32 curr_money			= 1;	// 当前铜钱
+}
+
+//元宝增加广播协议
+message nmsg_coin_increase
+{
+	required uint32 curr_coin			= 1;	// 当前元宝
+}
+
+//体力增加广播协议
+message nmsg_energy_increase
+{
+	required uint32 curr_energy			= 1;	// 当前体力
+}
+
+//阅历增加广播协议
+message nmsg_seniority_increase
+{
+	required uint32 curr_seniority		= 1;	// 当前阅历
+}
+
+//完成成就解锁功能模块广播协议
+message nmsg_complete_achievement_unlock
+{
+	required uint32 unlock_id 			= 1;	// 解锁id 
+}
+
+// 伙伴离队广播
+message nmsg_role_remove
+{
+	optional uint64 role_guid	= 1;
+}
+
+// 伙伴归队广播
+message nmsg_role_rejoin
+{
+	optional uint64 role_guid	= 1;
+}
+
+////////// request message /////////////////////////////////////////////
+
+enum BattleStatus
+{
+	Success = 1;
+	Failed	= 2;
+	DOGFALL	= 3;
+}
+
+// PVP
+message pmsg_player_vs_player
+{
+	required uint64 first_player_guid	= 1;	//[in]
+	required uint64 second_player_guid	= 2;	//[in]
+	optional uint32 map_id				= 3;	//[in]
+	optional BattleStatus result		= 4;	//[out]1 : 胜利  2 ：失败  3 : 平局
+	repeated uint32 buff_id_defender	= 5;	//防守方起效buff
+	optional uint32 battle_type			= 6;	//战斗类型 1 : 竞技场，2:关卡过图，3：世界boss, 4：爬塔，5:押镖，6:阵营站 7:海古文书,
+												//8:切磋,9:多人副本 10：本服赛、跨服赛
+	repeated uint32 first_player_hp		= 7;	//[in][out]玩家血量,如果size==0表示使用最大血量，否则必须是size==9
+	repeated uint32 second_player_hp	= 8;	//[in][out]玩家血量,如果size==0表示使用最大血量，否则必须是size==9
+	optional uint32 battle_round		= 9;	//[out]战斗回合数
+	repeated uint32 buff_id_attacker	= 10;	//攻击方buff id
+	optional uint32 send_packet_target	= 11;	//0:默认战斗包只发送给first_player, 1:双方都发送，2：发送给second player, 3:都不发送
+	repeated uint64 first_member_guid	= 12;	//[in][out]攻击者上阵伙伴成员role guid，size==9
+	repeated uint64 second_member_guid	= 13;	//[in][out]防守者上阵伙伴成员role guid，size==9
+	optional string report_url			= 14;	//战报地址
+	optional uint32 pvp_type			= 15;	//pvp类型，1:竞技场
+	optional bytes	battle_message		= 16;	//[out]发送给客户端的战斗消息体
+}
+//多个战斗包重组为1个，即连战模式，多个战斗包里攻击者或防守者必须包含同一个玩家
+message pmsg_assemble_fight_packet
+{
+	repeated string battle_message		= 1;	//[in]带重组战斗包，所有战斗包里必须包含同一个玩家
+	repeated uint64 packet_target		= 2;	//[in]接收战斗包消息的玩家guid，不填就不发送
+	optional string report_url			= 3;	//[out]重组后的战报地址
+	optional uint32 result				= 4;	//[out]1：成功，2：失败
+}
+// PVE
+message pmsg_player_vs_enemy
+{
+	required uint64 player_guid		= 1;	//[in]
+	required uint32 enemy_id		= 2;	//[in]
+	optional uint32 map_id			= 3;	//[in][optional]
+	optional uint32 result			= 4;   	//[out]1 : 胜利  2 ：失败  3 : 平局
+	optional uint32 enemy_level		= 5;	//[out]
+	optional int32	attack_score	= 6;	//[out]攻击得分
+	optional int32	defence_score	= 7;	//[out]防御得分
+	optional uint32 battle_type		= 8;	//[in][optional] 0：没有额外buff加成， 4:爬塔，以后还会扩充
+	repeated uint32 buff_id			= 9;	//[in]buff id
+	optional uint32 battle_round	= 10;	//[out]战斗回合数
+	repeated uint64 roles_guid		= 11;	//[in][optional]阵型中的角色guid，size必须9个
+	repeated uint64 players_send	= 12;	//[in][optional]需要发送给战斗包的玩家，可以多个
+	optional uint32 round_mini		= 13;	//[out]战斗打斗的小回合个数
+}
+
+// role attache skill
+message pmsg_attach_skill
+{
+	required uint64 role_guid	= 1;
+	required uint32 skill_id	= 2;
+}
+
+// role detach skill
+message pmsg_detach_skill
+{
+	required uint64 role_guid	= 1;
+	required uint32 skill_id	= 2;
+}
+
+// 改变role被动技能
+message pmsg_change_char_ability
+{
+	required uint64 role_guid	= 1;
+	required uint32 skill_id	= 2;
+}
+
+// role battle buffer attach
+message pmsg_buffer_attach
+{
+	required uint64 	caster_role		= 1;
+	required uint64 	target_role		= 2;
+	required uint32		buffer_id		= 3;
+	required int32		curr_hp			= 4;	// 当前生命值
+	required uint32		effect_type		= 5;	// 秒数、回合、战斗场数、生效次数 : 1、2、3、4
+	optional uint32		interval		= 6;	// 生效间隔时间
+	optional uint32		last_time		= 7;	// 持续时间、持续回合
+	optional uint32		pile_layer		= 8;	// 叠加层数
+	optional uint32 	result			= 9;	// 1 成功  2 失败
+}
+
+message BufferEffectInfo
+{
+	required uint32 buffer_id		= 1;
+	optional int32	hp_change		= 3;
+	optional int32	enrage_change	= 4;
+	optional int32	success			= 5;	// 1 : success  2 : failed 3：无视攻击  4:免疫
+}
+
+// role battle buffer effect
+message pmsg_buffer_effect
+{
+	required uint64 role_guid		= 1;
+	required int32	curr_hp			= 2;	// 当前生命值
+	required uint32	status			= 3;	// 1 : 自己攻击之前  2 : 对方攻击之后  3 : 自己攻击之后
+	optional uint32	buffer_feature	= 4;	// buffer控制系列标志
+	repeated uint32	detach_buffer	= 5;	// 本次判断消失的buffer id
+	repeated BufferEffectInfo buffer_effect	= 6;
+}
+
+// 获取角色battle buffer状态标志
+message pmsg_request_buffer_feature
+{
+	repeated uint64 role_guid		= 1;
+	repeated uint32 buffer_feature	= 2;
+}
+
+// clear role battle buffer
+message pmsg_role_buffer_clear
+{
+	repeated uint64 role_guid		= 1;	// role guid 或者 monster guid
+}
+
+// 请求添加player buffer接口
+message pmsg_player_buffer_attach
+{
+	required uint32 buffer_id		= 1;	// 0 : 表示回血类buffer， last_time表示剩余血量
+	required int32 	range			= 2;	// 1 : 对主角   2 ：全体　　３ : 上阵人员
+	required int32	effect_type		= 3; 	// 1 : 秒数  2 : 战斗场次  3:永久生效，主动被删除
+	required uint32	last_time		= 4;	// 1== effect_type ：生效时间，单位sec，2 == effect_type 生效战斗场次
+	optional uint32 interval		= 5;	// 生效时间间隔
+	optional uint32 pile_value		= 6;	// buffer叠加层次
+	optional int32 	result			= 7; 	// 1 : success  2 : failed
+}
+
+// 清除player buffer
+message pmsg_player_buffer_detach
+{
+	required uint32 buffer_id		= 1;
+	optional uint32 result			= 2;	// 1 ：sucess, 2: failed , not find
+}
+
+// player战斗buffer生效，一般战斗之前调用
+message pmsg_player_battle_effect
+{
+	required uint32 battle_type		= 1;	// 1 : 竞技场，2:关卡过图，3：世界boss, 4：爬塔，5:押镖，6:阵营站 7:海古文书, 8:切磋, 9:多人副本
+}
+
+// player战斗buffer失效，一般战斗之前调用
+message pmsg_player_battle_invalid
+{
+	required uint32 battle_type		= 1;	// 1 : 竞技场，2:关卡过图，3：世界boss, 4爬塔，5:押镖，6:阵营站 7:海古文书，8:切磋， 9:多人副本
+}
+
+// 增加非主要伙伴玩家的大胃值
+message pmsg_add_stomach_value
+{
+	required uint64 role_guid	= 1;
+	required uint32	value		= 2; // 要增加的大胃值
+	optional uint32 result		= 3; // 1:成功, 2:失败
+}
+
+// 领悟轻功
+message pmsg_use_dodge_item
+{
+	required uint32	dodge_id	= 1; //[in] 物品领悟的轻功id
+	optional uint32 exchange	= 2; //[in] 可兑换的轻功点!如果对应轻功已经领悟，则直接兑换成轻功点
+	optional uint32 result		= 3; //[out] 1:成功, 2:失败
+	optional uint32 sub_type	= 4; //[in] 1:轻功卷轴，2：残卷，对应item表的subtype
+	optional uint32 used_for	= 5; //[out] 1.解锁轻功，2：兑换轻功点
+}
+
+// 查询非主要伙伴玩家的大胃值
+message pmsg_query_stomach_value
+{
+	required uint64 role_guid	= 1;
+	optional int32 result		= 2; // -1:失败, >=0 需要多少大胃值 
+}
+
+/////////////////////////////////////////////////////////////////////////////
+
+// 添加一个角色, 用于招募
+message pmsg_add_role
+{
+	required uint64 player_guid	= 1;
+	required uint32 role_id		= 2;
+	required uint32	hire_id		= 3;
+	optional uint64 role_guid	= 4;
+}
+
+// 查询伙伴角色空位
+message pmsg_query_role_empty_pos
+{
+	required int32 empty_num = 1;	//伙伴角色空位
+}
+
+// 招募之归队
+message pmsg_role_rejoin
+{
+	optional uint64 role_guid	= 1;
+}
+
+// 删除一个角色
+message pmsg_remove_role
+{
+	required uint64 player_guid	= 1;
+	required uint64 role_guid	= 2;
+}
+
+// 奖励请求
+message pmsg_update_reward
+{
+	required uint64	player_guid		= 1;
+	required int32 	notify_client	= 2;	// 是否通知客户端， 1 ：通知　２：不通知
+	optional int32 	seniority		= 4;	// 阅历
+	optional int32 	money			= 5;	// 
+	optional int32 	coin			= 6;	// 
+	repeated uint64	role_guid		= 7;
+	repeated uint32 role_exp		= 8;
+	optional int32	prestige 		= 9;	// 声望
+	optional uint32 source_from		= 10;	// 来源：关卡、任务等等
+}
+
+// 物品 创建
+message pmsg_create_item
+{
+	required uint64 player			= 1;
+	repeated uint32 item_id			= 2;
+	repeated uint32 item_no			= 3;
+	repeated uint64 item_guid		= 4;		// 创建完成返回guid
+}
+
+//背包, 拾取物品
+message pmsg_pick_item
+{
+	required uint64 player 			= 1;
+	repeated uint32 item_id			= 2;
+	repeated uint32 item_no			= 3;
+	repeated uint32 left_no			= 4;	// 部分拾取的时候，每个物品还剩余的数量
+	optional int32	result			= 5;	// 0 : sucess, 1 : 背包已满; 默认部分拾取， 2：要求全部拾取(pick_type==1)，背包已满，一个都未拾取
+	optional uint32 pick_type		= 6;	// 1：全部拾取，0:部分拾取
+	optional uint32 notify_client	= 7;	// 1 : 背包满提示客户端，发送SMSG_ERROR_MESSAGE
+	optional uint32 notify_code		= 8;	// 如果notify_client为1，则发送SMSG_ERROR_MESSAGE消息时，填充该code，
+											// 如果该code设置为0，则默认发送背包已满通知
+	optional uint32 source_from		= 9;	// 来源
+	repeated uint32 bonus_id		= 10;	// 物品来源bonus_id
+}
+
+// 在拾取之前，查询物品背包格位
+message pmsg_query_bag_before_pick
+{
+	required uint64 player				= 1;
+	repeated uint32 item_id				= 2;	// 输入参数
+	repeated uint32 item_no				= 3;	// 输出参数
+	optional uint32 addition_item_pos	= 4;	// 预放置物品时，可以额外使用的背包格位，比如在打开背包里的宝相时，该值传物品位置,传0表示无效
+	optional int32 	dest_type			= 5;  	// 查询仓库、背包, 1 ：背包, 目前只支持背包格位查询
+	optional int32	result				= 6;	// 0 : 能够完全拾取这些物品, 1 : 背包格位不够
+	optional uint32 notify_client		= 7;	// 1 : 背包满提示客户端，发送SMSG_ERROR_MESSAGE
+	optional uint32 notify_code			= 8;	// 如果notify_client为1，则发送SMSG_ERROR_MESSAGE消息时，填充该code，
+												// 如果该code设置为0，则默认发送背包已满通知
+}
+
+// 查询角色人物身上的空余背包格位
+message pmsg_query_bag_empty_pos
+{
+	optional int32 empty_num 			= 1;	// 返回角色人物身上的空余背包格位
+}
+
+// 移除物品, 通知bag插件删除物品
+message pmsg_remove_bag_item
+{
+	required uint64 player			= 1;
+	repeated uint64 item			= 2;
+	optional uint32 source_from		= 3;	// 来源
+}
+
+// 删除物品，item删除物品
+message pmsg_delete_item
+{
+	required uint64 player			= 1;
+	repeated uint64 item			= 2;
+}
+
+// 删除指定ID的所有物品
+message pmsg_delete_item_by_item_id
+{
+	required uint32 item_id 		= 1; //物品id
+	optional uint32 source_from		= 2; // 来源
+}
+
+// 扣减物品数量
+message pmsg_deduct_item
+{
+	required uint64 player			= 1;
+	repeated uint32 item_id			= 2;
+	repeated uint32 item_no			= 3;
+	required uint32 dest_type		= 4;	// 1:背包，2：仓库，3：both，优先减扣背包，4：both，优先减扣仓库
+	optional int32	result			= 5;    // 0 : sucess , 1 : failed
+	optional uint32 source_from		= 6;	// 来源
+}
+
+// 查询物品数量
+message pmsg_query_item
+{
+	required uint64 player				= 1;
+	repeated uint32 item_id				= 2;
+	repeated uint32 item_no				= 3;
+	optional int32 	dest_type			= 4;  ///查询仓库、背包, 0 : 所有  ， 1 ：背包　２：仓库
+}
+
+// 重置装备 id 及其强化属性
+message pmsg_sthen_reset
+{
+	required uint64 equip			= 1;
+	// if zero, using equip's origin value
+	optional uint32 id				= 2;
+	optional uint32 sthen_level		= 3;
+	optional uint32 color			= 4;	// *obsolete*
+}
+
+message pmsg_sect_member_online
+{
+	required int32 sect_id			= 1;
+	repeated int64 player_online	= 2;
+}
+
+// 减扣金钱、元宝、阅历
+message pmsg_reduce_gold
+{
+	required uint64 player			= 1;
+	optional int32	money			= 2;
+	optional int32 	coin			= 3;
+	optional int32 	seniority		= 4;
+	optional uint32 function_id		= 5;	// 减扣来源，主要用于元宝减扣统计，来源于goldblessme.xml
+	optional int32 	result			= 6;	// 1 sucess, 2 failed, not enough money
+	optional uint32 source_from		= 7;	// 来源：关卡、任务等等
+}
+
+// 减扣轻功点
+message pmsg_reduce_dodge_point
+{
+	optional int32	dodge_point		= 1;
+	optional int32 	result			= 2;	// 1 sucess, 2 failed, not enough money
+	optional uint32 source_from		= 3;	// 来源：关卡、任务等等
+}
+//添加轻功点
+message pmsg_add_dodge_point
+{
+	optional int32	dodge_point		= 1;	//添加的轻功点
+	optional uint32 source_from		= 2;	// 来源：关卡、任务，用于日志记录
+}
+message pmsg_player_level_upgrade
+{
+	required uint64 player			= 1;
+	required uint64 pre_level		= 2;
+	required uint64 curr_level		= 3;
+}
+
+// 
+message pmsg_chat_notify
+{
+	required uint32 id				= 1;
+	// param_id 与 param_name 必需等长，当客户端可以通过 param_id 取得名字时，对应的 param_name 可填为空。
+	repeated uint64 param_id		= 2;
+	repeated string param_name		= 3;
+	repeated uint64 target_guid		= 4;//发送目标guid，当待发送目标不是个人或者全服时需要填写，例如帮派
+}
+
+message pmsg_request_bonus
+{
+	repeated uint32 bonus			= 1;
+	repeated uint32 item_id			= 2;
+	repeated uint32 item_no			= 3;
+}
+
+message pmsg_player_jump_map
+{
+	required uint32 target_map		= 1;
+}
+
+// 查询体力值
+message pmsg_query_energy
+{
+	optional uint32 query_energy		= 1;
+}
+
+// 减扣体力值
+message pmsg_reduce_energy
+{
+	required int32 reduce_energy	= 1;
+	optional uint32 source_from		= 2;	// 来源：关卡、任务等等
+	optional uint32 result			= 3;	// 1:成功，2：失败
+}
+
+// 增加体力值
+message pmsg_add_energy
+{
+	required int32 	energy				= 1;
+	optional int32 	can_exceed_limit	= 2;	// 1 : 为可以超过上限值
+	optional uint32 source_from			= 3;	// 来源
+}
+
+// 打赢怪物，计算怪物的任务物品掉落
+message pmsg_request_items_from_monster
+{
+	//输入参数
+	repeated uint32 monster_id 		= 1;
+	repeated uint32 monster_level 	= 2;
+	repeated uint32 monster_num 	= 3;
+	
+	//输出参数
+	repeated uint32 item_id 		= 4;
+	repeated uint32 item_num 		= 5;
+}
+
+// 查询是否招募过相关伙伴
+message pmsg_partner_been_invited
+{
+	required uint32 partner_id		= 1;		//伙伴id
+	optional int32	result 			= 2;		//0:没有招募过，1：在队伙伴，2：离队伙伴
+}
+
+// 下发错误消息给客户端，可以是提示信息，也可以是错误信息，该信息仅供客户端展示
+message pmsg_notify_client_msg
+{
+	required int32 	msg_id			= 1;
+	optional int32 	trigger_opcode	= 2;
+	optional string	plus_msg		= 3;
+}
+
+// npc模块请求任务模块，获取任务状态
+message pmsg_task_list_on_npc
+{
+	//输入
+	required uint32 npc_id 			= 1;
+	repeated uint32 task_list 		= 2;
+	
+	//输出
+	repeated uint32 acceptable 		= 3;
+	repeated uint32 unfinished 		= 4;
+	repeated uint32 finished 		= 5;
+}
+
+// 请求阵型等级
+message pmsg_requset_form_level
+{
+	repeated uint32 form_id			= 1;		// 输出，阵型ID
+	repeated uint32 form_level		= 2;		// 输出，阵型level
+}
+
+// 阵型升级，有心法模块请求阵型模块实现
+message pmsg_upgrade_form_level
+{
+	required uint32 form_id			= 1;		// 升级form id
+	optional int32 	result			= 2;		// 1：升级成功，2：升级失败
+}
+
+// 更新玩家（包括所有玩家已经拥有以及将来拥有的角色）属性
+message pmsg_update_attributes {
+	message attribute_change {
+		required uint32 id	= 1;
+		required int32 add	= 2;
+	}
+	repeated attribute_change changes	= 1;
+	optional bool notify_client			= 2;
+}
+
+// 声望
+message pmsg_update_prestige
+{
+	required int32 value 				= 1;
+	optional uint32 source_from			= 2;	// 来源：关卡、任务等等
+}
+
+// 创建enemy，比如创建boss
+message pmsg_update_enemy
+{
+	required uint32 enemy_id			= 1;
+	optional uint32 enemy_level			= 2;	// 如果不为0，则重置enemy level
+	optional uint32 enemy_hp			= 3;
+	repeated uint64 enemy_guid			= 4;	// 如果成功，返回enemy guid
+	optional int32  result				= 5;	// 1：success，2：failed，not find in config
+}
+
+// 攻击boss
+message pmsg_attack_boss
+{
+	required uint32 boss_id 			= 1;		//【in】boss id
+	optional uint32 battle_round 		= 2;		//【out】：战斗回合数
+	optional uint32 hurt 				= 3;		//【out】：对boss造成的伤害
+	optional int32 result 				= 4;		//【out】结果, 1成功，2错误
+	optional uint32 buff_id				= 5;		//【in】鼓舞buff id
+}
+
+// 关卡、任务解锁系统功能
+message pmsg_unlock_function
+{
+	required uint32 triger				= 1;		// 1 : task, 2 : 关卡
+	repeated uint32 unlock_function		= 2;		// 解锁功能
+}
+
+// 解锁vip功能
+message pmsg_unlock_vip_function
+{
+	required uint32 vip_fun_id			= 1;
+	optional uint32	unlock_success		= 2;	// 解锁是否成功，1：成功，2：失败，重复解锁，3：解锁失败
+}
+
+// 查询vip功能是否已经解锁
+message pmsg_query_unlock_vip_function
+{
+	required uint32 vip_fun_id			= 1;
+	optional uint32 is_unlock			= 2;	// 0 : 未解锁，1：已经解锁
+}
+
+//通关enemy广播
+message nmsg_fight_enemy
+{
+	required uint32 enemy_id			= 1;
+}
+
+// 查询已经解锁功能
+message pmsg_query_unlock_system
+{
+	required uint32 system_id			= 1;
+	optional uint32 result				= 2;	// 1：未解锁，2：已经解锁
+}
+
+//更新威望
+message pmsg_update_reverence
+{
+	required uint32 value				= 1;	// 增加的威望值
+	optional uint32 source_from			= 2;	// 来源：关卡、任务等等
+}
+
+message pmsg_reduce_reverence
+{
+	required uint32 value				= 1;	// 减扣的威望值
+	optional uint32 result				= 2;	// 1：减扣成功，2：减扣失败，威望值不够
+	optional uint32 source_from			= 3;	// 来源：关卡、任务等等
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+///////     line scene notify message
+////////////////////////////////////////////////////////////////////////////////
+
+// send vip level up fro scene to line scene
+message nlmsg_vip_levleup
+{
+	required uint32 from_vip_level		= 1; 
+	required uint32 to_vip_level		= 2; 
+}
+
+message nlmsg_day_change_for_player
+{
+	required uint32	online_status		= 1;		// weeek change发生时，玩家状态，1：在线，2：刚刚上线
+}
+
+message nlmsg_week_change_for_player
+{
+	required uint32	online_status		= 1;		// weeek change发生时，玩家状态，1：在线，2：刚刚上线
+}
+
+message nlmsg_player_upgrade_level
+{
+	required uint32 curr_level			= 1;
+	required uint32 pre_level			= 2;
+}
+
+// 解锁玩家城镇
+message nlmsg_unlock_town
+{
+	required uint32 map_id				= 1;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+///////     line scene request message
+////////////////////////////////////////////////////////////////////////////////
+
+// 减扣玩家金钱
+message plmsg_line_reduce_gold
+{
+	optional int32	money			= 1;
+	optional int32 	coin			= 2;
+	optional int32 	seniority		= 3;	// 阅历
+	optional uint32	prestige 		= 4;	// 声望
+	optional uint32	reverence 		= 5;	// 威望
+	optional int32  notify_opcode	= 6;	// 处理完玩家信息，通知到line scene的opcode
+	optional uint32 source_from		= 7;
+	optional uint32 function_id		= 8;	// 减扣来源，主要用于元宝减扣统计，来源于goldblessme.xml
+	optional uint64 parameter		= 9;
+	optional int32 	result			= 10;	// 1 玩家在线，处理中, 2 玩家不在线，扣除成功，3 玩家不在线，元宝不够
+											// 4 返回通知时，异步扣除成功，5 返回通知时，异步扣除失败，元宝不足
+}
+
+// LS发放玩家奖励，发放一定成功，如果玩家不在线，则会缓存玩家奖励，当玩家再次上线，会下发该奖励
+message plmsg_line_update_reward
+{
+	optional int32	money			= 1;
+	optional int32 	coin			= 2;
+	optional int32 	seniority		= 3;	// 阅历
+	optional uint32	prestige 		= 4;	// 声望
+	optional uint32	reverence 		= 5;	// 威望
+	optional uint32 energy			= 6;	// 体力
+	optional int32  notify_opcode	= 7;	// 处理完玩家信息，通知到line scene的opcode，该消息吗不在有效
+	optional int32 	result			= 8;	// 1：成功，2：失败，guid不存在
+	optional uint32 source_from		= 9;	// 来源：关卡、任务等等
+}
+
+// 组队战斗请求
+message plmsg_team_vs_enemy
+{
+	required uint32 enemy_id	= 1;	//[in]怪物id
+	repeated uint32 player_hp	= 2;	//[in][out]玩家血量,固定长度9
+	repeated uint32 enemy_hp	= 3;	//[in][out]怪物血量，长度是怪物波数的9倍
+	optional int32	result		= 4;	//[out]战斗结果  Success = 1, Failed = 2,  DOGFALL = 3
+	repeated uint64 player_notify	= 5;	//[in]战斗包需要通知的玩家guid
+	optional uint32 player_index	= 6;	//多人副本玩家战斗顺序
+	optional uint32 enemy_index		= 7;	//多人副本怪物顺序
+	optional uint32 battle_round	= 8;	//[out]战斗回合数		
+}
+
+// 请求好友列表
+message plmsg_get_friend
+{
+	repeated uint64 guid		= 1;	// 好友guid
+}
+
+// 检查是否为敌人
+message plmsg_check_enemy
+{
+	repeated uint64 guid		= 1;	// 查询guid
+	repeated uint32 result		= 2;	// 1：不是敌人，2：是敌人
+}
+
+// 请求LS物品拾取，默认部分拾取，放不下背包的物品则丢弃
+message plmsg_pick_up
+{
+	repeated uint32 item_id			= 1;
+	repeated uint32 item_num		= 2;
+	optional uint32 source_from		= 3;	// 来源
+}
+
+// 查询成就是否解锁
+message pmsg_query_achieve_unlock
+{
+	required uint32 achieve_id	= 1;  // 成就ID
+	optional uint32 result		= 2;  // 1 解锁  2 未解锁
+}
+
+//查询伙伴是否已经解锁
+message pmsg_query_partner_unlock
+{
+	required uint32	hire_id		= 1; //【输入参数】伙伴招募id
+	optional bool	is_unlock	= 2; //【输出参数】true:(已招募或者可招募)，false：没有解锁
+}
+//查询功能模块是否解锁
+message pmsg_query_system_unlock
+{
+	required uint32	system_id	= 1; //【输入参数】功能模块对应的id
+	optional uint32	unlock		= 2; //【输出参数】1:已解锁，0：没有解锁
+	optional uint32 unlock_level		= 3;	// 解锁等级，0:代表不是等级解锁
+}
+//查询伙伴培养值
+message pmsg_query_role_educate
+{
+	required uint64	role_guid	= 1; //【输入参数】伙伴角色guid
+	optional uint32	edu_str		= 2; //【输出参数】培养外功值
+	optional uint32	edu_agi		= 3; //【输出参数】培养内功值
+	optional uint32	edu_int		= 4; //【输出参数】培养奇术值
+}
+//向聊天目标发送聊天内容
+message pmsg_chat_to_others
+{
+	required uint32 chat_type		= 1;	//【输入参数】聊天类型
+	repeated uint64 target_guid		= 2;	//【输入参数】聊天发送对象guid
+	optional string chat_content	= 3;	//【输入参数】聊天内容
+	optional uint32 yellow_vip_level = 4;	//【输入参数】qq黄钻等级
+	optional uint32 is_yellow_vip		= 5;		//【输入参数】 是否为黄钻用户, 0 : 不是, 1:是
+	optional uint32 is_yellow_year_vip	= 6;		//【输入参数】 是否为年费黄钻用户, 0 : 不是, 1:是
+	optional uint32 is_yellow_high_vip	= 7;		//【输入参数】 是否为豪华版黄钻用户 0: 不是, 1:是	
+}
+//查询内容是否含禁词
+message pmsg_check_content
+{
+	required uint32	type	= 1;	//【输入参数】待查询内容类型，1：起名，2：聊天
+	optional string content	= 2;	//【输入参数】【输出参数】待查询内容，查询后内容中的禁词会被*替换
+	optional uint32 result	= 3;	//【输出参数】查询结果，1:含有禁词，0：无
+}
+//招募伙伴
+message pmsg_partner_invite
+{
+	required uint32 hire_id = 1;	//[in]
+	optional uint32 result	= 2;	//[out]
+									//0.招募成功
+									//1.招募已满
+									//2.配置表错误
+									//3.已招募
+									//4.声望不够
+									//5.等级不够
+									//6.伙伴没有解锁（配置成了道具解锁伙伴）
+									//7.阅历或者铜钱不够
+									//8.未知错误
+
+}
+
+// 增加vip经验
+message pmsg_update_vipexp
+{
+	required uint32 increase_vip_exp		= 1;
+	required uint32 source_from				= 2;
+}
+
+message plmsg_guild_battling
+{
+	optional uint64 guild_guid		= 1;	// 帮会guid
+	optional uint32 is_battling		= 2;	// 是否在战斗中，0 否 1 是 
+}
+
+// 添加机缘点
+message pmsg_add_luckpoints
+{
+	required uint32 luckpoints		= 1;	// 机缘点数（输入参数）
+	optional uint32 source_from		= 2;	// 来源：关卡、任务等等（输入参数）
+	optional uint32 result			= 3;	// 1:成功，2：失败（输出参数）
+}
+
+// 查询帮会成员
+message plmsg_get_guild_member
+{
+	required uint64 player			= 1;	// 查询对象（输入参数）
+	repeated uint64 guild_member	= 2;	// 帮会成员列表（输出参数）
+	repeated uint32 member_job		= 3;	// 帮会成员职位（输出参数）1 帮主；2 副帮主；3 普通成员
+}
+//pvp战前广播
+message nmsg_pvp_fight_start
+{
+	repeated uint64 role_guid	=	1;	// 上阵人员角色guid
+}
+//pvp战后广播
+message nmsg_pvp_fight_end
+{
+	repeated uint64 role_guid	=	1; // 上阵人员角色guid
+}
+//查询指定角色绑定的伴侣信息，如果角色没有绑定伴侣则不填
+message pmsg_wife_info_role
+{	
+	message WifeInfo
+	{
+		optional uint32 wife_hp				= 1; //[out] 伴侣血量
+		optional uint32 wife_role_id		= 2; //[out] 伴侣role id
+		optional uint32 wife_skill_id		= 3; //[out] 伴侣skill
+		optional uint32 wife_damage_reduce	= 4; //[out] 伴侣每回合挡血万分比
+		optional uint32 wife_level			= 5; //[out] 伴侣等级
+		optional string wife_name			= 6; //[out] 伴侣名字
+	}
+	repeated uint64 role_guid		= 1; //[in] 角色guid
+	repeated WifeInfo wife_info		= 2; //[out] 侠侣信息
+}
+
+// 仗剑江湖到达N层通知
+message nmsg_tower_floor
+{
+	optional uint32 value		= 1;
+}
+
+// 充值通知
+message nmsg_player_charge
+{
+	required uint32 charge_value			= 1;	// 当前充值金额
+	required uint32 total_charge_value		= 2;	// 总充值金额，包括当前充值金额
+	optional uint32 charge_date				= 3;	// 充值天数，充值时离开服天数
+}
+
+// 元宝消费通知
+message nmsg_coin_cost
+{
+	required uint32 cost_value				= 1;	// 本次消费元宝数量
+	required uint32 total_cost_value		= 2;	// 累计消费元宝数量，包含当前消费元宝数量
+}
+
+// 战力更新通知
+message nmsg_update_fight_power
+{
+	required uint32 power_value				= 1;	// 当前战力
+	optional uint32 partner_max_power		= 2;	// 最高伙伴战力
+}
+
+// 战力查询
+message pmsg_query_fight_power
+{
+	optional uint32 power_value				= 1;	// 当前战力
+	optional uint32 partner_max_power		= 2;	// 最高伙伴战力
+}
+
+// 朝拜通知
+message nmsg_make_worship
+{
+	required uint32 id						= 1;	// 朝拜ID
+	required uint32 number					= 2;	// 本次朝拜次数
+}
+
+message pmsg_mail_send
+{
+	repeated uint64 receiver_guid 			= 1; // [in] 收件人guid
+	optional string sender					= 2; // [in] 发件人名字
+	optional string title					= 3; // [in] 邮件标题
+	optional string content					= 4; // [in] 邮件正文
+	repeated uint32 item_ids				= 5; // [in] 附件id
+	repeated uint32 item_nums				= 6; // [in] 附件个数
+	optional uint32 mail_type 				= 7; // [in] 邮件类型:1，系统邮件，2，帮派邮件
+	optional uint32 pay_type				= 8; // [in] 需要支付的货币类型，1：铜钱；2：元宝
+	optional uint32 pay_value				= 9; // [in] 需要支付的货币值	
+	optional uint32 src_from				= 10;// [in] 来源
+	repeated uint64 mail_guid				= 11;// [in] 邮件guid, 个数与receiver_guid个数必须相同.
+}
+//主线任务和支线任务完成通告
+message nmsg_task_complete
+{
+	optional uint32 task_id		=	1;	//完成的任务id
+}
+
+// 功能模块解锁通知
+message nmsg_system_unlock
+{
+	required uint32 system_id				= 1;	// 策划定义的功能模块ID
+}
+
+
+// 解散队列消息通知
+message plmsg_arrest_notify
+{	
+	required  uint32 type			= 1;
+	repeated  uint64 paramter1		= 2;
+	repeated  string paramter2		= 3;
+	repeated  uint64 role1			= 4;
+	repeated  uint64 role2			= 5;
+}
+
+// 功能模块解锁通知，Line Scene通知
+message nlmsg_system_unlock
+{
+	required uint32 system_id				= 1;	// 策划定义的功能模块ID
+}
+
+// 传承，选择角色，返回角色相关信息
+message nmsg_inherit_select
+{	
+	message SubToken
+	{	
+		required uint32 		id				= 1;	// 1~6
+		required uint32			stage			= 2;	// 阶
+		required uint32			level			= 3;	// 等级
+		optional uint32			exp				= 4;	// 经验
+		optional uint32			color			= 5;	// 品质, 0: 未解锁,  1~6, 品质id
+		optional uint32			stage_state		= 6;	// 不可升阶(0: 玩家等级不足, 1:经验不足, 2:最大值), 3: 可升阶
+	}	
+	
+	message BaseAttr
+	{
+		required uint32 str_attr  			= 1;
+		required uint32 agi_attr            = 2;
+		required uint32 int_attr           	= 3;
+	}
+
+	message RoleInfo
+	{
+		required BaseAttr edu_attr			= 1;
+		required BaseAttr pellet_attr       = 2;
+		optional uint32 training_level      = 3;
+		repeated SubToken	yin_shl			= 4;
+		repeated SubToken	yang_shl		= 5;
+		repeated uint32 talentid			= 6; // 当前获得的资质id.
+	}
+
+	optional uint64 from_role_guid                  = 1;  //[in]
+	optional uint64 to_role_guid                    = 2;  //[in]
+	optional RoleInfo from_role_info				= 3;  //[out]
+	optional RoleInfo to_role_info                  = 4;  //[out]
+}
+
+// 执行传承操作
+message nmsg_inherit_excute
+{
+	required uint64 from_role_guid					= 1;  //[in]
+	required uint64 to_role_guid					= 2;  //[in]
+}
+
+// 检查伙伴身上武器是否满足传承要求
+message pmsg_inherit_check_equipment
+{
+	required uint64 from_role_guid					= 1;  //[in]
+	required uint64 to_role_guid					= 2;  //[in]
+	optional uint32 result							= 3;  //[out] 1：可以传承，2：不能传承，需要角色脱下武器
+}
+
+// 添加迷宫探索点
+message pmsg_maze_add_explorepoint
+{
+	required uint32 explore_points		= 1;	// 探索点数（输入参数）
+	optional uint32 source_from		= 2;	// 来源：关卡、任务等等（输入参数）
+	optional uint32 result			= 3;	// 1:成功，2：失败（输出参数）
+}
+
+// 开服启动时，通知替身娃娃模块，有哪些玩家激活的了替身娃娃功能
+message nlmsg_active_amah_player_guid
+{
+	repeated uint64 player_guid			= 1;
+}
+
+
+// 查询已经学会的所有轻功
+message pmsg_dodge_info
+{
+	repeated uint32 group_id				= 1; // 轻功group.
+	repeated uint32 level					= 2; // 轻功等级 
+}
+
+message nmsg_dodge_info
+{
+	optional uint32 group_id				= 1; // 轻功group.
+	optional uint32 level					= 2; // 轻功等级 
+}
+
+// 失败引导数据计算
+message nmsg_fight_failed_guide
+{
+	repeated uint64 role_guid				= 1;	// 上阵伙伴guid，第一个是主角，后面的为招募伙伴
+	optional uint32 equipment_weight		= 2;	// 装备权重，如果计算出来是30%，则这个值填30，包含主角
+	optional uint32 edu_limit_amount		= 3;	// 培养上限之和，包含主角
+	optional uint32 pellet_limit_amount		= 4;	// 丹药上限之和，包含主角
+	optional uint32 curr_base_attr_amount	= 5;	// 当前三围总和，包含主角
+	optional uint32 law_weight				= 6;	// 心法权重
+	optional uint32 chakra_weight			= 7;	// 脉轮
+	optional uint32 dodge_weight			= 8;	// 轻功
+	optional uint32 quality_weight			= 9;	// 品质，不包含主角
+	optional uint32 training_weight			= 10;	// 伙伴强化，不包含主角
+	optional uint32 level_weight			= 11;	// 等级，不包含主角
+}
+
+// 套装活动查询接口
+message pmsg_equipment_group
+{
+	repeated uint32 part_list				= 1;	//[out]装备部位：1头冠  2衣服 3鞋子 4护符 5武器 6戒指
+	repeated uint32 group_list				= 2;	//[out]装备部位对应的数值
+	optional uint32 max_group				= 3;	//[out]最大套装group值
+}
+
+// 广播套装信息
+message nmsg_equipment_group
+{
+	repeated uint32 part_list				= 1;	//装备部位：1头冠  2衣服 3鞋子 4护符 5武器 6戒指
+	repeated uint32 group_list				= 2;	//装备部位对应的数值
+	optional uint32 max_group				= 3;	//最大套装group值
+}
+
+// 查询当前伙伴
+message pmsg_recruit_allrole
+{
+	repeated uint32 role 					= 1; // 所有的伙伴
+	repeated uint32 clr 					= 2; // 对应的颜色
+}
+
+//message nmsg_recruit_allrole;			 // 使用Pmsg的消息体
+
+// 消耗机缘点
+message pmsg_comsume_luck_points
+{
+	required uint32 item_id					= 1;	//[in]
+	required uint32 item_num				= 2;	//[in] 
+	optional uint32 result					= 3;	//[out] 1:成功，2：失败
+}
+
+// 广播帮会战第一名成员信息
+message nlmsg_frist_guild_info
+{
+	optional uint64 guid 		= 1;
+	optional string name 		= 2;
+	optional uint32 level		= 3;
+	repeated uint64 player_guid = 4;
+}
+
+//  查询帮会列表
+message pmsg_ranking_query_guild
+{
+	message cell
+	{
+		required uint64 guid			= 1; // 帮会guid
+		required uint32	level			= 2; // 帮会等级
+		required string leader_name		= 3; // 帮主姓名
+		required uint64 leader_guid		= 4; // 帮主guid
+		required string name			= 5; // 帮会名称
+	}
+	
+	required uint32  num		= 1;	// in, 前 X 名
+	repeated cell	 list		= 2;	// 帮会列表
+}
+
+// 查询竞技场列表
+message pmsg_ranking_query_pvp
+{
+	required uint32 num		= 1; // in ,  前 x 位
+	repeated uint64	guids	= 2; // out, 玩家 guid 组
+}
+
+//竞技场前十名通告
+message nlmsg_arena_top
+{
+	repeated uint64 player_guid = 1;	//竞技场前十名玩家guid
+}
+
+// 查询切磋列表
+message pmsg_ranking_query_1vsn
+{
+	message cell
+	{
+		required uint64  player_guid	= 1; // 玩家guid
+		required uint32	 win_num		= 2; // 胜利次数
+		required string  player_name	= 3; // 玩家姓名
+		optional string	 guild_name		= 4; // 帮会名
+	}
+	
+	required uint32  type		= 1; // in,  类别  1v1 = 14, 1v2 = 15, 1v3=16; 1v4=17; 1v5=18
+	required uint32  num		= 2; // in , 需要的数量
+	
+	repeated cell	list		= 3; // out, 切磋列表
+}
+
+// 收到鲜花通知
+message nlmsg_recive_flower
+{
+	required uint32 revc_flower_id			= 1;
+	required uint32 revc_flower_num			= 2;
+	required uint32 revc_flower_total_num	= 3;
+}
+
+// 每周鲜花榜结算时，排名通知
+message nlmsg_weekly_flower_rank
+{
+	repeated uint64 player_guid				= 1;	// 按照鲜花榜顺序依次填充玩家guid
+}
+
+// 大乱斗活动,战斗结果..
+message nlmsg_battleground_result_notify
+{
+	message cell
+	{
+		required uint64 player_guid	= 1;
+		optional uint32 win_num		= 2; // 获胜次数
+		optional  uint32 hot_streak	= 3; // 连胜数
+	}
+	
+	repeated cell	list		= 1;
+}
+
+// 仗剑江湖 推塔通知
+message nlmsg_tower_result_notify
+{
+	required uint64 player_guid		= 1;
+	required uint32 floor			= 2; // 打到的层数
+}
+
+// 切磋 line通知scene获取奖励
+message ltosmsg_exchage_reward
+{
+	optional uint32 bouns_id		= 1;	// bouns id
+}
+
+// 获取英雄榜排名
+message plmsg_get_hero_rank_info
+{
+	message RankInfo
+	{
+		required uint64 player		= 1;
+		required uint64 hero_point	= 2;
+	}
+	
+	repeated RankInfo rank_info		= 1;	// 按照名次排序
+}
+
+// 减扣指定guid物品数量
+message pmsg_deduct_item_by_guid
+{
+	required uint64 item_guid		= 1;
+	required uint32 deduct_number	= 2;
+	optional uint32 result			= 3;	// 1: 成功，2：失败，数量不够，3：物品guid不存在
+	optional uint32 source_from 	= 4;
+}
+
+//减扣积分，PK值
+message pmsg_reduce_jifen
+{
+	optional uint32 jifen_reduce	= 1;	//减扣的积分
+	optional uint32 source_from		= 2;	//减扣来源
+	optional uint32 result			= 3;	//结果,1:成功,2:失败
+}
+//
+message pmsg_add_jifen
+{
+	optional uint32 jifen_add		= 1;	//添加积分
+	optional uint32 source_from		= 2;	//来源
+	optional bool	notify_client	= 3;	//是否通知客户端，true：通知，false：不通知
+}
+// 查询玩家充值数
+message pmsg_query_player_charge
+{
+	optional uint32 charge_coin		= 1;	// [out]返回玩家充值元宝数量
+}
+
+// 排行榜查询
+message plmsg_query_ranking
+{
+	required uint32 type	= 1;	// 2: 等级, 3:战力	
+	repeated uint64 guids	= 2;
+	optional uint32 result	= 3; 	// 1: 成功, 2: 失败
+}
+
+// 查询当前服务器vip玩家数量
+message plmsg_query_vip_number
+{
+	message VipNumber
+	{
+		optional uint32 vip_level		= 1;	// vip等级，从1开始，vip2、vip3等的人数是包含在vip1里的，以此类推
+		optional uint32 vip_number		= 2;	// vip等级对应的玩家数量，数量有可能为0
+	}
+	repeated VipNumber vip_number		= 1;	// vip填充，长度有可能为0
+}
+
+// 广播伙伴装备id变更（包括:幻化，装卸装备）
+message nmsg_equipment_id_change
+{
+	required uint64 role_guid		= 1;
+	required uint32 old_item_id		= 2;
+	required uint32 new_item_id		= 3;
+}
+
+// 消费 圣火令
+message pmsg_shl_pay_frag
+{
+	required uint32 type	= 1;  // 类型 1:阴, 2:阳
+	required uint32 num		= 2;
+	optional uint32 result	= 3;  // 1:成功, 2:失败	
+	optional uint32 from	= 4;
+}
+
+// 增加 圣火令
+message pmsg_shl_get_frag
+{
+	required uint32 type		= 1;	// 同上
+	required uint32 num			= 2;
+	optional uint32 result		= 3;	// 同上
+	optional uint32 from		= 4;
+}
+
+// 增加符文之石
+message pmsg_add_runes_stone
+{
+	required uint32 stone_num		= 1;	// [in]
+	optional uint32 source_from		= 2;	//减扣来源
+}
+
+// 增加符文之火
+message pmsg_add_runes_fire
+{
+	required uint32 fire_num		= 1;	// [in]
+	optional uint32 source_from		= 2;	//减扣来源
+}
+
+// 明教试炼关卡首次胜利通知
+message nmsg_trial_first_win
+{
+	optional uint32 stageid		= 1;	// 明教试炼关卡首杀通知
+}
+
+message nmsg_use_item_notify
+{
+	optional uint32 item_type		= 1; // [in]	item type         
+	optional uint32 item_subtype	= 2; // [in]	item subtype   
+	optional uint32 item_pub1		= 3; // [in]	item pub1
+	optional uint32 result			= 4; // [out]	0 未处理 1 成功 2 失败
+}
+
+// 镖车押送通知
+message nmsg_biaoche_start
+{
+	optional uint32 biaoche_type				= 1; // 镖车类型
+}
+
+// 强化通知
+// message nmsg_strength_one_time							// 强化一次
+
+// 培养通知
+message nmsg_education_one_time
+{
+	optional uint32 edu_type					= 1; // 培养类型
+}
+
+message nlmsg_yinxiong_top
+{
+	optional uint32 utype						= 1; // 1:本服,2:跨服
+	repeated uint64 top_player					= 2; // 前3名
+}
+
+// 武林大会本服、跨服赛绝世榜冠军
+message atol_qualifybattle_champion
+{
+	optional uint32 utype						= 1; // 1:本服,2:跨服
+	optional uint64 champion_guid				= 2; 
+}
+
+// 缘分点的添加和修改：
+message pmsg_wife_moodify_fatepoint 
+{
+	optional uint32 src_from					= 1;
+	optional int32 point						= 2; // 正值增加，负值减少
+	optional uint32 result						= 3; // 1：成功，2：扣减失败
+}
+
+// 目标查询，同一个消息定义不同的消息码
+message pmsg_target_query
+{
+	optional uint32 oa							= 1; // 参数1
+	optional uint32 ob							= 2; // 参数2
+	optional uint32 oc							= 3; // 参数3
+	optional uint32 result						= 4; // 0：未处理，1：OK，2：不ok
+	optional uint32 ra							= 5; // 结果1
+	optional uint32 rb							= 6; // 结果2
+	optional uint32 rc							= 7; // 结果3
+}
+
+// 添加伙伴卡牌
+message pmsg_add_hire_card_id
+{
+	required uint32 hire_id			= 1;	// 伙伴（输入参数）
+	optional uint32 source_from		= 2;	// 来源：关卡、任务等等（输入参数）
+	optional uint32 result			= 3;	// 1:成功，2：失败（输出参数）
+}
+
+// 查询酒馆伙伴是否已招到过
+message pmsg_query_tavern_hire_card_id
+{
+	required uint32 hire_id			= 1;	// 伙伴（输入参数）
+	optional uint32 result			= 2;	// 1: 已招，2：未招（输出参数）
+}
+
+// 查询指定类型轻功是否解锁
+//PMSG_DODGE_UNLOCK_QUERY
+message pmsg_dodge_unlock_query
+{
+	optional uint32 dodge_type	= 1;	// 2:中级轻功,3:高级轻功
+	optional uint32 result		= 2;	// 1:已解锁,2:未解锁
+}
+// 解锁指定类型轻功
+//PMSG_DODGE_UNLOCK_EXEC
+message pmsg_dodge_unlock_exec
+{
+	optional uint32 dodge_type	= 1;	// 2:中级轻功,3:高级轻功
+	optional uint32 result		= 2;	// 1:解锁成功,2:解锁失败
+}
+
+// 检测是否拥有侠侣
+message pmsg_wife_has_wife
+{
+	optional uint32 wife_id		= 1;
+	optional uint32 result		= 2; // 返回：1:有，2：没有;
+}
+
+// 添加一个侠侣
+message pmsg_wife_get_wife
+{
+	optional uint32 wife_id		= 1;
+	optional uint32 result		= 2; // 返回：1：ok，2:不ok
+}
+
+// 查询仗剑江湖玩家的历史最高层数
+message pmsg_tower_history_floor
+{
+	optional uint32 floor	= 1;  // >=1, 最高层数,  0 : 错误
+}
+
+// 消费 武魂碎片
+message pmsg_soulpve_pay_frag
+{
+	required uint32 num		= 1;
+	optional uint32 result	= 2;  // 1:成功, 2:失败	
+	optional uint32 from	= 3;
+}
+
+// 增加 武魂碎片
+message pmsg_soulpve_get_frag
+{
+	required uint32 num			= 1;
+	optional uint32 result		= 2;	// 同上
+	optional uint32 from		= 3;
+}
+
+// 物品解锁指定心法
+message pmsg_item_unlock_law
+{
+	optional uint32 law_id	= 1;	//需要解锁的心法id
+	optional uint32 result	= 2;	//1：解锁成功，2：之前已解锁
+}
+// 接主线、支线任务广播
+message nmsg_task_accept
+{
+	optional uint32 task_id	= 1;	//接受任务id
+}
+// 查询任务是否接收或者完成过
+message pmsg_query_task_history
+{
+	optional uint32 task_id			= 1;	//任务id
+	optional uint32 query_type		= 2;	//查询类型，1：查询任务是否完成，2：查询任务是否接收过
+	optional uint32 result			= 3;	//1:完成或接收过，2：否
+}
+
+// 双击使用马
+message pmsg_horse_use
+{
+	required uint32 horse_id		= 1;	// 马的 id
+	optional  uint32 result			= 2;	//  1: 成功, 2:失败
+}
+
+message nmsg_qq_vip_info
+{
+	optional uint32 pre_is_yellow_vip		= 1;		// 是否为黄钻用户, 0 : 不是, 1:是
+	optional uint32 pre_is_yelow_year_vip	= 2;		// 是否为年费黄钻用户, 0 : 不是, 1:是
+	optional uint32 pre_yellow_vip_level	= 3;		// 黄钻等级
+	optional uint32 pre_is_yellow_high_vip	= 4;		// 是否为豪华版黄钻用户 0: 不是, 1:是
+}
+

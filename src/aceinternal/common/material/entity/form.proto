@@ -1,0 +1,25 @@
+package typed.entity;
+
+//阵型
+message Form
+{
+	message FormInfo
+	{
+		required uint32 id				= 1;
+		required uint32 group			= 2;
+		required uint32 level			= 3;
+		repeated uint64	role_location	= 4;  // 0 : 不可用  1 : 可用无角色
+	}
+	
+	required uint64		guid	 			= 1; 
+	required uint64		player	 			= 2; 
+	optional uint32 	curr_form			= 3;		// 当前启用阵型ID
+	repeated FormInfo	role_form_location	= 4;		// 角色在各个战斗阵型中的位置
+	
+	// for bag and storehouse
+	optional uint32 	free_storehouse_status	= 5;		// 免费赠送仓库状态，1：未赠送，2：已经赠送，3：赠送完毕，4：已经全部解锁，不需要赠送
+	optional uint32 	free_storehouse_num		= 6;		// 免费赠送仓库格位，当前剩下的已经赠送还未激活的仓库格位数
+	optional uint32 	free_bag_stauts			= 7;		// 免费赠送背包格位状态，1：赠送中，2：已经赠送完毕
+	optional uint64 	start_count_time		= 8;		// 开始累积时间，单位：秒
+	optional uint64 	total_count_time		= 9;		// 到开始累积时间点start_count_time，已经积累的在线时间，单位：秒
+}

@@ -1,0 +1,624 @@
+package typed.protocol;
+
+////////////////////////////////////////////////////////////////////////////////////
+// for web service validation
+////////////////////////////////////////////////////////////////////////////////////
+message qmsg_validation
+{
+	required string account_id			= 1;
+	required string security_key		= 2;
+}
+
+message gmsg_validation
+{
+	required string account_id			= 1;
+	required string result				= 2;	// 1:成功，2：失败
+}
+
+// 查询在线平台信息
+// message qmsg_query_online_platform 无消息体
+
+message gmsg_query_online_platform
+{
+	message PlatformInfo
+	{
+		required string platform		= 1;
+		required string line_id			= 2;
+	}
+	
+	repeated PlatformInfo info			= 1;
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+// for query
+////////////////////////////////////////////////////////////////////////////////////
+message qmsg_query_data
+{
+	required string account_id			= 1;
+	required string server_id			= 2;
+	required string platform			= 3;
+	required string query_type			= 4;
+	required uint32 request_index		= 5;
+	optional string param_1				= 6;
+	optional string param_2				= 7;
+	optional string param_3				= 8;
+	optional string param_4				= 9;
+	optional string param_5				= 10;
+	optional string param_6				= 11;
+	optional string param_7				= 12;
+	optional string param_8				= 13;
+	optional string param_9				= 14;
+	optional string param_10			= 15;
+}
+
+message gmsg_query_error
+{
+	required string error_code			= 1;	// 1: 平台不存在，2：server不存在，3：server不在线, 4:非法请求, 5:json数据格式非法 6:参数非法, 7:请求index重复
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+// for validate querysys query center
+////////////////////////////////////////////////////////////////////////////////////
+message gmsg_querysys_register
+{
+	required string server_id			= 1;
+	required string platform			= 2;
+	required string security_key		= 3;
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+// for game server
+////////////////////////////////////////////////////////////////////////////////////
+// 公告
+message qmsg_publish_announcement
+{
+	required string anno_text			= 1;
+	optional uint64 start_time			= 2;
+	optional uint32 publish_number		= 3;
+	optional uint32 interval			= 4;
+	optional uint32 request_index		= 5;
+}
+
+// message gmsg_publish_announcement 无消息体，表示消息已经接收
+
+// 删除公告
+message qmsg_remove_publish_announcement
+{
+	repeated uint32 request_index		= 1;
+}
+
+message gmsg_remove_publish_announcement
+{
+	message result_info
+	{
+		optional uint32 request_index		= 1;
+		optional uint32 result				= 2;	// 1:成功，2：失败，没有找到通告，或者通告已经结束
+	}
+	
+	repeated result_info info				= 1;
+}
+
+// 查询公告
+// message qmsg_query_publish_announcement 无消息体
+
+message gmsg_query_publish_announcement
+{
+	message query_anno_info
+	{
+		optional string anno_text			= 1;
+		optional uint64 start_time			= 2;
+		optional uint32 publish_number		= 3;
+		optional uint32 interval			= 4;
+		optional uint32 request_index		= 5;
+		optional uint32 curr_index			= 6; 	// 已经进行到第几次，0为还未开始
+		optional uint64 next_start_time		= 7;	// 下一次开始时间
+	}
+	
+	repeated query_anno_info anno_info		= 1;
+}
+
+// 禁言
+message qmsg_forbid_speaking
+{
+	repeated string player_name			= 1;
+	repeated uint64 end_time			= 2;	// 禁言截止时间点，单位：秒，如果填0，为永久禁言
+}
+
+message gmsg_forbid_speaking
+{
+	message result_info
+	{
+		optional string player_name			= 1;
+		optional uint32 result				= 2;	// 1：成功，2：玩家不存在
+	}
+	
+	repeated result_info info				= 1;
+}
+
+// 取消禁言
+message qmsg_allow_speaking
+{
+	repeated string player_name			= 1;
+}
+
+// 
+message gmsg_allow_speaking
+{
+	message result_info
+	{
+		optional string player_name			= 1;
+		optional uint32 result				= 2;	// 1：成功，2：失败，玩家不存在，3：失败，该玩家没有被禁言
+	}
+	
+	repeated result_info info				= 1;
+}
+
+// 禁言玩家查询
+// message qmsg_query_speaking 无消息体
+message gmsg_query_speaking
+{
+	message result_info
+	{
+		optional string player_name		= 1;
+		optional uint64	end_time		= 2;
+	}
+	
+	repeated result_info info			= 1;
+}
+
+
+// 踢人
+message qmsg_kick_offline
+{
+	repeated string player_name			= 1;
+}
+
+// 
+message gmsg_kick_offline
+{
+	message result_info
+	{
+		optional string player_name			= 1;
+		optional uint32 result				= 2;	// 1：成功，2：失败，玩家不存在，3：玩家不在线
+	}
+	
+	repeated result_info info				= 1;
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+// for gate
+////////////////////////////////////////////////////////////////////////////////////
+//允许ip，设置为独立ip，不能设置ip段，
+message qmsg_allow_ip
+{
+	repeated string ip_addr				= 1;
+}
+
+// message gmsg_allow_ip 无消息体
+
+// 删除允许ip
+message qmsg_allow_ip_remove
+{
+	repeated string ip_addr				= 1;
+}
+
+// message gmsg_allow_ip_remove
+
+//禁止ip，设置为独立ip，允许通配符*，不允许设置ip段，
+message qmsg_forbid_ip
+{
+	repeated string ip_addr				= 1;
+	repeated uint64 end_time			= 2;	// 禁止到时间点，单位：秒，封停时间，为0永久封停
+}
+
+// message gmsg_forbid_ip 无消息体
+
+//删除禁止ip，设置为独立ip，允许通配符*，不允许设置ip段，
+message qmsg_forbid_ip_remove
+{
+	repeated string ip_addr				= 1;
+}
+
+// message gmsg_forbid_ip_remove
+
+//查询ip设置
+//message qmsg_query_ip_set 无消息体
+
+message gmsg_query_ip_set
+{
+	message result_info
+	{
+		optional string ip_addr				= 1;
+		optional uint32 ip_type				= 2;	// 1:禁止ip，2：允许ip
+		optional uint64 forbid_ip_end_time	= 3;
+	}
+	
+	repeated result_info info				= 1;
+}
+
+// 冻结账号
+message qmsg_forbid_account
+{
+	message account_info
+	{
+		required string account_id			= 1;
+		optional uint64 end_time			= 2;	//冻结截止时间点，为0永久冻结
+	}
+	
+	repeated account_info info				= 1;
+}
+
+// message gmsg_forbid_account 无消息体
+
+// 移除冻结账号
+message qmsg_forbid_account_remove
+{
+	repeated string account_id			= 1;
+}
+
+message gmsg_forbid_account_remove
+{
+	message result_info
+	{
+		required string account_id			= 1;
+		optional uint32 result				= 2;	// 1：成功，2：失败，该玩家账号未被冻结
+	}
+	repeated result_info info 				= 1;
+}
+
+// 查询冻结账号
+// message qmsg_forbid_account_query 无消息体
+
+message gmsg_forbid_account_query
+{
+	message result_info
+	{
+		optional uint64 end_time			= 2;	// 冻结账号结束时间，为0则永久冻结
+		optional string account_id			= 1;
+	}
+	
+	repeated result_info info				= 1;
+}
+
+
+// 日志 查询
+message qmsg_query_data_record
+{
+	required string account_id		= 1;	
+	repeated uint32 module_id		= 2;
+	required string start_time		= 3;
+	required string end_time		= 4;
+	optional uint32 limit_start		= 5;
+	optional uint32 limit_end		= 6;
+}
+
+
+message gmsg_query_data_record
+{
+	message row
+	{
+		optional uint32 level			= 1;
+		optional string record_time		= 2;
+		optional uint32 source_from		= 3;
+		optional int64 param1			= 4;
+		optional int64 param2			= 5;
+		optional int64 param3			= 6;
+		optional int64 param4			= 7;
+		optional int64 param5			= 8;
+		optional int64 param6			= 9;
+		optional int64 param7			= 10;
+		optional int64 param8			= 11;
+		optional int64 param9			= 12;
+		optional int64 param10			= 13;
+	}
+	
+	message data_record
+	{
+		optional uint32 module_id		= 1;
+		repeated row records			= 2;
+	}
+	
+	repeated  data_record data_records		= 1;
+	optional string name					= 2;
+}
+
+
+// 物品道具申请
+message qmsg_request_benefits
+{
+	required uint32  target			= 1;	// 发放目标 1:指定玩家, 2.全服玩家, 3:在线玩家  (2, 3暂不实现)
+	repeated string names			= 2;	// 发放目标为指定玩家时, 指定玩家的列表
+	repeated uint32 ids				= 3;
+	repeated uint32 nums			= 4;
+	optional uint64 time			= 5;	// 发放的时间(暂不实现)
+}
+
+
+message gmsg_request_benefits
+{
+	message result_info
+	{
+		optional string	names			= 1;
+		optional uint32 results			= 2;	// 1: 成功, 2:玩家不存在, 3: id非法 ....
+	}
+	
+	repeated result_info info			= 1;
+}
+
+// 发送系统邮件
+message qmsg_send_system_mail
+{	
+	optional uint32 receiver_type		= 1;	// 收件人类型	1: 个人, 2: 全体
+	repeated string	receivers			= 2;	// 收件人列表
+	optional string sender				= 3;	// 发件人
+	optional string tilte				= 4;	// 标题
+	optional string content				= 5;	// 内容
+	repeated uint32 attachment_ids		= 6;	// 附件ids
+	repeated uint32 attachment_nums		= 7;	// 附件id对应的数量
+	optional uint32 pay_type			= 8;	// 支付类型
+	optional uint32 pay_num				= 9;	// 支付数量
+	optional uint64 time_stamp			= 10;	// 时间
+}
+
+
+// message gmsg_send_system_mail  无消息体
+
+
+// 运营活动
+message operating_activity
+{
+	optional uint32	id					= 1;	// 活动ID
+	optional string name				= 2;	// 活动名称
+	optional uint32 level				= 3;	// 优先级,填0~9，数字越大排列越靠前
+	optional uint64 begin_time			= 4;	// 开始时间(utc)
+	optional uint32	period_begin		= 5;	// 第一周期开始时间(分钟)
+	optional uint32 period_end			= 6;	// 第一周期结束时间(分钟), 当周期类型为2时，填0表示持续到月底
+	optional uint32 period_type			= 7;	// 周期类型,  1: 每X日, 2: 每X月, 3: 无周期
+	optional uint32 period_time			= 8;	// 周期时间, 对应periodtype1,表示每隔几天. 对应periodtype2, 表示每隔几月
+	optional uint64 end_time			= 9;	// 活动截止时间, 填0表示活动不会结束
+	optional string time_desc			= 10;	// 活动时间说明
+	optional string explain_desc		= 11;	// 活动介绍说明
+	optional string reward_desc			= 12;	// 活动奖励说明
+	optional uint32 type				= 13;	// 活动类型
+												// 		1	玩家累计充值（充值满多少送XX）	value填元宝值	充值					
+												//		2	玩家累计消费（消费满多少送XX）	value填元宝值						
+												//		3	单笔充值	value填元宝值						
+												//		4	单笔消费	value填元宝值						
+												//		5	活动期间VIP到达X	value填VIP等级	活动时间只受begintime和endtime2个时间					
+												//		6	活动期间等级到达X	value填玩家等级	活动时间只受begintime和endtime2个时间					
+												//		7	活动期间战斗力到达X	value填战斗力值	活动时间只受begintime和endtime2个时间					
+												//		8	活动期间招募XX伙伴	value填伙伴ID	活动时间只受begintime和endtime2个时间					
+												//		9	仗剑江湖到达第X层	value填层数	活动时间只受begintime和endtime2个时间					
+												//		10	完成X轮环任务	value填轮数（不超过每天最大轮数）						
+												//		13	祈福	value祈福类型，1，2,3对应祈福3种,times填次数。Rewards奖励										
+					
+
+	optional uint32 look				= 14;	// 是否在活动期间内显示，根据begintime和endtime显示	1表示显示，0表示不显示。
+	optional uint32 look2				= 15;	// 是否显示进度条
+	optional uint32 num					= 16;	// 可完成次数
+												// 0，表示可无限次完成.X，表示可以完成X次。不管完成几次，任务目标和奖励不变。						
+												// 活动类型为3~4时，每次充值计num次数1次的，只有前num笔充值才会判断是否满足要求。						
+												// 其余活动该字段不起效果	
+	
+	message rewards_section
+	{
+		optional uint32 values			= 1;	// 值，对应type字段填相应内容
+		optional uint32 times			= 2;	// 次数，对应value字段
+		optional uint32 reward_ids		= 3;	// bouns，对应value字段，兼容之前版本，以0字段填充该数据
+		repeated uint32 item_ids		= 4;	// 物品id.
+		repeated uint32 item_nums		= 5;	// 物品数量
+		optional uint32 sub_type		= 6;	// 挑战活动子类型
+		optional uint32 link_btn		= 7;	// 链接按钮
+		optional string link_btn_txt	= 8;	// 链接按钮文字
+	}
+	repeated rewards_section section	= 17;
+	
+	optional uint32 reward_mode			= 18;	// 填1，本次活动结束后（即本次周期结束），如果有未领取的奖励会统一发放给玩家。
+												// 填0，活动结束后，未领取奖励清除。
+												
+	optional uint32 is_count			= 19;	// 是否显示计数，填1后显示活动计数，填0不显示。
+	optional string target				= 20;	// 活动要完成的目标提示文字，例如：当前充值金额
+	optional string picture				= 21; 	// 图片
+	optional uint32 star				= 22;	// 星级，1显示★，2显示★★，最多5星，填0不显示
+	optional uint32 link_type			= 23;	// 1，连接到网页, 2，打开界面
+	optional string	link				= 24;	// linktype=1时，填网页（填网址）例如：www.baidu.com
+												// linktype=2时，打开某个界面，填界面ID（需要新增联系程序）,1 每日积分界面 2 每日登录奖励界面
+	optional string btntxt				= 25;	// 按钮上的文字											
+}
+
+// 添加活动
+message qmsg_add_activity
+{
+	optional operating_activity activities	= 1;
+}
+
+message gmsg_add_activity
+{
+	optional uint32 id		= 1;
+	optional uint32 result	= 2;		// 结果, 1:成功, 2:失败
+}
+
+// 删除活动
+message qmsg_del_activity
+{
+	repeated uint32 id		= 1;
+}
+
+message gmsg_del_activity
+{
+	message result_info
+	{
+		optional uint32 id		= 1;
+		optional uint32 result	= 2;	// 结果 , 1:成功, 2:失败
+	}
+	
+	repeated result_info info	= 1;
+}
+
+// 查询活动模板
+// message qmsg_query_activity	无消息体
+
+message gmsg_query_activity
+{
+	repeated operating_activity info	= 1;
+}
+
+
+// 在线人数历史记录查询
+message qmsg_concurrent_players
+{	
+	optional uint32 type			= 1;	// 1 :根据 id来查询, 2: 根据  时间来查询..
+	optional uint32 id_start		= 2;
+	optional uint32 id_end			= 3;
+	optional string start_time		= 4;
+	optional string end_time		= 5;
+	optional uint32 limit_start		= 6;
+	optional uint32 limit_end		= 7;
+}
+
+
+message gmsg_concurrent_players
+{
+	message row
+	{
+		optional uint32 id				= 1;
+		optional uint32 number			= 2;
+		optional string data_time		= 3;
+	}
+	
+	repeated row 	rows				= 1;
+}
+
+// 一天最高在线人数
+message gmsg_daily_top_players
+{
+	optional uint32 num	= 1;
+}
+
+// 一天平均在线人数
+
+message gmsg_daily_average_players
+{
+	optional uint32 num = 1;
+}
+
+// 开启武林大会
+message qmsg_qualifybattle_start
+{
+	required uint64 start_time 			= 1;	// 开启时间
+	required uint32 qualify_type 		= 2; 	// 类型 1 本服赛 2 跨服赛
+}
+
+message gmsg_qualifybattle_start
+{
+	optional uint32 status				= 1;	// 1 成功，2 武林大会已开始，失败
+}
+
+// 重设武林大会
+message qmsg_qualifybattle_reset
+{
+	required uint32 reset_id			= 1;	// 1 重置活动开启时间(所有数据清空); 2 重新淘汰赛; 3 重新排位赛
+	required uint32 qualify_type 		= 2; 	// 类型 1 本服赛 2 跨服赛
+	optional uint64 reset_time 			= 3; 	// reset_id=1时，需要填充
+}
+
+message gmsg_qualifybattle_reset
+{
+	optional uint32 status				= 1;	// 1 成功；2 需要设置重启时间，失败；3 排位赛已开始，不能重新淘汰赛；4 活动已结束，不能重新设置。
+}
+
+// 查询玩家信息
+message qmsg_player_info
+{
+	required uint32 type			= 1;	// 1: 根据account 查询, 2: 根据 玩家角色名查询
+	required string param			= 2;	// 当 type = 1, param为account ,  type = 2, param 为玩家角色名
+}
+
+
+
+message gmsg_player_info
+{	
+	message info
+	{
+		optional string account			= 1; // 账号
+		optional string player_name		= 2; // 角色名
+		optional uint64	player_guid		= 3; // 角色 guid
+		optional uint32	level			= 4; // 等级
+		optional uint32 prestige		= 5; // 声望
+		optional uint32 seniority		= 6; // 阅历
+		optional uint32 money			= 7; // 银两
+		optional uint32 coin			= 8; // 元宝
+		optional uint32 line_id			= 9; // 所在的线
+	}
+	
+	repeated info ins	= 1;
+}
+
+// 修改 game server日志级别
+//	DEBUG	= 1,
+//	INFO	= 2,
+//	WARNING	= 3,
+//	TRACE	= 4,
+//	ERROR	= 5,
+//	FATAL	= 6,
+message qmsg_set_gs_log_level
+{
+	required int32  level		= 1;   
+}
+
+//message gmsg_set_gs_log_level
+
+
+// 设置gate 日志
+message qmsg_set_gate_log_level
+{
+	required int32  level		= 1;   
+}
+
+//message gmsg_set_gate_log_level
+
+
+// 查看在线玩家状态
+//message qmsg_get_online_players
+
+message gmsg_get_online_players
+{
+	message Player
+	{
+		optional string account		= 1;
+		optional string name		= 2;
+		optional uint32 playerlv	= 3;
+		optional uint32 map_id		= 4;
+		optional uint32 vip_lv		= 5;
+	}
+	
+	repeated Player players			= 1;
+}
+
+// 清理不正常的玩家 
+message qmsg_clean_gate_unnormal_player
+{
+	optional string player_account	= 1;
+	optional uint64 player_guid		= 2;
+}
+
+
+// 清理不正常的玩家 
+message qmsg_clean_gs_unnormal_player
+{
+	optional string player_account	= 1;
+	optional uint64 player_guid		= 2;
+}
+
+// gmsg_clean_unnormal_player
+
+// 设置bot客户端参数
+message qmsg_reset_client_config
+{
+	optional string cfg	= 1;
+}
+
+
+
+
+

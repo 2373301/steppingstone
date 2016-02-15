@@ -1,0 +1,68 @@
+package typed.protocol;
+
+message LawInfo
+{
+	required uint32 id				= 1;		//心法id
+	optional uint32 group_id		= 2;		//心法组id
+	optional string name			= 3;		//心法名称
+	optional uint32 heart_id		= 4;		//属第几重
+	optional uint32 level			= 5;		//心法等级
+	optional uint32 need_level		= 6;		//升级级别需求
+	optional uint32 law_pay			= 7;		//升级阅历消耗
+	optional uint32 item_id			= 8;		//道具解锁对应id
+	optional uint32 item_unlock		= 9;		//道具解锁是否解锁
+	optional uint32 martial_unlock	= 10;		//门派解锁是否解锁
+	optional uint32 propoty_id		= 11;		//关联属性id
+	optional uint32 value_increase	= 12;		//下一级升级增加属性值
+	optional uint32 cooling			= 13;		//此心法积累时间
+	optional uint32 money_cost		= 14;		//升级铜钱消耗
+}
+
+message smsg_law_info
+{
+	repeated LawInfo law_info	= 1;
+}
+
+message cmsg_law_upgrade
+{
+	required uint32 id			= 1;				//心法id
+	optional uint32 group_id	= 2;			//心法组id
+	optional uint32 heart_id	= 3;			//属第几重	
+}
+
+message smsg_law_upgrade
+{
+	required uint32 id				= 1;		//心法id
+	optional uint32 group_id		= 2;			//心法组id
+	optional uint32 heart_id		= 3;			//属第几重	
+	optional uint32 level			= 4;		//心法等级
+	optional uint32 need_level		= 5;		//升级级别需求
+	optional uint32 law_pay			= 6;		//升级阅历消耗
+	optional uint32 value_increase	= 7;		//下一级升级增加属性值
+	optional uint32 yueli_total		= 8;		//阅历剩余总值
+	optional uint32 cooling			= 9;		//此心法积累时间
+	optional uint32 money_cost		= 10;		//升级铜钱消耗
+}
+
+message smsg_law_cooling_time
+{
+	//
+	optional uint32 cooling_time	= 1;
+	optional uint32 cooling_force	= 2;
+}
+
+//CMSG_RESET_LAW_COOLING
+//SMSG_RESET_LAW_COOLING
+
+//CMSG_LAW_VIP_FUN_UNLOCK
+message cmsg_law_vip_fun_unlock
+{
+	required uint32 vip_unlock_fun_id = 1;	//vip冷却时间解锁功能，11、36、54、67
+}
+//SMSG_LAW_VIP_FUN_UNLOCK
+
+//SMSG_LAW_NEW_UNLOCK
+message smsg_law_new_unlock
+{
+	repeated uint32 law_id_new = 1;
+}

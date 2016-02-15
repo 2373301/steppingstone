@@ -1,0 +1,14 @@
+package typed.entity;
+
+message Gift {
+	required uint64 guid		= 1;
+	required uint64 player		= 2;
+
+	// 在线计时奖励
+	optional int32 phase		= 5;	// < 0，当天奖励已全部领取。
+	optional uint64 stamp		= 6;	//当前阶段的开始计时时的时间点
+
+	// 连续登陆天数奖励
+	optional bool opened			= 10;
+	repeated uint32 day_gifts		= 11;	// 数组大小表示连续登陆天数;数值表示该天奖励的状态。
+}

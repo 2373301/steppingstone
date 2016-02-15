@@ -1,0 +1,57 @@
+package typed.protocol;
+
+// 拉取用户成就列表
+message cmsg_achievement_request 
+{
+
+}
+
+message smsg_achievement_request
+{
+	message StartAchievement
+	{
+		optional uint32 id 				= 1;	// 成就ID
+		optional uint32 target_id		= 2;	// 计数对象id，如 item id，ai id等
+		optional uint32 complete_value	= 3;	// 用户完成值
+	}
+	
+	repeated uint32 finish_id							= 1;	// 完成的成就列表
+	repeated StartAchievement start_achievement_list 	= 2;	// 开始未完成的成就列表
+	repeated uint32 reward								= 3;	// 对应于配置表，0：代表条件未达到，1：代表可领取，2：已经领取
+	optional uint32 daily_avaiable						= 4;	// 0:未激活，1：可领取，2：已经领取
+	optional uint32 points								= 5;	// 总成就点数
+}
+
+// 完成成就通知
+message smsg_achievement_complete
+{
+	required uint32 id			= 1;	// 成就id
+	repeated uint32 item_id		= 2;	// 道具ID
+	repeated uint32 item_num	= 3;	// 道具数量	
+}
+
+// 领取宝箱
+message cmsg_get_reward_request
+{
+	required uint32 id		= 1;		// 成就奖励id
+	
+}
+
+message smsg_get_reward_request
+{
+	required uint32 id					= 1;	// 成就奖励id
+	repeated uint32 item_id				= 2;	// 道具ID
+	repeated uint32 item_num			= 3;	// 道具数量
+}
+
+// 领取每日奖励
+message cmsg_get_daily_reward_request
+{
+	
+}
+
+message smsg_get_daily_reward_request
+{
+	repeated uint32 item_id				= 1;	// 道具ID
+	repeated uint32 item_num			= 2;	// 道具数量
+}

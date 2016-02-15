@@ -1,0 +1,94 @@
+package typed.protocol;
+
+
+// 通知vip是否有奖励
+message smsg_openact_vip_has_prize
+{
+	optional uint32 has_prize							= 1; // 是否有奖励（vip活动）1：有，2：没有
+}
+
+// 通知newking是否有奖励
+message smsg_openact_newking_has_prize
+{
+	optional uint32 has_prize							= 1; // 是否有奖励（冲级王活动）1：有，2：没有
+}
+
+// 是否需要显示vip活动
+message smsg_openact_vip_has_act
+{
+	optional uint32 has_act								= 1; // 是否还存在活动，1：有，2：没有
+}
+
+// 是否需要显示newking活动
+message smsg_openact_newking_has_act
+{
+	optional uint32 has_act								= 1; // 新人王是否还存在活动。1：有，2：没有
+}
+
+// 查看vip活动
+// message cmsg_openact_vip_open
+message smsg_openact_vip_open
+{
+	optional uint32 vip_state							= 1; // vip活动中：1位：是否需要显示（0：没有，1：有），2位：是否有奖励（0：没有，1：有）
+}
+
+// 查看新人王活动状态
+// message cmsg_openact_newking_open
+message smsg_openact_newking_open
+{
+	optional uint32 newking_state						= 1; // 冲级王：1位：是否需要显示（0：没有，1：有），2位：是否有奖励（0：没有，1：有）
+}
+
+
+// 查看vip活动
+//message cmsg_openact1_view_vip
+// 返回有奖励的条目
+message smsg_openact1_view_vip
+{
+	repeated uint32 advance								= 1; // advance,sequence,state 为一组，长度相等，对应了每个领取按钮的状态。
+	repeated uint32 sequence							= 2; //
+	repeated uint32 state								= 3; // 0:未达成，1：已达成，2：正在领取，3：已领取 （2状态可以显示为以领取状态）
+
+	optional uint32 remain								= 4; // 0:永远，1：已经结束，其他表示 剩余秒数 
+	repeated uint32 advance_vip_num						= 5; // 每个档次当前的vip人数，总是包含所有档次
+}
+
+
+//message cmsg_openact1_view_newking
+// 返回有奖励的条目
+message smsg_openact1_view_newking
+{
+	repeated uint32 advance								= 1;
+	repeated uint32 state								= 2; // 0:未达成，1：已达成，2：正在领取，3：已领取 （2状态可以显示为以领取状态）
+	
+	optional uint32 remain								= 3; // 今天开服第几天
+}
+
+// vip 活动领奖
+message cmsg_openact1_vip_getprize
+{
+	optional uint32 advance								= 1; // 档次
+	optional uint32 sequence							= 2; // 该档次的序列
+}
+
+message smsg_openact1_vip_getprize
+{
+	optional uint32 advance								= 1;
+	optional uint32 sequence							= 2;
+	optional uint32 result								= 3; // 1：ok， 2：奖励不存在，3：背包满
+}
+
+// 新人王活动领奖
+message cmsg_openact1_newking_getprize
+{
+	optional uint32 advance								= 1; // 档次
+}
+
+message smsg_openact1_newking_getprize
+{
+	optional uint32 advance								= 1;
+	optional uint32 result								= 2; // 1：ok， 2：奖励不存在，3：背包满
+}
+
+
+

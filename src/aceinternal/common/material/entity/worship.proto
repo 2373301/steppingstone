@@ -1,0 +1,22 @@
+package typed.entity;
+
+message Worship
+{
+	message Cost
+	{
+		required uint32 id					= 1;	// 为货币类型
+		required uint32 cost_num			= 2;	// 已朝拜次数 (不包括 物品增加的)
+		optional uint32 free_num			= 3;	// 物品增加的 剩余免费次数
+		optional uint32 total_num			= 4;	// 朝拜总次数
+	}
+	required uint64 guid					= 1;
+	required uint64 player					= 2;
+	repeated Cost   cost					= 3;
+	optional uint32 critical_hit			= 4;	// 是否解锁暴击概率，成就解锁，0：未解锁，1，已经解锁
+	
+	optional uint32 unlock_money_free_time	= 5;	// 成就解锁，增加免费银两朝拜3次，0：未解锁，1，已经解锁
+	optional uint32 unlock_seni_free_time	= 6;	// 成就解锁，增加免费阅历朝拜3次，0：未解锁，1，已经解锁
+	optional uint32 money_vip_level			= 7;	// 成就解锁，银两朝拜对于的vip等级
+	optional uint32 seni_vip_level			= 8;	// 成就解锁，阅历朝拜对于的vip等级
+	optional uint32 pres_vip_level			= 9;	// 成就解锁，声望朝拜对于的vip等级
+}

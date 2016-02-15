@@ -1,0 +1,39 @@
+package typed.entity;
+	
+message Wife
+{
+	required uint64	guid	 			= 1; 		// 侠侣guid;
+	required uint64	player	 			= 2; 		// 所属玩家guid;
+	optional uint32	wife_id				= 3;		// 配置表id.
+	optional uint64	role_guid		 	= 4;		// 所关联的role. 0：代表没有关联人
+	optional string	name	 			= 5;		// 
+	optional uint32	sex	 				= 6;		//
+	
+	required uint32 level				= 7;			// 等级
+	required uint32 hp					= 8;		// 生命
+	required uint32 skill				= 9; 		// 技能？buff
+	required uint32 exp					= 10;			// 当前经验
+	repeated uint32	equipments	 		= 11;		// 装备位。0：没有。其他代表装备。
+}	
+	
+message PlayerWife
+{
+	message ProgressWife
+	{
+		optional uint32 wife_id			= 1;
+		optional uint32 limite_coin		= 2;
+		optional uint32 limit_money		= 3;
+	}
+	required uint64	guid	 			= 1; 		// 本实体的guid;
+	required uint64	player	 			= 2; 		// 所属玩家guid;
+	repeated uint32 wife_ids			= 3;		// 当前被邀请出的wife数组
+	optional uint32 invate_type			= 4;		// 邀请类别 1：普通邀请，2：雅间邀请
+	required uint32 fate_point			= 5;		// 缘分点	
+	required uint32 free_invite_used		= 6; 	// 当前已经使用的次数
+	required uint32 coin_invite_used		= 7;	// 金币邀请使用的次数
+	optional uint32 coin_used			= 8;		// 雅间邀酒消耗的元宝数					// 废弃
+	optional uint32 money_used			= 9;		// 普通邀酒每天消耗的金钱数（每天清）	// 废弃
+	optional uint32 limit_coin			= 10;		// 元宝使用累计
+	optional uint32 limit_money			= 11;		// 铜钱使用累计
+	repeated ProgressWife progress		= 12;		// 橙色侠侣招募进度
+}

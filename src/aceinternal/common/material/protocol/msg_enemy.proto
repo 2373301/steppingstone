@@ -1,0 +1,183 @@
+package typed.protocol;
+
+// 怪物战斗
+message cmsg_fight_enemy
+{
+	required uint32 enemy_id 	= 1;
+	required uint32 map_id 		= 2;
+}
+
+
+// 返回怪物成功奖励
+message smsg_enemy_reward
+{
+	required int32 	enemy_id	= 1;	// enemy id
+	required int32 	seniority	= 2;	// 阅历
+	repeated uint64	role_guid	= 3;
+	repeated int32	role_exp	= 4;
+	repeated uint32	items_id		= 5;	// 物品ID
+	required int32	attack_score	= 6;	// 评分
+	required int32	defence_score	= 7;	// 评分
+	repeated uint32	items_num		= 8;	// 物品num
+	optional uint32 money			= 9;	// 金钱
+}
+
+// 返回地图奖励
+message smsg_map_reward
+{
+	required int32 	map_id			= 1;	// enemy id
+	required int32 	seniority		= 2;	// 阅历
+	required int32	attack_score	= 3;	// 评分
+	required int32	defence_score	= 4;	// 评分
+	required uint32	town_map_id		= 5;	
+	required int32	src_x			= 6;
+	required int32	src_y			= 7;
+	repeated uint64	role_guid		= 8;	
+	repeated int32	role_exp		= 9;
+	repeated uint32	items			= 10;	// 物品ID
+}
+
+// 开始扫荡副本
+message cmsg_start_sweep
+{
+	required uint32	sweep_number	= 1;	// 扫荡次数
+	required uint32 sale_item		= 2;	// 1 : 保留物品，2：自动卖出装备，3：保留幻化卷轴
+	required uint32 stage_id		= 3;
+}
+
+message smsg_start_sweep
+{
+	required uint32 tired_time		= 1;	// 当前疲劳时间，单位：秒
+	required uint32 force_cooler	= 2;	// 是否强制冷却中 1:强制冷却，2：非强制冷却
+	optional uint32 sweep_number	= 3;	// 修正的扫荡次数，如果是0，则表示该关卡当天已经没有可通关次数
+}
+
+// 扫荡副本，返回奖励消息
+// cmsg_sweep_stage 无消息体，普通副本扫荡消息
+
+// 扫荡副本返回
+message smsg_sweep_stage
+{
+	required uint32 stage_id			= 1;
+	optional uint32 result				= 2;	// 1：成功，还可以继续扫荡2：失败，体力不足，3:失败，
+												// 副本扫荡冷却中，4：失败，疲劳时间超过30分钟，5：扫荡成功，进入疲劳时间
+	optional uint32 stage_time			= 3;	// 当前关卡冷却时间，单位秒
+	optional uint32 tired_time			= 4;	// 当前疲劳度冷却时间，单位秒
+}
+
+// 精英扫荡，无开始扫荡、结束扫荡概念，因为精英扫荡是一组精英关卡，直接发送扫荡消息到服务器
+message cmsg_sweep_essence
+{
+	required uint32 stage_id			= 1;	// 精英关卡ID
+	required uint32 sale_item			= 2;	// 1 : 保留物品，2：自动卖出装备，3：保留幻化卷轴
+}
+
+// 扫荡精英副本返回
+message smsg_sweep_essence
+{
+	required uint32 stage_id			= 1;
+	optional uint32 result				= 2;	// 1：成功，还可以继续扫荡2：失败，体力不足，3:失败，
+												// 副本扫荡冷却中，4：失败，疲劳时间超过30分钟，5：扫荡成功，进入疲劳时间，6：扫荡失败，精英关卡已经没有扫荡次数
+	optional uint32 stage_time			= 3;	// 当前关卡冷却时间，单位秒
+	optional uint32 tired_time			= 4;	// 当前疲劳度冷却时间，单位秒
+}
+
+// 重置精英关卡
+message cmsg_reset_essence
+{
+	required uint32 stage_group			= 1;	// 关卡组ID
+}
+
+message smsg_reset_essence
+{
+	required uint32 stage_group			= 1;	// 关卡组ID
+	required uint32 result				= 2;	// 1：成功，2：失败，元宝不足，3：失败，次数已经用完
+}
+
+// 玩家上次下线在扫荡，那么再次上线时会收到这个消息，以继续完成扫荡
+message smsg_offline_sweep_info
+{
+	required uint32 stage_id			= 1;	// 上次扫荡关卡ID
+	required uint32 left_number			= 2;	// 上次下线剩余扫荡次数
+	required uint32 sale_item			= 3;	// 1 : 保留物品，2：自动卖出装备
+}
+
+// 清除疲劳时间
+// cmsg_clear_tired_time 无消息体
+
+message smsg_clear_tired_time
+{
+	required uint32 result 				= 1;	// 1：成功，2：失败，元宝不足，3：当前疲劳时间为0，不需要清除
+}
+
+// cmsg_cancel_sweep 无消息体
+
+// 选择关卡消息，如果是副本返回跳图消息，如果是奖励，返回奖励消息
+message cmsg_select_stage
+{
+	required int32 stage_id			= 1;
+}
+
+// 地图宝箱奖励
+message smsg_stage_reward
+{
+	required int32 	stage_id		= 1;
+	repeated uint32 item_id			= 2;
+	repeated uint32 item_no			= 3;
+}
+
+// 打开关卡界面消息
+message cmsg_open_sweep
+{
+	required uint32 group_id 			= 1;	// 关卡组ID
+	required uint32 group_type			= 2;	// 1：普通关卡，2精英关卡
+}
+
+// 打开关卡界面消息，服务器返回各个关卡的得分信息
+message smsg_open_sweep
+{
+	required uint32	group_id		= 1;	// 城镇地图ID
+	repeated uint32	stage_id		= 2;	// 关卡ID
+	repeated uint32 stage_score		= 3;	// 关卡得分，默认值为0，如果是宝箱，0：为开启，1：已经开启
+	repeated uint32 challenge_num	= 4;	// 关卡当天已经挑战次数
+	repeated uint32 unlock_list		= 5;	// 解锁关卡列表，可见，但是不能攻击和没有次数的关卡（去掉）
+	repeated uint32	can_attack_list	= 6;	// 解锁并可攻击列表
+	optional uint32 essence_reset_number	= 7;	// 如果是精英关卡，返回精英关卡已经重置次数
+	optional uint32 max_reset_number		= 8;	// 如果是精英关卡，返回精英关卡最大重置次数
+}
+
+// 服务器下发关卡解锁列表
+message smsg_update_stage_attack_list
+{
+	repeated uint32 unlock_list			= 1;	// 解锁关卡列表
+	repeated uint32	can_attack_list		= 2;	// 解锁并可攻击列表
+	optional uint32 reach_time_stage 	= 3;	// 达到当天挑战上线关卡ID
+}
+
+// 玩家登陆或者有新的城镇解锁，下发解锁城镇
+message smsg_dispatch_unlock_town
+{
+	repeated uint32 unlock_town_id		= 1;	// 解锁城镇ID
+}
+
+// 玩家上线时，下发玩家当天已经购买体力次数
+message smsg_update_buy_energy_time
+{
+	required uint32 buy_energy_time		= 1;
+}
+
+// 购买体力
+//CMSG_BUY_ENERGY
+
+//
+message smsg_buy_energy
+{
+	required uint32 result				= 1;	// 1：成功，2：失败，元宝不足，3：失败，购买次数已经用完，
+}
+
+// 玩家上线更新扫荡疲劳时间
+message smsg_update_sweep_cool_time
+{
+	optional uint32 cool_time			= 1;	// 疲劳时间
+	optional uint32 is_force			= 2;	// 是否强制冷却，1：是，2：否
+}

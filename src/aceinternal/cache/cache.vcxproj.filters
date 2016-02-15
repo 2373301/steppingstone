@@ -45,9 +45,6 @@
     <ClInclude Include="src\RemoteCache.h">
       <Filter>remote</Filter>
     </ClInclude>
-    <ClInclude Include="..\common\material-cpp\protocol\msg_pool.pb.h">
-      <Filter>proto</Filter>
-    </ClInclude>
     <ClInclude Include="inc\cache_auto_assistant.h">
       <Filter>inc</Filter>
     </ClInclude>
@@ -59,9 +56,6 @@
     </ClInclude>
     <ClInclude Include="inc\factory.h">
       <Filter>inc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\common\material-cpp\entity\player.pb.h">
-      <Filter>proto</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -83,17 +77,11 @@
     <ClCompile Include="src\RemoteCache.cpp">
       <Filter>remote</Filter>
     </ClCompile>
-    <ClCompile Include="..\common\material-cpp\protocol\msg_pool.pb.cc">
-      <Filter>proto</Filter>
-    </ClCompile>
     <ClCompile Include="inc\cache_auto_assistant.cpp">
       <Filter>inc</Filter>
     </ClCompile>
     <ClCompile Include="inc\factory.cpp">
       <Filter>inc</Filter>
-    </ClCompile>
-    <ClCompile Include="..\common\material-cpp\entity\player.pb.cc">
-      <Filter>proto</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

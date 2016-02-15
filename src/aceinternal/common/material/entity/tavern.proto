@@ -1,0 +1,43 @@
+package typed.entity;
+
+// 卡牌类型
+enum Tavern_Card_Type
+{
+	TC_Common_Card			= 1;	// 普通卡牌
+	TC_Gold_Card			= 2;	// 金手指卡牌
+	TC_Diamonds_Card		= 3;	// 钻石指卡牌
+}
+
+message Tavern
+{
+	message HireInfo
+	{
+		optional uint32 hire_id			= 1;	// 伙伴id
+		optional uint32 hire_num		= 2;	// 伙伴数量
+	}
+	message TLogs
+	{
+		required uint32 talk_id				= 1;	// 对应talk表里的ID
+		// param_id 与 param_name 必需等长，当客户端可以通过 param_id 取得名字时，对应的 param_name 可填为空。	
+		repeated uint64 param_id			= 2;
+		repeated string param_name			= 3;
+	}
+
+	required uint64 guid			= 1;	// 酒馆guid
+	required uint64 player			= 2;	// 酒馆拥有者guid
+	repeated uint32 rand_num		= 3;	// 已使用翻牌次数 普通翻牌/金手指/钻石指
+	optional uint32 change_num		= 4;	// 已使用免费改运次数
+	optional uint32 coin_change_num	= 5;	// 已使用元宝改运次数
+	repeated uint32 lose_num		= 6;	// 已经随机卡牌必丢失次数 普通翻牌/金手指/钻石指（即随机伙伴卡牌的概率为0）（废弃）
+	optional uint32 luck_points		= 7;	// 机缘点数
+	repeated HireInfo hire_info		= 8;	// 获得的卡牌
+	optional uint64 start_time		= 9;	// 开始累计时间
+	optional uint32 cooldown		= 10;	// 冷却时间
+	optional uint32 card_type		= 11;	// 具体值，见枚举Tavern_Card_Type定义
+	repeated uint32 card_data		= 12;	// 卡牌数据 前六张为好坏牌（1 好牌 2 坏牌 ）, 第七张牌为伙伴牌 （无 0， 有 伙伴id）
+	repeated uint32 all_rand_num	= 13;	// 普通，金手指、钻石指总翻牌次数
+	repeated uint32 role_id			= 14;	// 随机得到过的伙伴
+	optional uint32 guide_change	= 15;	// 引导相关（第一次改运，全好牌）
+	optional uint32 consume_all_luck_points		= 16;	// 总消耗机缘点数
+	repeated TLogs log_list			= 17;	// 招募日志（保存最新20条）
+}

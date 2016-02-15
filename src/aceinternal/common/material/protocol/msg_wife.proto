@@ -1,0 +1,265 @@
+package typed.protocol;
+// 侠侣消息表
+
+// 上线推送消息，发送玩家当前所拥有的玩家
+message smsg_create_wife
+{
+	required uint64 guid						= 1;
+	required uint64 role						= 2; // 所守护的role;0:没有守护
+	required uint32 wife_id						= 3; // 配置表中的wife_id
+	
+	optional string	name	 					= 4;
+	optional uint32	sex	 						= 5;
+	required uint32	level	 					= 6;
+	required uint32	exp	 						= 7;
+	required uint32 hp							= 8; // 血量
+	required uint32 skillid						= 9; // 技能id
+	repeated uint32 equments					= 10; // 首饰
+}
+
+message smsg_wife_update_level
+{
+	required uint64 guid						= 1;
+	required uint32 update_level					= 2; // 新的等级
+	required uint32 update_exp					= 3; // 新的经验
+	required uint32 up_exp						= 4; // 需要达到多少经验才能升级
+	required uint32 hp							= 5; // 血量
+	required uint32 skill_id						= 6; // 技能id
+}
+
+// 缘分点更新消息，上线和更新的时候，都会下发
+message smsg_wife_update_fatepoint
+{
+	required uint32 fate_point					= 1; // 当前缘分点
+}
+
+// 普通调情：
+message cmsg_wife_shit
+{
+	required uint64 guid						= 1; //
+}
+
+message smsg_wife_shit
+{
+	required uint64 guid						= 1;
+	required uint32 result						= 2; // 1：成功; 2：缘分点不足; 3:伴侣不存在; 10:其他
+	optional uint32 update_exp					= 3; // 玩家新的经验值，成功的时候有效
+}
+
+// 元宝调情：
+message cmsg_wife_shit_coin
+{	
+	required uint64 guid						= 1; // 
+}
+
+message smsg_wife_shit_coin
+{
+	required uint64 guid						= 1; //
+	required uint32 result						= 2; // 1:成功，2：元宝不足; 3:伴侣不存在; 10:其他
+	required uint32 update_exp					= 3; // 玩家新的经验值，成功的时候有效
+}
+
+// 装备：
+// 客户端根据smsg_create_item维护侠侣装备
+message cmsg_wife_wear_equip
+{
+	required uint64 guid_wife					= 1; // 需要穿武器的玩家
+	required uint64 guid_equip					= 2; // 所需要穿的装备
+
+}
+
+// 客户端需要自己处理装备物品，下装备的时候，把装备放在背包里，穿装备的时候，从背包中取出
+message smsg_wife_wear_equip
+{
+	required uint64 guid_wife					= 1;
+	required uint32 result						= 2; // 1：成功，2：装备不存在，3：背包满，4:伴侣不存在，10：其他
+	optional uint32 pos							= 3; // 武器的位置。begin:1
+	optional uint32 id_equip					= 4; // 穿上的物品的id;
+}
+
+// 伴侣下装备
+message cmsg_wife_unequip
+{
+	required uint64 guid_wife					= 1; // 需要穿武器的玩家
+	required uint32 pos							= 2; // 所需要下的装备位置，begin:1
+}
+
+
+message smsg_wife_unequip
+{
+	required uint64 guid_wife					= 1;
+	required uint32 result						= 3; // 1：成功，2：装备不存在，3：背包满，4:伴侣不存在，10：其他
+	required uint32 pos							= 2; // 所需要下的装备的位置，begin:1
+}
+
+
+// 侠侣保护
+// 如果某伙伴原先有侠侣，则执行侠侣的交换
+// 空侠侣：未保护伙伴的侠侣；空伙伴：未被保护的伙伴。阵侠侣：在保护伙伴的侠侣；阵伙伴：已经被保护的伙伴；
+// 存在以下几种情况：
+// 空侠侣保护空伙伴：直接保护，
+// 空侠侣保护阵伙伴：该空侠侣变为阵侠侣，原先的阵侠侣变为空侠侣
+// 阵侠侣保护空伙伴：该空伙伴被保护，原先的伙伴失去保护
+// 阵侠侣保护阵伙伴：两个伙伴的侠侣交换。
+// 上述关系由客户端自己维护
+message cmsg_wife_protect
+{
+	required uint64 guid_wife					= 1;
+	required uint64 guid_role					= 2; // 0：下阵，其他代表保护某伙伴（不要求伙伴必须在阵上）
+}
+
+message smsg_wife_protect
+{
+	required uint64 guid_wife					= 1; 
+	required uint32 result						= 2; // 1：成功；其他：失败
+	required uint64 guid_role					= 3; // 成功时，该guid代表该侠侣保护的伙伴。0：代表未保护伙伴
+}
+
+// 打开邀酒界面
+// cmsg_wife_invite_open 空消息
+message smsg_wife_invite_open
+{
+	message WifeProgress
+	{
+		optional uint32 wife_id					= 1;
+		optional uint32 coin_used				= 2;
+		optional uint32 money_used				= 3;
+	}
+	required uint32 free_times					= 1; // 剩余免费次数
+	required uint32 money_pay					= 2; // 免费用完之后，铜钱邀请需要的铜钱数
+	required uint32 coin_pay					= 3; // 雅间需要的元宝数
+
+	repeated uint32 last_wifes					= 5; // 如果上次未完成，则此表不为空，代表上次邀请得到的卡牌id. 0 表示该位置没有人
+	optional uint32 last_type					= 6; // 如果上次未完成，代表上次的邀请类型1：普通邀请；2：雅间邀请
+	
+	// 侠侣更新：
+	optional uint32 coin_used					= 7; // 元宝累计消耗
+	optional uint32 money_used					= 8; // 银两累计消耗
+	
+	repeated WifeProgress progress				= 9; // 橙色侠侣的进度
+}
+
+// 邀酒
+// cmsg_wife_invite_normal  // 空消息
+message smsg_wife_invite_normal
+{
+	required uint32 result						= 1; // 1：成功，2:资源不足，3：上次未行酒令，10：其他
+	repeated uint32 wifes						= 2; // 得到的伙伴id.(有序，索引从1~n)
+	optional uint32 free_times					= 3; // 剩余免费次数,
+	optional uint32 money_pay					= 4; // 免费用完之后，铜钱邀请需要的铜钱数
+
+	// 侠侣更新：
+	optional uint32 fatepoint					= 5; // 获得的缘分点
+}
+
+// 心想事成
+// 如果心想事成把侠侣招募完毕，则不用再继续行酒令
+message cmsg_wife_get
+{
+	required uint32 index						= 1; // 欲招募侠侣的索引。
+}
+
+message smsg_wife_get
+{
+	required uint32 result						= 1; // 结果，1：成功；2该侠侣已经招募，3元宝不足；
+	optional uint32 index						= 2; // 所得到的侠侣
+}
+
+// 行酒令,针对上一次的结果行酒令，如果没有没有正确邀酒，消息无返回
+// 雅间邀酒和普通邀酒同意行酒令
+// cmsg_wife_invite_filter // 空消息，
+message smsg_wife_invite_filter
+{
+	required uint32 result						= 1; // 1:成功, 2.未邀请. 10.其他
+	optional uint32 wife_index					= 2; // 行酒令得到的侠侣(索引)。0代表没有得到
+	optional uint32 fate_point					= 3; // 缘分点得到的缘分点
+}
+
+// 雅间邀酒：
+// cmsg_wife_invite_coin  // 空消息
+message smsg_wife_invite_coin
+{
+	required uint32 result						= 1; // 1：成功，2:资源不足，3：上次未行酒令，4：其他
+	repeated uint32 wifes						= 2; // 得到的侠侣id.(有序，索引从1~n)
+	optional uint32 coinPay						= 3; // 下次邀请需要的元宝数
+	
+	// 侠侣更新：
+	optional uint32 fatepoint					= 4; // 得到的缘分点
+}
+
+message cmsg_wife_shit_level_normal
+{
+	required uint64 wife						= 1; // 需要升级的侠侣
+}
+
+message smsg_wife_shit_level_normal
+{
+	required uint64 wife						= 1; // 升级的侠侣
+	required uint32 result						= 2; // 1：成功; 2：缘分点不足; 
+	optional uint32 consume						= 3; // 本次的消耗缘分点
+	optional uint32 update_exp					= 4; // 侠侣新的经验值，成功的时候有效
+}
+
+message cmsg_wife_shit_level_coin
+{
+	required uint64 wife						= 1; // 需要升级的侠侣
+}
+
+message smsg_wife_shit_level_coin
+{
+	required uint64 wife						= 1; // 需要升级的侠侣
+	required uint32 result						= 2; // 1：成功; 2：缘分点不足; 
+	optional uint32 consume						= 3; // 消耗元宝
+	optional uint32 update_exp					= 4; // 玩家新的经验值，成功的时候有效
+}
+
+// 侠侣更新，添加消息：
+
+// 免费获得侠侣
+message cmsg_wife_get_free
+{
+	required uint32 index						= 1; // 欲招募侠侣的索引。
+}
+
+message smsg_wife_get_free
+{
+	required uint32 result						= 1; // 结果，1：成功；2该侠侣已经招募，3元宝不足；
+	optional uint32 index						= 2; // 所得到的侠侣
+}
+
+// 兑换侠侣
+message cmsg_wife_sell
+{
+	repeated uint64 wife_guid					= 1; // 要兑换的侠侣
+}
+
+message smsg_wife_sell
+{
+	repeated uint64 wife_guid					= 1; // 要兑换的侠侣
+	optional uint32 result						= 2; // 侠侣兑换
+}
+
+
+// 招募侠侣
+message cmsg_wife_get_full_progress
+{
+	required uint32 wife_id						= 1; // 欲招募的侠侣的id.
+}
+
+message smsg_wife_get_full_progress
+{
+	required uint32 result						= 1; // 结果，1：成功；2该侠侣已经招募，
+	optional uint32 wife_id						= 2; // 所得到的侠侣
+}
+
+// 设置跟随侠侣
+message cmsg_wife_follow
+{
+	required uint64 wife_guid					= 1; // 跟随的侠侣
+}
+
+message smsg_wife_follow
+{
+	required uint64 wife_guid					= 1; // 跟随的侠侣
+	optional uint32 result						= 2; // 1.成功，10：失败
+}

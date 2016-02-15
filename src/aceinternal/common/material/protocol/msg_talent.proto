@@ -1,0 +1,110 @@
+package typed.protocol;
+
+message cmsg_talent_open
+{
+	optional uint64 role								= 1; // 伙伴guid.
+}
+
+// 无效伙伴不返回
+message smsg_talent_open
+{
+	optional uint64 role								= 1;
+	repeated uint32 talent_id							= 2; // 由上到下，对应的资质id. （包括未生效的资质）
+	optional uint32 activite_num						= 3; // 有效条数.  生效资质 + 已解锁格位数
+	
+	repeated uint32 talent_random_id					= 4; // 随机出来的talent id
+	optional uint32 random_type							= 5; // 如果还有未保存的talent, 此数据有效. 1:随资质。2：随品质
+}
+
+// 普通随机资质
+message cmsg_talent_random_talent_normal
+{
+	optional uint64 role								= 1; //
+}
+
+message smsg_talent_random_talent_normal
+{
+	optional uint64 role								= 1;
+	optional uint32 result								= 2; // 1：ok， 2：物品不足
+	repeated uint32 talent_id							= 3;
+}
+
+// 元宝随机资质
+message cmsg_talent_random_talent_coin
+{
+	optional uint64 role								= 1; //
+}
+
+message smsg_talent_random_talent_coin
+{
+	optional uint64 role								= 1;
+	optional uint32 result								= 2; // 1：ok， 2：元宝不足
+	repeated uint32 talent_id							= 3; // 
+}
+
+// 随机颜色
+message cmsg_talent_random_clr_normal
+{
+	optional uint64 role								= 1; //
+}
+
+message smsg_talent_random_clr_normal
+{
+	optional uint64 role								= 1;
+	optional uint32 result								= 2; // 1：ok， 2：物品不足
+	repeated uint32 talent_id							= 3;
+}
+
+// 元宝随机颜色
+message cmsg_talent_random_clr_coin
+{
+	optional uint64 role								= 1; //
+}
+
+message smsg_talent_random_clr_coin
+{
+	optional uint64 role								= 1;
+	optional uint32 result								= 2; // 1：ok， 2：物品不足
+	repeated uint32 talent_id							= 3;
+}
+
+
+// 元宝提前解锁
+message cmsg_talent_unlock
+{
+	optional uint64 role								= 1; //
+}
+
+message smsg_talent_unlock
+{
+	optional uint64 role								= 1; // 
+	optional uint32 activite_num						= 2; // 当前已经解锁总个数
+	optional uint32 result								= 3; // 1:成功，2：元宝不足，没有可解锁格位
+}
+
+// 保存资质
+message cmsg_talent_save
+{
+	optional uint64 role								= 1; // 
+}
+
+message smsg_talent_save
+{
+	optional uint64 role								= 1; // 
+	optional uint32 random_type							= 2; // 类型
+	optional uint32 result								= 3; // 1:成功，
+}
+
+// 放弃保存资质
+message cmsg_talent_cancel
+{
+	optional uint64 role								= 1; // 
+}
+
+message smsg_talent_cancel
+{
+	optional uint64 role								= 1; // 
+	optional uint32 random_type							= 2; // 类型
+	optional uint32 result								= 3; // 1:成功，
+}
+

@@ -1,0 +1,29 @@
+package typed.entity;
+
+message Vip
+{
+	message ChargeInfo
+	{
+		required uint32	request_index	= 1;	// 每一笔充值request_index一定唯一，充值的时候，对request_index做唯一性检查
+		required uint32 charge_value	= 2;	// 
+		required uint64 charge_time		= 3;	// 秒数，充值时间
+	}
+	
+	message ExchangeInfo
+	{
+		required uint32 exchange_type	= 1;
+		required string exchange_code	= 2;
+	}
+	
+	required uint64 guid				= 1;
+	required uint64 player				= 2;
+	repeated uint32	vip_gift			= 3;	// vip大礼包，从1到10，一开始初始化为10个长度，值为0，可领取值为1，已经领取值为2
+	optional uint32 everyday_gift		= 4;	// vip 每日大礼包、高级vip大礼包、至尊vip大礼包，支持同天vip升级，可以累积领取。0：未领取，1：已经领取
+	repeated uint32 unlock_function		= 5;	// vip已经解锁功能，对应的索引值为0：未解锁，1：已经解锁
+	repeated uint32 function_cost		= 6;	// 模块元宝消费，比如体力元宝消费、强化元宝消费、心法元宝消费等。
+	repeated ChargeInfo charge_info		= 7;	// 充值历史记录
+	optional uint32 charge_coin			= 8;	// 总充值元宝数
+	optional uint32 first_charge_gift	= 9;	// 首充礼包状态 1 ：未充值，２：已经充过值，可领取首充礼包，３：已经领取过首充礼包
+	repeated ExchangeInfo exchange_info = 10;	// 兑换礼包信息
+	optional uint32 cost_coin			= 11;	// 累计消费元宝
+}

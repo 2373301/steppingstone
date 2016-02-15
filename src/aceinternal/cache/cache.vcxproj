@@ -152,7 +152,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>share.lib;logger.lib;../../../dep/ACE_wrappers/lib/ACEd.lib;../../../dep/protobuf-2.6.1/lib/libprotobuf.lib;netstream.lib;../../../dep/mysql++-3.2.2/vc2008/x64/Debug/mysqlpp_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>share.lib;logger.lib;../../../dep/ACE_wrappers/lib/ACEd.lib;../../../dep/protobuf-2.6.1/lib/libprotobuf.lib;netstream.lib;../../../dep/mysql++-3.2.2/vc2008/x64/Debug/mysqlpp_d.lib;protocol.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(OutDir);../../../dep/boost_1_60_0/lib64-msvc-14.0/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -257,8 +257,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\common\material-cpp\entity\player.pb.h" />
-    <ClInclude Include="..\common\material-cpp\protocol\msg_pool.pb.h" />
     <ClInclude Include="inc\Cache.h" />
     <ClInclude Include="inc\cached.h" />
     <ClInclude Include="inc\CacheFactory.h" />
@@ -274,8 +272,6 @@
     <ClInclude Include="src\RemoteCache.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\common\material-cpp\entity\player.pb.cc" />
-    <ClCompile Include="..\common\material-cpp\protocol\msg_pool.pb.cc" />
     <ClCompile Include="inc\cache_auto_assistant.cpp" />
     <ClCompile Include="inc\factory.cpp" />
     <ClCompile Include="src\CacheFactory.cpp" />

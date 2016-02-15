@@ -1,0 +1,47 @@
+package typed.entity;
+
+//关卡
+message Stage
+{
+	required uint64 guid					= 1;
+	required uint64 player					= 2;
+	repeated uint32	unlock_town_id			= 3;	// 解锁城镇
+	optional uint64	last_update_energy		= 4;	// 最后更新体力时间，单位：分钟
+	optional uint64 last_clean_stage_time	= 5;	// 最后清理关卡攻击次数时间，单位：天
+	
+	repeated uint32 stage_unlock_function	= 6;	// 关卡解锁功能
+	repeated uint32 task_unlock_function	= 9;	// 任务解锁功能
+	
+	optional uint32 buy_energy_time			= 10;	// 当天已经购买体力次数
+	
+	optional uint32 left_sweep_number		= 11;	// 扫荡剩余次数，取消扫荡或者结束扫荡，该值都为0
+	optional uint64 last_sweep_time			= 12;	// 最后一次扫荡时间，单位：微秒
+	optional uint64 start_tired_time		= 13; 	// 疲劳度时间开始点
+	optional uint32 total_tired_time		= 14;	// 疲劳度累计时间, 单位：秒
+	optional uint32 sweep_stage_id			= 15;	// 扫荡关卡ID
+	optional uint32 sale_item				= 16;	// 1 : 保留物品，2：自动卖出装备
+	optional uint32 force_tired_cooler		= 17;	// 0：正常扫荡，1：疲劳时间冷却中，2：体力不够
+	optional uint32 first_buy_energy_free	= 18;	// 每天第一次购买体力免费，成就解锁，0：未解锁，1：已经解锁
+	optional uint32 additional_boss_time	= 19;	// 每天额外的boss关卡攻击次数加1,0：未解锁，1：已经解锁
+}
+
+// 城镇关卡地图信息
+message TownStage
+{
+	message StageInfo
+	{
+		required uint32	stage_id			= 1;	// 关卡ID
+		optional uint32 stage_score			= 2;	// 关卡得分
+		optional uint32 already_attack_num	= 3;	// 当天已经攻击次数
+		optional uint32 stage_type			= 4;	// 关卡类型
+	}
+	
+	required uint64 guid					= 1;
+	required uint64 player					= 2;
+	optional uint32	town_map_id				= 3;	// 城镇地图ID
+	repeated StageInfo stage_info			= 4;
+	
+	repeated uint32 unlock_list				= 5;	// 解锁关卡列表
+	repeated uint32	can_attack_list			= 6;	// 解锁并可攻击列表
+	optional uint32 essence_reset_number	= 7;	// 当天已经重置精英关卡次数，0点重置
+}

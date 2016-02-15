@@ -1,0 +1,273 @@
+package typed.protocol;
+
+// message cmsg_open_friend 无消息体，打开好友面板
+
+message smsg_open_friend
+{
+	message FriendInfo
+	{
+		required uint64 guid				= 1;
+		optional string name				= 2;
+		optional uint32 map_id				= 3;
+		optional uint32 level				= 4;
+		optional uint32 can_give_energy		= 5;	// 1：可赠送体力，2：已经赠送过体力
+		optional uint32 can_recv_energy		= 6;	// 0:默认，1：可领取体力，2：已经领取过体力
+		optional uint32 is_online			= 7;	// 1:在线，2：不在线
+		optional uint32 role_id				= 8;
+		optional uint32 fight_power			= 9;	// 战斗力
+	}
+	
+	optional uint32 can_give_flower			= 1;		// 1：可赠送鲜花，2：已经赠送过鲜花
+	optional uint32 recv_flower_num			= 2;		// 已经收到的鲜花数量
+	repeated FriendInfo good_friends		= 3;
+	repeated FriendInfo enemy				= 4;
+}
+
+// 添加好友
+message cmsg_add_friend_by_guid
+{
+	required uint64 guid				= 1;	// 
+}
+
+// add friend
+message cmsg_add_friend_by_name
+{
+	required string name				= 1;	// 
+}
+
+// 添加好友成功，服务器下发新添加的好友信息
+message smsg_add_friend_sucess
+{
+	required uint64 guid				= 1;
+	optional string name				= 2;
+	optional uint32 map_id				= 3;
+	optional uint32 level				= 4;
+	optional uint32 can_give_energy		= 5;	// 1：可赠送体力，2：已经赠送过体力
+	optional uint32 can_recv_energy		= 6;	// 0:默认，1：可领取体力，2：已经领取过体力
+	optional uint32 is_online			= 7;	// 1:在线，2：不在线
+	optional uint32 role_id				= 8;
+}
+
+// 添加好友确认消息
+message smsg_confirm_add_friend
+{
+	required uint64 guid				= 1;
+	required string name				= 2;
+}
+
+// 客户端发回好友确认结果
+message cmsg_confirm_add_friend
+{
+	required uint64 guid				= 1;
+	required uint32 result				= 2;	// 1：同意添加，2：拒绝添加
+}
+
+message smsg_confirm_add_friend_result
+{
+	required uint32 result				= 1;	// 1：自己好友列表已满，2：对方好友列表已满
+}
+
+// 添加好友服务器返回，通过名字或者guid添加，都统一返回该消息
+message smsg_add_friend
+{
+	required string name				= 1;
+	required uint32 result				= 2;	// 1：成功添加好友，2：对方拒绝好友请求，3：对方不在线, 请求已经记录, 4:没有这个人, 
+												// 5：好友列表已满，6：对方好友列表已满，7：你在对方仇人列表中，不能添加好友，8：已经是好友
+}
+
+// 解除好友关系
+message cmsg_remove_friend
+{
+	required uint64 guid				= 1;	// 
+}
+
+message smsg_remove_friend
+{
+	required string name				= 1;
+	required uint32 result				= 2;	// 1：移除成功，2：对方移除好友关系，3：从好友变为仇家移除好友消息
+}
+
+//message smsg_update_friend_info
+//{
+//	required uint64 guid				= 1;	// 好友guid
+//	optional uint32 is_online			= 2;	// 1:在线，2：不在线
+//	optional uint32 level				= 3;	// 等级
+//	optional uint32 map_id				= 4;	// 当前所在地图
+//}
+
+// 添加仇家
+message cmsg_add_enemy_by_guid
+{
+	required uint64 guid				= 1;
+}
+
+message cmsg_add_enemy_by_name
+{
+	required string name				= 1;
+}
+
+message smsg_add_enemy
+{
+	required string name				= 1;
+	required uint32 result				= 2;	// 1：成功，2：失败，仇人列表已满，3：已经是仇家
+}
+
+// 添加仇家成功，服务器下发新添加的仇家信息
+message smsg_add_enemy_sucess
+{
+	required uint64 guid				= 1;
+	optional string name				= 2;
+	optional uint32 map_id				= 3;
+	optional uint32 level				= 4;
+	optional uint32 can_give_energy		= 5;	// 1：可赠送体力，2：已经赠送过体力
+	optional uint32 can_recv_energy		= 6;	// 0:默认，1：可领取体力，2：已经领取过体力
+	optional uint32 is_online			= 7;	// 1:在线，2：不在线
+	optional uint32 role_id				= 8;
+}
+
+// 移除仇家
+message cmsg_remove_enemy
+{
+	required uint64 guid				= 1;
+}
+
+message smsg_remove_enemy
+{
+	required string name				= 1;
+	required uint32 result 				= 2;	// 1：成功，2：失败，3：因为添加对方好友而删掉仇家
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//   赠送体力、鲜花
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+// 赠送体力
+message cmsg_give_energy
+{
+	required uint64 guid				= 1;	// 好友guid
+}
+
+message smsg_give_energy
+{
+	required string name				= 1;	// 好友姓名
+	required uint32 result				= 2;	// 1:赠送成功，2：赠送失败
+}
+
+// 玩家上线下发玩家可领取的好友赠送体力，好友赠送体力时，也会下发该消息
+message smsg_update_revc_energy
+{
+	repeated uint64 guid				= 1;
+	repeated string name				= 2;
+	repeated uint32 role_id				= 3;
+}
+
+// 赠送鲜花
+message cmsg_give_flower
+{
+	required uint64 guid				= 1;
+	required uint32 give_type			= 2;	// 1：一朵，2:三朵，3:十一朵，这个依据策划配置
+}
+
+message smsg_give_flower
+{
+	required string name				= 1;
+	required uint32 result				= 2;	// 1:赠送成功，2：赠送失败
+}
+
+// 领取体力
+message cmsg_recv_energy
+{
+	required uint64 guid				= 1;	
+}
+
+message smsg_recv_energy
+{
+	required string name				= 1;
+	required uint32 result 				= 2;	// 1:成功，2：失败，当天领取体力到达上限
+}
+
+//////////////////////////////////////////////////////////////
+// 鲜花榜
+//////////////////////////////////////////////////////////////
+
+// message cmsg_open_flower_rank 打开鲜花榜，无消息实体
+
+message smsg_open_flower_rank
+{
+	message RankInfo
+	{
+		required uint64 guid			= 1;
+		required string name			= 2;
+		required uint32 flower_num		= 3;
+		required uint32 role_id			= 4;	// 送花人role id
+		required uint32 relationship	= 5;	// 好友关系，1：好友，2：陌生人
+	}
+	
+	message FlowerRecord
+	{
+		required uint64 guid			= 1;
+		required string name			= 2;
+		required uint32 flower_type		= 3;	// 送花类型
+		required uint32 give_time		= 4;	// 送花时间
+		required uint32 role_id			= 5;	// 送花人role id
+		required uint32 relationship	= 6;	// 好友关系，1：好友，2：陌生人
+	}
+	
+	required uint32 flower_num			= 1;	// 玩家当前获得鲜花数量
+	repeated FlowerRecord flower_record	= 2;	// 玩家被送花历史记录
+	repeated RankInfo rank_info			= 3;	// 鲜花榜
+}
+
+// 可领取鲜花排行榜奖励
+message smsg_flower_rank_reward
+{
+	required uint32 flower_rank			= 1;	// 鲜花榜排名，排名1、2、3
+	required uint32 status				= 2;	// 1：可领取奖励，2：已经领取该奖励
+}
+
+// 领取鲜花排行榜奖励
+//message cmsg_obtain_flower_rank_reward, 无消息体
+
+message smsg_obtain_flower_rank_reward
+{
+	required uint32 flower_rank			= 1;	// 鲜花榜排名
+	required uint32 status				= 2;	// 1：领取成功，2：领取失败
+}
+
+// 获取聊天对象相关信息
+message cmsg_get_chat_player_info
+{
+	required uint64 guid				= 1;
+}
+
+message smsg_get_chat_player_info
+{
+	required uint64 guid				= 1;
+	optional string name				= 2;
+	optional uint32 map_id				= 3;
+	optional uint32 level				= 4;
+	optional uint32 is_online			= 5;	// 1:在线，2：不在线
+	optional uint32 role_id				= 6;
+}
+
+// 玩家达到一定等级，服务器会推送批量好友信息
+message smsg_system_add_friend_notify
+{
+	message FriendInfo
+	{
+		required string name			= 1;
+		required uint64 guid			= 2;
+		required uint32 level			= 3;
+		required uint32 fight_power		= 4;
+		optional string guild_name		= 5;
+	}
+	
+	repeated FriendInfo friend_info		= 1;
+}
+
+// 玩家选择全部加好友信息，发送此消息给服务器
+message cmsg_system_add_friend_notify
+{
+	repeated uint64 player_guid			= 1;
+}

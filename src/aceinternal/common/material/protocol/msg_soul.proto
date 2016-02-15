@@ -1,0 +1,136 @@
+package typed.protocol;
+
+//enum RSoulStatus
+//{
+	//rs_success						= 1;	// 成功
+	//rs_soul_unlock					= 2;	// 武魂已解锁
+	//rs_not_soul_fragment				= 3;	// 武魂碎片不足
+	//rs_not_coin						= 4;	// 元宝不足
+	//rs_not_quality_some_soul			= 5;	// 武魂品质不足
+	//rs_role_bind						= 6;	// 伙伴已绑定武魂
+//}
+
+// -----打开符文----------------------------------------------------
+// message cmsg_open_soul	只有消息码，没有消息体
+
+message smsg_open_soul
+{
+	message Formation
+	{
+		repeated uint32 id_list				= 1;	// 武魂id集合
+		optional uint64 role_guid			= 2;	// 武魂绑定的伙伴guid
+		optional uint32 gather_id			= 3;	// 聚魂Id
+	}
+	
+	repeated Formation 	unit_list			= 1;	// 武魂阵集合
+	optional uint64 player_guid				= 2;	// 武魂所属人guid (注：查看别人时有效)
+	// 批量洗练临时数据（有值时 打开批量洗练界面）
+	repeated uint32 unlock_list				= 3;	// 武魂锁定状态，1 锁定，2 不锁定
+	repeated uint32 id_list					= 4;	// 随机的N组武魂id
+	optional uint32 formation_id			= 5;	// 对应的武魂阵id
+}
+
+// -----解锁武魂----------------------------------------------------
+message cmsg_unlock_soul
+{
+	required uint32 formation_id		= 1;	// 武魂阵型id
+	required uint32 soul_position		= 2;	// 武魂位置
+	optional uint32 coin_buy_stone		= 3;	// 是否用元宝补充武魂之石 0 不用元宝 1 用元宝；
+}
+
+message smsg_unlock_soul
+{
+	optional uint32 status				= 1;	// 1 成功；失败编号：2,3,4
+	optional uint32 formation_id		= 2;	// 武魂阵型id
+	optional uint32 soul_position		= 3;	// 武魂位置
+	optional uint32 soul_id				= 4;	// 武魂id
+}
+
+// -----洗练武魂----------------------------------------------------
+message cmsg_random_soul
+{
+	required uint32 formation_id		= 1;	// 武魂阵型id
+	repeated uint32 unlock_position		= 2;	// 锁定的武魂位置
+	optional uint32 coin_buy_stone		= 3;	// 是否用元宝补充武魂之石 0 不用元宝 1 用元宝；
+}
+
+message smsg_random_soul
+{
+	optional uint32 status				= 1;	// 1 成功；失败编号：3,4
+	optional uint32 formation_id		= 2;	// 武魂阵型id
+	repeated uint32 unlock_position		= 3;	// 锁定的武魂位置
+	repeated uint32 id_list				= 4;	// 武魂id集合
+}
+
+// -----批量洗练----------------------------------------------------
+message cmsg_batch_soul
+{
+	required uint32 formation_id		= 1;	// 武魂阵型id
+	repeated uint32 unlock_position		= 2;	// 锁定的武魂位置
+	optional uint32 coin_buy_stone		= 3;	// 是否用元宝补充武魂之石 0 不用元宝 1 用元宝；
+}
+
+message smsg_batch_soul
+{
+	optional uint32 status					= 1;	// 1 成功；失败编号：3,4
+	optional uint32 formation_id			= 2;	// 武魂阵型id
+	repeated uint32 unlock_position			= 3;	// 锁定的武魂位置
+	repeated uint32 id_list					= 4;	// 随机的N组武魂id
+}
+
+// -----保存批量洗练----------------------------------------------------
+message cmsg_save_batch_soul
+{
+	required uint32 batch_id				= 1;	// 批次id
+}
+
+message smsg_save_batch_soul
+{
+	optional uint32 status					= 1;	// 1 成功；
+	optional uint32 formation_id			= 2;	// 武魂阵型id
+	repeated uint32 unlock_position			= 3;	// 锁定的武魂位置
+	repeated uint32 id_list					= 4;	// 武魂id集合
+}
+
+// -----聚魂------------------------------------------------------------
+message cmsg_gather_soul
+{
+	required uint32 formation_id		= 1;	// 武魂阵型id
+	optional uint32 coin_buy_stone		= 3;	// 是否用元宝补充武魂之火 0 不用元宝 1 用元宝；
+}
+message smsg_gather_soul
+{
+	optional uint32 status				= 1;	// 1 成功；失败编号：3,4
+	optional uint32 formation_id		= 2;	// 武魂阵型id
+	optional uint32 soul_id				= 3;	// 聚魂id
+}
+
+// -----伙伴绑定武魂----------------------------------------------------
+message cmsg_role_binding_soul
+{
+	required uint64 role_guid			= 1;	// 伙伴guid
+	required uint32 formation_id		= 2;	// 武魂阵型id
+}
+
+message smsg_role_binding_soul
+{
+	optional uint32 status				= 1;	// 1 成功；失败编号：1,6
+	optional uint64 role_guid			= 2;	// 伙伴guid
+	optional uint32 formation_id		= 3;	// 武魂阵型id
+}
+
+// -----伙伴卸下武魂----------------------------------------------------
+message cmsg_role_uninstall_soul
+{
+	required uint32 formation_id		= 1;	// 武魂武魂阵型id
+}
+
+message smsg_role_uninstall_soul
+{
+	optional uint32 status				= 1;	// 1 成功；
+	optional uint64 role_guid			= 2;	// 伙伴guid
+	optional uint32 formation_id		= 3;	// 武魂阵型id
+}
+
+// -----取消批量武魂----------------------------------------------------
+// message cmsg_cancel_batch_soul	只有消息码，没有消息体

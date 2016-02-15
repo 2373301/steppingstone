@@ -1,0 +1,60 @@
+package typed.entity;
+
+// 开服活动
+
+message OpenActivity
+{
+	required uint64 guid			=1;
+	required uint64 player			=2;
+	
+	optional uint32 online			=3;	// 累计上线天数
+	
+	// 累计登录
+	repeated uint32 days			=4;	// 有奖励的天数列表
+	repeated uint32 days_flag		=5;	// 天数对应的奖励 0 未到, 1 可领取,  2 :已领取
+	
+	// 首充好礼(阶段首充送奖励)
+	repeated uint32 sections		=6;	// 阶段列表
+	repeated uint32	sections_flag	=7;	// 0 未到, 1 可领取,  2 :已领取
+	
+	// 首充返利(首次冲元宝)
+	optional int32 first_bonus		=8;  // -1: 未使用,  0: 已使用, > 0 为 id
+	optional uint32 first_coin		=16; // 首次充的元宝数
+	
+	// 充值回礼( 元宝充值 累计奖励), 
+	repeated uint32 acc_coin_id		=9;
+	repeated uint32	acc_bonus_flag	=10; // 0 未到, 1 可领取,  2 :已领取
+	repeated uint32 acc_total_coin	=17; // 活动期间充值的元宝数...
+	
+	// 充值返利(次日返还今天的充值的X%元宝) 
+	optional uint32 today_coin		=11; // 今天充的元宝数
+	optional uint32 today_bonus		=12; // 今天要返还的元宝数, 假如已返还 位或 1 << 31
+	
+	// 聚宝盆, 截止时间为报名截止时间
+	message future
+	{
+		optional uint32 future_id	 =1; // 投入等级(0: 未使用, > 0 为 id)
+		repeated uint32 future_flags =2; // 0 未到, 1 可领取,  2 :已领取 (future_bonus 长度为奖励的天数)
+	}
+	
+	repeated future	futures			=13;		
+	
+	// 快捷方式
+	optional uint32	shortcut_bonus	=15; // 快捷方式奖励 0 未到, 1 可领取,  2 :已领取
+	
+	message bill
+	{
+		required uint32 type		= 1;	
+		repeated uint32 ids			= 2;	
+		repeated uint32 nums		= 3;	// 已充值次数
+		repeated uint32 dones		= 4;	// 已领取次数
+	}
+	
+	repeated bill	bill_list		=18;	// 单笔充值返利
+	
+	repeated uint32		yd_growths		=19;	// 成长礼包, 已领取的ids
+	optional uint32		yd_pet			=20;	// 黄钻宠物, 0 : 无, 1: 未领取, 2:已领取
+	optional uint32		yd_daily		=21;	// 黄钻日常, 0 : 无, 1: 未领取, 2:已领取
+	optional uint32		yd_vip			=22;	// 黄钻豪华, 0: 未生效 , 1:已生效
+	optional uint32		yd_fresh		=23;	// 新手礼包, 0 : 无, 1: 未领取, 2:已领取
+}

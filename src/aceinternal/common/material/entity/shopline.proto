@@ -1,0 +1,21 @@
+package typed.entity;
+
+message ShopLine
+{
+	required uint64 guid				= 1;	
+	
+	// 全服限购玩家相关
+	repeated uint64 player_guid			= 2;	// 玩家guid
+	repeated uint64 buy_times			= 3;	// 购买时间
+	
+	// 全服限购道具相关（定时清零）
+	optional uint64 start_time			= 4;	// 开始时间
+	repeated uint32 world_item_id		= 5;	// 全服道具id
+	repeated uint32 world_item_num		= 6;	// 全服道具购买数量
+	
+	// 折扣相关
+	repeated uint32 discount_item_id	= 7;	// 折扣道具id
+	repeated uint64 discount			= 8;	// 折扣（原价 100；九折：90）
+	
+	// 团购相关
+}

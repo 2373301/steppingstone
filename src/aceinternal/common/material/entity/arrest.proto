@@ -1,0 +1,101 @@
+package typed.entity;
+	
+// 不保存实体..
+message OrderResult
+{	
+	required uint64 guid		= 1;	// 占位符
+	optional uint32 id			= 2;	// 通缉令
+	optional uint32 finished	= 3;	// 是否已完成
+	repeated uint32 item_ids	= 4;	// 完成后的奖励 ids
+	repeated uint32 item_nums	= 5;	// nums
+}
+
+// 不保存实体...
+message DailyOrders
+{
+	required uint64 guid			= 1;	// 占位符
+	repeated OrderResult result		= 2;
+}
+	
+	
+message ArrestShortInfo
+{	
+	
+	// 通缉令
+	message ArrestOrder
+	{
+		optional uint32 level_group	= 1;	// 等级组
+		repeated uint32 ids			= 2;	// 通缉令列表
+	}
+	
+	
+	
+	required uint64			guid				= 1;
+	
+	optional uint32 		killed				= 2;	// 已击杀次数
+	optional uint32 		buy_times			= 3;	// 购买的击杀次数
+	
+	optional uint32			coin_refresh_times	= 4;	// 元宝刷新次数
+	repeated uint32			ids					= 5;	// 元宝刷新的悬赏榜单
+	
+	repeated OrderResult 	daily_result		= 6;	// 日常悬赏榜单(包括元宝刷新) 完成细则 && 奖励
+		
+	repeated uint64			formation			= 7;	// 日常悬赏 阵型, size = 9, 最多只有2人在阵
+	optional uint64			refresh_time		= 8;	// 上一次同步的 公共 日常悬赏 刷新时间
+	
+	optional uint32			team_id				= 9;	// 加入的队伍
+	optional bool			is_captain			= 10;   // 是否是队长..
+	
+	
+	repeated OrderResult	shared_result		= 11;	// 竞速通缉完成细则, 奖励
+	
+	repeated uint64			roles				= 12;	// 玩家的所有角色,主角为roles(0)
+	
+	optional uint32			level_group			= 13;	// 玩家等级组, 0点检测更新
+	
+	optional uint64			shared_time			= 14;	// 竞速通缉的刷新时间
+	optional uint32			shared_level_group	= 15;	// 竞速通缉的等级组..
+	
+	repeated ArrestOrder	daily_list			= 16;	// 日常悬赏
+	optional uint64			daily_refresh_time	= 17;	// 日常悬赏刷新时间
+	
+	optional uint32			daily_bonus_flag	= 18;	// 日常领取奖励 动作标志位, 0 : 正常状态, 1:正在领取
+	optional uint32			shared_bonus_flag	= 19;	// 竞速领取奖励 动作标志位 
+}
+	
+	
+message Arrest
+{	
+
+	// 通缉令
+	message ArrestOrder
+	{
+		optional uint32 level_group	= 1;	// 等级组
+		repeated uint32 ids			= 2;	// 通缉令列表
+	}
+	
+	
+	// 竞速通缉
+	message SharedArrest
+	{	
+		// 追捕手
+		message Arrester
+		{
+			optional uint64 guid	= 1;
+			optional string name	= 2;
+		}
+		
+		required uint32 id				= 1;	// 通缉令 id
+		optional uint32 over			= 2;	// 通缉令是否失效
+		repeated Arrester arresters		= 3;	
+	}
+	
+	
+	required uint64 		guid					= 1;
+	repeated ArrestOrder	daily_list				= 2;	// 日常悬赏  (废弃)
+	repeated ArrestOrder	timed_list				= 3;	// 定时通缉
+	repeated SharedArrest	shared_list				= 4;	
+	optional uint64			daily_refresh_time		= 5;	// 日常悬赏刷新时间 (废弃)
+	optional uint64			timed_refresh_time		= 6;	// 限时通缉刷新时间
+	optional uint64			shared_refresh_time		= 7;	// 竞速通缉刷新时间
+}

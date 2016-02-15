@@ -1,0 +1,19 @@
+package typed.protocol;
+
+// 客户端选择npc消息
+message cmsg_open_npc
+{
+	required uint32 npc_id 			= 1;
+}
+
+// 客户端选择npc消息服务器返回
+message smsg_open_npc
+{
+	required uint32 npc_id 			= 1;
+	repeated uint32 type 			= 2;
+	repeated uint32 param 			= 3;	
+	repeated uint32 task_id			= 4;
+//	repeated uint32 acceptable 		= 4;
+//	repeated uint32 unfinished 		= 5;
+//	repeated uint32 finished 		= 6;
+}

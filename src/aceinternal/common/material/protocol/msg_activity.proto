@@ -1,0 +1,140 @@
+package typed.protocol;
+
+// 当前轮次活动各档的完成情况
+message smsg_activity_cycle_complete
+{
+	required uint32 id						= 1; // 活动
+	repeated uint32 advance					= 2; // 已完成档次
+	optional uint32 cycle					= 3; // 当前轮次
+}
+
+message activity_notify
+{
+	message Item
+	{
+		optional uint32 item_id = 1;
+		optional uint32 item_num = 2;
+	}
+	
+	message Items
+	{
+		repeated Item items = 1;
+	}
+	
+	required uint32 id						= 1;						// 活动id. 在级别相同的时候，依赖id排序
+	optional uint32 level					= 2;					// 活动级别，大于某个级别的时候，需要添加(推荐)图标
+	optional string name					= 3;					// 活动名称
+	optional string ce1						= 4;					// 活动介绍1
+	optional string ce2						= 5;					// 活动介绍2
+	optional string ce3						= 6;					// 活动介绍3
+	optional uint32 type					= 7;					// 活动类型
+	optional uint32 cl2						= 8;					// 是否显示进度条,1表示显示，0表示不显示。
+	repeated uint32 value					= 9;					// 奖励档次，每个元素代表活动条件值，
+	repeated uint32 times					= 10;					// 需要的次数
+	repeated uint32 rewards					= 11;				// bonuds id
+	optional string picture					= 12;				// 图片
+	optional uint32 is_count				= 13;	// 是否显示计数，填1后显示活动计数，填0不显示。
+	optional string target					= 14;	// 活动要完成的目标提示文字，例如：当前充值金额
+	optional uint32 num						= 15;
+	optional uint32 star					= 16;		// 星星的个数
+	optional uint32 link_type				= 17;		// 链接类型：1：网页链接，2：打开界面
+	optional string link					= 18;		// 链接
+	optional string btntxt					= 19;		// 按钮提示文字	
+	repeated Items items_per_adv			= 20;		// 活动每档次的奖励（物品的id和数量）
+	repeated uint32 sub_type				= 21;		// 参数3
+	repeated uint32 link_btn				= 22;		// 每个档次的目标链接按钮，可以为空
+	repeated string link_btn_txt			= 23;		// 每个档次目标按钮的名称
+}
+
+// 活动进度的推送
+message smsg_activity_progress
+{
+	required uint32 id 						= 1; // 活动id
+	required uint32 progress				= 2; // 该活动当前的进度
+	optional uint32 wordshipid				= 3; // 祈福类型
+}
+
+// 活动轮数推送，并非所有的都会推送轮次
+message smsg_activity_circle
+{
+	required uint32 id						= 1; // 活动id.
+	required uint32 circle					= 2; // 活动当前轮次
+}
+
+// 玩家登陆的时候下发
+// 所有活动，周期内，或者标志为始终显示的
+message smsg_activity_all_activity
+{
+	repeated activity_notify allactivity		= 1;	// 所有的活动，客户端负责排序和分页显示（可以不用分页显示）
+	repeated smsg_activity_cycle_complete sacc	= 2;	// 活动当前轮完成情况
+	repeated smsg_activity_progress	sap			= 3;	// 活动进度
+	repeated smsg_activity_circle circle		= 4; 	// 活动轮次情况
+}
+
+// 实时推送，增加活动
+message smsg_activity_add_activity
+{
+	required activity_notify an				= 1;			// 添加的活动的ID
+}
+
+// 实时推送。删除活动，到期活动
+message smsg_activity_remove_activity
+{
+	required uint32 id				= 1; // 需要删除的活动的ID.
+	required uint32 flags			= 2; // 1:删除活动;2:清除数据：
+}
+
+// 上线推送+实时推送
+// 实时推送，可以领取的奖励
+message smsg_activity_prize
+{
+	message Prize
+	{
+		required uint32 id				= 1; // id
+		required uint32 advance			= 2; // 档次，0起始
+		required uint32 times			= 3; // 可以领取的次数
+	}
+	
+	repeated Prize prizes				= 1; // 奖励
+}
+
+// 领奖协议
+message cmsg_activity_get_prize
+{
+	required uint32 id						= 1;				// 可以领奖的活动的ID
+	required uint32 advance					= 2;				// 可以领奖的活动对应的档次
+}
+
+// 领奖返回
+message smsg_activity_get_prize
+{
+	required uint32 result					= 1;					// 结果。0：成功；1:活动已下线；2：奖励不存在；3:背包满。其他：失败
+	required uint32 id						= 2;					// 可以领奖的活动的ID
+	required uint32 advance					= 3;				// 可以领奖的活动对应的档次
+}
+
+// 请求活动剩余时间
+message cmsg_activity_time_remain
+{
+	required uint32 id						= 1;					// 活动id
+}
+
+message smsg_activity_time_remain
+{
+	required uint32 id						= 1;					// 活动id.
+	required uint32 remain_time				= 2;					// 活动剩余秒数：0：表示不会结束。1：表示已经结束。其他剩余时间。
+	required uint32 cycle					= 3;					// 活动的轮次信息，已完成轮次+1.如果最后一轮已经完成，需要特殊处理
+}
+
+message cmsg_activity_view_challenge
+{
+	required uint32 id						= 1; 					// 需要查看的挑战活动的id
+}
+
+message smsg_activity_view_challenge
+{
+	required uint32 id						= 1; 					// 需要查看的挑战活动的id
+	optional uint32 remain_time				= 2;					// 活动剩余时间
+	repeated uint32 progress				= 3;					// 每个档次的进度，
+	repeated uint32 prizes					= 4;					// 每个档次的奖励 0，无奖励，1：有奖励
+}

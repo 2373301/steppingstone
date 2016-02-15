@@ -1,0 +1,5 @@
+package typed.protocol;
+
+message smsg_error {
+	required int32	error    = 1;	
+}

@@ -1,0 +1,205 @@
+package typed.protocol;
+
+// 是否存在奖励
+message smsg_trial_hasprize
+{
+	optional uint32 has = 1; // 1:有，2：无
+}
+
+// 次数
+message smsg_trial_hastimes
+{
+	optional uint32 times = 1; // 可攻击次数
+}
+
+// 主动通知第一个击杀
+message smsg_trial_first_player
+{
+	optional uint32 stage						= 1; //
+}
+
+// 主动通知最快击杀
+message smsg_trial_fast_player
+{
+	optional uint32 stage						= 1; // 
+	optional uint32 round_num					= 2; // 回合数
+}
+
+// 打开主面板
+// message cmsg_trial_open
+
+// 不包括未解锁关卡
+message smsg_trial_open
+{
+	repeated uint32 copy						= 1; // 副本id
+	repeated uint32 cool_time					= 2; // 当前次冷却剩余时间。
+	repeated uint32 free_time_remain			= 3; // 免费次数剩余 
+	repeated uint32 coin_time_remain			= 4; // 购买的次数剩余
+	repeated uint32 buy_time					= 5; // 今天的已购买次数。(用于计算剩余购买次数)
+	repeated uint32 complete					= 6; // 预留字段，代表是否已经全部通关。1：通关所有，2：没有通关
+	repeated uint32 has_prize					= 7; // 是否有奖励未领取
+}
+
+// 购买挑战次数
+message cmsg_trial_buy_attack_time
+{
+	optional uint32 copy						= 1; // 副本id
+	optional uint32 times						= 2; // 试图购买的次数
+}
+
+message smsg_trial_buy_attack_time
+{
+	optional uint32 copy						= 1; // 图本id
+	optional uint32 result						= 2; // 结果，0：成功，其他：失败
+	optional uint32 newtimes					= 3; // 总次数
+}
+
+
+// 进入副本
+message cmsg_trial_enter_copy
+{
+	optional uint32 copy						= 1; // 
+}
+
+// 未解锁状态无返回
+message smsg_trial_enter_copy
+{
+	optional uint32 copy						= 1;
+	optional uint32 curr_stage1					= 2; // 阴当前关卡
+	optional uint32 curr_stage_state1			= 3; // 阴当前关卡状态。0：未解锁，1：已解锁，2：已通过
+	optional uint32 curr_stage2					= 4; // 阳当前关卡
+	optional uint32 curr_stage_state2			= 5; // 阳当前关卡状态。0：未解锁，1：已解锁，2：已通过
+	optional uint32 cool_time					= 6; // 本次扫荡剩余秒数。
+	optional uint32 free_time_remain			= 7; // 免费次数剩余 
+	optional uint32 coin_time_remain			= 8; // 购买的次数剩余
+	optional uint32 buy_time					= 9; // 今天的已购买次数。(用于计算剩余购买次数)
+	repeated uint32 prize_stage					= 10; // 有奖励的关卡
+}
+
+// 查看关卡组牛人
+message cmsg_trial_view_record
+{
+	optional uint32 copy						= 1;
+	optional uint32 yy							= 2; // 阴阳，1：阴，2：阳
+	optional uint32 group						= 3; // 关卡祖
+}
+
+message smsg_trial_view_record
+{
+	repeated uint32 stageid						= 1; //  关卡id
+	repeated uint64 first_player_guid			= 2; // 最先玩家guid
+	repeated string first_player				= 3; // 最先玩家名字
+	repeated uint64 fast_player_guid			= 4; // 最快玩家guid
+	repeated string fast_player					= 5; // 最快玩家名字
+	repeated uint32 round						= 6; // 最快玩家的回合数
+}
+
+// 攻打某关卡
+message cmsg_trial_fight_stage
+{
+	optional uint32 copy						= 1; // 副本id
+	optional uint32 yy							= 2; // 阴阳，1：阳，2：阴
+	optional uint32 stage						= 3; // 要攻击的关卡
+}
+
+message smsg_trial_fight_stage
+{
+	optional uint32 copy						= 1;
+	optional uint32 yy							= 2; //// 阴阳，1：阴，2：阳
+	optional uint32 stage						= 3;
+	optional uint32 result						= 4; // 1，ok；2：未解锁， 3：次数不足；其他，错误
+	optional uint32 fight_result				= 5; // 战斗结果。1：成功，2：平局，3：失败
+	repeated uint32 items						= 6;		
+	repeated uint32 item_nums					= 7;
+	optional uint32 attact_score				= 8; // 攻击分
+	optional uint32 defence_score				= 9; // 防御分
+	optional uint32 round						= 10; // 回合数
+	
+}
+
+
+// 开始扫荡：,服务器收到消息开始计冷却时间
+// 如果未收到该消息则不能
+message cmsg_trial_wipe_start
+{
+	optional uint32 copy						= 1; // 
+	optional uint32 stageid						= 2; // 要扫荡的关卡id.
+}
+
+message smsg_trial_wipe_start
+{
+	optional uint32 copy						= 1; 
+	optional uint32 stageid						= 2;
+	optional uint32 cool						= 3; // 扫荡cd时间
+}
+
+// 扫荡
+message cmsg_trial_wipe_stage
+{
+	optional uint32 copy						= 1; // 副本id
+	optional uint32 yy							= 2; // 阴阳，1：阴，2：阳
+	optional uint32 stage						= 3; // 要攻击的关卡
+}
+
+message smsg_trial_wipe_stage
+{
+	optional uint32 copy						= 1; // 副本id
+	optional uint32 yy							= 2; // 阴阳，1：阴，2：阳
+	optional uint32 stage						= 3; // 要攻击的关卡
+	optional uint32 result						= 4; // 结果：1,成功，2：关卡未通过，3：cd未结束，4：没有扫荡次数
+	optional uint32 cool						= 5; // 冷却时间，s
+	repeated uint32 items						= 6;
+	repeated uint32 item_nums					= 7;
+}
+
+// 清理扫荡cd, 一次扫荡n次
+message cmsg_trial_clear_wipe_cool
+{
+	optional uint32 copy						= 1; // 副本id
+	optional uint32 yy							= 2; // 阴阳，1：阴，2：阳
+	optional uint32 stage						= 3; // 要攻击的关卡
+	optional uint32 times						= 4; // 要清理的次数
+}
+
+message smsg_trial_clear_wipe_cool
+{
+	message Prize
+	{
+		repeated uint32 items					= 1; // 物品id
+		repeated uint32 item_nums				= 2; // 物品数量
+	}
+	optional uint32 copy						= 1; // 副本id
+	optional uint32 yy							= 2; // 阴阳，1：阴，2：阳
+	optional uint32 stage						= 3; // 要攻击的关卡
+	optional uint32 times						= 4; // 要清理的次数
+	optional uint32 result						= 5; // 1：成功，2：元宝不足，3：vip不足，4：次数不足
+	optional uint32 bag							= 6; // 1：进入背包。2：不足
+	repeated Prize prizes						= 7; // 奖励物品
+}
+
+// message cmsg_trial_vip_wip // 消息体是cmsg_trial_clear_wip_cool; 消息码是：cmsg_trial_vip_wip
+// 服务器返回smsg_trial_clear_wipe_cool;
+
+// 领取奖励
+message cmsg_trial_get_first_prize
+{
+	optional uint32 copy						= 1;
+	optional uint32 stage						= 2; // 要领取的奖励
+}
+
+message smsg_trial_get_first_prize
+{
+	optional uint32 copy						= 1;
+	optional uint32 stage						= 2; // 要领取的奖励
+	optional uint32 result						= 3; // 1：成功，2：背包满， 其他：错误
+	repeated uint32 items						= 4; // 物品
+	repeated uint32 item_nums					= 5; // 物品数量
+}
+
+// 主动推送副本剩余次数，未解锁的不推送
+message smsg_trial_copy_times
+{
+	optional uint32 copy						= 1;
+	optional uint32 free_time_remain			= 2; // 免费的次数剩余
+	optional uint32 coin_time_remain			= 3; // 购买次数剩余
+}

@@ -1,0 +1,176 @@
+package typed.protocol;
+
+enum SHLCode
+{
+	eShlSuccess			= 1;	// 成功
+	eShlTopLevel		= 2;	// 子令牌满级
+	eShlLackFragment	= 3;	// 碎片不足
+	eShlLackMoney		= 4;	// 银两不足
+	eShlTopStage		= 5;	// 满阶
+	eShlLackItem		= 6;	// 材料不足
+	eShlLackPlayerLevel	= 7;	// 玩家等级不足
+	eShlLackLevel		= 8;	// 子令牌等级不足
+	eShlLackCoin		= 9;	// 元宝不足
+	eShlInternalErr		= 10;	// 内部错误
+	eShlLackExp			= 11;	// 子令牌经验不足
+	eShlInvalidParam	= 12;	// 非法参数
+	eShlLocked			= 13;	// 未解锁
+	eShlLackBlessTimes	= 14;	// 元宝祈福无使用次数了
+}
+
+enum SHLType
+{
+	eShltYin	= 1;
+	eShltYang	= 2;
+}
+
+
+enum SHLSubId
+{
+	eShlsd1		= 1;
+	eShlsd2		= 2;
+	eShlsd3		= 3;
+	eShlsd4		= 4;
+	eShlsd5		= 5;
+	eShlsd6		= 6;
+}
+
+enum SHLSubType
+{
+	eShlstWhite		= 1;
+	eShlstGreen		= 2;
+	eShlstBlue		= 3;
+	eShlstPurple	= 4;
+	eShlstOrange	= 5;
+	eShlstRed		= 6;
+}
+
+enum SHLRate
+{
+	eShlrNormal		= 1;
+	eShlrSmall		= 2;
+	eShlrBig		= 3;
+}
+
+
+// 子令牌
+message SubToken
+{	
+	required SHLSubId 		id				= 1;
+	
+	required uint32			stage			= 2;	// 阶
+	required uint32			level			= 3;	// 等级
+	optional uint32			exp				= 4;	// 经验
+	optional uint32			color			= 5;	// 品质, 0: 未解锁,  1~6, 品质id
+	optional uint32			stage_state		= 6;	// 不可升阶(0: 玩家等级不足, 1:经验不足, 2:最大值), 3: 可升阶
+}
+
+// 圣火令
+message Shenghuoling
+{				
+	required	SHLType 	type			= 1;
+	repeated	SubToken	sub_token		= 2;	
+}
+
+// 查询 伙伴 圣火令 
+message cmsg_shenghuoling_info
+{
+	required uint64	 role_guid		= 1;
+}
+
+message smsg_shenghuoling_info
+{
+	required uint64	 		role_guid	= 1;
+	repeated Shenghuoling	shl			= 2;
+	optional uint32			times		= 3;
+}
+
+
+// 自动推送更新 祝福次数
+message smsg_shenghuoling_bless_times
+{	
+	required uint64 role_guids	= 1;
+	optional uint32 times		= 2;
+}
+
+
+// message cmsg_shenghuoling_fragment
+
+// 既可请求, 也会自动推送更新 , 阴阳碎片
+message smsg_shenghuoling_fragment
+{
+	required uint32 yin			= 1;
+	required uint32	yang		= 2;
+}
+
+// 升级
+message cmsg_shenghuoling_level
+{
+	required 	uint32 		level_type		= 1; // 1:普通, 2:一键升级
+	required	SHLType 	type			= 2; // 圣火令类型
+	required 	SHLSubId 	id				= 3;
+	required	uint64		role_guid		= 4;
+}
+
+message smsg_shenghuoling_level
+{
+	required 	uint32 				level_type		= 1; // 1:普通, 2:一键升级
+	required	SHLType 			type			= 2; // 圣火令类型
+	required 	SHLSubId 			id				= 3;
+	required	uint64				role_guid		= 4;
+	
+	repeated	SHLCode				codes			= 5;
+	repeated	uint32				exp				= 6; // 获得的经验
+	repeated	uint32				exp_mode		= 7; // 1:正常, 2:小暴击, 3:大暴击
+	
+	optional	SubToken			sub_tokens		= 8; // 子令牌对应的状态..
+}
+
+// 升阶
+message cmsg_shenghuoling_stage
+{
+	required	SHLType 	type			= 1; // 圣火令类型
+	required 	SHLSubId 	id				= 2;
+	required	uint64		role_guid		= 3;
+}
+
+message smsg_shenghuoling_stage
+{
+	required	SHLType 			type			= 1; // 圣火令类型
+	required 	SHLSubId 			id				= 2;
+	required	uint64				role_guid		= 3;
+
+	required	SHLCode				codes			= 4;	
+	optional	SubToken			sub_token		= 5; // 子令牌状态
+}
+
+
+// 祝福
+message cmsg_shenghuoling_bless
+{
+	required	SHLType 	type			= 1; // 圣火令类型		
+	required	uint32		bless_type		= 2; // 祝福类型, 1:元宝祝福, 2:道具祝福
+	required	uint64		role_guid		= 3;
+	optional    uint32		item_id			= 4; // 道具祝福的 item id
+}
+
+message smsg_shenghuoling_bless
+{
+	required	SHLType 			type			= 1; // 圣火令类型		
+	required	uint32				bless_type		= 2; // 祝福类型, 1:元宝祝福, 2:道具祝福
+	required	uint64				role_guid		= 3;
+	optional    uint32				item_id			= 4; // 道具祝福的 item id
+	
+	required	SHLCode				codes			= 5;	
+	
+	optional	uint32				exp				= 6; // 获得的经验
+	optional	uint32				exp_mode		= 7; // 1:正常, 2:小暴击, 3:大暴击
+	optional 	Shenghuoling		shl				= 8;
+}
+
+
+
+
+
+
+

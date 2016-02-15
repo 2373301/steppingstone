@@ -1,0 +1,181 @@
+package typed.protocol;
+
+enum shop_error {
+	kEReplySuccess				= 0;
+	kEReplyInternal				= 1;    // internal server error
+	kEReplyUnknown				= 2;    // unknown error
+	kEReplyParamNCheck			= 4;    // unchecked parameters
+	kEReplyParamNMatch			= 5;    // unmatched parameters
+	kEReplyCurrencyLess			= 6;    // insufficient currency
+	kEReplyItemLess				= 7;    // insufficient items
+	kEReplyBagFull				= 8;    // bag is already full
+	kEReplyItemNBag				= 9;    // item isn't in bag
+	kEReplyItemNStore			= 10;   // item isn't in storehouse
+	kEReplyItemNOutport			= 11;   // item isn't in outport
+	kEReplyItemELocation		= 12;   // item is in wrong location
+	kEReplyItemNExist			= 13;   // item isn't exist
+	kEReplyCurrencyNMoney  		= 14;   // no money
+	kEReplyCurrencyNCoins		= 15;
+}
+
+// errnum:
+//  1, 服务器端内部错误
+//  2, 未知错误类型
+//  3, 参数不合法
+//  4, 客户端未对参数进行检查
+//  5, 各参数之间不匹配
+//  6, 货币不足
+//  7, 实物不足
+//  8, 背包已满
+//  9, 物品不在背包
+//  10, 物品不在仓库
+//  11, 物品不在回购列表
+//  12, 物品位置不对
+//  13, 物品不存在（或者不属于玩家）
+//
+// 1000+ 为各个消息私有错误码
+message smsg_shop_error {
+	required uint32 opcode			= 1;		// CMSG_XXX
+	required uint32 errnum			= 2;
+	optional string errmsg			= 3;
+}
+
+// 商店的格位内容
+message shop_grid {
+	required uint32 item_id			= 1;
+	required uint32 item_num		= 2;
+	required uint32 currency		= 3;		// 货币支付，货币类型。可能为 0。
+	required uint32 pay_item		= 4;		// 实物支付，物品 id。可能为 0。
+	required uint32 price_num		= 5;
+	optional uint32 lable_id		= 6;		// 商店分页标签
+}
+
+// 打开商店
+message cmsg_shop_open {
+	required uint32 shop_id			= 1;
+}
+
+message smsg_shop_open {
+	required uint32 shop_id			= 1;
+	repeated shop_grid grids		= 2;
+}
+
+// 从商店购买物品
+// 如果成功，会触发 smsg_create_item 消息。
+message cmsg_item_buy {
+	required uint32 shop_id			= 1;
+	required uint32 position		= 2;		// 物品在商店内的位置 1-based
+}
+
+message smsg_item_buy {
+	required uint32 shop_id			= 1;
+	required uint32 position		= 2;
+}
+
+// 出售物品
+message cmsg_item_sell {
+	required uint32 bag_pos			= 1;		// 物品在背包中的位置 1-based
+	required uint64 item_guid		= 2;		// 物品的 guid
+}
+
+// 客户端需要将 item 加到回购列表的第一位
+message smsg_item_sell {
+	required uint32 bag_pos			= 1;
+	required uint64 item_guid		= 2;
+	optional uint32	status			= 3;	// 0，不可出售；1，出售成功；2，出售，但不可回购的
+	optional uint32 price			= 4;	// 商品价格
+}
+
+// 从回购列表中买回物品
+message cmsg_item_buyback {
+	required uint64 item_guid		= 1;
+}
+
+message smsg_item_buyback {
+	required uint64 item_guid		= 1;
+	required uint32 bag_pos			= 2;	// 物品的背包中的位置 1-based
+}
+
+// 打开回购类别
+message cmsg_buyback_open {
+};
+
+message smsg_buyback_open {
+	repeated uint64 dated_items		= 1;	// 过期的物品
+}
+
+// 西域商人
+message smsg_specialshop_open {
+	// 西域商店的已开格位数
+	required uint32 grid_num			= 1;
+	// 西域商店的已上市物品及其唯一标识和超时
+	repeated shop_grid grids			= 2;
+	repeated uint32 suids				= 3;
+	repeated uint32 timeouts			= 4;
+	// 待上市物品
+	required shop_grid listing			= 5;
+	required uint32 listing_timeout		= 6;
+	optional uint32 listing_suids		= 7;
+
+	// initial timeout value for listed/market grids
+	optional uint32 cfg_listed_timeout		= 8;
+	optional uint32 cfg_market_timeout		= 9;
+}
+
+message cmsg_specialshop_buy {
+	required uint32	suid			= 1;
+}
+
+message smsg_specialshop_buy {
+	required uint32 suid			= 1;
+}
+
+message smsg_specialshop_delist {
+	required uint32 suid			= 1;
+}
+
+message smsg_specialshop_enlist {
+	required uint32 listing_suid	= 1;	// For previous listing grid
+	required shop_grid new_listing	= 2;
+}
+
+message cmsg_specialshop_unlock {
+	required uint32 position		= 1;
+}
+
+message smsg_specialshop_unlock {
+	required uint32 position		= 1;
+}
+
+// message cmsg_limit_item_num
+
+message smsg_limit_item_num
+{
+	repeated uint32 item_id_list	= 1;	// 限购item id
+	repeated uint32 item_num_list	= 2;	// 限购item已购买数量
+}
+
+// 圣火异宝商店经验单数据推送
+message smsg_push_exp_info
+{
+	optional uint32 exp_all_num		= 1;	// 经验可购买总数
+	optional uint32 buy_exp_num		= 2;	// 已购买次数
+}
+
+// message cmsg_send_shop16_info
+// 发送全服商店数据（玩家上线、道具数据变更）
+message smsg_send_shop16_info
+{
+	// 全服道具相关
+	repeated uint32 item_id			= 1;	// 道具id
+	repeated uint32 item_num		= 2;	// 道具已购买数量
+	optional uint32 reset_cd		= 3;	// 重置倒计时
+	optional uint32 buy_cd			= 4;	// 购买倒计时（个人相关）
+	//gm平台折扣相关
+	optional uint32 discount		= 5;	// 折扣（原价 100；九折：90）
+	// 热卖道具计数相关
+	repeated uint32 count_item_id	= 6;	// 非全服道具id
+	repeated uint32 count_item_num	= 7;	// 非全服道具购买总数
+	
+	optional uint32 limit_cd		= 8;	// 限制购买cd 
+}

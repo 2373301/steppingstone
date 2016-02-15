@@ -1,0 +1,215 @@
+package typed.protocol;
+
+// 返回值
+enum GB_Return_Status
+{
+	gb_success				= 0;	// 成功
+	gb_not_guild			= 1;	// 无帮会
+	gb_not_limit			= 2;	// 无权限
+	gb_not_guild_level		= 3;	// 帮会等级不够
+	gb_sign_up				= 4;	// 已经报名
+	gb_not_sign_up_time		= 5;	// 不在报名时间内
+}
+
+// -----打开帮会战面板----------------------------------------------------
+// message cmsg_open_guildballte	只有消息码，没有消息体
+
+message smsg_open_guildballte
+{
+	optional uint32 battle_num			= 1;	// 战斗轮次（16强 8强 4强 2强 1强(本周帮会战结束) ）
+	optional uint32 sign_up_end_time	= 2;	// 报名结束剩余时间（秒）
+	optional uint32 begin_time			= 3;	// 开始进入本轮副本剩余时间（秒）
+	optional uint32 battling_time		= 4;	// 开始本轮战斗剩余时间（秒）
+	optional uint32 end_time			= 5;	// 结束本轮战斗剩余时间（秒）
+	optional uint32 guild_num			= 6;	// 参加帮会战的帮会数量
+	optional uint32 is_sign_up			= 7;	// 0 未报名；1 已报名
+	optional uint32 sign_up_start_time	= 8;	// 报名开始剩余时间（秒）
+	optional uint32 battle_status		= 9;	// 0 未开战；1 不战而胜； 2 战败
+}
+
+// -----报名参加帮会战----------------------------------------------------
+// message cmsg_sign_up_guildballte		只有消息码，没有消息体
+
+message smsg_sign_up_guildballte
+{
+	optional uint32 status			= 1;	// 0 成功；1 无帮会，失败；2 没权限（帮主 副帮主才能报名），失败；3 帮会等级不够，失败； 4 已经报名，失败；5 战斗已经开始，失败
+}
+
+// -----查看已报名帮会----------------------------------------------------
+// message cmsg_check_sign_up_guildbattle	只有消息码，没有消息体
+
+message GuildBallteInfo
+{
+	required uint64 guild			= 1;	// 帮会guid
+	optional string name			= 2;	// 帮会名称
+	optional uint32 level			= 3;	// 排名
+	optional uint32	week_exp		= 4;	// 帮会周经验
+}
+
+message smsg_check_sign_up_guildbattle
+{
+	repeated GuildBallteInfo guildballteinfo_list	= 1;	// 报名的帮会信息 (排序服服端控制）
+}
+
+// -----查看帮会战斗情况----------------------------------------------------
+// message cmsg_check_guildbattle	只有消息码，没有消息体
+
+message GroupInfo
+{
+	optional uint64 guild				= 1;	// 帮会guid
+	optional string name				= 2;	// 帮会名称
+	// 位置 说明
+	// 1	2
+	// 5	6
+	// 9	10
+	// 13	14
+	// 3	4
+	// 7	8
+	// 11	12
+	// 15	16
+	optional uint32 position			= 3;	
+	optional uint32 battle_num			= 4;	// 战斗场次（16强 8强 4强 2强 1强）
+	optional uint32 status				= 5;	// 状态 0 未开始战斗 1 胜利  2 失败
+}
+	
+message smsg_check_guildbattle
+{
+	repeated GroupInfo group_info		= 1;	// 帮会战对战战况
+	optional uint32 next_battle_num		= 2;	// 下一轮战斗（16强 8强 4强 2强 1强）
+}
+
+// -----进入帮会战斗副本----------------------------------------------------
+// message cmsg_join_guildballte	只有消息码，没有消息体
+
+message smsg_join_guildballte
+{
+	optional uint32 map_id					= 1;	// 副本地图id
+}
+
+message GuildInfo
+{
+	optional uint64 guild			= 1;	// 帮会guid
+	optional string name			= 2;	// 帮会名称
+	optional uint32 join_members	= 3;	// 帮会参战人数
+	optional uint32 dead_members	= 4;	// 死亡人数
+}
+
+message smsg_update_ballte_info
+{
+	repeated GuildInfo gs_info	= 1;	//	帮会的战斗力情况
+}
+
+message smsg_update_base_info
+{
+	optional uint32 lives			= 1;	//	剩余几条命
+	optional uint32 kill_lives		= 2;	//	所杀人数（击杀一条命为一次）
+	// 与阵型上的伙伴不是一一对应的，需客服端对应roles_guid显示阵型上伙伴的血量
+	repeated uint32 roles_hp		= 3;	//	上阵伙伴血量
+	repeated uint64 roles_guid		= 4;	//	上阵伙伴
+}
+
+// -----开始战斗------------------------------------------------------------
+message cmsg_start_battle
+{
+	optional uint64 other_guid		= 1;	// 敌方guid
+}
+
+message smsg_update_log_info
+{
+	required uint32 talk_id				= 1;	// 对应talk表里的ID
+	// param_id 与 param_name 必需等长，当客户端可以通过 param_id 取得名字时，对应的 param_name 可填为空。	
+	repeated uint64 param_id			= 2;
+	repeated string param_name			= 3;
+}
+
+message smsg_start_battle
+{
+	optional uint32 cd				= 1;	// 	大于0，强制cd时间
+	repeated uint32 reward_type		= 2;	//	奖励类型（bouns表中定义）
+	repeated uint32 reward_num		= 3;	//	奖励数量
+}
+
+// -----当轮战斗结束后的统计面板（由服务端主动推送）----------------------------------------------------
+message BattleReport
+{
+	optional uint64 player			= 1;	// 玩家guid
+	optional string pname			= 2;	// 玩家名字
+	optional uint64 guild			= 3;	// 帮会guid
+	optional string gname			= 4;	// 帮会名称
+	optional uint32 lives			= 5;	// 剩余几条命
+	optional uint32 kill_lives		= 6;	// 所杀人数（击杀一条命为一次）
+}
+
+message smsg_send_end_guildbattle
+{
+	repeated BattleReport br_list 	= 1;	// 当轮战斗结束后的统计信息(排序客服端控制）
+}
+
+// -----奖励发放（帮派战结束或玩家登陆时系统主动通知）-----------------------------------------------
+message smsg_reward_guildbattle
+{
+	optional uint32 reward_type		= 1;	// 帮会战奖励类型（1,2,4,8,16代表对应几强奖励）
+}
+
+// -----领取帮会战奖励----------------------------------------------------------------------------------
+// 成功 返回 smsg_obtain_rewards
+// message cmsg_get_guildbattle_reward
+
+message smsg_get_guildbattle_reward
+{
+	optional uint32 status			= 1;	// 0 成功； 1 背包格位不够，失败
+}
+
+// -----客服端通知战斗已经结束----------------------------------------------------------------------------------
+// message cmsg_client_notify_battle_over
+
+message smsg_client_notify_battle_over
+{
+	optional uint32 cd				= 1; 		// 剩余cd
+}
+
+// -----广播玩家战斗标识----------------------------------------------------------------------------------
+message smsg_broad_open_battling
+{
+	repeated uint64 player_guid		= 1;	// 进入战斗状态的玩家
+}
+
+// -----广播取消战斗标识----------------------------------------------------------------------------------
+message smsg_broad_close_battling
+{
+	optional uint64 player_guid		= 1;	// 关闭战斗状态的玩家
+}
+
+// -----广播战死的玩家----------------------------------------------------------------------------------
+message smsg_broad_death_player
+{
+	optional uint64 player_guid		= 1;	// 战死的玩家guid
+}
+
+
+// -----广播时间----------------------------------------------------------------------------------
+message smsg_guildbattle_broad_time
+{
+	optional uint32 type		= 1;	// 类型 1 正式开始战斗前  2 战斗结束前
+	optional uint32 times		= 2;	// 时间（秒）
+}
+
+// -----广播玩家帮会职位----------------------------------------------------------------------------------
+message smsg_broad_guild_job
+{
+	optional uint64 player_guid		= 1;	// 玩家guid
+	optional uint32 guild_job		= 2;	// 帮会职位
+}
+
+// -----场景里所有玩家帮会职位----------------------------------------------------------------------------------
+message smsg_all_player_guild_job
+{
+	repeated uint64 player_guid		= 1;	// 玩家guid
+	repeated uint32 guild_job		= 2;	// 帮会职位
+}
+
+// -----帮会战开始，通知给所有人----------------------------------------------------------------------------
+message smsg_notify_start_battle
+{
+	optional uint32 battle_num		= 1;	// 战斗轮次
+}

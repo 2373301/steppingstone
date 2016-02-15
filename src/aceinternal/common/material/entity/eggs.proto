@@ -1,0 +1,18 @@
+package typed.entity;
+
+message Eggs
+{
+	required uint64 guid		= 1;
+	required uint64 player		= 2;
+	optional uint32 egg_left 	= 3;	//当前剩余金蛋数
+	optional bool 	has_start 	= 4;	//当前轮是否已开始
+	optional uint32 round 		= 5;	//当前轮次
+	optional uint32 hammer 		= 6;	//当前锤子
+	repeated uint32 card_id 	= 7;	//玩家当前卡片
+	repeated uint32 card_back 	= 8;	//玩家上周卡片备份	
+	repeated uint32 joker 		= 9;	//当前怪物id
+	optional bool 	has_reward 	= 10; 	//是否有周奖励
+	optional uint64 cooling		= 11;	//冷却时间
+	optional uint64 start_last	= 12;	//上次开始时间
+	optional uint32 times_from_item = 13;	//通过使用物品得到的免费次数
+}

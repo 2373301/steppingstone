@@ -1,0 +1,56 @@
+package typed.protocol;
+
+message PartnerDequeue
+{
+	required	uint32 parter_id	= 1;
+	optional	uint32 level 		= 2;
+	optional	uint32 hp 			= 3;
+	optional	uint32 str 			= 4;	
+	optional	uint32 agi 			= 5;		
+	optional	uint32 int 			= 6;	
+	optional 	uint32 edu_str		= 7; //培养外功值
+	optional 	uint32 edu_agi		= 8; //培养内功值
+	optional 	uint32 edu_int		= 9; //培养奇术值	
+}
+
+message smsg_partner_recruit
+{
+	repeated uint32	unlock_partner_id		= 1;	//已道具解锁且没有被招募过的伙伴id
+	repeated PartnerDequeue partner_dequeue	= 2;	//离队伙伴
+}
+
+// 招募、归队消息
+message cmsg_partner_invite
+{
+	required uint32	partner_id		= 1;	//招募的伙伴id
+}
+
+message cmsg_partner_leave
+{
+	required uint64	partner_guid	= 1;	//离队的伙伴guid
+}
+
+message smsg_partner_invite
+{
+	required uint32	partner_id		= 1;	//招募的伙伴id
+}
+
+message smsg_partner_leave
+{
+	required uint64	partner_guid	= 1;	//离队的伙伴guid
+}
+
+message smsg_partner_member_slot
+{
+	optional uint32 member_slot = 1;	//招募位大小
+}
+
+message cmsg_partner_vip_func_unlock
+{
+	optional uint32 func_id = 1;	//50:购买第8个招募位，64：购买第9个招募位
+}
+message smsg_partner_vip_func_unlock
+{
+	optional uint32 func_id = 1;	//50:购买第8个招募位，64：购买第9个招募位
+	optional uint32 result	= 2;	//1:成功，2：配置表错误，3：vip等级不够，4：前置条件不够 5：金钱不够6：服务器内部调用失败
+}

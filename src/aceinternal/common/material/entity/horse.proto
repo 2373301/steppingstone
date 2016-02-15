@@ -1,0 +1,27 @@
+package typed.entity;
+
+message Horse
+{
+	required uint64 guid				= 1;
+	required uint64 player				= 2;
+	
+	// 牧场等级
+	optional uint32 ranch_level			= 3;
+	
+	// 骑术等级, 经验
+	optional uint32 horsemanship_lv		= 4;
+	optional uint32 horsemanship_exp	= 5;
+	
+	// 伙伴援助
+	repeated uint32 helper_ids			= 6;
+	repeated uint32	lockeds				= 7;	// 1: 已锁, 0 :解锁
+	repeated uint32	buf_ids				= 8;
+	repeated uint64 role_guids			= 9;
+	
+	repeated uint32 horse_ids			= 10;	// 已购买的马
+	
+	optional uint32 riding_on			= 11;	// 骑在马上(马 的id)
+	
+	optional uint32 period_cost_coin	= 12; 	// 已花费周期元宝数
+	optional uint32 total_cost_coin		= 13;	// 已话费的所有元宝数
+}

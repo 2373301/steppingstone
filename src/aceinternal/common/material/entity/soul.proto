@@ -1,0 +1,21 @@
+package typed.entity;
+
+message Soul
+{
+	message Formation
+	{
+		repeated uint32 id_list				= 1;	// 武魂id集合
+		optional uint64 role_guid			= 2;	// 武魂绑定的伙伴guid
+		optional uint32 gather_id			= 3;	// 聚魂Id
+	}
+	
+	required uint64 guid					= 1;	
+	required uint64 player					= 2;
+	repeated Formation 	soul_list			= 3;	// 武魂阵集合
+	optional uint32 count_coin				= 4;	// 元宝洗练累积消耗值
+	optional uint32 count_fragment			= 5;	// 武魂碎片累积消耗值
+	// 批量洗练临时数据
+	optional uint32 formation_id			= 6;	// 武魂阵型id
+	repeated uint32 unlock_list				= 7;	// 锁定的武魂位置
+	repeated uint32 id_list					= 8;	// 随机的N组武魂id
+}

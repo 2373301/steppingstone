@@ -1,0 +1,153 @@
+package typed.entity;
+//===================team==========================
+
+message PairTeam
+{
+	message FormMember
+	{
+		optional uint32 role_id		= 1;
+		optional uint64 owner		= 2;
+		optional bool	is_leader	= 3;
+		optional uint32 power		= 4;
+	}
+	required uint64 guid				= 1;	//guid
+	optional string name				= 2;	//战队名字
+	optional uint32 title				= 3;	//战队称号
+	optional uint32 power				= 4;	//战队战力
+	optional uint64 caption				= 5;	//队长
+	optional string cap_name			= 6;	//队长名字
+	repeated uint64 member				= 7;	//战队成员
+	repeated string mem_name			= 8;	//名字
+	repeated FormMember	form_member		= 9;	//阵型
+	repeated uint64 berequest_list		= 10;	//被申请列表
+	optional uint32 max_level			= 11;	//
+
+	optional uint32	score				= 12;	//战队积分
+	repeated uint32 local_rank_high		= 13;	//本地天榜排名
+	repeated uint32 local_rank_low		= 14;	//本地地榜排名
+	repeated uint32 global_rank_high	= 15;	//跨服天榜排名
+	repeated uint32 global_rank_low		= 16;	//跨服地榜排名
+	optional bool	sign_up				= 17;	//是否报名过
+}
+
+message PairSelf
+{
+	required uint64 guid			= 1;	//guid
+	required uint64 player			= 2;	//玩家guid
+	optional bool	bcaption		= 3;	//是否是队长
+	optional uint64 team_guid		= 4;	//战队guid
+	repeated uint64 request_list 	= 5;	//申请列表
+}
+
+
+//=================================================
+
+message PairBattle
+{
+	// 报名数据
+	message SignUp
+	{
+		optional uint64 team_guid		= 1;
+//		repeated uint64 player_member	= 2;	// 成员		
+//		repeated uint64 form_member		= 3;	//
+//		optional uint32 role_id			= 4;
+
+		optional string line_id			= 5;	
+		optional string platform		= 6;
+	}
+	
+	// 淘汰赛数据
+	message WeedOut
+	{
+		required uint64 team_guid		= 1;	// 参赛人员guid
+		repeated uint64 player_member	= 2;	// 成员
+		repeated uint64 form_member		= 3;	// 阵型
+		optional uint32 fail_num		= 4;	// 战败次数
+	}
+	
+	// 排位赛数据
+	message Qualify
+	{
+		optional uint64 team_guid		= 1;	// 参赛人员guid
+		optional uint32 position		= 2;	// 排位图中位置
+		optional uint32 round			= 3;	// 大轮次（16强 8强 4强 2强 1强）
+		optional uint32 win_num 		= 4;	// 战胜次数
+		optional uint32 battle_status	= 5;	// 状态 0 未开始 1 胜利  2 失败 3 排位赛中
+		optional uint32 worth			= 6;	// 身价
+		repeated uint32 bonus_list		= 7;	// 奖励bonus_id
+		optional uint64 player1			= 8;	//
+		optional uint32 reward_status1	= 9;	// 0 无奖励， 1 有奖未领取， 2 有奖已领取		
+		optional uint64 player2			= 10;	//
+		optional uint32 reward_status2	= 11;	// 0 无奖励， 1 有奖未领取， 2 有奖已领取		
+		
+	}
+	
+	required uint64 guid						= 1;	
+	repeated SignUp sign_up_list				= 2;	// 报名者
+	repeated WeedOut weedout_1					= 3;	// 淘汰赛绝世榜数据
+	optional uint32 round_w1					= 4;	// 淘汰赛绝世榜完成轮次
+	repeated WeedOut weedout_2					= 5;	// 淘汰赛宗师榜数据
+	optional uint32 round_w2					= 6;	// 淘汰赛宗师榜完成轮次
+	repeated Qualify qualify_1					= 7;	// 排位赛绝世榜数据
+	repeated Qualify qualify_2					= 8;	// 排位赛宗师榜数据
+	optional uint32 round_q1					= 9;	// 当前排位赛绝世榜轮次（16强 8强 4强 2强 1强 0未开始）
+	optional uint32 sub_round_q1				= 10;	// 排位赛绝世榜完成小轮次
+	optional uint32 round_q2					= 11;	// 当前排位赛宗师榜轮次（16强 8强 4强 2强 1强 0未开始）
+	optional uint32 sub_round_q2				= 12;	// 排位赛宗师榜完成小轮次 
+	optional uint32 stage						= 13;	// 阶段 0 开始（等待报名）；1 报名；2 淘汰赛；3 排位赛；4 已结束	
+	optional uint64 start_time					= 14;	// 本次活动开启时间（年月日 时分）
+	// 排位使用的真实轮次时间（值为2的幂值）
+	// 如：当round_q1 = 4时（参赛人少，直接4强赛开始），round_time=2；
+	// 4强赛时间使用的是16强赛的时间：4*2^2 = 16
+	// 半决赛时间使用的是8强赛的时间：2*2^2 = 8
+	optional uint32 round_time					= 15;	
+	
+	repeated uint64 t_bets_player				= 16;	// 本服投注人
+	repeated uint64 c_bets_player				= 17;	// 跨服投注人
+	repeated uint64 logs_team					= 18;	// 日志关联队伍
+	optional uint32 max_level					= 19;
+}
+
+// 投注
+message PairBets
+{
+	message Bets
+	{
+	//	optional uint32 bets_type		= 1;	// 投注类型	1 晋级赛，2 冠军赛
+		optional uint32 list_type		= 2;	// 榜单类型 1 绝世榜 2 宗师榜
+		optional uint32 round			= 3;	// 轮次
+		optional uint64 team_guid		= 4;	// 投注对象guid
+		optional uint32 money			= 5;	// 投入银两
+		optional uint32 return_money	= 6;	// 本轮返还银两
+		optional uint32 return_s		= 7;	// 返还银两 领取状态（0 无返还金 1 有未领取 2 有已领取）
+		optional uint32 reward_money	= 8;	// 投注获得的奖励
+		optional uint32 reward_s		= 9;	// 投注获得的奖励 领取状态 （0 无奖励 1 有未领取 2 有已领取）
+	}
+	required uint64 guid			= 1;
+	required uint64 q_guid			= 2;	// 活动guid
+	required uint64 player			= 3;	// 投注人guid
+	repeated Bets bets_list			= 4;	// 投注数据 
+//	optional uint32 chips_id		= 5;	// 剩余筹码id（晋级投注）
+//	optional uint32 chips_num		= 6;	// 剩余筹码数量（晋级投注）
+//	optional uint32 chip_value		= 7;	// 单个筹码的价值
+//	optional int32 profit			= 8;	// 本届武林大会投注的总收益
+}
+message PairLogs
+{
+	message Logs
+	{	  
+		optional uint32 battle_type		= 1;	// 战斗类型：1 淘汰赛， 2 排位赛
+		optional uint32 list_type		= 2;	// 榜单类型：1 绝世榜， 2 宗师榜
+		optional uint64 pk_team			= 3;	// pk 对手guid
+		optional uint32 round			= 4;	// 大轮次
+		optional uint32 sub_round		= 5;	// 大轮次中的小轮次
+		optional uint32 battle_status	= 6;	// 战斗状态 1：胜利； 2：失败
+		optional string battle_route	= 7;	// 战斗播放路径
+		optional uint32 fail_num		= 8;	// 战败次数
+		optional uint32 is_proese		= 9;	// 是否晋级  0 结果未知，1 晋级， 2 淘汰	
+	}
+	required uint64 guid			= 1;
+	required uint64 team_guid		= 2;	// 参赛队伍guid	
+	optional PairTeam team_info		= 3;
+	repeated Logs	logs_list		= 4;
+}

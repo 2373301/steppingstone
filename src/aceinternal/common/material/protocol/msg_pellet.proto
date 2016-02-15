@@ -1,0 +1,34 @@
+package typed.protocol;
+
+// 打开丹药面板
+message cmsg_open_pellet
+{
+	required uint64 role		= 1;	// 要查看丹药的伙伴guid
+}
+
+message smsg_open_pellet
+{
+	required uint64 role				= 1;	// 要查看丹药的伙伴guid
+	repeated uint32 str_grade			= 2;	// 外功，数组里面的值代表已经吞噬数量
+	repeated uint32 agi_grade			= 3;	// 内功，数组里面的值代表已经吞噬数量
+	repeated uint32 int_grade			= 4;	// 奇术，数组里面的值代表已经吞噬数量
+}
+
+// 服用丹药
+message cmsg_swallow_pellet
+{
+	required uint64 role				= 1;
+	required uint32 pellet_type			= 2;	// 1:外功，2：内功，3：奇术
+	required uint32 grade				= 3;	// 1、2、3、4、5、6、7品
+	required uint32 swallow_type		= 4;	// 服用类型：1：背包仓库服用丹药，2：元宝直接购买
+}
+
+message smsg_swallow_pellet
+{
+	required uint64 role				= 1;
+	required uint32 pellet_type			= 2;	// 1:外功，2：内功，3：奇术
+	required uint32 grade				= 3;	// 1、2、3、4、5、6、7品
+	required uint32 swallow_type		= 4;	// 服用类型：1：背包仓库服用丹药，2：元宝直接购买
+	required uint32 result				= 5;	// 1:服用成功，2：服用成功并且该品丹药圆满，3：服用失败，无对应丹药物品，
+												// 4：服用失败，该品丹药已经达到最大服用数量，5：服用失败，元宝不足
+}

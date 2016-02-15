@@ -1,0 +1,575 @@
+package typed.protocol;
+
+/// 名称检查消息，暂时未使用
+message cmsg_check_player_name
+{   		///smsg_check_player_name
+	required bytes name = 1;
+}
+
+// 检查角色返回名称
+message smsg_check_player_name
+{   		///smsg_check_player_name
+	required bytes name = 1;
+	optional int32 check_result = 2;	// 1 success, 2 failed
+}
+
+// 创建角色
+message cmsg_player_make
+{					/// 客户端创建人物
+	required string account    	= 1;
+	required bytes  name      	= 2;
+	required int32  sex     	= 3;		/// 性别
+	required int32  profession 	= 4;		/// 职业
+	optional uint32 gm_level   	= 5;     	/// 玩家帐号GM级别
+	
+	optional string validateStr	= 6;		// 初始vip验证字符串
+	optional uint32 param1		= 7;		// 初始vip等级
+	optional uint32 param2		= 8;		// 初始平台年卡
+	optional uint32 param3		= 9;		// 初始加密时间戳
+	optional string param4		= 10;		// 机器人加密字符串结果
+	optional uint32	param5		= 11;		// 机器人robot_id
+	
+	optional string invkey		= 12;		// 邀请加密串
+	optional string itime		= 13;		// 邀请时间
+	optional string iopenid		= 14;		// 邀请者openid
+}
+
+// 创建角色返回消息
+message smsg_player_make
+{
+	required uint64 guid  	= 1;
+	optional uint32 map_id 	= 2;
+	optional uint32 line_id	= 3;
+}
+
+// 客户端根据性别随机名字
+message cmsg_request_random_name
+{
+	required int32  sex     	= 1;		/// 性别
+}
+
+// 客户端根据性别随机名字 返回消息
+message smsg_request_random_name
+{
+	required string  random_name   	= 1;		/// 
+}
+
+// 请求角色列表
+message cmsg_request_player_list
+{				
+	required string account_id  = 1;
+}
+
+// 服务器返回角色列表时，填充每个角色的信息结构
+message smsg_request_one_player
+{
+	required uint64 guid  	    = 1;
+	required bytes  name     	= 2;
+	required int32  profession 	= 3;	//职业
+	required int32  sex		    = 4;
+	required int32  level      	= 5;
+	optional uint32 map_id 		= 6;
+	optional uint32 line_id		= 7;
+}
+
+// 服务器返回角色列表，用户验证成功之后，服务器返回角色列表信息
+message smsg_request_player_list
+{
+	required int32 						player_num  = 1;   				/// 人物数量，如果为0，则弹出角色创建界面
+	repeated smsg_request_one_player 	player_list = 2;
+}
+
+// 删除角色
+message cmsg_player_delete
+{						///删除人物
+	required uint64 guid = 1;
+}
+
+// 删除角色 返回
+message smsg_player_delete
+{						///删除人物
+	required uint64 guid = 1;
+}
+
+// 玩家上线，发送周围玩家信息给上线玩家
+message smsg_create_other 
+{
+	required uint64  guid    	= 1;
+	required uint32  role_id	= 2;
+	optional bytes  name 		= 3;
+	optional int32 	level		= 4;		   /// 等级
+	optional int32 	sex			= 5;		   /// 头像
+	optional float 	src_x		= 6;
+	optional float 	src_y		= 7;
+	optional float 	dst_x		= 8;
+	optional float 	dst_y		= 9;
+	optional int32	direction	= 10;
+	optional uint64	first_role	= 11;
+	optional uint32 flower_rank	= 12;		// 0：无排名，1、2、3排名
+	optional string guild_name	= 13;		// 工会名称
+	optional uint32 guild_icon	= 14;		// 工会图标id
+	optional uint32 follow_role_id	= 15;	// 跟随伙伴ID
+	repeated uint32 current_title	= 16;
+	optional uint32 special_right	= 17;	// 特权卡
+	optional uint32 horse_id		= 18;	// 坐骑
+	optional uint32 wife_follow		= 19;	// 跟随的侠侣
+	optional uint32 yellow_vip_level = 20;	// qq黄钻等级
+	optional uint32 is_yellow_vip		= 21;	// 是否为黄钻用户, 0 : 不是, 1:是
+	optional uint32 is_yellow_year_vip	= 22;	// 是否为年费黄钻用户, 0 : 不是, 1:是
+	optional uint32 is_yellow_high_vip	= 23;	// 是否为豪华版黄钻用户 0: 不是, 1:是
+}
+
+// 玩家周围的其他玩家下线，发送移除消息
+message smsg_player_remove 
+{
+	required uint64 guid  = 1;
+}
+
+
+/// 连接gate，验证账号
+message cmsg_validate_account 
+{
+	required string account_id = 1;
+	required bytes  session_id   = 2;
+};
+
+// 玩家进入世界消息
+message cmsg_player_enter_map 
+{
+	required uint64 guid		= 1;
+	optional uint32 map_id 		= 2;			// 客户端不用填充，该字段gate和gs使用
+	optional uint32 line_id 	= 3;			// 客户端不用填充，该字段gate和gs使用
+}
+
+// 玩家离开世界消息
+message cmsg_player_leave_map
+{
+	required int32	leave_type 			= 1;		// 1 完全退出，关闭游戏; 2 退到人物选择界面
+}
+
+// 玩家进入游戏后，第一个返回的消息，返回玩家的基本信息
+message smsg_create_self 
+{
+	required uint64  guid         	= 1;
+	optional bytes	 name		  	= 2;
+	optional uint32	 level	 		= 3;		// 取第一个角色的等级
+	optional uint32	 exp	 		= 4;		// 取第一个角色的经验
+	optional int32   profession   	= 5;        /// 职业
+	optional int32   sex		  	= 6;        /// 性别	
+	optional uint32	 money	 		= 7;		// 铜钱
+	optional uint32	 coin	 		= 8;		// 元宝
+	optional float   src_x	  		= 9;
+	optional float   src_y	  		= 10;	
+	optional float   dst_x	  		= 11;
+	optional float   dst_y	  		= 12;	
+	optional uint32	 seniority		= 13;		// 阅历
+	optional uint32  map_id		  	= 14;	
+	optional int32	 direction		= 15;		// 人物朝向    1 : 左  2 : 右
+	optional int32	 role_id		= 16;		// avatar id，废弃不用
+	optional uint32	 prestige 		= 17;		// 声望
+	optional uint32  rank			= 18;		// 排名
+	optional uint64  guild			= 19;		// 公会ID
+	optional string  guild_name		= 20;		// 公会名称
+	optional uint32	 member_slot	= 21;		// 最大招募数量
+	repeated uint32	 attributes	 	= 22;		// 人物属性
+	repeated uint64	 roles	 		= 23;		// 角色列表
+	repeated uint64	 bag	 		= 24;		// 背包		0 : 锁定  1 ：解锁  其他：物品
+	repeated uint64	 storehouse		= 25;		// 仓库		0 : 锁定  1 ：解锁  其他：物品
+	optional uint32	 energy			= 26;		// 体力
+	optional uint32	 is_addiction	= 27;		// 是否防沉迷（0：不是，1：是）
+	optional uint32	 vip_level		= 28;		// vip等级，初始值为0
+	optional uint32	 vip_exp		= 29;		// vip等级，初始值为0
+	optional uint32  reverence		= 30;		// 威望
+	optional uint32  guild_icon		= 31;		// 工会图标
+	optional uint32  follow_role_id	= 32;		// 跟随伙伴ID
+	repeated uint32 current_title	= 33;
+	optional uint32 special_right	= 34;		//特权卡
+	optional uint32 horse_id		= 35;		//坐骑
+	optional uint32 wife_follow		= 36;		//跟随的侠侣
+	optional uint32 yellow_vip_level	= 37;	//qq黄钻等级
+	optional uint32 is_yellow_vip		= 38;	// 是否为黄钻用户, 0 : 不是, 1:是
+	optional uint32 is_yellow_year_vip	= 39;	// 是否为年费黄钻用户, 0 : 不是, 1:是
+	optional uint32 is_yellow_high_vip	= 40;	// 是否为豪华版黄钻用户 0: 不是, 1:是
+}
+
+// 创建角色，一个人物可以包含多个角色（伙伴）
+message smsg_create_role
+{
+	required uint64	guid	 			= 1; 
+	required uint64	player	 			= 2; 
+	optional uint32	role_id		 		= 3;
+	optional string	name	 			= 4;
+	optional uint32	sex	 				= 5;
+	optional uint32	job	 				= 6;		// 角色职业
+	optional uint32	faction	 			= 7;		// 门派
+	optional uint32	level	 			= 8;
+	optional uint32	exp	 				= 9;
+	optional uint32	postion				= 10;		// 当前阵型中的位置
+	optional uint32	normal_skill 		= 11;		// 普通技能ID
+	optional uint32	extremely_skill		= 12;		// 绝技技能ID
+	optional uint32 char_ability		= 13;		// 被动技能
+	optional uint32 hire_id				= 14;		// 招募ID
+	repeated uint32	attributes	 		= 15;		// 属性，比如内功、外功等
+	optional uint64 inherit_to			= 30;		// 传承给其他伙伴guid，guid为0，则表示还没传承过，不为0则表示已经传承过
+	optional uint64 inherit_from		= 31;		// 从其他伙伴传承过来guid，guid不为0，则表示，已经从其他伙伴传承过，为0则还没用传承过
+	repeated uint32 attrs_rank			= 32;		// 属性等级
+}
+
+// 玩家鲜花榜排名变更，下发通知消息
+message smsg_update_flower_rank
+{
+	required uint64 guid				= 1;		// 玩家guid
+	required uint32 flower_rank			= 2;		// 0：无排名，1、2、3排名
+}
+
+// 查看玩家详细信息消息
+message cmsg_lookup_player
+{
+	required uint64 guid				= 1;
+}
+
+// 服务器下发查看玩家消息，玩家角色信息和物品信息走统一流程，消息码变更掉
+// SMSG_LOOKUP_CREATE_ROLE，对于消息体是smsg_create_role
+// SMSG_LOOKUP_CRATE_ITEM，对于消息体是smsg_create_item
+message smsg_lookup_player
+{
+	required uint64  guid         	= 1;
+	optional bytes	 name		  	= 2;
+	optional uint32	 level	 		= 3;		// 取第一个角色的等级
+	optional int32   profession   	= 5;        /// 职业
+	optional int32   sex		  	= 6;        /// 性别	
+	optional int32	 role_id		= 16;		// avatar id，废弃不用
+	optional uint32	 prestige 		= 17;		// 声望
+	repeated uint32	 attributes	 	= 22;		// 人物属性
+	repeated uint64	 roles	 		= 23;		// 角色列表
+}
+
+// 创建物品
+message smsg_create_item
+{
+	required uint64 guid			= 1;
+	required uint64 player			= 2;
+	required uint64 role			= 3;	
+	required uint32 id				= 4;
+	optional uint32 num				= 5;		// 已经堆叠数量
+	optional uint32 strength_level	= 6;		// 强化等级
+	optional uint32 location		= 7;		//1 : bag, 2 : storehouse, 3 : equipment pos, 4 : 侠侣装备
+	optional uint32 pos				= 8;
+	optional uint32	price			= 9;		// 价格
+	repeated uint32 attribute_id	= 10;		// 属性ID
+	repeated int32	attribute_value	= 11;
+	optional uint32 color			= 12;
+	optional uint64 wife			= 13; 		// 如果穿在侠侣身上的装备，此处为关联的侠侣的guid.
+	repeated uint32 gems			= 14;		// 宝石（大小为开启的孔数，0 未装宝石，非零为宝石ID）
+}
+
+// 招募之离队
+message smsg_role_remove 
+{
+	required uint64 player_guid  = 1;
+	required uint64 role_guid  = 2;
+}
+
+// 玩家移动
+message cmsg_player_move 
+{
+	optional float src_x = 1;     
+	optional float src_y = 2;
+	optional float dst_x = 3;
+	optional float dst_y = 4;
+}
+
+message smsg_player_move 
+{
+	required uint64 guid	 = 1;
+	optional float src_x = 2;
+	optional float src_y = 3;
+	optional float dst_x = 4;
+	optional float dst_y = 5;
+}
+
+// 玩家跳图
+message cmsg_player_jump_map
+{
+	required uint32 target_map_id = 1;
+}
+
+//玩家跳图返回
+message smsg_player_jump_map
+{
+	required uint32 target_map_id 	= 1;
+	optional uint32 src_x			= 2;
+	optional uint32 src_y			= 3;
+	optional uint32 line_no			= 4;
+}
+
+// 暂不使用
+message smsg_player_upgrade_level
+{
+	required uint32 upgrade_level 	= 1;	//升级之后的等级
+	required uint32 upgrade_exp		= 2;	//升级之后的经验
+}
+
+// 服务器主动下发消息，更新角色等级、经验
+message smsg_role_upgrade_level
+{
+	required uint64 role_guid		= 1;	//role guid
+	required uint32 upgrade_level 	= 2;	//升级之后的等级
+	required uint32 upgrade_exp		= 3;	//升级之后的经验
+	required uint32 upgrade_hp		= 4;	//升级之后的hp, 这个值不再使用，角色的血量信息依据smsg_update_role_attr获取
+}
+
+///-for robot test
+message cmsg_loopback
+{
+    required uint64 sendtime        	= 1;
+    optional uint64 logic_run_elapse	= 2; 		/// GS 上的从接收协议包到处理完此协议包再发送的全部运行时间
+    optional uint64 gs_run_elapse   	= 3; 		/// packet 从GS 到达gate的时间
+}
+
+// 金钱元宝数量更新，服务器下发消息
+message smsg_money_update
+{
+	optional int32 curr_money			= 1;		// 当前铜钱, 如果值为-1， 代表该数值未变动
+	optional int32 curr_coin			= 2;		// 当前元宝
+	optional int32 curr_seniority		= 3;		// 当前阅历
+}
+
+// 属性更新，服务器下发消息
+message smsg_update_role_attr
+{
+	required uint64 role_guid			= 1;
+	repeated uint32 attr_index			= 2;
+	repeated uint32 attr_value			= 3;		// 属性当前值
+}
+
+// 通知客户端换装消息
+
+
+// 通知客户端体力变化
+message smsg_update_energy
+{
+	required int32 curr_energy			= 1;		// 体力变化之后，下发当前体力总值
+}
+
+// 客户端请求角色属性等级消息
+message cmsg_request_role_attr_rank
+{
+	required uint64 role_guid			= 1;		// 角色guid
+}
+
+message smsg_request_role_attr_rank
+{
+	required uint64 role_guid			= 1;		// 角色guid
+	repeated uint32 role_attr			= 2;		// 属性列表
+													//1		等级
+													//2		生命
+													//3		外功攻击
+													//4		外功防御
+													//5		内功攻击
+													//6		内功防御
+													//7		奇术攻击
+													//8		奇术防御
+													//9		命中等级 
+													//10	闪避等级
+													//11	暴击等级
+													//12	格挡等级
+													//13	乘风等级 
+													//14	斩影等级
+													//15	先攻等级总值
+													//16	装备幻化
+													//17	装备强化
+													//18	心法等级
+													//19	三围培养
+													//20	轻功等级
+													//21	脉轮等级
+													//22	武馆训练
+													//23	成员等级
+													//24	韧性（暴击反属性）
+													//25	破击（格挡反属性）
+	
+}
+
+// 客户端请求角色属性消息
+message cmsg_request_role_attr
+{
+	required uint64 role_guid			= 1;		// 角色guid
+}
+
+//
+message smsg_request_role_attr
+{
+	required uint64 role_guid			= 1;		// 角色guid
+	repeated uint32 role_attr			= 2;		// 属性列表
+}
+
+// 更新声望值
+message smsg_update_prestige
+{
+	required int32 prestige_value		= 1;
+}
+
+// 更新声望值
+message smsg_update_reverence
+{
+	required int32 reverence_value		= 1;
+}
+
+// 玩家上线，下发关卡、任务解锁功能列表
+message smsg_unlock_function
+{
+	repeated uint32 function_id			= 1;
+}
+
+// 玩家关卡、任务完成时，下发关卡、任务解锁功能列表
+message smsg_update_unlock_function
+{
+	repeated uint32 function_id			= 1;
+}
+
+// 更新被动技能
+message smsg_update_char_ability
+{
+	optional uint64	role_guid			= 1;
+	optional uint32 char_ability		= 2;
+}
+
+message smsg_get_server_time
+{
+	required uint32 server_time			= 1;	// 单位：秒
+}
+
+// 广播消息
+message cmsg_special_action
+{
+	optional uint32 action_type			= 1;
+	optional uint64 param				= 2;
+}
+
+message smsg_special_action
+{
+	required uint64 player_guid			= 1;	// 事件发起者
+	optional uint32 action_type			= 2;
+	optional uint64 param				= 3;
+}
+
+// 针对玩家的特殊事件消息
+message cmsg_special_action_person
+{
+	repeated uint64 player_guid			= 1;	// 事件接受者列表
+	optional uint32 action_type			= 2;
+	optional uint64 param				= 3;
+}
+
+message smsg_special_action_person
+{
+	required uint64 player_guid			= 1;	// 事件发起者
+	optional uint32 action_type			= 2;
+	optional uint64 param				= 3;
+}
+
+// 体力充沛发放体力时下发消息，体力充沛获得的体力，消耗时，也下发该消息
+message smsg_update_plentiful_energy
+{
+	required uint32 energy_value			= 1;	// 获得体力值
+}
+
+// 更新各个模块剩余免费次数
+message smsg_update_module_free_time
+{
+	message ModuleFreeTime
+	{
+		required uint32 module_id					= 1;	// 模块ID
+		required uint32 left_free_time				= 2;	// 剩余免费次数
+	}
+	repeated ModuleFreeTime module_left_free_time	= 1;
+}
+
+// 设置跟随伙伴
+message cmsg_set_follow_role
+{
+	required uint64 role_guid						= 1;
+}
+
+// 设置跟随伙伴
+message smsg_set_follow_role
+{
+	required uint64 role_guid						= 1;
+	optional uint32 result							= 2;	// 1: 设置成功, 2：设置失败
+}
+
+// 玩家更改伙伴跟随伙伴之后，通知周围的玩家刷新跟随伙伴
+message smsg_update_follow_role
+{
+	required uint64 player_guid						= 1;
+	required uint32 follow_role_id					= 2;
+}
+
+// 更改称号后，通知周围玩家
+message smsg_update_current_title
+{
+	required uint64 player							= 1;
+	repeated uint32 current_title					= 2;
+}
+// 更改特权卡后，通知周围玩家
+message smsg_update_special_right
+{
+	required uint64 player							= 1;
+	required uint32 special_right					= 2;
+}
+//更新跟随侠侣
+message smsg_wife_update_follow
+{
+	required uint64 player							= 1;
+	required uint32 wife_follow						= 2;
+}
+
+// 吃了多倍经验丹之后，会有这个消息下发，玩家上线，次数消耗，也都会下发该消息
+message smsg_update_doubleexp_info
+{
+	required uint32 id								= 1;	// 配置表ID
+	optional uint32 left_num						= 2;	// 当前剩余次数
+	optional uint32 mutil_value						= 3;	// 多倍值
+}
+
+// 查看角色信息，下发角色帮会
+message smsg_lookup_guild_name
+{
+	required uint64 player_guid						= 1;
+	optional string guild_name						= 2;
+}
+
+// 查看角色信息，下发角色轻功ID
+message smsg_lookup_dodge
+{
+	required uint64 player_guid						= 1;
+	optional uint32 dodge_id						= 2;
+}
+
+// 招募紫衫龙王消息
+message smsg_hire_zslw
+{
+	required uint32 hired							= 1;	// 1 : 已经招募，2：未招募
+}
+
+// 开服时间,UTC格式
+message smsg_server_open_time
+{
+	optional uint64 open_time = 1;	//开服时间
+}
+
+//客户端配置字符串,上线下发，可为空
+message smsg_client_config
+{
+	optional string config_str = 1;	//配置字符串，最大255
+}
+
+//更新qq黄钻等级
+message smsg_update_yellow_vip_level
+{
+	required uint64 player				= 1;	//玩家guid
+	required uint32 yellow_vip_level	= 2;	//qq黄钻等级
+	optional uint32 is_yellow_vip		= 3;	// 是否为黄钻用户, 0 : 不是, 1:是
+	optional uint32 is_yellow_year_vip	= 4;	// 是否为年费黄钻用户, 0 : 不是, 1:是
+	optional uint32 is_yellow_high_vip	= 5;	// 是否为豪华版黄钻用户 0: 不是, 1:是	
+}

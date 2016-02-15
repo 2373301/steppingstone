@@ -1,0 +1,31 @@
+package typed.entity;
+
+message soulpve_scene
+{
+	required uint64 guid				=1;
+	required uint64 player				=2;
+	
+	optional uint32 current_stage		=3; // 当前所在关卡
+	
+	optional uint32 top_stage			=4; // 可扫荡到的最高关卡
+	optional uint32 auto_stage			=5; // 扫荡所在的关卡
+	optional uint64 auto_cd				=6; // 扫荡的时间...
+	
+	optional uint32 failed_challenge 	=7; // 挑战次数
+	optional uint32 money_challenge		=8; // 购买的次数
+	
+	optional uint32 reset_auto			=9; // 已重置次数
+	optional uint32 money_auto			=10; // 购买的重置次数	
+
+}
+
+message soulpve_line
+{
+	required uint64 guid				=1;
+	required uint64 player				=2;
+
+	optional uint32 rob					=3; // 抢劫次数
+	optional uint32 money_rob			=4; // 已购买抢劫次数		
+	
+	optional uint32 robed				=5; // 被抢劫次数
+}

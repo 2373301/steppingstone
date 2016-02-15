@@ -1,0 +1,50 @@
+package typed.entity;
+message Escort
+{
+	required uint64 guid			= 1;	//
+	required uint64 player			= 2;	//押镖者guid
+	optional string name			= 3;	//押镖者名字
+	optional uint32 level			= 4;	//押镖者等级
+	optional string family_name		= 5;	//押镖者帮派名
+	optional bool	is_unlock		= 6;	//系统是否解锁
+	repeated uint32	map_unlock		= 7;	//已解锁地图
+	optional uint32 times_left		= 8;	//剩余押镖次数
+	optional uint32 times_rob		= 9;	//剩余打劫次数
+	optional uint32 times_help		= 10;	//剩余帮助次数
+	optional uint32 times_invite	= 11;	//剩余邀请次数,现在无效
+	repeated uint32 agency_id		= 12;	//镖局id
+	repeated uint64 enemy_guid		= 13;	//仇人guid列表
+	repeated string	enemy_name		= 14;	//仇人名字
+	
+	optional uint64 invitter_wait	= 15;	//邀请好友等待
+	optional bool	invite_succ		= 16;	//邀请成功，现在无效
+
+	optional uint32 process			= 17;	//0:无1：正在押镖
+	optional uint32 help_state		= 18;	//1:正在护送别人，0：无
+	optional uint32 times_berobbed	= 19;	//当前被劫次数
+	repeated uint64 robber_guid		= 20;	//当前抢劫者player_guid
+	
+	optional uint32 map_id_cur		= 21;	//当前镖车所在地图
+	optional uint32 speed			= 22;	//当前镖车速度
+	optional uint32 pos_x			= 23;	//当前镖车横坐标
+	optional uint32 pos_y			= 24;	//当前镖车纵坐标
+	optional uint32 car_id_cur		= 25;	//当前选中镖车id	
+	optional uint32 destination		= 26;	//当前押镖目的地
+	optional uint32 agency_type_cur	= 27;	//当前镖局类型
+	optional uint64 helper_guid		= 28;	//当前协助者guid
+	optional string helper_name		= 29;	//当前协助者名字
+	repeated uint64 robber_cur		= 30;	//当前打劫过自个的
+
+	optional uint32 money			= 31;	//押镖获取铜钱基础值
+	optional uint32 prestige		= 32;	//押镖获取声望基础值
+	optional uint32 seni			= 33;	//押镖获取阅历基础值
+	optional uint32 reward_percent	= 34;	//剩余奖励百分比
+	
+	optional uint64 pray			= 35;	//祈福开始时间
+	optional uint32 map_id_open		= 36;	//当前玩家打开的地图id
+	
+	optional uint64	rob_last_time	= 37;	//上次打劫时间
+	optional uint32 rob_cooling		= 38;	//打劫冷却时间
+	optional uint32 job				= 39;	//玩家职业类型
+	optional uint32 role_id			= 40;	//角色role id
+}

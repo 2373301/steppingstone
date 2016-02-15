@@ -1,0 +1,11 @@
+package typed.protocol;
+
+// 系统通知
+message smsg_system_notify
+{
+	required uint32 id					= 1;	// 对应talk表里的ID
+	// param_id 与 param_name 必需等长，当客户端可以通过 param_id 取得名字时，对应的 param_name 可填为空。	
+	repeated uint64 param_id			= 2;
+	repeated string param_name			= 3;
+	optional uint32 create_time			= 4;	// 通知产生时间，单位：秒
+}

@@ -1,0 +1,65 @@
+package typed.entity;
+
+
+message PersonalInfo
+{
+	required uint64 guid			=1; // 占位符
+		
+	// 状态信息
+	optional uint32 buff			 =2; // 鼓舞 buff id
+	optional uint32 debuff			 =3; // 连胜 debuff  id
+	optional uint32	team			 =4; // 所在阵营, 2:天; 3:地; 4:人
+	optional uint32 state			 =5; // 状态
+	optional uint64 state_start_time =6; // 状态开始的时间点
+	optional uint32 winner			 =7; // 是否胜利
+	
+	
+	// 战斗统计
+	optional uint32 win			=8; // 胜利次数
+	optional uint32 lose		=9; // 失败次数
+	optional uint32 hot_streak	=10; // 连胜次数
+	optional uint32 last_streak	=11; // 被终结时的连胜次数
+	optional uint32 terminate	=12; // 终结次数
+	
+	
+	
+	// 总奖励
+	optional uint32 money		=13; // 总银两
+	optional uint32 prestige	=14; // 总声望
+	optional uint32 reverence	=15; // 总威望
+	
+	
+	// 玩家信息
+	optional uint32 role_id		=16; // 玩家的 role id
+	optional string	name		=17; // 玩家姓名
+	
+	// 玩家血量
+	optional bool first_join	=18; // 是否为首次参战
+	repeated uint32 hps			=19; // 保存的剩余血量
+}
+
+// 投注 保存在内存中,不存放数据库了
+// 不跟玩家绑定, 自己加载, 看存放在数据库还是文件
+message Battleground
+{	
+	required uint64 guid		=1; 
+	
+	// 废弃, 直接邮件发送奖励
+	message GambleBonus
+	{
+		required uint64 player	=1;
+		optional uint32 money	=2;
+		optional uint64	time	=3;
+	}
+	
+	// 下注的玩家
+	message Gambler
+	{
+		required uint64 player	=1;
+		optional uint32 stake	=2;	// 赌金
+		optional uint32 group	=3; // 投注的阵营
+	}
+	
+	repeated GambleBonus list	=2;
+	repeated Gambler	gambler	=3;
+}

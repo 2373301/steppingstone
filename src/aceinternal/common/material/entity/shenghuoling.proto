@@ -1,0 +1,67 @@
+package typed.entity;
+
+//圣火令物主, 跟role绑定
+message ShenghuolingOwner
+{	
+	// 子令牌
+	message SubToken
+	{	
+		required uint32 		id			= 2;
+		
+		required uint32			stage		= 4;
+		required uint32			level		= 5;
+		required uint32			exp			= 6;
+	}
+
+	// 圣火令
+	message Shenghuoling
+	{	
+				
+		required	uint32 type			= 2;
+		repeated	SubToken	 sub_token		= 3;	
+	}
+	
+	required uint64			guid	= 1;
+	required uint64			player	= 2;
+	required uint64			role	= 3;
+	
+	repeated Shenghuoling	shl		= 4;
+	optional uint32			times	= 5;  // 元宝祝福次数
+}
+
+// 圣火令模块开关...
+message ShenghuolingSwitch
+{	
+	message SubTokenColor
+	{
+		required	uint32			type		= 1;
+		repeated	uint32			ids			= 2;	
+		repeated 	uint32			colors		= 3;	// 子令牌解锁到的最高品质
+	}
+	
+	message Fragment
+	{
+		required uint32				type		= 1;
+		required uint32				num			= 2;
+	}
+	
+	required	uint64			guid		= 1;
+	required	uint64			player		= 2;
+	
+	required	uint32			unlocked	= 3;	//  模块解锁标记, 1: locked , 2: unlocked
+	repeated	SubTokenColor	sub_colors	= 4;	//  子令牌解锁列表
+	
+	repeated	Fragment		fragment	= 5;	
+}
+
+
+
+
+
+
+
+
+
+
+
+

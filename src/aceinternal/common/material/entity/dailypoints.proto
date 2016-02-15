@@ -1,0 +1,19 @@
+package typed.entity;
+
+// 每日积分
+message DailyPoints
+{
+	message StartEvent
+	{
+		required uint32 daily_id		= 1;	// 积分任务id
+		required uint32 event_id		= 2;	// 事件id
+		optional uint32 complete_value	= 3;	// 完成值
+	}
+	
+	required uint64 guid					= 1;	// 每日积分模块guid
+	required uint64 player					= 2;	// 用户guid
+	repeated uint32 finish_id				= 3;	// 完成积分每日任务列表
+	repeated StartEvent	start_event_list	= 4;	// 未完成积分每日任务列表
+	repeated uint32 reward					= 5;	// 奖励列表 0：代表条件未达到，1：代表可领取，2：已经领取
+	optional uint32 daily_reward_level		= 6;	// 每日领取奖励层次等级
+}

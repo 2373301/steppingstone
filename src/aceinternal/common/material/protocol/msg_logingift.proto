@@ -1,0 +1,49 @@
+package typed.protocol;
+
+
+// 上线的时候发送
+message smsg_logingift_state
+{
+	optional uint32 state					= 1;  //1：抽奖状态，2：领奖状态，3：结束状态
+	optional uint32 login_tm				= 2;  //抽奖登陆天数领奖登陆天数
+	optional uint32 times					= 3;  //已抽奖几次已领取几次
+	optional uint32 coin_give				= 4;  //得到的元宝数（可能是抽奖中间的状态）
+	optional uint32 money_give				= 5; // 发送的银两（按十进制位取每天对应的数值）
+	optional uint32 money_login_times		= 6; // 银两抽取登录次数（登录了几天）
+	optional uint32 money_lottery_state		= 7; // 银两抽取状态。按二进制位取每天的抽奖状态(0:未抽), 最高位代表是否已经领奖（0：未抽奖）
+}
+
+// message cmsg_logingift_lottery  元宝抽奖
+message smsg_logingift_lottery
+{
+	optional uint32 lottery_login_times		= 1;  //登陆天数 1起始。初始化的时候计为一天，开始抽奖
+	optional uint32 lottery_times			= 2;  //已经抽了几次
+	optional uint32 coin_give				= 3;  //奖励的元宝，初始为0还未抽奖
+}
+
+// message cmsg_logingift_get_prize  元宝领奖
+message smsg_logingift_get_prize
+{
+	optional uint32 prize_login_times		= 1;  //领奖登陆天数，
+	optional uint32 prize_times				= 2;  //已经领了几次
+	
+	optional uint32 coin_give				= 3;  //奖励的元宝，初始为0还未抽奖
+}
+
+message cmsg_logingift_money_lottery // 银两抽奖
+{
+	optional uint32 day						= 1; // 0起始，抽第几天的奖励
+}
+
+message smsg_logingift_money_lottery // 
+{
+	optional uint32 day						= 1;
+	optional uint32 result					= 2; // 1：ok 
+	optional uint32 money					= 3; // 钱（0~9）
+}
+
+// message cmsg_logingift_get_money_prize // 领取银两的奖励
+message smsg_logingift_get_money_prize //
+{
+	optional uint32 result					= 1; // 1：ok. 
+}

@@ -1,0 +1,16 @@
+package typed.entity;
+
+message Jianzhong
+{
+	required uint64		guid			= 1;	//实体guid
+	required uint64		player			= 2;	//玩家guid
+	optional uint32		room_id			= 3;	//在那个房间
+	optional uint32		pos				= 4;	//在房间的位置
+	optional uint64		time_on			= 5;	//在位置上开始时间
+	optional uint32		rob_cooling		= 6;	//抢劫冷却时间
+	optional uint32		safe_cooling 	= 7;	//保护冷却时间
+	optional uint32		rob_times		= 8;	//打劫剩余次数
+	optional uint32		buy_times		= 9;	//今天已购买次数
+	optional uint64		rob_time		= 10;	//打劫时间
+	optional uint32		jifen_add		= 11;	//玩家不在线期间增加的积分
+}

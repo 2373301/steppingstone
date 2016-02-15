@@ -1,0 +1,109 @@
+package typed.entity;
+
+// 常驻内存的人物概要信息
+message Short
+{
+	message ChargeInfo
+	{
+		optional uint32 request_index	= 1;
+		optional uint32 charge_value	= 2;
+		optional uint64 charge_time		= 3;	// 秒
+	}
+	
+	message RewardInfo
+	{
+		optional int32	money			= 1;
+		optional int32 	coin			= 2;
+		optional int32 	seniority		= 3;	// 阅历
+		optional uint32	prestige 		= 4;	// 声望
+		optional uint32	reverence 		= 5;	// 威望
+		optional uint32 energy			= 6;	// 体力
+		repeated uint32 item_id			= 7;	// 物品ID
+		repeated uint32 item_num		= 8;	// 物品num，这个和ID意义对应
+		repeated uint32 source_from		= 9;	// 物品source_from
+	}
+	message BossReward
+	{
+		optional uint32 money			= 1; //铜钱
+		optional uint32 prestige		= 2; //声望
+		optional uint32 seniority		= 3; //阅历
+		optional uint32 ranking			= 4; //击杀boss排名
+		optional uint32 bonus			= 5; //前10名bonus额外奖励
+		optional uint32 boss_id			= 6; //boss enemy id		
+		optional bool substitute		= 7; //是否是替身娃娃
+		optional uint32 bonus_killer	= 8; //最后一击击杀boss获得宝箱奖励, 0为没有击杀
+		optional uint64 time			= 9; //boss奖励的时间，1970年至今的秒数，当是替身娃娃类型时为0
+		optional bool	normal_reward	= 10; //是否有普通奖励，仅不是替身娃娃的情况下有效，true：有，false：无
+	}
+
+	// 称号系统
+	message PlayerTitle
+	{
+		optional uint32 title_enable	= 1; // 属性生效的称号
+		repeated uint32 curr_title		= 2; // 当前使用的称号。 
+		repeated uint32 titles			= 3; // 已经解锁的称号
+		message MoreConditionTitle // 多个检索条件的称号
+		{
+			optional uint32 id			= 1;
+			optional uint32 lock		= 2; // 按位解锁的称号。0,1,2分别代表三个条件是否解锁。
+		}
+		repeated MoreConditionTitle mt	= 4;
+		optional uint32 boss_kill_num	= 5; // 世界boss击杀次数
+	}
+	
+	required uint64 guid				= 1;	//
+	optional string name				= 2;
+	optional uint32 level				= 3;
+	optional uint32 role_id				= 4;
+	optional uint32 sex					= 5;
+	optional uint32 job					= 6;
+	optional uint64 last_login_time		= 7;
+	optional uint64 last_logoff_time	= 8;
+	optional uint32 curr_map_id			= 9;
+	optional uint64 player				= 10;
+	repeated uint32 boss_id				= 11;		// 世界boss ID
+	repeated uint32 boss_ranking		= 12;		// 世界boss战中的排名
+	optional uint32 vip_level			= 13;		// 玩家vip等级
+	
+	repeated ChargeInfo charge_info		= 14;
+	optional uint64 multi_copy			= 15;		// 多人副本实体guid
+	optional uint64 mail				= 16;		// mail实体
+	optional uint64 friends				= 17;		// friend实体
+	optional uint32 fight_power			= 18;		// 玩家战斗力
+	optional RewardInfo reward_info		= 19;		// LS发放的玩家奖励，如果玩家不在线，则奖励缓存在该处
+	
+	//
+	optional uint32 times_buy_max_achive_unlock = 20;		//成就解锁每天购买竞技场挑战次数上限
+	optional uint64 guild						= 21;		// 帮会guid
+	optional string guild_name					= 22;		// 帮会名称
+	optional uint32	pvp_ranking					= 23;		//竞技场排名
+	optional uint64 escort						= 24;		//押镖guid
+	repeated BossReward	boss_reward				= 25;		//boss奖励
+	optional string platform					= 26;		// 玩家所在平台
+	optional uint32 line_id						= 27;		// 玩家所在线ID
+	optional uint64	arrest_guid					= 28;		// 海捕文书, 个人相关guid
+	optional uint32 amah						= 29;		//替身娃娃，每一位代表一个替身娃娃的设置情况。1位：世界boss.2位：大乱斗
+	optional PlayerTitle player_title			= 30;		// 称号系统
+	optional uint64 exchanges					= 31;		// 切磋guid
+	optional uint64 splendid					= 32;		// 五绝系统
+	optional uint64 openact1					= 33;		// vip开服活动和开服冲级王活动
+	optional uint64 jianzhong					= 34;		// 剑冢guid
+	optional uint64 pair_self					= 35;		// 2v2个人信息
+	optional uint32	robot_id					= 36;		// 机器人id，0表示正常用户	
+	optional uint64 qqspreadline				= 37;		// qq推广活动line上的实体
+	optional string open_id						= 38;		// 自己的open id
+	optional uint64 inviter_guid				= 39;		// qq邀请者的player guid
+}
+
+message ShortPlayers
+{
+	message VipNumber
+	{
+		optional uint32 vip_level		= 1;	// vip等级，从1开始，vip2、vip3等的人数是包含在vip1里的，以此类推
+		optional uint32 vip_number		= 2;	// vip等级对应的玩家数量，数量有可能为0
+	}
+
+	required uint64 guid			= 1;
+	repeated uint64 player_guids	= 2;
+	repeated VipNumber vip_number	= 3;		// vip数量
+}

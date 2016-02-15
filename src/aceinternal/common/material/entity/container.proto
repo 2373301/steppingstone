@@ -1,0 +1,13 @@
+package typed.entity;
+
+message ContainerContainer
+{
+	required uint64 guid			= 1;
+	repeated uint64 con_guid		= 2;
+}
+
+message Container
+{
+	required uint64 guid			= 1;
+	repeated uint64 ent_guid		= 2;
+}

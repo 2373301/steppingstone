@@ -1,0 +1,15 @@
+package typed.entity;
+
+message Condor {
+
+	required uint64 guid	= 1;
+	required uint64 player	= 2;
+	
+	optional uint32 max_round = 3; //最大轮次
+	optional uint32 round	= 4;	// 当前第几轮
+	optional uint32 left	= 5;	// 当前轮剩余次数
+	optional uint32 weapon_id = 6;	// 已选择的weapon id
+	
+	optional uint64	end_time = 7;	// 上一轮结束的时间点      
+	optional uint32 done	= 8;	// 今天的整完了....	
+}

@@ -1,0 +1,221 @@
+package typed.protocol;
+
+/////////////////////////////////////////////////////////////////////////////
+// 注册消息，在连接上会员中心以后，第一时间发送该消息给会员中心，用于效验连接的安全性
+/////////////////////////////////////////////////////////////////////////////
+// opcode : 700
+message mmsg_member_register
+{
+	required uint32	line_id				= 1;	// line ID
+	required string	security_key		= 2;	// 由相关算法计算所得，用于效验身份的合法性，char类型，长度32,区分大小写
+}
+
+// 注册响应
+// opcode 709，注册成功，无消息协议
+// opcode 710, 注册失败，无消息协议
+
+/////////////////////////////////////////////////////////////////////////////
+// 登陆消息，由会员中心发送给游戏服务器
+/////////////////////////////////////////////////////////////////////////////
+// opcode : 701
+message mmsg_member_login
+{
+	required uint32	request_index		= 1;	// 标示每个请求的唯一索引
+	required string	account				= 2;	// char类型，长度32
+	required uint32	addiction_flag		= 3;	// 防沉迷标志，1：不是防沉迷用户，2:是防沉迷用户
+	required uint32	network_type		= 4;	// 玩家网络类型，1：电信，2：网通
+	required string	security_key		= 5;	// char类型，长度32
+	required uint32 line_id				= 6;	// 玩家选择的线ID
+	optional string open_id				= 7;	// qq open_id
+	optional string open_key			= 8;	// qq session key
+	optional string pf					= 9;	// qq 平台id
+	optional string pfkey				= 10;	// qq 平台key
+}
+
+// 游戏服务器收到用户登陆消息以后，发送该消息给会员中心，确认该消息已经收到
+// opcode : 702
+message smsg_member_login_respond
+{
+	required uint32	request_index		= 1;	// 标示每个请求的唯一索引
+	required string	account				= 2;	// char类型，长度32
+	optional string assign_gate			= 3;	// char类型，长度32，格式：172.16.32.30:2500
+}
+
+/////////////////////////////////////////////////////////////////////////////
+// 玩家充值
+/////////////////////////////////////////////////////////////////////////////
+// opcode : 704
+message mmsg_member_charge
+{
+	required uint32	request_index		= 1;	// 标示每个请求的唯一索引
+	required string	account				= 2;	// char类型，长度32
+	required uint32	point				= 3;	// 充值元宝数
+	required uint32 line_id				= 4;	// 玩家选择的线ID
+	optional string	role_guid			= 5;	// 合服之后，如果一条线有多个角色，需要带上角色guid，24位
+}
+
+// 玩家充值，游戏服务器确认以后发送该消息给会员中心
+// opcode : 705
+message smsg_member_charge_confirm
+{
+	required uint32	request_index		= 1;	// 标示每个请求的唯一索引
+	required string	account				= 2;	// char类型，长度32
+	required uint32 result				= 3;	// 1:充值成功，2：失败
+}
+
+/////////////////////////////////////////////////////////////////////////////
+// 角色查询
+/////////////////////////////////////////////////////////////////////////////
+// opcode : 706
+message mmsg_query_role
+{
+	required uint32 request_index		= 1;
+	required string	account				= 2;	// char类型，长度32
+	required uint32 line_id				= 3;	// 玩家选择的线ID
+}
+
+// 角色查询返回
+// opcode : 707
+message smsg_query_role_return
+{
+	message RoleInfo
+	{
+		required string role_id			= 1;	// 长度:24位
+		required uint32 role_level		= 2;
+		required string	role_name		= 3;	// 长度32
+	}
+	
+	required uint32 request_index		= 1;
+	required string account				= 2;	// 长度32
+	required uint32 line_id				= 3;	// 查询结果，1：查询成功，2：查询失败，数据库不可用
+	required uint32 query_status		= 4;	// 
+	repeated RoleInfo role_info			= 5;	// 对于数组传输格式：16位的数组长度，后面依次填充每个数据的内容。
+												// 如果长度为0，则只有一个16位的长度0，后面无填充内容。
+}
+
+// 游戏在线查询接口
+// opcode:7011
+message mmsg_query_online_number
+{
+	required uint32	request_index		= 1;	// 标示每个请求的唯一索引
+	required uint32 line_id				= 2;	// 线ID
+}
+
+// 游戏在线查询接口
+// opcode:7012
+message smsg_query_online_number
+{
+	required uint32	request_index		= 1;	// 标示每个请求的唯一索引
+	required uint32 line_id				= 2;	// 线ID
+	required uint32 online_number		= 3;	// 在线人数
+}
+
+// 礼品发放接口
+// 7013
+message mmsg_member_give_gift
+{
+	required uint32	request_index		= 1;	// 标示每个请求的唯一索引
+	required uint32 line_id				= 2;	// 线ID
+	required string	account				= 3;	// char类型，长度32
+	required uint32 gift_number			= 4;	// 礼包数量
+	required uint32 replay				= 5;	// 0:正常发放，1：由于发放失败而进行的重试请求
+	required uint32 gift_type			= 6;	// 礼品ID号
+	required uint32 start_day			= 7;	// 礼品发放开始时间戳
+	required uint32 end_day				= 8;	// 礼品发放结束时间戳
+	required string	role_guid			= 9;	// 角色guid，24位
+}
+
+// 礼品发放接口
+// 7014
+message smsg_member_give_gift
+{
+	required uint32	request_index		= 1;	// 标示每个请求的唯一索引
+	required uint32 line_id				= 2;	// 线ID
+	required string	account				= 3;	// char类型，长度32
+	required string	role_guid			= 4;	// 角色guid，24位
+	required uint32 result				= 5;	// 1：发放成功，2：发放失败，重复请求，3：发放失败
+}
+
+///////////////////////////////////////////////////////////////////////////////
+///// protocol between gate and gs member
+///////////////////////////////////////////////////////////////////////////////
+
+message smsg_gate_login_respond
+{
+	required uint32	request_index		= 1;	// 标示每个请求的唯一索引
+	required string	account				= 2;	// char类型，长度32
+	required uint32 network_type		= 3;	// 玩家网络类型，1：电信，2：网通
+}
+
+// 在玩家登陆验证成功以后，发送该消息给会员中心，表示玩家已经成功登陆
+// opcode : 703
+message smsg_member_login_confirm
+{
+	required uint32	request_index		= 1;	// 标示每个请求的唯一索引
+	required string	account				= 2;	// char类型，长度32
+	required uint32 line_id				= 3;
+}
+
+// gate汇报在线人数给member
+message smsg_report_online_number
+{
+	message OnlineInfo
+	{
+		required string	account			= 1;	// char类型，长度32
+		required uint32 line_id			= 2;
+	}
+	repeated OnlineInfo online_info		= 1;
+}
+
+// 账号下线
+message smsg_member_logoff
+{
+	required string	account				= 1;	// char类型，长度32
+	required uint32 line_id				= 2;
+}
+
+
+// 批量查询某天注册用户的相关信息
+// opcode : 718
+message smsg_query_register_user_info
+{
+	message Info
+	{
+		optional string user_id		= 1; // 账号
+		optional string nick_name	= 2; // 角色名
+		optional uint32 level		= 3; // 等级
+		optional uint32 login_num	= 4; // 当天登录次数
+		optional string last_login_time = 5; // 最后登陆时间
+	}
+	
+	required uint32		all_pages		= 1;
+	repeated Info		list_info		= 2;	
+	required uint32		error_no		= 4;	// 1:每页行数或者请求的当前页 数值为0
+}
+
+// 查询平均在线玩家数, 最高在线玩家数
+message smsg_query_daily_players
+{
+	required uint32	result 	= 1;
+	required uint32	num		= 2;
+}
+
+//查询QQ黄钻信息
+//STOG_QUERY_QQ_VIP_INFO
+//GTOS_QUERY_QQ_VIP_INFO
+message gtos_query_qq_vip_info
+{
+	optional uint32 is_yellow_vip		= 1;		// 是否为黄钻用户, 0 : 不是, 1:是
+	optional uint32 is_yelow_year_vip	= 2;		// 是否为年费黄钻用户, 0 : 不是, 1:是
+	optional uint32 yellow_vip_level	= 3;		// 黄钻等级
+	optional uint32 is_yellow_high_vip	= 4;		// 是否为豪华版黄钻用户 0: 不是, 1:是
+	optional uint32 result				= 5;		//1:成功，2：失败	
+}
+//查询安装游戏的QQ好友
+//STOG_QUERY_QQ_APP_FRIENDS
+//GTOS_QUERY_QQ_APP_FRIENDS
+message gtos_query_qq_app_friends
+{
+	repeated string qq_app_friend	= 1;
+	optional uint32 result			= 2;	//1:成功，2：失败
+}

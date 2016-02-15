@@ -1,0 +1,82 @@
+package typed.entity;
+
+
+
+message PlayerMaze
+{
+	// 秘境
+	message Maze
+	{
+		// 机关
+		message Trip
+		{
+			required uint32 id							= 1;
+			optional uint32 flag						= 2; // 1：可见机关;2：隐藏机关
+			optional uint32 status						= 3; // 1：未打开，2：已经打开	
+		}
+
+		// 敌人
+		message Enemy
+		{
+			required uint32 id							= 1; // 
+			optional uint32 status						= 2; // 1：已经击败，2:未击败
+		}
+
+		// 宝箱
+		message Box
+		{
+			required uint32 id							= 1; // 箱子
+			optional uint32 status						= 2; // 1：已经领取；2:未领取
+		}
+
+		// 迷宫房间
+		message Room
+		{
+			required uint32 room_id						= 1; // 房间id
+			optional uint32 opened						= 2; // 是否已经开启：1：已开启; 2：未开启
+			optional uint32 locked						= 3; // 是否已经解锁：1：已解锁; 2：未解锁
+			repeated Trip trips							= 4; // 所有的机关
+			repeated Enemy	enemys						= 5; // 敌人
+			repeated Box box_normal						= 6; // 普通箱子
+			repeated Box box_king						= 7; // 金箱子
+		}
+		
+		message Items
+		{
+			optional uint32 item_id						= 1; // 物品ID
+			optional uint32 item_num					= 2; // 物品数量
+		}
+
+		required uint32 id								= 1; // 迷宫id											// 不清理
+		required uint32 level_locked					= 2; // 1：已经解锁,其他：未解锁（等级未达成）			// 不清理
+		optional uint32 quest_locked					= 3; // 1：已经解锁。其他：未解锁						// 不清理
+		optional uint32 statues							= 4; // 1：未进入;其他：已经进入	
+		optional uint32 explore_num						= 5; // 已经探索的次数		( 每日清理 )
+		optional uint32 explore_buy_num					= 6; // 本日已购买次数		（ 每日清理 ）			
+		optional uint32 valid_room						= 7; // 1：房间初始数据已经生成; 其他未生成房间数据
+		optional uint32 last_room						= 8; // 所在迷宫中的房间，
+		optional uint32 opened_trip_num					= 9; // 已打开机关的次数
+		optional uint32 all_trip_num					= 10; // 本迷宫机关的总数
+		optional uint32 king_box_get_num				= 11; // 领取的金箱子个数
+		optional uint32 normal_box_get_num				= 12; // 领取的普通箱子个数
+		
+		repeated uint32 time_group						= 13; // 记录已经结算的时间迷宫数据, 时间点是否已经结算	
+		repeated Room rooms								= 14; // 本迷宫的所有房间 
+		repeated Items item_get							= 15; // 本次迷宫中所得到的物品
+		optional uint32 item_explore_num_remain			= 16; // 使用物品得到的次数（ 每天清理，使用物品的时候，增加，扣减 ）
+		optional uint32 coin_explore_num_remain			= 17; // 金币购买的次数累计，免费次数消耗完的时候，消耗金币次数
+	}
+
+
+	required uint64 guid								= 1;
+	required uint64 player								= 2;
+	optional uint64 last_time							= 3; // 上一次的结算时间。 
+	optional uint32 explore_point						= 4; // 探索点数，根据时间恢复。
+	optional uint32 explore_point_buy_num				= 5; // 当天探索点数购买次数
+	repeated Maze mazes									= 6; // 玩家的迷宫数据，day_清理
+	// 0:无效,
+	// 进入时迷宫设置。
+	// 完成迷宫(击杀boss),重置, 离开迷宫，离开迷宫地图，退出游戏，清理
+	optional uint32 curr_maze							= 7; // 玩家当前所在的秘境id.	
+	optional uint32 curr_room							= 8; // 玩家当前所在房间的id.	
+}

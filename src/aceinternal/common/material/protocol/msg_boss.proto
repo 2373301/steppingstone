@@ -1,0 +1,149 @@
+package typed.protocol;
+
+//SMSG_BOSS_APPEAR_STAGE
+message smsg_boss_appear_stage
+{
+	optional uint32 stage		= 1; //boss出现阶段，目前分5个阶段，1：2: 3:boss出现，可以加入战斗，进行鼓舞但不能攻击，4：boss开始 5：boss结束
+	optional uint32 time_left	= 2; //stage == 1,2,3时time_left表示boss战开始倒计时秒数， stage==4时time_left表示boss战持续时间，
+	optional uint32 boss_id		= 3; //boss id
+}
+
+//SMSG_BOSS_RESULT 活动结束或者boss被击杀发送
+message smsg_boss_result
+{
+	optional bool success 	= 1; //击杀boss成功
+	optional uint32 boss_id = 2; //世界boss enemy id
+}
+
+//CMSG_BOSS_JOIN, 如果一个地图只有一个boss则不需要结构体
+
+//SMSG_BOSS_JOIN
+message smsg_boss_join
+{
+	optional uint32 revive_time_left	= 1; //玩家复活倒计时时间(单位S)
+	optional uint32 seni_enc_cooling	= 2; //阅历鼓舞冷却时间(单位S)
+	optional uint32 seni_enc_forbit		= 3; //阅历鼓舞强制冷却(单位S)
+	optional uint32 enc_level			= 4; //鼓舞当前层
+//	optional uint32 revive_cost			= 5; //欲火当次消耗
+	optional uint32 direct_cost 		= 5; //春哥附体的元宝消耗
+	optional uint32 hurt_total 			= 6; //对总伤害	
+	
+	optional uint32 boss_hp				= 7; //boss总血量
+	optional uint32 boss_current_hp		= 8; //boss当前血量
+	optional uint32 boss_id				= 9; //boss enemy id
+
+}
+
+//SMSG_BOSS_CURRENT_HP，每几百ms发一次
+message smsg_boss_current_hp
+{
+	optional uint32 current_hp 		= 1; //boss当前血量
+//	optional uitn32 boss_id 		= 2; 	//boss enemy id
+}
+
+//SMSG_BOSS_HURT_TOP 发送boss战前几名玩家信息
+message smsg_boss_hurt_top
+{
+	message Hurt
+	{
+		optional uint32 hurt_value	= 1; //伤害总值
+		optional uint32 role_id		= 2; //角色id
+		optional string name		= 3; //名字
+		optional uint64 player_guid = 4; //玩家guid
+	}
+	repeated Hurt hurt_top			= 1; //boss伤害前几名列表，目前是前十名
+	optional uint32 boss_id			= 2; //boss_id
+}
+
+//CMSG_BOSS_LEAVE，玩家主动点击按钮离开
+
+//SMSG_BOSS_LEAVE
+
+//CMSG_BOSS_ENCOURAGE
+message cmsg_boss_encourage
+{
+	optional uint32 enc_type 		= 1;	//鼓舞类型， 1：阅历，2：元宝
+}
+
+//SMSG_BOSS_ENCOURAGE
+message smsg_boss_encourage
+{
+	optional uint32 success			= 1; //0:失败， 1：成功
+	optional uint32 cooling			= 2; //鼓舞冷却时间
+	optional uint32 enc_forbit		= 3; //鼓舞是否禁止
+	optional uint32 enc_type		= 4; //鼓舞类型， 1：阅历，2：元宝
+}
+
+
+//CMSG_BOSS_ATTACK，boss发起战斗
+
+//SMSG_BOSS_ATTACK，需要同屏广播
+message smsg_boss_attack
+{
+	required uint64 player_guid 		= 1; //玩家guid
+	optional uint32 revive_time_left	= 2; //玩家复活倒计时时间（单位S）
+	optional uint32 battle_round		= 3; //大的回合数
+	optional uint32 hurt				= 4; //打boss本轮伤害
+	optional uint32 direction			= 5; //方向 0~180随机
+	optional uint32 cooling_left		= 6; //复活剩余时间，0：请求成功，非0：当前请求失败返回剩余秒数
+}
+
+//CMSG_BOSS_QUIK_REVIVE
+//SMSG_BOSS_QUIK_REVIVE
+
+//CMSG_BOSS_ATTACK_DIRECT
+//SMSG_BOSS_ATTACK_DIRECT
+message smsg_boss_attack_direct
+{
+	optional uint32 direct_cost = 1; //下次春哥附体的元宝消耗
+}
+
+//SMSG_BOSS_REWARD
+
+message smsg_boss_reward
+{
+	optional uint32 money		= 1; //铜钱
+	optional uint32 prestige	= 2; //声望
+	optional uint32 seniority	= 3; //阅历
+	optional uint32 ranking		= 4; //击杀boss排名
+	optional uint32 bonus		= 5; //前10名bonus额外奖励
+	optional uint32 boss_id		= 6; //boss enemy id		
+	optional bool	substitute	= 7; //是否是替身娃娃
+	optional uint32 bonus_killer = 8; //最后一击击杀boss获得宝箱奖励, 0为没有击杀
+	optional uint32 boss_time	= 9; //打bosss时间，当是替身娃娃类型是为0
+	optional bool	normal_reward	= 10; //是否有普通奖励，仅不是替身娃娃的情况下有效，true：有，false：无
+}
+//CMSG_BOSS_GET_REWARD
+message cmsg_boss_get_reward
+{
+	optional uint32 boss_id		= 1;	//boss id
+	optional uint32 boss_time	= 2;	//boss time, 替身娃娃该字段是0
+	optional uint32 substitute	= 3;	//是否是boss替身娃娃奖励，1：是，0：否
+	optional uint32 boss_killer	= 4;	//是否是击杀boss奖励， 1：击杀boss奖励，0：否
+}
+//SMSG_BOSS_GET_REWARD
+message smsg_boss_get_reward
+{
+	optional uint32 boss_id		= 1;	//boss id
+	optional uint32 boss_time	= 2;	//boss time, 替身娃娃该字段是0
+	optional uint32 substitute	= 3;	//是否是boss替身娃娃奖励，1：是，0：否
+	optional uint32 boss_killer	= 4;	//是否是击杀boss奖励， 1：击杀boss奖励，0：否
+}
+//SMSG_BOSS_KILL
+//message smsg_boss_kill
+//{
+//	optional uint32 bonus 		= 1; //最后一击击杀boss获得宝箱奖励
+//}
+
+//SMSG_BOSS_KILLER_INFO
+message smsg_boss_killer_info
+{
+	optional uint64 killer_guid		= 1;	//boss killer guid
+	optional uint32 killer_role_id	= 2;	//boss killer role id
+	optional string killer_name		= 3;	//boss killer name
+	optional uint32 boss_id			= 4;	//boss id
+}
+
+
+
+

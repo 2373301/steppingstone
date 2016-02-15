@@ -1,0 +1,201 @@
+package typed.protocol;
+
+//××××××××××××××××××××
+//梅花桩
+//××××××××××××××××××××
+
+//1.打开梅花桩
+//CMSG_PLUM_OPEN
+//SMSG_PLUM_OPEN
+message smsg_plum_open
+{
+	repeated uint32 library			= 1;	//步伐系统库, 目前size==6
+	repeated uint32 step			= 2;	//步法id，目前size == 6， size==0表示当前没有开始走桩
+	optional uint32	times_left		= 3;	//走桩剩余次数
+	optional uint32 times_change	= 4;	//已改运次数
+	optional uint32 num_gold		= 5;	//金罐点数
+	optional uint32 num_silver		= 6;	//银罐点数
+	optional uint32 item_id_gold	= 7;	//金罐轻功item id
+	optional uint32 get_gold		= 8;	//金罐轻功是否已领取
+	optional uint32 item_id_silver	= 9;	//银罐轻功item id
+	optional uint32 get_silver		= 10;	//银罐轻功是否已领取 
+	optional uint32 dodge_point		= 11;	//轻功点
+}
+
+//2.开始梅花桩
+//CMSG_PLUM_START
+message cmsg_plum_start
+{
+	optional uint32 step_type	= 1;	//类型, 1:走装， 2：梯云纵， 3：凌波微步
+}
+//SMSG_PLUM_START
+message smsg_plum_start
+{
+	repeated uint32 step			= 1;	//步法id，目前size == 6
+	optional uint32 num_gold		= 2;	//金罐点数
+	optional uint32 num_silver		= 3;	//银罐点数	
+}
+
+//3.改运
+//CMSG_PLUM_CHANGE_STEP
+//SMSG_PLUM_CHANGE_STEP
+message smsg_plum_change_step
+{
+	repeated uint32 step			= 1;	//步法id，目前size == 6
+}
+
+//4.收功
+//CMSG_PLUM_COMPLTE
+//SMSG_PLUM_COMPLTE
+message smsg_plum_complte
+{
+	repeated uint32 reward_type		= 1;	//奖励类型，1：银两，3：阅历， 13：轻功点数
+	repeated uint32 reward_value	= 2;	//与reward_type 一一对应，奖励数值
+	repeated uint32 library			= 3;	//步伐系统库, 目前size==6
+	optional uint32 dodge_point		= 4;	//轻功点
+}
+
+//5.领取轻功item
+//CMSG_PLUM_UNDERSTAND
+message cmsg_plum_understand
+{
+	optional uint32 dodge_item_id	= 1;	//领悟轻功的 item id
+}
+//SMSG_PLUM_UNDERSTAND
+
+//6.每日零点更新
+//SMSG_PLUM_DAY_CHANGE
+message smsg_plum_day_change
+{
+	repeated uint32 library			= 1;	//步伐系统库, 目前size==6
+	optional uint32	times_left		= 2;	//走桩剩余次数
+	optional uint32 times_change	= 3;	//改运剩余免费次数
+}
+
+
+//××××××××××××××××××××
+//轻功
+//××××××××××××××××××××
+
+//该消息废弃
+//SMSG_DODGE_LOGIN
+message smsg_dodge_login
+{
+	optional uint32 dodge_point		= 1;	//轻功点数
+	optional uint32 dodge_id		= 2;	//当前装备轻功id
+}
+//1.打开
+//CMSG_DODGE_OPEN
+//SMSG_DODGE_OPEN
+message smsg_dodge_open
+{
+	repeated uint32 dodge_unlock_id	= 1;	//解锁的轻功id
+	repeated uint32 part_unlock_id	= 2;	//解锁的残卷id
+	optional uint32 dodge_point		= 3;	//轻功点数
+	optional uint32 dodge_id		= 4;	//当前装备轻功id	
+}
+
+//2.装配轻功
+//CMSG_DODGE_INSTALL
+message cmsg_dodge_install
+{
+	optional uint32 dodge_id		= 1;	//装配的轻功id
+}
+//SMSG_DODGE_INSTALL
+message smsg_dodge_install
+{
+	optional uint32 dodge_id		= 1;	//装配的轻功id
+	optional uint32 result			= 2;	//1:成功，2：失败
+}
+
+//3.残卷升级
+//CMSG_DODGE_PART_LEVELUP 残卷升级
+message cmsg_dodge_part_levelup
+{
+	optional uint32 dodge_part_id	= 1;	//残卷升级id
+	optional bool	use_coin		= 2;	//轻功点不足用元宝补足
+}
+//SMSG_DODGE_PART_LEVELUP 残卷升级
+message smsg_dodge_part_levelup
+{
+	optional uint32 dodge_part_id	= 1;	//残卷升级id
+	optional uint32 result			= 2;	//1:成功，2：失败	
+}
+
+//4.轻功升级
+//CMSG_DODGE_LEVELUP 轻功升级
+message cmsg_dodge_levelup
+{
+	optional uint32 dodge_id		= 1;	//轻功升级id
+	optional bool	use_coin		= 2;	//轻功点不足用元宝补足
+}
+//SMSG_DODGE_LEVELUP 轻功升级
+message smsg_dodge_levelup
+{
+	optional uint32 dodge_id		= 1;	//轻功升级id
+	optional uint32 result			= 2;	//1:成功，2：失败	
+}
+
+//SMSG_DODGE_POINT_UPDATE 轻功点更新
+message smsg_dodge_point_update
+{
+	optional uint32 dodge_point		= 1;	//轻功点
+}
+
+//SMSG_DODGE_NEW_UNLOCK 新的轻功解锁提示
+message smsg_dodge_new_unlock
+{
+	repeated uint32 dodge_id_new = 1;
+}
+
+//CMSG_DODGE_RETURN_QUERY
+
+//SMSG_DODGE_RETURN_QUERY
+message smsg_dodge_return_query
+{
+	message DodgeReturnInfo
+	{
+		optional uint32 dodge_type			= 1;	//轻功类型，1：普通轻功，2：中级轻功，3：高级轻功
+		optional uint32 money_cost			= 2;	//银两散功消耗
+		optional uint32 money_return_rate	= 3;	//银两散功返还率
+		optional uint32 gold_cost			= 4;	//元宝散功消耗
+		optional uint32 gold_return_rate	= 5;	//元宝散功返还值
+		optional uint32 dodge_point_return	= 6;	//该类型轻功升级消耗的轻功总额		
+	}
+	repeated DodgeReturnInfo return_info	= 1;	//散功相关信息
+}
+
+//CMSG_DODGE_RETURN_EXEC 执行散功操作
+message cmsg_dodge_return_exec
+{
+	required uint32 dodge_type			= 1;	//轻功类型，1：普通轻功，2：中级轻功，3：高级轻功	
+	required uint32 return_type			= 2;	//散功类型,1.银两，2.元宝
+}
+//SMSG_DODGE_RETURN_EXEC
+message smsg_dodge_return_exec
+{
+	required uint32 dodge_type			= 1;	//轻功类型，1：普通轻功，2：中级轻功，3：高级轻功	
+	required uint32 return_type			= 2;	//散功类型,1.银两，2.元宝
+	optional uint32	result				= 3;	//1.成功，2：银两不足，3，元宝不足，4。其他错误
+}
+//花元宝解锁轻功
+//CMSG_DODGE_UNLOCK_BY_GOLD
+message cmsg_dodge_unlock_by_gold
+{
+	optional uint32 dodge_type	=	1;	//2:中级轻功，3：高级轻功
+}
+//SMSG_DODGE_UNLOCK_BY_GOLD
+message smsg_dodge_unlock_by_gold
+{
+	optional uint32 dodge_type	=	1;	//2:中级轻功，3：高级轻功
+}
+//CMSG_PLUM_BATCH 批量凌波微步
+//SMSG_PLUM_BATCH
+message smsg_plum_batch
+{
+	repeated uint32 reward_type		= 1;	//奖励类型，1：银两，3：阅历， 13：轻功点数
+	repeated uint32 reward_value	= 2;	//与reward_type 一一对应，奖励数值
+	optional uint32 dodge_point		= 3;	//轻功点总数
+	optional uint32 num_gold		= 4;	//金罐点数
+	optional uint32 num_silver		= 5;	//银罐点数	
+}

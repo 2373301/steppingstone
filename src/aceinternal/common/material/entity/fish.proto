@@ -1,0 +1,9 @@
+package typed.entity;
+
+message Fish
+{
+	required uint64	guid	 			= 1; 
+	required uint64	player	 			= 2; 
+	optional uint32 fish_type			= 3;
+	optional uint64	start_fish_time		= 4;	// 开始钓鱼时间
+}

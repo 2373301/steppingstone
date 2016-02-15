@@ -1,0 +1,31 @@
+package typed.entity;
+
+
+
+// 挂载short实体
+
+// 开服活动1
+message OpenAct1
+{
+// 上线的时候，需要检测state,如果处于正在领取状态，则需要重置为1
+	// vip 人数活动
+	message VipPrize
+	{
+		optional uint32 advance						= 1; // 档次
+		optional uint32 sequnce						= 2; // 某档的某序列
+		optional uint32 state						= 3; // 0:未达成，1：已达成，2：正在领取，3：已领取
+	}
+
+	// 新人王活动
+	message NewKingPrize
+	{
+		optional uint32 advance							= 1; // 档次
+		optional uint32 state							= 2; // 0:未达成，1：已达成，2：正在领取，3：已领取
+	}
+	
+	required uint64 guid								= 1;
+	required uint64 player								= 2;
+	
+	repeated VipPrize vip_prize							= 3; // vip人数活动奖励
+	repeated NewKingPrize newking_prize					= 4; // 新人王活动奖励
+}

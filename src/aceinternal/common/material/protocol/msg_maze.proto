@@ -1,0 +1,301 @@
+package typed.protocol;
+
+// 实时推送探索点数
+message smsg_maze_explore_point
+{
+	required uint32 explore_point					= 1; // 探索点数
+}
+
+// 实时推送探索点购买次数，每日清0时也会推送。
+message smsg_maze_explore_point_buy_num
+{
+	required uint32 num								= 1; // 本日已购买次数，实时更新
+}
+
+// 是否有限时秘境开启
+message smsg_maze_has_timemaze
+{
+	required uint32 enable							= 1; // 1:存在开启的限时秘境;其他：不存在限时开启的活动
+}
+
+// 秘境解锁推送通知
+message smsg_maze_unlock_a_maze
+{ // 功能解锁：
+	required uint32 id								= 1; // 解锁的秘境id;
+	optional uint32 unlock_type						= 2; // 1:等级解锁,2:任务解锁,3:活动时间解锁,4:钥匙解锁，5：周解锁，
+}
+
+message smsg_maze_prize_item
+{
+	repeated uint32 itemid							= 1; // 物品id
+	repeated uint32 itemnum							= 2; // 物品数量
+}
+
+// 打开迷宫面板
+// message cmsg_maze_open
+
+message smsg_maze_open
+{
+	message Maze
+	{
+		required uint32 id							= 1; //	迷宫id.
+		optional uint32 level_locked				= 2; // 1：等级已经解锁。其他：未解锁			
+		optional uint32 quest_locked				= 3; // 1：任务已经解锁。其他：未解锁			
+		optional uint32 week_locked					= 4; // 1：每周某天开放解锁。其他每周每天开发为解锁
+		optional uint32 activite_locked				= 5; // 1：在活动时间;其他，不在活动时间
+		optional uint32 key_lock					= 6; // 1：存在开启钥匙或者不需要钥匙;其他：不存在钥匙
+		optional uint32 has_enter					= 7; // 1：已经进入; 2:未进入
+		optional uint32 enter_num					= 8; // 已经探索的次数，包括免费次数
+		optional uint32 all_num						= 9; // 当天总次数
+		optional uint32 king_box_get_num			= 10; // 金箱子领取次数
+		optional uint32 buy_num						= 11; // 今天元宝购买次数
+	}
+	
+	repeated Maze mazes								= 1; // 所有的迷宫。
+}
+
+// 购买探索点数
+message cmsg_maze_buy_explore_point
+{
+	required uint32 num								= 1; // 需要购买的数量
+}
+
+message smsg_maze_buy_explore_point
+{
+	required uint32 result							= 1; // 1：成功，2：元宝不足。
+	required uint32 curr_point						= 2; // 返回当前总的探索点数
+}
+
+// 购买某个迷宫的探索次数
+message cmsg_maze_buy_explore_num
+{
+	required uint32 maze_id							= 1; // 所要买的迷宫的额id;
+}
+
+message smsg_maze_buy_explore_num
+{
+	required uint32 maze_id							= 1; //
+	required uint32 result							= 2; // 1：购买成功。2：元宝不足; 3：购买次数已用完
+}
+
+// 重置
+message cmsg_maze_reset
+{
+	required uint32 maze_id							= 1; // maze_id;
+}
+
+// 重置成功的时候，房间状态变为未进入
+message smsg_maze_reset
+{
+	required uint32 maze_id							= 1; //					
+	required uint32 result							= 2; // 1：成功，2：还没有进入迷宫
+}
+
+// 进入迷宫：
+message cmsg_maze_enter_maze
+{
+	required uint32 maze_id							= 1; //
+}
+
+message MazeRoom
+{
+	required uint32 room_id							= 1; // 房间id
+	required uint32 locked							= 2; // 1:已解锁.2未解锁
+
+	repeated uint32 trip_hided						= 3; // 隐藏机关
+	repeated uint32 trip_showed						= 4; // 机关
+	repeated uint32 trip_opened						= 5; // 已经打开的机关
+	repeated uint32 enemy							= 6; // 敌人
+	repeated uint32 box_normal						= 7; // 普通箱子
+	repeated uint32 box_king						= 8; // 金箱子
+}
+
+message smsg_maze_enter_maze
+{
+	optional uint32 maze_id							= 1; // 当前进入迷宫,当前所在迷宫的id
+	optional uint32 curr_room						= 2; // 当前房间id
+	required uint32 result							= 3; // 1：成功。2:未开启；3：未解锁; 
+	optional uint32 remain_time						= 4; // 剩余时间,限时迷宫限时剩余时间
+	repeated MazeRoom rooms							= 5; //				
+	optional uint32 king_box_get_num				= 6; // 金箱子已领取的个数
+	optional uint32 normal_box_get_num				= 7; // 普通箱子已领取个数
+	optional smsg_maze_prize_item prize_item		= 8; // 得到的奖励				
+}
+
+// 跳迷宫房间
+message cmsg_maze_enter_room
+{
+	required uint32 maze_id							= 1; // 迷宫
+	required uint32 room_id							= 2; // 房间id
+}
+
+message smsg_maze_enter_room
+{
+	required uint32 maze_id							= 1; // 当前进入迷宫,当前所在迷宫的id
+	required uint32 curr_room						= 2; // 当前房间id
+	required uint32 result							= 3; // 1：成功。2:未开启；3：未解锁; 4:当前房间有怪
+	optional uint32 remain_time						= 4; // 剩余时间,限时迷宫限时剩余时间
+}
+
+
+// 离开迷宫：客户端还需要执行跳图操作
+// message cmsg_maze_quit					// 
+
+message smsg_maze_quit
+{
+	required uint32 result							= 1; // 1;成功; 2：不在迷宫中
+}
+
+// 整点踢人，限时房间踢人。
+// 客户端收到该消息，需要执行原先跳图命令，把玩家跳到原地图中
+message smsg_maze_kick
+{
+	required uint32 reason							= 1; // 1:day_change, 2:限时迷宫，3：限时房间;
+}
+
+// 解锁房间：钥匙解锁：
+message cmsg_maze_unlock_room
+{
+	required uint32 maze_id							= 1; //
+	required uint32 room_id							= 2; //
+}
+
+message smsg_maze_unlock_room
+{
+	required uint32 maze_id							= 1; //
+	required uint32 room_id							= 2; //
+	optional uint32 result							= 3; // 1:解锁成功，2：房间已解锁, 3：房间未开启，4：解锁物品不存在
+}
+
+// 打开隐藏机关
+message cmsg_maze_open_hide_trip
+{ 
+	required uint32 maze_id							= 1; //	
+	required uint32 room_id							= 2; //
+	required uint32 trip_id							= 3; // 隐藏机关ID
+}
+
+message smsg_maze_open_hide_trip
+{
+	required uint32 maze_id							= 1; //	
+	required uint32 room_id							= 2; //
+	required uint32 trip_id							= 3; // 
+	required uint32 result							= 4; // 1：成功，2：room_id错误，3:trip_id错误
+}
+
+// 打开机关
+message cmsg_maze_open_trip
+{
+	required uint32 maze_id							= 1; // 迷宫id
+	required uint32 room_id							= 2; // 房间id
+	required uint32 trip_id							= 3; // 机关id.
+}
+
+message smsg_maze_open_trip 
+{
+	required uint32 maze_id							= 1; // 迷宫id
+	required uint32 room_id							= 2; // 房间id
+	required uint32 trip_id							= 3; // 机关id.
+	required uint32 result							= 4; // 1：打开机关成功, 2：探索点不足 3:有敌人未解决
+}
+
+// 迷宫战斗
+message cmsg_maze_beat_enemy
+{
+	required uint32 maze_id							= 1; // 迷宫id
+	required uint32 room_id							= 2; // 房间id
+	required uint32 enemy_param						= 3; // 敌人参数
+	required uint32 enemy_id						= 4; // 敌人id.
+}
+
+message smsg_maze_beat_enemy
+{
+	required uint32 maze_id							= 1; // 迷宫id
+	required uint32 room_id							= 2; // 房间id
+	required uint32 enemy_param						= 3; // 敌人参数
+	required uint32 enemy_id						= 4; // 敌人id.
+	required uint32 result							= 5; // 1：成功，2：错误
+	optional uint32 beat_result						= 6; // 战斗结果：1：成功，2：失败
+}
+
+
+// 直接完成本房间：boss所在房间不能清理
+// 需要处理相关结算
+message cmsg_maze_room_clear
+{
+	required uint32 maze_id							= 1; // 迷宫id
+	required uint32 room_id							= 2; // 房间id
+}
+
+message smsg_maze_room_clear
+{
+	message ClearRecord
+	{
+		required uint32 item_type					= 1; // 1:机关，2:怪物
+		optional uint32 id							= 2; // 对应类型分别展示不同的Id
+
+		optional smsg_maze_new_item	new_item		= 3; // 新的物品
+	}
+	
+	required uint32 result							= 1; // 1:成功，2：元宝不足，3，boss房间不能清理, 4：探索点数不足
+	optional uint32 maze_id							= 2; // 迷宫id
+	optional uint32 room_id							= 3; // 房间id
+	repeated ClearRecord clear_record				= 4; // 清理顺序
+}
+
+
+// 领取宝箱：
+message cmsg_maze_get_reward
+{
+	required uint32 type							= 1; // 1:普通箱子。2:金箱子
+	required uint32 maze_id							= 2; // 迷宫id
+	required uint32 room_id							= 3; // 房间id
+	required uint32 box_param						= 4; // 箱子参数，客户端传送，服务器原样返回
+	required uint32 box_id							= 5; // 箱子id.
+}
+
+message smsg_maze_get_reward
+{
+	required uint32 type							= 1; // 1:普通箱子。2:金箱子
+	required uint32 maze_id							= 2; // 迷宫id
+	required uint32 room_id							= 3; // 房间id
+	required uint32 box_param						= 4; // 箱子参数，客户端传送，服务器原样返回
+	required uint32 box_id							= 5; // 箱子id.
+	required uint32 result							= 6; // 1:成功，2：不在房间内，3：箱子不存在,4:背包满
+	repeated uint32 item_ids						= 7; // 宝箱中的东西
+	repeated uint32 item_nums						= 8; // 宝箱中每个东西的数目
+}
+
+// 触发事件推送.只有在迷宫中的人才会检测房间开启
+message smsg_maze_room_open
+{
+	required uint32 mazeId							= 1; // 房间所在秘境id
+	required MazeRoom room							= 2; // 推送房间开启消息
+}
+
+// 时间推送，
+// 打开机关，迷宫战斗之后，都可能会推送
+message smsg_maze_new_item
+{
+	message Item
+	{
+		required uint32 item_type					= 1; // 1:奖励；2：enemy；3：普通箱子; 4：金箱子
+		required uint32 maze_id						= 2; //	
+		required uint32 room_id						= 3; //
+		required uint32 item_id						= 4; // 物品id.对应类型。分别代表不同的物品
+	}
+	message NewRoom
+	{
+		required uint32 mazeId							= 1; // 房间所在秘境id
+		required MazeRoom room							= 2; // 推送房间开启消息
+	}
+
+	required uint32 maze_id							= 1; // 迷宫id
+	required uint32 room_id							= 2; // 房间id
+	required uint32 type							= 3; // 1:机关，2：打怪，3：房间开启触发
+	optional uint32 param1							= 4; // 对应的id
+	optional uint32 param2							= 5; // 传入参数
+	
+	repeated Item items								= 6; // 推送的物品
+	repeated NewRoom newRooms						= 7; // 新开启的房间
+}

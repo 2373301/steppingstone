@@ -1,0 +1,59 @@
+package typed.entity;
+
+// 战斗buffer
+message Buffer
+{
+	required	uint64	guid 				= 1;
+	required	uint64	role 				= 2;
+	required	uint64	player 				= 3;
+	optional	uint32	buffer_id 			= 4;
+	optional	uint32	buffer_type			= 5;	// buffer当前效果
+	required 	int32 	range				= 6;	// only for player buffer, 1 : 对主角   2 ：全体　　３ : 上阵人员
+	optional	uint32	group				= 7;
+	optional	uint32	level				= 8;
+	optional	uint32	curr_pile_value		= 9;	// 当前叠加数量
+	optional	int32	curr_pile_percent	= 10;	// 当前加成比率
+	optional	int32	curr_pile_addtion	= 11;	// 当前加成值
+	optional	uint32	feature				= 12;	// buffer属性，是否过图消失、是否死亡消失等。
+	optional	uint32	effect_type			= 13;	// 战斗buffer：1 : 秒数、2 : 回合、3 : 战斗场次、4：生效次数，状态buffer：1：秒数、2：战斗场次
+	optional	uint32	interval			= 14;	// 起效时间间隔
+	optional	uint32	last_time			= 15;	// 持续时间、持续回合数、持续战斗场次
+	optional	uint32	curr_last_time		= 16;	// 当前已经持续时间、持续回合数、持续战斗场次
+	optional	uint32	caster_level		= 17;
+	optional	uint32	caster_str			= 18;	// 以下为施放buffer者的相关属性，直接使用，避免再次查找
+	optional	uint32	caster_agi			= 19;
+	optional	uint32	caster_int			= 20;
+	optional	uint32	caster_str_att		= 21;
+	optional	uint32	caster_agi_att		= 22;
+	optional	uint32	caster_int_att		= 23;
+	optional	uint32	caster_str_def		= 24;
+	optional	uint32	caster_agi_def		= 25;
+	optional	uint32	caster_int_def		= 26;
+	optional	uint32	attach_sucess		= 27;	// 附加buffer是否成功，即修改属性的函数是否调用成功
+	optional 	uint32  is_attr_buf			= 28;	// 生效类型，1 ：立即生效，２：回合开始生效
+	optional 	uint32 	caster_role_job		= 29;	// 施法者职业
+	optional 	uint32 	target_role_job		= 30;
+	optional	uint64	cast_role			= 31;	// 施法者
+}
+
+// 人物buffer
+message PlayerBuffer
+{
+	required	uint64	guid 				= 1;
+	required	uint64	player 				= 2;
+	optional	uint32	buffer_id 			= 3;
+	optional 	uint32	range				= 4;	// 1 : 对主角，2：对全体，3：对上阵人员
+	optional 	uint32	group				= 5;
+	optional 	uint32 	level				= 6;
+	optional	uint32	curr_pile_value		= 7;	// 当前叠加数量
+	optional	int32	curr_pile_percent	= 8;	// 当前加成比率
+	optional	int32	curr_pile_addtion	= 9;	// 当前加成值
+	optional	uint32	feature				= 10;	// buffer属性，是否过图消失、是否死亡消失等。
+	optional	uint32	effect_type			= 11;	// 战斗buffer：1 : 秒数、2 : 回合、3 : 战斗场次，状态buffer：1：秒数、2：战斗场次
+	optional	uint32	interval			= 12;	// 起效时间间隔
+	optional	uint32	last_time			= 13;	// 持续时间、持续回合数、持续战斗场次
+	optional	uint32	curr_last_time		= 14;	// 当前已经持续时间、持续回合数、持续战斗场次
+	optional	uint32	effect_module		= 15;	// 生效模块，位处理 0代表生效，1代表不生效，第一位:对竞技场生效  第二位:对关卡过图生效，第三位：对世界boss生效
+	
+
+}

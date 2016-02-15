@@ -1,0 +1,98 @@
+package typed.protocol;
+
+
+// 实时推送新的称号
+message smsg_title_new
+{
+	required uint32 title_id				 = 1; // 新称号的id.
+}
+
+// 实时推送重新锁定的称号
+message smsg_title_relock
+{
+	required uint32 title_id				= 1; // 称号失效
+}
+
+// 上线推送，称号告知：
+message smsg_title_init
+{
+	repeated uint32 title_curr				= 1; // 当前称号
+	optional uint32 title_enable			= 2; // 当前生效的称号（0代表没生效称号）
+}
+
+
+// 打开称号框
+// message cmsg_title_open; // 无消息体。
+
+message smsg_title_open
+{
+	repeated uint32 curr_title				= 1; // 当前使用的称号。
+	repeated uint32 titles					= 2; // 已经解锁的称号, 称号的id.
+	optional uint32 title_enable			= 3; // 属性起效的称号
+}
+
+
+// 查询某个称号
+message cmsg_title_query
+{
+	required uint32 title_id				= 1; // 
+}
+
+message smsg_title_query
+{
+	required uint32 title_id				= 1;
+	optional uint32 locked					= 2; // 1:已解锁。2：未解锁
+	optional uint32 lock_pos				= 3; // 按位解锁：1：代表解锁。0：代表未解锁。 解锁位置按照配置表中解锁条件顺序约定
+}
+
+
+// 物品解锁称号：
+message cmsg_title_item
+{
+	required uint32 title_id				= 1;
+}
+
+message smsg_title_item
+{
+	required uint32 title_id				= 1;
+	optional uint32 result					= 2; // 1:成功。2：物品不存在。
+}
+
+
+// 设置当前称号
+message cmsg_title_set_current
+{
+	required uint32 title_id				= 1; // 设置当前称号
+}
+
+message smsg_title_set_current
+{
+	required uint32 title_id				= 1;
+	optional uint32 result					= 2; // 1:成功。2：称号栏满。3：称号未解锁; 4:称号已经装备
+}
+
+message cmsg_title_reset
+{
+	optional uint32 title_id				= 1; // 取消当前称号
+}
+
+message smsg_title_reset
+{
+	optional uint32 title_id				= 1; // 被取消的称号
+	optional uint32 result					= 2; // 1：成功。2：当前不存在称号。
+}
+
+//  设置当前称号中属性生效的称号
+message cmsg_title_enable
+{
+	optional uint32 title_id				= 1; // 
+}
+
+message smsg_title_enable
+{
+	optional uint32 title_id				= 1; // 
+	optional uint32 result					= 2; // 1：成功。2：非当前称号；3：已经是生效的称号
+}
+
+// 当前称号
+// ????

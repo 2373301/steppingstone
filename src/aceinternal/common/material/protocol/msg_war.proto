@@ -1,0 +1,117 @@
+package typed.protocol;
+
+message RoleAttr
+{
+	required int32 pos				= 1;	//人物站位
+	optional int32 hp 				= 2;	//当前血量;
+	optional int32 enrage			= 3;	//气势
+	optional uint32 template_id		= 4;	//人物模板
+	optional uint32 level			= 5;	//等级
+	optional string name			= 6;	//名字
+	repeated uint32 equipment_id 	= 7;	//装备ID
+	optional uint32 job				= 8;	//职业
+	optional uint32 hp_limit		= 9;	//血量上限，如果为零则上面的hp字段作为血量上限
+	optional uint32 boss_type		= 10;	//pve时该字段存储怪物称号类型，1：小boss，2：大boss，0：小兵
+	optional uint32 skill_id		= 11;	//角色技能skill id
+}
+message DefenderAttr
+{
+	repeated RoleAttr role_attr = 1;
+}
+message RoleAction
+{
+	required int32 pos				= 1;
+	optional int32 skill_id			= 2;
+	optional int32 hp_remain		= 3;	//当前剩余血量
+	optional int32 enrage_change 	= 4;	//当前剩余气势
+	optional int32 action_status 	= 5;	//打斗状态位存储，每一位表示一个状态，从右往左依次是：
+											//第1位：是否命中(攻击者)
+											//第2位：是否暴击(攻击者)
+											//第3位：是否格挡(攻击者)
+											//第4位：是否反击(攻击者)
+											//第5位：是否是绝技攻击(攻击者)
+											//第6位：是否失败(防守者)
+											//第7位：是否是skill的fun里固定的target
+											//第8位：是否有反伤
+											//第9位：是否概率无视攻击
+											//第10位：是否攻击者吸血
+											//第11位：是否空放技能
+											//第12位：是否连击
+											//第13位：连击是否被减伤
+											//第14位：是否合击
+											//第15位：合击是否被减伤
+											
+	optional int32 hp_change		= 6;	//血量变化
+}
+
+message RoleBuffer
+{
+	required uint32 pos 			= 1;
+	required uint32	status			= 2;	// 1 添加， 2 已经添加、本回合效果， 3 删除以及删除时本回合效果
+	required uint32	buffer_id		= 3;
+	required uint32	pile_layer		= 4;	// buffer叠加层数
+	optional int32	hp_change		= 5;	// 变化的hp
+	optional int32	enrage_change	= 6;	// 变化的enrage
+	optional int32  success			= 7; 	// 1 : success  2 : failed 3:无视攻击4：buff免疫
+}
+
+message BattleBout
+{
+	repeated RoleAction attack		= 1;	//攻击方
+	repeated RoleAction defense		= 2;	//技能释放目标，包括范围：敌方、我方，也可能包含自己
+	repeated RoleBuffer	buffer		= 3;	//本回合产生的buffer、消失的buffer、已有buffer效果
+}
+
+//战斗信息
+message smsg_battle_playback
+{
+	required uint32 	map_id					= 1;
+	repeated RoleAttr	role_attacker 			= 2;	//攻击者角色属性
+	repeated DefenderAttr	role_defender 		= 3;	//防守者
+	repeated BattleBout	battle_bout_sequence	= 4;	//攻击序列
+	optional uint32		success					= 5;	// 1 ： 成功， 2 ： 失败 	3 : 平局
+	optional string		player_name				= 6;
+	optional string 	enemy_name				= 7;
+	optional uint32		battle_type				= 8;	// 1 : 竞技场，2:关卡过图，3：世界boss, 4：爬塔，5:押镖，6:阵营站 7:海古文书, 8:切磋, 9:多人副本 10：本服赛、跨服赛
+	optional uint32		player_index			= 9;	//多人副本玩家位置
+	optional uint32		enemy_index				= 10;	//多人副本怪物位置
+	optional uint32		attack_form_group		= 11;	//攻方阵型id
+	optional uint32		defend_form_group		= 12;	//防守方阵型id
+	repeated BattleBout bout_dodge_attacker		= 13;	//攻击者战前轻功释放
+	repeated BattleBout	bout_dodge_defender		= 14;	//防守者战前轻功释放
+	optional string		report_url				= 15;	//战报地址
+	optional uint64		attacker_guid			= 16;	//只pvp有效，攻击者player guid
+	optional uint64		defender_guid			= 17;	//只pvp有效，防守者player guid
+	optional uint32		enemy_id				= 18;	//只pve有效，
+}
+
+// 客户端角色属性
+//1当前hp
+//2hp总值
+//3外功
+//4内功
+//5奇术
+//6外功攻击
+//7内功攻击
+//8奇术攻击
+//9外功防御
+//10内功防御
+//11奇术防御
+//12命中率
+//13闪避率
+//14格挡率
+//15暴击率
+//16暴击伤害倍数
+//17格挡伤害减免
+//18格挡伤害
+
+message RoleAllAttr
+{
+	repeated uint32 attr					= 1;
+}
+//pos:1~9为攻击者，10~18为第一波对手，19~27为第二波对手，以此类推。。。
+message smsg_role_all_attr
+{
+	repeated uint32 		pos				= 1;
+	repeated RoleAllAttr 	role_attr		= 2;
+}

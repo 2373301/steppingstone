@@ -1,0 +1,59 @@
+package typed.protocol;
+
+// 选择角色
+message cmsg_select_inherit_role
+{
+	required uint64 from_role_guid				= 1;
+	required uint64 to_role_guid				= 2;
+}
+
+message smsg_select_inherit_role
+{
+	message SubToken
+	{	
+		required uint32 		id				= 1;	// 1~6
+		required uint32			stage			= 2;	// 阶
+		required uint32			level			= 3;	// 等级
+		optional uint32			exp				= 4;	// 经验
+		optional uint32			color			= 5;	// 品质, 0: 未解锁,  1~6, 品质id
+		optional uint32			stage_state		= 6;	// 不可升阶(0: 玩家等级不足, 1:经验不足, 2:最大值), 3: 可升阶
+	}	
+
+	message BaseAttr
+	{
+		required uint32 str_attr  				= 1;
+		required uint32 agi_attr            	= 2;
+		required uint32 int_attr             	= 3;
+	}
+
+	message RoleInfo
+	{
+		required BaseAttr edu_attr              = 1;
+		required BaseAttr pellet_attr          	= 2;
+		optional uint32 training_level          = 3;
+		repeated SubToken	yin_shl				= 4;
+		repeated SubToken	yang_shl			= 5;
+		repeated uint32 talentid				= 6; // 资质id.
+	}
+
+	required uint64 from_role_guid				= 1;
+	optional uint64 to_role_guid				= 2;
+	optional RoleInfo from_role_info			= 3;  //
+	optional RoleInfo to_role_info              = 4;  //
+}
+
+// 传承操作
+message cmsg_inherit_role
+{
+	required uint64 from_role_guid			= 1;
+	required uint64 to_role_guid			= 2;
+}
+
+message smsg_inherit_role
+{
+	required uint64 from_role_guid			= 1;
+	required uint64 to_role_guid			= 2;
+	required uint32 result					= 3;	// 传承结果，1:传承成功，2：失败，元宝不足，
+	optional uint32 from_role_fight_power	= 4;	// 传承后，传承者战斗力
+	optional uint32 to_role_fight_power		= 5;
+}

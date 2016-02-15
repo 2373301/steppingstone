@@ -1,0 +1,119 @@
+package typed.protocol;
+
+// 可领取vip礼包消息，玩家上线、vip升级都会下发该消息
+message smsg_update_vip_gift
+{
+	repeated uint32 can_get_vip_gift		= 1;	// 填充1、2、3等值，表示该vip等级的礼包还未领取。
+}
+
+// 领取vip礼包
+message cmsg_take_vip_gift
+{
+	required uint32 vip_level				= 1;	// 填充要领取的vip等级礼包
+}
+
+//
+message smsg_take_vip_gift
+{
+	required uint32 vip_level				= 1;
+	required uint32 item_id					= 2;	// 道具ID
+	required uint32 item_num				= 3;	// 道具数量
+}
+
+// 可领取vip每日礼包消息，在玩家上线、vip升级、每天凌晨下发该消息，支持同天vip升级，可以累积领取
+message smsg_update_everyday_vip_gift
+{
+	required uint32 gift_type				= 1;	// vip等级礼包，每次只能领取一个vip每日礼包，如果之前的未领取，vip升级，后面的礼包会冲掉之前的。
+													// 1：每日大礼包、2：高级vip大礼包、3：至尊vip大礼包
+}
+
+// 领取vip每日礼包
+//CMSG_TAKE_EVERYDAY_VIP_GIFT，该协议无消息体
+
+message smsg_take_everyday_vip_gift
+{
+	required uint32 item_id					= 1;	// 道具ID
+	required uint32 item_num				= 2;	// 道具数量
+}
+
+//vip充值升级消息，只要有充值就会下发该消息
+message smsg_vip_levelup
+{
+	required uint32 curr_vip_level			= 1;	// 升级后的vip等级
+	required uint32 curr_vip_exp			= 2;	// 升级后的vip经验，是累计经验
+}
+
+// 统一奖励领取界面，领取奖励之后下发消息
+message smsg_obtain_rewards
+{
+	required uint32 from_source				= 1;	// 奖励来源，以枚举的形式定义在文件UnifiedRewardSourceTypeDef.h
+	optional uint32 money					= 2;	// 铜钱
+	optional uint32 coin					= 3;	//
+	optional uint32 seniority				= 4;	// 阅历
+	optional uint32 prestige				= 5;	// 声望
+	optional uint32 energy					= 6;	// 体力
+	optional uint32 reverence				= 7;	// 威望
+	repeated uint32 item_ids				= 8;
+	repeated uint32 item_nums				= 9;
+}
+
+// 服务器下发首充礼包信息
+message smsg_update_first_charge_gift
+{
+	required uint32 status					= 1;	// 1 ：未充值，２：已经充过值，可领取首充礼包，３：已经领取过首充礼包
+}
+
+// 获取首充礼包
+// message cmsg_obtain_first_charge_gift 无消息体
+
+// 获取首充礼包成功返回消息
+message smsg_obtain_first_charge_gift
+{
+	repeated uint32 item_id					= 1;
+	repeated uint32 item_num				= 2;
+}
+
+// 玩家上线，下发该玩家已经解锁的vip功能列表，如果该列表有更新，也下发该消息
+message smsg_update_vip_unlock_function
+{
+	repeated uint32 fun_id					= 1;
+}
+
+// 礼包兑换
+message cmsg_request_exchange
+{
+	required string exchange_code			= 1;
+}
+
+message smsg_request_exchange
+{
+	required uint32 result					= 1;	
+												// 1:兑换成功，2：序列号无效。3. 系列号已经使用
+												// 4.您所兑换的号码已过有效期！5：兑换失败，你不能再次领取该礼包。6:背包格位不够
+	repeated uint32 item_id					= 2;	// 兑换成功之后，返回兑换的物品id和数量
+	repeated uint32 item_num				= 3;
+}
+
+message smsg_obtain_first_charge_gift_notify
+{
+	message ItemInfo
+	{
+		optional uint32 item_id				= 1;
+		optional uint32 item_num			= 2;
+	}
+	required string player_name				= 1;
+	required uint64 player_guid				= 2;
+	repeated ItemInfo item_info				= 3;
+}
+
+message smsg_obtain_day_first_charge_gift_notify
+{
+	message ItemInfo
+	{
+		optional uint32 item_id				= 1;
+		optional uint32 item_num			= 2;
+	}
+	required string player_name				= 1;
+	required uint64 player_guid				= 2;
+	repeated ItemInfo item_info				= 3;
+}

@@ -1,0 +1,21 @@
+package typed.entity;
+
+message Exchanges
+{
+	required uint64 guid					= 1;	// 切磋guid
+	required uint64 player					= 2;	// player guid
+	required string player_name				= 3;	
+	optional string guild_name				= 4;	// 帮会名称
+	optional uint32 reward_num				= 5;	// 切磋已领奖次数
+	optional uint32 pk_1					= 6;	// 1v1
+	optional uint32 pk_2					= 7;	// 1v2
+	optional uint32 pk_3					= 8;	// 1v3
+	optional uint32 pk_4					= 9;	// 1v4
+	optional uint32 pk_5					= 10;	// 1v5
+}
+
+message ExchangeContainer
+{
+	required uint64 guid					= 1;
+	repeated uint64 exchanges_guid			= 2;
+}

@@ -1,0 +1,20 @@
+package typed.entity;
+
+//成就
+message Achievement
+{	
+	// 成就条件
+	message StartAchievement
+	{
+		optional uint32 id 				= 1;	// 成就ID
+		optional uint32 target_id		= 2;	// 计数对象id，如 item guid，ai guid等
+		optional uint32 target_value	= 3;	// 计数对象目标值
+		optional uint32 complete_value	= 4;	// 用户完成值
+	}
+	required uint64 guid 								= 1;
+	required uint64 player								= 2;
+	repeated uint32 finish_id							= 3;	// 完成的成就列表
+	repeated StartAchievement start_achievement_list 	= 5;	// 开始未完成的成就列表
+	repeated uint32 reward								= 6;	// 对应于配置表，0：代表条件未达到，1：代表可领取，2：已经领取
+	optional uint32 daily_avaiable						= 7;	// 0:未激活，1：可领取，2：已经领取
+}

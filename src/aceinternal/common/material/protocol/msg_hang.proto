@@ -1,0 +1,55 @@
+package typed.protocol;
+
+//SMSG_HANG_UP_EXP
+message smsg_hang_up_exp
+{
+	required uint32		exp_add = 1; //在挂机地图里每十秒增加的经验
+}
+
+// 钓鱼
+message cmsg_go_fishing
+{
+	required uint32 fish_type		= 1;
+}
+
+// 钓鱼
+message smsg_go_fishing
+{
+	required uint32 fish_type		= 1;	// 成功，填充客户端传过来的值，失败则填充上一次的fish_type
+	required uint32 result			= 2;	// 结果，1：成功，2：失败，上次钓鱼还未完成，left_time不为0，则等在，为0，则可收获
+	optional uint32 left_time		= 3;	// 上次钓鱼未完成，还剩余时间，单位：秒
+}
+
+// 玩家上线或者进入荷塘月色，下发上次钓鱼信息，没有则不下发
+message smsg_update_fish_time
+{
+	required uint32 fish_type		= 1;	// 上次钓鱼类型
+	optional uint32 left_time		= 2;	// 上次钓鱼离结束还剩余时间，单位：秒，如果为0，表示钓鱼结束，可以收获
+}
+
+// 收获鱼
+// message cmsg_gain_fish 无消息体
+
+message smsg_gain_fish
+{
+	required uint32 fish_type		= 1;	// 上次钓鱼类型
+	required uint32 result			= 2;	// 操作结果，1：成功，2：失败，背包不足，3：上一次钓鱼还未结束
+	optional uint32 left_time		= 3;
+	repeated uint32 item_id			= 4;	// 
+	repeated uint32 item_num		= 5;	// 
+}
+
+// 重置钓鱼时间
+//message cmsg_clear_fish_time 无消息体
+
+message smsg_clear_fish_time
+{
+	required uint32 fish_type		= 1;	// 钓鱼类别
+	required uint32 result			= 2;	// 1：成功，2：失败，元宝不足
+}
+
+// 离线经验
+message smsg_gain_offline_exp
+{
+	required uint32 exp					= 1;
+}

@@ -1,0 +1,154 @@
+package typed.entity;
+	
+message ActiviteGuidContainer
+{
+	required uint64 guid					= 1;
+	repeated uint64 activite_guid			= 2; // GM添加过来的并且还没有删除的所有的活动的GUID
+	repeated uint64 activite_guid_removed	= 3; // 到期和删除的活动
+}
+
+message Activite
+{
+	message Item
+	{
+		optional uint32 item_id				= 1;
+		optional uint32 item_num			= 2;
+	}
+	message Items
+	{
+		repeated Item items		= 1;
+	}
+
+
+	required uint64 guid			= 1;
+	required uint32 id				= 2;
+	optional uint32 level			= 3;
+	optional string name			= 4;
+	optional uint64 begin_time		= 5;
+	optional uint64 end_time		= 6;
+	optional uint32 period_begin	= 7;			// 周期开始时间
+	optional uint32 period_end		= 8;				// 周期结束时间
+	optional uint32 period_type		= 9;
+	optional uint32 period_time		= 10;			// 周期间隔，
+	optional string ce1				= 11;
+	optional string ce2				= 12;
+	optional string ce3				= 13;
+	optional uint32 type			= 14;					// 活动类型
+	optional uint32 cl1				= 15;
+	optional uint32 cl2				= 16;
+	repeated uint32 value			= 17;
+	repeated uint32 times			= 18;
+	repeated uint32 rewards			= 19;
+	optional string picture			= 20;
+	optional uint32 auto_send		= 21; 
+	optional uint32 num				= 22;
+	optional uint32 is_count		= 23;	// 是否显示计数，填1后显示活动计数，填0不显示。
+	optional string target			= 24;	// 活动要完成的目标提示文字，例如：当前充值金额
+	optional uint32 star			= 25;		// 星星的个数
+	optional uint32 link_type		= 26;		// 链接类型：1：网页链接，2：打开界面
+	optional string link			= 27;		// 链接
+	optional string btntxt			= 28;		// 按钮提示文字
+	repeated Items items_per_adv	= 29;		// 活动每档次的奖励（物品的id和数量）
+	repeated uint32 sub_type		= 30;		// 参数3
+	repeated uint32 link_btn		= 31;		// 每个档次的目标链接按钮，可以为空
+	repeated string link_btn_txt	= 32;		// 每个档次目标按钮的名称
+}
+
+
+// 挂载每个玩家身上的activites实体
+// 玩家上线的时候，活动结束的时候，需要维护该实体
+message Activities
+{
+	// 周期内领奖记录，保存本周期或本轮次所有的已达成的奖励，不重复计达成
+	message ActivityTimes
+	{
+		required uint32 id			= 1; // 活动
+		required uint32 period		= 2; // 哪个周期的领奖记录
+		required uint32 advance		= 3; // 档次
+	}
+	
+	// 历史活动参数记录、比如：元宝累计值，元宝消费值，.... 记录周期和轮数。哪一个周期，那一轮产生的数据
+	// 存在type = 1的活动则记录元宝
+	message ActivityBinder
+	{
+		required uint32 id			= 1;
+		// params[0] 在所有的意义下都表示周期
+		// 代表祈福的时候：0：周期。2n+1:表示祈福id.2n+2表示对应的次数
+		repeated uint32 params		= 2; // 活动参数，保存对周期的记录
+	}
+
+	// 活动已经进行了几轮,轮的概念在周期中
+	message ReciveNum
+	{
+		required uint32 id			= 1;				// 活动ID
+		required uint32 period		= 2;				// 哪个周期的轮数
+		required uint32 recive_num	= 3;				// 活动领取次数（轮数）
+	}
+	
+	// 登录活动数据记录
+	message LoginRecord
+	{
+		optional uint32 actid		= 1; // 登录活动id
+		optional uint32 period		= 2; // 活动周期
+		optional uint32 times		= 3; // 周期内登录次数， 没周期清理
+	}
+	
+	// 挑战活动数据记录
+	message Pair
+	{
+		optional uint32 data1		= 1;
+		optional uint32 data2		= 2;
+	}
+	message ChallengeRecord
+	{ // 周期内
+		optional uint32 actid				= 1; // 挑战活动Id
+		optional uint32 period				= 2; // 活动周期
+		optional uint32 sum_charge			= 3; // 累计充值
+		optional uint32 ring_circle			= 4; // 环任务完成轮数
+		repeated Pair warship_rec			= 5; // 朝拜记录
+		optional uint32 strenght_num		= 6; // 强化记录
+		repeated Pair education_rec			= 7; // 培养记录
+		repeated Pair biaoche_rec			= 8; // 镖车记录
+		optional uint32 curr_adv			= 9; // 当前完成的档次
+		optional uint32 tower_max			= 10; // 仗剑江湖
+		optional uint32 sum_cost			= 11; // 累计消费活动
+	}
+
+	// 每档次的物品奖励修改为数组
+	message Item
+	{
+		optional uint32 item_id				= 1;
+		optional uint32 item_num			= 2;
+	}
+	message Items
+	{
+		repeated Item items		= 1;
+	}
+
+	
+	// 每个活动保存一份未领取奖励的数据。当活动结束的时候，检测是否下发，或者销毁
+	message ActivityPrize
+	{
+		required uint32 id			= 1;			// 活动
+		required string name		= 2;			// 活动名称
+		required uint32 auto_send	= 3;			// 是否自动下发
+		required uint32 period		= 4;			// 活动当前的周期。
+		repeated uint32 advance		= 5;			// 档次
+		repeated uint32 times		= 6;			// 次数
+		repeated uint32 bounes		= 7;			// 活动奖励，用于活动结束之后下发奖励,如果有bounes奖励，并且不为空，则转储到items_per_advance中去
+		repeated Items	items_per_adv	= 8;		// 活动奖励修改为物品奖励。
+	}
+
+	
+	required uint64 guid						= 1; // 
+	required uint64 player						= 2; //	
+	repeated ActivityTimes activity_times		= 3; // 本轮奖励的领取进度（递进型有效）
+	repeated ActivityPrize activity_prize		= 4; // 奖励可领取，但尚未领取的
+	repeated ActivityBinder ab_coin_charge		= 5; // 元宝充值记录
+	repeated ActivityBinder ab_coin_cost		= 6; // 元宝消费记录 。。
+	repeated ActivityBinder ab_money_cost		= 7; // 金币消费记录 。。
+	repeated ReciveNum recive_num				= 8; // 当前周期内已经进行了几轮
+	repeated ActivityBinder ab_act_param		= 9; // 活动参数记录，当前活动对于玩家的状态。， 
+	repeated ChallengeRecord challenge_recs		= 10; // 挑战活动数据记录
+	
+}

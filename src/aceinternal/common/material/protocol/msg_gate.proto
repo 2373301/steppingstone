@@ -1,0 +1,46 @@
+package typed.protocol;
+
+/// 此消息为Game Server连接到Gate之后，主要发送该消息报，报告GS的Map ID
+
+message gcmsg_register {
+	enum zone_t {
+		zt_zone  = 1;
+		zt_transcript = 2;
+	}
+	
+	required uint64 zone_id   = 1; /// 地图ID
+	optional zone_t zone_type = 2; /// 地图类型
+}
+
+message gmsg_gate_update {
+   required uint32 ConnNumber = 1; //当前连接数
+}
+
+message gmsg_login_auth_gate {
+  required uint32 AccoutID = 1; //连接用户名
+  optional bytes sessionID = 2; //Sessionid
+  optional bytes IP =3; 	//客服端ip
+  optional uint32 gm_level = 4 [default = 1]; //GM等级
+  optional string account_level = 5; //账户等级
+}
+
+message gmsg_online_players{
+	required int32 gate_id = 1;
+	repeated string account_id = 2;
+	repeated int32 line_no = 3;
+};
+
+message gmsg_player_state{
+	required int32 gate_id = 1;
+	required string account_id = 2;
+	required int32 role_state = 3;			// 1 上线 2 下线
+	required int32 line_no = 4;
+};
+
+message gmsg_player_jump_map
+{
+	required uint32 map_id	= 1;
+	required uint32 line_no	= 2;
+}
+
+// message gmsg_player_kick_off  无消息体

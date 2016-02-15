@@ -1,0 +1,509 @@
+package typed.protocol;
+
+// 返回值
+enum Return_Status
+{
+	st_success				= 0;	// 成功
+	st_failure				= 1;	// 失败
+	st_name_repeat			= 2;	// 名称重复
+	st_dirty_word			= 3;	// 有脏词
+	st_joined_guild			= 4;	// 已加入帮会
+	st_cancel_request		= 5;	// 已取消申请
+	st_member_full			= 6;	// 帮会成员已满
+	st_not_limits			= 7;	// 无权限操作
+	st_kick_guild			= 8;	// 已踢出帮会
+	st_not_deputy_leader	= 9;	// 无副帮主
+	st_two_deputy_leader	= 10;	// 只能有两个副帮主
+ 	st_quit_guild			= 11;	// 成员已退出帮会
+	st_requested			= 12;	// 已经申请
+	st_player_not_level		= 13;	// 玩家等级不够
+	st_disband_guild		= 14;	// 帮会已解散
+	st_not_money			= 15;	// 银两不够
+	st_apply_full			= 16;	// 申请帮会的个数已满
+	st_accept_full			= 17;	// 帮会接受申请者已满
+	st_name_empty			= 18;	// 名字为空
+	st_not_name_guild		= 19;	// 没有此名称的帮会
+	st_guild_not_level		= 20;	// 帮会等级不够
+	st_must_deputy_leader	= 21;	// 职位必须是副帮主
+	st_must_member			= 22;	// 职位必须是成员
+	st_not_coin				= 23;	// 元宝不够
+	st_not_kick_myself		= 24;	// 不能踢出自身
+	st_must_online			= 25;	// 必须在线
+	st_not_quit_leader		= 26;	// 帮主不能退群
+	st_joined_other_guild	= 27;	// 已加入其它帮会
+	st_not_time_over		= 29;	// 时间未到不能弹劾帮主
+}
+
+// 固定值
+enum Fixed_Value
+{
+	Agree_Join_Guild			= 1;	// 同意申请加入帮会
+	Refuse_Join_Guild			= 2;	// 拒绝申请加入帮会
+	Refuse_All_Join_Gulid		= 3;	// 拒绝所有申请加入帮会
+	Max_Apply_Gulid_Num			= 10;	// 玩家最大申请帮会数量
+	Max_Accept_Apply_Num		= 50;	// 帮会接受最大申请数量
+}
+
+enum Guild_Talk
+{	// _2 帮会频道；_4 全服公告；_5 个人频道； _6 帮会日志
+	Talk_Join_Guild_2				= 103;		// {3}加入了帮会！
+	Talk_Add_Guild_Exp_2			= 104;		// {3}为帮会贡献了{15}经验！
+	Talk_Down_Deputy_Leader_2		= 105;		// {3}被剥夺了副帮主职务！
+	Talk_Guild_Levelup_2			= 106;		// 恭喜！帮会在诸位大侠的共同努力下，升至{15}级！
+	Talk_Up_Deputy_Leader_2			= 107;		// {3}被提升为副帮主！
+	Talk_Demise_Leader_2			= 108;		// {3}将帮主之位传给了{3}！
+	Talk_Demise_Deputy_Leader_2		= 109;		// {3}将副帮主之位传给了{3}！
+	Talk_Enlist_Member_3			= 229;		// {18}{17}
+	Talk_Create_Guild_3				= 230;		// {3}创建了{17}！
+	Talk_Guild_Levelup_4			= 301;		// {3}带领{17}升为第{15}级，宗派名震武林！
+	Talk_Create_Guild_4				= 317;		// {3}创建了{17}！
+	Talk_Refuse_Join_Guild_5		= 416;		// 很不幸，{3}拒绝了您的入会申请！
+	Talk_Join_Guild_5				= 417;		// 您加入了{17}！
+	Talk_Kick_Guild_5				= 418;		// 您被{3}踢出了{17}！
+	Talk_Disband_Guild_5			= 419;		// 您所在的{17}已被{3}解散！
+	Talk_Demise_Leader_5			= 420;		// {3}将帮主之位传给了您，您现在是帮主！
+	Talk_Demise_Deputy_Leader_5		= 421;		// {3}将副帮主之位传给了您，您现在副是帮主！
+	Talk_Add_Exp_6					= 5001;		// {3}为帮会贡献了{15}经验！
+	Talk_Quit_Guild_6				= 5002;		// {3}离开了帮会！
+	Talk_Join_Guild_6				= 5003;		// {3}加入了帮会！
+	Talk_Kick_Guild_6				= 5004;		// {3}被踢出帮会！
+	Talk_Up_Deputy_Leader_6			= 5005;		// {3}被提升为副帮主！
+	Talk_Demise_Leader_6			= 5006;		// {3}将帮主之位传给了{3}！
+	Talk_Demise_Deputy_Leader_6		= 5007;		// {3}将副帮主之位传给了{3}！
+	Talk_Down_Deputy_Leader_6		= 5008;		// {3}被剥夺了副帮主职务！
+	Talk_Guild_levelup_6			= 5009;		// 恭喜！帮会在诸位大侠的共同努力下，升至{3}级！
+}
+
+// 帮会简要信息
+message Msg_Guild_Short
+{
+	required uint64 guild_guid		= 1;	// 帮会guid
+	optional string guild_name		= 2;	// 帮会名称
+	required uint64 leader_guid		= 3;	// 帮主guid
+	optional string leader_name		= 4;	// 帮主名称
+	optional uint32 rank			= 5;	// 排名 
+	optional uint32 level			= 6;	// 帮会等级
+	optional uint32 members			= 7;	// 帮会人数 
+	optional uint32 max_members		= 8;	// 最大人数 
+	optional uint32 badge			= 9;	// 帮会徽章
+}
+
+// 帮会详细信息
+message Msg_Guild_Full
+{
+	required uint64 guild_guid				= 1;	// 帮会guid
+	optional string guild_name				= 2;	// 帮会名称
+	required uint64 leader_guid				= 3;	// 帮主guid
+	optional string leader_name				= 4;	// 帮主名称
+	optional uint32 rank					= 5;	// 排名 
+	optional uint32 level					= 6;	// 帮会等级
+	optional uint32 members					= 7;	// 帮会人数 
+	optional uint32 max_members				= 8;	// 最大人数 
+	
+	optional string notice					= 9;	// 帮会公告
+	optional uint32 exp						= 10;	// 经验
+	optional uint32 week_exp				= 11;	// 周累计经验
+	optional uint32 badge					= 12;	// 帮会徽章
+}
+
+// 帮会成员精简信息
+message Guild_Member_Streamline
+{
+	required uint64 member_guid			= 1;	// 成员guid
+	optional string member_name			= 2;	// 成员名称
+	optional uint32 job					= 3;	// 职务
+	optional uint32 line_status			= 4;	// 在线状态 1 在线， 2 离线
+}
+
+// 帮会成员简要信息
+message Guild_Member_Short
+{
+	required uint64 member_guid			= 1;	// 成员guid
+	optional string member_name			= 2;	// 成员名称
+	optional uint32 job					= 3;	// 职务
+	
+	optional uint32 level				= 4;	// 等级
+	optional uint32 rank				= 5;	// 竞技场排名
+	optional uint32	sex					= 6;	// 性别 
+	optional uint32 line_status			= 7;	// 在线状态 1 在线， 2 离线
+}
+
+// 帮会成员详细信息
+message Guild_Member_Full
+{
+	required uint64 member_guid				= 1;	// 成员guid
+	optional string member_name				= 2;	// 成员名称
+	optional uint32 job						= 3;	// 职务
+	
+	optional uint32 level					= 4;	// 等级
+	optional uint32 rank					= 5;	// 竞技场排名
+	
+	optional uint32 today_exp		 		= 6;	// 今日贡献帮派经验值
+	optional uint32 all_exp					= 7;	// 总贡献帮派经验值
+	optional uint64 last_login_time			= 8;	// 上次登陆时间
+	optional uint32	sex						= 9;	// 性别 
+	optional uint32 line_status				= 10;	// 在线状态 1 在线， 2 离线
+}
+	
+// 帮会日志信息
+message Guild_Logs
+{
+	required uint32 id					= 1;	// 对应talk表里的ID
+	// param_id 与 param_name 必需等长，当客户端可以通过 param_id 取得名字时，对应的 param_name 可填为空。	
+	repeated uint64 param_id			= 2;
+	repeated string param_name			= 3;
+	optional uint32 create_time			= 4;	// 通知产生时间，单位：秒	
+}
+	
+// -----创建帮会------------------------------------------------------------------
+message cmsg_create_guild
+{
+	required string guild_name 		= 1;	// 帮会名称
+	optional uint32 badge			= 2;	// 帮会徽章
+	optional uint32 coin			= 3;	
+}
+
+message smsg_create_guild
+{
+	optional uint32 status			= 1;	// 0 成功；1 失败，2 帮会名称重名，失败；3 帮会名称有脏词，失败; 4 已加入帮会，失败; 15 银两不够，失败; 13 等级不够，失败
+}
+
+// -----通过名字精确搜索帮会------------------------------------------------------------------
+message cmsg_exact_search_guild_by_name
+{
+	required string guild_name		= 1;	// 帮会名称
+}
+
+message smsg_exact_search_guild_by_name
+{
+	optional uint32 status					= 1;	// 0 成功；19 没有此名称的帮会 失败
+	optional Msg_Guild_Short guild_list		= 2;	// 帮会简要信息
+	optional uint32 apply_status			= 3;	// 申请加入帮会状态 0 未申请， 1 已申请
+}
+
+// -----分页拉取帮会信息----------------------------------------------------------
+// 未加入帮会返回 smsg_guild_list；加入帮会返回 smsg_myself_guild_activity
+message cmsg_guild_list
+{
+	optional uint32 page					= 1;	// 第几页，默认1
+}
+
+message smsg_guild_list
+{
+	repeated Msg_Guild_Short guild_list		= 1;	// 帮会简要信息列表
+	repeated uint32 apply_status			= 2;	// 申请加入帮会状态 0 未申请， 1 已申请
+	optional uint32 guild_number			= 3;	// 帮会数量
+}
+
+message smsg_myself_guild_activity
+{
+	required Msg_Guild_Full my_guild		= 1;	// 帮会简要信息
+	repeated uint32 activity_id				= 2;	// 开启活动列表id
+	optional uint32 my_job					= 3;	// 我的职位 
+	
+	// 弹劾信息
+	optional uint64 delate_guid				= 4; // 弹劾发起者guid
+	optional string delate_name				= 5;
+	optional uint32 effective_cd			= 6; // 有效cd(秒)
+	optional uint32 agree_nums				= 7; // 同意人数
+	optional uint32 disagree_nums			= 8; // 反对人数
+	optional uint32 is_vote					= 9; // 1 未投票；2 已投票
+}
+
+// -----打开自己帮会 成员面板-----------------------------------------------------------
+message cmsg_myself_guild_member_list
+{
+	required uint64 guild_guid			= 1;	// 帮会guid
+}
+
+message smsg_myself_guild_member_list
+{
+	optional uint32 status							= 1;	// 0 成功；8 已踢出帮会，失败；14 帮会已解散，失败
+	// 当status = 0 时，以下字段有意义
+	repeated Guild_Member_Full member_list			= 2;	// 帮会成员详细信息列表
+}
+
+// -----打开自己帮会 日志面板-----------------------------------------------------------
+message cmsg_myself_guild_log_list
+{
+	required uint64 guild_guid		= 1;	// 帮会guid
+}
+
+message smsg_myself_guild_log_list
+{
+	optional uint32 status							= 1;	// 0 成功；8 已踢出帮会，失败；14 帮会已解散，失败
+	// 当status = 0 时，以下字段有意义
+	repeated Guild_Logs logs_list					= 2;	// 帮会日志信息列表
+}
+
+// -----在帮会中，查看其他帮会----------------------------------------------------------
+message cmsg_other_guild_list
+{
+	optional uint32 page					= 1;	// 第几页，默认1
+}
+
+message smsg_other_guild_list
+{
+	repeated Msg_Guild_Short guild_list		= 1;	// 帮会简要信息列表
+	optional uint32 guild_number			= 2;	// 帮会数量
+}
+
+// -----查看帮会信息--------------------------------------------------------------------
+message cmsg_check_guild
+{
+	required uint64 guild_guid		= 1;	// 帮会guid
+}
+
+message smsg_check_guild
+{
+	optional uint32 status						= 1;	// 0 成功；14 帮会已解散，失败
+	// 当status = 0 时，以下字段有意义
+	optional Msg_Guild_Full my_guild			= 2;	// 帮会简要信息
+	repeated Guild_Member_Short member_list		= 3;	// 成员简要信息
+}
+
+// -----拉取所有已申请的帮会----------------------------------------------------
+// message cmsg_apply_guild_list	只有消息吗，没有消息体
+
+
+message smsg_apply_guild_list
+{	
+	repeated Msg_Guild_Short guild_list	= 1;	// 已申请的帮会信息列表
+}
+
+// -----申请加入帮会-----------------------------------------------------------
+message cmsg_apply_guild
+{
+	required uint64 guild_guid		= 1;	// 帮会guid
+}
+
+message smsg_apply_guild
+{
+	optional uint32 status			= 1;	//  0 成功；14 帮会已解散，失败；16 申请帮会的个数已满，失败；17 帮会接受申请者已满，失败
+	optional uint64 guild_guid		= 2;	// 帮会guid
+}
+
+// -----取消申请-----------------------------------------------------------
+message cmsg_cancel_apply_guild
+{
+	required uint64 guild_guid		= 1;	// 帮会guid
+}
+
+// -----获取申请加入帮会者的信息----------------------------------------------------------------
+message cmsg_guild_application_list
+{
+	required uint64 guild_guid		= 1;	// 帮会guid
+}
+
+message smsg_guild_application_list
+{
+	message Applicant
+	{
+		required uint64 member_guid			= 1;	// 成员guid
+		optional string member_name			= 2;	// 成员名称
+		optional uint32 level				= 3;	// 等级
+		optional uint32 rank				= 4;	// 竞技场排名
+		optional uint32	sex					= 5;	// 性别 
+	}
+	
+	optional uint32 status 				= 1;	//  0 成功； 7 无权限操作，失败；8 已踢出帮会，失败；14 帮会已解散，失败
+	// status = 0，以下字段有效
+	repeated Applicant applicant_list	= 2;	// 申请加入帮会者列表
+}
+
+// -----处理申请加入帮会者的信息----------------------------------------------------------------
+message cmsg_process_guild_application
+{
+	required uint64 guild_guid				= 1;	// 帮会guid
+	required uint32 process_status			= 2;	// 1 同意， 2 拒绝， 3 拒绝所有
+	optional uint64 application_guid		= 3;	// 申请者guid(process_status = 3 时，为0)
+}
+
+message smsg_process_guild_application
+{
+	optional uint32 status					= 1;	// 0 成功， 4 申请者已加入帮会，失败； 5 申请者已取消申请，失败； 6 队伍已满，失败；7 无权限操作，失败；8 已踢出帮会，失败；14 帮会已解散，失败
+}
+
+// -----设置帮会公告----------------------------------------------------------------
+message cmsg_guild_notice
+{
+	required uint64 guild_guid	= 1;	// 帮会guid
+	required string notice		= 2;	// 帮会公告
+}
+
+message smsg_guild_notice
+{
+	optional uint32 status		= 1;	// 0 成功； 1 失败；3 有脏词，失败；7 无权限操作，失败；8 已踢出帮会，失败；14 帮会已解散，失败
+}
+
+// -----设置帮会徽章----------------------------------------------------------------
+message cmsg_guild_badge
+{
+	required uint64 guild_guid	= 1;	// 帮会guid
+	required uint32 badge		= 2;	// 帮会徽章id
+}
+
+message smsg_guild_badge
+{
+	optional uint32 status		= 1;	// 0 成功；7 无权限操作，失败；8 已踢出帮会，失败； 14 帮会已解散，失败； 20 帮会等级不够，失败
+	optional uint32 badge		= 2;	// 帮会徽章id
+}
+
+
+// -----拉取禅让成员列表--------------------------------------------
+message cmsg_demise_member_list
+{
+	required uint64 guild_guid	= 1;	// 帮会guid
+}
+
+message smsg_demise_member_list
+{
+	optional uint32 status									= 1;	// 0 成功；7 无权限操作，失败；8 已踢出帮会，失败； 14 帮会已解散，失败；
+	// status = 0，以下字段有效
+	repeated Guild_Member_Streamline demise_member_list		= 2;	// 禅让成为列表
+}
+
+// -----帮主/副帮主禅让职位--------------------------------------------------------------------
+message cmsg_demise_job
+{
+	required uint64 guild_guid		= 1;	// 帮会guid
+	required uint64 member_guid		= 2;	// 禅让对象guid
+}
+
+message smsg_demise_job
+{
+	optional uint32 status			= 1;	// 0 成功；7 无权限操作，失败；8 禅让者已踢出帮会，失败；11 禅让对象已退出帮会，失败， 21 必须是副帮主，失败；22 必须是成员，失败；25 不在线， 失败
+	optional uint64 member_guid		= 2;	// 禅让对象guid
+}
+
+// -----拉取调整职位的成员信息---------------------------------------
+message cmsg_adjust_member_list	
+{
+	required uint64 guild_guid		= 1;	// 帮会guid
+}
+
+message smsg_adjust_member_list
+{
+	optional uint32 status									= 1;	// 0 成功；7 无权限操作，失败；
+	// status = 0，以下字段有效
+	repeated Guild_Member_Streamline djust_member_list		= 2;	// 调整职位的成员列表
+}
+
+// -----帮主职位调整--------------------------------------------------------------------
+message cmsg_adjust_job
+{
+	required uint64 guild_guid		= 1;	// 帮会guid
+	required uint64 member_guid		= 2;	// 职位调整成员guid
+}
+
+message smsg_adjust_job
+{
+	optional uint32 status			= 1;	// 0 成功；1 失败；7 降职无权限操作，失败；10 副帮主只能有两个，失败；11 成员已退出帮会，失败
+	optional uint64 member_guid		= 2;	// 职位调整成员guid
+}
+
+// -----招募帮会成员------------------------------------------------------------------
+message cmsg_enlist_member
+{
+	required uint64 guild_guid		= 1;	// 帮会guid
+	optional string enlist_info		= 2;	// 招募信息
+	optional uint32 coin			= 3;
+}
+
+message smsg_enlist_member
+{
+	optional uint32 status			= 1;	// 0 成功；1 失败；7 降职无权限操作，失败；8 已踢出帮会，失败； 14 帮会已解散，失败；
+}
+
+// -----加入帮会通过世界广播频道------------------------------------------------------
+message cmsg_join_guild
+{
+	required uint64 guild_guid		= 1;	// 帮会guid
+}
+
+message smsg_join_guild
+{
+	optional uint32 status			= 1;	// 0 成功；4 已加入帮会，失败； 13 需20等级，失败；12 已经申请，失败；14 帮会已解散，失败
+}
+
+// -----解散帮会--------------------------------------------------------------------
+message cmsg_disband_guild
+{
+	required uint64 guild_guid		= 1;	// 帮会guid
+}
+
+message smsg_disband_guild
+{
+	optional uint32 status			= 1;	// 0 成功；1 失败； 7 降职无权限操作，失败；
+}
+
+// -----退出帮会--------------------------------------------------------------------
+// message cmsg_quit_guild	只有消息，没有消息体
+
+message smsg_quit_guild
+{
+	optional uint32 status			= 1;	// 0 成功；1 失败； 7 降职无权限操作，失败；
+}
+
+// -----踢出帮会--------------------------------------------------------------------
+message cmsg_kick_guild
+{
+	required uint64 guild_guid		= 1;	// 帮会guid
+	required uint64 member_guid		= 2;	// 被踢出成员guid
+}
+
+message smsg_kick_guild
+{
+	optional uint32 status			= 1;	// 0 成功；7 无权限操作，失败；8 已踢出帮会，失败；11 成员已退出帮会，失败；14 帮会已解散，失败
+	optional uint64 member_guid		= 2;	// 被踢出成员guid
+}
+
+//  -----添加帮会经验--------------------------------------------------------------------
+message stol_add_guild_exp
+{
+	required uint32 guild_exp			= 1;	// 经验
+}
+
+
+// ----—-更新帮会名称（客户端头顶帮会名称显现控制）
+message smsg_update_guild_name
+{
+	optional string guild_name			= 1;	// 为空，推出帮会；不为空，加入帮会
+	optional uint32 player_guild_icon	= 2;	// 工会图标
+}
+
+// 更新其他玩家工会名称信息
+message smsg_update_other_guild_name
+{
+	required uint64 player_guid			= 1;
+	optional string player_guild_name	= 2;
+	optional uint32 player_guild_icon	= 3;	// 工会图标
+}
+
+// -----弹劾帮主--------------------------------------------------------------------
+// message cmsg_delate_leader	只有消息，没有消息体
+
+message smsg_delate_leader
+{
+	optional uint32 status			= 1;	// 0 成功；1 失败；15 银两不够；23 元宝不够；29 时间未到，不能弹劾帮主；
+}
+
+// -----弹劾投票--------------------------------------------------------------------
+message cmsg_delate_vote
+{
+	required uint32 vote_status		= 1;	// 1 支持； 2 反对
+}
+
+message smsg_delate_vote
+{
+	optional uint32 status			= 1;	// 0 成功；1 失败；
+}
+
+// -----查看弹劾投票--------------------------------------------------------------------
+// message cmsg_see_delate_vote	只有消息，没有消息体
+
+message smsg_see_delate_vote
+{
+	optional uint32 agree_nums		= 1;	// 同意弹劾人数
+	optional uint32 disagree_nums 	= 2;	// 反对弹劾人数
+}

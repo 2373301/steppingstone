@@ -1,0 +1,90 @@
+package typed.protocol;
+
+//打开面板，每天0点主动推送这个消息，重置
+message smsg_open_eggs
+{
+	optional uint32 egg_num 		= 1;	//剩余金蛋数量
+	repeated uint32 joker 			= 2;	//怪物
+	optional uint32 hammer_id 		= 3;	//当前选中锤子
+	optional uint32 round 			= 4;	//当前是第几轮
+	repeated uint32 card_id 		= 5;	//玩家卡片
+	optional bool	has_start 		= 6;	//是否已开始
+	
+	optional uint32 times_max 		= 7;	//砸蛋轮次上限
+	optional uint32 cost_type 		= 8;	//消耗类型，0:免费,2:元宝 3:阅历
+	optional uint32 cost_value 		= 9;	//开始一轮消耗数量
+	
+	optional uint32 reset 			= 10; 	// 1: 0点重置消息，由服务器主动推送，0：正常打开返回
+	optional uint32 cooling			= 11;	//砸蛋冷却时间
+}
+
+// 点击开始按钮或者再来一次按钮，服务器返回消息，客户端消息码是CMSG_START_HIT_EGG，无消息体
+message smsg_start_hit_egg
+{
+	//下次消耗
+	optional uint32 cost_type 		= 1;	//消耗类型，0:免费,2:元宝 3:阅历
+	optional uint32 cost_value 		= 2; 	//消耗数量
+}
+
+//买锤子
+message cmsg_buy_hammer
+{
+	required uint32 hammer_id 		= 1;	//锤子id
+}
+
+//买锤子
+message smsg_buy_hammer
+{
+	required uint32 hammer_id 		= 1;	//锤子id
+	optional uint32 success 		= 2;	//1:失败，2：成功
+}
+
+message Reward
+{
+	//奖励
+	optional uint32 id 				= 1;		//奖励来源id
+	optional uint32 reward_type 	= 2;		//奖励类型
+	optional uint32 reward_value 	= 3;		//奖励数值,如果类型是joker则此处是joker_id, 如果类型是卡牌则此处是card_id
+	optional uint32 is_crit 		= 4;		//是否暴击
+	optional uint32 multi_crit 		= 5;		//暴击倍数
+}
+
+//敲金蛋
+message cmsg_hit_eggs
+{
+	optional uint32 egg_num_cur 	= 1;		//当前屏幕上剩余金蛋个数
+	optional uint32 index			= 2;		//客户端金蛋位置标示，服务器由reward的id字段返回
+}
+
+message smsg_hit_eggs
+{
+	//奖励
+	repeated Reward egg_reward 		= 1;	//奖励类型 1:银两 2:元宝  3:joker 4:空 5:卡牌 6:红色炸弹
+	optional uint32 eggs_left		= 2;	//蛋剩余个数
+}
+
+//敲怪物
+message cmsg_hit_joker
+{
+	required uint32 joker_id 		= 1;		//怪物id
+}
+
+message smsg_hit_joker
+{
+	//奖励
+	optional Reward joker_reward 	= 1; //奖励类型 1：银两 2：元宝
+}
+
+// 周奖励领取消息，客户端发送领取消息码为：CMSG_EGGS_WEEK_REWARD，无消息体
+message smsg_eggs_week_reward
+{	
+	repeated uint32 card_sys 		= 1;		//系统随机卡片
+	repeated uint32 card_id 		= 2;		//玩家卡片
+	repeated Reward card_reward 	= 3;		//卡片奖励, 奖励类型 1:银两 2:元宝
+}
+
+//SMSG_EGGS_TIMES_FROM_ITEM
+message smsg_eggs_times_from_item
+{
+	optional uint32 times = 1;	//使用物品获得的砸蛋次数
+}

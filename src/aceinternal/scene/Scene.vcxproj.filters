@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="inc">
+      <UniqueIdentifier>{55e77221-bc58-426f-9082-3cd63accf9ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scene">
+      <UniqueIdentifier>{8363066e-44df-42fb-b5b6-495741b0b1ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="imp">
+      <UniqueIdentifier>{3968a187-b624-4941-83fa-5b13092800a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="config">
+      <UniqueIdentifier>{dc4f8792-2a33-4afe-ae72-7d3405c01d39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="world">
+      <UniqueIdentifier>{cae0f691-808f-41a6-adb6-8f13d21a61e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dll">
+      <UniqueIdentifier>{0de67858-80a3-47a0-b6a8-ffdcc059669c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tools">
+      <UniqueIdentifier>{499aa721-3807-4247-ba96-564f2fcc6546}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="atrr">
+      <UniqueIdentifier>{6d06a881-6a76-4cdb-bef0-bea1f31aee08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="exchange">
+      <UniqueIdentifier>{e94fe993-5494-4e2f-bf88-944596137302}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gmoperator">
+      <UniqueIdentifier>{eeeb27cd-c37d-40de-bd4a-d4d2182e1f7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="crossserver">
+      <UniqueIdentifier>{67149e34-4d39-4894-81d3-daddd63f96b0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="inc\Line.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Message.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Plugin.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\PluginDepot.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Pool.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Scene.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\SceneDepot.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\SceneFactory.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DataRecordImp.h">
+      <Filter>imp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\LineScene.h">
+      <Filter>imp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PluginDepotImp.h">
+      <Filter>imp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PoolAssistant.h">
+      <Filter>imp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PoolImp.h">
+      <Filter>imp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SceneDepotImp.h">
+      <Filter>imp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SceneImp.h">
+      <Filter>imp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SceneRequest.h">
+      <Filter>imp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SceneRequestAssistant.h">
+      <Filter>imp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageConfig.h">
+      <Filter>config</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManagePluginConfig.h">
+      <Filter>config</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\World.h">
+      <Filter>world</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\LoadDll.h">
+      <Filter>dll</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MakeGuid.h">
+      <Filter>tools</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageBattleReport.h">
+      <Filter>tools</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageContainerImp.h">
+      <Filter>tools</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageCrossPlayerData.h">
+      <Filter>tools</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageGridImp.h">
+      <Filter>tools</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageGridOptimize.h">
+      <Filter>tools</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageRandom.h">
+      <Filter>tools</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageTimer.h">
+      <Filter>tools</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PacketConvert.h">
+      <Filter>tools</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageExchange.h">
+      <Filter>exchange</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageGmSession.h">
+      <Filter>gmoperator</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CrossServerConnect.h">
+      <Filter>crossserver</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CrossServerSessionPool.h">
+      <Filter>crossserver</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageCrossServer.h">
+      <Filter>crossserver</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Scend_def.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Line.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Message.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Plugin.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PluginDepot.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pool.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scene.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneDepot.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneFactory.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DataRecordImp.cpp">
+      <Filter>imp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LineScene.cpp">
+      <Filter>imp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PluginDepotImp.cpp">
+      <Filter>imp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PoolAssistant.cpp">
+      <Filter>imp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PoolImp.cpp">
+      <Filter>imp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneDepotImp.cpp">
+      <Filter>imp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneImp.cpp">
+      <Filter>imp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneRequest.cpp">
+      <Filter>imp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneRequestAssistant.cpp">
+      <Filter>imp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageConfig.cpp">
+      <Filter>config</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManagePluginConfig.cpp">
+      <Filter>config</Filter>
+    </ClCompile>
+    <ClCompile Include="src\World.cpp">
+      <Filter>world</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LoadDll.cpp">
+      <Filter>dll</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MakeGuid.cpp">
+      <Filter>tools</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageBattleReport.cpp">
+      <Filter>tools</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageContainerImp.cpp">
+      <Filter>tools</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageCrossPlayerData.cpp">
+      <Filter>tools</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageGridImp.cpp">
+      <Filter>tools</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageGridOptimize.cpp">
+      <Filter>tools</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageRandom.cpp">
+      <Filter>tools</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageTimer.cpp">
+      <Filter>tools</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PacketConvert.cpp">
+      <Filter>tools</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageExchange.cpp">
+      <Filter>exchange</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageGmSession.cpp">
+      <Filter>gmoperator</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CrossServerConnect.cpp">
+      <Filter>crossserver</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CrossServerSessionPool.cpp">
+      <Filter>crossserver</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageCrossServer.cpp">
+      <Filter>crossserver</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

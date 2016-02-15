@@ -1,0 +1,48 @@
+package typed.protocol;
+
+// 打开朝拜界面
+//message cmsg_open_worship, no members
+
+message smsg_open_worship
+{
+	repeated uint32 id			= 1;	// id为货币类型
+	repeated uint32 free_time	= 2;	// 免费次数
+	repeated uint32 cost		= 3;	// 没有免费次数时，需要花费的元宝数
+	repeated uint32 total_done	= 4;	// 已朝拜的次数
+}
+
+// 选择一个宗师进行朝拜
+message cmsg_make_worship
+{
+	required uint32 id			= 1;	// 朝拜类型
+}
+
+message smsg_make_worship
+{
+	required uint32 id			= 1;	// 从1开始，为界面上索引位置
+	required uint32 success		= 2;	// 1 ： 成功，free_time剩下免费次数， next_cost 下一个花费；2 ：失败，元宝不够, 3：次数已经用完, 4:背包已满
+	required uint32 free_time	= 3;
+	required uint32 next_cost	= 4;
+	repeated uint32 money_type	= 5;	// 货币类型 
+	repeated uint32 money_value	= 6;	// 货币值, 当货币类型为99时, 1:代表领取成功, 0代表领取失败
+	optional uint32 crit		= 7;	// 本次朝拜是否暴击，1：暴击，0：未暴击
+	
+	// 货币类型为99时用到的字段...
+	repeated uint32 item_ids	= 8;
+	repeated uint32 item_nums	= 9;
+	
+	optional uint32	total_done	= 10;	// 已朝拜的次数
+}
+
+message smsg_update_worship_number
+{
+	message WorshipNumber
+	{
+		required uint32 id 					= 1;	// 朝拜类型
+		required uint32 free_num			= 2;	// 免费次数
+		required uint32 max_use_num			= 3;	// 可朝拜次数上线
+		required uint32 already_use_num		= 4;	// 已经朝拜次数
+	}
+	
+	repeated WorshipNumber worship_num	= 1;
+}

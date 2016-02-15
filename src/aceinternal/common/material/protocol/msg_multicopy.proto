@@ -1,0 +1,169 @@
+package typed.protocol;
+
+//多人副本阶段通知
+message smsg_multicopy_stage
+{
+	required uint32 stage 			= 1; 	//多人副本阶段，0：普通阶段，1：奖励加成阶段
+}
+
+// cmsg_multicopy_open 无消息体
+
+//打开多人副本界面
+message smsg_multicopy_open
+{
+	repeated uint32 copy_id			= 1; //多人副本id
+	repeated uint32 times			= 2; //当天对应关卡已打次数
+	
+	optional uint32 times_total 	= 3; //今天已打总次数
+}
+
+//打开具体副本
+message cmsg_multicopy_open_room
+{
+	required uint32 copy_id		= 1; //多人副本id
+}
+
+//打开多人副本
+message smsg_multicopy_open_room
+{
+	required uint32 copy_id		= 1; //多人副本id
+
+	message Queue
+	{
+		required uint32 queue_id 		= 1; 		//队伍id
+		required uint64 captain_guid	= 2;		// 队长guid
+		required string captain_name	= 3;		// 队长name
+		required uint32 role_id			= 4;		//队长role id
+		required uint32 queue_cur_size	= 5;		// 一个队伍当前人数
+		required uint32 queue_max_size	= 6;		// 一个队伍最大人数
+		optional uint32 level			= 7;		//人物等级
+	}
+
+	repeated Queue queue 	= 2; 						// 队伍列表
+}
+
+// cmsg_multicopy_close_room	关闭多人副本房间
+// smsg_multicopy_close_room
+
+
+//创建队伍
+message cmsg_multicopy_create_team
+{
+	required uint32 copy_id		= 1; //多人副本id
+}
+
+//创建队伍
+message smsg_multicopy_create_team
+{
+	required uint32 copy_id		= 1; 	//多人副本id
+	required uint32 queue_id	= 2;	//队伍id
+}
+
+//快速加入
+message cmsg_multicopy_quick_join
+{
+	required uint32 copy_id		= 1; //多人副本id
+}
+
+message smsg_multicopy_quick_join
+{
+	required uint32 copy_id			= 1; 	//多人副本id
+	optional uint32 queue_id		= 2; 	//队伍id
+	required uint32 result			= 3;	// 1：成功，2：当前没有可加入的队伍
+}
+
+//加入队伍
+message cmsg_multicopy_join_team
+{
+	required uint32 copy_id			= 1; 	//多人副本id
+	required uint32 queue_id		= 2; 	//队伍id
+}
+//主动或被动加入某只队伍里都会收到该消息
+message smsg_multicopy_join_team
+{
+	required uint32 copy_id			= 1; 	//多人副本id
+	optional uint32 queue_id		= 2; 	//队伍id
+	required uint32 result			= 3;	// 1:成功，2：已满，3：队伍已经解散
+	repeated uint64 player_guid		= 4;	//队员guid
+	repeated string player_name		= 5;	//队员名字
+	repeated uint32 role_id			= 6;	//队员role_id
+	optional uint64 captain			= 7;	//队长guid
+	repeated uint32 level			= 8;	//人物等级	
+}
+//CMSG_MULTICOPY_ADJUST_POS,调整位置
+message cmsg_multicopy_adjust_pos
+{
+	required uint32 copy_id			= 1; 	//多人副本id
+	required uint32 queue_id		= 2; 	//队伍id
+	required uint32 pos_1			= 3;	//值范围1、2、3.位置pos_1 和位置pos_2上的玩家换位置
+	required uint32 pos_2			= 4;	
+}
+//SMSG_MULTICOPY_ADJUST_POS,调整位置
+message smsg_multicopy_adjust_pos
+{
+	required uint32 copy_id			= 1; 	//多人副本id
+	required uint32 queue_id		= 2; 	//队伍id
+	required uint32 pos_1			= 3;	//值范围1、2、3.位置pos_1 和位置pos_2上的玩家换位置
+	required uint32 pos_2			= 4;	
+}
+message cmsg_multicopy_quit_team
+{
+	required uint32 copy_id			= 1; 	//多人副本id
+	required uint32 queue_id		= 2; 	//队伍id
+	optional uint64 player_guid		= 3;	//踢出队伍玩家guid，队长有权踢队员，队员只能踢自个
+}
+
+// SMSG_MULTICOPY_QUIT_TEAM
+message smsg_multicopy_quit_team
+{
+	required uint32 copy_id			= 1; 	//多人副本id
+	required uint32 queue_id		= 2; 	//队伍id
+	required uint64 player_guid		= 3;	//退出队伍玩家guid
+}
+
+//解散队伍
+message cmsg_multicopy_disband_queue
+{
+	required uint32 copy_id		= 1; //多人副本id
+	required uint32 queue_id	= 2; //队伍id
+}
+
+// 房间队伍状态更新：1创建、2解散、3当前人员数量更新
+message smsg_multicopy_team_update
+{
+	required uint32 copy_id			= 1; //多人副本id
+	required uint32 queue_id 		= 2;
+	optional uint32 state 			= 3;
+	optional uint32 cur_size 		= 4; //队伍当前人数
+	optional uint64 captain_guid	= 5; //队长guid, state==1时有值
+	optional string captain_name	= 6; //队长name, state==1时有值
+	optional uint32 role_id			= 7; //队长role id, state==1时有值
+	optional uint32 level			= 8; //人物等级	
+}
+
+// SMSG_MULTICOPY_DISBAND_QUEUE, 无实体
+
+//开始游戏
+message cmsg_multicopy_start
+{
+	required uint32 copy_id		= 1; //多人副本id
+	required uint32 queue_id	= 2; //队伍id
+}
+
+//开始游戏
+message smsg_multicopy_start
+{
+	required uint32 bonus_id	= 1; //目前填写的是战斗发生了几个战斗包，有点乱，回头会改掉
+}
+
+//邀请好友
+message cmsg_multicopy_invite
+{
+	required uint32 copy_id		= 1; //多人副本id
+	required uint32 queue_id	= 2; //队伍id
+}
+//SMSG_MULTICOPY_INVITE
+message smsg_multicopy_invite
+{
+	required uint32 result		= 1; //1,成功，2无符合条件的好友
+}

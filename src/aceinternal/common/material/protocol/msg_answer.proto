@@ -1,0 +1,94 @@
+package typed.protocol;
+
+//上线时发送的消息
+message smsg_answer_count {
+	optional uint32 count			= 1;
+	optional uint32 nstep			= 2;	// 当日花元宝购买的次数
+}
+
+//day change 发送的更新消息
+message smsg_answer_clean {					// 清空当日元宝购买的次数
+	optional uint32 count			= 1;
+	// 若为true,则客户端需在适当的时机（答题窗口未打开）
+	// 发起 cmsg_answer_newday 请求来更新已有的题目
+	optional bool newday			= 2;
+}
+
+// CMSG_ANSWER_STEP			// 增加答题机会（即行动力）
+// SMSG_ANSWER_STEP
+
+// CMSG_ANSWER_OPEN
+// SMSG_ANSWER_OPEN
+message smsg_answer_open {
+	// 所有区域的信息
+	repeated uint32 sections		= 1;	// 区域 id
+	repeated uint32 questions		= 2;	// 当前题目，0表示没有。
+	repeated uint32 nquestion		= 3;	// 该区域题目数量。 nanswered/nquestion  ==> 完成度
+	repeated uint32 nanswered		= 4;	// 该区域回答过的题目数量。
+	// 当日累积奖励
+	repeated uint32 acc_awards		= 10;
+	repeated uint32 acc_values		= 11;
+	// 行动力冷却时间即是否可用，单位毫秒。
+	optional uint32 power_timeo		= 15;
+	optional bool power_avail		= 16;
+}
+
+message smsg_answer_timeo {
+	optional bool power_avail		= 1;
+	optional uint32 power_timeo		= 2;
+}
+
+// CMSG_ANSWER_POWER
+// SMSG_ANSWER_POWER
+
+// 请求新的题目或刷新老的题目
+message cmsg_answer_request {
+	optional uint32 section			= 1;
+	optional bool refresh			= 2;		// 元宝刷新
+}
+
+message smsg_answer_request {
+	optional uint32 section			= 1;
+	optional uint32 question		= 2;
+}
+
+message cmsg_answer_reply {
+	optional uint32 section			= 1;
+	optional uint32 option			= 2;
+}
+
+message smsg_answer_reply {
+	optional uint32 section			= 1;
+	repeated uint32 award_ids		= 2;
+	repeated uint32 award_vals		= 3;
+	// 0x01 置位表示该题目以前没有回答过，需要计入 nanswered !
+	// 0x02 置位表示 “江湖浮生记” 暴击
+	// 0x04 置位表示 “江湖浮生记” 多倍暴击
+	// 如果结果为 0x01 + 0x02  or  0x01 + 0x04说明既是没有回答过,也是暴击或是多倍暴击
+	optional uint32 flag			= 4;
+}
+
+message smsg_answer_event {
+	optional uint32 event_id		= 1;
+	optional uint32 award_id		= 2;
+	optional uint32 award_val		= 3;
+}
+
+// CMSG_ANSWER_NEWDAY
+// SMSG_ANSWER_NEWDAY
+message smsg_answer_newday {
+	repeated uint32 sections		= 1;
+	repeated uint32 questions		= 2;
+}
+
+// 请求解锁 vip 功能
+message cmsg_answer_vip_unlock {
+	optional uint32 vip_fun			= 1;
+}
+
+// 请求解锁 vip 功能的返回；
+// 玩家上线时已开 vip 功能的下发；
+// 玩家 vip 等级上升时，vip 功能开发的下发；
+message smsg_answer_vip_unlock {
+	repeated uint32 vip_fun			= 1;
+}

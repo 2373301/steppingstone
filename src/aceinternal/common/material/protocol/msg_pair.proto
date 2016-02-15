@@ -1,0 +1,369 @@
+package typed.protocol;
+
+message smsg_pair_open_team
+{
+	optional uint64 team_guid	= 1;	//战队guid
+	optional string team_name	= 2;	//队伍名字
+	optional uint32 power		= 3;	//队伍战斗力
+	optional uint64 caption		= 4;	//队长guid
+	optional string cap_name	= 5;	//队长名字
+	repeated uint64 member		= 6;	//队员guid
+	repeated string mem_name	= 7;	//队员名字
+	optional uint32 title_id	= 8;	//称号id
+}
+//CMSG_PAIR_REQUEST_LIST
+//SMSG_PAIR_REQUEST_LIST
+message smsg_pair_request_list
+{
+	message PlayerInfo
+	{
+		optional uint64 player_guid = 1;
+		optional uint32 level		= 2;
+		optional string name		= 3;
+	}
+	repeated PlayerInfo request_list	= 1;	//被申请列表	
+}
+//CMSG_PAIR_ALL_TEAM
+//SMSG_PAIR_ALL_TEAM
+message smsg_pair_all_team
+{
+	message TeamInfo
+	{
+		optional uint64 team_guid	= 1;
+		optional string team_name	= 2;
+		optional uint64 cap_guid	= 3;
+		optional string cap_name	= 4;
+		optional bool	apply		= 5; //是否申请了
+		optional uint32 num			= 6; //队伍人数
+		optional uint32 power		= 7; //队伍战斗力
+	}
+	repeated TeamInfo	team_list	= 1; //队伍列表	
+}
+
+//创建战队 
+//CMSG_PAIR_CREATE_TEAM
+message cmsg_pair_create_team
+{
+	optional string team_name			= 1;
+	optional uint64 main_role			= 2; // 服务器用
+	optional uint32 main_role_id 		= 3; // 服务器用
+	optional uint32 main_role_pow		= 4;//服务器用，客户端可以不填
+}
+//SMSG_PAIR_CREATE_TEAM
+message smsg_pair_create_team
+{
+	optional uint32 result		= 1;	//1:成功，2：铜钱不足，3：名字重复，4：名字太短， 5名字太长，6：名字含非法值， 7：已经有队伍
+	optional uint64 team_guid	= 2;	//生成的队伍guid
+	optional string team_name	= 3;	//队伍名字
+}
+//解散队伍
+//CMSG_PAIR_DISBAND_TEAM
+message cmsg_pair_disband_team
+{
+	optional uint64 team_guid = 1;
+}
+//SMSG_PAIR_DISBAND_TEAM
+message smsg_pair_disband_team
+{
+	optional uint64 team_guid	= 1;
+	optional uint32 result		= 2;	//1:成功，2：活动期间不能解散队伍;3:失败
+}
+
+//加入队伍
+//1.CMSG_PAIR_JOIN_TEAM，申请
+message cmsg_pair_join_team
+{
+	optional uint64 team_guid = 1;
+}
+//1.SMSG_PAIR_JOIN_TEAM	通知申请者
+message smsg_pair_join_team
+{
+	optional uint64 team_guid	= 1; //申请的队伍
+	optional uint32 result		= 2; //1:成功，2：已经有队伍，3：自个请求列表超长，4：队伍找不到，5：队伍待申请列表超长，6：队员已满
+}
+//2.SMSG_PAIR_JOIN_TEAM_REQUEST，告知队长
+message smsg_pair_join_team_request
+{	
+	optional uint64 request_guid = 1;	//申请入队玩家guid
+	optional string name		 = 2;	//申请人名字
+}
+//3.CMSG_PAIR_JOIN_TEAM_REPLY 队长批复
+message cmsg_pair_join_team_reply
+{	
+	optional uint64 request_guid	= 1;	//申请入队玩家guid
+	optional uint32 decision		= 2;	//1：同意，2：拒绝
+}
+//3.SMSG_PAIR_JOIN_TEAM_REPLY	队长批复
+message smsg_pair_join_team_reply
+{
+	optional uint64 request_guid	= 1; //申请人
+	optional uint32 decision		= 2; //1：同意，2：拒绝
+	optional uint32 result			= 3; //1：成功，2：队伍已满，3：对方已有队伍，4：不再申请列表里
+}
+
+//全服邀请
+//CMSG_PAIR_INVITE
+//SMSG_PAIR_INVITE
+message smsg_pair_invite
+{
+	optional uint64 team_guid	= 1;
+	optional string team_name	= 2;
+	optional uint64 caption		= 3;
+	optional string cap_name	= 4;
+//	optional string title		= 5;
+}
+
+//CMSG_PAIR_LEAVE 离开队伍
+message cmsg_pair_leave
+{
+	optional uint64 team_guid	= 1;
+}
+//SMSG_PAIR_LEAVE
+message smsg_pair_leave
+{
+	optional uint64 team_guid	= 1;
+}
+//CMSG_PAIR_KICK 踢人
+message cmsg_pair_kick
+{
+	optional uint64 player_guid = 1;
+	optional uint64 team_guid	= 2;
+}
+//SMSG_PAIR_KICK 广播队长和被踢队员
+message smsg_pair_kick
+{
+	optional uint64 player_guid = 1;
+	optional uint64 team_guid	= 2;	
+}
+//打开阵型
+//CMSG_PAIR_OPEN_FORM
+message smsg_pair_open_form
+{
+	message RoleInfo
+	{
+		optional uint32 role_id		= 1;
+		optional uint32 pos			= 2;
+		optional uint64 owner		= 3;	//角色所属player guid
+		optional bool	leader		= 4;	//是否是主角
+		optional uint32 role_level	= 5;	//角色等级
+		
+//		optional uint32 wife_id		= 6;	//
+	}
+	repeated RoleInfo role_all	= 1;	//
+}
+//CMSG_PAIR_CHANGE_FORM
+message cmsg_pair_change_form
+{
+	optional uint32 role_id		= 1;	//拖拽的角色role id
+	optional uint32 pos_to		= 2;	//拖拽目的地位置
+	optional uint32 power_role	= 3;	//服务器用，客户不用填写
+	optional uint32 role_guid	= 4; // 服务器转发填充该字段
+}
+//SMSG_PAIR_CHANGE_FORM
+message smsg_pair_change_form
+{
+	optional uint32 result		= 1;	//1:成功，2：失败
+	optional uint32 team_power	= 2;	//战力
+}
+
+//CMSG_PAIR_REPLAY_CANCLE, 取消申请
+message cmsg_pair_replay_cancle
+{
+	required uint64 team_guid = 1;
+}
+//SMSG_PAIR_REPLAY_CANCLE, 
+message smsg_pair_replay_cancle
+{
+	required uint64 team_guid	= 1;
+	optional uint32 result		= 2; //1：成功，2：失败
+}
+
+//CMSG_PAIR_REPLAY_REFUSE_ALL
+//SMSG_PAIR_REPLAY_REFUSE_ALL
+
+
+//=====================================
+
+// -----打开跨服PVP----------------------------------------------------
+// message cmsg_pair_open	只有消息码，没有消息体
+
+message smsg_pair_open
+{
+	required uint32 type					= 1;	// 类型 1 本服；2 跨服
+	required uint32 stage					= 2;	// 阶段 0 开始（等待报名）；1 报名；2 淘汰赛；3 排位赛；4 已结束	
+	required uint64 start_time				= 3;	// 活动开启时间（0：活动未开启；>0: 活动开启时间，所有阶段时间已它为起始点）
+	required uint64 now_time				= 4;	// 服务器当前时间
+	// 注：以下两字段说明：stage = 2时一个值；stage = 3时两个值，第一位绝世榜，第二位宗师榜
+	repeated uint32 round					= 5;	// 大轮次（淘汰赛时：1 绝世榜 2 宗师榜；排位赛时：16强 8强 4强 2强 1强）
+	repeated uint32 sub_round				= 6;	// 小轮次（排位赛小轮次）
+	optional uint32 weedout_rounds			= 7;	// 淘汰赛已完成总轮次（用于时间推算）
+	optional uint32 weedout_members			= 8;	// 淘汰赛剩余人数
+	optional uint32 is_sign_up				= 9;	// 1 未报名；2 已报名
+	// 排位使用的真实轮次时间（值为2的幂值）
+	// 如：当round = 4时（参赛人少，直接4强赛开始），round_time=2；
+	// 4强赛时间使用的是16强赛的时间：4*2^2 = 16
+	// 半决赛时间使用的是8强赛的时间：2*2^2 = 8
+	optional uint32 round_time				= 14;	
+}
+
+// -----报名参加武林英雄大会----------------------------------------------------
+// message cmsg_pair_sign_up		只有消息码，没有消息体
+
+message smsg_pair_sign_up
+{
+	optional uint32 status			= 1;	// 1 成功；2 失败
+}
+
+// -----查看我的战绩----------------------------------------------------
+// message cmsg_pair_see_myself_record 只有消息码，没有消息体
+
+message smsg_pair_see_myself_record
+{
+	message Record
+	{
+		required uint32 qualify_type			= 1;	// 类型 1 本服排位赛，2 跨服排位赛
+		required uint32 battle_type				= 2;	// 战斗类型：1 淘汰赛， 2 排位赛
+		required uint32 list_type				= 3;	// 榜单类型：1 绝世榜， 2 宗师榜
+		optional uint32 round					= 4;	// 大轮次（淘汰赛时：轮次；排位赛时：16强 8强 4强 2强 1强）
+		optional uint32 sub_round				= 5;	// 小轮次（排位赛小轮次）
+		optional uint64 pk_team					= 6;	// 对手guid
+		optional string pk_name					= 7;	// 对手名称
+		optional string pk_server				= 8;	// 对手所在服务器名称
+		optional uint32 fail_num				= 9;	// 战败次数
+		optional uint32 status					= 10;	// 1胜利 2失败
+		optional string battle_route			= 11;	// 战斗播放路径
+		optional uint32 is_proese				= 12; 	// 是否晋级  0 结果未知，1 晋级， 2未晋级
+	}
+	repeated Record record_list			= 1;	// 我的战绩列表
+}
+
+// -----查看排位赛数据----------------------------------------------------
+message cmsg_pair_see
+{
+	required uint32 type					= 1;	// 类型 1 本服排位赛，2 跨服排位赛
+}
+
+message smsg_pair_see
+{
+	message QualifyInfo
+	{
+		message TeamMember
+		{
+			optional uint64 player		= 1;
+			optional string name		= 2;
+			optional uint32 role_id		= 3;
+			optional bool is_caption	= 4;
+		}
+		required uint64 team_guid		= 1;	// 参赛队伍guid
+		optional string name			= 2;	// 参赛队伍姓名
+		optional uint32 title			= 3;	// 队伍称号
+		optional uint32 power			= 4;	// 战力
+		repeated TeamMember member		= 5;	// 队伍成员
+		
+		optional string cs_name			= 6;	// 跨服名称
+		required uint32 position		= 7;	// 排位赛中的位置
+		optional uint32 round			= 8;	// 大轮次（16强 8强 4强 2强 1强）
+		optional uint32 status			= 9;	// 状态0 未开始 1 胜利  2 失败 3 排位赛中
+		optional uint32 worth			= 10;	// 身价
+		optional uint32 bets_money		= 11;	// 对该队伍投注额
+	}
+
+	repeated QualifyInfo qualify_list1 		= 1;	// 排位赛绝世榜数据
+	repeated QualifyInfo qualify_list2		= 2;	// 排位赛宗师榜数据
+//	optional int32 profit					= 3;	// 本届武林大会投注的总收益
+}
+
+// -----晋级投注----------------------------------------------------
+message cmsg_pair_bets
+{
+	optional uint64 team_guid				= 1;	// 投注对象guid
+	optional uint32 list_type				= 2;	// 榜单类型：1 绝世榜 2 宗师榜；
+}
+
+message smsg_pair_bets
+{
+	optional uint32 status					= 1;	// 1 成功，2 失败
+	optional uint64 team_guid				= 2;	// 投注对象guid
+	optional uint32 list_type				= 3;	// 榜单类型：1 绝世榜 2 宗师榜；	
+}
+
+// -----查看指定对象战绩----------------------------------------------------
+message cmsg_pair_see_others_record
+{
+	required uint32 qualify_type			= 1;	// 类型 1 本服排位赛，2 跨服排位赛
+	required uint32 battle_type				= 2;	// 战斗类型：1 淘汰赛， 2 排位赛
+	required uint32 list_type				= 3;	// 榜单类型：1 绝世榜， 2 宗师榜
+	required uint64 other_guid1				= 4;	
+	required uint64 other_guid2				= 5;	
+	required uint32 round					= 6;	// 排位赛轮次
+	
+}
+
+message smsg_pair_see_others_record
+{
+	message Record
+	{
+		optional uint32 sub_round				= 1;	// 小轮次
+		optional string battle_route			= 2;	// 战斗播放路径 
+		optional uint32 battle_status_1			= 3;	// other_guid1 胜败情况 1 胜利  2 失败
+		optional uint32 battle_status_2			= 4;	// other_guid2 胜败情况 1 胜利  2 失败
+	}
+	optional uint64 other_guid1				= 1;	
+	optional string name1					= 2;
+	optional string server1					= 3;
+	optional uint64 other_guid2				= 4;
+	optional string name2					= 5;	
+	optional string server2					= 6;	
+	repeated Record record_list				= 7;
+}
+
+// -----活动阶段通知通知----------------------------------------------------
+message smsg_pair_notify
+{
+	// 1 淘汰赛结束； 
+	// 21 排位赛绝世榜16强结束；22 排位赛绝世榜8强结束 23 排位赛绝世榜4强结束 24 排位赛绝世榜半决赛结束 25 排位赛绝世榜决赛结束
+	// 31 排位赛宗师榜16强结束；32 排位赛宗师榜8强结束 33 排位赛宗师榜4强结束 34 排位赛宗师榜半决赛结束 35 排位赛宗师榜决赛结束
+	// 100 活动结束
+	optional uint32 notify_id				= 1;	
+}
+
+// -----奖励发放（舞林大会产生奖励或玩家登陆时系统主动通知）-----------------------------------------------
+message smsg_pair_reward
+{
+	message Reward
+	{	
+		// reward_type为：1、2、4时，需与qualify_type和round确定以个显示图标
+		// reward_type为：3、5、6时，需与qualify_type确定以个显示图标
+		optional uint32 reward_type				= 1;	// 1 晋级投注；2 晋级返还；3 冠军投注；4 冠军返还；5 排位奖励；6 幸运池奖励
+		optional uint32 qualify_type			= 2;	// 1 本服赛；2 跨服赛
+		optional uint32 round					= 3;	// 轮次（16强 8强 4强 2强 1强）
+		optional uint32 list_type				= 4;	// 1 绝世榜 2 宗师榜
+		optional uint32 money					= 5;	// 银两
+		repeated uint32 bonus					= 6;	// bonus id 集
+	}
+	repeated Reward reward_list					= 1;
+}
+
+// -----领取舞林大会奖励----------------------------------------------------------------------------------
+// 成功 还返回 smsg_obtain_rewards
+message cmsg_pair_get_reward
+{
+	optional uint32 reward_type				= 1;	// 1 晋级投注；2 晋级返还；3 冠军投注；4 冠军返还；5 排名奖励；6 幸运池奖励
+	optional uint32 qualify_type			= 2;	// 1 本服赛；2 跨服赛
+	optional uint32 round					= 3;	// 轮次（16强 8强 4强 2强 1强）
+}
+
+message smsg_pair_get_reward
+{
+	optional uint32 status					= 1;	// 1 成功； 2 背包格位不够，失败
+	optional uint32 reward_type				= 2;	// 1 晋级投注；2 晋级返还；3 冠军投注；4 冠军返还；5 排名奖励；6 幸运池奖励
+	optional uint32 qualify_type			= 3;	// 1 本服赛；2 跨服赛
+	optional uint32 round					= 4;	// 轮次（16强 8强 4强 2强 1强）
+}
+
+message smsg_pair_broadcast_stage
+{
+	optional uint32 type					= 1;	// 类型 1 本服；2 跨服
+	optional uint32 stage					= 2;	// 阶段 0 开始（等待报名）；1 报名；2 淘汰赛；3 排位赛；4 已结束	
+}
+

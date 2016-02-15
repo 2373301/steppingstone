@@ -1,0 +1,22 @@
+package typed.entity;
+
+// 资质
+message Talent
+{
+	// 包括主角资质，主角资质按最高颜色计算
+	message RoleTalent
+	{
+		required uint64 roleguid						= 1;
+		repeated uint32 talent_id						= 2; // 已经存在的资质
+		optional uint32 activite_num					= 3; // 生效资质个数
+		optional uint32 histroy_activity_num			= 4; // 历史最大有效格位（传承的时候，要交换曾经的有效格位）
+		
+		repeated uint32 talent_random_id				= 5; // 随机还未保存的资质id
+		optional uint32 random_type						= 6; // 随机类型。1：资质随机 2：品质随机
+	}
+
+	required uint64 guid								= 1;
+	required uint64 player								= 2; 
+	
+	repeated RoleTalent role_talent						= 3; // 伙伴资质
+}

@@ -1,0 +1,45 @@
+package typed.entity;
+
+message MailBox {
+	message NotifyContent
+	{
+		optional uint32 notify_id			= 1;	// talk 表ID
+		// param_id 与 param_name 必需等长，当客户端可以通过 param_id 取得名字时，对应的 param_name 可填为空。	
+		repeated uint64 param_id			= 2;
+		repeated string param_name			= 3;
+		optional uint32 create_time			= 4;
+	}
+	
+	required uint64 guid					= 1;
+	required uint64 player					= 2;
+	repeated NotifyContent notify_content	= 3;
+	repeated uint64 mail					= 4;	//邮件guid
+	optional uint64 time_last_sys_mail		= 5;	//最后一封系统邮件接收时间
+}
+
+message Mail
+{
+	required uint64 guid			= 1;
+	required uint64 player			= 2;
+	optional uint32 mail_type		= 3;	// 邮件类型 1 : 私信, 2:帮派， 3：系统\
+	optional uint64 system_mail		= 4;	// 如果是系统邮件此处填写邮件guid
+	optional uint32 is_read			= 5;	// 是否已读标志位，0 ：未读　1：已读
+	optional uint32 attachment_get	= 6;	// 附件是否已领取0:否，1：是
+	optional string title			= 7;	// 标题
+	optional string content			= 8;	// 内容
+	optional string sender			= 9;	// 发送者
+	repeated uint32 attachment_id	= 10;	// 附件item id
+	repeated uint32 attachment_num	= 11;	// 附件item num
+	optional uint32 pay_type		= 12;	// 需要支付的货币类型
+	optional uint32 pay_value		= 13;	// 需要支付的货币值
+	optional uint64 time_stamp		= 14;	// 发信时间
+	optional bool	queryed			= 15;	// 已查询消耗
+	optional string line_id			= 16;	// 如果不为空，则表示只有里面的line能收到这封邮件,格式
+}
+
+//系统邮件container
+message SystemMailContainer
+{
+	required uint64 guid		= 1;	//
+	repeated uint64 maile_guid 	= 2;	//系统邮件guid
+}

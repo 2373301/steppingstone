@@ -1,0 +1,46 @@
+package typed.entity;
+
+// 五绝系统公共信息
+message SplendidInfo
+{
+	message Worship
+	{
+		required uint64 player				= 1;
+		optional uint32 worship_number		= 2;	// 被朝拜次数
+		optional uint32 reward_number		= 3;	// 已经发放朝拜奖励次数
+		optional uint32 give_reward_number	= 4;	// 发放还未领取的朝拜奖励次数
+		repeated uint32 give_bonus_id		= 5;	// 发放还未领取的bonus id
+		optional uint32 level				= 6;	// 结算等级
+		optional uint32 reward_processing	= 7;	// 1:正在领奖，默认0
+	}
+	
+	message Vote
+	{
+		required uint64 player				= 1;
+		optional uint32 hero_point			= 2;	// 英雄点数
+		optional uint32 vote_number			= 3;	// 获得的投票
+		optional uint32 total_vote_reward	= 4;	// 设置的投票奖励总数
+		optional uint32 vote_reward			= 5;	// 每次投票获得的奖励
+		optional uint32 grant_reward		= 6;	// 已经被领取的奖励投票
+		optional uint64 last_canvass_time	= 7;	// 最后一次拉票时间
+	}
+	
+	required uint64 guid					= 1;
+	required uint32 session					= 2;	// 第几届
+	repeated Vote 	pre_vote				= 3;	// 上一届排名玩家guid
+	repeated Vote 	curr_vote				= 4;	// 这一届排名玩家guid
+	repeated Worship worship				= 5;	// 五绝被膜拜次数
+}
+
+// 五绝系统玩家信息
+message Splendid
+{
+	required uint64 guid					= 1;
+	required uint64 player					= 2;
+	optional uint32 session					= 3;	// 当前信息是第几届
+	optional uint32 vote_number				= 4;	// 已经投票次数
+	optional uint32 last_vote_time			= 5;	// 最后一次投票时间
+	optional uint64 last_vote_player		= 6;	// 最后一次投票玩家
+	optional uint32 worship_number			= 7;	// 当天已经膜拜次数
+	repeated uint64 worship_player			= 8;	// 当天膜拜玩家
+}

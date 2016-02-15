@@ -1,0 +1,20 @@
+package typed.protocol;
+
+message stor_report
+{
+	optional uint64 report_id	= 1;	//战报id
+	optional uint32 operator_id = 2;	//运营商id
+	optional uint32 line_id		= 3;	//line id
+	optional string version		= 4;	//版本
+	optional uint64 time		= 5;	//时间
+	optional uint32 type		= 6;	//战报类型
+
+	optional bytes	packet 		= 7;	//战报文件 
+}
+
+message stor_verification
+{
+	required uint32 operator_id		= 1;	//运营商id
+	required uint32 line_id			= 2;	//line id
+	required string security_key	= 3;	//验证码
+}

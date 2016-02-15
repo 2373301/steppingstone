@@ -1,0 +1,287 @@
+package typed.protocol;
+
+enum ArrestCode
+{
+	eACSuccess			= 1; // 成功
+	eACUseUp			= 2; // 已用完
+	eACFailed			= 3; // 失败
+	eACInternalErr		= 4; // 内部错误
+	eACShortOfCoin		= 5; // 元宝不足
+	eACNotExisted		= 6; // 不存在
+	eACFull				= 7; // 已满
+	eACRejected			= 8; // 拒绝
+	eACTeamExisted		= 9; // 队伍已存在
+	eACInvalidOrder		= 10; // 非法通缉令id
+	eACFinished			= 11; //已完成
+	eACInTeam			= 12; // 已在队伍..
+	eACLowLevel			= 13; // 等级不够
+}
+
+enum ArrestType
+{
+	eATDaily	= 1; // 日常悬赏
+	eATShared	= 2; // 竞速通缉
+	eATTimed	= 3; // 定时通缉
+}
+
+// 日常悬赏 队员
+message arrest_team_member
+{	
+	optional uint64 player_guid			= 1;	// 队伍 player guid
+	
+	optional uint64 master_role_guid	= 2;
+	optional uint32 master_role_id		= 3;
+	optional string master_role_name	= 4;
+	optional uint32 master_role_pos		= 5;
+	
+	optional uint64 partner_role_guid	= 6;
+	optional uint32 partner_role_id		= 7;
+	optional string partner_role_name	= 8;
+	optional uint32 partner_role_pos	= 9;	// 0 表示不在阵上
+}
+
+// 日常悬赏 队伍
+message arrest_daily_team
+{	
+	optional uint32 						id				= 1; // 通缉令 id
+	optional uint64							captain_guid	= 2; // 队长 player guid	
+	repeated arrest_team_member				members			= 3; // 队员信息
+}
+	
+// 日常悬赏信息
+// cmsg_arrest_daily_info
+message smsg_arrest_daily_info
+{	
+
+	optional int32				next_refresh_vip	= 1; // 下一轮刷新需要的vip等级, -1 代表已到最大值
+	optional int32				next_refresh_coin	= 2; // 下一轮刷新需要的元宝数, -1 代表已到最大值	
+	
+	optional uint32				buy_times			= 3; // 击杀购买次数
+	optional uint32				left_kill_times		= 13; // 剩余可用购买次数..
+	optional int32				next_kill_vip		= 4; // 下一轮购买击杀次数需要的vip等级, -1 代表已到最大值
+	optional int32				next_kill_coin		= 5; // 下一轮购买击杀次数需要的元宝,	-1 代表已到最大值
+	
+	optional uint32 			left_cd				= 6; // 距离下一轮刷新的倒计时(秒)
+	optional uint32				team_id				= 7; // 0: 没有队伍, 非0代表队伍id
+	optional arrest_daily_team	team				= 8; // 队伍的详细信息
+	repeated uint32				ids					= 9; // 日常悬赏列表
+	repeated uint32				finished			= 10; // 是否已完成, 非0表示已完成
+	repeated uint32				redeemed			= 11; // 日常悬赏对应的奖励是否已领取, 非0表示奖励未领取
+	optional uint32				refresh_times		= 12; //  刷新次数
+}
+
+// 竞速通缉信息
+// cmsg_arrest_shared_info
+message smsg_arrest_shared_info
+{
+	message SharedArrest
+	{	
+		// 追捕手
+		message Arrester
+		{
+			optional uint64 guid	= 1;
+			optional string name	= 2;
+		}
+		
+		required uint32 	id				= 1;	// 通缉令 id
+		optional uint32 	over			= 2;	// 通缉令是否失效
+		repeated Arrester 	arresters		= 3;	
+		optional uint32		redeemed		= 4; 	// 是否已领取
+		optional uint32		killed			= 5;	// 是否已击杀
+	}
+	
+	repeated SharedArrest  shared_list	= 1;
+}
+
+// 击杀
+message cmsg_arrest_daily_start
+{	
+	required ArrestType	type			= 1;
+	required uint32 	order_id		= 2;	// 通缉令id	
+}
+
+message smsg_arrest_daily_start
+{	
+	optional ArrestType type			= 1;
+	optional uint32 	order_id		= 2;
+	optional ArrestCode code			= 3;  //  日常通缉: eACSuccess: 成功, eACUseUp: 次数已用完, eACFailed: 失败 , eACFinished 已完成
+	optional uint32		result			= 4;  // code是 eACSuccess的情况下, 1: 胜利, 2:失败, 3:平局
+}
+
+// 领取奖励
+message cmsg_arrest_bonus
+{	
+	required ArrestType	type			= 1;	// 奖励类型
+	required uint32 	id				= 2;	// 通缉令 id
+}
+
+message smsg_arrest_bonus
+{	
+	required ArrestType	type				= 1;	// 奖励类型
+	optional uint32 	id					= 2;	// 通缉令id
+	optional ArrestCode	code				= 3;	// eACSuccess: 成功, eACFailed: 失败
+	
+	optional uint32 money					= 4;	// 铜钱
+	optional uint32 coin					= 5;	//
+	optional uint32 seniority				= 6;	// 阅历
+	optional uint32 prestige				= 7;	// 声望
+	optional uint32 energy					= 8;	// 体力
+	optional uint32 reverence				= 9;	// 威望
+	repeated uint32 item_ids				= 10;
+	repeated uint32 item_nums				= 11;
+}
+
+// 日常悬赏广播邀请
+message cmsg_arrest_daily_broadcast
+{
+	required uint32 	order_id		= 1;	// 通缉令 id
+}
+
+message smsg_arrest_daily_broadcast
+{
+	optional uint32 	order_id		= 1;
+	optional ArrestCode code			= 2;	// eACSuccess: 成功, eACFailed: 失败
+}
+
+// 刷新日常悬赏, 成功跟随 smsg_arrest_daily_info 消息
+// cmsg_arrest_daily_refresh
+message smsg_arrest_daily_refresh
+{
+	optional ArrestCode code				= 1;
+	optional int32		next_refresh_vip	= 2; // 下一轮刷新需要的vip等级, -1 代表已到最大值
+	optional int32		next_refresh_coin	= 3; // 下一轮刷新需要的元宝数, -1 代表已到最大值	
+	optional uint32		left_refresh_times	= 4; 
+}
+
+// 购买击杀数
+// cmsg_arrest_daily_bug_times
+message smsg_arrest_daily_buy_times
+{
+	optional ArrestCode 	code			= 1; // eACSuccess: 成功, eACUseUp:没法购买了, eACShortOfCoin :元宝不足
+	optional uint32			times			= 2; // 现在剩余次数
+	optional int32			next_kill_vip	= 3; // 下一轮购买击杀次数需要的vip等级, -1 代表已到最大值
+	optional int32			next_kill_coin	= 4; // 下一轮购买击杀次数需要的元宝,	-1 代表已到最大值
+}
+
+// 解散队伍
+//message cmsg_arrest_dismiss_team
+
+
+message smsg_arrest_dismiss_team
+{
+	optional ArrestCode code	= 1;	// eACSuccess:成功, eACFailed:失败
+}
+
+// 加入日常悬赏邀请队伍
+message cmsg_arrest_daily_join_team
+{	
+	required uint64				captain_guid		= 1;
+	required uint32 			order_id			= 2;
+}
+
+// 成功则会跟随 smsg_arrest_daily_team_member_update 消息
+message smsg_arrest_daily_join_team
+{
+	optional uint32				order_id			= 1;
+	optional ArrestCode			code				= 2;	// eACSuccess:成功, eACNotExisted:队伍不存在, eACFull:已满
+}
+
+
+
+//	A---->server----->B
+//	A<----server<-----B	
+// 邀请好友参加日常悬赏 A--->server
+message cmsg_arrest_daily_invite_friend
+{
+	required uint32 order_id		= 1;	// 通缉令 id
+	required uint64 friend_guid		= 2;	// 好友 guid
+}
+
+// 成功则会 跟随 smsg_arrest_daily_team_member_update
+//  A<---server
+message smsg_arrest_daily_invite_friend
+{
+	required uint32 order_id		= 1;
+	required uint64 friend_guid		= 2;	// 好友 guid
+	optional ArrestCode code		= 3;	// eACSuccess, eACFailed,  eACRejected: 拒绝,  eACUseUp: 点数已用完, eACFailed: 其他的原因
+}
+
+// server--->B, 走个人通知
+
+// server<-----B
+message cmsg_arrest_daily_confirm_invite_friend
+{
+	required uint64 	guid			= 1;	// 邀请者的guid
+	required uint32		order_id		= 2;	// 通缉令id
+	required ArrestCode code			= 3;	// eACSuccess, eACRejected: 拒绝
+	
+}
+
+// server----> B, 确认邀请是否成功..
+message smsg_arrest_daily_confirm_invite_friend
+{
+	optional uint64 	guid			= 1;	// 邀请者的guid
+	optional uint32		order_id		= 2;	// 通缉令id
+	optional ArrestCode code			= 3;	// eACSuccess, eACRejected: 拒绝		
+}
+
+
+// 日常悬赏, 调整伙伴位置
+message cmsg_arrest_daily_change_role_pos
+{	
+	required int32		position 	= 1;	// 要换人的阵型位置，为0，角色下阵型，否则为1--9
+	required uint64  	role_guid 	= 2;	// 填充到新位置的role guid
+}
+
+// 成功则会 跟随 smsg_arrest_daily_team_member_update
+message smsg_arrest_daily_change_role_pos
+{
+	required int32		position 	= 1;	// 要换人的阵型位置，为0，角色下阵型，否则为1--9
+	required uint64 	role_guid 	= 2;	// 填充到新位置的role guid
+	optional ArrestCode	code		= 3;	// eACSuccess, eACFailed
+}
+
+
+// 日常悬赏, 队伍更新
+// cmsg_arrest_daily_team_member_update
+
+message smsg_arrest_daily_team_member_update
+{
+	optional arrest_daily_team 	team	= 1;	// 无队伍, 则空..
+}
+
+//队伍解散通知
+message smsg_arrest_team_dismissed
+{
+	optional uint32		order_id		= 1;	// 通缉令 id
+}
+
+// 日常悬赏通缉令更新通知
+message smsg_arrest_daily_order_update
+{
+	repeated uint32				ids					= 1; // 日常悬赏列表
+	repeated uint32				finished			= 2; // 是否已完成
+	repeated uint32				redeemed			= 3; // 日常悬赏对应的奖励是否已领取
+}
+
+// 竞速通缉令更新通知
+message smsg_arrest_shared_order_update
+{
+	repeated uint32				ids					= 1; // 悬赏列表
+	repeated uint32				finished			= 2; // 是否已完成
+	repeated uint32				redeemed			= 3; // 悬赏对应的奖励是否已领取
+}
+
+message smsg_arrest_progress_tips
+{
+	required uint32 base_times			= 1; // (基础可用次数)配置表控制
+	required uint32 used_times			= 2; // 已使用次数
+	required uint32 paid_times			= 3; // 已购买次数
+	required uint32 to_be_paid_times	= 4; // 还可购买次数
+}
+
+
+
+
+
+

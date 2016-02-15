@@ -1,0 +1,532 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseD|Win32">
+      <Configuration>ReleaseD</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseD|x64">
+      <Configuration>ReleaseD</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{8D0040C3-0FEA-4536-AC3D-CA4FA12664C7}</ProjectGuid>
+    <RootNamespace>protocol</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseD|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseD|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseD|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseD|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>14.0.24720.0</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseD|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../../common/material-cpp;../common/material-cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <OutputFile>../../bin/libs/lib$(ProjectName)d.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../common/material-cpp;../common/inc;../share/inc;../../../dep/protobuf-2.6.1/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Lib />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../../common/material-cpp;../common/material-cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <OutputFile>../../bin/libs/lib$(ProjectName).lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../../common/material-cpp;../common/material-cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <OutputFile>../../bin/libs/lib$(ProjectName).lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseD|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../../common/material-cpp;../common/material-cpp;../common/inc;../share/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <OutputFile>../../bin/libs/lib$(ProjectName).lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseD|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../../common/material-cpp;../common/material-cpp;../common/inc;../share/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <OutputFile>../../bin/libs/lib$(ProjectName).lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\common\material-cpp\entity\achievement.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\activity.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\addiction.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\announce.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\answer.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\arrest.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\attach.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\battleground.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\boss.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\buffer.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\chakra.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\condor.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\container.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\dailypoints.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\dodge.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\doubleexp.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\educate.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\eggs.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\escort.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\exchanges.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\fish.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\form.pb.cc">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
+      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='ReleaseD|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='ReleaseD|x64'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='ReleaseD|Win32'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
+      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='ReleaseD|x64'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
+      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\friend.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\gift.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\goldcard.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\guild.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\guildbattle.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\horse.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\item.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\jianzhong.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\law.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\logingift.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\mail.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\maze.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\multicopy.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\openact.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\openact1.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\openactivity.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\pair.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\pellet.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\player.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\practice.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\pvp.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\qqspread.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\qualifybattle.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\ranking.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\runes.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\sect.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\shenghuoling.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\shopline.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\short.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\soul.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\soulpve.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\specshop.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\splendid.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\stage.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\stheno.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\superpower.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\talent.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\task.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\tavern.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\tavernline.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\title.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\tower.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\trial.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\turntable.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\vip.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\wife.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\entity\worship.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_achievement.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_activity.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_addiction.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_amah.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_answer.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_arrest.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_bag.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_binary.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_boss.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_cache.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_chakra.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_char.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_chargequest.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_condor.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_cplugin.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_cross.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_dailypoints.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_deliver.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_dodge.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_educate.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_eggs.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_enemy.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_error.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_escort.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_exchange.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_exchanges.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_form.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_friend.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_gate.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_gift.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_goldcard.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_guid.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_guild.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_guildbattle.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_hang.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_hardchallenge.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_horse.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_inherit.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_item.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_jianzhong.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_law.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_line.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_login.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_logingift.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_mail.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_maze.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_member.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_multicopy.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_notify.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_npc.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_openact1.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_openactivity.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_open_act.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_pair.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_pair_plugin.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_partner.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_pellet.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_player.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_plugin.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_pool.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_practice.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_push.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_pvp.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_qqspread.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_qualifybattle.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_query.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_ranking.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_record.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_report.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_runes.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_sect.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_shenghuoling.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_shop.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_soul.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_soulpve.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_splendid.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_sthen.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_superpower.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_talent.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_task.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_tavern.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_title.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_tower.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_training.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_trial.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_turntable.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_vip.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_war.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_wife.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_worship.pb.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\common\material-cpp\entity\achievement.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\activity.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\addiction.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\announce.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\answer.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\arrest.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\attach.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\battleground.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\boss.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\buffer.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\chakra.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\condor.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\container.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\dailypoints.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\dodge.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\doubleexp.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\educate.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\eggs.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\escort.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\exchanges.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\fish.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\form.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\friend.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\gift.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\goldcard.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\guild.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\guildbattle.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\horse.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\item.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\jianzhong.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\law.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\mail.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\maze.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\multicopy.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\openact.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\openact1.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\openactivity.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\pair.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\pellet.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\player.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\practice.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\pvp.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\qualifybattle.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\ranking.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\runes.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\sect.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\shenghuoling.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\shopline.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\short.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\soul.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\soulpve.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\specshop.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\splendid.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\stage.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\stheno.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\superpower.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\task.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\tavern.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\tavernline.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\title.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\tower.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\trial.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\turntable.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\vip.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\wife.pb.h" />
+    <ClInclude Include="..\common\material-cpp\entity\worship.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_achievement.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_activity.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_addiction.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_amah.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_answer.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_arrest.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_bag.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_binary.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_boss.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_cache.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_chakra.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_char.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_chargequest.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_condor.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_cplugin.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_cross.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_dailypoints.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_deliver.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_dodge.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_educate.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_eggs.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_enemy.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_error.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_escort.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_exchange.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_exchanges.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_form.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_friend.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_gate.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_gift.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_goldcard.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_guid.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_guild.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_guildbattle.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_hang.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_hardchallenge.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_horse.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_inherit.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_item.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_jianzhong.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_law.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_line.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_login.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_logingift.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_mail.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_maze.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_member.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_multicopy.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_notify.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_npc.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_openact1.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_openactivity.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_open_act.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_pair.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_pair_plugin.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_partner.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_pellet.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_player.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_plugin.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_pool.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_practice.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_push.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_pvp.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_qqspread.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_qualifybattle.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_query.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_ranking.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_record.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_report.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_runes.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_sect.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_shenghuoling.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_shop.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_soul.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_soulpve.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_splendid.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_sthen.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_superpower.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_talent.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_task.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_tavern.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_title.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_tower.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_training.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_trial.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_turntable.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_vip.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_war.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_wife.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_worship.pb.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\common\material-cpp\protocol\msg_guild.proto" />
+    <None Include="..\common\material-cpp\protocol\msg_horse.proto" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

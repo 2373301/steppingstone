@@ -1,0 +1,162 @@
+package typed.protocol;
+
+// 玩家上线收到该通知，告知该阶段状态，以及该阶段剩余持续时间
+message smsg_splendid_start
+{
+	optional uint32 vote_type		= 1;	// 1：投票结束，2：投票进行中
+	optional uint32 left_time		= 2;	// 离结束时间，秒
+	optional uint32 vote_number		= 3;	// vote_type=2时，可投票次数
+}
+
+// message cmsg_splendid_open 打开竞选界面，无消息体
+
+// 被膜拜玩家信息
+message SplendidInfo
+{
+	required uint64 player			= 1;
+	required string name			= 2;
+	required uint32 level			= 3;
+	optional uint32 fight_power		= 4;
+	optional uint32 role_id			= 5;
+}
+
+message smsg_splendid_open
+{
+	repeated SplendidInfo splendid_info	= 1;	// 被膜拜五绝信息: 中神通，东邪，西毒，南帝，北丐
+	optional uint32 status				= 2;	// 当前状态，1：投票结束，2：投票进行中
+	optional uint32 left_time			= 3;	// 当前状态结束时间，秒
+	optional uint32 left_worship_time	= 4;	// 剩余膜拜次数
+}
+
+// message cmsg_splendid_vote_open 打开投票界面，无消息体
+
+// 被投票玩家信息
+message VoteInfo
+{
+	required uint64 player			= 1;
+	required string name			= 2;
+	required uint32 level			= 3;
+	optional uint32 vote_number		= 4;	// 已经获得投票数
+	optional uint32 hero_point		= 5;	// 已经获得投票数
+	optional uint32 left_reward_vote	= 6;	// 剩余投票奖励总数
+	optional uint32 reward_vote			= 7;	// 每次投票奖励
+}
+
+// 
+message smsg_splendid_vote_open
+{
+	repeated VoteInfo splendid_info	= 1;	// 按照名次顺序排序
+	optional uint32	  vote_number	= 2;	// 可用投票数量
+	optional uint32   cool_time		= 3;	// 如果可用投票数量为0，冷却时间
+	optional uint64   last_vote_player	= 4;	// 最后一次投票玩家
+	optional uint32   canvas_cool_time	= 5;	// 拉票冷却时间
+}
+
+// 投票
+message cmsg_splendid_vote
+{
+	required uint64 player			= 1;
+	required uint32 vote_type		= 2; 	// 1：普通投票，2：超级投票
+}
+
+message smsg_splendid_vote
+{
+	required uint64 player			= 1;
+	required uint32 vote_type		= 2; 	// 1：普通投票，2：超级投票
+	optional uint32 result			= 3;	// 1：投票成功，2：失败，超级投票奖励已经用完，3：投票冷却中
+	optional uint32 left_time		= 4;	// result = 3: 剩余冷却时间
+	repeated uint32 item_id			= 5; 	// 1:成功，2：次数已经用完
+	repeated uint32 item_num		= 6; 	// 1:成功，2：次数已经用完
+	optional uint32 coin_value		= 7;	// 超级投票获得元宝
+}
+
+// 当玩家在线，且被投票之后，会收到该通知
+message smsg_splendid_vote_notify
+{
+	required uint32 curr_vote_num	= 1;	// 当前累计得票
+	optional uint32 curr_pos		= 2;	//　当前名次
+	optional uint32 left_total_vote_reward	= 3; 	// 剩余超级投票奖励总额
+	optional uint32 vote_reward				= 4;	// 单次超级投票奖励
+	optional uint32 hero_point				= 5;	// 英雄点数
+}
+
+// 清理冷却时间
+// message cmsg_splendid_clean_time，清理冷却时间，无消息体
+
+message smsg_splendid_clean_time
+{
+	optional uint32 result			= 1;	// 1：清理成功，2：清理失败，元宝不足，3：清理失败，强制冷却中
+	optional uint32 left_time		= 2;	// 剩余冷却时间
+}
+
+// 设置超级投票
+message cmsg_splendid_set_reward
+{
+	optional uint32 total_vote_reward		= 1;	// 发放总量
+	optional uint32 once_vote_reward		= 2;	// 单次奖励
+}
+
+message smsg_splendid_set_reward
+{
+	optional uint32 total_vote_reward		= 1;	// 发放总量
+	optional uint32 once_vote_reward		= 2;	// 单次奖励
+	optional uint32 result					= 3;	// 1：设置成功，2：设置失败，元宝不足
+}
+
+// 追加超级投票
+message cmsg_splendid_append_reward
+{
+	optional uint32 append_value			= 1;	// 1：追加最小值，2：追加最小值10倍，这个根据策划配置定义
+	optional uint32 append_type				= 2;	// 1：追加总量，2：追加单次
+}
+
+message smsg_splendid_append_reward
+{
+	optional uint32 append_value			= 1;	// 1：追加最小值，2：追加最小值10倍，这个根据策划配置定义
+	optional uint32 append_type				= 2;	// 1：追加总量，2：追加单次
+	optional uint32 result					= 3;	// 1：追加成功，2：追加失败，元宝不足，3：追加单次设置错误，单次超过奖励总数剩余数量
+}
+
+// 拉票
+// message cmsg_splendid_canvass，无消息体
+
+message smsg_splendid_canvass
+{
+	optional uint32 result					= 1;	// 1：设置成功，2：设置失败，元宝不足，3：冷却中
+}
+
+///////////////////////////////////////////////////////////////////
+//  膜拜
+///////////////////////////////////////////////////////////////////
+
+// 膜拜
+message cmsg_splendid_worship
+{
+	required uint64 player					= 1; 	// 被膜拜玩家
+}
+
+message smsg_splendid_worship
+{
+	required uint64 player					= 1; 	// 被膜拜玩家
+	repeated uint32 item_id					= 2; 	// 获得物品id
+	repeated uint32 item_num				= 3; 	// 获得物品数量
+	optional uint32 result					= 4; 	// 1:成功，2：次数已经用完
+}
+
+// 被膜拜玩家领奖
+// message cmsg_splendid_get_reward
+
+message smsg_splendid_get_reward
+{
+	optional uint32 result					= 1;	// 1:成功，2：失败，当前无奖励可以领取,3：背包格位不够
+	repeated uint32 item_id					= 2;	
+	repeated uint32 item_num				= 3;
+}
+
+// 被膜拜玩家，每天零点或者上线，下发该消息，通知该玩家有膜拜奖励可以领取
+message smsg_splendid_can_get_reward
+{
+	repeated uint32 item_id					= 1;
+	repeated uint32 item_num				= 2;
+}
+

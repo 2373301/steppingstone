@@ -1,0 +1,489 @@
+package typed.protocol;
+
+// 活动开启活动
+message PairInit
+{
+	required uint64 start_time 					= 1;	// pvp活动启动时间
+	required uint32 sign_up_start				= 2;	// 报名开始时间
+	required uint32 sign_up_end					= 3;	// 报名结束时间
+	required uint32 weed_out_begin_time			= 4;	// 淘汰赛开始时间
+//	required uint32 top_16_begin_time			= 5;	// 前16强排位赛开始时间
+	required uint32 top_8_begin_time			= 6;	// 前8强排位赛开始时间
+	required uint32 top_4_begin_time			= 7;	// 前4强排位赛开始时间
+	required uint32 top_2_begin_time			= 8;	// 半决赛排位赛开始时间
+	required uint32 top_1_begin_time			= 9;	// 决赛排位赛开始时间
+	required uint32 weed_out_fail_num			= 10;	// 淘汰赛失败次数
+	required uint32 weed_out_intervals			= 11;	// 淘汰赛每轮间隔时间
+	required uint32 weed_out_member_num			= 12;	// 淘汰赛晋级人数
+	required uint32 qualifying_battle_num		= 13; 	// 排位赛战斗轮次
+	required uint32 qualifying_win_num			= 14;	// 排位赛晋级胜利场次
+	required uint32 qualifying_intervals		= 15;	// 排位赛每轮间隔时间
+	optional uint32 qualify_type				= 16;	// 1 本服赛 2 跨服赛
+}
+
+// 初始化数据开启活动
+message cpmsg_pair_init
+{
+	optional PairInit init_data				= 1;	// 初始化数据 (输入参数)
+	optional uint32 result						= 2;	// 1 成功  2 失败（输出参数）
+
+}
+
+// 加载DB数据开启活动
+message cpmsg_pair_load
+{
+	message WD
+	{
+		optional uint64  team_guid	= 1;
+		optional uint32  fail_num	= 2;	
+	}
+	
+	message QD
+	{
+		optional uint64  team_guid	= 1;
+		optional uint32  win_num	= 2;	
+		optional uint32  position	= 3;
+	}
+	optional PairInit init_data				= 1;	// 初始化数据 (输入参数)
+	optional uint32 pvp_status					= 2;	// pvp活动阶段 1 报名阶段，…………	
+	repeated WD weedout_1						= 3;	// 淘汰赛绝世榜数据
+	repeated WD weedout_2						= 4;	// 淘汰赛宗师榜数据
+	repeated QD qualify_1						= 5;	// 排位赛绝世榜数据
+	repeated QD qualify_2						= 6;	// 排位赛宗师榜数据
+	optional uint32 round_q1					= 7;	// 绝世榜轮次（16强 8强 4强 2强 1强 0未开始）
+	optional uint32 sub_round_q1				= 8;	// 排位赛绝世榜完成小轮次
+	optional uint32 round_q2					= 9;	// 宗师榜轮次（16强 8强 4强 2强 1强 0未开始）
+	optional uint32 sub_round_q2				= 10;	// 排位赛宗师榜完成小轮次 
+	optional uint32 round_w1					= 11;	// 淘汰赛绝世榜完成轮次
+	optional uint32 round_w2					= 12;	// 淘汰赛宗师榜完成轮次
+	optional uint32 round_time					= 13;	// 排位使用的真实时间（不足16强队伍，时间还是按照16强的时间执行）
+	optional uint32 result						= 14;	// 1 成功  2 失败（输出参数）
+	optional uint32 qualify_type				= 16;	// 1 本服赛 2 跨服赛
+	
+}
+
+// 重置pvp战斗数据
+message cpmsg_pair_reset
+{
+	optional uint64 start_time 					= 1;	// pvp活动启动时间（活动重新开启）
+	optional uint32 sign_up_start				= 2;	// 报名开始时间
+	optional uint32 sign_up_end					= 3;	// 报名结束时间
+	optional uint32 weed_out_begin_time			= 4;	// 淘汰赛开始时间
+//	optional uint32 top_16_begin_time			= 5;	// 前16强排位赛开始时间
+	optional uint32 top_8_begin_time			= 6;	// 前8强排位赛开始时间
+	optional uint32 top_4_begin_time			= 7;	// 前4强排位赛开始时间
+	optional uint32 top_2_begin_time			= 8;	// 半决赛排位赛开始时间
+	optional uint32 top_1_begin_time			= 9;	// 决赛排位赛开始时间
+	optional uint32 weed_out_fail_num			= 10;	// 淘汰赛失败次数
+	optional uint32 weed_out_intervals			= 11;	// 淘汰赛每轮间隔时间
+	optional uint32 weed_out_member_num			= 12;	// 淘汰赛晋级人数
+	optional uint32 qualifying_battle_num		= 13; 	// 排位赛战斗轮次
+	optional uint32 qualifying_win_num			= 14;	// 排位赛晋级胜利场次
+	optional uint32 qualifying_intervals		= 15;	// 排位赛每轮间隔时间
+	optional uint32 id							= 16;	// id
+	optional uint32 result						= 17;	// 1 成功  2 失败 ……（输出参数）
+	optional uint32 qualify_type				= 18;	// 1 本服赛 2 跨服赛
+}
+
+// 查询pvp活动阶段
+message cpmsg_pair_check
+{
+	optional uint32 result						= 1;	// 0 失败  >0 阶段值 （输出参数）
+}
+
+// 参加各阶段的活动人员
+message cpmsg_pair_member
+{
+	optional uint32 type						= 1;	// 1 淘汰赛绝世榜名单 2 淘汰赛宗师榜名单，3 排位赛绝世榜名单 4 排位赛宗师榜名单
+	repeated uint64 member_list					= 2;
+	
+}
+
+// 报名人员的信息
+message cpmsg_pair_sign_up_info
+{
+	repeated uint64 team_guid					= 1;
+	repeated string line_id						= 2;
+	repeated string platform					= 3;
+}
+
+// 广播通知（个人公告，全服广告）
+message cnmsg_pair_notify
+{
+	required uint32 type			= 1;	// 通知类型
+	optional uint32 value1			= 2;	// 值1
+	optional uint32 value2			= 3;	// 值2
+}
+		
+
+// 广播通知 淘汰数据
+message cnmsg_pair_weed_out_data
+{
+	required uint64 team_guid		= 1;	// 参赛队伍guid
+	optional uint64 pk_team		= 2;	// pk 对手guid
+	optional uint32 battle_status	= 3;	// 战斗状态 1：胜利； 2：失败
+	optional uint32 type			= 4;	// 淘汰赛类型 1：绝世榜； 2：宗师榜
+	optional uint32 fail_num		= 5;	// 战败次数
+	optional uint32 round			= 6;	// 第几轮
+	optional string battle_url		= 7;	// 战斗路径
+	optional uint32 pk_fail_num		= 8;	// pk_team 战败次数
+}
+
+// 广播通知 排位赛数据
+message cnmsg_pair_data
+{
+	optional uint64 team_guid		= 1;	// 参赛队伍guid
+	optional uint64 pk_team			= 2;	// pk 对手guid
+	optional uint32 round			= 3;	// 战斗轮次（16强 8强 4强 2强 1强）
+	optional uint32 sub_round		= 4;	// 小轮次
+	optional uint32 type			= 5;	// 排位赛类型 1：绝世榜； 2：宗师榜
+	optional uint32 battle_status	= 6;	// 1 胜利  2 失败
+	optional uint32 win_num			= 7;	// 战胜次数
+	optional string battle_url		= 8;	// 战斗路径
+	optional uint32 pk_win_num		= 9;	// pk 战胜次数
+}
+
+// 广播 排位分配位置 轮次
+message cnmsg_pair_round_position
+{
+	optional uint32 list_type		= 1;	// 榜单类型 1：绝世榜； 2：宗师榜
+	repeated uint64 team_guid		= 2;	// 成员
+	repeated uint32 position		= 3;	// 位置
+	optional uint32 round			= 4;	// 大轮次
+}
+
+// 广播 排位分组信息
+message cnmsg_pair_group_player
+{
+	message GP
+	{
+		optional uint32 group_id		= 1;	// 分组ID
+		repeated uint64	team_guid		= 2;	// 组内排位PK成员
+	}
+	optional uint32 list_type		= 1;	// 榜单类型 1：绝世榜； 2：宗师榜
+	repeated GP gp_list				= 2;	// 分组
+	// 成员对应的组
+	repeated uint64 team_guid		= 3;	// 排位PK成员
+	repeated uint32 group_id		= 4;	// 分组ID
+}
+
+// 排位使用的真实轮次时间（值为2的幂值）
+// 如：当开始轮次为 4强赛事（参赛人少，直接4强赛开始），round_time=2；
+// 4强赛时间使用的是16强赛的时间：4*2^2 = 16
+// 半决赛时间使用的是8强赛的时间：2*2^2 = 8
+message cnmsg_pair_round_time
+{
+	optional uint32 round_time		= 1;	
+}
+
+// 场景通知A冠军投注
+message stoa_pair_bets
+{
+	repeated uint64 team_guid				= 1;	// 投注对象guid
+	repeated uint32 money					= 2;	// 投注额
+	optional uint32 list_type				= 3;	// 榜单类型 1 绝世榜 2 宗师榜；
+}
+
+// 资源的减扣 A通知场景
+//1001	声望
+//1002	阅历
+//1003	元宝
+//1004	银两
+//1005	经验
+//1006	体力
+//1007	威望
+//1010	机缘点
+message atos_pair_reduce_resource
+{
+	repeated uint32 r_type					= 1;	// 资源类型
+	repeated uint32 r_nums 					= 2;	// 资源数量
+	optional uint32 function_id				= 3;	// 元宝消耗id（glodblessme表定义）
+	optional uint32	source_from				= 4; 	// 日志表定义
+}
+
+message atos_pair_add_resource
+{
+	repeated uint32 r_type					= 1;	// 资源类型
+	repeated uint32 r_nums 					= 2;	// 资源数量
+	optional uint32 function_id				= 3;	// 元宝消耗id（glodblessme表定义）
+	optional uint32	source_from				= 4; 	// 日志表定义
+}
+
+// gm开启活动
+message stoa_pair_start
+{
+	required string start_time				= 1;	// 武林大会开启时间 2012-12-10 20:30:00
+}
+
+// gm重置活动
+message stoa_pair_reset
+{
+	required uint32 id						= 1;	// 行为id  1 重新活动开始设置时间
+	required string value					= 2;	// 
+}
+
+//message stoa_pair_sign_up
+//{
+//	optional uint32 role_id					= 1;	// 报名者的角色ID
+//}
+
+// message stoa_player_is_online 无消息实体
+
+
+// 领取奖励
+message atos_pair_reward
+{
+	repeated uint32 bouns_id			= 1;	// bouns id
+	optional uint32 money				= 2;	// 
+	optional uint32 reward_type			= 3;	// 1 晋级投注；2 晋级返还；3 冠军投注；4 冠军返还；5 排名奖励；6 幸运池奖励
+	optional uint32 qualify_type		= 4;	// 1 本服赛；2 跨服赛
+	optional uint32 round				= 5;	// 轮次（16强 8强 4强 2强 1强）
+}
+
+message stoa_pair_reward
+{
+	optional uint32 reward_type			= 1;	// 1 晋级投注；2 晋级返还；3 冠军投注；4 冠军返还；5 排名奖励；6 幸运池奖励
+	optional uint32 qualify_type		= 2;	// 1 本服赛；2 跨服赛
+	optional uint32 round				= 3;	// 轮次（16强 8强 4强 2强 1强）
+	optional uint32 status 				= 4;	// 1 成功 2失败
+}
+
+message cmsg_pair_cross_data
+{
+	required string line_id				= 1;
+	required string platform			= 2;	
+}
+
+// 请求跨服战武林大会数据
+message smsg_pair_cross_data
+{
+	// 报名数据
+	message SignUp
+	{
+		optional uint64 team_guid		= 1;
+		optional uint32 role_id			= 2;
+		optional string line_id			= 3;	
+		optional string platform		= 4;
+	}
+	
+	// 淘汰赛数据
+	message WeedOut
+	{
+		required uint64 team_guid		= 1;	// 参赛人员guid
+		optional uint32 fail_num		= 2;	// 战败次数
+	}
+	
+	// 排位赛数据
+	message Qualify
+	{
+		optional uint64 team_guid		= 1;	// 参赛人员guid
+		optional uint32 position		= 2;	// 排位图中位置
+		optional uint32 round			= 3;	// 大轮次（16强 8强 4强 2强 1强）
+		optional uint32 win_num 		= 4;	// 战胜次数
+		optional uint32 battle_status	= 5;	// 状态 0 未开始 1 胜利  2 失败 3 排位赛中
+		optional uint32 worth			= 6;	// 身价
+		optional uint32 odds			= 7;	// 赔率（除1000为实际赔率）
+		repeated uint32 bonus_list		= 8;	// 奖励bonus_id
+		optional uint32 reward_status	= 9;	// 0 无奖励， 1 有奖未领取， 2 有奖已领取
+		optional uint32 battle_num		= 10;	// 总战斗次数（用于统计赔率）
+	}
+	
+	required uint64 guid						= 1;	
+	repeated SignUp sign_up_list				= 2;	// 报名者
+	repeated WeedOut weedout_1					= 3;	// 淘汰赛绝世榜数据
+	optional uint32 round_w1					= 4;	// 淘汰赛绝世榜完成轮次
+	repeated WeedOut weedout_2					= 5;	// 淘汰赛宗师榜数据
+	optional uint32 round_w2					= 6;	// 淘汰赛宗师榜完成轮次
+	repeated Qualify qualify_1					= 7;	// 排位赛绝世榜数据
+	repeated Qualify qualify_2					= 8;	// 排位赛宗师榜数据
+	optional uint32 round_q1					= 9;	// 当前排位赛绝世榜轮次（16强 8强 4强 2强 1强 0未开始）
+	optional uint32 sub_round_q1				= 10;	// 排位赛绝世榜完成小轮次
+	optional uint32 round_q2					= 11;	// 当前排位赛宗师榜轮次（16强 8强 4强 2强 1强 0未开始）
+	optional uint32 sub_round_q2				= 12;	// 排位赛宗师榜完成小轮次 
+//	optional uint32 luck_reward_value			= 13;	// 幸运奖值
+//	optional uint64 lucky						= 14;	// 幸运奖获得者
+//	optional uint32 lucky_status				= 15;	// 0 无奖励， 1 有奖未领取， 2 有奖已领取
+	optional uint32 stage						= 16;	// 阶段 0 开始（等待报名）；1 报名；2 淘汰赛；3 排位赛；4 已结束	
+	optional uint64 start_time					= 17;	// 本次后动开启时间（年月日 时分）
+	// 排位使用的真实轮次时间（值为2的幂值）
+	// 如：当round_q1 = 4时（参赛人少，直接4强赛开始），round_time=2；
+	// 4强赛时间使用的是16强赛的时间：4*2^2 = 16
+	// 半决赛时间使用的是8强赛的时间：2*2^2 = 8
+	optional uint32 round_time					= 18;	
+	repeated uint64 logs_team					= 19;	// 日志关联人
+	optional uint32 result						= 20;	// 1 成功  2 失败 ……（输出参数）
+}
+
+message cmsg_pair_cross_logs
+{
+	required string line_id				= 1;
+	required string platform			= 2;	
+}
+
+// 请求跨服战武林大会日志数据
+message smsg_pair_cross_logs
+{
+	message Logs
+	{	  
+		optional uint32 battle_type		= 1;	// 战斗类型：1 淘汰赛， 2 排位赛
+		optional uint32 list_type		= 2;	// 榜单类型：1 绝世榜， 2 宗师榜
+		optional uint64 pk_team		= 3;	// pk 对手guid
+		optional uint32 round			= 4;	// 大轮次
+		optional uint32 sub_round		= 5;	// 大轮次中的小轮次
+		optional uint32 battle_status	= 6;	// 战斗状态 1：胜利； 2：失败
+		optional string battle_route	= 7;	// 战斗播放路径
+		optional uint32 fail_num		= 8;	// 战败次数
+		optional uint32 is_proese		= 9;	// 是否晋级  0 结果未知，1 晋级， 2 淘汰	
+	}
+	message Lists
+	{
+		required uint64 guid			= 1;
+		required uint64 team_guid		= 2;	// 参赛队伍guid
+		repeated Logs logs_list			= 3;	// 参赛队伍活动日志
+	}
+	repeated Lists ql_lists			= 1;
+	optional uint32 result			= 2;	// 1 成功  2 失败 ……（输出参数）
+}
+
+// 跨服服务器通知收集参赛人信息
+// message cmsg_pair_cross_sign_up 无消息实体
+
+message smsg_pair_cross_sign_up
+{
+	repeated uint64 sign_up_guid		= 1;	// 参赛者guid
+	repeated uint32 role_id				= 2;	// 角色id
+	optional string line_id				= 3;
+	optional string platform			= 4;
+}
+
+// 通知跨服 投注 
+message cmsg_pair_cross_bets
+{
+	repeated uint64 bets_guid			= 1;	// 投注对象guid
+	repeated uint32 bets_money			= 2;	// 投注银两
+	required uint32 courrent_round		= 3;	// 当前轮次
+	required uint32 list_type			= 4;	// 榜类型 1 绝世榜；2 宗师榜
+	optional bool	is_count_odds		= 5;	// 是否计算
+}
+
+// 跨服通知
+message cmsg_pair_cross_notify
+{
+	optional uint32 talk_id			= 1;
+	optional uint32 value1			= 2;	
+	optional uint32 value2			= 3;
+}
+
+
+// 跨服通知 战斗日志
+message smsg_pair_cross_battle_log
+{
+	message Logs
+	{	  
+		optional uint32 battle_type		= 1;	// 战斗类型：1 淘汰赛， 2 排位赛
+		optional uint32 list_type		= 2;	// 榜单类型：1 绝世榜， 2 宗师榜
+		optional uint64 pk_team			= 3;	// pk 对手guid
+		optional uint32 round			= 4;	// 大轮次
+		optional uint32 sub_round		= 5;	// 大轮次中的小轮次
+		optional uint32 battle_status	= 6;	// 战斗状态 1：胜利； 2：失败
+		optional string battle_route	= 7;	// 战斗播放路径
+		optional uint32 fail_num		= 8;	// 战败次数
+		optional uint32 is_proese		= 9;	// 是否晋级  0 结果未知，1 晋级， 2 淘汰	
+	}
+	message Lists
+	{
+		required uint64 guid			= 1;
+		required uint64 team_guid		= 2;	// 参赛队伍guid
+		optional uint32 battle_type		= 3;	// 战斗类型 1 淘汰赛 2 排位赛
+		optional Logs logs_list			= 4;	// 参赛队伍员活动日志
+	}
+	repeated Lists ql_lists			= 1;
+}
+
+// 通知跨服 排位奖 或 幸运奖已领取
+message cmsg_pair_cross_get_reward
+{
+	optional uint32 reward_type		= 1;
+}
+
+// 跨服通知 排位分配位置 轮次
+// message smsg_pair_cross_round_position
+
+
+// 跨服通知 排位分组信息
+// message smsg_pair_cross_group_player
+
+// 跨服通知
+// 排位使用的真实轮次时间（值为2的幂值）
+// 如：当开始轮次为 4强赛事（参赛人少，直接4强赛开始），round_time=2；
+// 4强赛时间使用的是16强赛的时间：4*2^2 = 16
+// 半决赛时间使用的是8强赛的时间：2*2^2 = 8
+// message smsg_pair_cross_round_time
+
+
+// 跨服通知 跨服成员额外信息
+message smsg_pair_cross_extra_player_info
+{
+	message Info
+	{
+		required uint64 team_guid		= 1;
+		optional string player_name		= 2;
+		optional uint32 level			= 3;
+		optional uint32 power			= 4;
+		optional string line_id			= 5;
+		optional string paltform		= 6;
+	}
+	
+	repeated Info info_list		= 1;
+}
+
+// 跨服通知 开启跨服战
+// message smsg_pair_cross_start
+
+
+// 跨服通知 重启跨服战
+message smsg_pair_cross_reset
+{
+	optional uint32 reset_id = 1;
+}
+
+// 跨服通知 报名成员
+message smsg_pair_cross_set_sign_up
+{
+	repeated uint64 team_guid		= 1;
+	repeated uint32 role_id			= 2;
+}
+
+// 通知跨服 本服务器正式开启
+message cmsg_pair_cross_open_service
+{
+	optional string line_id				= 1;
+	optional string platform			= 2;
+}
+
+// message smsg_pair_cross_open_service 无消息实体，可以加载跨服信息
+
+//创建队伍
+message stol_pair_create_team
+{
+	optional string team_name = 1;
+}
+message ltos_pair_create_team
+{
+	optional uint32 result		= 1;	//1:成功，2：铜钱不足，3：名字重复，4：名字太短， 5名字太长，6：名字含非法值， 7：已经有队伍
+	optional uint32 money		= 2;
+	optional string team_name	= 3;	//队伍名字
+}
+
+message ltoa_change_from
+{
+	message FormMember
+	{
+		optional uint32 role_id		= 1;
+		optional uint64 owner		= 2;
+		optional bool	is_leader	= 3;
+		optional uint32 power		= 4;
+	}
+	required uint64		team_guid	= 1;	//队伍guid
+	repeated FormMember form_member = 2;	//队伍阵型
+}

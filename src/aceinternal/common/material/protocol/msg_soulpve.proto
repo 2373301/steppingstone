@@ -1,0 +1,120 @@
+package typed.protocol;
+
+enum SoulpveCode
+{
+	eSoulSuccess			= 1; 	// 成功
+	eSoulMaxStage			= 2;	// 已到最高关卡
+	eSoulLevelConditon		= 3;	// 等级不够
+	eSoulInCd				= 4;	// cd中
+	eSoulConfigErr			= 5;	// 配置表有误
+	eSoulLose				= 6;	// 挑战失败
+	eSoulInternalErr		= 7;	// 内部错误
+	eSoulFullbag			= 8;	// 背包已满
+	eSoulLackLoseLife		= 9;	// 挑战次数不足
+	eSoulUnableReset		= 10;	// 不可重置
+	eSoulLackResetLife		= 11;   // 重置次数不足
+	eSoulLackCoin			= 12;	// 元宝不足
+	eSoulMaxLife			= 13;	// 次数已达最高..
+}
+
+// 武魂信息
+//message cmsg_soulpve_info
+// 此消息也会被服务端主动推送...
+message smsg_soulpve_info
+{	
+	optional uint32 current_stage		=1; // 当前所在关卡
+	optional uint32 top_stage			=2; // 可扫荡到的最高关卡
+	optional uint32 auto_stage			=3; // 扫荡所在的关卡
+	
+	optional uint32 failed_challenge 	=4; // 挑战次数
+	optional uint32 money_challenge		=5; // 购买的次数
+	
+	optional uint32 reset_auto			=6; // 已重置次数
+	optional uint32 money_auto			=7; // 购买的重置次数	
+	
+	optional uint32 frag				=8; // 碎片数量
+}
+
+// 抢劫相关...
+// message cmsg_soulpve_rob_info
+message smsg_soulpve_rob_info
+{
+	optional uint32 rob					=1; // 抢劫次数
+	optional uint32 money_rob			=2; // 已购买抢劫次数		
+	
+	optional uint32 robed				=3; // 被抢劫次数
+}
+
+
+// 闯关, 成功则跟随 smsg_soulpve_info 消息
+//message cmsg_soulpve_battle
+
+message smsg_soulpve_battle
+{	
+	optional uint32			stage	= 1;
+	required SoulpveCode	code	= 2;
+	repeated uint32			ids		= 3;
+	repeated uint32			nums	= 4;
+}
+
+// 扫荡, 成功则跟随 smsg_soulpve_info 消息
+//message cmsg_soulpve_crush
+
+message smsg_soulpve_crush
+{	
+	optional uint32			stage	= 1;
+	required SoulpveCode	code	= 2; 
+	
+	repeated uint32			ids		= 3;
+	repeated uint32 		nums	= 4;
+	
+	optional uint32 		cd		= 5; // 下一关cd
+}
+
+
+// 抢劫, 成功则跟随 smsg_soulpve_info 消息
+message cmsg_soulpve_rob
+{
+	required uint64 target = 1;
+}
+
+message smsg_soulpve_rob
+{
+	required uint64 		target	= 1;
+	required SoulpveCode 	code	= 2; 
+		
+	repeated uint32 		ids		= 3;
+	repeated uint32 		nums	= 4;
+}
+
+// 重置, 成功则跟随 smsg_soulpve_info 消息
+//message cmsg_soulpve_reset
+
+message smsg_soulpve_reset
+{
+	required SoulpveCode 	code = 1; 
+}
+
+// 购买挑战次数, 成功则跟随 smsg_soulpve_info 消息
+// cmsg_soulpve_buy_lose_life
+message smsg_soulpve_buy_lose_life
+{
+	required SoulpveCode 	code = 1; 
+}
+
+// 购买重置次数, 成功则跟随 smsg_soulpve_info 消息
+// cmsg_soulpve_buy_reset_life
+message smsg_soulpve_buy_reset_life
+{
+	required SoulpveCode 	code = 1; 
+}
+
+// 武魂数
+message smsg_soulpve_frag
+{
+	optional uint32	num	= 1; 
+}
+
+
+
+

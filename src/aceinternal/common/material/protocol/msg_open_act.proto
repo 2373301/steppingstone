@@ -1,0 +1,54 @@
+package typed.protocol;
+
+// 是否亮显
+message smsg_open_act_shine
+{
+	optional bool 						shine = 1; // 是否亮显
+}
+
+message smsg_open_act_show
+{
+	optional bool						show = 1; // 是否存在活动。
+}
+
+
+// 打开面板： 客户端自主更新数据。
+// message cmsg_open_act_state
+message smsg_open_act_state
+{
+	repeated uint32						act_id = 1;
+	repeated uint32						act_remain = 2;	// 剩余时间。0：无限时间,1:活动已经结束
+	repeated uint32						prizenum = 3; // 奖励个数
+}
+
+// 查看某活动
+message cmsg_open_act_view
+{
+	required uint32 					act_id = 1;
+}
+
+message smsg_open_act_view
+{
+	required uint32						act_id = 1;
+	required uint32						result = 2; // 1：正常（开启或已结束）。2:活动未开启
+	repeated uint32						advance = 3; // 档次
+	repeated uint32						advance_states = 4; // 每档奖励的状态。1：未达成，2:可领取，3：已领取。
+	repeated uint32						advance_prize_remain_num = 5; // 剩余个数,只有等级活动才会发送该数据
+	optional uint32 					remain_time = 6; //  剩余时间。0：无限时间,1:活动已经结束
+	repeated uint64						advance_first_guid = 7; // 奖励获得者的guid
+	repeated string						advance_first_name = 8; // 
+}
+
+// 领取奖励
+message cmsg_open_act_get_prize
+{
+	required uint32						act_id = 1;
+	required uint32						advance = 2; // 某档奖励 。0：起始
+}
+
+message smsg_open_act_get_prize
+{
+	required uint32						act_id = 1;
+	required uint32						advance = 2;
+	required uint32						result = 3; // 1：正常。2:奖励不存在，3：背包满，4：奖励已领完
+}

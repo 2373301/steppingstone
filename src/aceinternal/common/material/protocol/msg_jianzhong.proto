@@ -1,0 +1,115 @@
+package typed.protocol;
+
+//房间人数信息
+message JianRoomInfo
+{
+	optional uint32 room_id		= 1;	//房间id
+	optional uint32 persons_num = 2;	//房间里人数
+}
+//房间内人员房间人数信息
+message JianPosInfo
+{
+	optional uint32 pos 			= 1;	//位置
+	optional uint32 pos_type		= 2;	//位置类型，1：玩家，2：空位，3：怪物
+	optional uint64 player			= 3;	//玩家guid
+	optional uint32 role_id			= 4;	//玩家role id
+	optional uint32 time_last		= 5;	//在位置上持续的时间
+	optional uint32 safe_cooling	= 6;	//保护冷却
+	optional string	name			= 7;	//玩家名字
+	optional uint32	fight_power		= 8;	//战斗力
+	optional uint32	level			= 9;	//玩家等级
+	optional uint32 room_id			= 10;	//room id
+}
+//CMSG_JIANZHONG_OPEN 打开系统
+//SMSG_JIANZHONG_OPEN
+message smsg_jianzhong_open 
+{
+
+	repeated JianRoomInfo	room_info	= 1;	//所有房间当前人数信息
+	optional uint32			room_id		= 2;	//当前所在房间id
+	optional uint32			pos			= 3;	//当前所在房间的具体位置
+	optional uint32			time_last	= 4;	//在位置上的持续时间
+	optional uint32 		rob_times	= 5;	//打劫剩余次数
+	optional  uint32		buy_times	= 6;	//已购买次数
+	optional uint32 		rob_cooling = 7;	//抢劫冷却时间
+	optional uint32 		safe_cooling	= 8;	//安全冷却时间	
+}
+//CMSG_JIANZHONG_CLOSE 关闭系统
+//SMSG_JIANZHONG_CLOSE
+//房间人数变更
+//SMSG_JIANZHONG_ROOM_PERSONS_UPDATE
+message smsg_jianzhong_room_persons_update
+{
+	optional JianRoomInfo room_info = 1;	//房间人数
+}
+
+//CMSG_JIANZHONG_OPEN_ROOM 打开具体房间
+message cmsg_jianzhong_open_room
+{
+	optional uint32 room_id  = 1;
+}
+//SMSG_JIANZHONG_OPEN_ROOM 关闭具体房间
+message smsg_jianzhong_open_room
+{
+	optional uint32			room_id  = 1;
+	repeated JianPosInfo	pos_info = 2;
+}
+
+//CMSG_JIANZHONG_CLOSE_ROOM
+
+//
+//message smsg_jianzhong_close_room
+//{
+//	optional uint32			room_id 	= 1;
+//	repeated JianRoomInfo	room_info	= 2;	
+//}
+
+//SMSG_JIANZHONG_CLOSE
+
+//CMSG_JIANZHONG_ROB
+message cmsg_jianzhong_rob
+{
+	optional uint32 room_id 	= 1;	//抢占的位置所在房间
+	optional uint32 pos			= 2;	//抢占的位置
+}
+//SMSG_JIANZHONG_ROB
+message smsg_jianzhong_rob
+{
+	optional uint32 room_id 		= 1;	//抢劫的位置所在房间
+	optional uint32 pos				= 2;	//抢劫的位置
+	optional uint32 rob_times		= 3;	//打劫剩余次数
+	optional uint32 rob_cooling 	= 4;	//打劫冷却时间
+	optional uint32 safe_cooling 	= 5;	//安全冷却时间
+	optional uint32 result			= 6;	//1:成功，2：失败
+}
+//SMSG_JIANZHONG_BE_ROBBED 被打败发送消息
+//SMSG_JIANZHONG_POS_INFO
+message smsg_jianzhong_pos_info
+{
+	optional uint32 room_id			= 1;
+	repeated JianPosInfo pos_info	= 2;
+}
+
+//CMSG_JIANZHONG_BUY_TIMES
+//SMSG_JIANZHONG_BUY_TIMES
+message smsg_jianzhong_buy_times
+{
+	optional uint32 rob_times	= 1;	//打劫剩余次数
+	optional uint32 result		= 2;	//1:成功，2：失败	
+}
+
+//SMSG_JIANZHONG_NOTIFY
+message smsg_jianzhong_notify
+{
+	required uint32 id				= 1;
+	repeated uint64 param_id		= 2;// param_id 与 param_name 必需等长，当客户端可以通过 param_id 取得名字时，对应的 param_name 可填为空。
+	repeated string param_name		= 3;	
+}
+//SMSG_JIFEN_UPDATE 更新积分
+message smsg_jifen_update
+{
+	optional uint32 jifen = 1;	//当前积分
+}
+
+//SMSG_JIANZHONG_START
+//SMSG_JIANZHONG_END

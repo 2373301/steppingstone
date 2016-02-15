@@ -1,0 +1,11 @@
+package typed.entity;
+
+message Multicopy
+{
+	required uint64 guid		= 1; //本实体guid
+	required uint64 player		= 2; //玩家guid
+	required uint32 times_total = 3; //多人副本当天打的总次数
+	repeated uint32 copy_id		= 4; //对应多人副本id
+	repeated uint32 times		= 5; //对应多人副本当日打次数，和copy_id一一对应
+	optional uint32 bonus_id	= 6; //未领取奖励id
+}

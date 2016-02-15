@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{14348681-b188-41c7-a0f9-3e7546e3b7b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc">
+      <UniqueIdentifier>{d722536b-642f-4333-9dcc-922100cc587e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="single">
+      <UniqueIdentifier>{6904eb83-9ec3-4219-a451-df8e407c48d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gate">
+      <UniqueIdentifier>{7bf2b76d-1f96-4375-9807-a7123c4d6dd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tools">
+      <UniqueIdentifier>{58c6eedf-ee25-4dd3-97de-7407197eef59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="proto">
+      <UniqueIdentifier>{1d9a342b-5e76-4c62-a41d-a06ed66d1fc2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\TerminalFactory.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageSingleTerminal.cpp">
+      <Filter>single</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SingleTerminal.cpp">
+      <Filter>single</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GateTerminal.cpp">
+      <Filter>gate</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageGateOutput.cpp">
+      <Filter>gate</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageGateTerminal.cpp">
+      <Filter>gate</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PacketSerializeAssistant.cpp">
+      <Filter>gate</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PlayerRoute.cpp">
+      <Filter>tools</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_gate.pb.cc">
+      <Filter>proto</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="inc\ManageTerminal.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Terminal.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\TerminalFactory.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageSingleTerminal.h">
+      <Filter>single</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SingleTerminal.h">
+      <Filter>single</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GateTerminal.h">
+      <Filter>gate</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageGateOutput.h">
+      <Filter>gate</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageGateTerminal.h">
+      <Filter>gate</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PacketSerializeAssistant.h">
+      <Filter>gate</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PlayerRoute.h">
+      <Filter>tools</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Terminal_def.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_gate.pb.h">
+      <Filter>proto</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,28 @@
+package typed.entity;
+
+message Attach
+{
+	required uint64 guid				= 1;
+	required uint64 player				= 2;
+	
+	// For item buyback-list
+	repeated uint64 buyback_items		= 3;
+	repeated uint64 buyback_stamps		= 4;
+
+	// Suids for player's Special Shop
+	repeated uint32 special_suids		= 5;
+	optional uint32 special_suidi		= 6;
+
+	message Attribute {
+		required uint32 id		= 1;
+		required uint32 val		= 2;
+	}
+	repeated Attribute attributes		= 7;
+	
+	// sthen rate related
+	optional uint64 ratestamp			= 8;
+	optional uint32 ratevalue			= 9;
+	
+	// answer module related
+	repeated uint32 prev_questions		= 10;
+}

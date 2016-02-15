@@ -1,0 +1,189 @@
+package typed.protocol;
+
+//enum RStatus
+//{
+	//rs_success						= 1;	// 成功
+	//rs_not_formation				= 2;	// 阵型未解锁
+	//rs_not_runes					= 3;	// 符文未解锁
+	//rs_not_enough_runes_stone		= 4;	// 符文之石不够
+	//rs_not_enough_runes_fire		= 5;	// 符文之火不够
+	//rs_not_enough_money				= 6;	// 银两不够
+	//rs_not_enough_coin				= 7;	// 元宝不够
+	//rs_not_exist_role				= 8;	// 伙伴不存在
+	//rs_runes_max_level				= 9;	// 符文已到当前阶级的最高等级
+	//rs_runes_unlock					= 10;	// 符文已解锁
+	//rs_not_blessing					= 11;	// 符阵所有符文已达各自阶级的最高等级，无需祝福
+	//rs_not_blessing_item			= 12;	// 祝福道具不够
+	//rs_not_player_level				= 13;	// 玩家等级不够
+	//rs_role_bind_runes				= 14;	// 伙伴已绑定符阵
+	//rs_runes_max_class_and_level	= 15;	// 符文达到最高阶级中最高等级
+	//rs_not_bless_num				= 16;	// 祝福次数不够
+	//rs_not_class_this_level			= 17;	// 符文未到进阶等级
+	//rs_runes_max_class				= 18;	// 符文已到最高阶级
+//}
+
+// -----打开符文----------------------------------------------------
+// message cmsg_open_runes	只有消息码，没有消息体
+
+message smsg_open_runes
+{
+	message Unit
+	{
+		optional uint32 position	= 1;	// 符文位置（对应人物装备位置）
+		optional uint32 class		= 2;	// 阶级
+		optional uint32 level		= 3;	// 等级
+		optional uint32 exp			= 4;	// 当前等级经验值
+	}
+	message Formation
+	{
+		repeated Unit	unit_list		= 1;	// 符文集合
+		optional uint64 role_guid		= 2;	// 伙伴guid
+		optional uint32 blessing_num	= 3;	// 祝福剩余次数
+	}
+	
+	repeated Formation 	formation_list		= 1;	// 符阵集合
+	optional uint32 runes_stone				= 2;	// 符文之石
+	optional uint32 runes_fire				= 3;	// 符文之火
+	optional uint64 player_guid				= 4;	// 符文所属人guid
+}
+
+// -----解锁符文----------------------------------------------------
+message cmsg_unlock_runes
+{
+	required uint32 formation_id		= 1;	// 阵型id
+	required uint32 runes_position		= 2;	// 符文位置
+	optional uint32 coin_buy_stone		= 3;	// 是否用元宝补充符文之石 0 不用元宝 1 用元宝；
+}
+
+message smsg_unlock_runes
+{
+	optional uint32 status				= 1;	// 1 成功；失败编号：2,4,7,10
+	optional uint32 formation_id		= 2;	// 阵型id
+	optional uint32 runes_position		= 3;	// 符文位置
+	optional uint32 runes_stone			= 4;	// 符文之石数量
+}
+
+// -----精炼符文----------------------------------------------------
+message cmsg_refine_runes
+{
+	required uint32 formation_id		= 1;	// 阵型id
+	required uint32 runes_position		= 2;	// 符文位置
+	optional uint32 coin_buy_stone		= 3;	// 是否用元宝补充符文之石 0 不用元宝 1 用元宝；
+}
+
+message smsg_refine_runes
+{
+	optional uint32 status				= 1;	// 1 成功；失败编号：2,3,4,6,7,9,15
+	optional uint32 crit				= 2;	// 0 无暴击；1 小暴击；2 大暴击；
+	optional uint32 level				= 3;	// 等级
+	optional uint32 exp					= 4;	// 当前等级经验
+	optional uint32 formation_id		= 5;	// 阵型id
+	optional uint32 runes_position		= 6;	// 符文位置
+	optional uint32 runes_stone			= 7;	// 符文之石数量
+}
+
+// -----一键升级----------------------------------------------------
+message cmsg_levelup_runes
+{
+	required uint32 formation_id		= 1;	// 阵型id
+	required uint32 runes_position		= 2;	// 符文位置
+	optional uint32 coin_buy_stone		= 3;	// 是否用元宝补充符文之石 0 不用元宝 1 用元宝；
+}
+
+message smsg_levelup_runes
+{
+	message LUnit
+	{
+		optional uint32 crit				= 1;	// 0 无暴击；1 小暴击；2 大暴击；
+		optional uint32 level				= 2;	// 等级
+		optional uint32 exp					= 3;	// 当前等级经验
+	}
+	optional uint32 status					= 1;	// 1 成功；失败编号：2,3,4,6,7,9,15
+	repeated LUnit uint_list				= 2;	// 多次精炼信息
+	optional uint32 formation_id			= 3;	// 阵型id
+	optional uint32 runes_position			= 4;	// 符文位置
+	optional uint32 runes_stone				= 5;	// 符文之石数量
+}
+
+// -----祝福符阵----------------------------------------------------
+message cmsg_blessing_formation
+{
+	required uint32 formation_id		= 1;	// 阵型id
+	required uint32 blessing_type		= 2;	// 祝福方式 1 元宝祝福；2 道具祝福
+	optional uint32 item_id				= 3;	// 道具id（注：blessing_type等于2时，有效）
+}
+
+message smsg_blessing_formation
+{
+	message BUnit
+	{
+		optional uint32 position	= 1;	// 位置
+		optional uint32 level		= 2;	// 等级
+		optional uint32 exp			= 3;	// 当前等级经验值
+	}
+	
+	optional uint32 status				= 1;	// 1 成功；失败编号：2,7,11,12,16
+	optional uint32 crit				= 2;	// 0 无暴击；1 小暴击；2 大暴击；
+	repeated BUnit uint_list			= 3;	// 符阵所有符文信息
+	optional uint32 blessing_num		= 4;	// 祝福剩余次数
+	optional uint32 formation_id		= 5;	// 阵型id
+}
+
+// -----符文升阶----------------------------------------------------
+message cmsg_classup_runes
+{
+	required uint32 formation_id		= 1;	// 阵型id
+	required uint32 runes_position		= 2;	// 符文位置
+	optional uint32 coin_buy_stone		= 3;	// 是否用元宝补充符文之火 0 不用元宝 1 用元宝；
+}
+message smsg_classup_runes
+{
+	optional uint32 status				= 1;	// 1 成功；失败编号：2,3,4,6,7,13，17,18
+	optional uint32 class				= 2;	// 阶级
+	optional uint32 formation_id		= 3;	// 阵型id
+	optional uint32 runes_position		= 4;	// 符文位置
+	optional uint32 runes_fire			= 5;	// 当前符文之火数量
+}
+
+// -----资源互换----------------------------------------------------
+message cmsg_stone_swap_fire
+{
+	required uint32 swap_type			= 1;	// 交换类型 1 石换火 2 火换石
+	required uint32 swap_num			= 2;	// 交换数量 （注：符文之火的数量）
+}
+
+message smsg_stone_swap_fire
+{
+	optional uint32 status				= 1;	// 1 成功；失败编号：4,5
+	optional uint32 runes_stone			= 2;	// 符文之石
+	optional uint32 runes_fire			= 3;	// 符文之火
+	optional uint32 swap_type			= 4;	// 交换类型 1 石换火 2 火换石
+}
+
+// -----伙伴绑定符阵----------------------------------------------------
+message cmsg_role_binding_runes
+{
+	required uint64 role_guid			= 1;	// 伙伴guid
+	required uint32 formation_id		= 2;	// 阵型id
+}
+
+message smsg_role_binding_runes
+{
+	optional uint32 status				= 1;	// 1 成功；失败编号：14
+	optional uint64 role_guid			= 2;	// 伙伴guid
+	optional uint32 formation_id		= 3;	// 阵型id
+}
+
+// -----伙伴卸下符阵----------------------------------------------------
+message cmsg_role_uninstall_runes
+{
+	required uint64 role_guid			= 1;	// 伙伴guid
+	required uint32 formation_id		= 2;	// 阵型id
+}
+
+message smsg_role_uninstall_runes
+{
+	optional uint32 status				= 1;	// 1 成功；
+	optional uint64 role_guid			= 2;	// 伙伴guid
+	optional uint32 formation_id		= 3;	// 阵型id
+}

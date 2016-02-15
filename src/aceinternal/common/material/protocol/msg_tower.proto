@@ -1,0 +1,205 @@
+package typed.protocol;
+
+//推图每日奖励在 推图界面里显示
+//推图周奖励, top3在领取奖励里显示
+
+
+//注: 当前层为未通关的所在楼层,  在最高层上虚拟一层,比如有20层,但会虚拟一层,最高层是21层,方便以后扩展,跳图之类的.
+
+enum TowerBuffType
+{
+	eTowerBuff3Attack = 1; //3攻
+	eTowerBuff3Defend = 2; //3防
+}
+
+enum TowerBonusType
+{
+	eTowerBonusDaily = 1; //每日奖励
+	eTowerBonusWeekly = 2; //每周奖励
+	eTowerBonusTop3 = 3; //前3名奖励
+}
+
+enum TowerCode
+{
+	eTowerSuccess = 1;  //操作成功
+	eTowerStarted = 2;  //失败,自动推图重复启动
+	eTowerStopped = 3; //失败, 自动推图没有启动
+	eTowerLost = 4;  //战败
+	eTowerPlayerLowLevel = 5; //失败,玩家等级不够
+	eTowerTopFloor = 6; //失败,推图已到最高等级
+	eTowerBuffTopLevel = 7; //失败,buff已到最高级
+	eTowerLackMoney = 8; //失败, 元宝不足
+	eTowerBonusNonexist = 9; //玩家没有此类奖励
+	eTowerNoBonusLeft = 10; //奖励已领取, 或者没有奖励
+	eTowerLackPackage = 11; //背包位不足
+	eTowerCoolDown = 12; //战斗关卡冷却
+	eTowerInternalErr = 13; //内部错误
+	eTowerStageReset = 14;	//关卡重置了(或者 发送的floor 不合理)
+	eTowerHistoryTopFloor = 15; //失败, 推图已到历史最高等级(自动推图只能推到历史最高等级)
+	eTowerNeedJumpMap = 16; //失败, 需要跳图
+	eTowerNotNeedJumpMap = 17; //失败,不需要跳图
+	eTowerWrongBattleMode = 18; //失败, 推图模式不对
+	eTowerInvalidMapID	=19; //失败, 非法地图id
+}
+
+enum TowerNotifyType
+{
+	eTowerNotifyOnline = 1;			//离线推图,上线通知		
+	eTowerNotifyStageReset = 2;		//关卡重置通知
+}
+
+//推塔前三名的周奖励类型
+enum TowerTop3NotifyType
+{	
+	eTowerTop3NotifyFirst = 1;  //>>第一名
+	eTowerTop3NotifySecond = 2; //>>第二名
+	eTowerTop3NotifyThird = 3; //>>第三名
+	eTowerTop3NotifyNull = 4; 
+}
+
+
+//玩家上线时  会推送未完成的自动推图通知
+//每周重置时 会推送重置通知
+message smsg_tower_online_notify
+{	
+	required TowerNotifyType type = 1;	//eTowerNotifyOnlie:离线推图通知, eTowerNotifyStageReset:关卡重置通知
+	optional uint32 floor = 2; 		//离线推图:floor代表离线时所在的层数;  关卡重置: floor代表重置后所在的层数
+	optional uint32 history_top_floor = 3;  // 历史最高层数
+}
+
+//>>推送周奖励, top3奖励(上线 ,或者周切换的时候推送)
+message smsg_tower_bonus_notify
+{	
+	optional TowerBonusType bonus_type = 1;			//奖励类型, 可为周奖励 或 top3奖励
+	optional TowerTop3NotifyType  top3_type = 2; 	//假如是top3奖励, 这里指明是第几名
+}
+
+
+//查看推图排行榜,要求返回前N名
+//message cmsg_tower_list
+
+message smsg_tower_list
+{
+	message PlayerInfo
+	{
+		optional uint64 guid  = 1;  // 玩家的guid
+		optional string name  = 2;  // 玩家姓名
+	    optional uint32 floor = 3;  // 玩家所在层数
+		optional uint32 power = 4;  // 战斗力
+	}
+	
+	repeated PlayerInfo  info = 1; //前30名玩家列表	
+}
+
+//打开推图,返回当前层数,连斩记录, 每日奖励
+//message cmsg_tower_open
+
+
+message smsg_tower_open
+{
+	optional uint32 floor = 1; 	//玩家所在楼层
+	optional uint32 hot_streak = 2; //玩家的连斩数
+	optional uint32 daily_bonus = 3; //每日奖励是否已发放,  0:已发放 ,  1:未发放
+	optional uint32 daily_group = 4; //每日奖励所在等级组(client不知道 每日奖励时的floor)
+	optional uint32  att_buff_id = 5; //当前鼓舞攻击id
+	optional uint32  def_buff_id = 6; // 当前鼓舞防御id
+	optional uint32  binding_map = 7; //跟玩家所在楼层绑定的地图
+	optional uint32  current_map = 8; //当前所在地图
+}
+
+
+//打开自动推图 (推图界面关闭 或玩家下线 转为离线推图)
+//message cmsg_tower_start
+
+
+message smsg_tower_start
+{
+	required TowerCode result = 1; //eTowerSuccess:操作成功, eTowerStarted:失败,重复启动, eTowerHistoryTopFloor:失败,已到历史最高等级
+	optional uint32  cd = 2;  //下一次关卡冷却cd
+	optional uint32 history_top_floor = 3;  // 历史最高层数
+}
+
+//关闭自动推图
+//message cmsg_tower_stop
+
+message smsg_tower_stop
+{
+	required TowerCode result = 1; //eTowerSuccess:操作成功, eTowerStopped:自动推图没有开启啊
+}
+
+
+//战斗闯关, 过关奖励
+//正常推图推图或 自动推图,离线推图都用这条消息
+message cmsg_tower_battle
+{
+	required uint32 floor = 1;
+}
+
+message smsg_tower_battle
+{	
+	//正常推图, 自动推图公用:
+	//eTowerSuccess:成功; eTowerCoolDown:失败, 战斗关卡冷却; eTowerStageReset:关卡重置了,导致请求的floor就不对了; eTowerLackPackage: 背包位不足
+	//正常推图独有:
+	//eTowerLost:战败, eTowerPlayerLowLevel:玩家等级不够了; eTowerTopFloor:推图已到最高等级; eTowerNeedJumpMap :需要跳图
+	//自动推图独有:  eTowerHistoryTopFloor:失败, 推图已到历史最高等级
+	
+	//自动推图模式下:返回 eTowerCoolDown,eTowerStageReset 不会导致自动推图结束, 别的非成功返回会导致自动推图结束,转换到 正常推图模式下
+	required TowerCode result = 1; 
+	
+	
+	optional uint32  floor = 2; //无论成功,还是失败, 返回当前所在层数
+	optional uint32  binding_map = 3; //所在楼层绑定的地图
+	optional uint32 hot_streak = 4; //玩家的连斩数
+	optional uint32  cd = 5;  //下一次关卡冷却cd
+	
+	repeated uint32 items = 6;	//奖励物品组
+	repeated uint32 nums = 7;	//奖励物品数量组	
+}
+
+
+// 跳图
+message cmsg_tower_jump_map
+{
+	required uint32 map_id =1;
+}
+
+message smsg_tower_jump_map
+{
+	required TowerCode code =1;  //结果: eTowerSuccess:成功; eTowerNotNeedJumpMap:不需要跳图; eTowerPlayerLowLevel:玩家等级不够;
+								 //eTowerWrongBattleMode:非正常推图模式; eTowerInvalidMapID:非法地图id; eTowerTopFloor:已到最高等级
+	optional uint32 map_id =2;
+}
+
+
+//鼓舞(只对一局有效)
+message cmsg_tower_attach_buff
+{
+	required TowerBuffType type = 1; //鼓舞类别, eTowerBuff3Attack:3攻击,  eTowerBuff3Defend: 3防
+}
+message smsg_tower_attach_buff
+{
+	required TowerCode  code = 1; //eTowerSuccess:成功, eTowerBuffTopLevel:buff已到最高等级, eTowerLackMoney:元宝不足
+	optional TowerBuffType  type = 2; //鼓舞类别
+	optional uint32  buff_id = 3; // 当前鼓舞 buff id
+}
+
+
+//领取(daily ,weekly, top3)奖励
+message cmsg_tower_bonus
+{
+	required TowerBonusType type = 1; // eTowerBonusDaily:每日奖励, eTowerBonusWeekly:每周奖励, eTowerBonusTop3:前三名奖励
+}
+
+message smsg_tower_bonus
+{	
+	required TowerBonusType type = 1;
+	required TowerCode code  = 2; //eTowerSuccess:成功, eTowerBonusNonexistent:失败,玩家没有此类的奖励, 
+							//eTowerBonusNotBounsDay:失败,奖励已领取, eTowerLackPackage:失败,背包位不足
+							
+	//周奖励, top3奖励下列值有效						
+	repeated uint32 items = 3;	//奖励物品组
+	repeated uint32 nums = 4;	//奖励物品数量组						
+}
+
+
+

@@ -1,0 +1,42 @@
+package typed.entity;
+
+// 明教试炼记录
+message TrialContainer
+{
+	required uint64 guid							= 1; // 静态guid
+	required uint64 id								= 2; // 关卡id
+	optional uint64 first_player					= 3; // 第一个玩家
+	optional uint64 fast_player						= 4; // 最快的玩家
+	optional uint32 fast_round_l					= 5; // 最快玩家的小回合数
+}
+
+
+// 明教试炼玩家数据
+message Trial
+{
+	// 阴阳圣火令
+	message YY 
+	{
+		optional uint32 curr_stage					= 1; // 当前关卡
+		optional uint32 state						= 2; // 当前关卡的状态。0：未解锁，1：已解锁，2：已通过
+	}
+
+	// 一个副本
+	message Copy
+	{
+		optional uint32 id							= 1;
+		optional YY yin								= 2; // 阴圣火令
+		optional YY yang							= 3; // 阳圣火令
+		
+		optional uint64 cool_time					= 4; // 扫荡冷却起始时间(微秒时间点)
+		optional uint32 free_time_remain			= 5; // 免费次数剩余 // 日清
+		optional uint32 coin_time_remain			= 6; // 购买的次数剩余
+		optional uint32 buy_time					= 7; // 今天的已购买次数。// 日清
+		repeated uint32 prize_stage					= 8; // 可领奖关卡
+	}	
+	
+	required uint64 guid							= 1;
+	required uint64 player							= 2;
+	
+	repeated Copy copys								= 3; // 所有的副本的状态
+}

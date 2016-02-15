@@ -1,0 +1,1433 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{a57a5185-e153-42a3-9777-abf028543759}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resource">
+      <UniqueIdentifier>{6c1a311d-1564-4b89-8847-2eb95bf29840}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resource\1.5">
+      <UniqueIdentifier>{3db017d9-5089-4a2d-8f16-eb6242a2ce1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resource\1.4">
+      <UniqueIdentifier>{1e5cb8ff-64d0-4817-a08b-1ba67dd00bd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resource\1.6">
+      <UniqueIdentifier>{af81c1b8-3160-46d6-aee9-a39968401f50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resource\2.0">
+      <UniqueIdentifier>{a9dab9fd-03f0-45eb-a57e-8b54627af0fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resource\2.5">
+      <UniqueIdentifier>{b7dba581-611b-4593-b0ab-f6f0ff8b1a4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resource\3.0">
+      <UniqueIdentifier>{f9af9777-a0e3-4ca4-9a77-317a918fb60e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resource\3.1">
+      <UniqueIdentifier>{d4b66461-b752-4ecc-8de8-e0fa2eba7719}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resource\3.2">
+      <UniqueIdentifier>{89170c78-e062-4994-aa23-ee3e2bcceedb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resource\3.3">
+      <UniqueIdentifier>{dafdf47a-7bf9-427b-9c59-bf293db5dc8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resource\3.4">
+      <UniqueIdentifier>{094b4a25-ae5b-4d14-a4b1-861afa018f6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resource\3.5">
+      <UniqueIdentifier>{d1f79085-6ba7-4b2c-ad4c-35439805aff0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resource\3.6">
+      <UniqueIdentifier>{f6f37178-1987-48d6-989a-9c85c71d5840}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc">
+      <UniqueIdentifier>{475154f1-5201-438a-8dff-aa9f7745433d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\3.2">
+      <UniqueIdentifier>{16deb688-ab32-43ce-9304-680438fb1068}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\header">
+      <UniqueIdentifier>{4c0d2a7b-1a69-4d84-9a3b-dce15e81c7c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\3.3">
+      <UniqueIdentifier>{13cfe62c-b2ae-4719-85db-7ff802da64a8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\ManageResourceImp.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PlayerFunction.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageBonusRes.cpp">
+      <Filter>resource\1.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageGoldParamRes.cpp">
+      <Filter>resource\1.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageItemRes.cpp">
+      <Filter>resource\1.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageItemStrengRes.cpp">
+      <Filter>resource\1.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageLawRes.cpp">
+      <Filter>resource\1.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManagePrandomRes.cpp">
+      <Filter>resource\1.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageProhibitWordRes.cpp">
+      <Filter>resource\1.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageRandomSkillRes.cpp">
+      <Filter>resource\1.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageRecruitexpRes.cpp">
+      <Filter>resource\1.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageRecruitmentRes.cpp">
+      <Filter>resource\1.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageSectRes.cpp">
+      <Filter>resource\1.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageStage1stRes.cpp">
+      <Filter>resource\1.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageSystemRes.cpp">
+      <Filter>resource\1.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageTalkRes.cpp">
+      <Filter>resource\1.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageBufferRes.cpp">
+      <Filter>resource\1.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageEnemyRes.cpp">
+      <Filter>resource\1.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageExpAddition.cpp">
+      <Filter>resource\1.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageFormRes.cpp">
+      <Filter>resource\1.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageHireRes.cpp">
+      <Filter>resource\1.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageLevelExpRes.cpp">
+      <Filter>resource\1.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageMapRes.cpp">
+      <Filter>resource\1.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageMonsterRes.cpp">
+      <Filter>resource\1.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageNpcRes.cpp">
+      <Filter>resource\1.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManagePlayerInit.cpp">
+      <Filter>resource\1.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManagePropertyResInfo.cpp">
+      <Filter>resource\1.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageRoleRes.cpp">
+      <Filter>resource\1.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageSkillRes.cpp">
+      <Filter>resource\1.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageWarInitRes.cpp">
+      <Filter>resource\1.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageWarJobEnrageRes.cpp">
+      <Filter>resource\1.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageWarScoreRes.cpp">
+      <Filter>resource\1.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageQuestRes.cpp">
+      <Filter>resource\1.6</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageSynthesisRes.cpp">
+      <Filter>resource\1.6</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageAnswerRes.cpp">
+      <Filter>resource\2.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageArenaRes.cpp">
+      <Filter>resource\2.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageBossExpRes.cpp">
+      <Filter>resource\2.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageBossForRes.cpp">
+      <Filter>resource\2.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageBossGuWuRes.cpp">
+      <Filter>resource\2.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageBossRewardRes.cpp">
+      <Filter>resource\2.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageCardAndJokerRes.cpp">
+      <Filter>resource\2.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageChakraRes.cpp">
+      <Filter>resource\2.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageCondorRes.cpp">
+      <Filter>resource\2.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageDailyBonusRes.cpp">
+      <Filter>resource\2.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageEggRes.cpp">
+      <Filter>resource\2.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageHammerRes.cpp">
+      <Filter>resource\2.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageIllusionRes.cpp">
+      <Filter>resource\2.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageRaiseRateRes.cpp">
+      <Filter>resource\2.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageRaiseRes.cpp">
+      <Filter>resource\2.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageShopRes.cpp">
+      <Filter>resource\2.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageSpecialShopRes.cpp">
+      <Filter>resource\2.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageVipexpRes.cpp">
+      <Filter>resource\2.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageAchievementRes.cpp">
+      <Filter>resource\2.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageBattlegroundBuffRes.cpp">
+      <Filter>resource\2.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageDailyPointsRes.cpp">
+      <Filter>resource\2.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageDailyQuestLibraryRes.cpp">
+      <Filter>resource\2.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageDailyQuestRes.cpp">
+      <Filter>resource\2.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageEscortAgencyRes.cpp">
+      <Filter>resource\2.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageEscortCarRes.cpp">
+      <Filter>resource\2.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageEscortSystemRes.cpp">
+      <Filter>resource\2.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageEscortTerminalRes.cpp">
+      <Filter>resource\2.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageFishingRes.cpp">
+      <Filter>resource\2.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageFlowerResInfo.cpp">
+      <Filter>resource\2.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageFreeTimeBag.cpp">
+      <Filter>resource\2.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageGiftRes.cpp">
+      <Filter>resource\2.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageGuildRes.cpp">
+      <Filter>resource\2.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageHangUpRes.cpp">
+      <Filter>resource\2.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageMultiCopyRes.cpp">
+      <Filter>resource\2.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManagePracticeRes.cpp">
+      <Filter>resource\2.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageRingGuildRes.cpp">
+      <Filter>resource\2.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageRingQuestRes.cpp">
+      <Filter>resource\2.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageRingRandomRes.cpp">
+      <Filter>resource\2.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageRingRewardRes.cpp">
+      <Filter>resource\2.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageSweepStageResInfo.cpp">
+      <Filter>resource\2.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageSystemUnlockRes.cpp">
+      <Filter>resource\2.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageTavernhireRes.cpp">
+      <Filter>resource\2.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageTavernprobabilityRes.cpp">
+      <Filter>resource\2.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageTavernRes.cpp">
+      <Filter>resource\2.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageTavernshopRes.cpp">
+      <Filter>resource\2.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageTowerBuffRes.cpp">
+      <Filter>resource\2.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageTowerRewardsRes.cpp">
+      <Filter>resource\2.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageTowerStageRes.cpp">
+      <Filter>resource\2.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageTrainingRes.cpp">
+      <Filter>resource\2.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageVipRes.cpp">
+      <Filter>resource\2.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageArrestControllerRes.cpp">
+      <Filter>resource\3.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageArrestListRes.cpp">
+      <Filter>resource\3.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageBattlegroundBetRes.cpp">
+      <Filter>resource\3.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageBattlegroundDatetimeRes.cpp">
+      <Filter>resource\3.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageBattlegroundRewardRes.cpp">
+      <Filter>resource\3.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageDodgeMiniRes.cpp">
+      <Filter>resource\3.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageDodgeRes.cpp">
+      <Filter>resource\3.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageGamblingRes.cpp">
+      <Filter>resource\3.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageGemgroupRes.cpp">
+      <Filter>resource\3.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageGvgRes.cpp">
+      <Filter>resource\3.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageGvgrewardsRes.cpp">
+      <Filter>resource\3.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageMail_formatRes.cpp">
+      <Filter>resource\3.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageMailRes.cpp">
+      <Filter>resource\3.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageMatecolorRes.cpp">
+      <Filter>resource\3.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageMategateRes.cpp">
+      <Filter>resource\3.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageMateinheritRes.cpp">
+      <Filter>resource\3.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageMateRes.cpp">
+      <Filter>resource\3.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageMateskillRes.cpp">
+      <Filter>resource\3.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageMateupRes.cpp">
+      <Filter>resource\3.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageOfflinehangupRes.cpp">
+      <Filter>resource\3.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManagePlumJarRes.cpp">
+      <Filter>resource\3.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManagePlumRes.cpp">
+      <Filter>resource\3.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManagePlumRewardRes.cpp">
+      <Filter>resource\3.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManagePlumSystemRes.cpp">
+      <Filter>resource\3.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManagePvpRes.cpp">
+      <Filter>resource\3.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManagePvprewardsRes.cpp">
+      <Filter>resource\3.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageSuitRes.cpp">
+      <Filter>resource\3.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageTavern_groupRes.cpp">
+      <Filter>resource\3.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageTavernspebilityRes.cpp">
+      <Filter>resource\3.0</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageAmahRes.cpp">
+      <Filter>resource\3.1</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageDodgeRevokeRes.cpp">
+      <Filter>resource\3.1</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageGemsynthesisRes.cpp">
+      <Filter>resource\3.1</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageInheritInfoRes.cpp">
+      <Filter>resource\3.1</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageMazeexplorationRes.cpp">
+      <Filter>resource\3.1</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageMazeRes.cpp">
+      <Filter>resource\3.1</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageMazerewardsRes.cpp">
+      <Filter>resource\3.1</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageMazeroomRes.cpp">
+      <Filter>resource\3.1</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManagePelletInfoRes.cpp">
+      <Filter>resource\3.1</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageTalklinkRes.cpp">
+      <Filter>resource\3.1</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageAccBuyRes.cpp">
+      <Filter>resource\3.2</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageAccOnlineRes.cpp">
+      <Filter>resource\3.2</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageEquip_gettingRes.cpp">
+      <Filter>resource\3.2</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageFailScoreRes.cpp">
+      <Filter>resource\3.2</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageFirstBuyRes.cpp">
+      <Filter>resource\3.2</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageFriendAddInfoRes.cpp">
+      <Filter>resource\3.2</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageFutureBonusRes.cpp">
+      <Filter>resource\3.2</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageJianZhongRes.cpp">
+      <Filter>resource\3.2</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageNextdayInterestRes.cpp">
+      <Filter>resource\3.2</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageOpenactRes.cpp">
+      <Filter>resource\3.2</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageSectionBonusRes.cpp">
+      <Filter>resource\3.2</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageShortcutBonusRes.cpp">
+      <Filter>resource\3.2</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageTitleRes.cpp">
+      <Filter>resource\3.2</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageChargequestRes.cpp">
+      <Filter>resource\3.3</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageFiresattackRes.cpp">
+      <Filter>resource\3.3</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageFiresRes.cpp">
+      <Filter>resource\3.3</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageOpenact1Res.cpp">
+      <Filter>resource\3.3</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageOpenact2Res.cpp">
+      <Filter>resource\3.3</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManagePushRes.cpp">
+      <Filter>resource\3.3</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageRaceRes.cpp">
+      <Filter>resource\3.3</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageRankingRewardRes.cpp">
+      <Filter>resource\3.3</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageRankingRuleRes.cpp">
+      <Filter>resource\3.3</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageRunesClassRes.cpp">
+      <Filter>resource\3.3</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageRunesExpRes.cpp">
+      <Filter>resource\3.3</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageRunesLevelRes.cpp">
+      <Filter>resource\3.3</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageRunesSystemRes.cpp">
+      <Filter>resource\3.3</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageShenghuoLingRes.cpp">
+      <Filter>resource\3.3</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageShlUnlockRes.cpp">
+      <Filter>resource\3.3</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageSplendidRes.cpp">
+      <Filter>resource\3.3</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageStageExpRes.cpp">
+      <Filter>resource\3.3</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageBillListRes.cpp">
+      <Filter>resource\3.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageDanyaoHechengRes.cpp">
+      <Filter>resource\3.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageDoubleexpRes.cpp">
+      <Filter>resource\3.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageGetmoneyRes.cpp">
+      <Filter>resource\3.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageGoldCardRes.cpp">
+      <Filter>resource\3.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageLogingiftRes.cpp">
+      <Filter>resource\3.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManagePairGamblingRes.cpp">
+      <Filter>resource\3.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManagePairNameRes.cpp">
+      <Filter>resource\3.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManagePairRewardsRes.cpp">
+      <Filter>resource\3.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManagePairSystemRes.cpp">
+      <Filter>resource\3.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageRankingTalkRes.cpp">
+      <Filter>resource\3.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageSoulCfgRes.cpp">
+      <Filter>resource\3.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageSoulChangeRes.cpp">
+      <Filter>resource\3.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageSoulSetRes.cpp">
+      <Filter>resource\3.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageSoulSoulRes.cpp">
+      <Filter>resource\3.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageSoulStageRes.cpp">
+      <Filter>resource\3.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageSoulSuperRes.cpp">
+      <Filter>resource\3.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageTargetquestRes.cpp">
+      <Filter>resource\3.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageTargetRes.cpp">
+      <Filter>resource\3.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageTreasureShopRes.cpp">
+      <Filter>resource\3.4</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageLuckyRewardsRes.cpp">
+      <Filter>resource\3.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageLuckyTurntableRes.cpp">
+      <Filter>resource\3.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManagePvp2Res.cpp">
+      <Filter>resource\3.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageTalentgroupRes.cpp">
+      <Filter>resource\3.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageTalentRes.cpp">
+      <Filter>resource\3.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageTalentsystemRes.cpp">
+      <Filter>resource\3.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageWebVipRes.cpp">
+      <Filter>resource\3.5</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageHelperInfoRes.cpp">
+      <Filter>resource\3.6</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageHorseAttrRes.cpp">
+      <Filter>resource\3.6</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageHorsemanLevelupRes.cpp">
+      <Filter>resource\3.6</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageHorseRoomRes.cpp">
+      <Filter>resource\3.6</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageQqbragRes.cpp">
+      <Filter>resource\3.6</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageQqCfgRes.cpp">
+      <Filter>resource\3.6</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageQqinviteRes.cpp">
+      <Filter>resource\3.6</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageQqshareRes.cpp">
+      <Filter>resource\3.6</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageRanchCfgRes.cpp">
+      <Filter>resource\3.6</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resource\ManageRanchInfoRes.cpp">
+      <Filter>resource\3.6</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gamelogic.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="inc\ManageResourceImp.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageBonusRes.h">
+      <Filter>resource\1.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageGoldParamRes.h">
+      <Filter>resource\1.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageItemRes.h">
+      <Filter>resource\1.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageItemStrengRes.h">
+      <Filter>resource\1.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageLawRes.h">
+      <Filter>resource\1.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManagePrandomRes.h">
+      <Filter>resource\1.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageProhibitWordRes.h">
+      <Filter>resource\1.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageRandomSkillRes.h">
+      <Filter>resource\1.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageRecruitexpRes.h">
+      <Filter>resource\1.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageRecruitmentRes.h">
+      <Filter>resource\1.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageSectRes.h">
+      <Filter>resource\1.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageStage1stRes.h">
+      <Filter>resource\1.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageSystemRes.h">
+      <Filter>resource\1.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageTalkRes.h">
+      <Filter>resource\1.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageBufferRes.h">
+      <Filter>resource\1.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageEnemyRes.h">
+      <Filter>resource\1.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageExpAddition.h">
+      <Filter>resource\1.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageFormRes.h">
+      <Filter>resource\1.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageHireRes.h">
+      <Filter>resource\1.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageLevelExpRes.h">
+      <Filter>resource\1.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageMapRes.h">
+      <Filter>resource\1.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageMonsterRes.h">
+      <Filter>resource\1.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageNpcRes.h">
+      <Filter>resource\1.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManagePlayerInit.h">
+      <Filter>resource\1.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManagePropertyResInfo.h">
+      <Filter>resource\1.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageRoleRes.h">
+      <Filter>resource\1.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageSkillRes.h">
+      <Filter>resource\1.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageWarInitRes.h">
+      <Filter>resource\1.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageWarJobEnrageRes.h">
+      <Filter>resource\1.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageWarScoreRes.h">
+      <Filter>resource\1.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageQuestRes.h">
+      <Filter>resource\1.6</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageSynthesisRes.h">
+      <Filter>resource\1.6</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageArenaRes.h">
+      <Filter>resource\2.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageBossExpRes.h">
+      <Filter>resource\2.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageBossForRes.h">
+      <Filter>resource\2.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageBossGuWuRes.h">
+      <Filter>resource\2.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageBossRewardRes.h">
+      <Filter>resource\2.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageCardAndJokerRes.h">
+      <Filter>resource\2.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageDailyBonusRes.h">
+      <Filter>resource\2.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageEggRes.h">
+      <Filter>resource\2.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageHammerRes.h">
+      <Filter>resource\2.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageRaiseRateRes.h">
+      <Filter>resource\2.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageRaiseRes.h">
+      <Filter>resource\2.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageShopRes.h">
+      <Filter>resource\2.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageSpecialShopRes.h">
+      <Filter>resource\2.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageVipexpRes.h">
+      <Filter>resource\2.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageAchievementRes.h">
+      <Filter>resource\2.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageBattlegroundBuffRes.h">
+      <Filter>resource\2.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageDailyPointsRes.h">
+      <Filter>resource\2.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageDailyQuestLibraryRes.h">
+      <Filter>resource\2.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageDailyQuestRes.h">
+      <Filter>resource\2.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageEscortAgencyRes.h">
+      <Filter>resource\2.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageEscortCarRes.h">
+      <Filter>resource\2.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageEscortSystemRes.h">
+      <Filter>resource\2.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageEscortTerminalRes.h">
+      <Filter>resource\2.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageFishingRes.h">
+      <Filter>resource\2.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageFlowerResInfo.h">
+      <Filter>resource\2.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageFreeTimeBag.h">
+      <Filter>resource\2.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageGuildRes.h">
+      <Filter>resource\2.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageHangUpRes.h">
+      <Filter>resource\2.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageMultiCopyRes.h">
+      <Filter>resource\2.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManagePracticeRes.h">
+      <Filter>resource\2.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageRingGuildRes.h">
+      <Filter>resource\2.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageRingQuestRes.h">
+      <Filter>resource\2.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageRingRandomRes.h">
+      <Filter>resource\2.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageRingRewardRes.h">
+      <Filter>resource\2.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageSweepStageResInfo.h">
+      <Filter>resource\2.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageSystemUnlockRes.h">
+      <Filter>resource\2.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageTavernhireRes.h">
+      <Filter>resource\2.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageTavernprobabilityRes.h">
+      <Filter>resource\2.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageTavernRes.h">
+      <Filter>resource\2.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageTavernshopRes.h">
+      <Filter>resource\2.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageTowerBuffRes.h">
+      <Filter>resource\2.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageTowerRewardsRes.h">
+      <Filter>resource\2.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageTowerStageRes.h">
+      <Filter>resource\2.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageTrainingRes.h">
+      <Filter>resource\2.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageVipRes.h">
+      <Filter>resource\2.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageArrestControllerRes.h">
+      <Filter>resource\3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageArrestListRes.h">
+      <Filter>resource\3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageBattlegroundBetRes.h">
+      <Filter>resource\3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageBattlegroundDatetimeRes.h">
+      <Filter>resource\3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageBattlegroundRewardRes.h">
+      <Filter>resource\3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageDodgeMiniRes.h">
+      <Filter>resource\3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageDodgeRes.h">
+      <Filter>resource\3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageGamblingRes.h">
+      <Filter>resource\3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageGemgroupRes.h">
+      <Filter>resource\3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageGvgRes.h">
+      <Filter>resource\3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageGvgrewardsRes.h">
+      <Filter>resource\3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageMail_formatRes.h">
+      <Filter>resource\3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageMailRes.h">
+      <Filter>resource\3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageMatecolorRes.h">
+      <Filter>resource\3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageMategateRes.h">
+      <Filter>resource\3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageMateinheritRes.h">
+      <Filter>resource\3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageMateRes.h">
+      <Filter>resource\3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageMateupRes.h">
+      <Filter>resource\3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageOfflinehangupRes.h">
+      <Filter>resource\3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManagePlumJarRes.h">
+      <Filter>resource\3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManagePlumRes.h">
+      <Filter>resource\3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManagePlumRewardRes.h">
+      <Filter>resource\3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManagePlumSystemRes.h">
+      <Filter>resource\3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManagePvpRes.h">
+      <Filter>resource\3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManagePvprewardsRes.h">
+      <Filter>resource\3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageSuitRes.h">
+      <Filter>resource\3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageTavern_groupRes.h">
+      <Filter>resource\3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageTavernspebilityRes.h">
+      <Filter>resource\3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\OfflinehangupRes.h">
+      <Filter>resource\3.0</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\InheritInfoRes.h">
+      <Filter>resource\3.1</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageAmahRes.h">
+      <Filter>resource\3.1</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageDodgeRevokeRes.h">
+      <Filter>resource\3.1</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageGemsynthesisRes.h">
+      <Filter>resource\3.1</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageInheritInfoRes.h">
+      <Filter>resource\3.1</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageMazeexplorationRes.h">
+      <Filter>resource\3.1</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageMazeRes.h">
+      <Filter>resource\3.1</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageMazerewardsRes.h">
+      <Filter>resource\3.1</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageMazeroomRes.h">
+      <Filter>resource\3.1</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManagePelletInfoRes.h">
+      <Filter>resource\3.1</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageTalklinkRes.h">
+      <Filter>resource\3.1</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageAccBuyRes.h">
+      <Filter>resource\3.2</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageAccOnlineRes.h">
+      <Filter>resource\3.2</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageEquip_gettingRes.h">
+      <Filter>resource\3.2</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageFailScoreRes.h">
+      <Filter>resource\3.2</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageFirstBuyRes.h">
+      <Filter>resource\3.2</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageFriendAddInfoRes.h">
+      <Filter>resource\3.2</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageFutureBonusRes.h">
+      <Filter>resource\3.2</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageJianZhongRes.h">
+      <Filter>resource\3.2</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageNextdayInterestRes.h">
+      <Filter>resource\3.2</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageOpenactRes.h">
+      <Filter>resource\3.2</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageSectionBonusRes.h">
+      <Filter>resource\3.2</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageShortcutBonusRes.h">
+      <Filter>resource\3.2</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageChargequestRes.h">
+      <Filter>resource\3.3</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageFiresattackRes.h">
+      <Filter>resource\3.3</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageFiresRes.h">
+      <Filter>resource\3.3</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManagePushRes.h">
+      <Filter>resource\3.3</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageRaceRes.h">
+      <Filter>resource\3.3</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageRankingRewardRes.h">
+      <Filter>resource\3.3</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageRankingRuleRes.h">
+      <Filter>resource\3.3</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageRunesClassRes.h">
+      <Filter>resource\3.3</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageRunesExpRes.h">
+      <Filter>resource\3.3</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageRunesLevelRes.h">
+      <Filter>resource\3.3</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageRunesSystemRes.h">
+      <Filter>resource\3.3</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageShenghuoLingRes.h">
+      <Filter>resource\3.3</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageShlUnlockRes.h">
+      <Filter>resource\3.3</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageSplendidRes.h">
+      <Filter>resource\3.3</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageStageExpRes.h">
+      <Filter>resource\3.3</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageBillListRes.h">
+      <Filter>resource\3.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageDanyaoHechengRes.h">
+      <Filter>resource\3.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageDoubleexpRes.h">
+      <Filter>resource\3.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageGetmoneyRes.h">
+      <Filter>resource\3.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageGoldCardRes.h">
+      <Filter>resource\3.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageLogingiftRes.h">
+      <Filter>resource\3.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManagePairGamblingRes.h">
+      <Filter>resource\3.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManagePairNameRes.h">
+      <Filter>resource\3.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManagePairRewardsRes.h">
+      <Filter>resource\3.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManagePairSystemRes.h">
+      <Filter>resource\3.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageRankingTalkRes.h">
+      <Filter>resource\3.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageSoulCfgRes.h">
+      <Filter>resource\3.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageSoulChangeRes.h">
+      <Filter>resource\3.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageSoulSetRes.h">
+      <Filter>resource\3.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageSoulSoulRes.h">
+      <Filter>resource\3.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageSoulStageRes.h">
+      <Filter>resource\3.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageSoulSuperRes.h">
+      <Filter>resource\3.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageTargetquestRes.h">
+      <Filter>resource\3.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageTargetRes.h">
+      <Filter>resource\3.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageTreasureShopRes.h">
+      <Filter>resource\3.4</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageLuckyRewardsRes.h">
+      <Filter>resource\3.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageLuckyTurntableRes.h">
+      <Filter>resource\3.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManagePvp2Res.h">
+      <Filter>resource\3.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageTalentgroupRes.h">
+      <Filter>resource\3.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageTalentRes.h">
+      <Filter>resource\3.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageTalentsystemRes.h">
+      <Filter>resource\3.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageWebVipRes.h">
+      <Filter>resource\3.5</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageHelperInfoRes.h">
+      <Filter>resource\3.6</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageHorseAttrRes.h">
+      <Filter>resource\3.6</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageHorsemanLevelupRes.h">
+      <Filter>resource\3.6</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageHorseRoomRes.h">
+      <Filter>resource\3.6</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageRanchCfgRes.h">
+      <Filter>resource\3.6</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource\ManageRanchInfoRes.h">
+      <Filter>resource\3.6</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\AchievementRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\AnswerStruct.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\AnswerStructMap.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\ArrestControllerRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\ArrestListRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\ColorStruct.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\ColorStructMap.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\CondorStruct.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\CondorStructMap.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\DailyPointsRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\DailyQuestLibraryRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\DodgeMiniRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\DodgeRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\DodgeRevokeRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\EscortAgencyRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\EscortCarRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\EscortSystemRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\EscortTerminalRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\FishingRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\FlowerRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\FreeTimeBag.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\GamblingRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\GemgroupRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\GemsynthesisRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\GiftStruct.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\GiftStructR.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\GvgRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\GvgrewardsRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\HangUpRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\MailRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\MultiCopyRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\PairGamblingRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\PairNameRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\PairRewardsRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\PairSystemRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\PlayerFunction.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\PlumJarRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\PlumRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\PlumRewardRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\PlumSystemRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\PracticeRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\PvpRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\PvprewardsRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\RingGuildRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\RingQuestRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\RingRandomRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\RingRewardRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\SuitRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\SweepStageResInfo.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\SystemUnlockRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\TalklinkRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Tavern_groupRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\TowerBuffRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\TowerRewardsRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\TowerStageRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\TrainingRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\VipRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\WebVipRes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\AccBuyRes.h">
+      <Filter>inc\3.2</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\AccOnlineRes.h">
+      <Filter>inc\3.2</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Equip_gettingRes.h">
+      <Filter>inc\3.2</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\FailScoreRes.h">
+      <Filter>inc\3.2</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\FirstBuyRes.h">
+      <Filter>inc\3.2</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\FutureBonusRes.h">
+      <Filter>inc\3.2</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\JianZhongRes.h">
+      <Filter>inc\3.2</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\NextdayInterestRes.h">
+      <Filter>inc\3.2</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\SectionBonusRes.h">
+      <Filter>inc\3.2</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\ShortcutBonusRes.h">
+      <Filter>inc\3.2</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Resource.h">
+      <Filter>inc\header</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\DanyaoHechengRes.h">
+      <Filter>inc\3.3</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\GoldCardRes.h">
+      <Filter>inc\3.3</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\PushRes.h">
+      <Filter>inc\3.3</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Pvp2Res.h">
+      <Filter>inc\3.3</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\RaceRes.h">
+      <Filter>inc\3.3</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\RankingRewardRes.h">
+      <Filter>inc\3.3</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\RankingRuleRes.h">
+      <Filter>inc\3.3</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\RunesClassRes.h">
+      <Filter>inc\3.3</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\RunesExpRes.h">
+      <Filter>inc\3.3</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\RunesLevelRes.h">
+      <Filter>inc\3.3</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\RunesSystemRes.h">
+      <Filter>inc\3.3</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\ShenghuoLingRes.h">
+      <Filter>inc\3.3</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\ShlUnlockRes.h">
+      <Filter>inc\3.3</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\SoulChangeRes.h">
+      <Filter>inc\3.3</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\SoulSetRes.h">
+      <Filter>inc\3.3</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\SoulSoulRes.h">
+      <Filter>inc\3.3</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\SoulSuperRes.h">
+      <Filter>inc\3.3</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\StageExpRes.h">
+      <Filter>inc\3.3</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\TreasureShopRes.h">
+      <Filter>inc\3.3</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\gamelogic_def.h" />
+  </ItemGroup>
+</Project>

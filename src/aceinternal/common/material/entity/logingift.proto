@@ -1,0 +1,21 @@
+package typed.entity;
+
+// 登陆三天领奖
+message LoginGift {
+	required uint64 guid					= 1;
+	required uint64 player					= 2;
+
+	optional uint32 lottery_login_times		= 3; // 登陆天数 1起始。初始化的时候计为一天，开始抽奖
+	optional uint32 lottery_times			= 4; // 已经抽了几次
+
+	optional uint32 prize_login_times		= 5;
+	optional uint32 prize_times				= 6; // 已经领了几次
+	
+	optional uint32 coin_give				= 7; // 奖励的元宝，初始为0还未抽奖
+	
+	optional uint32 money_give				= 8; // 发送的银两
+	optional uint32 money_login_times		= 9; // 银两抽取登录次数
+	optional uint32 money_lottery_state		= 10; // 银两抽取状态。按位取状态, 最高位代表是否已经领奖
+	
+	
+}

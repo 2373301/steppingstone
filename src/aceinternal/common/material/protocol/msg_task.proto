@@ -1,0 +1,234 @@
+package typed.protocol;
+
+// 接收任务请求
+message cmsg_accept_task
+{
+	required uint32 id 			= 1;	//task id
+}
+
+message smsg_accept_task
+{
+	required uint32 id 			= 1;		//task id
+	required uint32 state 		= 2;	//0:失败, 1：成功
+}
+
+// 提交任务请求
+message cmsg_submit_task
+{
+	required uint32 id					= 1;	//task id
+	optional uint32 select_reward_index = 2;	//可选奖励索引，从1开始。如果没有就填0
+	optional uint32 quest_level			= 3;	//如果是每日任务，提交时设置任务等级，默认0为不设置
+}
+
+message smsg_submit_task
+{
+	required uint32 id 			= 1;	//task id
+	required uint32 state 		= 2;	//0,失败，1成功
+}
+
+// 任务相关信息的数量更新
+message smsg_task_num_update	//
+{
+	required uint32 id			= 1;		//task id
+	repeated uint32 index		= 2;	//如果任务需要多个物品，index指定是哪个更新了
+	repeated uint32 num 		= 3;	//已完成数量
+}
+
+message smsg_task_state_update	//
+{
+	required uint32 id 			= 1;		//task id
+	optional uint32 state 		= 2;	//1解锁不可接 2可接 3已接未完成 4已接已完成 5失败 
+}
+
+// 放弃任务
+message cmsg_giveup_task
+{
+	required uint32 id 			= 1;	//taks id
+}
+
+message smsg_giveup_task
+{
+	required uint32 id 			= 1;		//taks id
+	required uint32 state 		= 2;	//0,失败，1成功
+}
+
+// 任务接收成功，发送任务相关信息；或者玩家上线，服务器下发玩家所有任务信息
+message smsg_create_task
+{
+	required uint32 id 			= 1;		//task id
+	optional uint32 state 		= 2;		//1解锁不可接 2可接 3已接未完成 4已接已完成 5失败
+	optional uint32 type 		= 3;		//类型
+
+	repeated uint32 num 		= 4;		//已完成数量
+	optional uint32 level		= 5;		//任务等级，目前只每日任务需要
+	optional uint32 next_cost_type	= 6;	//下次消耗类型，1：阅历，2：元宝
+	optional uint32 next_cost_value	= 7;	//下次消耗值	
+}
+//删除任务
+message smsg_delete_task
+{
+	required uint32 id 			= 1;		//task id
+}
+// 玩家可接任务列表
+message smsg_task_brief_info
+{
+	repeated uint32 acceptable		= 1;	//可接
+	repeated uint32 unacceptable	= 2;	//可见不可接
+}
+//任务类型100，客户端自动完成任务
+//CMSG_TASK_CLIENT_AUTO_CMP
+message cmsg_task_client_auto_cmp
+{
+	required uint32 task_id = 1; //自动完成任务id
+	optional uint32 num_cmp = 2; //完成的数量，如果填0表示整个任务直接完成
+}
+//CMSG_REFRESH_DAILY_TASK
+message cmsg_refresh_daily_task
+{
+	required uint32 task_id = 1;
+	optional uint32 state	= 2;//1解锁不可接
+								//2可接
+								//3已接未完成
+								//4已接已完成
+								//5失败
+}
+//SMSG_REFRESH_DAILY_TASK
+message smsg_refresh_daily_task
+{
+	required uint32 task_id		= 1;
+	optional uint32 task_id_new = 2;
+	optional uint32 state_new	= 3;//1解锁不可接
+									//2可接
+									//3已接未完成
+									//4已接已完成
+									//5失败
+	optional uint32 level_new	= 4;//每日任务等级
+	
+	optional uint32 next_cost_type	= 5;	//下次消耗类型，1：阅历，2：元宝
+	optional uint32 next_cost_value	= 6;	//下次消耗值	
+}
+
+//CMSG_UPGRADE_DAILY_TASK_LEVEL
+message cmsg_upgrade_daily_task_level
+{
+	required uint32 task_id = 1;
+	optional uint32 state	= 2;//1解锁不可接
+								//2可接
+								//3已接未完成
+								//4已接已完成
+								//5失败
+}
+//SMSG_UPGRADE_DAILY_TASK_LEVEL
+message smsg_upgrade_daily_task_level
+{
+	required uint32 task_id			= 1;	//
+	required uint32 level			= 2;	//提升到的星级
+	optional bool	critical		= 3;	//是否产生了暴击
+	optional uint32 next_cost_type	= 4;	//下次消耗类型，1：阅历，2：元宝
+	optional uint32 next_cost_value	= 5;	//下次消耗值
+}
+//CMSG_DAILY_TASK_CMP_DIR
+message cmsg_daily_task_cmp_dir
+{
+	required uint32 task_id			= 1;
+	optional uint32 state			= 2;	//1解锁不可接
+											//2可接
+											//3已接未完成
+											//4已接已完成
+											//5失败
+	optional uint32 quest_level		= 3;	//如果是每日任务，提交时设置任务等级，默认0为不设置								
+}
+//SMSG_DAILY_TASK_CMP_DIR
+message smsg_daily_task_cmp_dir
+{
+	required uint32 task_id = 1;
+	optional uint32 state	= 2;//1解锁不可接
+								//2可接
+								//3已接未完成
+								//4已接已完成
+								//5失败
+}
+
+//CMSG_RING_QUEST_OPEN
+message cmsg_ring_quest_open
+{
+	required uint32 ring_type			= 1;	// 1:环任务，2：帮派环任务
+}
+//SMSG_RING_QUEST_OPEN
+message smsg_ring_quest_open
+{
+	required uint32 ring_type			= 1;	// 1:环任务，2：帮派环任务
+	optional uint32 ring_index			= 2;	// 第几环
+	optional uint32 ring_sub_index		= 3;	// 第几个
+	optional uint32 ring_quest_id		= 4;	//当前任务id
+	optional uint32 ring_refresh_cost	= 5;	//刷新消耗		
+	optional uint32 ring_reward_cur		= 6;	//当前未领取奖励环数，如果为0表示当前无可领取奖励
+	repeated uint32 item_id_cur			= 7;	//当前任务奖励
+	repeated uint32 item_no_cur			= 8;	//当前任务奖励
+	optional uint32 ring_loop			= 9;	//当前轮次
+	optional uint32 free_times			= 10;	//剩余免费次数
+}
+
+//CMSG_RING_QUEST_GET_REWARD 领取环奖励
+message cmsg_ring_quest_get_reward
+{
+	required uint32 ring_type	= 1;	// 1:环任务，2：帮派环任务
+}
+//SMSG_RING_QUEST_GET_REWARD
+message smsg_ring_quest_get_reward
+{
+	required uint32 ring_type	= 1;	// 1:环任务，2：帮派环任务
+	optional uint32 result		= 2;	// 1:成功，2：无此奖励，3：背包放不了
+	repeated uint32 ring_item_id_cur	= 3;	//环奖励
+	repeated uint32 ring_item_no_cur	= 4;	//环奖励	
+}
+
+//CMSG_RING_QUEST_REFRESH
+message cmsg_ring_quest_refresh
+{
+	required uint32 ring_type	= 1;	// 1:环任务，2：帮派环任务
+}
+//SMSG_RING_QUEST_REFRESH
+message smsg_ring_quest_refresh
+{
+	required uint32 ring_type		= 1;	// 1:环任务，2：帮派环任务
+	optional uint32 quest_id		= 2;	// 新的任务id
+	optional uint32 refresh_cost	= 3;	// 刷新消耗
+	repeated uint32 item_id_cur		= 4;	//当前任务奖励
+	repeated uint32 item_no_cur		= 5;	//当前任务奖励	
+}
+
+//CMSG_RING_QUEST_RANDOM
+message cmsg_ring_quest_random
+{
+	required uint32 ring_type		= 1;	// 1:环任务，2：帮派环任务
+}
+//SMSG_RING_QUEST_RANDOM
+message smsg_ring_quest_random
+{
+	required uint32 ring_type	= 1;	// 1:环任务，2：帮派环任务
+	optional uint32 quest_id	= 2;	// 新的任务id
+	optional uint32 result		= 3;	// 1:成功 2：失败
+	repeated uint32 item_id_cur	= 4;	//当前任务奖励
+	repeated uint32 item_no_cur	= 5;	//当前任务奖励
+	optional uint32 ring_index		= 6;	// 第几环
+	optional uint32 ring_sub_index	= 7;	// 第几个
+	optional uint32 ring_loop		= 8;	//当前轮次
+}
+//CMSG_RING_QUEST_CMP_DIR
+message cmsg_ring_quest_cmp_dir
+{
+	required uint32 ring_type	= 1;	// 1:环任务，2：帮派环任务
+	optional uint32 quest_id	= 2;	// 直接完成任务id
+}
+//SMSG_RING_QUEST_CMP_DIR
+message smsg_ring_quest_cmp_dir
+{
+	required uint32 ring_type	= 1;	// 1:环任务，2：帮派环任务
+	optional uint32 quest_id	= 2;	// 直接完成任务id
+}
+//SMSG_RING_TIMES_FROM_ITEM
+message smsg_ring_times_from_item
+{
+	optional uint32 times = 1;	//使用物品获得的环任务轮次数
+}

@@ -1,0 +1,23 @@
+package typed.entity;
+
+message Law
+{
+	message UnlockLaw
+	{
+		required uint32 law_id		= 1;
+		optional uint32 heart_id	= 2;
+		optional uint32 group		= 3;
+		optional uint32 total		= 4;
+		optional uint32 scheme_id	= 5;
+	}
+
+	required uint64 guid			= 1;	//心法guid
+	optional uint64 player			= 2;	//对应玩家
+	repeated uint32 item_unlock_id	= 3;	//已道具解锁心法id
+	repeated UnlockLaw unlock_law	= 4;	//已全部解锁心法信息
+	optional uint32 last_time		= 5;	//上次升级心法时间
+	optional uint32 cooling_time 	= 6;	//冷却时间
+	optional bool 	cooling_force	= 7;	//强制冷却
+	optional uint32 cooling_max		= 8;	//超过最大值进入强制冷却
+	optional uint32 cooling_base	= 9;	//冷却时间基数，默认为10000，
+}

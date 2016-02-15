@@ -1,0 +1,22 @@
+package typed.protocol;
+
+message smsg_data_record
+{
+	required uint64 guid			= 1;
+	optional uint32	scene_id 		= 2;
+	optional uint32 module_id		= 3;
+	optional uint32 src_from		= 4;
+	optional string name			= 5;
+	optional uint32 level			= 6;
+	optional uint64 param_1 		= 7;
+	optional uint64 param_2 		= 8;
+	optional uint64 param_3 		= 9;
+	optional uint64 param_4 		= 10;
+	optional uint64 param_5 		= 11;
+	optional uint64 param_6 		= 12;
+	optional uint64 param_7 		= 13;
+	optional uint64 param_8 		= 14;
+	optional uint64 param_9 		= 15;
+	optional uint64 param_10 		= 16;
+	optional string record_time		= 17;
+}

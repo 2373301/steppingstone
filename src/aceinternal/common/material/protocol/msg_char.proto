@@ -1,0 +1,52 @@
+package typed.protocol;
+
+enum CharType
+{
+	msg_world		= 1;	// 世界
+	msg_sect		= 2;	// 门派
+	msg_sept		= 3;	// 家族
+	msg_pvp			= 4;	// 个人
+	msg_compare		= 5;	// 切磋
+}
+
+message cmsg_player_chat
+{
+	required uint64 		target_guid = 1;
+	required CharType 		char_type 	= 2;
+	required string			char_text 	= 3;
+}
+
+message smsg_player_chat
+{
+	required uint64			sent_guid 	= 1;
+	required string			sent_name	= 2;
+	required CharType 		char_type 	= 3;
+	required string			char_text 	= 4;
+	optional uint32			yellow_vip_level = 5;
+	optional uint32			is_yellow_vip		= 6;	// 是否为黄钻用户, 0 : 不是, 1:是
+	optional uint32			is_yellow_year_vip	= 7;	// 是否为年费黄钻用户, 0 : 不是, 1:是
+	optional uint32			is_yellow_high_vip	= 8;	// 是否为豪华版黄钻用户 0: 不是, 1:是	
+}
+
+// 系统通告
+message smsg_chat_notify
+{
+	required uint32 id					= 1;
+	// param_id 与 param_name 必需等长，当客户端可以通过 param_id 取得名字时，对应的 param_name 可填为空。	
+	repeated uint64 param_id			= 2;
+	repeated string param_name			= 3;
+}
+
+// 下发错误消息给客户端，可以是提示信息，也可以是错误信息，该信息仅供客户端展示
+message smsg_notify_client_msg
+{
+	required int32 	msg_id					= 1;
+	optional int32 	trigger_opcode			= 2;
+	optional string	plus_msg				= 3;
+}
+
+// 错误提示，比如背包已满等。
+message smsg_error_message
+{
+	required uint32 msg_code		= 1;
+}

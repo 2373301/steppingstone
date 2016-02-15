@@ -1,0 +1,38 @@
+package typed.entity;
+
+message Friends
+{
+	message FriendInfo
+	{
+		required uint64 guid				= 1;	// 好友guid
+		optional uint32 can_give_energy		= 2;	// 1：可赠送体力，2：已经赠送过体力
+		optional uint32 can_recv_energy		= 4;	// 0：默认，1：可领取好友赠送的体力，2：已经领取好友赠送的体力
+	}
+	
+	message FlowerInfo
+	{
+		required uint64 guid				= 1;
+		optional uint32 flower_type			= 2;	// 依赖策划配置表配置
+		optional uint64 give_time			= 3;	// 送花时间
+		optional uint32 role_id				= 4;	// 
+		optional uint32 relationship		= 5;	// 1：好友，2：陌生人
+		optional string name				= 6;	// 姓名
+	}
+
+	required uint64 guid					= 1;
+	required uint64 player					= 2;
+	optional uint32 recv_flower_num			= 3;	// 收到花的总数量，每周清零
+	optional uint32 can_give_flower			= 4;	// 1：可赠送鲜花，2：已经赠送过鲜花，正在减扣金钱，3：已经赠送过鲜花，减扣金钱成功
+	optional uint32 acquire_flower_reward	= 5;	// 0: 默认，1：应该获得而未获得，2：已经获得
+	optional uint64 give_flower_friend		= 6;	// 最近送花好友
+	optional uint32 give_flower_type		= 7;	// 最近送花类型
+	repeated FriendInfo friends				= 8;
+	repeated FriendInfo enemy				= 9;
+	repeated uint64 pending_friend_request	= 10;	// 未处理的好友请求，延迟的好友请求处理结果，以通知的形式通知到请求发起者
+	repeated FlowerInfo flower_info			= 11;	// 收到鲜花的历史记录
+	optional uint64	clean_flower_record_time	= 12;	// 最后一次清理鲜花历史记录时间
+	optional uint32 already_recv_energy			= 13;	// 当天已经领取体力值总和
+	repeated uint64 remove_friend_with_energy	= 14;	// 删除当天赠送过体力的好友，该信息需要保存，否则赠送体力、删除好友、添加好友、赠送体力无限刷
+	optional uint32 system_add_friend			= 15;	// 批量加好友等级，1：需要通知，0：已经处理
+	optional uint32 total_recv_flower_num		= 16;	// 收到花的总数量，一直累加
+}

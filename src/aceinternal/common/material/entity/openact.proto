@@ -1,0 +1,50 @@
+package typed.entity;
+
+// 开服活动玩家身上实体
+message OpenAct
+{
+	// 档次
+	message Advance
+	{
+		required uint32 						id = 1;
+		optional uint32							state = 2; // 1：未领取，2:可领取，3：已领取。
+	}
+
+	// 活动
+	message Act
+	{
+		required uint32 						id = 1;
+		optional uint32							flag = 2; // 1：开否后第一次登陆，需要检测
+		repeated Advance						advances = 3; // 活动所有档次的领取情况
+	}
+
+	required uint64								guid = 1;
+	required uint64								player = 2;
+	
+	repeated Act								acts = 3; // 所有的活动。
+}
+
+// 记录每档奖励的领取个数
+message OpenActContainer
+{
+	message Advance 
+	{
+		required uint32 advance_id = 1;					// 档次id.
+		required uint32 prize_get_num = 2;				// 奖励已经结算的次数
+	}
+	message AdvanceFirstGet
+	{
+		required uint32 advance_id = 1;	
+		required uint64 first_player_guid = 2;
+	}
+	message Act
+	{
+		required uint32 act_id = 1;
+		repeated Advance advance = 2;
+		repeated AdvanceFirstGet first_get = 3;
+	}
+	
+	required uint64								guid = 1;
+	repeated Act								acts = 2;
+
+}
