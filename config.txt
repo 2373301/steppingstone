@@ -30,3 +30,5 @@ _WINSOCK_DEPRECATED_NO_WARNINGS
 ../../../dep/mysql++-3.2.2/vc2008/x64/Debug/mysqlpp_d.lib
 
 google::protobuf::
+
+NOMINMAX  (windows 下面避免跟<windows.h>中传统的min/max宏定义有冲突)
