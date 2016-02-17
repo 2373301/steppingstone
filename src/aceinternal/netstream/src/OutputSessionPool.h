@@ -83,7 +83,7 @@ private:
 
 	SessionPool * m_session_pool;
 
-	OutputSessionThreadInfoVec_t	m_output_session_thread_info_vec;
+	OutputSessionThreadInfoVec_t	m_output_session_thread_info_vec; // ¹«ÓÃ
 
 	ACE_Thread_Mutex m_output_session_thread_info_vec_mutex;
 

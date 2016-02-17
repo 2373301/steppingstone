@@ -23,32 +23,25 @@ class CellSession : public Session
 {
 public:
 	CellSession();
-
 	~CellSession();
-public:
-	virtual int open(void * p=0);
 
-	virtual int rd_stream();
+	virtual int open(void * p=0) override;
+	virtual void output(Packet * packet) override; // 有可能 非reactor线程,所以写入缓存,待callback
 
-public:
-	virtual void output(Packet * packet);
+	virtual int rd_stream() override;
+	virtual int wt_stream() override; // copy m_deferred_outputs to outputs
 
-	virtual int wt_stream();
-public:
 	uint64 getGUID();
-
 	void setGUID(uint64 guid);
 
-protected:
+
 private:
 	uint64 m_guid;
 
-	ACE_Thread_Mutex m_output_packet_mutex;
-
-	PacketQue_t m_output_packet;
+	ACE_Thread_Mutex m_deferred_outputs_mutex;
+	PacketQue_t m_deferred_outputs;
 
 	//SavePackInfo m_save_output_pack_info;
-
 };
 
 }

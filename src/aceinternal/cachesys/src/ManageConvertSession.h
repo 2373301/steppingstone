@@ -8,7 +8,11 @@
 #include "SessionPool.h"
 #include "Singleton.h"
 
-class ManageConvertSession : public HandleInput, public netcore::HandleSessionEvent, public netcore::HandleSessionRouter, public ACE_Task<ACE_NULL_SYNCH>
+class ManageConvertSession 
+	: public HandleInput
+	, public netcore::HandleSessionOpenClosed
+	, public netcore::HandleSessionRouterAddRemove
+	, public ACE_Task<ACE_NULL_SYNCH>
 {
 public:
 	ManageConvertSession();
@@ -34,14 +38,14 @@ public:
 	virtual void input(Packet * packet);
 
 public:
-	virtual void newConnection(Session * session);
+	virtual void sessionOpen(Session * session);
 
-	virtual void connectionClosed(Session * session);
+	virtual void sessionClosed(Session * session);
 
 public:
-	virtual void addRoute(Packet * packet);
+	virtual void sessionRouterAdd(Packet * packet);
 
-	virtual void removeRoute(uint64 guid);
+	virtual void sessionRouterRemove(uint64 guid);
 
 	virtual Session * getSession(Packet * packet);
 

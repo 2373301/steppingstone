@@ -12,26 +12,29 @@ enum CheckGsType
 	CGT_SHUTDOWN,
 };
 
-class ManageSession : public HandleInput, public netcore::HandleSessionEvent, public netcore::HandleSessionRouter
+class ManageSession 
+	: public HandleInput
+	, public netcore::HandleSessionOpenClosed
+	, public netcore::HandleSessionRouterAddRemove
 {
 public:
 	ManageSession();
 	~ManageSession();
 public:
 	// handle input
-	virtual void input(Packet * packet);
+	virtual void input(Packet * packet) override;
 
 	// handle session event
-	virtual void newConnection(Session * session);
+	virtual void sessionOpen(Session * session) override;
 
-	virtual void connectionClosed(Session * session);
+	virtual void sessionClosed(Session * session) override;
 
 	// handle session router
-	virtual void addRoute(Packet * packet);
+	virtual void sessionRouterAdd(Packet * packet) override;
 
-	virtual void removeRoute(uint64 guid);
+	virtual void sessionRouterRemove(uint64 guid) override;
 
-	virtual Session * getSession(Packet * packet);
+	virtual Session * getSession(Packet * packet) override;
 
 public:
 	int init(int monitor_type, char * port);

@@ -10,7 +10,7 @@
 namespace netcore
 {
 
-
+// 线程对应的 reactor
 struct InputSessionThreadInfo 
 {
 	InputSessionThreadInfo()
@@ -31,50 +31,43 @@ struct InputSessionThreadInfo
 typedef vector<InputSessionThreadInfo *> InputSessionThreadInfoVec_t;
 
 
-class InputSessionPool : public HandleSessionEvent, public ACE_Task<ACE_NULL_SYNCH>
+class InputSessionPool : public HandleSessionOpenClosed, public ACE_Task<ACE_NULL_SYNCH>
 {
 public:
 	InputSessionPool();
 	~InputSessionPool();
 public:
-	int init(int thread_no, SessionPool * session_pool, HandleSessionEvent * handle_session_event);
-
+	int init(int thread_no, SessionPool * session_pool, HandleSessionOpenClosed * handle_session_event);
 	void stop();
-
 	void finit();
-public:
+
 	int svc();
-
 	void handleSession(CellSession * cell_session);
-
 	void registerSessionThreadInfo(InputSessionThreadInfo * stinfo);
 public:
-public:
-	virtual void newConnection(Session * session);
+	virtual void sessionOpen(Session * session);
+	virtual void sessionClosed(Session * session);
 
-	virtual void connectionClosed(Session * session);
-
-protected:
 private:
 	int m_session_thread_info_index;
 
-	bool m_stop;
+	bool m_stop; // 被要求停止
 
-	bool m_wait;
+	bool m_wait; // svc 已退出
 
-	bool m_actived;
+	bool m_actived; // svc 已运行
 
 	SessionPool * m_session_pool;
 
-	HandleSessionEvent * m_handle_session_event;
+	HandleSessionOpenClosed * m_handle_session_event;
 
-	InputSessionThreadInfoVec_t	m_session_thread_info;
+	InputSessionThreadInfoVec_t	m_session_thread_info; // 现在运行当中的 reactor thread
 
 	ACE_Thread_Mutex m_session_thread_info_mutex;
 
 	typedef map<CellSession *, InputSessionThreadInfo *> CellSessionMap_t;
 
-	CellSessionMap_t	m_cell_session_map;
+	CellSessionMap_t	m_cell_session_map; // session 所在的 reactor
 };
 
 }

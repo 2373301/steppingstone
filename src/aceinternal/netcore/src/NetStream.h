@@ -73,9 +73,9 @@
 //
 //	bool m_cleaned;
 //
-//	ACE_Message_Block m_input_msg_block;
+//	ACE_Message_Block m_inputs;
 //
-//	ACE_Message_Block m_output_msg_block;
+//	ACE_Message_Block m_outputs;
 //
 //	ACE_Thread_Mutex m_output_mutex;
 //};

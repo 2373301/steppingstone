@@ -55,8 +55,7 @@ protected:
 
 	PacketQue_t m_packet_que;
 
-	ACE_Thread_Mutex m_packet_que_mutex;
-
+	ACE_Recursive_Thread_Mutex m_packet_que_mutex;
 };
 
 }

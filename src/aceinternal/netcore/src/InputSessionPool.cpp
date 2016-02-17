@@ -29,13 +29,14 @@ InputSessionPool::~InputSessionPool()
 	}
 }
 
-int InputSessionPool::init(int thread_no, SessionPool * session_pool, HandleSessionEvent * handle_session_event)
+int InputSessionPool::init(int thread_no, SessionPool * session_pool, HandleSessionOpenClosed * handle_session_event)
 {
 	if (this->activate(THR_NEW_LWP, thread_no) == -1)
 	{
 		return -1;
 	}
 
+	// 等待svc 运行起来
 	while (!m_actived)
 	{
 		ACE_OS::sleep(1);
@@ -149,16 +150,16 @@ void InputSessionPool::registerSessionThreadInfo(InputSessionThreadInfo * stinfo
 	m_session_thread_info.push_back(stinfo);
 }
 
-void InputSessionPool::newConnection(Session * session)
+void InputSessionPool::sessionOpen(Session * session)
 {
 	// do nothing
 }
 
-void InputSessionPool::connectionClosed(Session * session)
+void InputSessionPool::sessionClosed(Session * session)
 {
 	if (NULL != m_handle_session_event)
 	{
-		m_handle_session_event->connectionClosed(session);
+		m_handle_session_event->sessionClosed(session);
 	}
 }
 

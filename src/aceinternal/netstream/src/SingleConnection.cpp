@@ -109,7 +109,7 @@ int SingleConnection::stop()
 
 int SingleConnection::output(Packet * packet)
 {
-	ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_packet_que_mutex, 1);
+	ACE_GUARD_RETURN(ACE_Recursive_Thread_Mutex, guard, m_packet_que_mutex, 1);
 	m_packet_que.push(packet);
 	return 0;
 }
@@ -159,7 +159,7 @@ bool SingleConnection::connectToServer()
 int SingleConnection::processOutputPacket(PacketQue_t & packet_que)
 {
 	{
-		ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_packet_que_mutex, 1);
+		ACE_GUARD_RETURN(ACE_Recursive_Thread_Mutex, guard, m_packet_que_mutex, 1);
 		while (m_packet_que.size() > 0)
 		{
 			packet_que.push(m_packet_que.front());

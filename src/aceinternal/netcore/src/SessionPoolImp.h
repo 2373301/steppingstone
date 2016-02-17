@@ -11,51 +11,46 @@
 namespace netcore
 {
 
-class SessionPoolImp : public SessionPool, public HandleInput, public HandleSessionEvent, ACE_Task<ACE_NULL_SYNCH>
+class SessionPoolImp 
+	:public SessionPool
+	,public HandleInput
+	,public HandleSessionOpenClosed
+	,ACE_Task<ACE_NULL_SYNCH>
 {
 public:
 	SessionPoolImp();
 	~SessionPoolImp();
-public:
-	virtual int svc();
-public:
-	virtual void input(Packet * packet);
 
-public:
-	virtual int init(int input_thr_no, int output_thr_no, HandleInput * handle_input = NULL, HandleSessionEvent * handle_session_event = NULL, HandleSessionRouter * handle_session_router = NULL);
+	virtual int svc() override;
+	
+	virtual int init(int input_thr_no
+					,int output_thr_no
+					,HandleInput * handle_input = NULL
+					,HandleSessionOpenClosed * handle_session_event = NULL
+					,HandleSessionRouterAddRemove * handle_session_router = NULL) override;
+	virtual void stop() override;
+	virtual void finit() override;
 
-	virtual bool connect(const SessionAddrVec_t & session_addr_vec);
+	virtual bool connect(const SessionAddrVec_t & session_addr_vec) override;
+	virtual bool listen(const string & listen_addr) override; // 使自己成为actor
 
-	virtual bool listen(const string & listen_addr);
+	virtual void setHandleInput(HandleInput * handle_input) override; // 设置别的 handler代替自己来处理输入
+	virtual void setHandleSessionEvent(HandleSessionOpenClosed * handle_event) override;
+	virtual void setHandleSessionRouter(HandleSessionRouterAddRemove * handle_session_router) override;
 
-	virtual void setHandleInput(HandleInput * handle_input);
+	virtual void input(Packet * packet) override;
+	virtual void output(Packet * packet) override;
 
-	virtual void setHandleSessionEvent(HandleSessionEvent * handle_event);
+	virtual void removeSession(Session * session) override;
+	virtual void savePackStream() override;
 
-	virtual void setHandleSessionRouter(HandleSessionRouter * handle_session_router);
+	void sessionOpen(Session * session);
+	void sessionClosed(Session * session);
 
-	virtual void output(Packet * packet);
-
-	virtual void stop();
-
-	virtual void finit();
-
-	virtual void removeSession(Session * session);
-
-	virtual void savePackStream();
-
-public:
-	void newConnection(Session * session);
-
-	void connectionClosed(Session * session);
-
-protected:
 private:
 	HandleInput * m_handle_input;
-
-	HandleSessionEvent * m_handle_session_event;
-
-	HandleSessionRouter * m_handle_session_router;
+	HandleSessionOpenClosed * m_handle_session_event;
+	HandleSessionRouterAddRemove * m_handle_session_router;
 
 	ACE_Reactor * m_reactor;
 

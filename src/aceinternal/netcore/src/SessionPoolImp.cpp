@@ -84,7 +84,7 @@ void SessionPoolImp::input(Packet * packet)
 {
 	if (NULL != m_handle_session_router)
 	{
-		m_handle_session_router->addRoute(packet);
+		m_handle_session_router->sessionRouterAdd(packet);
 	}
 
 	if (NULL != m_handle_input)
@@ -93,7 +93,7 @@ void SessionPoolImp::input(Packet * packet)
 	}
 }
 
-int SessionPoolImp::init(int input_thr_no, int output_thr_no, HandleInput * handle_input, HandleSessionEvent * handle_session_event, HandleSessionRouter * handle_session_router)
+int SessionPoolImp::init(int input_thr_no, int output_thr_no, HandleInput * handle_input, HandleSessionOpenClosed * handle_session_event, HandleSessionRouterAddRemove * handle_session_router)
 {
 #ifdef WIN32
 	m_reactor = new ACE_Reactor(new ACE_Select_Reactor(), true);
@@ -152,7 +152,7 @@ bool SessionPoolImp::connect(const SessionAddrVec_t & session_addr_vec)
 
 			if (NULL != m_handle_session_event)
 			{
-				m_handle_session_event->newConnection(cell_session);
+				m_handle_session_event->sessionOpen(cell_session);
 			}
 
 			cell_session->setHandleInput(this);
@@ -192,12 +192,12 @@ void SessionPoolImp::setHandleInput(HandleInput * handle_input)
 	m_handle_input = handle_input;
 }
 
-void SessionPoolImp::setHandleSessionEvent(HandleSessionEvent * handle_event)
+void SessionPoolImp::setHandleSessionEvent(HandleSessionOpenClosed * handle_event)
 {
 	m_handle_session_event = handle_event;
 }
 
-void SessionPoolImp::setHandleSessionRouter(HandleSessionRouter * handle_session_router)
+void SessionPoolImp::setHandleSessionRouter(HandleSessionRouterAddRemove * handle_session_router)
 {
 	m_handle_session_router = handle_session_router;
 }
@@ -266,11 +266,11 @@ void SessionPoolImp::finit()
 	//std::cout << "exit SessionPoolImp" << std::endl;
 }
 
-void SessionPoolImp::newConnection(Session * session)
+void SessionPoolImp::sessionOpen(Session * session)
 {
 	if (NULL != m_handle_session_event)
 	{
-		m_handle_session_event->newConnection(session);
+		m_handle_session_event->sessionOpen(session);
 	}
 
 	if (session->reactor() != NULL)
@@ -290,12 +290,12 @@ void SessionPoolImp::newConnection(Session * session)
 	m_output_session_pool.handleSession((CellSession *)session);
 }
 
-void SessionPoolImp::connectionClosed(Session * session)
+void SessionPoolImp::sessionClosed(Session * session)
 {
 	removeSession(session);
 	if (NULL != m_handle_session_event)
 	{
-		m_handle_session_event->connectionClosed(session);
+		m_handle_session_event->sessionClosed(session);
 	}
 
 	m_output_session_pool.removeSession((CellSession *)session);
@@ -311,7 +311,7 @@ void SessionPoolImp::removeSession(Session * session)
 		--(it->second.reference_no);
 		if (0 == it->second.reference_no)
 		{
-			m_handle_session_router->removeRoute(cell_session->getGUID());
+			m_handle_session_router->sessionRouterRemove(cell_session->getGUID());
 			cell_session->peer().close();
 			delete cell_session;
 			m_cell_session_map.erase(cell_session);

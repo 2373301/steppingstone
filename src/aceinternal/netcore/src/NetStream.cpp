@@ -8,8 +8,8 @@
 //: m_handle_net_packet(NULL)
 //, m_cleaned(false)
 //{
-//	m_input_msg_block.init(m_socket_buffer_length);
-//	m_output_msg_block.init(m_socket_buffer_length);
+//	m_inputs.init(m_socket_buffer_length);
+//	m_outputs.init(m_socket_buffer_length);
 //}
 //
 //NetStream::~NetStream()
@@ -74,7 +74,7 @@
 //	}
 //
 //	ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_output_mutex, );
-//	if (m_output_msg_block.length() == 0)
+//	if (m_outputs.length() == 0)
 //	{
 //		int r = this->peer().send(output_stream->stream(), output_stream->stream_size());
 //		if (output_stream->stream_size() != r)
@@ -137,23 +137,23 @@
 //	int msg_length = 0;
 //	try
 //	{
-//		msg_length = m_input_msg_block.length();
+//		msg_length = m_inputs.length();
 //		while(true)
 //		{
-//			if (m_input_msg_block.length() <= sizeof(Header))
+//			if (m_inputs.length() <= sizeof(Header))
 //			{
 //				break;
 //			}
 //
 //			ps = new PacketStream();
-//			memcpy(ps->re_head(), m_input_msg_block.rd_ptr(), ps->head_size());
-//			if (m_input_msg_block.length() >= ps->head_size() + ps->body_size())
+//			memcpy(ps->re_head(), m_inputs.rd_ptr(), ps->head_size());
+//			if (m_inputs.length() >= ps->head_size() + ps->body_size())
 //			{
-//				m_input_msg_block.rd_ptr(ps->head_size());
+//				m_inputs.rd_ptr(ps->head_size());
 //				if (ps->body_size() > 0)
 //				{
-//					memcpy(ps->re_body(), m_input_msg_block.rd_ptr(), ps->body_size());
-//					m_input_msg_block.rd_ptr(ps->body_size());
+//					memcpy(ps->re_body(), m_inputs.rd_ptr(), ps->body_size());
+//					m_inputs.rd_ptr(ps->body_size());
 //				}
 //				else
 //				{
@@ -162,7 +162,7 @@
 //
 //				ps->setEventHandler(this);
 //				m_handle_net_packet->handlePacket(ps);
-//				msg_length = m_input_msg_block.length();
+//				msg_length = m_inputs.length();
 //			}
 //			else
 //			{
@@ -171,15 +171,15 @@
 //			}
 //		}
 //
-//		if (m_input_msg_block.rd_ptr() != m_input_msg_block.base())
+//		if (m_inputs.rd_ptr() != m_inputs.base())
 //		{
-//			msg_length = m_input_msg_block.length();
+//			msg_length = m_inputs.length();
 //			if (msg_length > 0)
 //			{
-//				memcpy(m_input_msg_block.base(), m_input_msg_block.rd_ptr(), msg_length);
+//				memcpy(m_inputs.base(), m_inputs.rd_ptr(), msg_length);
 //			}
-//			m_input_msg_block.rd_ptr(m_input_msg_block.base());
-//			m_input_msg_block.wr_ptr(m_input_msg_block.base() + msg_length);
+//			m_inputs.rd_ptr(m_inputs.base());
+//			m_inputs.wr_ptr(m_inputs.base() + msg_length);
 //		}
 //	}
 //	catch (...)
@@ -191,10 +191,10 @@
 //int NetStream::rd_stream()
 //{
 //	int result = 0;
-//	int recv_n = this->peer().recv(m_input_msg_block.wr_ptr(), m_input_msg_block.space());
+//	int recv_n = this->peer().recv(m_inputs.wr_ptr(), m_inputs.space());
 //	if (recv_n > 0)
 //	{
-//		m_input_msg_block.wr_ptr(recv_n);
+//		m_inputs.wr_ptr(recv_n);
 //		parseInputPacket();
 //	}
 //	else if (0 == recv_n)
@@ -228,13 +228,13 @@
 //{
 //	int result = 0;
 //	ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_output_mutex, -1);
-//	if (m_output_msg_block.length() > 0)
+//	if (m_outputs.length() > 0)
 //	{
-//		int r = this->peer().send(m_output_msg_block.rd_ptr(), m_output_msg_block.length());
+//		int r = this->peer().send(m_outputs.rd_ptr(), m_outputs.length());
 //		if (r > 0)
 //		{
-//			m_output_msg_block.rd_ptr(r);
-//			if (m_output_msg_block.length() == 0)
+//			m_outputs.rd_ptr(r);
+//			if (m_outputs.length() == 0)
 //			{
 //				this->reactor()->remove_handler(this, ACE_Event_Handler::WRITE_MASK | ACE_Event_Handler::DONT_CALL);
 //			}
@@ -269,16 +269,16 @@
 //
 //void NetStream::serializeToMsgBlock(PacketStream * output_stream, int already_read_byte)
 //{
-//	int msg_length = m_output_msg_block.length();
-//	if (m_output_msg_block.space() < output_stream->stream_size())
+//	int msg_length = m_outputs.length();
+//	if (m_outputs.space() < output_stream->stream_size())
 //	{
-//		if (msg_length * 2 > m_output_msg_block.size())
+//		if (msg_length * 2 > m_outputs.size())
 //		{
 //			return;
 //		}
-//		memcpy(m_output_msg_block.base(), m_output_msg_block.rd_ptr(), msg_length);
-//		m_output_msg_block.rd_ptr(m_output_msg_block.base());
-//		m_output_msg_block.wr_ptr(m_output_msg_block.base() + msg_length);
+//		memcpy(m_outputs.base(), m_outputs.rd_ptr(), msg_length);
+//		m_outputs.rd_ptr(m_outputs.base());
+//		m_outputs.wr_ptr(m_outputs.base() + msg_length);
 //	}
-//	m_output_msg_block.copy(output_stream->stream() + already_read_byte, output_stream->stream_size() - already_read_byte);
+//	m_outputs.copy(output_stream->stream() + already_read_byte, output_stream->stream_size() - already_read_byte);
 //}

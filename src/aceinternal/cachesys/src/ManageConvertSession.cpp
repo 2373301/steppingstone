@@ -119,7 +119,7 @@ void ManageConvertSession::input(Packet * packet)
 	delete packet;
 }
 
-void ManageConvertSession::newConnection(Session * session)
+void ManageConvertSession::sessionOpen(Session * session)
 {
 	DEF_LOG_INFO("get new convert connection, the point is <%x>\n", session);
 	{
@@ -129,7 +129,7 @@ void ManageConvertSession::newConnection(Session * session)
 	}
 }
 
-void ManageConvertSession::connectionClosed(Session * session)
+void ManageConvertSession::sessionClosed(Session * session)
 {
 	DEF_LOG_ERROR("the convert connection is closed <%x>\n", session);
 
@@ -142,12 +142,12 @@ void ManageConvertSession::connectionClosed(Session * session)
 	m_convert_is_available = m_session_vec.size() > 0;
 }
 
-void ManageConvertSession::addRoute(Packet * packet)
+void ManageConvertSession::sessionRouterAdd(Packet * packet)
 {
 	// do nothing
 }
 
-void ManageConvertSession::removeRoute(uint64 guid)
+void ManageConvertSession::sessionRouterRemove(uint64 guid)
 {
 	// do nothing
 }

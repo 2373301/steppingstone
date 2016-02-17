@@ -8,7 +8,11 @@
 #include "AllocGuid.h"
 #include "Singleton.h"
 
-class ManageSession : public SingletonInit, public HandleInput, public netcore::HandleSessionEvent, public netcore::HandleSessionRouter
+class ManageSession 
+	: public SingletonInit
+	, public HandleInput
+	, public netcore::HandleSessionOpenClosed
+	, public netcore::HandleSessionRouterAddRemove
 {
 public:
 	ManageSession();
@@ -29,14 +33,14 @@ public:
 	virtual void input(Packet * packet);
 
 public:
-	virtual void newConnection(Session * session);
+	virtual void sessionOpen(Session * session);
 
-	virtual void connectionClosed(Session * session);
+	virtual void sessionClosed(Session * session);
 
 public:
-	virtual void addRoute(Packet * packet);
+	virtual void sessionRouterAdd(Packet * packet);
 
-	virtual void removeRoute(uint64 guid);
+	virtual void sessionRouterRemove(uint64 guid);
 
 	virtual Session * getSession(Packet * packet);
 

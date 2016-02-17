@@ -19,12 +19,20 @@ enum SessionState
 	SS_CLOSE,
 };
 
+/*
+HandleXXX
+virtual XXX ,说明自己是handler
+setHandleXXX, 设置 other 为 handler
+*/
+
+// cin << 进入的完整的packet
 class NETCORE_EXOPRT HandleInput
 {
 public:
 	virtual void input(Packet * packet) = 0;
 };
 
+// cout >> 发送完整的packet
 class NETCORE_EXOPRT HandleOutput
 {
 public:
@@ -47,52 +55,38 @@ public:
 	string file_name;
 };
 
-class NETCORE_EXOPRT Session : public HandleOutput, public ACE_Svc_Handler<ACE_SOCK_STREAM, ACE_NULL_SYNCH>
+class NETCORE_EXOPRT Session :public HandleOutput
+							 ,public ACE_Svc_Handler<ACE_SOCK_STREAM, ACE_NULL_SYNCH>
 {
 public:
 	Session();
-
 	virtual ~Session();
-public:
-	typedef ACE_Svc_Handler<ACE_SOCK_STREAM, ACE_NULL_SYNCH> super;
 
+	typedef ACE_Svc_Handler<ACE_SOCK_STREAM, ACE_NULL_SYNCH> super;
 	typedef std::list<Packet *> PacketList;
 
-	virtual int open(void * p=0);
+	// ACE_Svc_Handler
+	virtual int open(void * p=0) override;
+	virtual int close(ACE_Reactor_Mask close_mask) override;
+	virtual int handle_input(ACE_HANDLE  fd = ACE_INVALID_HANDLE) override;
+	virtual int handle_output(ACE_HANDLE  fd = ACE_INVALID_HANDLE) override;
+	virtual int handle_close(ACE_HANDLE handle, ACE_Reactor_Mask close_mask) override;
 
-	virtual int handle_input(ACE_HANDLE  fd = ACE_INVALID_HANDLE);
-
-	virtual int handle_output(ACE_HANDLE  fd = ACE_INVALID_HANDLE);
-
-	virtual int handle_close(ACE_HANDLE handle, ACE_Reactor_Mask close_mask);
-
-public:
-	virtual void output(Packet * packet);
-
-	bool handleOutputPacket(Packet * packet);
+	// HandleOutput, 有可能 非reactor线程
+	virtual void output(Packet * packet) override;
 
 public:
-	// 0: normal
-	virtual int rd_stream();
-
-	// 0: normal, -1:close, 1:empty
-	virtual int wt_stream();
-
-	virtual int close(uint32 close_mask);
-
-	void setHandleInput(HandleInput * handle_input);
-
+	virtual int rd_stream(); // 0: normal, -1:close
+	virtual int wt_stream(); // 0: normal, -1:close, 1:empty
 	virtual void recvError(int recv_value, int last_error);
-
 	virtual void initBufferError(int last_error);
 
+	void setHandleInput(HandleInput * a_input);
 	void setSavePackInfo(bool is_save, const string & file_name);
 
 protected:
 	virtual int net_connected();
-
 	virtual int net_closed();
-protected:
 	virtual void parseInputPacket();
 
 protected:
@@ -104,9 +98,9 @@ protected:
 
 	SavePackInfo m_save_input_pack_info;
 
-	ACE_Message_Block m_input_msg_block;
+	ACE_Message_Block m_inputs;
 
-	ACE_Message_Block m_output_msg_block;
+	ACE_Message_Block m_outputs;
 };
 
 #endif

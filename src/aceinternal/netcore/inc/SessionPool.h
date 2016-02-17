@@ -12,32 +12,35 @@ namespace netcore
 
 typedef vector<string> SessionAddrVec_t;
 
-class NETCORE_EXOPRT HandleSessionEvent
+class NETCORE_EXOPRT HandleSessionOpenClosed
 {
 public:
-	virtual void newConnection(Session * session) = 0;
+	virtual void sessionOpen(Session * session) = 0;
 
-	virtual void connectionClosed(Session * session) = 0;
+	virtual void sessionClosed(Session * session) = 0;
 };
 
-class NETCORE_EXOPRT HandleSessionRouter
+class NETCORE_EXOPRT HandleSessionRouterAddRemove
 {
 public:
-	virtual void addRoute(Packet * packet) = 0;
+	virtual void sessionRouterAdd(Packet * packet) = 0;
 
-	virtual void removeRoute(uint64 guid) = 0;
+	virtual void sessionRouterRemove(uint64 guid) = 0;
 
 	virtual Session * getSession(Packet * packet) = 0;
 };
 
 class NETCORE_EXOPRT SessionPool
+	 :public HandleOutput
 {
 public:
-	virtual ~SessionPool()
-	{}
+	virtual ~SessionPool(){}
 
-	virtual int init(int input_thr_no, int output_thr_no, HandleInput * handle_input = NULL,
-					HandleSessionEvent * handle_session_event = NULL, HandleSessionRouter * handle_session_router = NULL) = 0;
+	virtual int init(int input_thr_no
+					,int output_thr_no
+					,HandleInput * handle_input = NULL
+					,HandleSessionOpenClosed * handle_session_event = NULL
+					,HandleSessionRouterAddRemove * handle_session_router = NULL) = 0;
 
 	virtual bool connect(const SessionAddrVec_t & session_addr_vec) = 0;
 
@@ -45,11 +48,9 @@ public:
 
 	virtual void setHandleInput(HandleInput * handle_input) = 0;
 
-	virtual void setHandleSessionEvent(HandleSessionEvent * handle_event) = 0;
+	virtual void setHandleSessionEvent(HandleSessionOpenClosed * handle_event) = 0;
 
-	virtual void setHandleSessionRouter(HandleSessionRouter * handle_session_router) = 0;
-
-	virtual void output(Packet * packet) = 0;
+	virtual void setHandleSessionRouter(HandleSessionRouterAddRemove * handle_session_router) = 0;
 
 	virtual void stop() = 0;
 
@@ -58,8 +59,6 @@ public:
 	virtual void removeSession(Session * session) = 0;
 
 	virtual void savePackStream() = 0;
-protected:
-private:
 };
 
 

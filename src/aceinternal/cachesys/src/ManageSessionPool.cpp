@@ -65,23 +65,23 @@ void ManageSessionPool::output(Packet * packet)
 }
 
 //
-void ManageSessionPool::newConnection(Session * session)
+void ManageSessionPool::sessionOpen(Session * session)
 {
 	m_session_set.insert(session);
 }
 
-void ManageSessionPool::connectionClosed(Session * session)
+void ManageSessionPool::sessionClosed(Session * session)
 {
 	m_session_set.erase(session);
 }
 
 //
-void ManageSessionPool::addRoute(Packet * packet)
+void ManageSessionPool::sessionRouterAdd(Packet * packet)
 {
 	// do nothing
 }
 
-void ManageSessionPool::removeRoute(uint64 guid)
+void ManageSessionPool::sessionRouterRemove(uint64 guid)
 {
 	// do nothing
 }

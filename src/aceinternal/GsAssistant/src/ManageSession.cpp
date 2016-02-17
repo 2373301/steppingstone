@@ -42,7 +42,7 @@ void ManageSession::input(Packet * packet)
 }
 
 // handle session event
-void ManageSession::newConnection(Session * session)
+void ManageSession::sessionOpen(Session * session)
 {
 	if (NULL != m_session)
 	{
@@ -52,18 +52,18 @@ void ManageSession::newConnection(Session * session)
 	m_session = session;
 }
 
-void ManageSession::connectionClosed(Session * session)
+void ManageSession::sessionClosed(Session * session)
 {
 	m_session = NULL;
 }
 
 // handle session router
-void ManageSession::addRoute(Packet * packet)
+void ManageSession::sessionRouterAdd(Packet * packet)
 {
 
 }
 
-void ManageSession::removeRoute(uint64 guid)
+void ManageSession::sessionRouterRemove(uint64 guid)
 {
 
 }

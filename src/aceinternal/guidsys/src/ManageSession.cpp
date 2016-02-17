@@ -70,22 +70,22 @@ void ManageSession::input(Packet * packet)
 	}
 }
 
-void ManageSession::newConnection(Session * session)
+void ManageSession::sessionOpen(Session * session)
 {
 
 }
 
-void ManageSession::connectionClosed(Session * session)
+void ManageSession::sessionClosed(Session * session)
 {
 
 }
 
-void ManageSession::addRoute(Packet * packet)
+void ManageSession::sessionRouterAdd(Packet * packet)
 {
 
 }
 
-void ManageSession::removeRoute(uint64 guid)
+void ManageSession::sessionRouterRemove(uint64 guid)
 {
 
 }

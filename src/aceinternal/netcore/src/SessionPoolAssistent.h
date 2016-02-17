@@ -15,7 +15,7 @@ class SessionPoolImp;
 
 void notifySessionPool(CellSession * new_session, SessionState session_state);
 
-void collectSessionPool(HandleSessionEvent * session_pool, ACE_Reactor * reactor);
+void collectSessionPool(HandleSessionOpenClosed * session_pool, ACE_Reactor * reactor);
 
 };
 
