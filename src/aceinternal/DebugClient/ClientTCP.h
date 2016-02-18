@@ -15,22 +15,30 @@
 using namespace std;
 
 class PacketStream
-{
+{	
+#pragma pack(1)
+
 	struct Header {
-		Header (void) : opcode (0) {}
-		Header (boost::uint16_t o, boost::uint16_t s) 
-			: opcode (o), size (s) {}
+		Header (void) 
+			: opcode(0)
+			,size(0)
+			,guid(0)
+		{}
+
+		Header (boost::uint16_t o, boost::uint16_t s, boost::uint64_t g) 
+			: opcode (o), size (s),guid(g) {}
 
 		boost::uint16_t opcode;  /// message code
 		boost::uint16_t size;    /// message body length
+		boost::uint64_t guid;
 	};
-
+#pragma pack(8)
 public:		
 	PacketStream (void) : m_buffer (NULL), m_total_size (0), m_total_buffer(NULL) {}
 
 	/// 构造一个完整的协议包
 	PacketStream (boost::uint32_t opcode, const std::string &msg)
-		: m_header (opcode, msg.length ())
+		: m_header (opcode, msg.length (), 0)
 	{
 		m_total_size = head_size() + msg.length();
 		m_total_buffer = new char[m_total_size];

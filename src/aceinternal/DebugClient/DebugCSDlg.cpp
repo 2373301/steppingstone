@@ -321,12 +321,12 @@ bool CDebugCSDlg::LoadXmlInfo()
 				m_opcode_ki_map.insert( make_pair( opcode_id, opcode_name ) );
 
 				//初始化下拉框
-				size_t found = opcode_name.find_first_of("c");
-				if ( found != std::string::npos  && found < 1)
-				{
+				//size_t found = opcode_name.find_first_of("c");
+				//if ( found != std::string::npos  && found < 1)
+				//{
 					m_cmsg_vector.push_back( opcode_name );
 					m_cb_clientmsg.AddString( opcode_name.c_str() );
-				}
+				//}
 			}
 			return true;
 		}
@@ -516,7 +516,12 @@ void CDebugCSDlg::OnBnClickedLogin()
 	m_login_info->user_name = user_name;
 	m_static_name.SetWindowText(user_name);
 
-	if ( LoginCheck() && GateCheck() )
+
+	// 连接服务器
+	m_pclient->msg_handler(this->m_hWnd, WM_READ_STREAM);
+
+	// 链接gate
+	if (m_pclient->open(m_login_info->http_server_ip, m_login_info->http_server_port))
 	{
 		m_cb_sendmsg.EnableWindow( true );
 		m_cb_clientmsg.SetFocus();
@@ -528,6 +533,20 @@ void CDebugCSDlg::OnBnClickedLogin()
 		m_static_s.SetWindowText("连接失败");
 		m_cb_login.EnableWindow( true );
 	}
+	
+
+// 	if ( LoginCheck() && GateCheck() )
+// 	{
+// 		m_cb_sendmsg.EnableWindow( true );
+// 		m_cb_clientmsg.SetFocus();
+// 		m_static_s.SetWindowText("连接正常");
+// 		MessageBox("登陆成功！","登陆成功");
+// 	}
+// 	else
+// 	{
+// 		m_static_s.SetWindowText("连接失败");
+// 		m_cb_login.EnableWindow( true );
+// 	}
 }
 
 std::string ToString( unsigned char digest[], int len )

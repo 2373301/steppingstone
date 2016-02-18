@@ -11,9 +11,9 @@ enum BattleGroundCode
 	eBGCodeBadLuck			=7;		// 运气太差,鼓舞失败
 	eBGCodeStaked			=8;		// 已押注
 	eBGCodeLackMoney		=9;		// 银两不够
-	eBGCodeLackCoin			=9;		// 元宝不够
-	eBGCodeLackSeni			=10;	// 阅历不够
-	eBGCodeNonClosed		=11;	// 阵营战活动期间
+	eBGCodeLackCoin			=10;		// 元宝不够
+	eBGCodeLackSeni			=11;	// 阅历不够
+	eBGCodeNonClosed		=12;	// 阵营战活动期间
 	
 }
 
