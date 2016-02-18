@@ -14,7 +14,7 @@
  #include "protocol_ins.h"
 #include "protocol/msg_player.pb.h"
  #include "ManageTerminal.h"
-#include "PacketConvert.h"
+//#include "PacketConvert.h"
 
 
 struct SCENE_EXOPRT SceneCfg 

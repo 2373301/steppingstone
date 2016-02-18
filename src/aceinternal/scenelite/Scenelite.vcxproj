@@ -259,6 +259,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="inc\Message.h" />
+    <ClInclude Include="inc\Pool.h" />
     <ClInclude Include="inc\Scend_def.h" />
     <ClInclude Include="inc\Scene.h" />
     <ClInclude Include="inc\SceneDepot.h" />
@@ -269,6 +270,8 @@
     <ClInclude Include="src\ManageGridOptimize.h" />
     <ClInclude Include="src\ManageRandom.h" />
     <ClInclude Include="src\ManageTimer.h" />
+    <ClInclude Include="src\PoolAssistant.h" />
+    <ClInclude Include="src\PoolImp.h" />
     <ClInclude Include="src\SceneDepotImp.h" />
     <ClInclude Include="src\SceneImp.h" />
     <ClInclude Include="src\SceneRequest.h" />
@@ -280,6 +283,8 @@
     <ClCompile Include="src\ManageGridOptimize.cpp" />
     <ClCompile Include="src\ManageRandom.cpp" />
     <ClCompile Include="src\ManageTimer.cpp" />
+    <ClCompile Include="src\PoolAssistant.cpp" />
+    <ClCompile Include="src\PoolImp.cpp" />
     <ClCompile Include="src\SceneDepotImp.cpp" />
     <ClCompile Include="src\SceneFactory.cpp" />
     <ClCompile Include="src\SceneImp.cpp" />

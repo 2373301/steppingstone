@@ -60,6 +60,15 @@
     <ClInclude Include="inc\Scend_def.h">
       <Filter>inc</Filter>
     </ClInclude>
+    <ClInclude Include="src\PoolAssistant.h">
+      <Filter>imp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PoolImp.h">
+      <Filter>imp</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Pool.h">
+      <Filter>inc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\SceneDepotImp.cpp">
@@ -93,6 +102,12 @@
       <Filter>tools</Filter>
     </ClCompile>
     <ClCompile Include="src\SceneFactory.cpp">
+      <Filter>imp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PoolAssistant.cpp">
+      <Filter>imp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PoolImp.cpp">
       <Filter>imp</Filter>
     </ClCompile>
   </ItemGroup>
