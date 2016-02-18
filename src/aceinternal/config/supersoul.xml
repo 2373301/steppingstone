@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<supersouls>
+    <supersoul id="1" range="0" property_id="4" type="2" />
+    <supersoul id="2" range="0" property_id="7" type="2" />
+    <supersoul id="3" range="0" property_id="5" type="2" />
+    <supersoul id="4" range="0" property_id="8" type="2" />
+    <supersoul id="5" range="0" property_id="6" type="2" />
+    <supersoul id="6" range="0" property_id="9" type="2" />
+    <supersoul id="7" range="0" property_id="10" type="2" />
+    <supersoul id="8" range="0" property_id="75" type="2" />
+    <supersoul id="9" range="0" property_id="76" type="2" />
+    <supersoul id="10" range="0" property_id="70" type="2" />
+    <supersoul id="11" range="0" property_id="82" type="2" />
+    <supersoul id="12" range="0" property_id="83" type="2" />
+    <supersoul id="13" range="0" property_id="72" type="2" />
+</supersouls>

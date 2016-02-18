@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<openact2s>
+    <openact2 id="1" start_day="0" results_day="5;0;5" award_day="7" target1="1" target2="1" target3="0" bonus="16830" />
+    <openact2 id="2" start_day="0" results_day="5;0;5" award_day="7" target1="2" target2="0" target3="0" bonus="16831" />
+    <openact2 id="3" start_day="0" results_day="5;0;5" award_day="7" target1="1" target2="0" target3="0" bonus="16832" />
+    <openact2 id="4" start_day="0" results_day="5;0;5" award_day="7" target1="5" target2="0" target3="0" bonus="16833" />
+    <openact2 id="5" start_day="0" results_day="5;0;5" award_day="7" target1="20" target2="0" target3="0" bonus="16834" />
+    <openact2 id="6" start_day="0" results_day="5;0;5" award_day="7" target1="50" target2="0" target3="0" bonus="16835" />
+    <openact2 id="7" start_day="0" results_day="5;0;5" award_day="7" target1="100" target2="0" target3="0" bonus="16836" />
+</openact2s>

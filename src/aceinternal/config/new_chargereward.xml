@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<chargerewards>
+    <chargereward id="1" num="188" bonus="14001" star_date="1" end_date="4" />
+    <chargereward id="2" num="388" bonus="14002" star_date="1" end_date="4" />
+    <chargereward id="3" num="888" bonus="14003" star_date="1" end_date="4" />
+    <chargereward id="4" num="1688" bonus="14004" star_date="1" end_date="4" />
+    <chargereward id="5" num="2888" bonus="14005" star_date="1" end_date="4" />
+    <chargereward id="6" num="8888" bonus="14006" star_date="1" end_date="4" />
+    <chargereward id="7" num="18888" bonus="14007" star_date="1" end_date="4" />
+    <chargereward id="8" num="188" bonus="14001" star_date="4" end_date="8" />
+    <chargereward id="9" num="388" bonus="14002" star_date="4" end_date="8" />
+    <chargereward id="10" num="888" bonus="14003" star_date="4" end_date="8" />
+    <chargereward id="11" num="1688" bonus="14004" star_date="4" end_date="8" />
+    <chargereward id="12" num="2888" bonus="14005" star_date="4" end_date="8" />
+    <chargereward id="13" num="8888" bonus="14006" star_date="4" end_date="8" />
+    <chargereward id="14" num="18888" bonus="14007" star_date="4" end_date="8" />
+</chargerewards>

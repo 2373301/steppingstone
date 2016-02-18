@@ -52,17 +52,17 @@ int SceneDepotImp::init(const SceneDepotCfg & scene_depot_cfg)
 		return -1;
 	}
 
-	if (!loadPlugin())
-	{
-		DEF_LOG_ERROR("error to load plugin ");
-		return -1;
-	}
+// 	if (!loadPlugin())
+// 	{
+// 		DEF_LOG_ERROR("error to load plugin ");
+// 		return -1;
+// 	}
 
-	if (!loadPluginCfg())
-	{
-		DEF_LOG_ERROR("error to load plugin config ");
-		return -1;
-	}
+// 	if (!loadPluginCfg())
+// 	{
+// 		DEF_LOG_ERROR("error to load plugin config ");
+// 		return -1;
+// 	}
 
 	if (!initScenes())
 	{

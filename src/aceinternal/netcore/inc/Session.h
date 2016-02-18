@@ -32,7 +32,7 @@ public:
 	virtual void input(Packet * packet) = 0;
 };
 
-// cout >> 发送完整的packet
+// cout >> 发送完整的packet, 有可能 非reactor线程
 class NETCORE_EXOPRT HandleOutput
 {
 public:
@@ -71,9 +71,6 @@ public:
 	virtual int handle_input(ACE_HANDLE  fd = ACE_INVALID_HANDLE) override;
 	virtual int handle_output(ACE_HANDLE  fd = ACE_INVALID_HANDLE) override;
 	virtual int handle_close(ACE_HANDLE handle, ACE_Reactor_Mask close_mask) override;
-
-	// HandleOutput, 有可能 非reactor线程
-	virtual void output(Packet * packet) override;
 
 public:
 	virtual int rd_stream(); // 0: normal, -1:close

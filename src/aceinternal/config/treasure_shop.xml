@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<shops>
+    <shop label="1" level="6" exp_item="0" />
+    <shop label="2" level="5" exp_item="0" />
+    <shop label="3" level="4" exp_item="0" />
+    <shop label="4" level="3" exp_item="0" />
+    <shop label="5" level="2" exp_item="0" />
+    <shop label="6" level="1" exp_item="0" />
+</shops>

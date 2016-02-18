@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<arrestsystems>
+    <arrestsystem type="1" limit="10" sundry="10" vip_id1="124;122" vip_id2="125;123" goldblessme_id="187;186" />
+    <arrestsystem type="2" limit="50" sundry="1" vip_id1="0" vip_id2="0" goldblessme_id="0" />
+</arrestsystems>

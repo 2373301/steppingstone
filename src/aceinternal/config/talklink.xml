@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<talklinks>
+    <talklink id="1" name="0" />
+    <talklink id="2" name="0" />
+    <talklink id="3" name="16强赛" />
+    <talklink id="4" name="8强赛" />
+    <talklink id="5" name="4强赛" />
+    <talklink id="6" name="半决赛" />
+    <talklink id="7" name="决赛" />
+    <talklink id="8" name="绝世榜" />
+    <talklink id="9" name="宗师榜" />
+    <talklink id="10" name="本服" />
+    <talklink id="11" name="跨服" />
+    <talklink id="12" name="胜利" />
+    <talklink id="13" name="失败" />
+    <talklink id="14" name="淘汰" />
+    <talklink id="15" name="晋级" />
+    <talklink id="16" name="0" />
+    <talklink id="21" name="开天令（阴）" />
+    <talklink id="22" name="邪神令（阴）" />
+    <talklink id="23" name="君子令（阴）" />
+    <talklink id="24" name="天地令（阴）" />
+    <talklink id="25" name="混元令（阴）" />
+    <talklink id="26" name="娥皇令（阴）" />
+    <talklink id="27" name="辟地令（阳）" />
+    <talklink id="28" name="如来令（阳）" />
+    <talklink id="29" name="千金令（阳）" />
+    <talklink id="30" name="玄黄令（阳）" />
+    <talklink id="31" name="无极令（阳）" />
+    <talklink id="32" name="女英令（阳）" />
+    <talklink id="41" name="白色" />
+    <talklink id="42" name="绿色" />
+    <talklink id="43" name="蓝色" />
+    <talklink id="44" name="紫色" />
+    <talklink id="45" name="橙色" />
+    <talklink id="46" name="红色" />
+    <talklink id="51" name="免费翻牌" />
+    <talklink id="52" name="改运" />
+    <talklink id="53" name="金手指" />
+    <talklink id="54" name="VIP礼包中的招募卷轴" />
+</talklinks>

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<failguides>
+    <failguide id="1" type="1" txt="您可以通过以下渠道提升战斗力！" p1="改变阵型" link1="4" p2="强化" link2="12" p3="幻化" link3="23" p4="提升心法" link4="11" p5="更多" link5="55" />
+    <failguide id="2" type="2" txt="您可以通过以下渠道获得银两！" p1="武林大坏蛋" link1="29" p2="完成任务" link2="15" p3="射雕" link3="30" p4="江湖浮生记" link4="42" p5="朝拜祈福" link5="22" />
+    <failguide id="3" type="3" txt="您可以通过以下渠道获得阅历！" p1="完成任务" link1="15" p2="射雕" link2="30" p3="江湖浮生记" link3="42" p4="朝拜祈福" link4="22" p5="江湖告急" link5="47" />
+    <failguide id="4" type="4" txt="您可以通过以下渠道获得体力！" p1="好友赠送" link1="10" p2="使用道具" link2="10" p3="购买体力" link3="10" p4="荷塘月色" link4="10" p5="" link5="0" />
+</failguides>

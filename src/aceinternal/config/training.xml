@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<trainings>
+    <training id="1" vip_goldblessme="0;0" unlock="1" />
+    <training id="2" vip_goldblessme="0;111" unlock="0" />
+    <training id="3" vip_goldblessme="0;65" unlock="0" />
+    <training id="4" vip_goldblessme="3;66" unlock="0" />
+    <training id="5" vip_goldblessme="5;67" unlock="0" />
+    <training id="6" vip_goldblessme="7;68" unlock="0" />
+</trainings>

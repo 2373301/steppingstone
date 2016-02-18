@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<plums>
+    <plum id="1" guarantees="1" capacity_silver="1" capacity_gold="1" />
+    <plum id="2" guarantees="4" capacity_silver="1" capacity_gold="0" />
+    <plum id="3" guarantees="6" capacity_silver="1" capacity_gold="1" />
+</plums>

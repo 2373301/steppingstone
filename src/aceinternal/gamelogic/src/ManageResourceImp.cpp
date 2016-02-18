@@ -40,10 +40,10 @@ int ManageResourceImp::init(SceneCfg * scene_cfg)
 
 	m_scene_cfg = scene_cfg;
 
-	if (loadAllRes() == -1)
-	{
-		return -1;
-	}
+// 	if (loadAllRes() == -1)
+// 	{
+// 		return -1;
+// 	}
 
 	//convertSchemePropertyID();
 	return 0;

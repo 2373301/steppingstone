@@ -70,11 +70,11 @@ int SceneImp::init(const SceneCfg & scene_cfg)
 		return -1;
 	}
 
-	if (m_make_guid.init(m_scene_cfg.guid_svr_cfg.guid_addr, 10000) == -1)
-	{
-		DEF_LOG_ERROR("failed to init guid server, guid addr is <%s>\n", m_scene_cfg.guid_svr_cfg.guid_addr.c_str());
-		return -1;
-	}
+// 	if (m_make_guid.init(m_scene_cfg.guid_svr_cfg.guid_addr, 10000) == -1)
+// 	{
+// 		DEF_LOG_ERROR("failed to init guid server, guid addr is <%s>\n", m_scene_cfg.guid_svr_cfg.guid_addr.c_str());
+// 		return -1;
+// 	}
 
 	static bool first_time = true;
 	if (first_time)

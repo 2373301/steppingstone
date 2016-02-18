@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<randomskills>
+    <randomskill skillid="90001" unlock_lv="20" name="擅长格挡I" desc="格挡概率少量提升(5%)" weight="4" />
+    <randomskill skillid="90002" unlock_lv="20" name="擅长反击I" desc="反击概率少量提升(5%)" weight="4" />
+    <randomskill skillid="90003" unlock_lv="20" name="擅长暴击I" desc="暴击概率少量提升(5%)" weight="4" />
+    <randomskill skillid="90004" unlock_lv="20" name="防御加强I" desc="全防御少量提升(5%)" weight="4" />
+    <randomskill skillid="90005" unlock_lv="20" name="命中提高I" desc="提升少量命中(10%)" weight="4" />
+    <randomskill skillid="90006" unlock_lv="20" name="攻击加强I" desc="全攻击少量提升(5%)" weight="4" />
+    <randomskill skillid="90007" unlock_lv="20" name="闪避提升I" desc="提升少量闪避(7%)" weight="4" />
+    <randomskill skillid="90008" unlock_lv="40" name="擅长格挡II" desc="格挡概率中量提升(7.5%)" weight="6" />
+    <randomskill skillid="90009" unlock_lv="40" name="擅长反击II" desc="反击概率中量提升(7.5%)" weight="6" />
+    <randomskill skillid="90010" unlock_lv="40" name="擅长暴击II" desc="暴击概率中量提升(7.5%)" weight="6" />
+    <randomskill skillid="90011" unlock_lv="40" name="防御加强II" desc="全防御中量提升(7.5%)" weight="6" />
+    <randomskill skillid="90012" unlock_lv="40" name="命中提高II" desc="提升中量命中(15%)" weight="6" />
+    <randomskill skillid="90013" unlock_lv="40" name="攻击加强II" desc="全攻击中量提升(7.5%)" weight="6" />
+    <randomskill skillid="90014" unlock_lv="40" name="闪避提升II" desc="提升中量闪避(10%)" weight="6" />
+    <randomskill skillid="90015" unlock_lv="80" name="擅长格挡III" desc="格挡概率大量提升(10%)" weight="8" />
+    <randomskill skillid="90016" unlock_lv="80" name="擅长反击III" desc="反击概率大量提升(10%)" weight="8" />
+    <randomskill skillid="90017" unlock_lv="80" name="擅长暴击III" desc="暴击概率大量提升(10%)" weight="8" />
+    <randomskill skillid="90018" unlock_lv="80" name="防御加强III" desc="全防御大量提升(10%)" weight="8" />
+    <randomskill skillid="90019" unlock_lv="80" name="命中提高III" desc="提升大量命中(20%)" weight="8" />
+    <randomskill skillid="90020" unlock_lv="80" name="攻击加强III" desc="全攻击大量提升(20%)" weight="8" />
+    <randomskill skillid="90021" unlock_lv="80" name="闪避提升III" desc="提升大量闪避(15%)" weight="8" />
+</randomskills>

@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<substitutes>
+    <substitute id="1" sysname="世界BOSS" level="20" goldblessme_id="196" rewardrate="40" />
+    <substitute id="2" sysname="大乱斗" level="20" goldblessme_id="197" rewardrate="60" />
+</substitutes>

@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<chargequests>
+    <chargequest id="1" quest_name="充点小钱" star_type="1" star_id="99" complete_coin="100" questdesc="&lt;br&gt;&lt;span class = &apos;quest&apos;&gt;&lt;a href=&apos;event:ui@54&apos;&gt;累计充值100元宝（[X]/100）&lt;/a&gt;&lt;/span&gt;&lt;br&gt;&lt;span class = &apos;purple&apos;&gt;即可额外领取100元宝奖励&lt;/span&gt;" questdesc2="&lt;span class = &apos;quest&apos;&gt;&lt;a href=&apos;event:ui@54&apos;&gt;任务已完成，点击领取奖励&lt;/a&gt;&lt;/span&gt;" reward="131008" />
+</chargequests>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<factionbets>
+    <factionbet id="1" faction_id="1" level_a1="20;29" bet_a1="10000" bet_a2="30000" bet_a3="50000" />
+    <factionbet id="2" faction_id="1" level_a1="30;39" bet_a1="30000" bet_a2="50000" bet_a3="70000" />
+    <factionbet id="3" faction_id="1" level_a1="40;49" bet_a1="50000" bet_a2="70000" bet_a3="90000" />
+    <factionbet id="4" faction_id="1" level_a1="50;59" bet_a1="70000" bet_a2="90000" bet_a3="110000" />
+    <factionbet id="5" faction_id="1" level_a1="60;69" bet_a1="90000" bet_a2="110000" bet_a3="130000" />
+    <factionbet id="6" faction_id="1" level_a1="70;79" bet_a1="110000" bet_a2="130000" bet_a3="150000" />
+    <factionbet id="7" faction_id="1" level_a1="80;89" bet_a1="130000" bet_a2="150000" bet_a3="170000" />
+    <factionbet id="8" faction_id="1" level_a1="90;99" bet_a1="150000" bet_a2="170000" bet_a3="190000" />
+    <factionbet id="9" faction_id="1" level_a1="100;109" bet_a1="170000" bet_a2="190000" bet_a3="210000" />
+</factionbets>

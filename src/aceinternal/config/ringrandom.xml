@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ringrandoms>
+    <ringrandom id="1" lv="30" bonus_id="131001;131002;131003;131004" guil_bonus="131001;131002;131003;131004" />
+    <ringrandom id="2" lv="40" bonus_id="131001;131002;131003;131004" guil_bonus="131001;131002;131003;131004" />
+    <ringrandom id="3" lv="50" bonus_id="131001;131002;131003;131005" guil_bonus="131001;131002;131003;131005" />
+    <ringrandom id="4" lv="60" bonus_id="131001;131002;131003;131006" guil_bonus="131001;131002;131003;131006" />
+    <ringrandom id="5" lv="70" bonus_id="131001;131002;131003;131007" guil_bonus="131001;131002;131003;131007" />
+    <ringrandom id="6" lv="80" bonus_id="131001;131002;131003;131007" guil_bonus="131001;131002;131003;131007" />
+</ringrandoms>

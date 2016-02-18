@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<reduplications>
+    <reduplication map_id="80001" target="10001" target_x="460" target_y="1150" />
+    <reduplication map_id="80002" target="10001" target_x="460" target_y="1150" />
+    <reduplication map_id="80003" target="10001" target_x="460" target_y="1150" />
+    <reduplication map_id="80004" target="10001" target_x="460" target_y="1150" />
+    <reduplication map_id="99901" target="10001" target_x="460" target_y="1150" />
+</reduplications>

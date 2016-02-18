@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<names>
+    <name id="1" level="1" name="称号1" colour="1" get_way1="0" value1="0" get_way2="0" value2="0" get_way3="0" value3="0" get_way4="0" value4="0" talk="0" />
+    <name id="2" level="2" name="称号2" colour="2" get_way1="1" value1="4" get_way2="0" value2="0" get_way3="0" value3="0" get_way4="0" value4="0" talk="1" />
+    <name id="3" level="3" name="称号3" colour="3" get_way1="5" value1="1" get_way2="0" value2="0" get_way3="0" value3="0" get_way4="0" value4="0" talk="1" />
+    <name id="4" level="4" name="称号4" colour="4" get_way1="6" value1="1" get_way2="0" value2="0" get_way3="0" value3="0" get_way4="0" value4="0" talk="1" />
+</names>

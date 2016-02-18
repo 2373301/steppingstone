@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mateinherits>
+    <mateinherit id="1" exp_inherit="5000" att_inherit="5000" />
+    <mateinherit id="2" exp_inherit="9000" att_inherit="9000" />
+</mateinherits>

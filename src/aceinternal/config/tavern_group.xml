@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<groups>
+    <group hire_id="3" produce="2300" />
+    <group hire_id="28" produce="2200" />
+    <group hire_id="26" produce="2100" />
+    <group hire_id="14" produce="2000" />
+    <group hire_id="30" produce="1900" />
+    <group hire_id="15" produce="1800" />
+    <group hire_id="6" produce="1700" />
+    <group hire_id="27" produce="1600" />
+    <group hire_id="25" produce="1500" />
+    <group hire_id="13" produce="1400" />
+    <group hire_id="5" produce="45" />
+    <group hire_id="9" produce="30" />
+    <group hire_id="17" produce="22" />
+    <group hire_id="110" produce="17" />
+    <group hire_id="18" produce="14" />
+    <group hire_id="16" produce="12" />
+    <group hire_id="31" produce="9" />
+    <group hire_id="20" produce="7" />
+    <group hire_id="113" produce="5" />
+    <group hire_id="112" produce="4" />
+</groups>

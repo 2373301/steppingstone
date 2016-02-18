@@ -22,9 +22,6 @@
     <Filter Include="tools">
       <UniqueIdentifier>{499aa721-3807-4247-ba96-564f2fcc6546}</UniqueIdentifier>
     </Filter>
-    <Filter Include="atrr">
-      <UniqueIdentifier>{6d06a881-6a76-4cdb-bef0-bea1f31aee08}</UniqueIdentifier>
-    </Filter>
     <Filter Include="exchange">
       <UniqueIdentifier>{e94fe993-5494-4e2f-bf88-944596137302}</UniqueIdentifier>
     </Filter>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<specialshops>
+    <specialshop id="1" playerlv="20" item_id="9204" num="1" currency="2" price="360" prompt="0" weight="100" />
+    <specialshop id="2" playerlv="20" item_id="9205" num="1" currency="2" price="1080" prompt="0" weight="100" />
+    <specialshop id="3" playerlv="20" item_id="9224" num="1" currency="2" price="360" prompt="0" weight="100" />
+    <specialshop id="4" playerlv="20" item_id="9225" num="1" currency="2" price="1080" prompt="0" weight="100" />
+    <specialshop id="5" playerlv="20" item_id="9244" num="1" currency="2" price="360" prompt="0" weight="100" />
+    <specialshop id="6" playerlv="20" item_id="9245" num="1" currency="2" price="1080" prompt="0" weight="100" />
+    <specialshop id="7" playerlv="20" item_id="9264" num="1" currency="2" price="360" prompt="0" weight="100" />
+    <specialshop id="8" playerlv="20" item_id="9265" num="1" currency="2" price="1080" prompt="0" weight="100" />
+    <specialshop id="9" playerlv="20" item_id="9604" num="1" currency="2" price="360" prompt="0" weight="100" />
+    <specialshop id="10" playerlv="20" item_id="9605" num="1" currency="2" price="1080" prompt="0" weight="100" />
+    <specialshop id="11" playerlv="20" item_id="9624" num="1" currency="2" price="360" prompt="0" weight="100" />
+    <specialshop id="12" playerlv="20" item_id="9625" num="1" currency="2" price="1080" prompt="0" weight="100" />
+</specialshops>

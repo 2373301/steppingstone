@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<yabiaocars>
+    <yabiaocar id="1" probability="70" pay="89" reward_shengwang="100" reward_money="100" reward_yueli="100" is_max="0" />
+    <yabiaocar id="2" probability="40" pay="89" reward_shengwang="150" reward_money="330" reward_yueli="120" is_max="0" />
+    <yabiaocar id="3" probability="20" pay="89" reward_shengwang="250" reward_money="660" reward_yueli="150" is_max="0" />
+    <yabiaocar id="4" probability="10" pay="89" reward_shengwang="300" reward_money="1000" reward_yueli="180" is_max="0" />
+    <yabiaocar id="5" probability="0" pay="89" reward_shengwang="400" reward_money="1600" reward_yueli="300" is_max="1" />
+</yabiaocars>

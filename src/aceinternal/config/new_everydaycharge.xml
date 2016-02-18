@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<everydaycharges>
+    <everydaycharge id="1" star_date="2" end_date="3" bonus1="15002" bonus2="15008" />
+    <everydaycharge id="2" star_date="3" end_date="4" bonus1="15003" bonus2="15009" />
+    <everydaycharge id="3" star_date="4" end_date="5" bonus1="15004" bonus2="15010" />
+    <everydaycharge id="4" star_date="5" end_date="6" bonus1="15005" bonus2="15011" />
+    <everydaycharge id="5" star_date="6" end_date="7" bonus1="15006" bonus2="15012" />
+    <everydaycharge id="6" star_date="7" end_date="8" bonus1="15006" bonus2="15012" />
+    <everydaycharge id="7" star_date="8" end_date="9" bonus1="15006" bonus2="15012" />
+    <everydaycharge id="8" star_date="9" end_date="10" bonus1="15006" bonus2="15012" />
+    <everydaycharge id="9" star_date="10" end_date="11" bonus1="15006" bonus2="15012" />
+    <everydaycharge id="10" star_date="11" end_date="12" bonus1="15006" bonus2="15012" />
+    <everydaycharge id="11" star_date="12" end_date="13" bonus1="15006" bonus2="15012" />
+    <everydaycharge id="12" star_date="13" end_date="14" bonus1="15006" bonus2="15012" />
+    <everydaycharge id="13" star_date="14" end_date="15" bonus1="15006" bonus2="15012" />
+</everydaycharges>

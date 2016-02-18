@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<races>
+    <race level="20" type="1" victory_bonus_id="3001" fail_bonus_id="3006" />
+    <race level="20" type="2" victory_bonus_id="3002" fail_bonus_id="3007" />
+    <race level="20" type="3" victory_bonus_id="3003" fail_bonus_id="3008" />
+    <race level="20" type="4" victory_bonus_id="3004" fail_bonus_id="3009" />
+    <race level="20" type="5" victory_bonus_id="3005" fail_bonus_id="3010" />
+    <race level="100" type="1" victory_bonus_id="3001" fail_bonus_id="3006" />
+    <race level="100" type="2" victory_bonus_id="3002" fail_bonus_id="3007" />
+    <race level="100" type="3" victory_bonus_id="3003" fail_bonus_id="3008" />
+    <race level="100" type="4" victory_bonus_id="3004" fail_bonus_id="3009" />
+    <race level="100" type="5" victory_bonus_id="3005" fail_bonus_id="3010" />
+</races>

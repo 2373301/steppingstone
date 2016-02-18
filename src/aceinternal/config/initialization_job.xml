@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<chars>
+    <char job="1" sex="0" roleid="6" avatar="1" />
+    <char job="1" sex="1" roleid="3" avatar="1" />
+    <char job="2" sex="1" roleid="2" avatar="1" />
+    <char job="2" sex="0" roleid="5" avatar="1" />
+    <char job="3" sex="0" roleid="4" avatar="1" />
+    <char job="3" sex="1" roleid="1" avatar="1" />
+</chars>

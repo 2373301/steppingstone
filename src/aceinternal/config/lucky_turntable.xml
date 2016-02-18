@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<turntables>
+    <turntable start_time="2000;6;4;12;30" end_time="2015;6;3;12;30" initial_fund="2000" fund_max="88888" fund_min="2000" lucky_item="9980" need_gold="313" gold_percent="1000" discount="9500" num="10" accum_num="0" accum_id="0" />
+</turntables>

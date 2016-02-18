@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<jianzhongs>
+    <jianzhong id="1" star_time="45000;68400" last_time="3600" in_level="30" gain_cd="5" gain="5" place="9999999" defend="0" battle_num="20" battle_buy="260" battle_cd="15" win_gain="1000" fail_gain="2000" safe_cd="15" />
+    <jianzhong id="2" star_time="0" last_time="0" in_level="30" gain_cd="5" gain="8" place="50" defend="80001" battle_num="0" battle_buy="0" battle_cd="15" win_gain="1000" fail_gain="2000" safe_cd="15" />
+    <jianzhong id="3" star_time="0" last_time="0" in_level="30" gain_cd="5" gain="10" place="18" defend="80001" battle_num="0" battle_buy="0" battle_cd="15" win_gain="1000" fail_gain="2000" safe_cd="15" />
+    <jianzhong id="4" star_time="0" last_time="0" in_level="30" gain_cd="5" gain="15" place="15" defend="80001" battle_num="0" battle_buy="0" battle_cd="15" win_gain="1000" fail_gain="2000" safe_cd="15" />
+    <jianzhong id="5" star_time="0" last_time="0" in_level="30" gain_cd="5" gain="20" place="5" defend="80001" battle_num="0" battle_buy="0" battle_cd="15" win_gain="1000" fail_gain="2000" safe_cd="15" />
+    <jianzhong id="6" star_time="0" last_time="0" in_level="30" gain_cd="5" gain="25" place="2" defend="80002" battle_num="0" battle_buy="0" battle_cd="15" win_gain="1000" fail_gain="2000" safe_cd="15" />
+</jianzhongs>

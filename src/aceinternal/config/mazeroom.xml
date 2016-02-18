@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mazerooms>
+    <mazeroom id="1" mazeid="1" isallopen="1" opentype="0" value1="0" value2="0" unlock="0" tripcanseemin="3" tripcanseemax="3" tripcannotseemin="0" tripcannotseemax="0" maxtrip="15" mapid="92000" />
+    <mazeroom id="2" mazeid="1" isallopen="0" opentype="2" value1="2" value2="1" unlock="0" tripcanseemin="7" tripcanseemax="7" tripcannotseemin="2" tripcannotseemax="2" maxtrip="15" mapid="92000" />
+    <mazeroom id="3" mazeid="1" isallopen="1" opentype="0" value1="0" value2="0" unlock="0" tripcanseemin="0" tripcanseemax="0" tripcannotseemin="0" tripcannotseemax="0" maxtrip="15" mapid="92000" />
+    <mazeroom id="12" mazeid="1" isallopen="0" opentype="2" value1="5" value2="2" unlock="0" tripcanseemin="7" tripcanseemax="7" tripcannotseemin="2" tripcannotseemax="2" maxtrip="15" mapid="92000" />
+    <mazeroom id="21" mazeid="1" isallopen="0" opentype="1" value1="30" value2="0" unlock="0" tripcanseemin="0" tripcanseemax="0" tripcannotseemin="0" tripcannotseemax="0" maxtrip="15" mapid="92000" />
+    <mazeroom id="22" mazeid="1" isallopen="0" opentype="2" value1="5" value2="12" unlock="0" tripcanseemin="7" tripcanseemax="7" tripcannotseemin="2" tripcannotseemax="2" maxtrip="15" mapid="92000" />
+    <mazeroom id="23" mazeid="1" isallopen="0" opentype="2" value1="5" value2="22" unlock="0" tripcanseemin="0" tripcanseemax="0" tripcannotseemin="0" tripcannotseemax="0" maxtrip="15" mapid="92000" />
+    <mazeroom id="102" mazeid="2" isallopen="0" opentype="2" value1="2" value2="112" unlock="0" tripcanseemin="7" tripcanseemax="7" tripcannotseemin="2" tripcannotseemax="2" maxtrip="15" mapid="92000" />
+    <mazeroom id="103" mazeid="2" isallopen="0" opentype="5" value1="100201" value2="103" unlock="0" tripcanseemin="0" tripcanseemax="0" tripcannotseemin="0" tripcannotseemax="0" maxtrip="15" mapid="92000" />
+    <mazeroom id="111" mazeid="2" isallopen="1" opentype="0" value1="0" value2="0" unlock="0" tripcanseemin="0" tripcanseemax="0" tripcannotseemin="0" tripcannotseemax="0" maxtrip="15" mapid="92000" />
+    <mazeroom id="112" mazeid="2" isallopen="1" opentype="0" value1="0" value2="0" unlock="0" tripcanseemin="3" tripcanseemax="3" tripcannotseemin="0" tripcannotseemax="0" maxtrip="15" mapid="92000" />
+    <mazeroom id="113" mazeid="2" isallopen="0" opentype="2" value1="5" value2="122" unlock="0" tripcanseemin="7" tripcanseemax="7" tripcannotseemin="2" tripcannotseemax="2" maxtrip="15" mapid="92000" />
+    <mazeroom id="114" mazeid="2" isallopen="0" opentype="2" value1="5" value2="113" unlock="0" tripcanseemin="0" tripcanseemax="0" tripcannotseemin="0" tripcannotseemax="0" maxtrip="15" mapid="92000" />
+    <mazeroom id="122" mazeid="2" isallopen="0" opentype="2" value1="5" value2="102" unlock="0" tripcanseemin="7" tripcanseemax="7" tripcannotseemin="2" tripcannotseemax="2" maxtrip="15" mapid="92000" />
+    <mazeroom id="123" mazeid="2" isallopen="0" opentype="5" value1="100202" value2="123" unlock="0" tripcanseemin="0" tripcanseemax="0" tripcannotseemin="0" tripcannotseemax="0" maxtrip="15" mapid="92000" />
+    <mazeroom id="201" mazeid="3" isallopen="1" opentype="0" value1="0" value2="0" unlock="0" tripcanseemin="15" tripcanseemax="15" tripcannotseemin="0" tripcannotseemax="0" maxtrip="15" mapid="92000" />
+    <mazeroom id="202" mazeid="3" isallopen="0" opentype="1" value1="15" value2="0" unlock="0" tripcanseemin="15" tripcanseemax="15" tripcannotseemin="0" tripcannotseemax="0" maxtrip="15" mapid="92000" />
+    <mazeroom id="212" mazeid="3" isallopen="0" opentype="1" value1="30" value2="0" unlock="0" tripcanseemin="0" tripcanseemax="0" tripcannotseemin="0" tripcannotseemax="0" maxtrip="0" mapid="92000" />
+    <mazeroom id="211" mazeid="3" isallopen="0" opentype="1" value1="30" value2="0" unlock="0" tripcanseemin="0" tripcanseemax="0" tripcannotseemin="0" tripcannotseemax="0" maxtrip="0" mapid="92000" />
+</mazerooms>

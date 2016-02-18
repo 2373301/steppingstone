@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<soulsets>
+    <soulset id="1" default_open="1;1;1;0;0;0;0;0" unlock="0;0;0;3;4;5;6;7" unlock_cost="0;0;0;100;100;100;100;100" />
+    <soulset id="2" default_open="1;1;1;0;0;0;0;0" unlock="0;0;0;3;4;5;6;7" unlock_cost="0;0;0;100;100;100;100;100" />
+    <soulset id="3" default_open="1;1;1;0;0;0;0;0" unlock="0;0;0;3;4;5;6;7" unlock_cost="0;0;0;100;100;100;100;100" />
+    <soulset id="4" default_open="1;1;1;0;0;0;0;0" unlock="0;0;0;3;4;5;6;7" unlock_cost="0;0;0;100;100;100;100;100" />
+    <soulset id="5" default_open="1;1;1;0;0;0;0;0" unlock="0;0;0;3;4;5;6;7" unlock_cost="0;0;0;100;100;100;100;100" />
+    <soulset id="6" default_open="1;1;1;0;0;0;0;0" unlock="0;0;0;3;4;5;6;7" unlock_cost="0;0;0;100;100;100;100;100" />
+    <soulset id="7" default_open="1;1;1;0;0;0;0;0" unlock="0;0;0;3;4;5;6;7" unlock_cost="0;0;0;100;100;100;100;100" />
+    <soulset id="8" default_open="1;1;1;0;0;0;0;0" unlock="0;0;0;3;4;5;6;7" unlock_cost="0;0;0;100;100;100;100;100" />
+    <soulset id="9" default_open="1;1;1;0;0;0;0;0" unlock="0;0;0;3;4;5;6;7" unlock_cost="0;0;0;100;100;100;100;100" />
+    <soulset id="10" default_open="1;1;1;0;0;0;0;0" unlock="0;0;0;3;4;5;6;7" unlock_cost="0;0;0;100;100;100;100;100" />
+</soulsets>

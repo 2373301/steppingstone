@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<charge1sts>
+    <charge1st id="1" range="1" back_rate="10000" back_max="5000" star_date="0" end_date="0" />
+    <charge1st id="2" range="999999999" back_rate="0" back_max="5000" star_date="0" end_date="0" />
+</charge1sts>

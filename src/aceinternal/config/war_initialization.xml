@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<warinitializations>
+    <warinitialization round="20" str="30" agi="30" int="30" str_att="75000" str_def="45000" agi_att="150000" agi_def="100500" int_att="60000" int_def="22500" float="5" def_gas_effect="0" attack_hp_range="25;50;75;90;100" attack_hp_damage="100;100;100;100;100" hp_range="25;50;75;90;100" hp_damage="250;180;130;80;0" min_damage="5" attack_gas_effect="5" attack_gas_max="200" value_a="1000" value_b="1000" attack_att_max="100" attack_att_maxrate="3000" att_def="10000" />
+</warinitializations>

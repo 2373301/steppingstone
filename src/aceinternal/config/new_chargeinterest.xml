@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<chargeinterests>
+    <chargeinterest id="1" range="0" back_rate="500" back_max="0" star_date="1" end_date="3650" />
+    <chargeinterest id="2" range="10000" back_rate="1000" back_max="0" star_date="1" end_date="3650" />
+</chargeinterests>

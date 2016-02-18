@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<preyawardss>
+    <preyawards id="1" pro="7" prova="10" provb="0" score="2000" />
+    <preyawards id="2" pro="1" prova="50" provb="500" score="4000" />
+    <preyawards id="3" pro="3" prova="50" provb="200" score="8000" />
+    <preyawards id="4" pro="7;1" prova="170;210" provb="700;500" score="20000" />
+    <preyawards id="5" pro="1;3;7" prova="210;85;170" provb="500;200;700" score="50000" />
+</preyawardss>

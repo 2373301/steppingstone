@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<illusionneeds>
+    <illusionneed color="1" part="1" level="1" needstreng="1" />
+    <illusionneed color="2" part="1" level="10" needstreng="10" />
+    <illusionneed color="3" part="1" level="20" needstreng="30" />
+    <illusionneed color="4" part="1" level="50" needstreng="50" />
+    <illusionneed color="5" part="1" level="80" needstreng="80" />
+</illusionneeds>

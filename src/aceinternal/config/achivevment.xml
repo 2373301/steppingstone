@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<achieves>
+    <achieve id="10001" type="2" fun1="11005" fun2="1" bouns="91000" point="10" unlock="0" unlock_desc="" />
+    <achieve id="10002" type="2" fun1="11010" fun2="1" bouns="91000" point="10" unlock="0" unlock_desc="" />
+    <achieve id="10003" type="2" fun1="12006" fun2="1" bouns="91000" point="15" unlock="0" unlock_desc="" />
+    <achieve id="10004" type="2" fun1="12013" fun2="1" bouns="91000" point="15" unlock="0" unlock_desc="等级上限提升为40级、开放第二城镇--襄阳城" />
+    <achieve id="10005" type="2" fun1="21008" fun2="1" bouns="91000" point="20" unlock="1" unlock_desc="直接查看战斗结果" />
+    <achieve id="10006" type="2" fun1="11005" fun2="1" bouns="91000" point="20" unlock="2" unlock_desc="世界boss可以使用阅历进行鼓舞" />
+    <achieve id="10007" type="2" fun1="22012" fun2="1" bouns="91000" point="25" unlock="0" unlock_desc="" />
+    <achieve id="10008" type="2" fun1="22027" fun2="1" bouns="91000" point="25" unlock="0" unlock_desc="等级上限提升为40级、开放第三城镇--大都" />
+    <achieve id="10009" type="2" fun1="31012" fun2="1" bouns="91000" point="30" unlock="0" unlock_desc="" />
+    <achieve id="10010" type="2" fun1="31027" fun2="1" bouns="91000" point="30" unlock="0" unlock_desc="" />
+    <achieve id="10011" type="2" fun1="32012" fun2="1" bouns="91000" point="35" unlock="0" unlock_desc="" />
+    <achieve id="10012" type="2" fun1="32027" fun2="1" bouns="91000" point="35" unlock="0" unlock_desc="等级上限提升为80级、开放第四城镇--光明顶" />
+    <achieve id="15005" type="2" fun1="50023" fun2="1" bouns="91000" point="25" unlock="0" unlock_desc="" />
+    <achieve id="15006" type="2" fun1="50026" fun2="1" bouns="91000" point="25" unlock="5" unlock_desc="元宝购买竞技场挑战次数I" />
+    <achieve id="15007" type="2" fun1="50033" fun2="1" bouns="91000" point="30" unlock="0" unlock_desc="" />
+    <achieve id="15008" type="2" fun1="50036" fun2="1" bouns="91000" point="30" unlock="7" unlock_desc="所有boss关卡攻击次数永久+1" />
+    <achieve id="15009" type="2" fun1="50043" fun2="1" bouns="91000" point="35" unlock="10" unlock_desc="VIP特权 银两朝拜·壹" />
+    <achieve id="15010" type="2" fun1="50046" fun2="1" bouns="91000" point="35" unlock="0" unlock_desc="" />
+    <achieve id="15011" type="2" fun1="50053" fun2="1" bouns="91000" point="40" unlock="11" unlock_desc="VIP特权 阅历朝拜·壹" />
+    <achieve id="15012" type="2" fun1="50056" fun2="1" bouns="91000" point="40" unlock="4" unlock_desc="每天第一次购买体力免费" />
+    <achieve id="20001" type="5" fun1="2" fun2="0" bouns="91000" point="10" unlock="19" unlock_desc="生命值上限提升100点" />
+    <achieve id="21001" type="5" fun1="10" fun2="0" bouns="91000" point="10" unlock="0" unlock_desc="" />
+    <achieve id="21002" type="5" fun1="20" fun2="0" bouns="91000" point="10" unlock="0" unlock_desc="" />
+    <achieve id="21003" type="5" fun1="30" fun2="0" bouns="91000" point="10" unlock="0" unlock_desc="" />
+    <achieve id="21004" type="5" fun1="40" fun2="0" bouns="91000" point="10" unlock="0" unlock_desc="" />
+    <achieve id="21005" type="5" fun1="50" fun2="0" bouns="91000" point="10" unlock="0" unlock_desc="" />
+    <achieve id="21006" type="5" fun1="60" fun2="0" bouns="91000" point="10" unlock="0" unlock_desc="" />
+    <achieve id="30001" type="4" fun1="1" fun2="20000" bouns="91000" point="10" unlock="15" unlock_desc="第四个伙伴招募位" />
+    <achieve id="30002" type="4" fun1="8" fun2="500" bouns="91000" point="10" unlock="0" unlock_desc="一阶门派伙伴" />
+    <achieve id="30003" type="4" fun1="8" fun2="2000" bouns="91000" point="10" unlock="0" unlock_desc="二阶门派伙伴" />
+    <achieve id="30004" type="4" fun1="8" fun2="5000" bouns="91000" point="10" unlock="0" unlock_desc="三阶门派伙伴" />
+    <achieve id="30005" type="4" fun1="8" fun2="10000" bouns="91000" point="15" unlock="0" unlock_desc="四阶门派伙伴" />
+    <achieve id="30006" type="4" fun1="8" fun2="20000" bouns="91000" point="15" unlock="0" unlock_desc="五阶门派伙伴" />
+    <achieve id="30007" type="4" fun1="8" fun2="50000" bouns="91000" point="15" unlock="0" unlock_desc="六阶门派伙伴" />
+    <achieve id="30008" type="4" fun1="8" fun2="100000" bouns="91000" point="20" unlock="0" unlock_desc="" />
+    <achieve id="30009" type="4" fun1="8" fun2="150000" bouns="91000" point="20" unlock="0" unlock_desc="" />
+    <achieve id="30010" type="4" fun1="8" fun2="200000" bouns="91000" point="20" unlock="0" unlock_desc="" />
+    <achieve id="30011" type="4" fun1="8" fun2="300000" bouns="91000" point="50" unlock="0" unlock_desc="" />
+    <achieve id="30012" type="4" fun1="8" fun2="500000" bouns="91000" point="100" unlock="0" unlock_desc="" />
+    <achieve id="30013" type="4" fun1="1" fun2="30000" bouns="91000" point="15" unlock="16" unlock_desc="第五个伙伴招募位" />
+    <achieve id="30014" type="4" fun1="1" fun2="40000" bouns="91000" point="15" unlock="17" unlock_desc="第六个伙伴招募位" />
+    <achieve id="30015" type="4" fun1="1" fun2="50000" bouns="91000" point="20" unlock="18" unlock_desc="第七个伙伴招募位" />
+    <achieve id="31001" type="4" fun1="6" fun2="201" bouns="91000" point="10" unlock="0" unlock_desc="" />
+    <achieve id="31002" type="4" fun1="6" fun2="500" bouns="91000" point="10" unlock="0" unlock_desc="" />
+    <achieve id="32000" type="4" fun1="2" fun2="1000" bouns="91000" point="10" unlock="0" unlock_desc="每天额外3次免费的阅历朝拜" />
+    <achieve id="32001" type="4" fun1="3" fun2="10000" bouns="91000" point="10" unlock="0" unlock_desc="" />
+    <achieve id="32002" type="4" fun1="3" fun2="50000" bouns="91000" point="10" unlock="0" unlock_desc="" />
+    <achieve id="32003" type="4" fun1="3" fun2="100000" bouns="91000" point="10" unlock="0" unlock_desc="" />
+    <achieve id="32004" type="4" fun1="3" fun2="500000" bouns="91000" point="10" unlock="0" unlock_desc="" />
+    <achieve id="32005" type="4" fun1="3" fun2="1000000" bouns="91000" point="10" unlock="0" unlock_desc="" />
+    <achieve id="33001" type="4" fun1="2" fun2="100" bouns="91000" point="5" unlock="0" unlock_desc="每天额外3次免费的银两朝拜" />
+    <achieve id="33002" type="4" fun1="2" fun2="500" bouns="91000" point="10" unlock="0" unlock_desc="" />
+    <achieve id="33003" type="4" fun1="2" fun2="1000" bouns="91000" point="20" unlock="0" unlock_desc="" />
+    <achieve id="33004" type="4" fun1="2" fun2="2000" bouns="91000" point="40" unlock="0" unlock_desc="" />
+    <achieve id="33005" type="4" fun1="2" fun2="5000" bouns="91000" point="80" unlock="0" unlock_desc="" />
+    <achieve id="33006" type="4" fun1="2" fun2="10000" bouns="91000" point="160" unlock="0" unlock_desc="" />
+    <achieve id="33007" type="4" fun1="2" fun2="20000" bouns="91000" point="320" unlock="0" unlock_desc="" />
+    <achieve id="34001" type="4" fun1="1" fun2="100000" bouns="91000" point="10" unlock="0" unlock_desc="" />
+    <achieve id="34002" type="4" fun1="1" fun2="500000" bouns="91000" point="10" unlock="0" unlock_desc="" />
+    <achieve id="34003" type="4" fun1="1" fun2="1000000" bouns="91000" point="10" unlock="0" unlock_desc="" />
+    <achieve id="34004" type="4" fun1="1" fun2="2000000" bouns="91000" point="10" unlock="0" unlock_desc="" />
+    <achieve id="34005" type="4" fun1="1" fun2="5000000" bouns="91000" point="10" unlock="0" unlock_desc="" />
+</achieves>

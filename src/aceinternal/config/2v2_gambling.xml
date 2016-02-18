@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<gamblings>
+    <gambling type="1" subtype="1" round="1" lose_rate="8000" win_rate="20000" level="1;30;50;70" money="10000;20000;50000;100000" />
+    <gambling type="1" subtype="1" round="2" lose_rate="8000" win_rate="20000" level="1;30;50;70" money="10000;20000;50000;100000" />
+    <gambling type="1" subtype="1" round="4" lose_rate="8000" win_rate="20000" level="1;30;50;70" money="10000;20000;50000;100000" />
+    <gambling type="1" subtype="1" round="8" lose_rate="8000" win_rate="20000" level="1;30;50;70" money="10000;20000;50000;100000" />
+    <gambling type="1" subtype="2" round="1" lose_rate="8000" win_rate="20000" level="1;30;50;70" money="10000;20000;50000;100000" />
+    <gambling type="1" subtype="2" round="2" lose_rate="8000" win_rate="20000" level="1;30;50;70" money="10000;20000;50000;100000" />
+    <gambling type="1" subtype="2" round="4" lose_rate="8000" win_rate="20000" level="1;30;50;70" money="10000;20000;50000;100000" />
+    <gambling type="1" subtype="2" round="8" lose_rate="8000" win_rate="20000" level="1;30;50;70" money="10000;20000;50000;100000" />
+    <gambling type="2" subtype="1" round="1" lose_rate="8000" win_rate="20000" level="1;30;50;70" money="10000;20000;50000;100000" />
+    <gambling type="2" subtype="1" round="2" lose_rate="8000" win_rate="20000" level="1;30;50;70" money="10000;20000;50000;100000" />
+    <gambling type="2" subtype="1" round="4" lose_rate="8000" win_rate="20000" level="1;30;50;70" money="10000;20000;50000;100000" />
+    <gambling type="2" subtype="1" round="8" lose_rate="8000" win_rate="20000" level="1;30;50;70" money="10000;20000;50000;100000" />
+    <gambling type="2" subtype="2" round="1" lose_rate="8000" win_rate="20000" level="1;30;50;70" money="10000;20000;50000;100000" />
+    <gambling type="2" subtype="2" round="2" lose_rate="8000" win_rate="20000" level="1;30;50;70" money="10000;20000;50000;100000" />
+    <gambling type="2" subtype="2" round="4" lose_rate="8000" win_rate="20000" level="1;30;50;70" money="10000;20000;50000;100000" />
+    <gambling type="2" subtype="2" round="8" lose_rate="8000" win_rate="20000" level="1;30;50;70" money="10000;20000;50000;100000" />
+</gamblings>

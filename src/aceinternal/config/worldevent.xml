@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<worldevents>
+    <worldevent id="1" zid="1" valuea="1000" valueb="0" pro="120" />
+    <worldevent id="2" zid="1" valuea="1500" valueb="0" pro="72" />
+    <worldevent id="3" zid="2" valuea="0" valueb="10" pro="12" />
+    <worldevent id="4" zid="2" valuea="0" valueb="20" pro="12" />
+    <worldevent id="5" zid="6" valuea="0" valueb="15" pro="180" />
+    <worldevent id="6" zid="6" valuea="0" valueb="30" pro="120" />
+</worldevents>

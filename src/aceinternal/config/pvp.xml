@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pvps>
+    <pvp start_time="1200" joinlevel="30" jointime1="1" jointime2="1015" part1begintime="1020" part1rundtime="2" part1num="32" part1resttime="15" part2begintime1="1170" part2begintime2="1180" part2begintime3="1190" part2begintime4="1200" part2begintime5="1210" part2rundtime="5" defeatedtimes1="3" defeatedtimes2="1" battletimes="1" battlemap1="1" battlemap2="60002" />
+</pvps>

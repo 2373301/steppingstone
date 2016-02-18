@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<heritages>
+    <heritage heritagerate1_free="70" heritagerate2_free="70" heritagerate3_free="70" heritagerate4_free="70" heritagerate1_gold="90" heritagerate2_gold="100" heritagerate3_gold="100" heritagerate4_gold="100" level="1;10;20;30;40;50;60;70;80;90;100;110;120;130;140;150" money="1;100000;200000;300000;500000;2000000;5000000;10000000;15000000;20000000;25000000;30000000;30000000;30000000;30000000;30000000" goleblessme_id="192;192;192;192;192;192;192;192;192;192;192;192;192;192;192;192" />
+</heritages>

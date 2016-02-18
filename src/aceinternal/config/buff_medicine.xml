@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<medicines>
+    <medicine id="1" group="1" level="1" times="10" exp_value="2" />
+    <medicine id="2" group="1" level="2" times="20" exp_value="2" />
+    <medicine id="3" group="1" level="3" times="40" exp_value="2" />
+    <medicine id="4" group="1" level="4" times="50" exp_value="2" />
+    <medicine id="5" group="1" level="5" times="60" exp_value="2" />
+    <medicine id="6" group="1" level="6" times="80" exp_value="2" />
+    <medicine id="7" group="1" level="7" times="100" exp_value="2" />
+    <medicine id="8" group="1" level="8" times="500" exp_value="2" />
+    <medicine id="9" group="1" level="9" times="999" exp_value="2" />
+    <medicine id="101" group="2" level="1" times="10" exp_value="3" />
+    <medicine id="102" group="2" level="2" times="20" exp_value="3" />
+    <medicine id="103" group="2" level="3" times="40" exp_value="3" />
+    <medicine id="104" group="2" level="4" times="50" exp_value="3" />
+    <medicine id="105" group="2" level="5" times="60" exp_value="3" />
+    <medicine id="106" group="2" level="6" times="80" exp_value="3" />
+    <medicine id="107" group="2" level="7" times="100" exp_value="3" />
+    <medicine id="108" group="2" level="8" times="500" exp_value="3" />
+    <medicine id="109" group="2" level="9" times="999" exp_value="3" />
+</medicines>

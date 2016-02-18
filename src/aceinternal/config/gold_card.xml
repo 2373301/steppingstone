@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cards>
+    <card id="1" name="周卡" level="1" need_gold="100" unlock_gold="360" first_rewards="365" gold_rewards="370" first_bonus="148003" bonus_rewards="148001" target="1" p="11;12;13;14;15;16;17" v="300;300;300;300;300;300;300" day="7" talk="1" />
+    <card id="2" name="月卡" level="2" need_gold="500" unlock_gold="361" first_rewards="366" gold_rewards="371" first_bonus="148004" bonus_rewards="148002" target="2" p="11;12;13;14;15;16;17" v="500;500;500;500;500;500;500" day="30" talk="1" />
+</cards>

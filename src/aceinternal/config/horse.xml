@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<horses>
+    <horse horse_id="1" ranch_lv="1" />
+    <horse horse_id="2" ranch_lv="1" />
+    <horse horse_id="3" ranch_lv="3" />
+    <horse horse_id="4" ranch_lv="5" />
+    <horse horse_id="5" ranch_lv="8" />
+    <horse horse_id="7" ranch_lv="1" />
+    <horse horse_id="6" ranch_lv="3" />
+    <horse horse_id="9" ranch_lv="10" />
+    <horse horse_id="10" ranch_lv="1" />
+    <horse horse_id="11" ranch_lv="3" />
+    <horse horse_id="12" ranch_lv="5" />
+    <horse horse_id="13" ranch_lv="8" />
+    <horse horse_id="14" ranch_lv="10" />
+</horses>

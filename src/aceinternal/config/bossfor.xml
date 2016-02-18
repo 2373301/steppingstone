@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<bossfors>
+    <bossfor map_id="10001" role_id="99901" enemy_id="99991" boss_starttime="37800;54000" boss_endtime="1800" buff="40" />
+</bossfors>

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rewardss>
+    <rewards reward="16" rewardtype="2" servers="1" level="30" bonusid="190010" />
+    <rewards reward="8" rewardtype="2" servers="1" level="30" bonusid="190019" />
+    <rewards reward="4" rewardtype="2" servers="1" level="30" bonusid="190028" />
+    <rewards reward="2" rewardtype="2" servers="1" level="30" bonusid="190037" />
+    <rewards reward="1" rewardtype="2" servers="1" level="30" bonusid="190046" />
+    <rewards reward="16" rewardtype="1" servers="1" level="30" bonusid="190064" />
+    <rewards reward="8" rewardtype="1" servers="1" level="30" bonusid="190073" />
+    <rewards reward="4" rewardtype="1" servers="1" level="30" bonusid="190082" />
+    <rewards reward="2" rewardtype="1" servers="1" level="30" bonusid="190091" />
+    <rewards reward="1" rewardtype="1" servers="1" level="30" bonusid="190100" />
+    <rewards reward="16" rewardtype="2" servers="2" level="30" bonusid="190118" />
+    <rewards reward="8" rewardtype="2" servers="2" level="30" bonusid="190127" />
+    <rewards reward="4" rewardtype="2" servers="2" level="30" bonusid="190136" />
+    <rewards reward="2" rewardtype="2" servers="2" level="30" bonusid="190145" />
+    <rewards reward="1" rewardtype="2" servers="2" level="30" bonusid="190154" />
+    <rewards reward="16" rewardtype="1" servers="2" level="30" bonusid="190172" />
+    <rewards reward="8" rewardtype="1" servers="2" level="30" bonusid="190181" />
+    <rewards reward="4" rewardtype="1" servers="2" level="30" bonusid="190190" />
+    <rewards reward="2" rewardtype="1" servers="2" level="30" bonusid="190199" />
+    <rewards reward="1" rewardtype="1" servers="2" level="30" bonusid="190208" />
+    <rewards reward="16" rewardtype="2" servers="1" level="50" bonusid="190010" />
+    <rewards reward="8" rewardtype="2" servers="1" level="50" bonusid="190019" />
+    <rewards reward="4" rewardtype="2" servers="1" level="50" bonusid="190028" />
+    <rewards reward="2" rewardtype="2" servers="1" level="50" bonusid="190037" />
+    <rewards reward="1" rewardtype="2" servers="1" level="50" bonusid="190046" />
+    <rewards reward="16" rewardtype="1" servers="1" level="50" bonusid="190064" />
+    <rewards reward="8" rewardtype="1" servers="1" level="50" bonusid="190073" />
+    <rewards reward="4" rewardtype="1" servers="1" level="50" bonusid="190082" />
+    <rewards reward="2" rewardtype="1" servers="1" level="50" bonusid="190091" />
+    <rewards reward="1" rewardtype="1" servers="1" level="50" bonusid="190100" />
+    <rewards reward="16" rewardtype="2" servers="2" level="50" bonusid="190118" />
+    <rewards reward="8" rewardtype="2" servers="2" level="50" bonusid="190127" />
+    <rewards reward="4" rewardtype="2" servers="2" level="50" bonusid="190136" />
+    <rewards reward="2" rewardtype="2" servers="2" level="50" bonusid="190145" />
+    <rewards reward="1" rewardtype="2" servers="2" level="50" bonusid="190154" />
+    <rewards reward="16" rewardtype="1" servers="2" level="50" bonusid="190172" />
+    <rewards reward="8" rewardtype="1" servers="2" level="50" bonusid="190181" />
+    <rewards reward="4" rewardtype="1" servers="2" level="50" bonusid="190190" />
+    <rewards reward="2" rewardtype="1" servers="2" level="50" bonusid="190199" />
+    <rewards reward="1" rewardtype="1" servers="2" level="50" bonusid="190208" />
+</rewardss>

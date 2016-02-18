@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<dailyquests>
+    <dailyquest id="1" correct_money="10000" correct_seni="10000" correct_exp="10000" correct_coin="10000" correct_frame="10000" pro="1000" senicost="5000" rate="0" />
+    <dailyquest id="2" correct_money="20000" correct_seni="20000" correct_exp="11000" correct_coin="10000" correct_frame="10000" pro="1000" senicost="0" rate="0" />
+    <dailyquest id="3" correct_money="30000" correct_seni="30000" correct_exp="15000" correct_coin="10000" correct_frame="10000" pro="1000" senicost="0" rate="0" />
+    <dailyquest id="4" correct_money="40000" correct_seni="40000" correct_exp="17500" correct_coin="10000" correct_frame="10000" pro="1000" senicost="0" rate="0" />
+    <dailyquest id="5" correct_money="60000" correct_seni="60000" correct_exp="30000" correct_coin="10000" correct_frame="10000" pro="0" senicost="0" rate="0" />
+</dailyquests>

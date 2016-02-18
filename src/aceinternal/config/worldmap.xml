@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<worldmaps>
+    <worldmap id="1" open="0" />
+    <worldmap id="2" open="1" />
+    <worldmap id="3" open="0" />
+    <worldmap id="4" open="1" />
+    <worldmap id="5" open="1" />
+    <worldmap id="6" open="1" />
+    <worldmap id="7" open="1" />
+    <worldmap id="8" open="1" />
+    <worldmap id="9" open="1" />
+    <worldmap id="10" open="1" />
+    <worldmap id="11" open="1" />
+    <worldmap id="12" open="0" />
+    <worldmap id="13" open="0" />
+    <worldmap id="14" open="1" />
+    <worldmap id="15" open="0" />
+    <worldmap id="16" open="1" />
+</worldmaps>

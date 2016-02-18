@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Recruitments>
+    <Recruitment id="1" level="1" lock="1" function="2" type="2" num="100" cti="10000" upgrade1="10" upgrade2="0" weight="100" gold="0" money="0" />
+    <Recruitment id="2" level="1" lock="1" function="2" type="2" num="300" cti="10000" upgrade1="30" upgrade2="0" weight="50" gold="0" money="200000" />
+    <Recruitment id="3" level="1" lock="1" function="2" type="1" num="1500" cti="500" upgrade1="0" upgrade2="20" weight="50" gold="144" money="0" />
+    <Recruitment id="4" level="1" lock="1" function="2" type="2" num="600" cti="10000" upgrade1="50" upgrade2="0" weight="25" gold="145" money="0" />
+    <Recruitment id="5" level="1" lock="1" function="3" type="2" num="2" cti="1500" upgrade1="0" upgrade2="20" weight="25" gold="146" money="0" />
+</Recruitments>

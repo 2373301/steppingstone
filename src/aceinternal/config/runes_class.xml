@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<classs>
+    <class class="1" max_level="10" need_runes_fire="100" money="0" player_level="40" />
+    <class class="2" max_level="10" need_runes_fire="200" money="0" player_level="41" />
+    <class class="3" max_level="10" need_runes_fire="400" money="0" player_level="42" />
+    <class class="4" max_level="10" need_runes_fire="800" money="0" player_level="43" />
+    <class class="5" max_level="10" need_runes_fire="1600" money="0" player_level="44" />
+    <class class="6" max_level="10" need_runes_fire="3200" money="0" player_level="45" />
+    <class class="7" max_level="10" need_runes_fire="6400" money="0" player_level="46" />
+    <class class="8" max_level="10" need_runes_fire="12800" money="0" player_level="47" />
+    <class class="9" max_level="10" need_runes_fire="19200" money="0" player_level="48" />
+    <class class="10" max_level="10" need_runes_fire="28800" money="0" player_level="49" />
+    <class class="11" max_level="10" need_runes_fire="43200" money="0" player_level="50" />
+    <class class="12" max_level="10" need_runes_fire="64800" money="0" player_level="51" />
+</classs>

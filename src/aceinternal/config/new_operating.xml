@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<operatings>
+    <operating id="1" start_time="0;0;0" end_time="4;0;0" type="1" value_a="30;35;40;43;46;48;50" value_b="0;500;100;50;30;10;5" rewards="12101;12102;12103;12104;12105;12106;12107" />
+    <operating id="2" start_time="0;0;0" end_time="3;0;0" type="2" value_a="51;0;101;0" value_b="1;5;1;10" rewards="12201;12203;12202;12204" />
+    <operating id="3" start_time="1;0;0" end_time="6;0;0" type="3" value_a="500;300;100;50;10;3;1" value_b="0;0;0;0;0;0;0" rewards="12301;12302;12303;12304;12305;12306;12307" />
+    <operating id="4" start_time="0;0;0" end_time="7;0;0" type="4" value_a="30000;50000;100000;10000;20000;40000" value_b="1;1;1;2;2;2" rewards="12401;12402;12403;12404;12405;12406" />
+    <operating id="5" start_time="0;0;0" end_time="2;0;0" type="5" value_a="102" value_b="0" rewards="12501" />
+    <operating id="6" start_time="0;0;0" end_time="3;0;0" type="6" value_a="4;4;4;4;5;5;5;5" value_b="1;2;3;4;1;2;3;4" rewards="12601;12602;12603;12604;12605;12606;12607;12608" />
+    <operating id="7" start_time="0;0;0" end_time="7;0;0" type="7" value_a="10001" value_b="1" rewards="12701" />
+    <operating id="8" start_time="0;0;0" end_time="3;0;0" type="5" value_a="103" value_b="0" rewards="12502" />
+    <operating id="9" start_time="0;0;0" end_time="4;0;0" type="5" value_a="104" value_b="0" rewards="12503" />
+</operatings>

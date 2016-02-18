@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<confrateractivitys>
+    <confrateractivity confrateractivity="1" desc="天机宝盒" />
+    <confrateractivity confrateractivity="2" desc="帮会战" />
+    <confrateractivity confrateractivity="3" desc="帮会上贡" />
+    <confrateractivity confrateractivity="4" desc="帮会宝库" />
+    <confrateractivity confrateractivity="5" desc="帮会守卫" />
+</confrateractivitys>

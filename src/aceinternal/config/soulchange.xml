@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<soulchanges>
+    <soulchange id="1" cost_a="50" cost_b="500" buy_soul="10" buy_soulid="304" lock_cost="20" lock_costid="305" open_limit="3;3" important_soul="4;5" batch="10" nine_open="8;2" limit_coina="2000" coin_color="5" limit_coinb="1500" coin_group="3" limit_soula="5000" soul_color="5" limit_soulb="3000" soul_group="4" />
+</soulchanges>

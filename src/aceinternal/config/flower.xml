@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<flowers>
+    <flower id="1" num="1" value="100" type="1" pay="1000" />
+    <flower id="2" num="11" value="200" type="2" pay="64" />
+    <flower id="3" num="108" value="500" type="2" pay="100" />
+</flowers>

@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<systems>
+    <system change_rate="600;1" critical_rate1="500;100;9400" critical_value1="20000" critical_value2="40000" critical_rate2="500;100;9400" critical_value3="20000" critical_value4="40000" runes_stone_exp="1" runes1="46" runes2="48" runes3="50" runes4="52" runes5="54" unlock_stone_num="100" />
+</systems>

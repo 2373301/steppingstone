@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<targets>
+    <target id="1" type="3" target="0" value="0" spe_reward="0" reward_num="0" />
+    <target id="2" type="5" target="0" value="0" spe_reward="0" reward_num="0" />
+    <target id="3" type="4" target="31" value="1602" spe_reward="60903" reward_num="1" />
+    <target id="4" type="2" target="3" value="1603" spe_reward="60808" reward_num="1" />
+    <target id="5" type="5" target="0" value="1604" spe_reward="0" reward_num="2" />
+</targets>

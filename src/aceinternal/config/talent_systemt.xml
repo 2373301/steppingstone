@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<systems>
+    <system need_color="1;2;3;4;5" level="1;1;1;70;80" unlock_gold="380;381;382;383;384" need_gold1="385" need_gold2="386" need_item1="9850" need_item2="9851" />
+</systems>

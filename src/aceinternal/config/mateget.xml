@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<gategets>
+    <gateget id="1" free_num="3" cost="100000" num="6" green_pro1="8500" blue_pro1="1250" purple_pro1="200" orange_pro1="50" green_pro2="8500" blue_pro2="1000" purple_pro2="400" orange_pro2="100" green_love="10" blue_love="50" purple_love="200" orange_love="500" must_get="200" orange_limit="30000000" />
+    <gateget id="2" free_num="0" cost="100" num="6" green_pro1="5200" blue_pro1="3200" purple_pro1="1500" orange_pro1="100" green_pro2="5000" blue_pro2="3000" purple_pro2="1500" orange_pro2="500" green_love="10" blue_love="50" purple_love="200" orange_love="500" must_get="200" orange_limit="3000" />
+</gategets>

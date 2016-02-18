@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<actions>
+    <action id="1" file="jump.xml" />
+    <action id="2" file="shop.xml" />
+    <action id="3" file="stage1st.xml" />
+</actions>

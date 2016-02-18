@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<firess>
+    <fires critical_rate1="500" critical_rate2="100" critical_value1="20000" critical_value2="40000" critical_rate3="500" critical_rate4="100" critical_value3="20000" critical_value4="40000" patch_exp="1" copy="1;2;3;4;5" level="48;52;54;56;58" vip="144;145;146;147;148" num="15;15;15;15;15" yin_entrance="110001;210001;310001;410001;510001" yang_entrance="120001;220001;320001;420001;520001" time="5" />
+</firess>

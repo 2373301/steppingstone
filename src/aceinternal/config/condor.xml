@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<condors>
+    <condor id="1" rate1="7000" rate2="2000" rate3="800" rate4="190" rate5="10" correct="100" vip="0" zid="0" value="0" />
+    <condor id="2" rate1="5500" rate2="2500" rate3="1000" rate4="980" rate5="20" correct="130" vip="0" zid="3" value="100" />
+    <condor id="3" rate1="4000" rate2="2500" rate3="2500" rate4="970" rate5="30" correct="200" vip="0" zid="2" value="1" />
+    <condor id="4" rate1="2000" rate2="3000" rate3="1960" rate4="3000" rate5="40" correct="250" vip="4" zid="2" value="5" />
+    <condor id="5" rate1="1000" rate2="3500" rate3="1500" rate4="3950" rate5="50" correct="300" vip="5" zid="2" value="10" />
+</condors>

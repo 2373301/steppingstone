@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rewardss>
+    <rewards id="1" type="1" value="8023" condition="0" num="1" percent_item="0" percent_gold="3" percent_num="0" talk="1" />
+    <rewards id="2" type="1" value="9048" condition="0" num="1" percent_item="0" percent_gold="3" percent_num="0" talk="1" />
+    <rewards id="3" type="2" value="10000" condition="5000" num="10000" percent_item="0" percent_gold="10" percent_num="0" talk="1" />
+    <rewards id="4" type="1" value="9125" condition="0" num="1" percent_item="0" percent_gold="10" percent_num="0" talk="1" />
+    <rewards id="5" type="1" value="9851" condition="0" num="1" percent_item="20000" percent_gold="20000" percent_num="0" talk="0" />
+    <rewards id="6" type="1" value="73074" condition="0" num="1" percent_item="3500" percent_gold="3500" percent_num="0" talk="1" />
+    <rewards id="7" type="1" value="9850" condition="0" num="1" percent_item="5500" percent_gold="4000" percent_num="1" talk="0" />
+    <rewards id="8" type="2" value="10000" condition="0" num="500" percent_item="250" percent_gold="300" percent_num="0" talk="1" />
+    <rewards id="9" type="1" value="74012" condition="0" num="1" percent_item="0" percent_gold="100" percent_num="0" talk="1" />
+    <rewards id="10" type="2" value="10000" condition="0" num="100" percent_item="2500" percent_gold="2500" percent_num="0" talk="1" />
+    <rewards id="11" type="1" value="60203" condition="0" num="2" percent_item="15000" percent_gold="15000" percent_num="0" talk="0" />
+    <rewards id="12" type="1" value="9980" condition="0" num="1" percent_item="7450" percent_gold="8274" percent_num="0" talk="0" />
+    <rewards id="13" type="1" value="5601" condition="0" num="1" percent_item="15000" percent_gold="15000" percent_num="0" talk="0" />
+    <rewards id="14" type="1" value="60457" condition="0" num="4" percent_item="15000" percent_gold="15000" percent_num="0" talk="0" />
+    <rewards id="15" type="1" value="74009" condition="0" num="1" percent_item="500" percent_gold="1000" percent_num="0" talk="1" />
+    <rewards id="16" type="1" value="60104" condition="0" num="1" percent_item="15300" percent_gold="15300" percent_num="0" talk="0" />
+</rewardss>

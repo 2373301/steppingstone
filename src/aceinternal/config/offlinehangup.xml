@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<offlinehangups>
+    <offlinehangup a="100" b="0" time="20" maxtime="86400" />
+</offlinehangups>

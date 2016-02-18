@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<raiserates>
+    <raiserate type="1" pool_1="1" rate_1="9500" pool_2="2" rate_2="400" pool_3="3" rate_3="100" pool_4="4" rate_4="0" pool_5="0" rate_5="0" basecount_0="10" pool_0="4" basecount_1="60" pool_a="3" basecount_2="120" pool_b="2" />
+    <raiserate type="2" pool_1="1" rate_1="0" pool_2="2" rate_2="9500" pool_3="3" rate_3="500" pool_4="4" rate_4="0" pool_5="0" rate_5="0" basecount_0="10" pool_0="4" basecount_1="60" pool_a="4" basecount_2="120" pool_b="3" />
+    <raiserate type="3" pool_1="1" rate_1="0" pool_2="2" rate_2="0" pool_3="3" rate_3="9500" pool_4="4" rate_4="500" pool_5="0" rate_5="0" basecount_0="10" pool_0="4" basecount_1="120" pool_a="4" basecount_2="180" pool_b="3" />
+    <raiserate type="4" pool_1="0" rate_1="0" pool_2="0" rate_2="0" pool_3="0" rate_3="0" pool_4="4" rate_4="10000" pool_5="0" rate_5="0" basecount_0="10" pool_0="4" basecount_1="120" pool_a="4" basecount_2="180" pool_b="4" />
+</raiserates>

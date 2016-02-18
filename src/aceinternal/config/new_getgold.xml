@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<getgolds>
+    <getgold rate1="0;0;10;0;0;0;0;0;0;0" rate2="0;0;0;0;0;0;15;15;15;10" rate3="0;0;0;0;0;0;10;10;10;10" percent="1000;2000;3000;4000" />
+</getgolds>

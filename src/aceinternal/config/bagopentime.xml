@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<bagopentimes>
+    <bagopentime id="1" time="1" />
+    <bagopentime id="2" time="1" />
+    <bagopentime id="3" time="1" />
+    <bagopentime id="4" time="1" />
+    <bagopentime id="5" time="1" />
+    <bagopentime id="6" time="1" />
+    <bagopentime id="7" time="2" />
+    <bagopentime id="8" time="4" />
+    <bagopentime id="9" time="6" />
+    <bagopentime id="10" time="8" />
+    <bagopentime id="11" time="10" />
+    <bagopentime id="12" time="12" />
+    <bagopentime id="13" time="14" />
+    <bagopentime id="14" time="16" />
+    <bagopentime id="15" time="18" />
+    <bagopentime id="16" time="20" />
+    <bagopentime id="17" time="22" />
+    <bagopentime id="18" time="24" />
+</bagopentimes>

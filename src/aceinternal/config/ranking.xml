@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rankings>
+    <ranking id="1" mail_id="20" list="0" num="30" update_time="24" />
+    <ranking id="2" mail_id="21" list="20" num="100" update_time="0" />
+    <ranking id="3" mail_id="22" list="5000" num="100" update_time="0" />
+    <ranking id="5" mail_id="23" list="10" num="100" update_time="0" />
+    <ranking id="6" mail_id="24" list="1000" num="100" update_time="0" />
+    <ranking id="7" mail_id="25" list="1" num="50" update_time="0" />
+    <ranking id="8" mail_id="26" list="2" num="50" update_time="0" />
+    <ranking id="9" mail_id="27" list="2" num="50" update_time="0" />
+    <ranking id="14" mail_id="28" list="1" num="100" update_time="0" />
+    <ranking id="15" mail_id="29" list="1" num="100" update_time="0" />
+    <ranking id="16" mail_id="30" list="1" num="100" update_time="0" />
+    <ranking id="17" mail_id="31" list="1" num="100" update_time="0" />
+    <ranking id="18" mail_id="32" list="1" num="100" update_time="0" />
+</rankings>

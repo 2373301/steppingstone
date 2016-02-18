@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<soulgets>
+    <soulget id="1" cross_freenum="3" cross_cost="300" cross_costnum="1" buy_cross="176;160;161;162;163;164" raids_cd="10" raids_vip="175" rob_freenum="10" rob_cost="301" rob_costnum="5" buy_rob="165;166;167;168;169" hit="10" reset_freenum="1" reset_cost="302" reset_costnum="0" reset_buy="170;171;172;173;174" refresh_cd="1800" refresh_player="6" refresh_buy="20" search_a="100" rob_a="50" rob_b="10" />
+</soulgets>

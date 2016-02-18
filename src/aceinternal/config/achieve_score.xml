@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<achieves>
+    <achieve id="1" point="20" bonus="91001" block="3" dailybonus="90001" />
+    <achieve id="2" point="50" bonus="91002" block="3" dailybonus="90002" />
+    <achieve id="3" point="100" bonus="91003" block="3" dailybonus="90003" />
+    <achieve id="4" point="200" bonus="91004" block="3" dailybonus="90004" />
+    <achieve id="5" point="500" bonus="91005" block="3" dailybonus="90005" />
+    <achieve id="6" point="1000" bonus="91006" block="3" dailybonus="90006" />
+    <achieve id="7" point="2000" bonus="91007" block="3" dailybonus="90007" />
+</achieves>

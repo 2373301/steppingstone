@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<bossrewards>
+    <bossreward enemy="99991" money_x1="5" money_a1="0" money_b1="750" frame_x2="25" frame_a2="100" frame_b2="100" prestige_x3="800" prestige_a3="0" prestige_b3="10" substitute_money="3000" substitute_frame="100" substitute_prestige="0" substitute_value="40" money="300;250;200;170;160;150;140;130;120;110" frame="300;250;200;170;160;150;140;130;120;110" prestige="200;160;150;140;135;130;125;120;115;110" amend="200;190;180;170;160;150;140;130;120;110" />
+</bossrewards>

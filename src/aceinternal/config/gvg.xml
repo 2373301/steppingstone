@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<gvgs>
+    <gvg enroll1="1;0" enroll2="6;75000" sceneid="80001;80002;80003;80004" level="2" begin1="6;75600" rund1="6;75780" end1="6;76380" num1="4;2" begin2="6;76800" rund2="6;76980" end2="6;77580" num2="4;2" begin3="6;78000" rund3="6;78180" end3="6;78780" num3="2;1" begin4="6;79200" rund4="6;79380" end4="6;79980" num4="2;1" lifenum="3" exist="10001" revivetime="20" kill="111000" cdmin="20" cdmax="120" cdlast="5" />
+</gvgs>

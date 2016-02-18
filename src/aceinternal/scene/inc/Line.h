@@ -295,10 +295,8 @@ struct SceneRequestCfg
 class SCENE_EXOPRT SceneRequest
 {
 public:
-	~SceneRequest()
-	{}
+	~SceneRequest(){}
 
-public:
 	// the param is request id
 	typedef boost::function<void(uint32, bool)>	FightDataRequestCallBack;
 
@@ -311,9 +309,6 @@ public:
 	virtual void playerFightDataBackFromScene(uint64 player_guid, bool is_success) = 0;
 
 	virtual void playerFightDataBackFromCache(uint64 player_guid, bool load_success, CollectMsgInfo * collect_msg_info) = 0;
-
-protected:
-private:
 };
 
 #endif

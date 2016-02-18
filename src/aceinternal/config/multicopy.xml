@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<multicopys>
+    <multicopy id="1" level="10" unlock="11009" times="200" energy="10" bonus1="30001" bonus2="30009" enemy="80101;80102;80103" />
+    <multicopy id="2" level="20" unlock="12028" times="200" energy="10" bonus1="30002" bonus2="30010" enemy="80201;80202;80203" />
+    <multicopy id="3" level="30" unlock="21017" times="200" energy="10" bonus1="30003" bonus2="30011" enemy="80301;80302;80303" />
+    <multicopy id="4" level="40" unlock="31013" times="200" energy="10" bonus1="30004" bonus2="30012" enemy="80401;80402;80403" />
+    <multicopy id="5" level="50" unlock="32012" times="200" energy="10" bonus1="30005" bonus2="30013" enemy="80501;80502;80503" />
+    <multicopy id="6" level="60" unlock="41032" times="200" energy="10" bonus1="30006" bonus2="30014" enemy="80601;80602;80603" />
+    <multicopy id="7" level="70" unlock="52054" times="200" energy="10" bonus1="30007" bonus2="30015" enemy="80601;80602;80603" />
+    <multicopy id="8" level="80" unlock="54007" times="200" energy="10" bonus1="30008" bonus2="30016" enemy="80601;80602;80603" />
+</multicopys>

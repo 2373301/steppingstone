@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<futuress>
+    <futures id="1" principal="274" bonus1="13001" bonus2="13002" bonus3="13003" bonus4="13004" bonus5="13005" bonus6="13006" bonus7="13007" bonus8="13008" bonus9="13009" bonus10="13010" star_date="1" end_date="4" />
+    <futures id="2" principal="275" bonus1="13011" bonus2="13012" bonus3="13013" bonus4="13014" bonus5="13015" bonus6="13016" bonus7="13017" bonus8="13018" bonus9="13019" bonus10="13020" star_date="1" end_date="4" />
+</futuress>

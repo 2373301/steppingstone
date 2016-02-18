@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<jumps>
+    <jump id="1" mapid="10001001" x="150" y="450" />
+    <jump id="2" mapid="10001002" x="150" y="450" />
+    <jump id="3" mapid="10001003" x="150" y="450" />
+    <jump id="4" mapid="10001004" x="150" y="450" />
+    <jump id="5" mapid="10001005" x="150" y="450" />
+    <jump id="6" mapid="10001006" x="150" y="450" />
+    <jump id="7" mapid="10002001" x="150" y="450" />
+    <jump id="8" mapid="10002002" x="150" y="450" />
+    <jump id="9" mapid="10002003" x="150" y="450" />
+    <jump id="10" mapid="10002004" x="150" y="450" />
+    <jump id="11" mapid="10002005" x="150" y="450" />
+    <jump id="12" mapid="10002006" x="150" y="450" />
+    <jump id="13" mapid="10002007" x="150" y="450" />
+    <jump id="14" mapid="10002008" x="150" y="450" />
+    <jump id="15" mapid="10001" x="200" y="500" />
+    <jump id="16" mapid="10002" x="200" y="500" />
+    <jump id="17" mapid="10003" x="200" y="500" />
+</jumps>

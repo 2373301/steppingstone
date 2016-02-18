@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<votings>
+    <voting id="1" type="1" start_time="2" periodtime="0" min_time="0" voting_start_time="0;10" voting_end_time="3;0;0" />
+    <voting id="2" type="2" start_time="7" periodtime="0" min_time="3" voting_start_time="0;10" voting_end_time="3;0;0" />
+</votings>

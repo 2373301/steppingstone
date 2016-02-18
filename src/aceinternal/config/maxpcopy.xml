@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<maxpcopys>
+    <maxpcopy id="1" level="40" lock="18" times="2" playermin="2" playermax="3" bonus="4" />
+    <maxpcopy id="2" level="60" lock="20" times="2" playermin="2" playermax="3" bonus="12" />
+    <maxpcopy id="3" level="80" lock="26" times="1" playermin="2" playermax="3" bonus="6" />
+    <maxpcopy id="4" level="90" lock="30" times="1" playermin="2" playermax="3" bonus="5" />
+    <maxpcopy id="5" level="100" lock="38" times="2" playermin="2" playermax="3" bonus="10" />
+    <maxpcopy id="6" level="120" lock="45" times="2" playermin="2" playermax="3" bonus="7" />
+</maxpcopys>

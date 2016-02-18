@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ranchsets>
+    <ranchset riding_up="20000;100" forage_item="30017" forage_up="200" coin_up="501" pt_refresh="502" pt_item="30018" color_refresh="503" crit="1000" crit_color="4" help_open1="3" help_open2="6" help_open3="9" help_open4="12" default_open1="7;19;43" default_open2="8;20;44" default_open3="21" default_open4="22" />
+</ranchsets>

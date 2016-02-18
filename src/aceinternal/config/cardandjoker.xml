@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cardandjokers>
+    <cardandjoker id="1" type="1" subtype="1" a="0" b="100000" roleid="1001" probability="20" critical="1" weight="10" />
+    <cardandjoker id="2" type="1" subtype="1" a="0" b="100000" roleid="1002" probability="20" critical="1" weight="10" />
+    <cardandjoker id="3" type="1" subtype="1" a="0" b="10000" roleid="1003" probability="20" critical="1" weight="10" />
+    <cardandjoker id="4" type="1" subtype="1" a="0" b="10000" roleid="1004" probability="20" critical="1" weight="10" />
+    <cardandjoker id="5" type="2" subtype="1" a="10" b="0" roleid="805" probability="20" critical="1" weight="10" />
+    <cardandjoker id="6" type="2" subtype="1" a="10" b="0" roleid="806" probability="20" critical="1" weight="12" />
+    <cardandjoker id="7" type="2" subtype="1" a="10" b="0" roleid="807" probability="20" critical="1" weight="14" />
+    <cardandjoker id="8" type="2" subtype="1" a="10" b="0" roleid="808" probability="20" critical="1" weight="16" />
+    <cardandjoker id="9" type="2" subtype="1" a="10" b="0" roleid="809" probability="20" critical="1" weight="18" />
+    <cardandjoker id="10" type="2" subtype="1" a="10" b="0" roleid="810" probability="20" critical="1" weight="20" />
+    <cardandjoker id="11" type="2" subtype="1" a="10" b="0" roleid="812" probability="20" critical="1" weight="22" />
+    <cardandjoker id="12" type="2" subtype="1" a="10" b="0" roleid="813" probability="20" critical="1" weight="24" />
+    <cardandjoker id="13" type="1" subtype="1" a="0" b="20000" roleid="814" probability="20" critical="1" weight="10" />
+    <cardandjoker id="14" type="1" subtype="1" a="0" b="20000" roleid="815" probability="20" critical="1" weight="10" />
+    <cardandjoker id="15" type="1" subtype="1" a="0" b="20000" roleid="10001" probability="20" critical="1" weight="10" />
+    <cardandjoker id="16" type="1" subtype="1" a="0" b="20000" roleid="101" probability="20" critical="1" weight="10" />
+    <cardandjoker id="17" type="1" subtype="1" a="0" b="20000" roleid="103" probability="20" critical="1" weight="10" />
+    <cardandjoker id="18" type="1" subtype="1" a="0" b="20000" roleid="104" probability="20" critical="1" weight="10" />
+    <cardandjoker id="19" type="1" subtype="1" a="0" b="20000" roleid="106" probability="20" critical="1" weight="10" />
+    <cardandjoker id="20" type="1" subtype="1" a="0" b="20000" roleid="107" probability="20" critical="1" weight="10" />
+    <cardandjoker id="21" type="1" subtype="1" a="0" b="20000" roleid="837" probability="20" critical="1" weight="10" />
+    <cardandjoker id="22" type="1" subtype="1" a="0" b="20000" roleid="113" probability="20" critical="1" weight="10" />
+    <cardandjoker id="23" type="2" subtype="1" a="700" b="0" roleid="811" probability="20" critical="1" weight="46" />
+    <cardandjoker id="24" type="2" subtype="1" a="600" b="0" roleid="8" probability="20" critical="1" weight="48" />
+    <cardandjoker id="25" type="2" subtype="1" a="2046" b="0" roleid="8" probability="20" critical="1" weight="50" />
+    <cardandjoker id="26" type="2" subtype="1" a="1888" b="0" roleid="8" probability="20" critical="1" weight="52" />
+    <cardandjoker id="27" type="2" subtype="1" a="10" b="0" roleid="8" probability="20" critical="1" weight="54" />
+    <cardandjoker id="28" type="2" subtype="1" a="10" b="0" roleid="8" probability="20" critical="1" weight="56" />
+    <cardandjoker id="29" type="2" subtype="1" a="10" b="0" roleid="8" probability="20" critical="1" weight="58" />
+    <cardandjoker id="30" type="2" subtype="1" a="10" b="0" roleid="8" probability="20" critical="1" weight="60" />
+    <cardandjoker id="31" type="1" subtype="1" a="0" b="50000" roleid="1022" probability="20" critical="1" weight="10" />
+    <cardandjoker id="32" type="1" subtype="1" a="0" b="50000" roleid="1023" probability="20" critical="1" weight="10" />
+    <cardandjoker id="33" type="1" subtype="1" a="0" b="50000" roleid="1024" probability="20" critical="1" weight="10" />
+    <cardandjoker id="34" type="1" subtype="1" a="0" b="50000" roleid="1027" probability="20" critical="1" weight="10" />
+    <cardandjoker id="35" type="1" subtype="1" a="0" b="50000" roleid="1028" probability="20" critical="1" weight="10" />
+    <cardandjoker id="36" type="1" subtype="1" a="0" b="50000" roleid="1025" probability="20" critical="1" weight="10" />
+    <cardandjoker id="37" type="1" subtype="1" a="0" b="50000" roleid="1029" probability="20" critical="1" weight="10" />
+    <cardandjoker id="38" type="1" subtype="1" a="0" b="50000" roleid="1030" probability="20" critical="1" weight="10" />
+    <cardandjoker id="39" type="1" subtype="1" a="0" b="50000" roleid="1017" probability="20" critical="1" weight="10" />
+    <cardandjoker id="40" type="1" subtype="1" a="0" b="50000" roleid="1015" probability="20" critical="1" weight="10" />
+</cardandjokers>

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hammers>
+    <hammer id="1" probability="10" critical="2" pay="0" num="0" />
+    <hammer id="2" probability="40" critical="2" pay="2" num="0" />
+    <hammer id="3" probability="100" critical="2" pay="2" num="0" />
+</hammers>

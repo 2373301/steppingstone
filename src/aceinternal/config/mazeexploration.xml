@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mazeexplorations>
+    <mazeexploration maxexploration="50" resumetime="60" resumevalue="5" explorationid="188" explorationvalue="5" roomclearid="189" maxroomclearnnum="20" />
+</mazeexplorations>

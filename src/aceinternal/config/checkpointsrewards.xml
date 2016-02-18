@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<checkpointsrewardss>
+    <checkpointsrewards level_group="30" exp1="10240" bonus1="22001" exp2="20480" bonus2="23001" bonus3="24001" bonus4="25001" bonus5="26001" />
+    <checkpointsrewards level_group="31" exp1="10240" bonus1="22001" exp2="20480" bonus2="23001" bonus3="24001" bonus4="25001" bonus5="26001" />
+    <checkpointsrewards level_group="32" exp1="10240" bonus1="22001" exp2="20480" bonus2="23001" bonus3="24001" bonus4="25001" bonus5="26001" />
+    <checkpointsrewards level_group="33" exp1="10240" bonus1="22001" exp2="20480" bonus2="23001" bonus3="24001" bonus4="25001" bonus5="26001" />
+    <checkpointsrewards level_group="34" exp1="10240" bonus1="22001" exp2="20480" bonus2="23001" bonus3="24001" bonus4="25001" bonus5="26001" />
+    <checkpointsrewards level_group="35" exp1="20480" bonus1="22002" exp2="40960" bonus2="23002" bonus3="24002" bonus4="25002" bonus5="26002" />
+    <checkpointsrewards level_group="36" exp1="20480" bonus1="22002" exp2="40960" bonus2="23002" bonus3="24002" bonus4="25002" bonus5="26002" />
+    <checkpointsrewards level_group="37" exp1="20480" bonus1="22002" exp2="40960" bonus2="23002" bonus3="24002" bonus4="25002" bonus5="26002" />
+    <checkpointsrewards level_group="38" exp1="20480" bonus1="22002" exp2="40960" bonus2="23002" bonus3="24002" bonus4="25002" bonus5="26002" />
+    <checkpointsrewards level_group="39" exp1="20480" bonus1="22002" exp2="40960" bonus2="23002" bonus3="24002" bonus4="25002" bonus5="26002" />
+    <checkpointsrewards level_group="40" exp1="40960" bonus1="22003" exp2="81920" bonus2="23003" bonus3="24003" bonus4="25003" bonus5="26003" />
+    <checkpointsrewards level_group="41" exp1="40960" bonus1="22003" exp2="81920" bonus2="23003" bonus3="24003" bonus4="25003" bonus5="26003" />
+    <checkpointsrewards level_group="42" exp1="40960" bonus1="22003" exp2="81920" bonus2="23003" bonus3="24003" bonus4="25003" bonus5="26003" />
+    <checkpointsrewards level_group="43" exp1="40960" bonus1="22003" exp2="81920" bonus2="23003" bonus3="24003" bonus4="25003" bonus5="26003" />
+    <checkpointsrewards level_group="44" exp1="40960" bonus1="22003" exp2="81920" bonus2="23003" bonus3="24003" bonus4="25003" bonus5="26003" />
+    <checkpointsrewards level_group="45" exp1="54613" bonus1="22004" exp2="109226" bonus2="23004" bonus3="24004" bonus4="25004" bonus5="26004" />
+    <checkpointsrewards level_group="46" exp1="54613" bonus1="22004" exp2="109226" bonus2="23004" bonus3="24004" bonus4="25004" bonus5="26004" />
+    <checkpointsrewards level_group="47" exp1="54613" bonus1="22004" exp2="109226" bonus2="23004" bonus3="24004" bonus4="25004" bonus5="26004" />
+    <checkpointsrewards level_group="48" exp1="54613" bonus1="22004" exp2="109226" bonus2="23004" bonus3="24004" bonus4="25004" bonus5="26004" />
+    <checkpointsrewards level_group="49" exp1="54613" bonus1="22004" exp2="109226" bonus2="23004" bonus3="24004" bonus4="25004" bonus5="26004" />
+    <checkpointsrewards level_group="50" exp1="69973" bonus1="22005" exp2="139946" bonus2="23005" bonus3="24005" bonus4="25005" bonus5="26005" />
+    <checkpointsrewards level_group="51" exp1="69973" bonus1="22005" exp2="139946" bonus2="23005" bonus3="24005" bonus4="25005" bonus5="26005" />
+    <checkpointsrewards level_group="52" exp1="69973" bonus1="22005" exp2="139946" bonus2="23005" bonus3="24005" bonus4="25005" bonus5="26005" />
+    <checkpointsrewards level_group="53" exp1="69973" bonus1="22005" exp2="139946" bonus2="23005" bonus3="24005" bonus4="25005" bonus5="26005" />
+    <checkpointsrewards level_group="54" exp1="69973" bonus1="22005" exp2="139946" bonus2="23005" bonus3="24005" bonus4="25005" bonus5="26005" />
+    <checkpointsrewards level_group="55" exp1="85333" bonus1="22006" exp2="170666" bonus2="23006" bonus3="24006" bonus4="25006" bonus5="26006" />
+    <checkpointsrewards level_group="56" exp1="85333" bonus1="22006" exp2="170666" bonus2="23006" bonus3="24006" bonus4="25006" bonus5="26006" />
+    <checkpointsrewards level_group="57" exp1="85333" bonus1="22006" exp2="170666" bonus2="23006" bonus3="24006" bonus4="25006" bonus5="26006" />
+    <checkpointsrewards level_group="58" exp1="85333" bonus1="22006" exp2="170666" bonus2="23006" bonus3="24006" bonus4="25006" bonus5="26006" />
+    <checkpointsrewards level_group="59" exp1="85333" bonus1="22006" exp2="170666" bonus2="23006" bonus3="24006" bonus4="25006" bonus5="26006" />
+    <checkpointsrewards level_group="60" exp1="100693" bonus1="22007" exp2="201386" bonus2="23007" bonus3="24007" bonus4="25007" bonus5="26007" />
+</checkpointsrewardss>

@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<factions>
+    <faction id="1" ready_time="300" start_time="72000" end_time="1800" level="20;99" round_time="1" cd1="10" cd2="15" cd3="15" cd4="10" />
+</factions>

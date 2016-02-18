@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<medicines>
+    <medicine grade="1" tyep="1" needitem="9701" needlevel="8" max="2" reward_type="4" reward_value="50" goleblessme_id="155" />
+    <medicine grade="2" tyep="1" needitem="9702" needlevel="10" max="3" reward_type="4" reward_value="100" goleblessme_id="156" />
+    <medicine grade="3" tyep="1" needitem="9703" needlevel="15" max="4" reward_type="4" reward_value="150" goleblessme_id="157" />
+    <medicine grade="4" tyep="1" needitem="9704" needlevel="20" max="5" reward_type="4" reward_value="200" goleblessme_id="158" />
+    <medicine grade="5" tyep="1" needitem="9705" needlevel="20" max="6" reward_type="4" reward_value="250" goleblessme_id="159" />
+    <medicine grade="6" tyep="1" needitem="9706" needlevel="20" max="7" reward_type="4" reward_value="300" goleblessme_id="160" />
+    <medicine grade="7" tyep="1" needitem="9707" needlevel="20" max="8" reward_type="4" reward_value="350" goleblessme_id="161" />
+    <medicine grade="1" tyep="2" needitem="9708" needlevel="8" max="2" reward_type="5" reward_value="100" goleblessme_id="165" />
+    <medicine grade="2" tyep="2" needitem="9709" needlevel="10" max="3" reward_type="5" reward_value="200" goleblessme_id="166" />
+    <medicine grade="3" tyep="2" needitem="9710" needlevel="15" max="4" reward_type="5" reward_value="300" goleblessme_id="167" />
+    <medicine grade="4" tyep="2" needitem="9711" needlevel="20" max="5" reward_type="5" reward_value="400" goleblessme_id="168" />
+    <medicine grade="5" tyep="2" needitem="9712" needlevel="20" max="6" reward_type="5" reward_value="500" goleblessme_id="169" />
+    <medicine grade="6" tyep="2" needitem="9713" needlevel="20" max="7" reward_type="5" reward_value="600" goleblessme_id="170" />
+    <medicine grade="7" tyep="2" needitem="9714" needlevel="20" max="8" reward_type="5" reward_value="700" goleblessme_id="171" />
+    <medicine grade="1" tyep="3" needitem="9715" needlevel="8" max="2" reward_type="6" reward_value="40" goleblessme_id="175" />
+    <medicine grade="2" tyep="3" needitem="9716" needlevel="10" max="3" reward_type="6" reward_value="80" goleblessme_id="176" />
+    <medicine grade="3" tyep="3" needitem="9717" needlevel="15" max="4" reward_type="6" reward_value="120" goleblessme_id="177" />
+    <medicine grade="4" tyep="3" needitem="9718" needlevel="20" max="5" reward_type="6" reward_value="160" goleblessme_id="178" />
+    <medicine grade="5" tyep="3" needitem="9719" needlevel="20" max="6" reward_type="6" reward_value="200" goleblessme_id="179" />
+    <medicine grade="6" tyep="3" needitem="9720" needlevel="20" max="7" reward_type="6" reward_value="240" goleblessme_id="180" />
+    <medicine grade="7" tyep="3" needitem="9721" needlevel="20" max="8" reward_type="6" reward_value="280" goleblessme_id="181" />
+</medicines>

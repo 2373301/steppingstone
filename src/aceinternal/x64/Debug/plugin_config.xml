@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<plugins>
+	<valid_for_scene>
+		<plugin id="51">
+			<scene type="1" id="99900" />
+		</plugin>
+		<plugin id="52">
+			<scene type="1" id="0" />
+		</plugin>
+		<plugin id="47">
+			<scene type="2" id="0" />
+		</plugin>
+		<plugin id="48">
+			<scene type="1" id="99900" />
+		</plugin>
+		<plugin id="50">
+			<scene type="1" id="0" />
+		</plugin>
+		<plugin id="55">
+			<scene type="1" id="99900" />
+			<scene type="2" id="0" />
+		</plugin>
+		<plugin id="60">
+			<scene type="2" id="0" />
+		</plugin>
+		<plugin id="65">
+			<scene type="1" id="0" />
+		</plugin>
+		<plugin id="88">
+			<scene type="1" id="99900" />
+		</plugin>	
+	</valid_for_scene>
+	<avoid_for_scene>
+		<plugin id="49">
+			<scene type="1" id="99900;0" />
+		</plugin>
+		<plugin id="48">
+			<scene type="2" id="0" />
+		</plugin>
+		<plugin id="60">
+			<scene type="1" id="99900;99901;0" />
+		</plugin>
+	</avoid_for_scene>
+</plugins>

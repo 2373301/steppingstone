@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<dailypointsevents>
+    <dailypointsevent id="1" eventid="4" num="10" unlock_min="1" unlock_max="200" point="25" />
+    <dailypointsevent id="2" eventid="4" num="5" unlock_min="1" unlock_max="200" point="15" />
+    <dailypointsevent id="3" eventid="10" num="1" unlock_min="1" unlock_max="200" point="5" />
+    <dailypointsevent id="4" eventid="11" num="1" unlock_min="1" unlock_max="200" point="20" />
+    <dailypointsevent id="5" eventid="5" num="10" unlock_min="99" unlock_max="200" point="20" />
+    <dailypointsevent id="6" eventid="7" num="1" unlock_min="25" unlock_max="200" point="15" />
+    <dailypointsevent id="7" eventid="8" num="1" unlock_min="1" unlock_max="200" point="10" />
+    <dailypointsevent id="8" eventid="9" num="10" unlock_min="35" unlock_max="200" point="10" />
+    <dailypointsevent id="9" eventid="12" num="10" unlock_min="35" unlock_max="200" point="25" />
+    <dailypointsevent id="10" eventid="13" num="1" unlock_min="35" unlock_max="200" point="20" />
+    <dailypointsevent id="11" eventid="14" num="10" unlock_min="54" unlock_max="200" point="10" />
+    <dailypointsevent id="12" eventid="15" num="1" unlock_min="99" unlock_max="200" point="15" />
+    <dailypointsevent id="13" eventid="16" num="1" unlock_min="33" unlock_max="200" point="5" />
+    <dailypointsevent id="14" eventid="17" num="1" unlock_min="33" unlock_max="200" point="5" />
+    <dailypointsevent id="15" eventid="18" num="1" unlock_min="33" unlock_max="200" point="10" />
+    <dailypointsevent id="16" eventid="19" num="1" unlock_min="99" unlock_max="200" point="5" />
+    <dailypointsevent id="17" eventid="20" num="5" unlock_min="20" unlock_max="200" point="5" />
+    <dailypointsevent id="18" eventid="21" num="1" unlock_min="20" unlock_max="200" point="5" />
+    <dailypointsevent id="19" eventid="24" num="1" unlock_min="20" unlock_max="200" point="15" />
+    <dailypointsevent id="20" eventid="25" num="2" unlock_min="41" unlock_max="200" point="20" />
+    <dailypointsevent id="21" eventid="26" num="20" unlock_min="41" unlock_max="200" point="5" />
+    <dailypointsevent id="22" eventid="29" num="1" unlock_min="39" unlock_max="200" point="5" />
+    <dailypointsevent id="23" eventid="1" num="3" unlock_min="33" unlock_max="200" point="10" />
+    <dailypointsevent id="24" eventid="3" num="1" unlock_min="35" unlock_max="200" point="10" />
+    <dailypointsevent id="25" eventid="30" num="1" unlock_min="45" unlock_max="200" point="5" />
+    <dailypointsevent id="26" eventid="33" num="1" unlock_min="30" unlock_max="200" point="10" />
+    <dailypointsevent id="27" eventid="34" num="1" unlock_min="30" unlock_max="200" point="10" />
+    <dailypointsevent id="28" eventid="35" num="1" unlock_min="30" unlock_max="200" point="5" />
+    <dailypointsevent id="29" eventid="38" num="1" unlock_min="36" unlock_max="200" point="5" />
+    <dailypointsevent id="30" eventid="40" num="1" unlock_min="36" unlock_max="200" point="5" />
+    <dailypointsevent id="31" eventid="42" num="1" unlock_min="33" unlock_max="200" point="10" />
+    <dailypointsevent id="32" eventid="43" num="1" unlock_min="41" unlock_max="200" point="10" />
+</dailypointsevents>

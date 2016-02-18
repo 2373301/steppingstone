@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<gettings>
+    <getting job="1" part="6;3;4;2;1" level="999;999;999;999;999" equip="11014;11013;11015;11012;11011" part_num="5" rewards="16519" />
+    <getting job="2" part="6;3;4;2;1" level="999;999;999;999;999" equip="11014;11013;11015;11012;11011" part_num="5" rewards="16519" />
+    <getting job="3" part="6;3;4;2;1" level="999;999;999;999;999" equip="11014;11013;11015;11012;11011" part_num="5" rewards="16519" />
+</gettings>

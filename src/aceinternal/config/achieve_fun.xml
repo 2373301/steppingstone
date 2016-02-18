@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<achieves>
+    <achieve functionid="1" gold_need="0" options="" options2="10005" options3="39" />
+    <achieve functionid="2" gold_need="0" options="" options2="10006" options3="0" />
+    <achieve functionid="3" gold_need="0" options="" options2="33001" options3="0" />
+    <achieve functionid="4" gold_need="0" options="" options2="15012" options3="0" />
+    <achieve functionid="5" gold_need="0" options="" options2="15006" options3="0" />
+    <achieve functionid="6" gold_need="0" options="" options2="0" options3="15" />
+    <achieve functionid="7" gold_need="0" options="" options2="15008" options3="23" />
+    <achieve functionid="8" gold_need="0" options="" options2="32000" options3="0" />
+    <achieve functionid="9" gold_need="0" options="" options2="0" options3="0" />
+    <achieve functionid="10" gold_need="0" options="" options2="15009" options3="18" />
+    <achieve functionid="11" gold_need="0" options="" options2="15011" options3="31" />
+    <achieve functionid="12" gold_need="0" options="" options2="0" options3="28" />
+    <achieve functionid="13" gold_need="0" options="" options2="0" options3="42" />
+    <achieve functionid="14" gold_need="0" options="" options2="0" options3="47" />
+    <achieve functionid="15" gold_need="0" options="" options2="30001" options3="0" />
+    <achieve functionid="16" gold_need="0" options="" options2="30013" options3="0" />
+    <achieve functionid="17" gold_need="0" options="" options2="30014" options3="0" />
+    <achieve functionid="18" gold_need="0" options="" options2="30015" options3="0" />
+    <achieve functionid="19" gold_need="0" options="1:300;4:300;7:300" options2="0" options3="0" />
+</achieves>

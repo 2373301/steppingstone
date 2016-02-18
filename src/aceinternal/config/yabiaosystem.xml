@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<yabiaosystems>
+    <yabiaosystem reward="20" time="1800" add_speed="20" speed_goldblessme_id="94" yabiao_havelosstimes="2" yabiao_loss="20" yabiao_friendget="10" yabiao_times="3" yabiao_losstimes="4" yabiao_friendtimes="2" yabiao_losscd="600" losscd_goldblessme_id="95" speciallost1="20" speciallost2="5" speed_up="40" speed_upgoleblessme_id="96" completeyabiao_goldblessme_id="97" max_pay="98" initial_place="1" speed_reward="1000" />
+</yabiaosystems>

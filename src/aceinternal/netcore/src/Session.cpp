@@ -138,11 +138,6 @@ int Session::handle_close(ACE_HANDLE handle, ACE_Reactor_Mask close_mask)
 	return close(close_mask);
 }
 
-void Session::output(Packet * packet)
-{
-	// todo
-}
-
 int Session::rd_stream()
 {
 	int result = 0;

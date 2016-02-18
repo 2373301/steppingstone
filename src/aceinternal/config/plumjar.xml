@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<plumjars>
+    <plumjar type="1" id="1081" need_capacity="20" level_group="100" probability="1" />
+    <plumjar type="2" id="1080" need_capacity="15" level_group="100" probability="1" />
+</plumjars>

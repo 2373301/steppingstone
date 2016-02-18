@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<medicineynthesiss>
+    <medicineynthesis id="9702" needitem="9701" neednum="3" goldblessme_id="155" gold="5" />
+    <medicineynthesis id="9703" needitem="9702" neednum="3" goldblessme_id="156" gold="15" />
+    <medicineynthesis id="9704" needitem="9703" neednum="3" goldblessme_id="157" gold="45" />
+    <medicineynthesis id="9705" needitem="9704" neednum="3" goldblessme_id="158" gold="135" />
+    <medicineynthesis id="9706" needitem="9705" neednum="3" goldblessme_id="159" gold="405" />
+    <medicineynthesis id="9707" needitem="9706" neednum="3" goldblessme_id="160" gold="1215" />
+    <medicineynthesis id="9709" needitem="9708" neednum="3" goldblessme_id="165" gold="5" />
+    <medicineynthesis id="9710" needitem="9709" neednum="3" goldblessme_id="166" gold="15" />
+    <medicineynthesis id="9711" needitem="9710" neednum="3" goldblessme_id="167" gold="45" />
+    <medicineynthesis id="9712" needitem="9711" neednum="3" goldblessme_id="168" gold="135" />
+    <medicineynthesis id="9713" needitem="9712" neednum="3" goldblessme_id="169" gold="405" />
+    <medicineynthesis id="9714" needitem="9713" neednum="3" goldblessme_id="170" gold="1215" />
+    <medicineynthesis id="9716" needitem="9715" neednum="3" goldblessme_id="175" gold="5" />
+    <medicineynthesis id="9717" needitem="9716" neednum="3" goldblessme_id="176" gold="15" />
+    <medicineynthesis id="9718" needitem="9717" neednum="3" goldblessme_id="177" gold="45" />
+    <medicineynthesis id="9719" needitem="9718" neednum="3" goldblessme_id="178" gold="135" />
+    <medicineynthesis id="9720" needitem="9719" neednum="3" goldblessme_id="179" gold="405" />
+    <medicineynthesis id="9721" needitem="9720" neednum="3" goldblessme_id="180" gold="1215" />
+</medicineynthesiss>

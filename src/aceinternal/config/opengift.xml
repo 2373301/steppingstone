@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<opengifts>
+    <opengift id="1" eventlevel="1" item="60002" />
+    <opengift id="2" eventlevel="5" item="60003" />
+    <opengift id="3" eventlevel="10" item="60004" />
+    <opengift id="4" eventlevel="15" item="60005" />
+    <opengift id="5" eventlevel="20" item="60006" />
+    <opengift id="6" eventlevel="25" item="60007" />
+    <opengift id="7" eventlevel="30" item="60008" />
+    <opengift id="8" eventlevel="40" item="60009" />
+    <opengift id="9" eventlevel="50" item="60010" />
+</opengifts>

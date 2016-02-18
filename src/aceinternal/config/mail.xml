@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mails>
+    <mail id="1" word_limit="1024" title_limit="20" mailbox_limit="60" mail_survival="15" mass_lilmit="10" attachment="0" pay_mail="0" />
+    <mail id="2" word_limit="1024" title_limit="20" mailbox_limit="60" mail_survival="15" mass_lilmit="0" attachment="0" pay_mail="0" />
+    <mail id="3" word_limit="1024" title_limit="20" mailbox_limit="60" mail_survival="15" mass_lilmit="0" attachment="5" pay_mail="1" />
+</mails>

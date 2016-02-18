@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pvprewardss>
+    <pvprewards reward="32" rewardtype="2" servers="1" level="1" bonusid="190001" />
+    <pvprewards reward="16" rewardtype="2" servers="1" level="1" bonusid="190010" />
+    <pvprewards reward="8" rewardtype="2" servers="1" level="1" bonusid="190019" />
+    <pvprewards reward="4" rewardtype="2" servers="1" level="1" bonusid="190028" />
+    <pvprewards reward="2" rewardtype="2" servers="1" level="1" bonusid="190037" />
+    <pvprewards reward="1" rewardtype="2" servers="1" level="1" bonusid="190046" />
+    <pvprewards reward="32" rewardtype="1" servers="1" level="1" bonusid="190055" />
+    <pvprewards reward="16" rewardtype="1" servers="1" level="1" bonusid="190064" />
+    <pvprewards reward="8" rewardtype="1" servers="1" level="1" bonusid="190073" />
+    <pvprewards reward="4" rewardtype="1" servers="1" level="1" bonusid="190082" />
+    <pvprewards reward="2" rewardtype="1" servers="1" level="1" bonusid="190091" />
+    <pvprewards reward="1" rewardtype="1" servers="1" level="1" bonusid="190100" />
+    <pvprewards reward="32" rewardtype="2" servers="2" level="1" bonusid="190109" />
+    <pvprewards reward="16" rewardtype="2" servers="2" level="1" bonusid="190118" />
+    <pvprewards reward="8" rewardtype="2" servers="2" level="1" bonusid="190127" />
+    <pvprewards reward="4" rewardtype="2" servers="2" level="1" bonusid="190136" />
+    <pvprewards reward="2" rewardtype="2" servers="2" level="1" bonusid="190145" />
+    <pvprewards reward="1" rewardtype="2" servers="2" level="1" bonusid="190154" />
+    <pvprewards reward="32" rewardtype="1" servers="2" level="1" bonusid="190163" />
+    <pvprewards reward="16" rewardtype="1" servers="2" level="1" bonusid="190172" />
+    <pvprewards reward="8" rewardtype="1" servers="2" level="1" bonusid="190181" />
+    <pvprewards reward="4" rewardtype="1" servers="2" level="1" bonusid="190190" />
+    <pvprewards reward="2" rewardtype="1" servers="2" level="1" bonusid="190199" />
+    <pvprewards reward="1" rewardtype="1" servers="2" level="1" bonusid="190208" />
+</pvprewardss>

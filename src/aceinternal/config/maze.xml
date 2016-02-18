@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mazes>
+    <maze id="1" type="1" subtype="1" level="30" target="0" item="0" opemtime1="0" opemtime2="1440" periodtime="0" opentimes="1" goldblessmeid="190" entrance="1" lowtrip="50" maxrewards="1000" bosstarget="100001;100002;100003;100004;100005" bossroom="23" />
+    <maze id="2" type="1" subtype="1" level="40" target="0" item="0" opemtime1="0" opemtime2="1440" periodtime="0" opentimes="1" goldblessmeid="190" entrance="112" lowtrip="100" maxrewards="1000" bosstarget="100006;100007;100008;100009;100010" bossroom="114" />
+    <maze id="3" type="1" subtype="1" level="55" target="0" item="0" opemtime1="0" opemtime2="1440" periodtime="0" opentimes="1" goldblessmeid="209" entrance="201" lowtrip="100" maxrewards="1000" bosstarget="100001" bossroom="211" />
+</mazes>

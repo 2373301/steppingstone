@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<gamblings>
+    <gambling id="1;2;3" value="750;1000;1400" money="1;1;1" levelrange="1;999" leveleffect="10000;10000" hit16="0;4999;7499;10000" hitvalue16="2500;11000;11500;12500" hit8="0;4999;7499;10000" hitvalue8="2500;12000;13000;15000" hit4="0;4999;7499;10000" hitvalue4="2500;14000;16000;20000" hit2="0;4900;10000" hitvalue2="2500;22000;30000" hit1="0;10000" hitvalue1="2500;50000" returnvalue="10000" opentime="4" minmoney2="10000" maxmoney2="300000" levelrange1="1;999" leveleffect2="10000;10000" returnvalue2="8000" losspercent="110" losspercentm="10000;12500;15000;20000;25000;30000;35000;40000" losspercenty="0;500;2000;5000;10000" losspercenty2="4;3;3;3;3" luckydmoney="1000000" luckylevel="1;999" luckyeffect="10000;10000" />
+</gamblings>

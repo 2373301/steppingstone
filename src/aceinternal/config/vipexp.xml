@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<vipexps>
+    <vipexp level="1" exp="100" />
+    <vipexp level="2" exp="500" />
+    <vipexp level="3" exp="1000" />
+    <vipexp level="4" exp="2000" />
+    <vipexp level="5" exp="5000" />
+    <vipexp level="6" exp="10000" />
+    <vipexp level="7" exp="20000" />
+    <vipexp level="8" exp="50000" />
+    <vipexp level="9" exp="100000" />
+    <vipexp level="10" exp="200000" />
+</vipexps>

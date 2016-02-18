@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="inc">
+      <UniqueIdentifier>{55e77221-bc58-426f-9082-3cd63accf9ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="imp">
+      <UniqueIdentifier>{3968a187-b624-4941-83fa-5b13092800a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="world">
+      <UniqueIdentifier>{cae0f691-808f-41a6-adb6-8f13d21a61e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tools">
+      <UniqueIdentifier>{499aa721-3807-4247-ba96-564f2fcc6546}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="inc\Message.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Scene.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\SceneDepot.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\SceneFactory.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SceneDepotImp.h">
+      <Filter>imp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SceneImp.h">
+      <Filter>imp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SceneRequest.h">
+      <Filter>imp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SceneRequestAssistant.h">
+      <Filter>imp</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\World.h">
+      <Filter>world</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MakeGuid.h">
+      <Filter>tools</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageGridImp.h">
+      <Filter>tools</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageGridOptimize.h">
+      <Filter>tools</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageRandom.h">
+      <Filter>tools</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageTimer.h">
+      <Filter>tools</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Scend_def.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\SceneDepotImp.cpp">
+      <Filter>imp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneImp.cpp">
+      <Filter>imp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneRequest.cpp">
+      <Filter>imp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneRequestAssistant.cpp">
+      <Filter>imp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\World.cpp">
+      <Filter>world</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MakeGuid.cpp">
+      <Filter>tools</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageGridImp.cpp">
+      <Filter>tools</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageGridOptimize.cpp">
+      <Filter>tools</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageRandom.cpp">
+      <Filter>tools</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageTimer.cpp">
+      <Filter>tools</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneFactory.cpp">
+      <Filter>imp</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

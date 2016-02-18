@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<gvgrewardss>
+    <gvgrewards reward="1" level="1;30;40;50;60;200" bonusid="111001;111002;111003;111004;111005;111005" />
+    <gvgrewards reward="2" level="1;30;40;50;60;200" bonusid="112001;112002;112003;112004;112005;112005" />
+    <gvgrewards reward="4" level="1;30;40;50;60;200" bonusid="113001;113002;113003;113004;113005;113005" />
+    <gvgrewards reward="8" level="1;30;40;50;60;200" bonusid="114001;114002;114003;114004;114005;114005" />
+    <gvgrewards reward="16" level="1;30;40;50;60;200" bonusid="115001;115002;115003;115004;115005;115005" />
+</gvgrewardss>

@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<systems>
+    <system team_level="30" team_money="10000" name_min="4" name_max="12" initial_name="0" battle_num="3" cd_time="60" join_max="10" return="10000" jointime1="10" jointime2="15" kuafu_begintime="10080" part1begintime="20" part1rundtime="5" di_begintime="10" part1num="16" defeatedtimes1="3" part2begintime1="200" part2begintime2="250" part2begintime3="300" part2begintime4="350" part2rundtime="5" defeatedtimes2="3" battletimes="5" leader_chenghao="1" partner_chenghao="1" benfu_first_reward1="1;2;3;4;5;6" benfu_first_reward2="1;2;3;4;5;6" benfu_first_reward3="1;2;3;4;5;6" kuafu_first_reward1="1;2;3;4;5;6" kuafu_first_reward2="1;2;3;4;5;6" kuafu_first_reward3="1;2;3;4;5;6" benfu_next_reward="1" kuafu_next_reward="1" />
+</systems>

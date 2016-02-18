@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rewardss>
+    <rewards level="1" worship_rewards="300001" worshiped_rewards="310001" worshiped_limit="150" worship_num="0" rank_rewards="0" vote_rewards="340001" />
+    <rewards level="35" worship_rewards="300002" worshiped_rewards="310002" worshiped_limit="150" worship_num="0" rank_rewards="0" vote_rewards="340002" />
+    <rewards level="40" worship_rewards="300003" worshiped_rewards="310003" worshiped_limit="150" worship_num="0" rank_rewards="0" vote_rewards="340003" />
+    <rewards level="45" worship_rewards="300004" worshiped_rewards="310004" worshiped_limit="150" worship_num="0" rank_rewards="0" vote_rewards="340004" />
+    <rewards level="50" worship_rewards="300005" worshiped_rewards="310005" worshiped_limit="150" worship_num="0" rank_rewards="0" vote_rewards="340005" />
+    <rewards level="55" worship_rewards="300006" worshiped_rewards="310006" worshiped_limit="150" worship_num="0" rank_rewards="0" vote_rewards="340006" />
+    <rewards level="60" worship_rewards="300007" worshiped_rewards="310007" worshiped_limit="150" worship_num="0" rank_rewards="0" vote_rewards="340007" />
+    <rewards level="65" worship_rewards="300008" worshiped_rewards="310008" worshiped_limit="150" worship_num="0" rank_rewards="0" vote_rewards="340008" />
+    <rewards level="70" worship_rewards="300009" worshiped_rewards="310009" worshiped_limit="150" worship_num="0" rank_rewards="0" vote_rewards="340009" />
+    <rewards level="75" worship_rewards="300010" worshiped_rewards="310009" worshiped_limit="150" worship_num="0" rank_rewards="0" vote_rewards="340009" />
+    <rewards level="80" worship_rewards="300011" worshiped_rewards="310009" worshiped_limit="150" worship_num="0" rank_rewards="0" vote_rewards="340009" />
+    <rewards level="85" worship_rewards="300012" worshiped_rewards="310009" worshiped_limit="150" worship_num="0" rank_rewards="0" vote_rewards="340009" />
+    <rewards level="90" worship_rewards="300013" worshiped_rewards="310009" worshiped_limit="150" worship_num="0" rank_rewards="0" vote_rewards="340009" />
+    <rewards level="95" worship_rewards="300014" worshiped_rewards="310009" worshiped_limit="150" worship_num="0" rank_rewards="0" vote_rewards="340009" />
+    <rewards level="100" worship_rewards="300014" worshiped_rewards="310009" worshiped_limit="150" worship_num="0" rank_rewards="0" vote_rewards="340009" />
+</rewardss>

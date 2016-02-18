@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mateups>
+    <mateup id="1" cost="1" exp="5" crit_pro="100" pay="14" />
+    <mateup id="2" cost="10" exp="300" crit_pro="500" pay="14" />
+</mateups>

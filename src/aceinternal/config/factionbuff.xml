@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<factionbuffs>
+    <factionbuff type="1" probability="70;71;72;73;74;75;76;77;78;79" cost="500;500;500;500;500;500;500;500;500;500" rate="1000" />
+    <factionbuff type="2" probability="70;71;72;73;74;75;76;77;78;79" cost="133;134;135;136;137;138;139;140;141;142" rate="10000" />
+    <factionbuff type="3" probability="80;81;82;83;84;85;86;87;88;89" cost="5;10;15;20;25;30;35;40;45;50" rate="0" />
+</factionbuffs>
