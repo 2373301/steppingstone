@@ -2,7 +2,7 @@
 #include "EntityHander.h"
 #include "Serialize.h"
 #include "ManageSerialize.h"
-#include "Session.h"
+#include "Sessionx.h"
 #include "ManageExpiredItem.h"
 
 namespace cached {
@@ -107,7 +107,7 @@ void EntityHander::input(Packet * packet)
 	m_packet_vec.push_back(packet);
 }
 
-void EntityHander::setOutputHandle(HandleOutput * handle_output)
+void EntityHander::setOutputHandle(HandleOutputx * handle_output)
 {
 	m_handle_output = handle_output;
 }

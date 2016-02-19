@@ -22,7 +22,6 @@ public:
 public:
 	void handleRemoteCache(RemoteCache * remote_cache);
 
-protected:
 private:
 	deque<RemoteCache *> m_remote_cache_qeque;
 

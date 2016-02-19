@@ -178,6 +178,7 @@ bool PoolImp::remove(uint64 guid, bool remove_from_db, bool remove_entity_msg)
 		m_online_player.erase(guid);
 	}
 
+	// ≤È—Øowner guid
 	uint64 owner_guid = 0;
 	{
 		GuidOwnerGuidMap_t::iterator it = m_guid_ownerguid_map.find(guid);

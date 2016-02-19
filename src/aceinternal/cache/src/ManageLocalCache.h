@@ -5,7 +5,7 @@
 #include <ace/Task.h>
 #include <ace/Thread_Mutex.h>
 #include "typedef.h"
-#include "ManageCache.h"
+#include "cachehdr.h"
 #include "LocalCache.h"
 #include "Packet.h"
 

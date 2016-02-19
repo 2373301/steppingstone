@@ -10,21 +10,22 @@ class RemoteCache : public Cache
 public:
 	RemoteCache();
 	~RemoteCache();
-public:
-	virtual int handle_input(ACE_HANDLE  fd = ACE_INVALID_HANDLE);
+
+	// 增加log 而已
+	virtual int handle_input(ACE_HANDLE  fd = ACE_INVALID_HANDLE) override;
 
 public:
 	virtual void output(Packet * packet);
 
-	virtual int wt_stream();
+	virtual int wt_stream() override;
 
-	virtual void recvError(int recv_value, int last_error);
+	virtual void recvError(int recv_value, int last_error) override;
 public:
-	virtual int finit();
+	virtual int finit() override;
 
 protected:
-	virtual int initing();
-protected:
+	virtual int initing() override;
+
 private:
 	bool m_is_writing;
 

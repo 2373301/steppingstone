@@ -20,13 +20,11 @@ public:
 
 struct RemoteCfg 
 {
-	RemoteCfg()
-		: type(0)
-	{}
-
-	typedef vector<string> CacheVec_t;
+	RemoteCfg(): type(0) {}
 
 	int type;
+
+	typedef vector<string> CacheVec_t;
 	CacheVec_t cache_addrs;
 };
 
@@ -44,13 +42,12 @@ struct CACHE_EXOPRT CacheCfg
 	RemoteCfg remote_cfg;
 };
 
-class CACHE_EXOPRT ManageCache : public CacheHandleOutput
+class CACHE_EXOPRT ManageCache
+	: public CacheHandleOutput
 {
 public:
-	~ManageCache()
-	{}
+	~ManageCache(){}
 
-public:
 	virtual int init(const CacheCfg & cache_cfg)
 	{
 		m_cache_cfg = cache_cfg;
@@ -63,9 +60,10 @@ public:
 
 protected:
 	virtual int initing() = 0;
+
+
 protected:
 	CacheCfg m_cache_cfg;
-private:
 };
 
 #endif

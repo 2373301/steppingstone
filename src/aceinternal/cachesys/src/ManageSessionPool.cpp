@@ -65,12 +65,12 @@ void ManageSessionPool::output(Packet * packet)
 }
 
 //
-void ManageSessionPool::sessionOpen(Session * session)
+void ManageSessionPool::sessionOpen(Sessionx * session)
 {
 	m_session_set.insert(session);
 }
 
-void ManageSessionPool::sessionClosed(Session * session)
+void ManageSessionPool::sessionClosed(Sessionx * session)
 {
 	m_session_set.erase(session);
 }
@@ -86,9 +86,9 @@ void ManageSessionPool::sessionRouterRemove(uint64 guid)
 	// do nothing
 }
 
-Session * ManageSessionPool::getSession(Packet * packet)
+Sessionx * ManageSessionPool::getSession(Packet * packet)
 {
-	SessionSet_t::iterator it = m_session_set.find((Session *)packet->getOwner());
+	SessionSet_t::iterator it = m_session_set.find((Sessionx *)packet->getOwner());
 	if (it != m_session_set.end())
 	{
 		return *it;

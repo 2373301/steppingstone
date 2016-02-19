@@ -1,0 +1,4 @@
+
+LIBRARY   BTREE
+EXPORTS
+   make_plugin   @1

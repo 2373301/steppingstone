@@ -70,12 +70,12 @@ void ManageSession::input(Packet * packet)
 	}
 }
 
-void ManageSession::sessionOpen(Session * session)
+void ManageSession::sessionOpen(Sessionx * session)
 {
 
 }
 
-void ManageSession::sessionClosed(Session * session)
+void ManageSession::sessionClosed(Sessionx * session)
 {
 
 }
@@ -90,7 +90,7 @@ void ManageSession::sessionRouterRemove(uint64 guid)
 
 }
 
-Session * ManageSession::getSession(Packet * packet)
+Sessionx * ManageSession::getSession(Packet * packet)
 {
-	return (Session *)packet->getOwner();
+	return (Sessionx *)packet->getOwner();
 }

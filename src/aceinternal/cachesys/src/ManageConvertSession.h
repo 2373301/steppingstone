@@ -5,11 +5,11 @@
 #include <ace/Thread_Mutex.h>
 #include <ace/Task.h>
 #include <ace/Singleton.h>
-#include "SessionPool.h"
+#include "SessionPoolx.h"
 #include "Singleton.h"
 
 class ManageConvertSession 
-	: public HandleInput
+	: public HandleInputx
 	, public netcore::HandleSessionOpenClosed
 	, public netcore::HandleSessionRouterAddRemove
 	, public ACE_Task<ACE_NULL_SYNCH>
@@ -38,16 +38,16 @@ public:
 	virtual void input(Packet * packet);
 
 public:
-	virtual void sessionOpen(Session * session);
+	virtual void sessionOpen(Sessionx * session);
 
-	virtual void sessionClosed(Session * session);
+	virtual void sessionClosed(Sessionx * session);
 
 public:
 	virtual void sessionRouterAdd(Packet * packet);
 
 	virtual void sessionRouterRemove(uint64 guid);
 
-	virtual Session * getSession(Packet * packet);
+	virtual Sessionx * getSession(Packet * packet);
 
 public:
 	void handleFile(const string & file_name);
@@ -58,9 +58,9 @@ protected:
 	void transferBinaryFile(bool convert_available, FilePathVec_t & file_path_vec);
 
 private:
-	typedef vector<Session *> SessionVec_t;
+	typedef vector<Sessionx *> SessionVec_t;
 
-	netcore::SessionPool * m_session_pool;
+	netcore::SessionPoolx * m_session_pool;
 
 	bool m_stop;
 

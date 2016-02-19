@@ -3,7 +3,7 @@
 #define MANAGE_SESSION_HPP
 
 #include <string>
-#include "SessionPool.h"
+#include "SessionPoolx.h"
 
 enum CheckGsType
 {
@@ -13,7 +13,7 @@ enum CheckGsType
 };
 
 class ManageSession 
-	: public HandleInput
+	: public HandleInputx
 	, public netcore::HandleSessionOpenClosed
 	, public netcore::HandleSessionRouterAddRemove
 {
@@ -25,16 +25,16 @@ public:
 	virtual void input(Packet * packet) override;
 
 	// handle session event
-	virtual void sessionOpen(Session * session) override;
+	virtual void sessionOpen(Sessionx * session) override;
 
-	virtual void sessionClosed(Session * session) override;
+	virtual void sessionClosed(Sessionx * session) override;
 
 	// handle session router
 	virtual void sessionRouterAdd(Packet * packet) override;
 
 	virtual void sessionRouterRemove(uint64 guid) override;
 
-	virtual Session * getSession(Packet * packet) override;
+	virtual Sessionx * getSession(Packet * packet) override;
 
 public:
 	int init(int monitor_type, char * port);
@@ -53,11 +53,11 @@ protected:
 	void handleGsStartupReport(Packet * packet);
 
 	void handleGsShutdownReport(Packet * packet);
-protected:
-private:
-	netcore::SessionPool * m_session_pool;
 
-	Session * m_session;
+private:
+	netcore::SessionPoolx * m_session_pool;
+
+	Sessionx * m_session;
 
 	CheckGsType m_check_gs_type;
 

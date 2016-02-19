@@ -9,7 +9,7 @@
 #include "Singleton.h"
 #include "SingletonInit.h"
 
-class HandleOutput;
+class HandleOutputx;
 
 namespace cached {
 	namespace service {
@@ -35,7 +35,7 @@ public:
 public:
 	void input(Packet * packet);
 
-	void setOutputHandle(HandleOutput * handle_output);
+	void setOutputHandle(HandleOutputx * handle_output);
 
 	void handleDbLoadReplay(DataRequestInfo * data_request_info);
 protected:
@@ -91,7 +91,7 @@ private:
 
 	typedef vector<DataRequestInfo *>	DataRequestInfoVec_t;
 
-	HandleOutput * m_handle_output;
+	HandleOutputx * m_handle_output;
 
 	CacheAssistantMap_t m_entity_map;
 

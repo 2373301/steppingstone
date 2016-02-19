@@ -6,10 +6,13 @@
 #include <ace/Reactor.h>
 #include "typedef.h"
 #include "Cache.h"
-#include "ManageCache.h"
+#include "cachehdr.h"
 #include "ManageRemoteCacheOutput.h"
 
-class ManageRemoteCache : public ManageCache, public HandleInputStream, public ACE_Task<ACE_NULL_SYNCH>
+class ManageRemoteCache 
+					: public ManageCache
+					, public HandleInputStream
+					, public ACE_Task<ACE_NULL_SYNCH>
 {
 public:
 	ManageRemoteCache();

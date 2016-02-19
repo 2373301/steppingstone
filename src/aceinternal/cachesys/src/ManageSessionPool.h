@@ -2,7 +2,7 @@
 #ifndef MANAGE_SESSION_POOL_HPP
 #define MANAGE_SESSION_POOL_HPP
 
-#include "SessionPool.h"
+#include "SessionPoolx.h"
 #include "SessionPoolFactory.h"
 #include "EntityHander.h"
 #include "SingletonInit.h"
@@ -12,8 +12,8 @@ namespace cached {
 	namespace service {
 
 class ManageSessionPool	
-	: public HandleInput
-	, public HandleOutput
+	: public HandleInputx
+	, public HandleOutputx
 	, public netcore::HandleSessionOpenClosed
 	, public netcore::HandleSessionRouterAddRemove
 	, public SingletonInit
@@ -38,22 +38,22 @@ public:
 
 	virtual void output(Packet * packet);
 	//
-	virtual void sessionOpen(Session * session);
+	virtual void sessionOpen(Sessionx * session);
 
-	virtual void sessionClosed(Session * session);
+	virtual void sessionClosed(Sessionx * session);
 
 	//
 	virtual void sessionRouterAdd(Packet * packet);
 
 	virtual void sessionRouterRemove(uint64 guid);
 
-	virtual Session * getSession(Packet * packet);
+	virtual Sessionx * getSession(Packet * packet);
 
 protected:
 private:
-	typedef define_unordered_set<Session *>	SessionSet_t;
+	typedef define_unordered_set<Sessionx *>	SessionSet_t;
 
-	netcore::SessionPool * m_session_pool;
+	netcore::SessionPoolx * m_session_pool;
 
 	SessionSet_t m_session_set;
 };

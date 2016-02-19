@@ -11,7 +11,7 @@
 namespace netcore
 {
 
-typedef ACE_Acceptor<CellSession, ACE_SOCK_ACCEPTOR> CellSessionAcceptor;
+typedef ACE_Acceptor<CellSessionx, ACE_SOCK_ACCEPTOR> CellSessionAcceptor;
 
 SessionPoolImp::SessionPoolImp()
 : m_handle_input(NULL)
@@ -93,7 +93,7 @@ void SessionPoolImp::input(Packet * packet)
 	}
 }
 
-int SessionPoolImp::init(int input_thr_no, int output_thr_no, HandleInput * handle_input, HandleSessionOpenClosed * handle_session_event, HandleSessionRouterAddRemove * handle_session_router)
+int SessionPoolImp::init(int input_thr_no, int output_thr_no, HandleInputx * handle_input, HandleSessionOpenClosed * handle_session_event, HandleSessionRouterAddRemove * handle_session_router)
 {
 #ifdef WIN32
 	m_reactor = new ACE_Reactor(new ACE_Select_Reactor(), true);
@@ -131,7 +131,7 @@ bool SessionPoolImp::connect(const SessionAddrVec_t & session_addr_vec)
 	for (SessionAddrVec_t::const_iterator it = session_addr_vec.begin(); it != session_addr_vec.end(); ++it)
 	{
 		addr.set(it->c_str());
-		CellSession * cell_session = new CellSession();
+		CellSessionx * cell_session = new CellSessionx();
 
 		if (m_save_pack_stream)
 		{
@@ -187,7 +187,7 @@ bool SessionPoolImp::listen(const string & listen_addr)
 	return true;
 }
 
-void SessionPoolImp::setHandleInput(HandleInput * handle_input)
+void SessionPoolImp::setHandleInput(HandleInputx * handle_input)
 {
 	m_handle_input = handle_input;
 }
@@ -206,13 +206,13 @@ void SessionPoolImp::output(Packet * packet)
 {
 	if (NULL != m_handle_session_router)
 	{
-		Session * session = NULL;
+		Sessionx * session = NULL;
 		if (NULL != m_handle_session_router)
 			session = m_handle_session_router->getSession(packet);
 
 		//if (packet->getOwner() != NULL)
 		//{
-		//	session = (Session *)packet->getOwner();
+		//	session = (Sessionx *)packet->getOwner();
 		//}
 		//else
 		//{
@@ -266,7 +266,7 @@ void SessionPoolImp::finit()
 	//std::cout << "exit SessionPoolImp" << std::endl;
 }
 
-void SessionPoolImp::sessionOpen(Session * session)
+void SessionPoolImp::sessionOpen(Sessionx * session)
 {
 	if (NULL != m_handle_session_event)
 	{
@@ -282,15 +282,15 @@ void SessionPoolImp::sessionOpen(Session * session)
 		ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_cell_session_map_mutex, );
 		CellSessionInfo cell_si;
 		cell_si.reference_no = 2;
-		m_cell_session_map.insert(CellSessionInfoMap_t::value_type((CellSession *)session, cell_si));
+		m_cell_session_map.insert(CellSessionInfoMap_t::value_type((CellSessionx *)session, cell_si));
 	}
 
 	session->setHandleInput(this);
-	m_input_session_pool.handleSession((CellSession *)session);
-	m_output_session_pool.handleSession((CellSession *)session);
+	m_input_session_pool.handleSession((CellSessionx *)session);
+	m_output_session_pool.handleSession((CellSessionx *)session);
 }
 
-void SessionPoolImp::sessionClosed(Session * session)
+void SessionPoolImp::sessionClosed(Sessionx * session)
 {
 	removeSession(session);
 	if (NULL != m_handle_session_event)
@@ -298,12 +298,12 @@ void SessionPoolImp::sessionClosed(Session * session)
 		m_handle_session_event->sessionClosed(session);
 	}
 
-	m_output_session_pool.removeSession((CellSession *)session);
+	m_output_session_pool.removeSession((CellSessionx *)session);
 }
 
-void SessionPoolImp::removeSession(Session * session)
+void SessionPoolImp::removeSession(Sessionx * session)
 {
-	CellSession * cell_session = (CellSession *)session;
+	CellSessionx * cell_session = (CellSessionx *)session;
 	ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_cell_session_map_mutex, );
 	CellSessionInfoMap_t::iterator it = m_cell_session_map.find(cell_session);
 	if (it != m_cell_session_map.end())

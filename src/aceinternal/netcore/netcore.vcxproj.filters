@@ -33,17 +33,14 @@
     <ClCompile Include="src\SessionPoolFactory.cpp">
       <Filter>pool</Filter>
     </ClCompile>
-    <ClCompile Include="src\CellSession.cpp">
+    <ClCompile Include="src\Sessionx.cpp">
       <Filter>session</Filter>
     </ClCompile>
-    <ClCompile Include="src\Session.cpp">
+    <ClCompile Include="src\CellSessionx.cpp">
       <Filter>session</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="inc\SessionPool.h">
-      <Filter>ifc</Filter>
-    </ClInclude>
     <ClInclude Include="src\InputSessionPool.h">
       <Filter>pool</Filter>
     </ClInclude>
@@ -59,17 +56,20 @@
     <ClInclude Include="src\NetStream.h">
       <Filter>net</Filter>
     </ClInclude>
-    <ClInclude Include="inc\Session.h">
-      <Filter>ifc</Filter>
-    </ClInclude>
     <ClInclude Include="inc\netcore_def.h">
       <Filter>ifc</Filter>
     </ClInclude>
     <ClInclude Include="inc\SessionPoolFactory.h">
       <Filter>ifc</Filter>
     </ClInclude>
-    <ClInclude Include="src\CellSession.h">
+    <ClInclude Include="inc\Sessionx.h">
+      <Filter>ifc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CellSessionx.h">
       <Filter>session</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\SessionPoolx.h">
+      <Filter>ifc</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

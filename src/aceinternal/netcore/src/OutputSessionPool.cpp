@@ -21,7 +21,7 @@ OutputSessionPool::~OutputSessionPool()
 
 }
 
-int OutputSessionPool::init(int thread_no, SessionPool * session_pool)
+int OutputSessionPool::init(int thread_no, SessionPoolx * session_pool)
 {
 	if (this->activate(THR_NEW_LWP, thread_no) == -1)
 	{
@@ -81,7 +81,7 @@ int OutputSessionPool::svc()
 				CellSessionSet_t::iterator find_it = cell_session_set.find(*it);
 				if (find_it != cell_session_set.end())
 				{
-					CellSession * cell = *find_it;
+					CellSessionx * cell = *find_it;
 					cell_session_set.erase(find_it);
 					m_session_pool->removeSession(cell);
 				}
@@ -102,7 +102,7 @@ int OutputSessionPool::svc()
 		write_result = 1;
 		for (CellSessionSet_t::iterator it = cell_session_set.begin(); it != cell_session_set.end(); )
 		{
-			CellSession * cell_session = *it;
+			CellSessionx * cell_session = *it;
 			if (NULL == cell_session)
 			{
 				continue;
@@ -139,7 +139,7 @@ int OutputSessionPool::svc()
 	return 0;
 }
 
-void OutputSessionPool::handleSession(CellSession * cell_session)
+void OutputSessionPool::handleSession(CellSessionx * cell_session)
 {
 	ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_output_session_thread_info_vec_mutex, );
 	if (m_output_session_thread_info_vec.size() == 0)
@@ -158,7 +158,7 @@ void OutputSessionPool::handleSession(CellSession * cell_session)
 	m_cell_session_map[cell_session] = session_thread_info;
 }
 
-void OutputSessionPool::removeSession(CellSession * cell_session)
+void OutputSessionPool::removeSession(CellSessionx * cell_session)
 {
 	ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_output_session_thread_info_vec_mutex, );
 	CellSessionMap_t::iterator it = m_cell_session_map.find(cell_session);
@@ -181,7 +181,7 @@ void OutputSessionPool::registerOutputSessionThreadinfo(OutputSessionThreadInfo 
 	m_output_session_thread_info_vec.push_back(output_session_thread_info);
 }
 
-void OutputSessionPool::sessionClosed(CellSession * cell_session)
+void OutputSessionPool::sessionClosed(CellSessionx * cell_session)
 {
 	
 }

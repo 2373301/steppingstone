@@ -119,7 +119,7 @@ void ManageConvertSession::input(Packet * packet)
 	delete packet;
 }
 
-void ManageConvertSession::sessionOpen(Session * session)
+void ManageConvertSession::sessionOpen(Sessionx * session)
 {
 	DEF_LOG_INFO("get new convert connection, the point is <%x>\n", session);
 	{
@@ -129,7 +129,7 @@ void ManageConvertSession::sessionOpen(Session * session)
 	}
 }
 
-void ManageConvertSession::sessionClosed(Session * session)
+void ManageConvertSession::sessionClosed(Sessionx * session)
 {
 	DEF_LOG_ERROR("the convert connection is closed <%x>\n", session);
 
@@ -152,7 +152,7 @@ void ManageConvertSession::sessionRouterRemove(uint64 guid)
 	// do nothing
 }
 
-Session * ManageConvertSession::getSession(Packet * packet)
+Sessionx * ManageConvertSession::getSession(Packet * packet)
 {
 	// do nothing
 	ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_session_vec_mutex, NULL);

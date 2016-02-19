@@ -221,9 +221,9 @@ private:
 
 	int32 m_do_not_get_the_replay_time;
 
-	EntityMap_t m_entity_map;
+	EntityMap_t m_entity_map;	// memory entities
 
-	OwnerDbEntityMap_t m_db_entity_map;
+	OwnerDbEntityMap_t m_db_entity_map; // owner_guid <-> ( guid <-> DbEntityInfo*)
 
 	OwnerDbEntityMap_t m_updating_db_entity_map;
 
@@ -231,7 +231,7 @@ private:
 
 	PlayerGuidSet_t		m_online_player;
 
-	GuidOwnerGuidMap_t	m_guid_ownerguid_map;
+	GuidOwnerGuidMap_t	m_guid_ownerguid_map; // guid <-> owner guid
 };
 
 #endif

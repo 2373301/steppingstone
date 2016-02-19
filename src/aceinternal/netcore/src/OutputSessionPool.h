@@ -5,25 +5,25 @@
 #include <ace/Task.h>
 #include <boost/unordered_set.hpp>
 #include "typedef.h"
-#include "CellSession.h"
-#include "SessionPool.h"
+#include "CellSessionx.h"
+#include "SessionPoolx.h"
 
 namespace netcore {
 
-typedef boost::unordered_set<CellSession *> CellSessionSet_t;
+typedef boost::unordered_set<CellSessionx *> CellSessionSet_t;
 
 struct OutputSessionThreadInfo 
 {
 	OutputSessionThreadInfo()
 	{}
 
-	void addCellSession(CellSession * cell_session)
+	void addCellSession(CellSessionx * cell_session)
 	{
 		ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, mutex, );
 		add_cell_session_set.insert(cell_session);
 	}
 
-	void removeCellSession(CellSession * cell_session)
+	void removeCellSession(CellSessionx * cell_session)
 	{
 		ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, mutex, );
 		remove_cell_session_set.insert(cell_session);
@@ -42,7 +42,7 @@ public:
 	OutputSessionPool();
 	~OutputSessionPool();
 public:
-	int init(int thread_no, SessionPool * session_pool);
+	int init(int thread_no, SessionPoolx * session_pool);
 
 	void stop();
 
@@ -52,14 +52,14 @@ public:
 	int svc();
 
 public:
-	void handleSession(CellSession * cell_session);
+	void handleSession(CellSessionx * cell_session);
 
-	void removeSession(CellSession * cell_session);
+	void removeSession(CellSessionx * cell_session);
 
 protected:
 	void registerOutputSessionThreadinfo(OutputSessionThreadInfo * output_session_thread_info);
 
-	void sessionClosed(CellSession * cell_session);
+	void sessionClosed(CellSessionx * cell_session);
 
 private:
 	typedef vector<OutputSessionThreadInfo *> OutputSessionThreadInfoVec_t;
@@ -72,13 +72,13 @@ private:
 
 	bool m_actived;
 
-	SessionPool * m_session_pool;
+	SessionPoolx * m_session_pool;
 
 	OutputSessionThreadInfoVec_t	m_output_session_thread_info_vec;
 
 	ACE_Thread_Mutex m_output_session_thread_info_vec_mutex;
 
-	typedef map<CellSession *, OutputSessionThreadInfo *> CellSessionMap_t;
+	typedef map<CellSessionx *, OutputSessionThreadInfo *> CellSessionMap_t;
 
 	CellSessionMap_t	m_cell_session_map;
 

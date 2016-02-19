@@ -142,7 +142,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./inc;./src;../typedef/inc;../share/inc;../logger/inc;../common/inc;../common/material-cpp;.../common/material-cpp;../common/cachesys/inc;../../../dep/ACE_wrappers/;../../../dep/boost_1_60_0/;../netstream/inc;../../../dep/protobuf-2.6.1/src;../../../dep/mysql++-3.2.2/lib;../../../dep/mysql-connector-c-6.1.6/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./inc;./src;../share/inc;../logger/inc;../common/inc;../common/material-cpp;../common/cachesys/inc;../../../dep/ACE_wrappers/;../../../dep/boost_1_60_0/;../netstream/inc;../../../dep/protobuf-2.6.1/src;../../../dep/mysql++-3.2.2/lib;../../../dep/mysql-connector-c-6.1.6/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CACHE_EXPORTS;D_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -258,13 +258,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="inc\Cache.h" />
-    <ClInclude Include="inc\cached.h" />
+    <ClInclude Include="inc\cachehdr.h" />
     <ClInclude Include="inc\CacheFactory.h" />
     <ClInclude Include="inc\CacheInterface.h" />
     <ClInclude Include="inc\cache_auto_assistant.h" />
     <ClInclude Include="inc\Cache_def.h" />
     <ClInclude Include="inc\factory.h" />
-    <ClInclude Include="inc\ManageCache.h" />
     <ClInclude Include="src\LocalCache.h" />
     <ClInclude Include="src\ManageLocalCache.h" />
     <ClInclude Include="src\ManageRemoteCache.h" />

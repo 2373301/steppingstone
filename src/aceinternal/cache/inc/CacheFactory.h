@@ -9,8 +9,6 @@ class CACHE_EXOPRT CacheFactory
 {
 public:
 	static ManageCache * createManageCache(int type_value);
-protected:
-private:
 };
 
 #endif

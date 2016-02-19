@@ -4,8 +4,8 @@
 
 #include <ace/Task.h>
 #include "typedef.h"
-#include "CellSession.h"
-#include "SessionPool.h"
+#include "CellSessionx.h"
+#include "SessionPoolx.h"
 
 namespace netcore
 {
@@ -37,16 +37,16 @@ public:
 	InputSessionPool();
 	~InputSessionPool();
 public:
-	int init(int thread_no, SessionPool * session_pool, HandleSessionOpenClosed * handle_session_event);
+	int init(int thread_no, SessionPoolx * session_pool, HandleSessionOpenClosed * handle_session_event);
 	void stop();
 	void finit();
 
 	int svc();
-	void handleSession(CellSession * cell_session);
+	void handleSession(CellSessionx * cell_session);
 	void registerSessionThreadInfo(InputSessionThreadInfo * stinfo);
 public:
-	virtual void sessionOpen(Session * session);
-	virtual void sessionClosed(Session * session);
+	virtual void sessionOpen(Sessionx * session);
+	virtual void sessionClosed(Sessionx * session);
 
 private:
 	int m_session_thread_info_index;
@@ -57,7 +57,7 @@ private:
 
 	bool m_actived; // svc 已运行
 
-	SessionPool * m_session_pool;
+	SessionPoolx * m_session_pool;
 
 	HandleSessionOpenClosed * m_handle_session_event;
 
@@ -65,7 +65,7 @@ private:
 
 	ACE_Thread_Mutex m_session_thread_info_mutex;
 
-	typedef map<CellSession *, InputSessionThreadInfo *> CellSessionMap_t;
+	typedef map<CellSessionx *, InputSessionThreadInfo *> CellSessionMap_t;
 
 	CellSessionMap_t	m_cell_session_map; // session 所在的 reactor
 };

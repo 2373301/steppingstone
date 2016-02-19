@@ -231,7 +231,7 @@ private:
 
 	PlayerGuidSet_t		m_online_player;
 
-	GuidOwnerGuidMap_t	m_guid_ownerguid_map;
+	GuidOwnerGuidMap_t	m_guid_ownerguid_map; // guid <-> owner guid
 };
 
 #endif

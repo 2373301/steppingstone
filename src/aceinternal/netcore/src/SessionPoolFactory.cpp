@@ -5,7 +5,7 @@
 namespace netcore
 {
 
-SessionPool * SessionPoolFactory::createSessionPool()
+SessionPoolx * SessionPoolFactory::createSessionPool()
 {
 	return new SessionPoolImp();
 }

@@ -55,6 +55,7 @@ struct PoolCfg
 class CACHE_EXOPRT Cache : public Session
 {
 public:
+	// remote: empty, local: local path
 	virtual int init(const string & parameter, HandleInputStream * handle_input)
 	{
 		if (NULL == handle_input)
@@ -71,6 +72,7 @@ public:
 
 protected:
 	virtual int initing() = 0;
+
 protected:
 	string m_local_path;
 };

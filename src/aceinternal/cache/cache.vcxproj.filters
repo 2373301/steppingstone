@@ -13,9 +13,6 @@
     <Filter Include="remote">
       <UniqueIdentifier>{2b552296-e681-44f5-88bd-d0e4a5098faf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="proto">
-      <UniqueIdentifier>{28c88d41-92e3-449d-b396-b1c9390e3a66}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\Cache.h">
@@ -25,9 +22,6 @@
       <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="inc\CacheFactory.h">
-      <Filter>inc</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\ManageCache.h">
       <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="src\LocalCache.h">
@@ -48,13 +42,13 @@
     <ClInclude Include="inc\cache_auto_assistant.h">
       <Filter>inc</Filter>
     </ClInclude>
-    <ClInclude Include="inc\cached.h">
-      <Filter>inc</Filter>
-    </ClInclude>
     <ClInclude Include="inc\CacheInterface.h">
       <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="inc\factory.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\cachehdr.h">
       <Filter>inc</Filter>
     </ClInclude>
   </ItemGroup>

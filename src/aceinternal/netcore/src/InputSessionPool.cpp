@@ -29,7 +29,7 @@ InputSessionPool::~InputSessionPool()
 	}
 }
 
-int InputSessionPool::init(int thread_no, SessionPool * session_pool, HandleSessionOpenClosed * handle_session_event)
+int InputSessionPool::init(int thread_no, SessionPoolx * session_pool, HandleSessionOpenClosed * handle_session_event)
 {
 	if (this->activate(THR_NEW_LWP, thread_no) == -1)
 	{
@@ -124,7 +124,7 @@ int InputSessionPool::svc()
 	return 0;
 }
 
-void InputSessionPool::handleSession(CellSession * cell_session)
+void InputSessionPool::handleSession(CellSessionx * cell_session)
 {
 	InputSessionThreadInfo * thr_info = NULL;
 
@@ -150,12 +150,12 @@ void InputSessionPool::registerSessionThreadInfo(InputSessionThreadInfo * stinfo
 	m_session_thread_info.push_back(stinfo);
 }
 
-void InputSessionPool::sessionOpen(Session * session)
+void InputSessionPool::sessionOpen(Sessionx * session)
 {
 	// do nothing
 }
 
-void InputSessionPool::sessionClosed(Session * session)
+void InputSessionPool::sessionClosed(Sessionx * session)
 {
 	if (NULL != m_handle_session_event)
 	{
