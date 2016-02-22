@@ -37,18 +37,18 @@ class Scene;
 struct PoolCfg 
 {
 	PoolCfg()
-		: handle_output(NULL)
-		, map_id(0)
+		: map_id(0)
 		, logger(NULL)
 		, line_id(0)
-		, scene(NULL)
+		//,scene(NULL)
 	{}
 
-	CacheHandleOutput * handle_output;
+	//CacheHandleOutput * handle_output;
+	std::function<void(Packet * packet, uint64 map_id, uint64 request_id, uint64 owner_guid)> handle_output;
 	uint64				map_id;
 	uint32				line_id;
 	Logger *			logger;
-	Scene *				scene;
+	//Scene*				scene;
 };
 
 

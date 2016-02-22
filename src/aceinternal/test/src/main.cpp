@@ -7,6 +7,7 @@
 #include "ManageSingletonInit.h"
 #include "dynamic_parse.h"
 #include "typedef.h"
+#include "testpoo.hpp"
 
 void startApplication()
 {
@@ -65,8 +66,9 @@ void TestProto()
 
 int main(int argc, char * argv[])
 {	
-	TestProto();
+	//TestProto();
 	//startApplication();
+	pool_ut::run();
 	return 0;
 }
 

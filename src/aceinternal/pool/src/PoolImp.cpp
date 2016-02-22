@@ -6,11 +6,10 @@
 #include "Logger.h"
 #include "cachesys_opcode.hpp"
 #include "protocol/msg_cache.pb.h"
-#include "entity/player.pb.h"
+//#include "entity/player.pb.h"
 #include "coredef.h"
 #include "PoolAssistant.h"
 #include "share_fun.h"
-#include "Scene.h"
 
 string empty_string = "";
 
@@ -45,12 +44,12 @@ PoolImp::~PoolImp()
 {
 	cleanMapSecondContent(m_entity_map);
 	cleanVectorContent(m_request_info_vec);
-	for (OwnerDbEntityMap_t::iterator it = m_db_entity_map.begin(); it != m_db_entity_map.end(); ++it)
+	for (Owner2DbEntityMap_t::iterator it = m_owner2entity_map.begin(); it != m_owner2entity_map.end(); ++it)
 	{
 		cleanMapSecondContent(it->second);
 	}
 
-	for (OwnerDbEntityMap_t::iterator it = m_updating_db_entity_map.begin(); it != m_updating_db_entity_map.end(); ++it)
+	for (Owner2DbEntityMap_t::iterator it = m_updating_db2entity_map.begin(); it != m_updating_db2entity_map.end(); ++it)
 	{
 		cleanMapSecondContent(it->second);
 	}
@@ -61,7 +60,7 @@ void PoolImp::cacheInput(Packet * packet, uint64 map_id, uint64 request_id)
 	handlePacket(packet, request_id);
 }
 
-int PoolImp::init(const PoolCfg pool_cfg)
+int PoolImp::init(const PoolCfgx pool_cfg)
 {
 	if (NULL == pool_cfg.handle_output)
 	{
@@ -141,7 +140,7 @@ bool PoolImp::add(uint64 guid, GOOGLE_MESSAGE_TYPE * message, bool add_to_db, ui
 
 	POOL_LOG_DEBUG("add entity to pool, guid is <%llu>, owner guid is <%llu>", guid, owner_guid);
 
-	m_guid_ownerguid_map[guid] = owner_guid;
+	m_guid2ownerguid_map[guid] = owner_guid;
 
 	EntityMap_t::iterator it = m_entity_map.find(guid);
 	if (it == m_entity_map.end())
@@ -173,19 +172,14 @@ bool PoolImp::remove(uint64 guid, bool remove_from_db, bool remove_entity_msg)
 {
 	POOL_LOG_DEBUG("remove entity to pool, guid is <%llu>, remove from db <%d>", guid, remove_from_db);
 
-	if (IS_PLAYER_GUID(guid))
-	{
-		m_online_player.erase(guid);
-	}
-
 	// ²éÑ¯owner guid
 	uint64 owner_guid = 0;
 	{
-		GuidOwnerGuidMap_t::iterator it = m_guid_ownerguid_map.find(guid);
-		if (it != m_guid_ownerguid_map.end())
+		Guid2OwnerGuidMap_t::iterator it = m_guid2ownerguid_map.find(guid);
+		if (it != m_guid2ownerguid_map.end())
 		{
 			owner_guid = it->second;
-			m_guid_ownerguid_map.erase(it);
+			m_guid2ownerguid_map.erase(it);
 		}
 		else
 		{
@@ -236,15 +230,15 @@ bool PoolImp::update(uint64 guid)
 {
 	POOL_LOG_DEBUG("update entity, guid is <%llu>", guid);
 
-	if ((IS_PLAYER_GUID(guid) || (IS_ROLE_GUID(guid))) && m_pool_cfg.scene->isLineScene())
+	if ((IS_PLAYER_GUID(guid) || (IS_ROLE_GUID(guid))))
 	{
 		return true;
 	}
 
 	uint64 owner_guid = 0;
 	{
-		GuidOwnerGuidMap_t::iterator it = m_guid_ownerguid_map.find(guid);
-		if (it != m_guid_ownerguid_map.end())
+		Guid2OwnerGuidMap_t::iterator it = m_guid2ownerguid_map.find(guid);
+		if (it != m_guid2ownerguid_map.end())
 		{
 			owner_guid = it->second;
 		}
@@ -279,13 +273,13 @@ void PoolImp::onlyRemoveEntity(uint64 guid, uint64 owner_guid)
 	
 	Packet * packet = new Packet(DCMSG_ONLY_REMOVE_ENTITY, guid, data_request.SerializeAsString());
 
-	m_pool_cfg.handle_output->cacheOutput(packet, m_pool_cfg.map_id, 0, owner_guid);
+	m_pool_cfg.handle_output(packet, m_pool_cfg.map_id, 0, owner_guid);
 
 }
 
 bool PoolImp::update()
 {
-	if (m_db_entity_map.size() == 0)
+	if (m_owner2entity_map.size() == 0)
 	{
 		return true;
 	}
@@ -303,10 +297,10 @@ bool PoolImp::update()
 
 	m_do_not_get_the_replay_time = 0;
 
-	if (m_updating_db_entity_map.size() > 0)
+	if (m_updating_db2entity_map.size() > 0)
 	{
 		POOL_LOG_ERROR("the updating db entity map size is not zero while update");
-		for (OwnerDbEntityMap_t::iterator it = m_updating_db_entity_map.begin(); it != m_updating_db_entity_map.end(); ++it)
+		for (Owner2DbEntityMap_t::iterator it = m_updating_db2entity_map.begin(); it != m_updating_db2entity_map.end(); ++it)
 		{
 			DbEntityMap_t & db_entity_map = it->second;
 			for (DbEntityMap_t::iterator db_it = db_entity_map.begin(); db_it != db_entity_map.end(); ++db_it)
@@ -317,25 +311,25 @@ bool PoolImp::update()
 		}
 	}
 
-	m_updating_db_entity_map.clear();
+	m_updating_db2entity_map.clear();
 
-	for (OwnerDbEntityMap_t::iterator it = m_db_entity_map.begin(); it != m_db_entity_map.end(); ++it)
+	for (Owner2DbEntityMap_t::iterator it = m_owner2entity_map.begin(); it != m_owner2entity_map.end(); ++it)
 	{
-		m_updating_db_entity_map.insert(std::make_pair(it->first, it->second));
+		m_updating_db2entity_map.insert(std::make_pair(it->first, it->second));
 	}
 
-	m_db_entity_map.clear();
+	m_owner2entity_map.clear();
 
-	if (m_updating_db_entity_map.size() > 500)
+	if (m_updating_db2entity_map.size() > 500)
 	{
-		POOL_LOG_ERROR("PoolImp::update, database request no is <%d>", m_updating_db_entity_map.size());
+		POOL_LOG_ERROR("PoolImp::update, database request no is <%d>", m_updating_db2entity_map.size());
 	}
 
-	for (OwnerDbEntityMap_t::iterator it = m_updating_db_entity_map.begin(); it != m_updating_db_entity_map.end(); )
+	for (Owner2DbEntityMap_t::iterator it = m_updating_db2entity_map.begin(); it != m_updating_db2entity_map.end(); )
 	{
 		if (it->second.size() == 0)
 		{
-			m_updating_db_entity_map.erase(it++);
+			m_updating_db2entity_map.erase(it++);
 			continue;
 		}
 
@@ -345,7 +339,7 @@ bool PoolImp::update()
 		}
 		else
 		{
-			m_updating_db_entity_map.erase(it++);
+			m_updating_db2entity_map.erase(it++);
 		}
 	}
 
@@ -359,13 +353,13 @@ bool PoolImp::isLastUpdateFinish()
 
 int PoolImp::updateEntityNumber()
 {
-	return m_update_to_db_num + m_db_entity_map.size();
+	return m_update_to_db_num + (int)m_owner2entity_map.size();
 }
 
 void PoolImp::clearUpdateEntity(uint64 guid_owner, Uint64Set_t & insert_entity_set, Uint64Set_t & remove_entity_set)
 {
-	OwnerDbEntityMap_t::iterator it_owner = m_db_entity_map.find(guid_owner);
-	if (it_owner != m_db_entity_map.end())
+	Owner2DbEntityMap_t::iterator it_owner = m_owner2entity_map.find(guid_owner);
+	if (it_owner != m_owner2entity_map.end())
 	{
 		DbEntityMap_t & db_entity_map = it_owner->second;
 		for (DbEntityMap_t::iterator it = db_entity_map.begin(); it != db_entity_map.end(); ++it)
@@ -382,7 +376,7 @@ void PoolImp::clearUpdateEntity(uint64 guid_owner, Uint64Set_t & insert_entity_s
 			delete it->second;
 		}
 
-		m_db_entity_map.erase(it_owner);
+		m_owner2entity_map.erase(it_owner);
 	}
 }
 
@@ -395,7 +389,7 @@ bool PoolImp::commit(RequestList * request_list, RequestCallBack call_back)
 	m_transaction_index = 0;
 	m_transaction_id = ++m_transaction_id % numeric_limits<uint32>::max();
 	m_transaction_id = 0 == m_transaction_id ? 1 : m_transaction_id;
-	TransactionInfo trans_info(m_transaction_index, request_list->getRequestList().size(), m_transaction_id);
+	TransactionInfo trans_info((uint32)m_transaction_index, (uint32)request_list->getRequestList().size(), m_transaction_id);
 
 	protocol::db_data_request db_request;
 
@@ -477,19 +471,13 @@ bool PoolImp::commit(RequestList * request_list, RequestCallBack call_back)
 
 		if (NULL != packet)
 		{
-			m_pool_cfg.handle_output->cacheOutput(packet, m_pool_cfg.map_id, request_list->getRequestID(), request->owner_guid);
+			m_pool_cfg.handle_output(packet, m_pool_cfg.map_id, request_list->getRequestID(), request->owner_guid);
 			packet = NULL;
 		}
 	}
 	return true;
 }
 
-Request * PoolImp::createRequset(RequestType rt, uint64 entity_guid, GOOGLE_MESSAGE_TYPE * msg)
-{
-	// not used
-	return NULL;
-	//return (Request *)new RequestImp(rt, entity_guid, msg, m_pool_cfg);
-}
 
 RequestList * PoolImp::createRequestList()
 {
@@ -500,64 +488,8 @@ RequestList * PoolImp::createRequestList()
 
 int PoolImp::getEntityNumber()
 {
-	return m_entity_map.size();
+	return (int)m_entity_map.size();
 }
-
-void PoolImp::playerIsOnline(uint64 player_guid)
-{
-	m_online_player.insert(player_guid);
-}
-
-void PoolImp::playerIsOffline(uint64 player_guid)
-{
-	m_online_player.erase(player_guid);
-}
-
-bool PoolImp::isPlayerOnlineInThisMap(uint64 player_guid)
-{
-	PlayerGuidSet_t::iterator it = m_online_player.find(player_guid);
-
-	return m_online_player.end() != it ? true : false;
-}
-
-const PlayerGuidSet_t & PoolImp::getOnlinePlayer()
-{
-	return m_online_player;
-}
-
-//void PoolImp::getInsertGuidAndClear(uint64 owner_guid, define_unordered_set<uint64> & insert_guid)
-//{
-//	OwnerDbEntityMap_t::iterator it = m_db_entity_map.find(owner_guid);
-//	if (it != m_db_entity_map.end())
-//	{
-//		// find
-//		DbEntityMap_t & db_entity_map = it->second;
-//		for (DbEntityMap_t::iterator db_it = db_entity_map.begin(); db_it != db_entity_map.end(); )
-//		{
-//			DbEntityInfo * db_entity = db_it->second;
-//			if (EOT_REMOVE != db_entity->op_type)
-//			{
-//				if (EOT_ADD == db_entity->op_type)
-//				{
-//					insert_guid.insert(db_entity->guid);
-//				}
-//
-//				delete db_entity;
-//				db_entity_map.erase(db_it++);
-//			}
-//			else
-//			{
-//				// do nothing
-//				db_it++;
-//			}
-//		}
-//
-//		if (db_entity_map.size() == 0)
-//		{
-//			m_db_entity_map.erase(it);
-//		}
-//	}
-//}
 
 void PoolImp::updateToDbReplay()
 {
@@ -589,32 +521,22 @@ void PoolImp::handlePacket(Packet * packet, uint64 request_id)
 		packet_process_result = request_info->request_list->handlePacket(packet);
 		if (request_info->request_list->is_complated())
 		{
-			// complated, notify callback
 			m_request_info_vec.erase(it);
+
+			// complated, notify callback
 			complateRequest(request_info);
+
 			delete request_info;
 		}
 
 		break;
-
-		//if (0 == packet_process_result)
-		//{
-		//	if (request_info->request_list->is_complated())
-		//	{
-		//		// complated, notify callback
-		//		m_request_info_vec.erase(it);
-		//		complateRequest(request_info);
-		//		delete request_info;
-		//	}
-		//	break;
-		//}
 	}
+
 }
 
 void PoolImp::complateRequest(RequestInfo * request_info)
 {
 	request_info->call_back(request_info->request_list);
-	//std::auto_ptr<RequestInfo> auto_req(request_info);
 }
 
 bool PoolImp::updateDbEntity(DbEntityMap_t & db_entity_map)
@@ -705,12 +627,12 @@ bool PoolImp::updateDbEntity(DbEntityMap_t & db_entity_map)
 
 void PoolImp::updateToDb(uint64 owner_guid, uint64 guid, EntityOpType eot_type)
 {
-	OwnerDbEntityMap_t::iterator it = m_db_entity_map.find(owner_guid);
-	if (m_db_entity_map.end() == it)
+	Owner2DbEntityMap_t::iterator it = m_owner2entity_map.find(owner_guid);
+	if (m_owner2entity_map.end() == it)
 	{
 		// omit small transaction
 		DbEntityInfo * db_info = new DbEntityInfo(eot_type, guid, 0, 0, owner_guid);
-		m_db_entity_map[owner_guid].insert(std::make_pair(guid, db_info));
+		m_owner2entity_map[owner_guid].insert(std::make_pair(guid, db_info));
 	}
 	else
 	{
@@ -731,7 +653,6 @@ void PoolImp::updateToDb(uint64 owner_guid, uint64 guid, EntityOpType eot_type)
 			{
 				if (EOT_REMOVE == eot_type)
 				{
-					//db_info->op_type = EOT_ADD_REMOVE;
 					delete db_info;
 					db_info = NULL;
 					db_entity_map.erase(db_it);
@@ -759,8 +680,8 @@ void PoolImp::removeDbInfo(uint64 owner_guid, uint64 guid, bool success)
 {
 	POOL_LOG_DEBUG("start to remove db info, guid is <%llu>, owner guid is <%llu>", guid, owner_guid);
 
-	OwnerDbEntityMap_t::iterator it = m_updating_db_entity_map.find(owner_guid);
-	if (it != m_updating_db_entity_map.end())
+	Owner2DbEntityMap_t::iterator it = m_updating_db2entity_map.find(owner_guid);
+	if (it != m_updating_db2entity_map.end())
 	{
 		DbEntityMap_t & db_entity_map = it->second;
 		DbEntityMap_t::iterator db_it = db_entity_map.find(guid);
@@ -807,7 +728,7 @@ void PoolImp::removeDbInfo(uint64 owner_guid, uint64 guid, bool success)
 
 		if (db_entity_map.size() == 0)
 		{
-			m_updating_db_entity_map.erase(it);
+			m_updating_db2entity_map.erase(it);
 		}
 	}
 	else
@@ -828,8 +749,8 @@ void PoolImp::doRemoveBack(uint64 guid)
 
 bool PoolImp::isUpdating(uint64 owner_guid, uint64 guid)
 {
-	OwnerDbEntityMap_t::iterator it = m_db_entity_map.find(owner_guid);
-	if (m_db_entity_map.end() == it)
+	Owner2DbEntityMap_t::iterator it = m_owner2entity_map.find(owner_guid);
+	if (m_owner2entity_map.end() == it)
 	{
 		return false;
 	}
@@ -882,5 +803,11 @@ void PoolImp::directUpdateToDb(GOOGLE_MESSAGE_TYPE * message, uint64 guid, uint6
 	db_request.set_data_stream(message->SerializeAsString());
 	Packet * packet = new Packet(DCMSG_NEW_ENEITY, guid, db_request.SerializeAsString());
 
-	m_pool_cfg.handle_output->cacheOutput(packet, m_pool_cfg.map_id, m_request_id, owner_guid);
+	m_pool_cfg.handle_output(packet, m_pool_cfg.map_id, m_request_id, owner_guid);
+}
+
+
+Pool * createPool()
+{
+	return new PoolImp();
 }

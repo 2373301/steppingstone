@@ -48,7 +48,7 @@ struct EntityInfo
 	}
 
 	uint32	op_type;
-	bool	is_flushing;		/// is_flushing is true while flush entity to db
+	bool	is_flushing;		// is_flushing is true while flush entity to db
 	uint64	owner_guid;			// player guid
 	GOOGLE_MESSAGE_TYPE * message;
 	bool	is_remove_from_memory;
@@ -125,69 +125,52 @@ public:
 	PoolImp();
 	~PoolImp();
 public:
-	virtual void cacheInput(Packet * packet, uint64 map_id, uint64 request_id);
+	virtual void cacheInput(Packet * packet, uint64 map_id, uint64 request_id) override;
 
-public:
-	virtual int init(const PoolCfg pool_cfg);
+	virtual int init(const PoolCfgx pool_cfg) override;
 
-	virtual GOOGLE_MESSAGE_TYPE * get(uint64 guid);
+	virtual GOOGLE_MESSAGE_TYPE * get(uint64 guid) override;
 
-	virtual EntityInfo * getEntityInfo(uint64 guid);
+	virtual EntityInfo * getEntityInfo(uint64 guid) override;
 
-	virtual GOOGLE_MESSAGE_TYPE * getWhileFlush(uint64 guid);
+	virtual GOOGLE_MESSAGE_TYPE * getWhileFlush(uint64 guid) override;
 
-	virtual void clearFlushState(uint64 guid);
+	virtual void clearFlushState(uint64 guid) override;
 
-	virtual void beginTransaction();
+	virtual void beginTransaction() override;
 
-	virtual void endtransaction();
+	virtual void endtransaction() override;
 
-	virtual bool add(uint64 guid, GOOGLE_MESSAGE_TYPE * message, bool add_to_db, uint64 owner_guid);
+	virtual bool add(uint64 guid, GOOGLE_MESSAGE_TYPE * message, bool add_to_db, uint64 owner_guid) override;
 
-	virtual bool remove(uint64 guid, bool remove_from_db, bool remove_entity_msg = true);
+	virtual bool remove(uint64 guid, bool remove_from_db, bool remove_entity_msg = true) override;
 
-	virtual bool update(uint64 guid);
+	virtual bool update(uint64 guid) override;
 
-	virtual void onlyRemoveEntity(uint64 guid, uint64 owner_guid);
+	virtual void onlyRemoveEntity(uint64 guid, uint64 owner_guid) override;
 
-	virtual bool update();
+	virtual bool update() override;
 
-	virtual bool isLastUpdateFinish();
+	virtual bool isLastUpdateFinish() override;
 
-	virtual int updateEntityNumber();
+	virtual int updateEntityNumber() override;
 
-	virtual void clearUpdateEntity(uint64 guid_owner, Uint64Set_t & insert_entity_set, Uint64Set_t & remove_entity_set);
+	virtual void clearUpdateEntity(uint64 guid_owner, Uint64Set_t & insert_entity_set, Uint64Set_t & remove_entity_set) override;
 
-	virtual bool commit(RequestList * request_list, RequestCallBack call_back);
+	virtual bool commit(RequestList * request_list, RequestCallBack call_back) override;
 
-	virtual Request * createRequset(RequestType rt, uint64 entity_guid, GOOGLE_MESSAGE_TYPE * msg);
+	virtual RequestList * createRequestList() override;
 
-	virtual RequestList * createRequestList();
-
-	virtual int getEntityNumber();
-
-	virtual void playerIsOnline(uint64 player_guid);
-
-	virtual void playerIsOffline(uint64 player_guid);
-
-	virtual bool isPlayerOnlineInThisMap(uint64 player_guid);
-
-	virtual const PlayerGuidSet_t & getOnlinePlayer();
-
-	//virtual void getInsertGuidAndClear(uint64 owner_guid, define_unordered_set<uint64> & insert_guid);
-
-	void updateToDbReplay();
+	virtual int getEntityNumber() override;
 
 protected:
-	typedef define_unordered_map<uint64, EntityInfo *>	EntityMap_t;
-
+	
 	typedef define_unordered_map<uint64, DbEntityInfo *> DbEntityMap_t;
 
-	typedef define_unordered_map<uint64, DbEntityMap_t > OwnerDbEntityMap_t;		// owner_guid, guid, DbEntityInfo
+	typedef define_unordered_map<uint64, DbEntityMap_t > Owner2DbEntityMap_t;		// owner_guid, guid, DbEntityInfo
 
-	typedef define_unordered_map<uint64, uint64> GuidOwnerGuidMap_t;
+	typedef define_unordered_map<uint64, uint64> Guid2OwnerGuidMap_t;
 
-	typedef vector<RequestInfo *>		RequestInfoVec_t;
 
 	void handlePacket(Packet * packet, uint64 request_id);
 
@@ -208,7 +191,9 @@ protected:
 	void checkShouldRemovedEntity(uint64 guid);
 
 	void directUpdateToDb(GOOGLE_MESSAGE_TYPE * message, uint64 guid, uint64 owner_guid);
-//	int handle
+
+	void updateToDbReplay();
+
 private:
 
 	uint64 m_request_id;
@@ -221,17 +206,17 @@ private:
 
 	int32 m_do_not_get_the_replay_time;
 
+	typedef define_unordered_map<uint64, EntityInfo *>	EntityMap_t;
 	EntityMap_t m_entity_map;	// memory entities
 
-	OwnerDbEntityMap_t m_db_entity_map; // owner_guid <-> ( guid <-> DbEntityInfo*)
+	Owner2DbEntityMap_t m_owner2entity_map; // owner_guid <-> ( guid <-> DbEntityInfo*)
 
-	OwnerDbEntityMap_t m_updating_db_entity_map;
+	Owner2DbEntityMap_t m_updating_db2entity_map;
 
+	typedef vector<RequestInfo *>		RequestInfoVec_t;
 	RequestInfoVec_t	m_request_info_vec;
 
-	PlayerGuidSet_t		m_online_player;
-
-	GuidOwnerGuidMap_t	m_guid_ownerguid_map; // guid <-> owner guid
+	Guid2OwnerGuidMap_t	m_guid2ownerguid_map; // guid <-> owner guid
 };
 
 #endif

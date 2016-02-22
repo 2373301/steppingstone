@@ -27,5 +27,8 @@
     <ClInclude Include="src\EffectTest.h">
       <Filter>test</Filter>
     </ClInclude>
+    <ClInclude Include="src\testpoo.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -20,7 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\Pool.h" />
-    <ClInclude Include="inc\Scend_def.h" />
+    <ClInclude Include="inc\pool_def.h" />
     <ClInclude Include="src\PoolAssistant.h" />
     <ClInclude Include="src\PoolImp.h" />
   </ItemGroup>
@@ -99,9 +99,9 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;SCENE_EXPORTS;-D_SCL_SECURE_NO_WARNINGS.;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;POOL_EXOPRTS;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>false</SDLCheck>
-      <AdditionalIncludeDirectories>./;./inc;./src;../share/inc;../logger/inc;../cache/inc;../simplexml/inc;../terminal/inc;../gamelogic/inc;../gamelogic/src/resource;../common/inc;../common/material-cpp;../common/cachesys/inc;../netstream/inc;../../../dep/ACE_wrappers/;../../../dep/boost_1_60_0/;../../../dep/protobuf-2.6.1/src;../scenelite/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./inc;./src;../share/inc;../logger/inc;../netstream/inc;../../../dep/ACE_wrappers/;../../../dep/boost_1_60_0/;../../../dep/protobuf-2.6.1/src;../common/material-cpp;../common/cachesys/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

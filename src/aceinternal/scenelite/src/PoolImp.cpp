@@ -483,12 +483,6 @@ bool PoolImp::commit(RequestList * request_list, RequestCallBack call_back)
 	return true;
 }
 
-Request * PoolImp::createRequset(RequestType rt, uint64 entity_guid, GOOGLE_MESSAGE_TYPE * msg)
-{
-	// not used
-	return NULL;
-	//return (Request *)new RequestImp(rt, entity_guid, msg, m_pool_cfg);
-}
 
 RequestList * PoolImp::createRequestList()
 {
@@ -502,61 +496,6 @@ int PoolImp::getEntityNumber()
 	return m_entity_map.size();
 }
 
-void PoolImp::playerIsOnline(uint64 player_guid)
-{
-	m_online_player.insert(player_guid);
-}
-
-void PoolImp::playerIsOffline(uint64 player_guid)
-{
-	m_online_player.erase(player_guid);
-}
-
-bool PoolImp::isPlayerOnlineInThisMap(uint64 player_guid)
-{
-	PlayerGuidSet_t::iterator it = m_online_player.find(player_guid);
-
-	return m_online_player.end() != it ? true : false;
-}
-
-const PlayerGuidSet_t & PoolImp::getOnlinePlayer()
-{
-	return m_online_player;
-}
-
-//void PoolImp::getInsertGuidAndClear(uint64 owner_guid, define_unordered_set<uint64> & insert_guid)
-//{
-//	OwnerDbEntityMap_t::iterator it = m_db_entity_map.find(owner_guid);
-//	if (it != m_db_entity_map.end())
-//	{
-//		// find
-//		DbEntityMap_t & db_entity_map = it->second;
-//		for (DbEntityMap_t::iterator db_it = db_entity_map.begin(); db_it != db_entity_map.end(); )
-//		{
-//			DbEntityInfo * db_entity = db_it->second;
-//			if (EOT_REMOVE != db_entity->op_type)
-//			{
-//				if (EOT_ADD == db_entity->op_type)
-//				{
-//					insert_guid.insert(db_entity->guid);
-//				}
-//
-//				delete db_entity;
-//				db_entity_map.erase(db_it++);
-//			}
-//			else
-//			{
-//				// do nothing
-//				db_it++;
-//			}
-//		}
-//
-//		if (db_entity_map.size() == 0)
-//		{
-//			m_db_entity_map.erase(it);
-//		}
-//	}
-//}
 
 void PoolImp::updateToDbReplay()
 {

@@ -7,6 +7,7 @@
 #include <ace/Guard_T.h>
 #include <google/protobuf/message.h>
 #include "Share_def.h"
+#include "Packet.h"
 
 #define MAKE_NEW_PACKET(packet_ins, op_code, guid, stream_value)		Packet * packet_ins = new Packet(op_code, guid, stream_value)
 

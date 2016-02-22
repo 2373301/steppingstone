@@ -160,8 +160,6 @@ public:
 
 	virtual bool commit(RequestList * request_list, RequestCallBack call_back);
 
-	virtual Request * createRequset(RequestType rt, uint64 entity_guid, GOOGLE_MESSAGE_TYPE * msg);
-
 	virtual RequestList * createRequestList();
 
 	virtual int getEntityNumber();

@@ -12,30 +12,21 @@
 class RequestImp : public Request 
 {
 public:
-	RequestImp(RequestType rt, uint64 entity_guid, GOOGLE_MESSAGE_TYPE * msg, const PoolCfg pool_cfg, uint64 owner_g);
+	RequestImp(RequestType rt, uint64 entity_guid, GOOGLE_MESSAGE_TYPE * msg, const PoolCfgx pool_cfg, uint64 owner_g);
 
 	~RequestImp();
 
 	int handlePacket(Packet * packet);
-
-	//bool extractEntity(const string & stream);
-
 	void setOwnerGuid(uint64 owner_g);
 
-	PoolCfg m_pool_cfg;
-	//RequestType request_type;
-	//uint64		guid;
-	//bool		success;
-	//bool		complated;
-	//GOOGLE_MESSAGE_TYPE *	message;
-	//string		stream_data;
+	PoolCfgx m_pool_cfg;
 	STAT_PACKET_DEC();
 };
 
 class RequestListImp : RequestList
 {
 public:
-	RequestListImp(const PoolCfg pool_cfg);
+	RequestListImp(const PoolCfgx pool_cfg);
 
 	~RequestListImp();
 
@@ -73,10 +64,7 @@ public:
 	int handlePacket(Packet * packet);
 
 private:
-	//bool	m_complated;
-	//int		m_complated_count;
-	//RequestVec_t m_request_vec;
-	PoolCfg m_pool_cfg;
+	PoolCfgx m_pool_cfg;
 
 	STAT_PACKET_DEC();
 };

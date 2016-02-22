@@ -15,11 +15,11 @@
     <ClInclude Include="src\PoolImp.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="inc\Scend_def.h">
-      <Filter>inc</Filter>
-    </ClInclude>
     <ClInclude Include="src\PoolAssistant.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\pool_def.h">
+      <Filter>inc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
