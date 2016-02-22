@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="inc">
+      <UniqueIdentifier>{05b876d6-2121-4168-b961-2facef245353}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{c6ae2551-8679-46d4-95bc-729f977c52b4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="inc\Scene.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SceneImp.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Scenex_def.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\LoadDll.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Message.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Plugin.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageTimer.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageRandom.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\SceneImp.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LoadDll.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Plugin.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageTimer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageRandom.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

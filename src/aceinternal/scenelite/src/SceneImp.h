@@ -11,7 +11,6 @@
 #include "ManageGridOptimize.h"
 #include "MakeGuid.h"
 #include "ManageRandom.h"
-//#include "ManageBattleReport.h"
 
 
 class SCENE_EXOPRT SceneImp : public Scene, public ACE_Task<ACE_NULL_SYNCH>

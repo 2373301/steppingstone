@@ -67,11 +67,10 @@ struct SHARE_EXOPRT PackInfo
 
 	PackInfo(uint32 opcode_value, uint64 guid_value, GOOGLE_MESSAGE_TYPE * msg_value);
 
-	PackInfo(uint32 opcode_value, uint64 guid_value, GOOGLE_MESSAGE_TYPE * msg_value, int attach_d);
+	PackInfo(uint32 opcode_value, uint64 guid_value, GOOGLE_MESSAGE_TYPE * msg_value, int attach_data);
 
 private:
-	PackInfo (const PackInfo & rsh)
-	{}
+	PackInfo (const PackInfo & rsh){}
 
 	STAT_PACKET_DEC();
 public:
@@ -158,7 +157,6 @@ public:
 public:
 	static string empty_stream;
 
-protected:
 private:
 	static uint16 m_head_size;
 

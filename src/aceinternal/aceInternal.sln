@@ -70,6 +70,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test", "test\test.vcxproj",
 		{1BDB01EE-98B5-40A5-B284-8ADFBC6FB3C8} = {1BDB01EE-98B5-40A5-B284-8ADFBC6FB3C8}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scenex", "scenex\scenex.vcxproj", "{7737E776-6BA9-47D3-8285-2F18BF7124C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -295,6 +297,18 @@ Global
 		{1B14B5EE-8A39-40C6-9BA4-258C762B0395}.ReleaseD|x64.Build.0 = ReleaseD|x64
 		{1B14B5EE-8A39-40C6-9BA4-258C762B0395}.ReleaseD|x86.ActiveCfg = ReleaseD|Win32
 		{1B14B5EE-8A39-40C6-9BA4-258C762B0395}.ReleaseD|x86.Build.0 = ReleaseD|Win32
+		{7737E776-6BA9-47D3-8285-2F18BF7124C0}.Debug|x64.ActiveCfg = Debug|x64
+		{7737E776-6BA9-47D3-8285-2F18BF7124C0}.Debug|x64.Build.0 = Debug|x64
+		{7737E776-6BA9-47D3-8285-2F18BF7124C0}.Debug|x86.ActiveCfg = Debug|Win32
+		{7737E776-6BA9-47D3-8285-2F18BF7124C0}.Debug|x86.Build.0 = Debug|Win32
+		{7737E776-6BA9-47D3-8285-2F18BF7124C0}.Release|x64.ActiveCfg = Release|x64
+		{7737E776-6BA9-47D3-8285-2F18BF7124C0}.Release|x64.Build.0 = Release|x64
+		{7737E776-6BA9-47D3-8285-2F18BF7124C0}.Release|x86.ActiveCfg = Release|Win32
+		{7737E776-6BA9-47D3-8285-2F18BF7124C0}.Release|x86.Build.0 = Release|Win32
+		{7737E776-6BA9-47D3-8285-2F18BF7124C0}.ReleaseD|x64.ActiveCfg = Release|x64
+		{7737E776-6BA9-47D3-8285-2F18BF7124C0}.ReleaseD|x64.Build.0 = Release|x64
+		{7737E776-6BA9-47D3-8285-2F18BF7124C0}.ReleaseD|x86.ActiveCfg = Release|Win32
+		{7737E776-6BA9-47D3-8285-2F18BF7124C0}.ReleaseD|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

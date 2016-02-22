@@ -115,17 +115,17 @@ int World::start(const WorldCfg & world_cfg)
 		return -1;
 	}
 
-// 	if (initTerminal() == -1)
-// 	{
-// 		DEF_LOG_ERROR("error to call initGate in World::start\n");
-// 		return -1;
-// 	}
-// 
-// 	if (initCache() == -1)
-// 	{
-// 		DEF_LOG_ERROR("error to call initCache in World::start\n");
-// 		return -1;
-// 	}
+	if (initTerminal() == -1)
+	{
+		DEF_LOG_ERROR("error to call initGate in World::start\n");
+		return -1;
+	}
+
+	if (initCache() == -1)
+	{
+		DEF_LOG_ERROR("error to call initCache in World::start\n");
+		return -1;
+	}
 
 	if (initSceneDepot() == -1)
 	{
