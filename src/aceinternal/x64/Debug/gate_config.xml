@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<gate id="3">
+
+	<client 
+	host="127.0.0.1" 
+	listenPort="13100" 
+	handleInputStreamThreadPoolNumber="10" 
+	handleOutputStreamThreadPoolNumber="10" 
+	handlePacketThreadPoolNumber="10" 
+	beatInterval="15" 
+	lostBeatTime="2000000" 
+	beatCheckInterval="1" 
+	clientQueueLength="10" 
+	clientConnectionTimeout="150000"
+	coolerTimeInterval="60"
+	maxSocket="100000"
+	socketBufferLength="256000"
+	recvBufferLength="1024"
+	robotPressTest="0"
+	streamLimitSpeed="4096"
+	streamStatInterval="20"
+	encryType="0" />
+	
+	<!--  game server-->
+	<gs host="127.0.0.1"
+	listenPort="13200"
+	handleStreamThreadPoolNumber="4"
+	handlePacketThreadPoolNumber="20"
+	socketBufferLength="256000"
+	recvBufferLength="1024"
+	recvWindowSize="32768"
+	sendWindowSize="32768" />
+	
+	<!--  login server-->
+	<ls host="127.0.0.1"
+	listenPort="13300"
+	recvPort="4097"
+	reportStatInfoInterval="10"
+	sessionValidationInterval="30"
+	validateClient="1"/>
+	
+	<stat reportInterval="60" />
+
+	<role host="127.0.0.1" listenPort="13400" />
+	
+	<transcript condition_file="t_dungeon.xml" />
+	
+	<log level="LL_DEBUG" print="1" enable_remote="0" />
+	
+	<remotlog addr="127.0.0.1" level="LL_DEBUG" />
+	
+	<query addr="127.0.0.1:13800" />
+</gate>

@@ -66,29 +66,29 @@ public:
 	string file_name;
 };
 
-class NETSTREAM_EXOPRT Session : public HandleOutputStream, public ACE_Svc_Handler<ACE_SOCK_STREAM, ACE_NULL_SYNCH>
+class NETSTREAM_EXOPRT Session
+	: public HandleOutputStream
+	, public ACE_Svc_Handler<ACE_SOCK_STREAM, ACE_NULL_SYNCH>
 {
 public:
 	Session();
-
 	virtual ~Session();
-public:
-	typedef ACE_Svc_Handler<ACE_SOCK_STREAM, ACE_NULL_SYNCH> super;
 
+	typedef ACE_Svc_Handler<ACE_SOCK_STREAM, ACE_NULL_SYNCH> super;
 	typedef std::list<Packet *> PacketList;
 
-	virtual int open(void * p=0);
+	virtual int open(void * p=0) override;
 
-	virtual int handle_input(ACE_HANDLE  fd = ACE_INVALID_HANDLE);
+	virtual int handle_input(ACE_HANDLE  fd = ACE_INVALID_HANDLE) override;
 
-	virtual int handle_output(ACE_HANDLE  fd = ACE_INVALID_HANDLE);
+	virtual int handle_output(ACE_HANDLE  fd = ACE_INVALID_HANDLE) override;
 
-	virtual int handle_close(ACE_HANDLE handle, ACE_Reactor_Mask close_mask);
+	virtual int handle_close(ACE_HANDLE handle, ACE_Reactor_Mask close_mask) override;
 
 public:
-	virtual bool output(char * buffer, int buff_size);
+	virtual bool output(char * buffer, int buff_size) override;
 
-	virtual void setSocketBufferSize(int input_buf_size, int output_buf_size);
+	void setSocketBufferSize(int input_buf_size, int output_buf_size);
 
 public:
 	virtual int rd_stream();

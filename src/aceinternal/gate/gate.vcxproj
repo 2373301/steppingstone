@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseD|Win32">
+      <Configuration>ReleaseD</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseD|x64">
+      <Configuration>ReleaseD</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C39E23B1-912A-483F-886C-1AB71B60F8D2}</ProjectGuid>
+    <RootNamespace>gate</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseD|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseD|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseD|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseD|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>14.0.24720.0</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)output\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)output\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseD|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseD|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>./src/client;./src/srvconfig;./src/gameserver;./src/roleserver;./src/net;./inc;./src;./src/login;./src/stat;./src/database;../../src/common;../share/inc;../../dep/zlib/inc;../../../common/inc;../../../common/material-cpp;../simplexml/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>aced.lib;libsimplexmld.lib;libprotobufd.lib;libprotobuf-lited.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>./output\$(ProjectName)d.exe</OutputFile>
+      <AdditionalLibraryDirectories>../../bin/libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>./src/client;./src/srvconfig;./src/gameserver;./src/roleserver;./src/net;./inc;./src;./src/login;./src/stat;./src/database;../common/material-cpp;../common/material-cpp/protocol;../src/common;../share/inc;../common/inc;../simplexml/inc;../logger/inc;../netstream/inc;./src/qq;../../../dep/ACE_wrappers/;../../../dep/boost_1_60_0/;../../../dep/protobuf-2.6.1/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>../../../dep/ACE_wrappers/lib/ACEd.lib;SimpleXML.lib;../../../dep/protobuf-2.6.1/lib/libprotobuf.lib;logger.lib;share.lib;netstream.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>./src/client;./src/srvconfig;./src/gameserver;./src/roleserver;./src/net;./inc;./src;../../src/common;../hiso/shared/inc;../../dep/easyxml/inc;../../dep/protobuf/src;../../dep/zlib/inc;../common/gate/template/cpp/protocol;../../../common/inc;../../../common/template/cpp;./src/database;./src/login;./src/stat;../common/login;../common/login/template/cpp;../hiso/core;../../src/Encryption/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;ACE_AS_STATIC_LIBS;MYSQLPP_NO_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>aces.lib;easyxmls.lib;libprotocs.lib;libprotobufs.lib;Mysqlpps.lib;libmysql.lib;zlibs.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>./output/$(ProjectName).exe</OutputFile>
+      <AdditionalLibraryDirectories>../../bin/libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>./src/client;./src/srvconfig;./src/gameserver;./src/roleserver;./src/net;./inc;./src;../../src/common;../hiso/shared/inc;../../dep/easyxml/inc;../../dep/protobuf/src;../../dep/zlib/inc;../common/gate/template/cpp/protocol;../../../common/inc;../../../common/template/cpp;./src/database;./src/login;./src/stat;../common/login;../common/login/template/cpp;../hiso/core;../../src/Encryption/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;ACE_AS_STATIC_LIBS;MYSQLPP_NO_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>aces.lib;easyxmls.lib;libprotocs.lib;libprotobufs.lib;Mysqlpps.lib;libmysql.lib;zlibs.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>./output/$(ProjectName).exe</OutputFile>
+      <AdditionalLibraryDirectories>../../bin/libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseD|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>./src/client;./src/srvconfig;./src/gameserver;./src/roleserver;./src/net;./inc;./src;./src/login;./src/stat;./src/database;../../src/common/material-cpp;../../src/common/material-cpp/protocol;../../src/common;../share/inc;../../dep/zlib/inc;../../../common/inc;../../../common/material-cpp;../simplexml/inc;../logger/inc;../netstream/inc;./src/qq;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>ace.lib;libSimpleXML.lib;libprotobuf.lib;libprotobuf-lite.lib;liblogger.lib;libshare.lib;libnetstream.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>./output\$(ProjectName).exe</OutputFile>
+      <AdditionalLibraryDirectories>../../bin/libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>XCOPY ..\..\bin\libs\liblogger.dll .\output\ /Y /R /F
+XCOPY ..\..\bin\libs\libshare.dll .\output\ /Y /R /F
+XCOPY ..\..\bin\libs\libnetstream.dll .\output\ /Y /R /F
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseD|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>./src/client;./src/srvconfig;./src/gameserver;./src/roleserver;./src/net;./inc;./src;./src/login;./src/stat;./src/database;../../src/common/material-cpp;../../src/common/material-cpp/protocol;../../src/common;../share/inc;../../dep/zlib/inc;../../../common/inc;../../../common/material-cpp;../simplexml/inc;../logger/inc;../netstream/inc;./src/qq;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>ace.lib;libSimpleXML.lib;libprotobuf.lib;libprotobuf-lite.lib;liblogger.lib;libshare.lib;libnetstream.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>./output\$(ProjectName).exe</OutputFile>
+      <AdditionalLibraryDirectories>../../bin/libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+    </Link>
+    <PostBuildEvent>
+      <Command>XCOPY ..\..\bin\libs\liblogger.dll .\output\ /Y /R /F
+XCOPY ..\..\bin\libs\libshare.dll .\output\ /Y /R /F
+XCOPY ..\..\bin\libs\libnetstream.dll .\output\ /Y /R /F
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_error.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_gate.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_member.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_player.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_query.pb.cc" />
+    <ClCompile Include="src\AppNotifyInterface.cpp" />
+    <ClCompile Include="src\Client\ClientSession.cpp" />
+    <ClCompile Include="src\client\ClientStrategyCenter.cpp" />
+    <ClCompile Include="src\Client\HandleClientStream.cpp" />
+    <ClCompile Include="src\client\ManageClientBeat.cpp" />
+    <ClCompile Include="src\client\ManageClientConnectionTimeout.cpp" />
+    <ClCompile Include="src\Client\ManageClientSession.cpp" />
+    <ClCompile Include="src\client\ManageClientSessionCooler.cpp" />
+    <ClCompile Include="src\client\ManageClientStreamEx.cpp" />
+    <ClCompile Include="src\client\ManageClientStreamLimit.cpp" />
+    <ClCompile Include="src\client\ManageProfessionConfig.cpp" />
+    <ClCompile Include="src\Client\RouteClientPackage.cpp" />
+    <ClCompile Include="src\gameserver\GSSession.cpp" />
+    <ClCompile Include="src\gameserver\GSStrategyCenter.cpp" />
+    <ClCompile Include="src\gameserver\HandleGSInputStream.cpp" />
+    <ClCompile Include="src\gameserver\HandleGSOutputStream.cpp" />
+    <ClCompile Include="src\gameserver\HandleGSStream.cpp" />
+    <ClCompile Include="src\gameserver\ManageGSSession.cpp" />
+    <ClCompile Include="src\gameserver\ManageGSSessionCooler.cpp" />
+    <ClCompile Include="src\gameserver\ManageGSStream.cpp" />
+    <ClCompile Include="src\gameserver\ManageRoleGsState.cpp" />
+    <ClCompile Include="src\gameserver\ManageTranscriptStream.cpp" />
+    <ClCompile Include="src\gameserver\RouteGSPacket.cpp" />
+    <ClCompile Include="src\gate.cpp" />
+    <ClCompile Include="src\GateLogger.cpp" />
+    <ClCompile Include="src\login\BeatToLoginServer.cpp" />
+    <ClCompile Include="src\login\LoginServerSession.cpp" />
+    <ClCompile Include="src\login\ManageClientValidation.cpp" />
+    <ClCompile Include="src\login\ManageLoginStream.cpp" />
+    <ClCompile Include="src\login\ReportTrafficToLoginServer.cpp" />
+    <ClCompile Include="src\ManageConfig.cpp" />
+    <ClCompile Include="src\ManageFini.cpp" />
+    <ClCompile Include="src\ManageMasterSession.cpp" />
+    <ClCompile Include="src\ManageReduplication.cpp" />
+    <ClCompile Include="src\ManageTranscriptCondition.cpp" />
+    <ClCompile Include="src\MiniDumper.cpp" />
+    <ClCompile Include="src\net\NetStream.cpp" />
+    <ClCompile Include="src\PacketStream.cpp" />
+    <ClCompile Include="src\roleserver\ManageRoleSession.cpp" />
+    <ClCompile Include="src\roleserver\RoleSession.cpp" />
+    <ClCompile Include="src\roleserver\RouteRolePacket.cpp" />
+    <ClCompile Include="src\stat\ManageStat.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_error.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_gate.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_member.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_player.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_query.pb.h" />
+    <ClInclude Include="inc\gate.h" />
+    <ClInclude Include="src\AppNotifyInterface.h" />
+    <ClInclude Include="src\Client\ClientSession.h" />
+    <ClInclude Include="src\client\ClientStrategyCenter.h" />
+    <ClInclude Include="src\Client\HandleClientStream.h" />
+    <ClInclude Include="src\client\ManageClientBeat.h" />
+    <ClInclude Include="src\client\ManageClientConnectionTimeout.h" />
+    <ClInclude Include="src\Client\ManageClientSession.h" />
+    <ClInclude Include="src\client\ManageClientSessionCooler.h" />
+    <ClInclude Include="src\client\ManageClientStreamEx.h" />
+    <ClInclude Include="src\client\ManageClientStreamLimit.h" />
+    <ClInclude Include="src\client\ManageProfessionConfig.h" />
+    <ClInclude Include="src\client\MessageRole.h" />
+    <ClInclude Include="src\Client\RouteClientPackage.h" />
+    <ClInclude Include="src\gameserver\GSSession.h" />
+    <ClInclude Include="src\gameserver\GSStrategyCenter.h" />
+    <ClInclude Include="src\gameserver\HandleGSInputStream.h" />
+    <ClInclude Include="src\gameserver\HandleGSOutputStream.h" />
+    <ClInclude Include="src\gameserver\HandleGSStream.h" />
+    <ClInclude Include="src\gameserver\ManageGSSession.h" />
+    <ClInclude Include="src\gameserver\ManageGSSessionCooler.h" />
+    <ClInclude Include="src\gameserver\ManageGSStream.h" />
+    <ClInclude Include="src\gameserver\ManageRoleGsState.h" />
+    <ClInclude Include="src\gameserver\ManageTranscriptStream.h" />
+    <ClInclude Include="src\gameserver\RouteGSPacket.h" />
+    <ClInclude Include="src\GateLogger.h" />
+    <ClInclude Include="src\login\BeatToLoginServer.h" />
+    <ClInclude Include="src\login\LoginServerSession.h" />
+    <ClInclude Include="src\login\ManageClientValidation.h" />
+    <ClInclude Include="src\login\ManageLoginStream.h" />
+    <ClInclude Include="src\login\ReportTrafficToLoginServer.h" />
+    <ClInclude Include="src\ManageConfig.h" />
+    <ClInclude Include="src\ManageFini.h" />
+    <ClInclude Include="src\ManageMasterSession.h" />
+    <ClInclude Include="src\ManageReduplication.h" />
+    <ClInclude Include="src\ManageTranscriptCondition.h" />
+    <ClInclude Include="src\MiniDumper.h" />
+    <ClInclude Include="src\net\NetStream.h" />
+    <ClInclude Include="src\PacketStream.h" />
+    <ClInclude Include="src\roleserver\ManageRoleSession.h" />
+    <ClInclude Include="src\roleserver\RoleSession.h" />
+    <ClInclude Include="src\roleserver\RouteRolePacket.h" />
+    <ClInclude Include="src\stat\ManageStat.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

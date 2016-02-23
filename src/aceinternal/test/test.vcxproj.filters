@@ -30,5 +30,8 @@
     <ClInclude Include="src\testpoo.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\testnetcore.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

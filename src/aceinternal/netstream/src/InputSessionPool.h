@@ -10,7 +10,6 @@
 namespace netstream
 {
 
-
 struct InputSessionThreadInfo 
 {
 	InputSessionThreadInfo()
@@ -36,39 +35,27 @@ class InputSessionPool : public ACE_Task<ACE_NULL_SYNCH>
 public:
 	InputSessionPool();
 	~InputSessionPool();
-public:
+
 	int init(int thread_no, SessionPool * session_pool);
-
 	void stop();
-
 	void finit();
-public:
+
 	int svc();
 
 	void handleSession(CellSession * cell_session);
-
 	void removeSession(CellSession * cell_session);
-
 	void registerSessionThreadInfo(InputSessionThreadInfo * stinfo);
-public:
-protected:
+
 private:
 	int m_session_thread_info_index;
-
 	bool m_stop;
-
 	bool m_wait;
-
 	bool m_actived;
-
 	SessionPool * m_session_pool;
-
 	InputSessionThreadInfoVec_t	m_session_thread_info;
-
 	ACE_Thread_Mutex m_session_thread_info_mutex;
 
 	typedef map<CellSession *, InputSessionThreadInfo *> CellSessionMap_t;
-
 	CellSessionMap_t	m_cell_session_map;
 };
 

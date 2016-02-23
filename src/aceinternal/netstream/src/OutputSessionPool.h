@@ -49,46 +49,34 @@ class OutputSessionPool : public ACE_Task<ACE_NULL_SYNCH>
 public:
 	OutputSessionPool();
 	~OutputSessionPool();
-public:
+
 	int init(int thread_no, SessionPool * session_pool);
-
 	void stop();
-
 	void finit();
 
-public:
 	int svc();
 
-public:
 	void handleSession(CellSession * cell_session);
-
 	void removeSession(CellSession * cell_session);
-
 	virtual bool handleOutputStream(Session_t session, char * buffer, int buff_size);
+
 protected:
 	void registerOutputSessionThreadinfo(OutputSessionThreadInfo * output_session_thread_info);
 
-	//void sessionClosed(CellSession * cell_session);
-
 private:
-	typedef vector<OutputSessionThreadInfo *> OutputSessionThreadInfoVec_t;
-
 	int m_session_thread_info_index;
-
 	bool m_stop;
-
 	bool m_wait;
-
 	bool m_actived;
 
 	SessionPool * m_session_pool;
 
+	typedef vector<OutputSessionThreadInfo *> OutputSessionThreadInfoVec_t;
 	OutputSessionThreadInfoVec_t	m_output_session_thread_info_vec; // ¹«ÓÃ
 
 	ACE_Thread_Mutex m_output_session_thread_info_vec_mutex;
 
 	typedef map<CellSession *, OutputSessionThreadInfo *> CellSessionMap_t;
-
 	CellSessionMap_t	m_cell_session_map;
 
 	ACE_Thread_Mutex	m_cell_session_map_mutex;

@@ -25,7 +25,8 @@ SessionPoolImp::SessionPoolImp()
 
 SessionPoolImp::~SessionPoolImp()
 {
-	for (SessionInfoMap_t::iterator it = m_session_info_map.begin(); it != m_session_info_map.end(); ++it)
+	for (SessionInfoMap_t::iterator it = m_session_info_map.begin();
+		it != m_session_info_map.end(); ++it)
 	{
 		delete it->first;
 	}
@@ -112,11 +113,6 @@ bool SessionPoolImp::connect(const SessionAddrVec_t & session_addr_vec)
 		addr.set(it->c_str());
 		CellSession * cell_session = new CellSession();
 
-		//if (m_save_pack_stream)
-		//{
-		//	cell_session->setSavePackInfo(true, it->c_str());
-		//}
-
 		if (connector.connect(cell_session->peer(), addr) != -1)
 		{
 			if (cell_session->open() == -1)
@@ -124,10 +120,6 @@ bool SessionPoolImp::connect(const SessionAddrVec_t & session_addr_vec)
 				DEF_LOG_ERROR("failed to call open of cell session, last error is <%d>\n", ACE_OS::last_error());
 				return false;
 			}
-
-			//CellSessionInfo csi;
-			//csi.reference_no = 2;
-			//m_cell_session_map.insert(std::make_pair(cell_session, csi));
 
 			if (NULL != m_handle_session_event)
 			{
@@ -180,14 +172,7 @@ bool SessionPoolImp::listen(const string & listen_addr)
 		ACE_OS::sleep(1);
 	}
 
-	if (1 == m_listen_status)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	return 1 == m_listen_status;
 }
 
 void SessionPoolImp::setHandleSessionEvent(HandleSessionEvent * handle_event)

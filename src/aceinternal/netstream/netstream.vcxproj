@@ -236,7 +236,6 @@
     <ClCompile Include="src\CellSession.cpp" />
     <ClCompile Include="src\InputSessionPool.cpp" />
     <ClCompile Include="src\ManageNetEventNotify.cpp" />
-    <ClCompile Include="src\NetStream.cpp" />
     <ClCompile Include="src\OutputSessionPool.cpp" />
     <ClCompile Include="src\Session.cpp" />
     <ClCompile Include="src\SessionPoolFactory.cpp" />
@@ -252,7 +251,6 @@
     <ClInclude Include="src\CellSession.h" />
     <ClInclude Include="src\InputSessionPool.h" />
     <ClInclude Include="src\ManageNetEventNotify.h" />
-    <ClInclude Include="src\NetStream.h" />
     <ClInclude Include="src\OutputSessionPool.h" />
     <ClInclude Include="src\SessionPoolImp.h" />
   </ItemGroup>

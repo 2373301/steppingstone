@@ -11,16 +11,18 @@
 namespace netstream
 {
 
-class NETSTREAM_EXOPRT SingleConnection : public HandleInputStream, public ACE_Task<ACE_NULL_SYNCH>
+class NETSTREAM_EXOPRT SingleConnection
+	: public HandleInputStream
+	, public ACE_Task<ACE_NULL_SYNCH>
 {
 public:
 	SingleConnection();
 	~SingleConnection();
-public:
-	virtual int svc();
-public:
-	virtual void input(Session * session, ACE_Message_Block & msg_block);
-public:
+
+	virtual int svc() override;
+
+	virtual void input(Session * session, ACE_Message_Block & msg_block) override;;
+
 	virtual int init(const string & remote_addr);
 
 	virtual int stop();

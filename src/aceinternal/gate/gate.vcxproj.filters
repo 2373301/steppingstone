@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{85ea1478-4825-444c-85a9-fcac1719f334}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\client">
+      <UniqueIdentifier>{d3d57ef2-b61d-4152-8a66-04a62350e89f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\gameserver">
+      <UniqueIdentifier>{cfb21e6b-22bd-43a5-9f7b-869452acc436}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entity">
+      <UniqueIdentifier>{c6ac591d-b51c-41b1-a056-8ff878e293b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\login">
+      <UniqueIdentifier>{40c2b1d7-20a0-4b8d-920c-a38d8e5c89bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\stat">
+      <UniqueIdentifier>{007d1e14-4524-4cda-ab79-15f44a4c0633}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\roleserver">
+      <UniqueIdentifier>{97f1a591-5210-4cdc-beb2-5da3be368133}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\net">
+      <UniqueIdentifier>{6ae8048c-abbc-4544-a36e-21452b328c96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\master">
+      <UniqueIdentifier>{2aaf19ca-734f-41fe-be39-e4064aa7d975}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc">
+      <UniqueIdentifier>{fc12d1fa-43bb-4727-8efb-5dc19496ccd4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\AppNotifyInterface.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gate.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GateLogger.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageConfig.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageFini.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageReduplication.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageTranscriptCondition.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MiniDumper.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PacketStream.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Client\ClientSession.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="src\client\ClientStrategyCenter.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Client\HandleClientStream.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="src\client\ManageClientBeat.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="src\client\ManageClientConnectionTimeout.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Client\ManageClientSession.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="src\client\ManageClientSessionCooler.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="src\client\ManageClientStreamEx.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="src\client\ManageClientStreamLimit.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="src\client\ManageProfessionConfig.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Client\RouteClientPackage.cpp">
+      <Filter>src\client</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameserver\GSSession.cpp">
+      <Filter>src\gameserver</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameserver\GSStrategyCenter.cpp">
+      <Filter>src\gameserver</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameserver\HandleGSInputStream.cpp">
+      <Filter>src\gameserver</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameserver\HandleGSOutputStream.cpp">
+      <Filter>src\gameserver</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameserver\HandleGSStream.cpp">
+      <Filter>src\gameserver</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameserver\ManageGSSession.cpp">
+      <Filter>src\gameserver</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameserver\ManageGSSessionCooler.cpp">
+      <Filter>src\gameserver</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameserver\ManageGSStream.cpp">
+      <Filter>src\gameserver</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameserver\ManageRoleGsState.cpp">
+      <Filter>src\gameserver</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameserver\ManageTranscriptStream.cpp">
+      <Filter>src\gameserver</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameserver\RouteGSPacket.cpp">
+      <Filter>src\gameserver</Filter>
+    </ClCompile>
+    <ClCompile Include="src\login\BeatToLoginServer.cpp">
+      <Filter>src\login</Filter>
+    </ClCompile>
+    <ClCompile Include="src\login\LoginServerSession.cpp">
+      <Filter>src\login</Filter>
+    </ClCompile>
+    <ClCompile Include="src\login\ManageClientValidation.cpp">
+      <Filter>src\login</Filter>
+    </ClCompile>
+    <ClCompile Include="src\login\ManageLoginStream.cpp">
+      <Filter>src\login</Filter>
+    </ClCompile>
+    <ClCompile Include="src\login\ReportTrafficToLoginServer.cpp">
+      <Filter>src\login</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stat\ManageStat.cpp">
+      <Filter>src\stat</Filter>
+    </ClCompile>
+    <ClCompile Include="src\roleserver\ManageRoleSession.cpp">
+      <Filter>src\roleserver</Filter>
+    </ClCompile>
+    <ClCompile Include="src\roleserver\RoleSession.cpp">
+      <Filter>src\roleserver</Filter>
+    </ClCompile>
+    <ClCompile Include="src\roleserver\RouteRolePacket.cpp">
+      <Filter>src\roleserver</Filter>
+    </ClCompile>
+    <ClCompile Include="src\net\NetStream.cpp">
+      <Filter>src\net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageMasterSession.cpp">
+      <Filter>src\master</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_error.pb.cc">
+      <Filter>src\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_gate.pb.cc">
+      <Filter>src\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_member.pb.cc">
+      <Filter>src\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_player.pb.cc">
+      <Filter>src\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_query.pb.cc">
+      <Filter>src\entity</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\AppNotifyInterface.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GateLogger.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageConfig.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageFini.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageReduplication.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageTranscriptCondition.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MiniDumper.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PacketStream.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Client\ClientSession.h">
+      <Filter>src\client</Filter>
+    </ClInclude>
+    <ClInclude Include="src\client\ClientStrategyCenter.h">
+      <Filter>src\client</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Client\HandleClientStream.h">
+      <Filter>src\client</Filter>
+    </ClInclude>
+    <ClInclude Include="src\client\ManageClientBeat.h">
+      <Filter>src\client</Filter>
+    </ClInclude>
+    <ClInclude Include="src\client\ManageClientConnectionTimeout.h">
+      <Filter>src\client</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Client\ManageClientSession.h">
+      <Filter>src\client</Filter>
+    </ClInclude>
+    <ClInclude Include="src\client\ManageClientSessionCooler.h">
+      <Filter>src\client</Filter>
+    </ClInclude>
+    <ClInclude Include="src\client\ManageClientStreamEx.h">
+      <Filter>src\client</Filter>
+    </ClInclude>
+    <ClInclude Include="src\client\ManageClientStreamLimit.h">
+      <Filter>src\client</Filter>
+    </ClInclude>
+    <ClInclude Include="src\client\ManageProfessionConfig.h">
+      <Filter>src\client</Filter>
+    </ClInclude>
+    <ClInclude Include="src\client\MessageRole.h">
+      <Filter>src\client</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Client\RouteClientPackage.h">
+      <Filter>src\client</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameserver\GSSession.h">
+      <Filter>src\gameserver</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameserver\GSStrategyCenter.h">
+      <Filter>src\gameserver</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameserver\HandleGSInputStream.h">
+      <Filter>src\gameserver</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameserver\HandleGSOutputStream.h">
+      <Filter>src\gameserver</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameserver\HandleGSStream.h">
+      <Filter>src\gameserver</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameserver\ManageGSSession.h">
+      <Filter>src\gameserver</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameserver\ManageGSSessionCooler.h">
+      <Filter>src\gameserver</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameserver\ManageGSStream.h">
+      <Filter>src\gameserver</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameserver\ManageRoleGsState.h">
+      <Filter>src\gameserver</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameserver\ManageTranscriptStream.h">
+      <Filter>src\gameserver</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gameserver\RouteGSPacket.h">
+      <Filter>src\gameserver</Filter>
+    </ClInclude>
+    <ClInclude Include="src\login\BeatToLoginServer.h">
+      <Filter>src\login</Filter>
+    </ClInclude>
+    <ClInclude Include="src\login\LoginServerSession.h">
+      <Filter>src\login</Filter>
+    </ClInclude>
+    <ClInclude Include="src\login\ManageClientValidation.h">
+      <Filter>src\login</Filter>
+    </ClInclude>
+    <ClInclude Include="src\login\ManageLoginStream.h">
+      <Filter>src\login</Filter>
+    </ClInclude>
+    <ClInclude Include="src\login\ReportTrafficToLoginServer.h">
+      <Filter>src\login</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stat\ManageStat.h">
+      <Filter>src\stat</Filter>
+    </ClInclude>
+    <ClInclude Include="src\roleserver\ManageRoleSession.h">
+      <Filter>src\roleserver</Filter>
+    </ClInclude>
+    <ClInclude Include="src\roleserver\RoleSession.h">
+      <Filter>src\roleserver</Filter>
+    </ClInclude>
+    <ClInclude Include="src\roleserver\RouteRolePacket.h">
+      <Filter>src\roleserver</Filter>
+    </ClInclude>
+    <ClInclude Include="src\net\NetStream.h">
+      <Filter>src\net</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageMasterSession.h">
+      <Filter>src\master</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\gate.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_error.pb.h">
+      <Filter>src\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_gate.pb.h">
+      <Filter>src\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_member.pb.h">
+      <Filter>src\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_player.pb.h">
+      <Filter>src\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_query.pb.h">
+      <Filter>src\entity</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

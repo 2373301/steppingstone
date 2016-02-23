@@ -19,13 +19,13 @@ public:
 	{
 		return Singleton<ManageNetEventNotify>::instance();
 	}
-public:
+
 	void collectSessionPoolReactor(SessionPoolImp * session_pool, ACE_Reactor * reactor);
 
 	void handleNewSession(CellSession * cell_session);
 
 	void handleSessionClose(CellSession * cell_session, int trigger_source);
-protected:
+
 private:
 	ACE_Thread_Mutex m_session_pool_mutex;
 

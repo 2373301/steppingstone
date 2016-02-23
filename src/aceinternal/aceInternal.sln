@@ -72,6 +72,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test", "test\test.vcxproj",
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scenex", "scenex\scenex.vcxproj", "{7737E776-6BA9-47D3-8285-2F18BF7124C0}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gate", "gate\gate.vcxproj", "{C39E23B1-912A-483F-886C-1AB71B60F8D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -309,6 +311,16 @@ Global
 		{7737E776-6BA9-47D3-8285-2F18BF7124C0}.ReleaseD|x64.Build.0 = Release|x64
 		{7737E776-6BA9-47D3-8285-2F18BF7124C0}.ReleaseD|x86.ActiveCfg = Release|Win32
 		{7737E776-6BA9-47D3-8285-2F18BF7124C0}.ReleaseD|x86.Build.0 = Release|Win32
+		{C39E23B1-912A-483F-886C-1AB71B60F8D2}.Debug|x64.ActiveCfg = Debug|x64
+		{C39E23B1-912A-483F-886C-1AB71B60F8D2}.Debug|x64.Build.0 = Debug|x64
+		{C39E23B1-912A-483F-886C-1AB71B60F8D2}.Debug|x86.ActiveCfg = Debug|Win32
+		{C39E23B1-912A-483F-886C-1AB71B60F8D2}.Debug|x86.Build.0 = Debug|Win32
+		{C39E23B1-912A-483F-886C-1AB71B60F8D2}.Release|x64.ActiveCfg = Release|Win32
+		{C39E23B1-912A-483F-886C-1AB71B60F8D2}.Release|x86.ActiveCfg = Release|Win32
+		{C39E23B1-912A-483F-886C-1AB71B60F8D2}.Release|x86.Build.0 = Release|Win32
+		{C39E23B1-912A-483F-886C-1AB71B60F8D2}.ReleaseD|x64.ActiveCfg = ReleaseD|Win32
+		{C39E23B1-912A-483F-886C-1AB71B60F8D2}.ReleaseD|x86.ActiveCfg = ReleaseD|Win32
+		{C39E23B1-912A-483F-886C-1AB71B60F8D2}.ReleaseD|x86.Build.0 = ReleaseD|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

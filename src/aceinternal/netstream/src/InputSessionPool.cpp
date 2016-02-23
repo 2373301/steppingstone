@@ -64,12 +64,8 @@ void InputSessionPool::finit()
 {
 	while(m_wait)
 	{
-		//std::cout << "wait InputSessionPool" << std::endl;
 		ACE_OS::sleep(1);
 	}
-
-	//std::cout << "exit InputSessionPool" << std::endl;
-
 }
 
 int InputSessionPool::svc()
@@ -84,13 +80,10 @@ int InputSessionPool::svc()
 	session_thread_info->reactor = new ACE_Reactor(new ACE_Dev_Poll_Reactor(100000), true);
 #endif
 
-	//collectSessionPool(this, session_thread_info->reactor);
 	ManageNetEventNotify::instance()->collectSessionPoolReactor((SessionPoolImp *)m_session_pool, session_thread_info->reactor);
-
 	registerSessionThreadInfo(session_thread_info);
 
 	m_actived = true;
-
 	int reactor_result = 0;
 
 	while (true)

@@ -41,7 +41,7 @@ public:
 	virtual int get_random(int max_no, int min_no = 0) override;
 
 
-	void packInput(PackInfo * pack_info);
+	virtual void packInput(PackInfo * pack_info) override;
 
 	virtual int svc (void) override;
 

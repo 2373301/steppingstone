@@ -21,11 +21,8 @@ int CellSession::open(void * p)
 	int result = Session::open(p);
 	if (-1 != result)
 	{
-		//notifySessionPool(this, SS_CONNECTED);
 		ManageNetEventNotify::instance()->handleNewSession(this);
 	}
-
-	//m_save_output_pack_info.init(true, "output_file");
 
 	return result;
 }
@@ -45,7 +42,6 @@ int CellSession::rd_stream()
 bool CellSession::output(char * buffer, int buff_size)
 {
 	ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_outpu_buffer_mutex, false);
-	//m_output_packet.push(packet);
 	if (m_outpu_buffer.space() >= buff_size)
 	{
 		m_outpu_buffer.copy(buffer, buff_size);
@@ -96,8 +92,6 @@ int CellSession::wt_stream()
 		}
 		else
 		{
-			//m_save_output_pack_info.save(m_output_msg_block.rd_ptr(), send_n);
-
 			m_output_msg_block.rd_ptr(send_n);
 
 			if (m_output_msg_block.length() == 0)
@@ -115,16 +109,6 @@ int CellSession::wt_stream()
 	{
 		m_output_msg_block.crunch();
 	}
-
-	//if (m_output_msg_block.length() == 0)
-	//{
-	//	ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_output_packet_mutex, -1);
-	//	if (m_output_packet.size() == 0)
-	//	{
-	//		//this->reactor()->remove_handler(this, ACE_Event_Handler::WRITE_MASK | ACE_Event_Handler::DONT_CALL);
-	//		result = -1;
-	//	}
-	//}
 
 	if (-1 == result)
 	{

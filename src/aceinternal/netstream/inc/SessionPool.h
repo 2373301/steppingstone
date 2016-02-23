@@ -26,8 +26,7 @@ public:
 class NETSTREAM_EXOPRT SessionPool
 {
 public:
-	virtual ~SessionPool()
-	{}
+	virtual ~SessionPool(){}
 
 	virtual int init(int input_thr_no, int output_thr_no, HandleSessionEvent * handle_session_event = NULL) = 0;
 
@@ -46,8 +45,7 @@ public:
 	virtual void finit() = 0;
 
 	virtual void removeSession(Session_t session) = 0;
-protected:
-private:
+
 };
 
 }

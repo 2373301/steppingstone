@@ -9,8 +9,11 @@
 #include "Logger.h"
 
 //#define LOG_INPUT_MSG_SIZE()	DEF_LOG_DEBUG("the input msg rd_ptr is <%x>, wt_ptr is <%x>, file line is <%d>\n", m_input_msg_block.rd_ptr(), m_input_msg_block.wr_ptr(), __LINE__)
+#define LOG_INPUT_MSG_SIZE()
 namespace netstream
 {
+
+int Session::m_socket_buffer_length = 102400;
 
 void parsePacketFromStream(netstream::Session_t session, ACE_Message_Block & msg_block, PacketVec_t & packet_vec)
 {
@@ -43,10 +46,9 @@ void parsePacketFromStream(netstream::Session_t session, ACE_Message_Block & msg
 		}
 	}
 }
+	
 
-#define LOG_INPUT_MSG_SIZE()	
 
-int Session::m_socket_buffer_length = 102400;
 
 SavePackInfo::SavePackInfo()
 : is_save_stream(false)
@@ -68,7 +70,10 @@ bool SavePackInfo::init(bool is_save, const string & file_n)
 
 		char file_str[100] = {0};
 		ACE_Date_Time curr_time(ACE_OS::gettimeofday());
-		sprintf(file_str, "%s_%d_%d_%dT%d_%d_%d", file_name.c_str(), curr_time.year(), curr_time.month(), curr_time.day(), curr_time.hour(), curr_time.minute(), curr_time.second());
+		sprintf(file_str, "%s_%d_%d_%dT%d_%d_%d"
+			, file_name.c_str(), curr_time.year()
+			, curr_time.month(), curr_time.day()
+			, curr_time.hour(), curr_time.minute(), curr_time.second());
 		file_stream = new fstream();
 		file_stream->open(file_str, ios_base::out | ios_base::app | ios_base::binary);
 		if (file_stream->fail())
@@ -106,19 +111,6 @@ Session::~Session()
 
 int Session::open(void * p)
 {
-	//// for test
-	//int init_buf = m_input_msg_block.init(m_socket_buffer_length);
-	//if (-1 == init_buf)
-	//{
-	//	initBufferError(ACE_OS::last_error());
-	//}
-
-	//init_buf = m_output_msg_block.init(m_socket_buffer_length);
-	//if (-1 == init_buf)
-	//{
-	//	initBufferError(ACE_OS::last_error());
-	//}
-
 	m_session_state = SS_OPEN;
 	
 	this->peer().enable(ACE_NONBLOCK);
@@ -127,7 +119,6 @@ int Session::open(void * p)
 
 	if (super::open(p) == -1)
 	{
-		//GATELogp(LM_ERROR, ACE_TEXT("Failed to call super::open in GSSession::open, param is <%d>, the last error is : <%d>, msg is : %m\n"), p, ACE_OS::last_error());
 		return -1;
 	}
 
@@ -202,8 +193,6 @@ int Session::rd_stream()
 	int recv_n = (int)this->peer().recv(m_input_msg_block.wr_ptr(), m_input_msg_block.space());
 	if (recv_n > 0)
 	{
-		//m_save_input_pack_info.save(m_input_msg_block.wr_ptr(), recv_n);
-
 		LOG_INPUT_MSG_SIZE();
 
 		m_input_msg_block.wr_ptr(recv_n);
@@ -211,7 +200,6 @@ int Session::rd_stream()
 		LOG_INPUT_MSG_SIZE();
 
 		m_handle_input->input(this, m_input_msg_block);
-		//parseInputPacket();
 	}
 	else if (0 == recv_n)
 	{
@@ -286,16 +274,6 @@ int Session::wt_stream()
 	{
 		m_output_msg_block.crunch();
 	}
-
-	//if (m_output_msg_block.length() == 0)
-	//{
-	//	ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_output_packet_mutex, -1);
-	//	if (m_output_packet.size() == 0)
-	//	{
-	//		//this->reactor()->remove_handler(this, ACE_Event_Handler::WRITE_MASK | ACE_Event_Handler::DONT_CALL);
-	//		result = -1;
-	//	}
-	//}
 
 	return result;
 }

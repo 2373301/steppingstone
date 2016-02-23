@@ -8,6 +8,7 @@
 #include "dynamic_parse.h"
 #include "typedef.h"
 #include "testpoo.hpp"
+#include "testnetcore.hpp"
 
 void startApplication()
 {
@@ -68,7 +69,8 @@ int main(int argc, char * argv[])
 {	
 	//TestProto();
 	//startApplication();
-	pool_ut::run();
+	//pool_ut::run();
+	netcore::netcore_ut::run();
 	return 0;
 }
 

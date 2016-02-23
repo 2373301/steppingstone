@@ -106,9 +106,6 @@ public:
 	virtual bool isStartupSuccess() = 0;
 	virtual bool isShutdownSuccess() = 0;
 
-	virtual long schemeTimer(int interval_value, TimerCallBack timer_callback) = 0;
-	virtual long cancelTimer(long timer_id) = 0;
-
 	virtual bool get_guid(EntityType entity_type, uint64 & guid) = 0;
 	virtual int get_random(int max_no, int min_no = 0) = 0;
 };

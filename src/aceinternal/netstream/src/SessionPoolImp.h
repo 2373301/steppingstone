@@ -25,62 +25,47 @@ struct SessionStatus
 	bool closed_write;
 };
 
-class SessionPoolImp : public SessionPool, public HandleInputStream, public ACE_Task<ACE_NULL_SYNCH>
+class SessionPoolImp
+	: public SessionPool
+	, public HandleInputStream
+	, public ACE_Task<ACE_NULL_SYNCH>
 {
 public:
 	SessionPoolImp();
-
 	virtual ~SessionPoolImp();
-public:
-	int svc();
 
-public:
-	virtual void input(Session * session, ACE_Message_Block & msg_block);
+	virtual int svc() override;
 
-public:
-	virtual int init(int input_thr_no, int output_thr_no, HandleSessionEvent * handle_session_event = NULL);
+	virtual void input(Session * session, ACE_Message_Block & msg_block) override;
 
-	virtual void setSocketBufferSize(int input_buf_size, int output_buf_size);
 
-	virtual bool connect(const SessionAddrVec_t & session_addr_vec);
-
-	virtual bool listen(const string & listen_addr);
-
-	virtual void setHandleSessionEvent(HandleSessionEvent * handle_event);
-
-	virtual bool handleOutputStream(Session_t session, char * buffer, int buff_size);
-
-	virtual void stop();
-
-	virtual void finit();
-
-	virtual void removeSession(Session_t session);
+	virtual int init(int input_thr_no, int output_thr_no, HandleSessionEvent * handle_session_event = NULL)  override;
+	virtual void setSocketBufferSize(int input_buf_size, int output_buf_size) override;
+	virtual bool connect(const SessionAddrVec_t & session_addr_vec) override;
+	virtual bool listen(const string & listen_addr) override;
+	virtual void setHandleSessionEvent(HandleSessionEvent * handle_event) override;
+	virtual bool handleOutputStream(Session_t session, char * buffer, int buff_size) override;
+	virtual void stop() override;
+	virtual void finit() override;
+	virtual void removeSession(Session_t session) override;
 
 	virtual void handleNewConnection(Session * session);
-
 	virtual void connectionClosed(Session * session, int trigger_source);
 
-protected:
 private:
 	HandleSessionEvent * m_handle_session_event;
-
 	ACE_Reactor * m_reactor;
 
 	// default 0, 1:sucess, 2:failed
 	int m_listen_status;
-
 	int m_socket_intput_buffer_size;
-
 	int m_socket_output_buffer_size;
-
 	string m_listen_addr;
 
 	InputSessionPool m_input_session_pool;
-
 	OutputSessionPool m_output_session_pool;
 
 	typedef define_unordered_map<Session *, SessionStatus>	SessionInfoMap_t;
-
 	SessionInfoMap_t	m_session_info_map;
 
 	ACE_Thread_Mutex	m_session_info_map_mutex;

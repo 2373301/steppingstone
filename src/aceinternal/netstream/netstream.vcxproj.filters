@@ -13,9 +13,6 @@
     <Filter Include="singleconnection">
       <UniqueIdentifier>{53971153-f33d-4729-b6e6-0cd35d74fc7a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="net">
-      <UniqueIdentifier>{03096cab-9fb0-475f-8a58-33034879a454}</UniqueIdentifier>
-    </Filter>
     <Filter Include="pool">
       <UniqueIdentifier>{fc9ea907-d695-444e-9b19-de8b614b8da7}</UniqueIdentifier>
     </Filter>
@@ -32,9 +29,6 @@
     </ClCompile>
     <ClCompile Include="src\SingleConnection.cpp">
       <Filter>singleconnection</Filter>
-    </ClCompile>
-    <ClCompile Include="src\NetStream.cpp">
-      <Filter>net</Filter>
     </ClCompile>
     <ClCompile Include="src\InputSessionPool.cpp">
       <Filter>pool</Filter>
@@ -64,9 +58,6 @@
     </ClInclude>
     <ClInclude Include="inc\SingleConnection.h">
       <Filter>singleconnection</Filter>
-    </ClInclude>
-    <ClInclude Include="src\NetStream.h">
-      <Filter>net</Filter>
     </ClInclude>
     <ClInclude Include="src\InputSessionPool.h">
       <Filter>pool</Filter>
