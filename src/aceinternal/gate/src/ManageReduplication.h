@@ -32,6 +32,6 @@ protected:
 private:
 	typedef define_unordered_map<uint32, RedulicationInfo *> MapInfoMap_t;
 
-	MapInfoMap_t m_map_info_map;
+	MapInfoMap_t m_map_info_map; //副本跳图到正常地图
 };
 #endif
