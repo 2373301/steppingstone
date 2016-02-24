@@ -6,6 +6,7 @@
 //#include "SceneFactory.h"
 #include "opcode.h"
 #include "LoggerFactory.h"
+#include "SessionPoolFactory.h"
 
 #define PLUGIN_SAVE_CONFIG_DIR	"plugin_data"
 
@@ -23,6 +24,12 @@
 using namespace std;
 
 
+Scene * createScene()
+{
+	return new SceneImp();
+}
+
+
 SceneImp::SceneImp()
 :m_save_packet_index(0)
 , m_manage_timer(this)
@@ -30,8 +37,9 @@ SceneImp::SceneImp()
 , m_is_startup_success(false)
 , m_is_stop(false)
 , m_is_shutdown_success(false)
+,m_pool(NULL)
 {
-
+	getInputMsgMap();
 }
 
 SceneImp::~SceneImp()
@@ -51,10 +59,109 @@ SceneImp::~SceneImp()
 	delete m_scene_cfg.logger;
 }
 
+void SceneImp::newConnection(netstream::Session_t session)
+{
+
+}
+
+void SceneImp::connectionClosed(netstream::Session_t session, int trigger_source)
+{
+
+}
+
+void SceneImp::handleInputStream(netstream::Session_t session, ACE_Message_Block & msg_block)
+{
+	PacketVec_t packet_vec;
+	netstream::parsePacketFromStream(session, msg_block, packet_vec);
+	for (PacketVec_t::iterator it = packet_vec.begin(); it != packet_vec.end(); ++it)
+	{
+		std::unique_ptr<Packet> packet(*it);
+		auto findIt = m_input_msg_type_map.find(packet->opcode());
+		if (findIt == m_input_msg_type_map.end())
+		{
+			// 发送给插件
+			// todo
+			continue;
+		}
+		
+		auto msgIt = m_message_type_map.find(packet->opcode());
+		if(msgIt == m_message_type_map.end())
+			continue;
+		
+		PackInfo info;
+		info.guid = packet->guid();
+		info.opcode = packet->opcode();
+		if (NULL == msgIt->second)
+		{
+			findIt->second(info);
+			continue;
+		}
+
+		auto newMsg = msgIt->second->New();
+
+		if (!parsePacket(packet.get(), newMsg))
+			continue;
+		
+		info.msg = newMsg;
+		findIt->second(info);
+	}
+
+}
+
+int SceneImp::on_scene_xs2ns_req_online_scenes(const PackInfo & pack_info)
+{
+	return 0;
+}
+
+int SceneImp::on_scene_ns2xs_ack_online_scenes(const PackInfo & pack_info)
+{
+	return 0;
+}
+
+int SceneImp::on_scene_ns2xs_ntf_new_scenes(const PackInfo & pack_info)
+{
+	return 0;
+}
+
+int SceneImp::on_scene_xs2xs_req_connection(const PackInfo & pack_info)
+{
+	return 0;
+}
+
+int SceneImp::on_scene_xs2xs_ack_connection(const PackInfo & pack_info)
+{
+	return 0;
+}
 
 int SceneImp::init(const SceneCfg & scene_cfg)
 {
 	m_scene_cfg = scene_cfg;
+
+
+	m_pool = netstream::SessionPoolFactory::createSessionPool();
+	if (-1 == m_pool->init(1, 1, this))
+	{	
+		DEF_LOG_ERROR("failed to init session pool\n");
+		return -1;
+	}
+
+	if (!m_pool->listen(m_scene_cfg.listen_addr))
+	{
+		DEF_LOG_ERROR("failed to listen at:%s session pool\n", m_scene_cfg.listen_addr.c_str());
+		return -1;
+	}
+
+	// 连接 naming service
+	if (m_scene_cfg.srv_type != SRV_TYPE_NAMING)
+	{	
+		netstream::SessionAddrVec_t vec;
+		vec.push_back(m_scene_cfg.naming_addr);
+		if (!m_pool->connect(vec))
+		{
+			DEF_LOG_ERROR("failed to connect naming service, ip:%s\n", m_scene_cfg.naming_addr.c_str());
+			return -1;
+		}
+	}
 
 
 	static bool first_time = true;
@@ -250,7 +357,6 @@ int SceneImp::svc (void)
 
 	PackInfo * pack_info = NULL;
 	vector<PackInfo *> input_packet_vec;
-	//CachePackInfoVec_t cache_input_packet_vec;
 	GOOGLE_MESSAGE_TYPE * protobuf_msg = NULL;
 
 	ACE_Time_Value start_time;
@@ -318,7 +424,7 @@ int SceneImp::svc (void)
 		pack_info = NULL;
 
 		input_packet_vec.clear();
-
+		//CachePackInfoVec_t cache_input_packet_vec;
 // 		{
 // 			ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_cache_input_packet_vec_mutex, -1);
 // 			std::copy(m_cache_input_packet_vec.begin(), m_cache_input_packet_vec.end(), back_inserter(cache_input_packet_vec));
@@ -385,12 +491,6 @@ int SceneImp::get_random(int max_no, int min_no)
 
 void SceneImp::playerMsg(Packet * packet)
 {
-	//if (packet->opcode() == SMSG_BATTLE_PLAYBACK)
-	//{
-	//	Packet * ps = new Packet(packet->opcode(), packet->guid(), string(packet->ch_body(), packet->body_size()));
-	//	m_manage_battle_report.handleBattleReport(ps);
-	//}
-
 	if (m_scene_cfg.save_packet)
 	{
 		savePacket(packet);

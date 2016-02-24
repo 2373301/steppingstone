@@ -1,6 +1,5 @@
-
-#ifndef SESSION_HPP
-#define SESSION_HPP
+#ifndef Sessionx_h__
+#define Sessionx_h__
 
 #include <fstream>
 #include <ace/Svc_Handler.h>
@@ -13,7 +12,7 @@ using namespace std;
 
 enum SessionState
 {
-	SS_NONE			= 0,
+	SS_NONE = 0,
 	SS_OPEN,
 	SS_CONNECTED,
 	SS_CLOSE,
@@ -56,7 +55,7 @@ public:
 };
 
 class NETCORE_EXOPRT Sessionx :public HandleOutputx
-							 ,public ACE_Svc_Handler<ACE_SOCK_STREAM, ACE_NULL_SYNCH>
+	, public ACE_Svc_Handler<ACE_SOCK_STREAM, ACE_NULL_SYNCH>
 {
 public:
 	Sessionx();
@@ -66,7 +65,7 @@ public:
 	typedef std::list<Packet *> PacketList;
 
 	// ACE_Svc_Handler
-	virtual int open(void * p=0) override;
+	virtual int open(void * p = 0) override;
 	virtual int close(ACE_Reactor_Mask close_mask) override;
 	virtual int handle_input(ACE_HANDLE  fd = ACE_INVALID_HANDLE) override;
 	virtual int handle_output(ACE_HANDLE  fd = ACE_INVALID_HANDLE) override;
@@ -100,4 +99,4 @@ protected:
 	ACE_Message_Block m_outputs;
 };
 
-#endif
+#endif // Sessionx_h__

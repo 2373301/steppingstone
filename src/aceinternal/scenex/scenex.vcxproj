@@ -145,6 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_scene.pb.h" />
     <ClInclude Include="inc\LoadDll.h" />
     <ClInclude Include="inc\Message.h" />
     <ClInclude Include="inc\Plugin.h" />
@@ -155,6 +156,7 @@
     <ClInclude Include="src\SceneImp.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_scene.pb.cc" />
     <ClCompile Include="src\LoadDll.cpp" />
     <ClCompile Include="src\ManageRandom.cpp" />
     <ClCompile Include="src\ManageTimer.cpp" />

@@ -27,11 +27,8 @@
     <ClInclude Include="src\EffectTest.h">
       <Filter>test</Filter>
     </ClInclude>
-    <ClInclude Include="src\testpoo.hpp">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\testnetcore.hpp">
-      <Filter>Source Files</Filter>
-    </ClInclude>
+    <ClInclude Include="src\testnetcore.hpp" />
+    <ClInclude Include="src\testpoo.hpp" />
+    <ClInclude Include="src\testscenex.hpp" />
   </ItemGroup>
 </Project>

@@ -11,11 +11,34 @@
 //#include "ManageGridOptimize.h"
 //#include "MakeGuid.h"
 #include "ManageRandom.h"
+#include "SessionPool.h"
+#include "opcode.h"
+#include "protocol/msg_scene.pb.h"
+
+typedef std::function<int(const PackInfo & pack_info) > MsgHandler;
+typedef std::map<uint64, MsgHandler> MsgHandlerMap;
+
+#define SCENE_BEGIN_INPUT_MSG_MAP() \
+	const MsgHandlerMap & getInputMsgMap()	\
+	{	\
+		if (m_input_msg_type_map.size() == 0)	\
+		{
+
+#define SCENE_INPUT_HANDLE_MSG(op_code, fun, msg_type_ins)	\
+			m_input_msg_type_map[op_code] = std::bind(fun, this, std::placeholders::_1);	\
+			m_message_type_map[op_code] = msg_type_ins;
+
+
+#define SCENE_END_INPUT_MSG_MAP() \
+		}	\
+		return m_input_msg_type_map;	\
+	}
 
 
 class SCENEX_EXOPRT SceneImp
 	: public Scene
 	, public ACE_Task<ACE_NULL_SYNCH>
+	, public netstream::HandleSessionEvent
 {
 public:
 	SceneImp();
@@ -45,40 +68,56 @@ public:
 
 	virtual int svc (void) override;
 
-protected:
+
+private:
 	virtual void playerMsg(Packet * packet) override;
 	virtual void inlineBroadMsg(Packet * packet) override;
 	virtual void notifyMsgToPlugins(const PackInfo & pack_info) override;
 	virtual bool requestMsgToPlugins(const PackInfo & pack_info) override;
 	virtual bool gmcmdMsgToPlugins(const string & gm_name, const vector<string> & gm_param, uint64 target_guid) override;
 
-protected:
 	void savePacket(Packet * packet);
 
-protected:
-	//typedef vector<CachePackInfo> CachePackInfoVec_t;
 
+	// handleSessionEvent
+	virtual void newConnection(netstream::Session_t session) override;
+	virtual void connectionClosed(netstream::Session_t session, int trigger_source) override;
+	virtual void handleInputStream(netstream::Session_t session, ACE_Message_Block & msg_block) override;
+
+
+	SCENE_BEGIN_INPUT_MSG_MAP()
+		SCENE_INPUT_HANDLE_MSG(SCENE_XS2NS_REQ_ONLINE_SCENES, &SceneImp::on_scene_xs2ns_req_online_scenes, new scene_xs2ns_req_online_scenes)
+		SCENE_INPUT_HANDLE_MSG(SCENE_NS2XS_ACK_ONLINE_SCENES, &SceneImp::on_scene_ns2xs_ack_online_scenes, new scene_ns2xs_ack_online_scenes)
+		SCENE_INPUT_HANDLE_MSG(SCENE_NS2XS_NTF_NEW_SCENES, &SceneImp::on_scene_ns2xs_ntf_new_scenes, new scene_ns2xs_ntf_new_scenes)
+		SCENE_INPUT_HANDLE_MSG(SCENE_XS2XS_REQ_CONNECTION, &SceneImp::on_scene_xs2xs_req_connection, new scene_xs2xs_req_connection)
+		SCENE_INPUT_HANDLE_MSG(SCENE_XS2XS_ACK_CONNECTION, &SceneImp::on_scene_xs2xs_ack_connection, new scene_xs2xs_ack_connection)
+	SCENE_END_INPUT_MSG_MAP()
+
+private:
+	int on_scene_xs2ns_req_online_scenes(const PackInfo & pack_info);
+	int on_scene_ns2xs_ack_online_scenes(const PackInfo & pack_info);
+	int on_scene_ns2xs_ntf_new_scenes(const PackInfo & pack_info);
+	int on_scene_xs2xs_req_connection(const PackInfo & pack_info);
+	int on_scene_xs2xs_ack_connection(const PackInfo & pack_info);
+
+private:
+	
 	PluginDepot * m_plugin_depot;
 
-
 	uint32 m_save_packet_index;
-
 	SceneCfg m_scene_cfg;
 
 	// input packet
 	ACE_Thread_Mutex	m_input_packet_vec_mutex;
-
 	vector<PackInfo *>	m_input_packet_vec;
 
 	// input cache packet
 	ACE_Thread_Mutex	m_cache_input_packet_vec_mutex;
-
+	//typedef vector<CachePackInfo> CachePackInfoVec_t;
 	//CachePackInfoVec_t	m_cache_input_packet_vec;
 
 	ManageTimer m_manage_timer;
-
 	typedef map<long, TimerCallBack> TimerCallBackMap_t;
-
 	TimerCallBackMap_t m_timer_callback_map;
 
 	//ManageGridOptimize m_manage_grid;
@@ -88,13 +127,14 @@ protected:
 	//MakeGuid m_make_guid;
 
 	ManageRandom m_manage_random;
+
 	bool m_is_startup_success;
-
 	bool m_is_stop;
-
 	bool m_is_shutdown_success;
 
-	Uint64Set_t m_need_update_power_player;
+	netstream::SessionPool *m_pool;
 
+	std::map<uint64, MsgHandler> m_input_msg_type_map;
+	std::map<uint64, GOOGLE_MESSAGE_TYPE *> m_message_type_map;
 };
 #endif

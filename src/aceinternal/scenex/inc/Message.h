@@ -8,7 +8,6 @@ class SCENEX_EXOPRT Message
 public:
 	~Message(){}
 
-public:
 	// player's message
 	virtual void playerMsg(Packet * packet) = 0;
 

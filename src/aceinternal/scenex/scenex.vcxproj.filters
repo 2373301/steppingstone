@@ -7,6 +7,9 @@
     <Filter Include="src">
       <UniqueIdentifier>{c6ae2551-8679-46d4-95bc-729f977c52b4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="proto">
+      <UniqueIdentifier>{bbc7411d-1a44-4cbd-a740-fe4822a30431}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\Scene.h">
@@ -33,6 +36,9 @@
     <ClInclude Include="src\ManageRandom.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_scene.pb.h">
+      <Filter>proto</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\SceneImp.cpp">
@@ -49,6 +55,9 @@
     </ClCompile>
     <ClCompile Include="src\ManageRandom.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_scene.pb.cc">
+      <Filter>proto</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

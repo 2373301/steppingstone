@@ -67,10 +67,14 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ManagePlayer", "plugin\mana
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test", "test\test.vcxproj", "{1B14B5EE-8A39-40C6-9BA4-258C762B0395}"
 	ProjectSection(ProjectDependencies) = postProject
+		{7737E776-6BA9-47D3-8285-2F18BF7124C0} = {7737E776-6BA9-47D3-8285-2F18BF7124C0}
 		{1BDB01EE-98B5-40A5-B284-8ADFBC6FB3C8} = {1BDB01EE-98B5-40A5-B284-8ADFBC6FB3C8}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scenex", "scenex\scenex.vcxproj", "{7737E776-6BA9-47D3-8285-2F18BF7124C0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C7A07411-5A4D-4569-BFFE-7C6626D7892A} = {C7A07411-5A4D-4569-BFFE-7C6626D7892A}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gate", "gate\gate.vcxproj", "{C39E23B1-912A-483F-886C-1AB71B60F8D2}"
 EndProject

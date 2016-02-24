@@ -15,6 +15,11 @@
 // #include "protocol/msg_player.pb.h"
 // #include "ManageTerminal.h"
 
+//todo 是否要 server 重合
+#define  SRV_TYPE_CENTER	"center"
+#define  SRV_TYPE_GAME		"game"
+#define  SRV_TYPE_NAMING	"naming"
+#define  SRV_GAME(x)	SRV_TYPE_GAME#x
 
 struct SCENEX_EXOPRT SceneCfg 
 {
@@ -37,7 +42,6 @@ struct SCENEX_EXOPRT SceneCfg
 		, max_sceen_number(100)
 		, log_dir("logs")
 		, enable_gm(false)
-		//, data_record(NULL)
 	{}
 
 	int scene_id;
@@ -77,20 +81,15 @@ struct SCENEX_EXOPRT SceneCfg
 	bool enable_gm;
 
 	DllInfoVec_t plugin_dll_vec;
-
-	Uint64Vec_t map_id_vec;
-
-	string record_server_addr;
-
-	string gm_server_addr;
-
-	ServerCfg server_cfg;
-
+	std::string listen_addr = "127.0.0.1:20000";
+	
+	std::string naming_addr = "127.0.0.1:20001";
+	std::string srv_type = SRV_TYPE_GAME;
+	std::string srv_id = SRV_GAME(01);
 };
 
 class SCENEX_EXOPRT Scene 
 	: public HandleInput
-	//, public CacheHandleInput
 	, public Timer
 	, public Message
 {
@@ -109,5 +108,7 @@ public:
 	virtual bool get_guid(EntityType entity_type, uint64 & guid) = 0;
 	virtual int get_random(int max_no, int min_no = 0) = 0;
 };
+
+SCENEX_EXOPRT Scene * createScene();
 
 #endif

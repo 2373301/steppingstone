@@ -112,7 +112,6 @@
 #define MANAGE_GRID_REMOVE(manage_grid, player)							manage_grid->remove(player)
 #define MANAGE_GRID_SEARCE(manage_grid, entity_type, map_id, guids)		manage_grid->search(entity_type, map_id, guids)
 
-//////////////////////////////////////////////////////////////////////////
 #define PLUGIN_LOG_DEBUG(log_info, ...)			m_plugin_cfg.logger->log(LL_DEBUG, log_info, ##__VA_ARGS__);
 #define PLUGIN_LOG_INFO(log_info, ...)			m_plugin_cfg.logger->log(LL_INFO, log_info, ##__VA_ARGS__);
 #define PLUGIN_LOG_WARNING(log_info, ...)		m_plugin_cfg.logger->log(LL_WARNING, log_info, ##__VA_ARGS__);
@@ -120,20 +119,10 @@
 #define PLUGIN_LOG_ERROR(log_info, ...)			m_plugin_cfg.logger->log(LL_ERROR, log_info, ##__VA_ARGS__);
 #define PLUGIN_LOG_FATAL(log_info, ...)			m_plugin_cfg.logger->log(LL_FATAL, log_info, ##__VA_ARGS__);
 
-//////////////////////////////////////////////////////////////////////////
-#define GET_ROLE_ATTR(role, role_attr)	getRoleAttr(role, role_attr)
-
-//#define SET_ROLE_ATTR(role, role_attr, attr_value)	setRoleAttr(role, role_attr, attr_value)
-
-#define MODIFY_ROLE_ATTR(scene, role, role_attr, attr_value, notify_client)	scene->modifyRoleAttr(role, role_attr, attr_value, notify_client)
 
 #define MAKE_NEW_GUID(scene, entity_type, guid)	scene->get_guid(entity_type, guid)
-
-//////////////////////////////////////////////////////////////////////////
-
 #define MAKE_MONSTER_GUID(enemy_id, monster_id, monster_pos)	MAKE_GUID(ET_MONSTER, 1, ((uint64(enemy_id) << 28) | (monster_id << 8) | monster_pos))
 
-//////////////////////////////////////////////////////////////////////////
 
 #define ERROR_TO_PRINT_FUNCTION_LINE(str_info)	\
 	PLUGIN_LOG_ERROR("occur error, function is <%s>, line is <%d>, info is <%s>\n", __FUNCTION__, __LINE__, str_info)
@@ -172,14 +161,6 @@
 		PLUGIN_LOG_ERROR("failed to check boolean <%s>, function is <%s>, line is <%d>\n", #res, __FUNCTION__, __LINE__);	\
 		return result;	\
 	}
-
-#define IS_NOT_LINE_SCENE_RETURN()	\
-	if (m_plugin_cfg.template_id != 0)	\
-	{	\
-		return 0;	\
-	}
-
-#define IS_LINE_SCENE()	(0 == m_plugin_cfg.template_id)
 
 #define MAKE_AND_SEND_ERROR_MESSAGE(guid, error_code)	\
 	{	\
@@ -314,7 +295,7 @@ public:
 	bool getUint64(const string & param_name, uint64 & param_value);
 
 	void clear();
-protected:
+
 private:
 	typedef map<string, string> ParamPair_t;
 

@@ -9,6 +9,7 @@
 #include "typedef.h"
 #include "testpoo.hpp"
 #include "testnetcore.hpp"
+#include "testscenex.hpp"
 
 void startApplication()
 {
@@ -70,7 +71,8 @@ int main(int argc, char * argv[])
 	//TestProto();
 	//startApplication();
 	//pool_ut::run();
-	netcore::netcore_ut::run();
+	//netcore::netcore_ut::run();
+	scenex_ut::run();
 	return 0;
 }
 
