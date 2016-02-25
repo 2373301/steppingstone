@@ -8,6 +8,7 @@
 #include "LoggerFactory.h"
 #include "SessionPoolFactory.h"
 #include "Packet.h"
+#include "Logger.h"
 
 #define PLUGIN_SAVE_CONFIG_DIR	"plugin_data"
 
@@ -101,8 +102,7 @@ void SceneImp::handleInputStream(netstream::Session_t session, ACE_Message_Block
 		auto findIt = m_total_msg_map.find(packet->opcode());
 		if (findIt == m_total_msg_map.end())
 		{	
-			uint64 opcode = packet->opcode();
-			SCENE_LOG_ERROR("unreg msg, opcode:%llu", opcode);
+			DEF_LOG_ERROR("unreg msg, opcode:%u", packet->opcode());
 			continue;
 		}
 		
@@ -116,8 +116,7 @@ void SceneImp::handleInputStream(netstream::Session_t session, ACE_Message_Block
 			auto newMsg = protoMsg->New();
 			if (!parsePacket(packet.get(), newMsg))
 			{	
-				uint64 opcode = packet->opcode();
-				SCENE_LOG_ERROR("failed to parse msg, opcode:%llu", opcode);
+				DEF_LOG_ERROR("failed to parse msg, opcode:%u", packet->opcode());
 				continue;
 			}
 
