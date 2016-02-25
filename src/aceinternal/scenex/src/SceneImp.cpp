@@ -52,6 +52,7 @@ SceneImp::SceneImp()
 ,m_pool(NULL)
 {
 	getInputMsgMap();
+	m_total_msg_map.insert(m_message_type_map.begin(), m_message_type_map.end());
 }
 
 SceneImp::~SceneImp()
@@ -102,13 +103,14 @@ void SceneImp::handleInputStream(netstream::Session_t session, ACE_Message_Block
 		auto findIt = m_total_msg_map.find(packet->opcode());
 		if (findIt == m_total_msg_map.end())
 		{	
-			DEF_LOG_ERROR("unreg msg, opcode:%u", packet->opcode());
+			DEF_LOG_ERROR("unreg msg, opcode:%u\n", packet->opcode());
 			continue;
 		}
 		
 		PackInfo *info = new PackInfo;
 		info->guid = packet->guid();
 		info->opcode = packet->opcode();
+		info->owner = packet->getOwner();
 
 		auto protoMsg = findIt->second;
 		if (NULL != protoMsg)
@@ -116,7 +118,7 @@ void SceneImp::handleInputStream(netstream::Session_t session, ACE_Message_Block
 			auto newMsg = protoMsg->New();
 			if (!parsePacket(packet.get(), newMsg))
 			{	
-				DEF_LOG_ERROR("failed to parse msg, opcode:%u", packet->opcode());
+				DEF_LOG_ERROR("failed to parse msg, opcode:%u\n", packet->opcode());
 				continue;
 			}
 
@@ -132,7 +134,7 @@ void SceneImp::handleInputStream(netstream::Session_t session, ACE_Message_Block
 
 	{
 		ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_input_packet_vec_mutex, );
-		m_input_packet_vec.insert(m_input_packet_vec.begin(), temp.begin(), temp.end());
+		m_input_packet_vec.insert(m_input_packet_vec.end(), temp.begin(), temp.end());
 
 	}
 }
@@ -248,13 +250,13 @@ int SceneImp::init(const SceneCfg & scene_cfg)
 	m_pool = netstream::SessionPoolFactory::createSessionPool();
 	if (-1 == m_pool->init(1, 1, this))
 	{	
-		DEF_LOG_ERROR("failed to init session pool\n");
+		SCENE_LOG_ERROR("failed to init session pool\n");
 		return -1;
 	}
 
 	if (!m_pool->listen(m_scene_cfg.listen_addr))
 	{
-		DEF_LOG_ERROR("failed to listen at:%s session pool\n", m_scene_cfg.listen_addr.c_str());
+		DEF_LOG_ERROR("failed to listen at:%s,session pool\n", m_scene_cfg.listen_addr.c_str());
 		return -1;
 	}
 

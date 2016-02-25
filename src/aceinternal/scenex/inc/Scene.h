@@ -81,9 +81,9 @@ struct SCENEX_EXOPRT SceneCfg
 	bool enable_gm;
 
 	DllInfoVec_t plugin_dll_vec;
-	std::string listen_addr = "127.0.0.1:20000";
+	std::string listen_addr = "127.0.0.1:1";
 	
-	std::string naming_addr = "127.0.0.1:20001";
+	std::string naming_addr = "127.0.0.1:2";
 	std::string srv_type = SRV_TYPE_GAME;
 	std::string srv_id = SRV_GAME(01);
 };

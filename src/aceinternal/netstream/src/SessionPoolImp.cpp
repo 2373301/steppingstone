@@ -44,7 +44,7 @@ int SessionPoolImp::svc()
 	ACE_INET_Addr addr(m_listen_addr.c_str());
 	if (session_acceptor.open(addr, m_reactor) == -1)
 	{
-		DEF_LOG_ERROR("failed to open the listen addr : <%s>\n", m_listen_addr.c_str());
+		DEF_LOG_ERROR("failed to open the listen addr : <%s>, last error is <%d>\n", m_listen_addr.c_str(), ACE_OS::last_error());
 		m_listen_status = 2;
 		return 1;
 	}
