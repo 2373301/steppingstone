@@ -7,6 +7,7 @@
 #include "opcode.h"
 #include "LoggerFactory.h"
 #include "SessionPoolFactory.h"
+#include "Packet.h"
 
 #define PLUGIN_SAVE_CONFIG_DIR	"plugin_data"
 
@@ -19,7 +20,17 @@
 #define SCENE_LOG_ERROR(log_info, ...)		m_scene_cfg.logger->log(LL_ERROR, "%s" MK_SCENE log_info FUNCTION_LINE_TRACE, "", ##__VA_ARGS__, __FUNCTION__, __LINE__)
 #define SCENE_LOG_FATAL(log_info, ...)		m_scene_cfg.logger->log(LL_FATAL, "%s" MK_SCENE log_info FUNCTION_LINE_TRACE, "", ##__VA_ARGS__, __FUNCTION__, __LINE__)
 
-#define CONVERT_RANK(attr_value)	attr_value * (int32)m_system_res_info->rank_param / (int32)player_level
+
+#define CHECK_POINTER_LOG_RET(p, result)	\
+	if (NULL == (p))	\
+	{	\
+		SCENE_LOG_ERROR("failed to check point <%s>, function is <%s>, line is <%d>\n", #p, __FUNCTION__, __LINE__);	\
+		return result;	\
+	}
+
+#define SCENE_SEND_MSG(id, guid, session, msg)	\
+	MAKE_NEW_PACKET(ps, id, guid, msg##.SerializeAsString().c_str());	\
+	m_pool->handleOutputStream(session, ps->stream(), ps->stream_size());
 
 using namespace std;
 
@@ -59,9 +70,16 @@ SceneImp::~SceneImp()
 	delete m_scene_cfg.logger;
 }
 
-void SceneImp::newConnection(netstream::Session_t session)
+void SceneImp::newConnection(netstream::Session_t session, bool clientSide)
 {
+	if (!clientSide)
+		return;
 
+	scene_xs2xs_req_connection req;
+	req.set_srv_id(m_scene_cfg.srv_id);
+	req.set_srv_type(m_scene_cfg.srv_type);
+	req.set_srv_addr(m_scene_cfg.listen_addr);
+	SCENE_SEND_MSG(SCENE_XS2XS_REQ_CONNECTION, 0, session, req);
 }
 
 void SceneImp::connectionClosed(netstream::Session_t session, int trigger_source)
@@ -73,48 +91,99 @@ void SceneImp::handleInputStream(netstream::Session_t session, ACE_Message_Block
 {
 	PacketVec_t packet_vec;
 	netstream::parsePacketFromStream(session, msg_block, packet_vec);
+	if (packet_vec.empty())
+		return;
+
+	std::vector<PackInfo *> temp;
 	for (PacketVec_t::iterator it = packet_vec.begin(); it != packet_vec.end(); ++it)
 	{
 		std::unique_ptr<Packet> packet(*it);
-		auto findIt = m_input_msg_type_map.find(packet->opcode());
-		if (findIt == m_input_msg_type_map.end())
-		{
-			// 发送给插件
-			// todo
+		auto findIt = m_total_msg_map.find(packet->opcode());
+		if (findIt == m_total_msg_map.end())
+		{	
+			uint64 opcode = packet->opcode();
+			SCENE_LOG_ERROR("unreg msg, opcode:%llu", opcode);
 			continue;
 		}
 		
-		auto msgIt = m_message_type_map.find(packet->opcode());
-		if(msgIt == m_message_type_map.end())
-			continue;
-		
-		PackInfo info;
-		info.guid = packet->guid();
-		info.opcode = packet->opcode();
-		if (NULL == msgIt->second)
+		PackInfo *info = new PackInfo;
+		info->guid = packet->guid();
+		info->opcode = packet->opcode();
+
+		auto protoMsg = findIt->second;
+		if (NULL != protoMsg)
 		{
-			findIt->second(info);
-			continue;
+			auto newMsg = protoMsg->New();
+			if (!parsePacket(packet.get(), newMsg))
+			{	
+				uint64 opcode = packet->opcode();
+				SCENE_LOG_ERROR("failed to parse msg, opcode:%llu", opcode);
+				continue;
+			}
+
+			info->msg = newMsg;
 		}
-
-		auto newMsg = msgIt->second->New();
-
-		if (!parsePacket(packet.get(), newMsg))
-			continue;
 		
-		info.msg = newMsg;
-		findIt->second(info);
+		temp.push_back(info);
 	}
 
+
+	if (temp.empty())
+		return;
+
+	{
+		ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_input_packet_vec_mutex, );
+		m_input_packet_vec.insert(m_input_packet_vec.begin(), temp.begin(), temp.end());
+
+	}
 }
 
 int SceneImp::on_scene_xs2ns_req_online_scenes(const PackInfo & pack_info)
 {
+	if (m_scene_cfg.srv_type != SRV_TYPE_NAMING)
+		return -1;
+
+	scene_xs2ns_req_online_scenes * req = (scene_xs2ns_req_online_scenes*)pack_info.msg;
+	CHECK_POINTER_LOG_RET(req, -1);
+
+	// 之前应该注册过了
+	auto findIt = m_onlines.find(req->srv_id());
+	if (findIt != m_onlines.end() && pack_info.owner != findIt->second.session)
+	{
+		m_pool->removeSession(findIt->second.session);
+		SCENE_LOG_INFO("remove session:%p, srv type:%s, srv id:%s",
+				findIt->second.session, findIt->second.srv_type.c_str(), findIt->second.srv_id.c_str());
+
+		findIt->second.srv_type = req->srv_type();
+		findIt->second.session = pack_info.owner;
+		findIt->second.srv_addr = req->srv_addr();
+		SCENE_LOG_INFO("add session:%p, srv type:%s, srv id:%s",
+			findIt->second.session, findIt->second.srv_type.c_str(), findIt->second.srv_id.c_str());
+	}
+	
+	scene_ns2xs_ack_online_scenes ack;
+	for(auto it : m_onlines)
+	{	
+		if(pack_info.owner == it.second.session)
+			continue;
+
+		ack.add_srv_ids(it.first);
+		ack.add_srv_types(it.second.srv_type);
+		ack.add_srv_addrs(it.second.srv_addr);
+	}
+
+	SCENE_SEND_MSG(SCENE_NS2XS_ACK_ONLINE_SCENES, 0, pack_info.owner, ack);
+
 	return 0;
 }
 
 int SceneImp::on_scene_ns2xs_ack_online_scenes(const PackInfo & pack_info)
 {
+	if (m_scene_cfg.srv_type == SRV_TYPE_NAMING)
+		return -1;
+	scene_ns2xs_ack_online_scenes *req = (scene_ns2xs_ack_online_scenes*)pack_info.msg;
+	CHECK_POINTER_LOG_RET(req, -1);
+
 	return 0;
 }
 
@@ -124,12 +193,51 @@ int SceneImp::on_scene_ns2xs_ntf_new_scenes(const PackInfo & pack_info)
 }
 
 int SceneImp::on_scene_xs2xs_req_connection(const PackInfo & pack_info)
-{
+{	
+	scene_xs2xs_req_connection * req = (scene_xs2xs_req_connection*)pack_info.msg;
+	CHECK_POINTER_LOG_RET(req, -1);
+	auto findIt = m_onlines.find(req->srv_id());
+	if (findIt != m_onlines.end() && pack_info.owner != findIt->second.session)
+	{
+		m_pool->removeSession(findIt->second.session);
+		SCENE_LOG_INFO("remove session:%p, srv type:%s, srv id:%s",
+			findIt->second.session, findIt->second.srv_type.c_str(), findIt->second.srv_id.c_str());
+
+		findIt->second.srv_type = req->srv_type();
+		findIt->second.session = pack_info.owner;
+		findIt->second.srv_addr = req->srv_addr();
+		SCENE_LOG_INFO("add session:%p, srv type:%s, srv id:%s",
+			findIt->second.session, findIt->second.srv_type.c_str(), findIt->second.srv_id.c_str());
+	}
+
+
+	scene_xs2xs_ack_connection ack;
+	ack.set_srv_id(m_scene_cfg.srv_id);
+	ack.set_srv_type(m_scene_cfg.srv_type);
+	ack.set_srv_addr(m_scene_cfg.listen_addr);
+	SCENE_SEND_MSG(SCENE_XS2XS_ACK_CONNECTION, 0, pack_info.owner, ack);
+
 	return 0;
 }
 
 int SceneImp::on_scene_xs2xs_ack_connection(const PackInfo & pack_info)
-{
+{	
+	scene_xs2xs_ack_connection * req = (scene_xs2xs_ack_connection*)pack_info.msg;
+	CHECK_POINTER_LOG_RET(req, -1);
+	auto findIt = m_onlines.find(req->srv_id());
+	if (findIt != m_onlines.end() && pack_info.owner != findIt->second.session)
+	{
+		m_pool->removeSession(findIt->second.session);
+		SCENE_LOG_INFO("remove session:%p, srv type:%s, srv id:%s",
+			findIt->second.session, findIt->second.srv_type.c_str(), findIt->second.srv_id.c_str());
+
+		findIt->second.srv_type = req->srv_type();
+		findIt->second.session = pack_info.owner;
+		findIt->second.srv_addr = req->srv_addr();
+		SCENE_LOG_INFO("add session:%p, srv type:%s, srv id:%s",
+			findIt->second.session, findIt->second.srv_type.c_str(), findIt->second.srv_id.c_str());
+	}
+
 	return 0;
 }
 
@@ -369,8 +477,7 @@ int SceneImp::svc (void)
 	{
 		{
 			ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_input_packet_vec_mutex, -1);
-			std::copy(m_input_packet_vec.begin(), m_input_packet_vec.end(), back_inserter(input_packet_vec));
-			m_input_packet_vec.clear();
+			input_packet_vec.swap(m_input_packet_vec);
 		}
 
 		terminal_is_empty = input_packet_vec.empty();
@@ -402,12 +509,19 @@ int SceneImp::svc (void)
 						SCENE_LOG_INFO("call plugin timer, timer id is <%llu>, timer spend time is <%llu>", pack_info->guid, spend_time);
 					}
 				}
+
+				continue;
 			}
-			else
+
+			auto findIt = m_input_msg_type_map.find(pack_info->opcode);
+			if (findIt == m_input_msg_type_map.end())
 			{
+				// 发送给插件
 				//m_plugin_depot->input(*pack_info);
+				continue;
 			}
-			
+
+			findIt->second(*pack_info);
 
 			delete pack_info;
 		}

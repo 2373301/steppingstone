@@ -72,6 +72,7 @@ class NETSTREAM_EXOPRT Session
 {
 public:
 	Session();
+	Session(bool client);
 	virtual ~Session();
 
 	typedef ACE_Svc_Handler<ACE_SOCK_STREAM, ACE_NULL_SYNCH> super;
@@ -106,6 +107,7 @@ public:
 
 	void setSavePackInfo(bool is_save, const string & file_name);
 
+	bool isClientSide() { return m_clientSide;  }
 protected:
 	virtual int net_connected();
 
@@ -126,6 +128,7 @@ protected:
 
 	ACE_Message_Block m_output_msg_block;
 
+	bool m_clientSide;
 };
 
 }

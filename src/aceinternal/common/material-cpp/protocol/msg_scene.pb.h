@@ -116,12 +116,26 @@ class scene_xs2ns_req_online_scenes : public ::google::protobuf::Message {
   inline ::std::string* release_srv_id();
   inline void set_allocated_srv_id(::std::string* srv_id);
 
+  // optional string srv_addr = 3;
+  inline bool has_srv_addr() const;
+  inline void clear_srv_addr();
+  static const int kSrvAddrFieldNumber = 3;
+  inline const ::std::string& srv_addr() const;
+  inline void set_srv_addr(const ::std::string& value);
+  inline void set_srv_addr(const char* value);
+  inline void set_srv_addr(const char* value, size_t size);
+  inline ::std::string* mutable_srv_addr();
+  inline ::std::string* release_srv_addr();
+  inline void set_allocated_srv_addr(::std::string* srv_addr);
+
   // @@protoc_insertion_point(class_scope:scene_xs2ns_req_online_scenes)
  private:
   inline void set_has_srv_type();
   inline void clear_has_srv_type();
   inline void set_has_srv_id();
   inline void clear_has_srv_id();
+  inline void set_has_srv_addr();
+  inline void clear_has_srv_addr();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
@@ -129,6 +143,7 @@ class scene_xs2ns_req_online_scenes : public ::google::protobuf::Message {
   mutable int _cached_size_;
   ::std::string* srv_type_;
   ::std::string* srv_id_;
+  ::std::string* srv_addr_;
   friend void  protobuf_AddDesc_protocol_2fmsg_5fscene_2eproto();
   friend void protobuf_AssignDesc_protocol_2fmsg_5fscene_2eproto();
   friend void protobuf_ShutdownFile_protocol_2fmsg_5fscene_2eproto();
@@ -223,6 +238,22 @@ class scene_ns2xs_ack_online_scenes : public ::google::protobuf::Message {
   inline const ::google::protobuf::RepeatedPtrField< ::std::string>& srv_ids() const;
   inline ::google::protobuf::RepeatedPtrField< ::std::string>* mutable_srv_ids();
 
+  // repeated string srv_addrs = 3;
+  inline int srv_addrs_size() const;
+  inline void clear_srv_addrs();
+  static const int kSrvAddrsFieldNumber = 3;
+  inline const ::std::string& srv_addrs(int index) const;
+  inline ::std::string* mutable_srv_addrs(int index);
+  inline void set_srv_addrs(int index, const ::std::string& value);
+  inline void set_srv_addrs(int index, const char* value);
+  inline void set_srv_addrs(int index, const char* value, size_t size);
+  inline ::std::string* add_srv_addrs();
+  inline void add_srv_addrs(const ::std::string& value);
+  inline void add_srv_addrs(const char* value);
+  inline void add_srv_addrs(const char* value, size_t size);
+  inline const ::google::protobuf::RepeatedPtrField< ::std::string>& srv_addrs() const;
+  inline ::google::protobuf::RepeatedPtrField< ::std::string>* mutable_srv_addrs();
+
   // @@protoc_insertion_point(class_scope:scene_ns2xs_ack_online_scenes)
  private:
 
@@ -232,6 +263,7 @@ class scene_ns2xs_ack_online_scenes : public ::google::protobuf::Message {
   mutable int _cached_size_;
   ::google::protobuf::RepeatedPtrField< ::std::string> srv_types_;
   ::google::protobuf::RepeatedPtrField< ::std::string> srv_ids_;
+  ::google::protobuf::RepeatedPtrField< ::std::string> srv_addrs_;
   friend void  protobuf_AddDesc_protocol_2fmsg_5fscene_2eproto();
   friend void protobuf_AssignDesc_protocol_2fmsg_5fscene_2eproto();
   friend void protobuf_ShutdownFile_protocol_2fmsg_5fscene_2eproto();
@@ -326,6 +358,22 @@ class scene_ns2xs_ntf_new_scenes : public ::google::protobuf::Message {
   inline const ::google::protobuf::RepeatedPtrField< ::std::string>& srv_ids() const;
   inline ::google::protobuf::RepeatedPtrField< ::std::string>* mutable_srv_ids();
 
+  // repeated string srv_addrs = 3;
+  inline int srv_addrs_size() const;
+  inline void clear_srv_addrs();
+  static const int kSrvAddrsFieldNumber = 3;
+  inline const ::std::string& srv_addrs(int index) const;
+  inline ::std::string* mutable_srv_addrs(int index);
+  inline void set_srv_addrs(int index, const ::std::string& value);
+  inline void set_srv_addrs(int index, const char* value);
+  inline void set_srv_addrs(int index, const char* value, size_t size);
+  inline ::std::string* add_srv_addrs();
+  inline void add_srv_addrs(const ::std::string& value);
+  inline void add_srv_addrs(const char* value);
+  inline void add_srv_addrs(const char* value, size_t size);
+  inline const ::google::protobuf::RepeatedPtrField< ::std::string>& srv_addrs() const;
+  inline ::google::protobuf::RepeatedPtrField< ::std::string>* mutable_srv_addrs();
+
   // @@protoc_insertion_point(class_scope:scene_ns2xs_ntf_new_scenes)
  private:
 
@@ -335,6 +383,7 @@ class scene_ns2xs_ntf_new_scenes : public ::google::protobuf::Message {
   mutable int _cached_size_;
   ::google::protobuf::RepeatedPtrField< ::std::string> srv_types_;
   ::google::protobuf::RepeatedPtrField< ::std::string> srv_ids_;
+  ::google::protobuf::RepeatedPtrField< ::std::string> srv_addrs_;
   friend void  protobuf_AddDesc_protocol_2fmsg_5fscene_2eproto();
   friend void protobuf_AssignDesc_protocol_2fmsg_5fscene_2eproto();
   friend void protobuf_ShutdownFile_protocol_2fmsg_5fscene_2eproto();
@@ -421,12 +470,26 @@ class scene_xs2xs_req_connection : public ::google::protobuf::Message {
   inline ::std::string* release_srv_id();
   inline void set_allocated_srv_id(::std::string* srv_id);
 
+  // optional string srv_addr = 3;
+  inline bool has_srv_addr() const;
+  inline void clear_srv_addr();
+  static const int kSrvAddrFieldNumber = 3;
+  inline const ::std::string& srv_addr() const;
+  inline void set_srv_addr(const ::std::string& value);
+  inline void set_srv_addr(const char* value);
+  inline void set_srv_addr(const char* value, size_t size);
+  inline ::std::string* mutable_srv_addr();
+  inline ::std::string* release_srv_addr();
+  inline void set_allocated_srv_addr(::std::string* srv_addr);
+
   // @@protoc_insertion_point(class_scope:scene_xs2xs_req_connection)
  private:
   inline void set_has_srv_type();
   inline void clear_has_srv_type();
   inline void set_has_srv_id();
   inline void clear_has_srv_id();
+  inline void set_has_srv_addr();
+  inline void clear_has_srv_addr();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
@@ -434,6 +497,7 @@ class scene_xs2xs_req_connection : public ::google::protobuf::Message {
   mutable int _cached_size_;
   ::std::string* srv_type_;
   ::std::string* srv_id_;
+  ::std::string* srv_addr_;
   friend void  protobuf_AddDesc_protocol_2fmsg_5fscene_2eproto();
   friend void protobuf_AssignDesc_protocol_2fmsg_5fscene_2eproto();
   friend void protobuf_ShutdownFile_protocol_2fmsg_5fscene_2eproto();
@@ -520,12 +584,26 @@ class scene_xs2xs_ack_connection : public ::google::protobuf::Message {
   inline ::std::string* release_srv_id();
   inline void set_allocated_srv_id(::std::string* srv_id);
 
+  // optional string srv_addr = 3;
+  inline bool has_srv_addr() const;
+  inline void clear_srv_addr();
+  static const int kSrvAddrFieldNumber = 3;
+  inline const ::std::string& srv_addr() const;
+  inline void set_srv_addr(const ::std::string& value);
+  inline void set_srv_addr(const char* value);
+  inline void set_srv_addr(const char* value, size_t size);
+  inline ::std::string* mutable_srv_addr();
+  inline ::std::string* release_srv_addr();
+  inline void set_allocated_srv_addr(::std::string* srv_addr);
+
   // @@protoc_insertion_point(class_scope:scene_xs2xs_ack_connection)
  private:
   inline void set_has_srv_type();
   inline void clear_has_srv_type();
   inline void set_has_srv_id();
   inline void clear_has_srv_id();
+  inline void set_has_srv_addr();
+  inline void clear_has_srv_addr();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
@@ -533,6 +611,7 @@ class scene_xs2xs_ack_connection : public ::google::protobuf::Message {
   mutable int _cached_size_;
   ::std::string* srv_type_;
   ::std::string* srv_id_;
+  ::std::string* srv_addr_;
   friend void  protobuf_AddDesc_protocol_2fmsg_5fscene_2eproto();
   friend void protobuf_AssignDesc_protocol_2fmsg_5fscene_2eproto();
   friend void protobuf_ShutdownFile_protocol_2fmsg_5fscene_2eproto();
@@ -699,6 +778,82 @@ inline void scene_xs2ns_req_online_scenes::set_allocated_srv_id(::std::string* s
   // @@protoc_insertion_point(field_set_allocated:scene_xs2ns_req_online_scenes.srv_id)
 }
 
+// optional string srv_addr = 3;
+inline bool scene_xs2ns_req_online_scenes::has_srv_addr() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void scene_xs2ns_req_online_scenes::set_has_srv_addr() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void scene_xs2ns_req_online_scenes::clear_has_srv_addr() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void scene_xs2ns_req_online_scenes::clear_srv_addr() {
+  if (srv_addr_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    srv_addr_->clear();
+  }
+  clear_has_srv_addr();
+}
+inline const ::std::string& scene_xs2ns_req_online_scenes::srv_addr() const {
+  // @@protoc_insertion_point(field_get:scene_xs2ns_req_online_scenes.srv_addr)
+  return *srv_addr_;
+}
+inline void scene_xs2ns_req_online_scenes::set_srv_addr(const ::std::string& value) {
+  set_has_srv_addr();
+  if (srv_addr_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    srv_addr_ = new ::std::string;
+  }
+  srv_addr_->assign(value);
+  // @@protoc_insertion_point(field_set:scene_xs2ns_req_online_scenes.srv_addr)
+}
+inline void scene_xs2ns_req_online_scenes::set_srv_addr(const char* value) {
+  set_has_srv_addr();
+  if (srv_addr_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    srv_addr_ = new ::std::string;
+  }
+  srv_addr_->assign(value);
+  // @@protoc_insertion_point(field_set_char:scene_xs2ns_req_online_scenes.srv_addr)
+}
+inline void scene_xs2ns_req_online_scenes::set_srv_addr(const char* value, size_t size) {
+  set_has_srv_addr();
+  if (srv_addr_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    srv_addr_ = new ::std::string;
+  }
+  srv_addr_->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:scene_xs2ns_req_online_scenes.srv_addr)
+}
+inline ::std::string* scene_xs2ns_req_online_scenes::mutable_srv_addr() {
+  set_has_srv_addr();
+  if (srv_addr_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    srv_addr_ = new ::std::string;
+  }
+  // @@protoc_insertion_point(field_mutable:scene_xs2ns_req_online_scenes.srv_addr)
+  return srv_addr_;
+}
+inline ::std::string* scene_xs2ns_req_online_scenes::release_srv_addr() {
+  clear_has_srv_addr();
+  if (srv_addr_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    return NULL;
+  } else {
+    ::std::string* temp = srv_addr_;
+    srv_addr_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    return temp;
+  }
+}
+inline void scene_xs2ns_req_online_scenes::set_allocated_srv_addr(::std::string* srv_addr) {
+  if (srv_addr_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete srv_addr_;
+  }
+  if (srv_addr) {
+    set_has_srv_addr();
+    srv_addr_ = srv_addr;
+  } else {
+    clear_has_srv_addr();
+    srv_addr_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  // @@protoc_insertion_point(field_set_allocated:scene_xs2ns_req_online_scenes.srv_addr)
+}
+
 // -------------------------------------------------------------------
 
 // scene_ns2xs_ack_online_scenes
@@ -811,6 +966,60 @@ scene_ns2xs_ack_online_scenes::mutable_srv_ids() {
   return &srv_ids_;
 }
 
+// repeated string srv_addrs = 3;
+inline int scene_ns2xs_ack_online_scenes::srv_addrs_size() const {
+  return srv_addrs_.size();
+}
+inline void scene_ns2xs_ack_online_scenes::clear_srv_addrs() {
+  srv_addrs_.Clear();
+}
+inline const ::std::string& scene_ns2xs_ack_online_scenes::srv_addrs(int index) const {
+  // @@protoc_insertion_point(field_get:scene_ns2xs_ack_online_scenes.srv_addrs)
+  return srv_addrs_.Get(index);
+}
+inline ::std::string* scene_ns2xs_ack_online_scenes::mutable_srv_addrs(int index) {
+  // @@protoc_insertion_point(field_mutable:scene_ns2xs_ack_online_scenes.srv_addrs)
+  return srv_addrs_.Mutable(index);
+}
+inline void scene_ns2xs_ack_online_scenes::set_srv_addrs(int index, const ::std::string& value) {
+  // @@protoc_insertion_point(field_set:scene_ns2xs_ack_online_scenes.srv_addrs)
+  srv_addrs_.Mutable(index)->assign(value);
+}
+inline void scene_ns2xs_ack_online_scenes::set_srv_addrs(int index, const char* value) {
+  srv_addrs_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:scene_ns2xs_ack_online_scenes.srv_addrs)
+}
+inline void scene_ns2xs_ack_online_scenes::set_srv_addrs(int index, const char* value, size_t size) {
+  srv_addrs_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:scene_ns2xs_ack_online_scenes.srv_addrs)
+}
+inline ::std::string* scene_ns2xs_ack_online_scenes::add_srv_addrs() {
+  return srv_addrs_.Add();
+}
+inline void scene_ns2xs_ack_online_scenes::add_srv_addrs(const ::std::string& value) {
+  srv_addrs_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:scene_ns2xs_ack_online_scenes.srv_addrs)
+}
+inline void scene_ns2xs_ack_online_scenes::add_srv_addrs(const char* value) {
+  srv_addrs_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:scene_ns2xs_ack_online_scenes.srv_addrs)
+}
+inline void scene_ns2xs_ack_online_scenes::add_srv_addrs(const char* value, size_t size) {
+  srv_addrs_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:scene_ns2xs_ack_online_scenes.srv_addrs)
+}
+inline const ::google::protobuf::RepeatedPtrField< ::std::string>&
+scene_ns2xs_ack_online_scenes::srv_addrs() const {
+  // @@protoc_insertion_point(field_list:scene_ns2xs_ack_online_scenes.srv_addrs)
+  return srv_addrs_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::std::string>*
+scene_ns2xs_ack_online_scenes::mutable_srv_addrs() {
+  // @@protoc_insertion_point(field_mutable_list:scene_ns2xs_ack_online_scenes.srv_addrs)
+  return &srv_addrs_;
+}
+
 // -------------------------------------------------------------------
 
 // scene_ns2xs_ntf_new_scenes
@@ -921,6 +1130,60 @@ inline ::google::protobuf::RepeatedPtrField< ::std::string>*
 scene_ns2xs_ntf_new_scenes::mutable_srv_ids() {
   // @@protoc_insertion_point(field_mutable_list:scene_ns2xs_ntf_new_scenes.srv_ids)
   return &srv_ids_;
+}
+
+// repeated string srv_addrs = 3;
+inline int scene_ns2xs_ntf_new_scenes::srv_addrs_size() const {
+  return srv_addrs_.size();
+}
+inline void scene_ns2xs_ntf_new_scenes::clear_srv_addrs() {
+  srv_addrs_.Clear();
+}
+inline const ::std::string& scene_ns2xs_ntf_new_scenes::srv_addrs(int index) const {
+  // @@protoc_insertion_point(field_get:scene_ns2xs_ntf_new_scenes.srv_addrs)
+  return srv_addrs_.Get(index);
+}
+inline ::std::string* scene_ns2xs_ntf_new_scenes::mutable_srv_addrs(int index) {
+  // @@protoc_insertion_point(field_mutable:scene_ns2xs_ntf_new_scenes.srv_addrs)
+  return srv_addrs_.Mutable(index);
+}
+inline void scene_ns2xs_ntf_new_scenes::set_srv_addrs(int index, const ::std::string& value) {
+  // @@protoc_insertion_point(field_set:scene_ns2xs_ntf_new_scenes.srv_addrs)
+  srv_addrs_.Mutable(index)->assign(value);
+}
+inline void scene_ns2xs_ntf_new_scenes::set_srv_addrs(int index, const char* value) {
+  srv_addrs_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:scene_ns2xs_ntf_new_scenes.srv_addrs)
+}
+inline void scene_ns2xs_ntf_new_scenes::set_srv_addrs(int index, const char* value, size_t size) {
+  srv_addrs_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:scene_ns2xs_ntf_new_scenes.srv_addrs)
+}
+inline ::std::string* scene_ns2xs_ntf_new_scenes::add_srv_addrs() {
+  return srv_addrs_.Add();
+}
+inline void scene_ns2xs_ntf_new_scenes::add_srv_addrs(const ::std::string& value) {
+  srv_addrs_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:scene_ns2xs_ntf_new_scenes.srv_addrs)
+}
+inline void scene_ns2xs_ntf_new_scenes::add_srv_addrs(const char* value) {
+  srv_addrs_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:scene_ns2xs_ntf_new_scenes.srv_addrs)
+}
+inline void scene_ns2xs_ntf_new_scenes::add_srv_addrs(const char* value, size_t size) {
+  srv_addrs_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:scene_ns2xs_ntf_new_scenes.srv_addrs)
+}
+inline const ::google::protobuf::RepeatedPtrField< ::std::string>&
+scene_ns2xs_ntf_new_scenes::srv_addrs() const {
+  // @@protoc_insertion_point(field_list:scene_ns2xs_ntf_new_scenes.srv_addrs)
+  return srv_addrs_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::std::string>*
+scene_ns2xs_ntf_new_scenes::mutable_srv_addrs() {
+  // @@protoc_insertion_point(field_mutable_list:scene_ns2xs_ntf_new_scenes.srv_addrs)
+  return &srv_addrs_;
 }
 
 // -------------------------------------------------------------------
@@ -1079,6 +1342,82 @@ inline void scene_xs2xs_req_connection::set_allocated_srv_id(::std::string* srv_
   // @@protoc_insertion_point(field_set_allocated:scene_xs2xs_req_connection.srv_id)
 }
 
+// optional string srv_addr = 3;
+inline bool scene_xs2xs_req_connection::has_srv_addr() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void scene_xs2xs_req_connection::set_has_srv_addr() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void scene_xs2xs_req_connection::clear_has_srv_addr() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void scene_xs2xs_req_connection::clear_srv_addr() {
+  if (srv_addr_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    srv_addr_->clear();
+  }
+  clear_has_srv_addr();
+}
+inline const ::std::string& scene_xs2xs_req_connection::srv_addr() const {
+  // @@protoc_insertion_point(field_get:scene_xs2xs_req_connection.srv_addr)
+  return *srv_addr_;
+}
+inline void scene_xs2xs_req_connection::set_srv_addr(const ::std::string& value) {
+  set_has_srv_addr();
+  if (srv_addr_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    srv_addr_ = new ::std::string;
+  }
+  srv_addr_->assign(value);
+  // @@protoc_insertion_point(field_set:scene_xs2xs_req_connection.srv_addr)
+}
+inline void scene_xs2xs_req_connection::set_srv_addr(const char* value) {
+  set_has_srv_addr();
+  if (srv_addr_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    srv_addr_ = new ::std::string;
+  }
+  srv_addr_->assign(value);
+  // @@protoc_insertion_point(field_set_char:scene_xs2xs_req_connection.srv_addr)
+}
+inline void scene_xs2xs_req_connection::set_srv_addr(const char* value, size_t size) {
+  set_has_srv_addr();
+  if (srv_addr_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    srv_addr_ = new ::std::string;
+  }
+  srv_addr_->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:scene_xs2xs_req_connection.srv_addr)
+}
+inline ::std::string* scene_xs2xs_req_connection::mutable_srv_addr() {
+  set_has_srv_addr();
+  if (srv_addr_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    srv_addr_ = new ::std::string;
+  }
+  // @@protoc_insertion_point(field_mutable:scene_xs2xs_req_connection.srv_addr)
+  return srv_addr_;
+}
+inline ::std::string* scene_xs2xs_req_connection::release_srv_addr() {
+  clear_has_srv_addr();
+  if (srv_addr_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    return NULL;
+  } else {
+    ::std::string* temp = srv_addr_;
+    srv_addr_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    return temp;
+  }
+}
+inline void scene_xs2xs_req_connection::set_allocated_srv_addr(::std::string* srv_addr) {
+  if (srv_addr_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete srv_addr_;
+  }
+  if (srv_addr) {
+    set_has_srv_addr();
+    srv_addr_ = srv_addr;
+  } else {
+    clear_has_srv_addr();
+    srv_addr_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  // @@protoc_insertion_point(field_set_allocated:scene_xs2xs_req_connection.srv_addr)
+}
+
 // -------------------------------------------------------------------
 
 // scene_xs2xs_ack_connection
@@ -1233,6 +1572,82 @@ inline void scene_xs2xs_ack_connection::set_allocated_srv_id(::std::string* srv_
     srv_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   }
   // @@protoc_insertion_point(field_set_allocated:scene_xs2xs_ack_connection.srv_id)
+}
+
+// optional string srv_addr = 3;
+inline bool scene_xs2xs_ack_connection::has_srv_addr() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void scene_xs2xs_ack_connection::set_has_srv_addr() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void scene_xs2xs_ack_connection::clear_has_srv_addr() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void scene_xs2xs_ack_connection::clear_srv_addr() {
+  if (srv_addr_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    srv_addr_->clear();
+  }
+  clear_has_srv_addr();
+}
+inline const ::std::string& scene_xs2xs_ack_connection::srv_addr() const {
+  // @@protoc_insertion_point(field_get:scene_xs2xs_ack_connection.srv_addr)
+  return *srv_addr_;
+}
+inline void scene_xs2xs_ack_connection::set_srv_addr(const ::std::string& value) {
+  set_has_srv_addr();
+  if (srv_addr_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    srv_addr_ = new ::std::string;
+  }
+  srv_addr_->assign(value);
+  // @@protoc_insertion_point(field_set:scene_xs2xs_ack_connection.srv_addr)
+}
+inline void scene_xs2xs_ack_connection::set_srv_addr(const char* value) {
+  set_has_srv_addr();
+  if (srv_addr_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    srv_addr_ = new ::std::string;
+  }
+  srv_addr_->assign(value);
+  // @@protoc_insertion_point(field_set_char:scene_xs2xs_ack_connection.srv_addr)
+}
+inline void scene_xs2xs_ack_connection::set_srv_addr(const char* value, size_t size) {
+  set_has_srv_addr();
+  if (srv_addr_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    srv_addr_ = new ::std::string;
+  }
+  srv_addr_->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:scene_xs2xs_ack_connection.srv_addr)
+}
+inline ::std::string* scene_xs2xs_ack_connection::mutable_srv_addr() {
+  set_has_srv_addr();
+  if (srv_addr_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    srv_addr_ = new ::std::string;
+  }
+  // @@protoc_insertion_point(field_mutable:scene_xs2xs_ack_connection.srv_addr)
+  return srv_addr_;
+}
+inline ::std::string* scene_xs2xs_ack_connection::release_srv_addr() {
+  clear_has_srv_addr();
+  if (srv_addr_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    return NULL;
+  } else {
+    ::std::string* temp = srv_addr_;
+    srv_addr_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    return temp;
+  }
+}
+inline void scene_xs2xs_ack_connection::set_allocated_srv_addr(::std::string* srv_addr) {
+  if (srv_addr_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete srv_addr_;
+  }
+  if (srv_addr) {
+    set_has_srv_addr();
+    srv_addr_ = srv_addr;
+  } else {
+    clear_has_srv_addr();
+    srv_addr_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  // @@protoc_insertion_point(field_set_allocated:scene_xs2xs_ack_connection.srv_addr)
 }
 
 

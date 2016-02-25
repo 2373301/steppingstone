@@ -99,6 +99,16 @@ void SavePackInfo::save(char * stream_buffer, int stream_len)
 Session::Session()
 : m_session_state(SS_NONE)
 , m_handle_input(NULL)
+,m_clientSide(false)
+{
+	m_input_msg_block.init(m_socket_buffer_length);
+	m_output_msg_block.init(m_socket_buffer_length);
+}
+
+Session::Session(bool client)
+	: m_session_state(SS_NONE)
+	, m_handle_input(NULL)
+	,m_clientSide(client)
 {
 	m_input_msg_block.init(m_socket_buffer_length);
 	m_output_msg_block.init(m_socket_buffer_length);

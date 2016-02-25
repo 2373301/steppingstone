@@ -44,9 +44,10 @@ void protobuf_AssignDesc_protocol_2fmsg_5fscene_2eproto() {
       "protocol/msg_scene.proto");
   GOOGLE_CHECK(file != NULL);
   scene_xs2ns_req_online_scenes_descriptor_ = file->message_type(0);
-  static const int scene_xs2ns_req_online_scenes_offsets_[2] = {
+  static const int scene_xs2ns_req_online_scenes_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(scene_xs2ns_req_online_scenes, srv_type_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(scene_xs2ns_req_online_scenes, srv_id_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(scene_xs2ns_req_online_scenes, srv_addr_),
   };
   scene_xs2ns_req_online_scenes_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -60,9 +61,10 @@ void protobuf_AssignDesc_protocol_2fmsg_5fscene_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(scene_xs2ns_req_online_scenes));
   scene_ns2xs_ack_online_scenes_descriptor_ = file->message_type(1);
-  static const int scene_ns2xs_ack_online_scenes_offsets_[2] = {
+  static const int scene_ns2xs_ack_online_scenes_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(scene_ns2xs_ack_online_scenes, srv_types_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(scene_ns2xs_ack_online_scenes, srv_ids_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(scene_ns2xs_ack_online_scenes, srv_addrs_),
   };
   scene_ns2xs_ack_online_scenes_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -76,9 +78,10 @@ void protobuf_AssignDesc_protocol_2fmsg_5fscene_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(scene_ns2xs_ack_online_scenes));
   scene_ns2xs_ntf_new_scenes_descriptor_ = file->message_type(2);
-  static const int scene_ns2xs_ntf_new_scenes_offsets_[2] = {
+  static const int scene_ns2xs_ntf_new_scenes_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(scene_ns2xs_ntf_new_scenes, srv_types_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(scene_ns2xs_ntf_new_scenes, srv_ids_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(scene_ns2xs_ntf_new_scenes, srv_addrs_),
   };
   scene_ns2xs_ntf_new_scenes_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -92,9 +95,10 @@ void protobuf_AssignDesc_protocol_2fmsg_5fscene_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(scene_ns2xs_ntf_new_scenes));
   scene_xs2xs_req_connection_descriptor_ = file->message_type(3);
-  static const int scene_xs2xs_req_connection_offsets_[2] = {
+  static const int scene_xs2xs_req_connection_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(scene_xs2xs_req_connection, srv_type_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(scene_xs2xs_req_connection, srv_id_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(scene_xs2xs_req_connection, srv_addr_),
   };
   scene_xs2xs_req_connection_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -108,9 +112,10 @@ void protobuf_AssignDesc_protocol_2fmsg_5fscene_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(scene_xs2xs_req_connection));
   scene_xs2xs_ack_connection_descriptor_ = file->message_type(4);
-  static const int scene_xs2xs_ack_connection_offsets_[2] = {
+  static const int scene_xs2xs_ack_connection_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(scene_xs2xs_ack_connection, srv_type_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(scene_xs2xs_ack_connection, srv_id_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(scene_xs2xs_ack_connection, srv_addr_),
   };
   scene_xs2xs_ack_connection_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -169,15 +174,18 @@ void protobuf_AddDesc_protocol_2fmsg_5fscene_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\030protocol/msg_scene.proto\"A\n\035scene_xs2n"
+    "\n\030protocol/msg_scene.proto\"S\n\035scene_xs2n"
     "s_req_online_scenes\022\020\n\010srv_type\030\001 \001(\t\022\016\n"
-    "\006srv_id\030\002 \001(\t\"C\n\035scene_ns2xs_ack_online_"
-    "scenes\022\021\n\tsrv_types\030\001 \003(\t\022\017\n\007srv_ids\030\002 \003"
-    "(\t\"@\n\032scene_ns2xs_ntf_new_scenes\022\021\n\tsrv_"
-    "types\030\001 \003(\t\022\017\n\007srv_ids\030\002 \003(\t\">\n\032scene_xs"
-    "2xs_req_connection\022\020\n\010srv_type\030\001 \001(\t\022\016\n\006"
-    "srv_id\030\002 \001(\t\">\n\032scene_xs2xs_ack_connecti"
-    "on\022\020\n\010srv_type\030\001 \001(\t\022\016\n\006srv_id\030\002 \001(\t", 356);
+    "\006srv_id\030\002 \001(\t\022\020\n\010srv_addr\030\003 \001(\t\"V\n\035scene"
+    "_ns2xs_ack_online_scenes\022\021\n\tsrv_types\030\001 "
+    "\003(\t\022\017\n\007srv_ids\030\002 \003(\t\022\021\n\tsrv_addrs\030\003 \003(\t\""
+    "S\n\032scene_ns2xs_ntf_new_scenes\022\021\n\tsrv_typ"
+    "es\030\001 \003(\t\022\017\n\007srv_ids\030\002 \003(\t\022\021\n\tsrv_addrs\030\003"
+    " \003(\t\"P\n\032scene_xs2xs_req_connection\022\020\n\010sr"
+    "v_type\030\001 \001(\t\022\016\n\006srv_id\030\002 \001(\t\022\020\n\010srv_addr"
+    "\030\003 \001(\t\"P\n\032scene_xs2xs_ack_connection\022\020\n\010"
+    "srv_type\030\001 \001(\t\022\016\n\006srv_id\030\002 \001(\t\022\020\n\010srv_ad"
+    "dr\030\003 \001(\t", 448);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "protocol/msg_scene.proto", &protobuf_RegisterTypes);
   scene_xs2ns_req_online_scenes::default_instance_ = new scene_xs2ns_req_online_scenes();
@@ -205,6 +213,7 @@ struct StaticDescriptorInitializer_protocol_2fmsg_5fscene_2eproto {
 #ifndef _MSC_VER
 const int scene_xs2ns_req_online_scenes::kSrvTypeFieldNumber;
 const int scene_xs2ns_req_online_scenes::kSrvIdFieldNumber;
+const int scene_xs2ns_req_online_scenes::kSrvAddrFieldNumber;
 #endif  // !_MSC_VER
 
 scene_xs2ns_req_online_scenes::scene_xs2ns_req_online_scenes()
@@ -228,6 +237,7 @@ void scene_xs2ns_req_online_scenes::SharedCtor() {
   _cached_size_ = 0;
   srv_type_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   srv_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  srv_addr_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -242,6 +252,9 @@ void scene_xs2ns_req_online_scenes::SharedDtor() {
   }
   if (srv_id_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
     delete srv_id_;
+  }
+  if (srv_addr_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete srv_addr_;
   }
   if (this != default_instance_) {
   }
@@ -269,7 +282,7 @@ scene_xs2ns_req_online_scenes* scene_xs2ns_req_online_scenes::New() const {
 }
 
 void scene_xs2ns_req_online_scenes::Clear() {
-  if (_has_bits_[0 / 32] & 3) {
+  if (_has_bits_[0 / 32] & 7) {
     if (has_srv_type()) {
       if (srv_type_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
         srv_type_->clear();
@@ -278,6 +291,11 @@ void scene_xs2ns_req_online_scenes::Clear() {
     if (has_srv_id()) {
       if (srv_id_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
         srv_id_->clear();
+      }
+    }
+    if (has_srv_addr()) {
+      if (srv_addr_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+        srv_addr_->clear();
       }
     }
   }
@@ -321,6 +339,23 @@ bool scene_xs2ns_req_online_scenes::MergePartialFromCodedStream(
             this->srv_id().data(), this->srv_id().length(),
             ::google::protobuf::internal::WireFormat::PARSE,
             "srv_id");
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(26)) goto parse_srv_addr;
+        break;
+      }
+
+      // optional string srv_addr = 3;
+      case 3: {
+        if (tag == 26) {
+         parse_srv_addr:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_srv_addr()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+            this->srv_addr().data(), this->srv_addr().length(),
+            ::google::protobuf::internal::WireFormat::PARSE,
+            "srv_addr");
         } else {
           goto handle_unusual;
         }
@@ -373,6 +408,16 @@ void scene_xs2ns_req_online_scenes::SerializeWithCachedSizes(
       2, this->srv_id(), output);
   }
 
+  // optional string srv_addr = 3;
+  if (has_srv_addr()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->srv_addr().data(), this->srv_addr().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "srv_addr");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      3, this->srv_addr(), output);
+  }
+
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -405,6 +450,17 @@ void scene_xs2ns_req_online_scenes::SerializeWithCachedSizes(
         2, this->srv_id(), target);
   }
 
+  // optional string srv_addr = 3;
+  if (has_srv_addr()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->srv_addr().data(), this->srv_addr().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "srv_addr");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        3, this->srv_addr(), target);
+  }
+
   if (!unknown_fields().empty()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
@@ -429,6 +485,13 @@ int scene_xs2ns_req_online_scenes::ByteSize() const {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
           this->srv_id());
+    }
+
+    // optional string srv_addr = 3;
+    if (has_srv_addr()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->srv_addr());
     }
 
   }
@@ -464,6 +527,9 @@ void scene_xs2ns_req_online_scenes::MergeFrom(const scene_xs2ns_req_online_scene
     if (from.has_srv_id()) {
       set_srv_id(from.srv_id());
     }
+    if (from.has_srv_addr()) {
+      set_srv_addr(from.srv_addr());
+    }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
@@ -489,6 +555,7 @@ void scene_xs2ns_req_online_scenes::Swap(scene_xs2ns_req_online_scenes* other) {
   if (other != this) {
     std::swap(srv_type_, other->srv_type_);
     std::swap(srv_id_, other->srv_id_);
+    std::swap(srv_addr_, other->srv_addr_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
@@ -509,6 +576,7 @@ void scene_xs2ns_req_online_scenes::Swap(scene_xs2ns_req_online_scenes* other) {
 #ifndef _MSC_VER
 const int scene_ns2xs_ack_online_scenes::kSrvTypesFieldNumber;
 const int scene_ns2xs_ack_online_scenes::kSrvIdsFieldNumber;
+const int scene_ns2xs_ack_online_scenes::kSrvAddrsFieldNumber;
 #endif  // !_MSC_VER
 
 scene_ns2xs_ack_online_scenes::scene_ns2xs_ack_online_scenes()
@@ -567,6 +635,7 @@ scene_ns2xs_ack_online_scenes* scene_ns2xs_ack_online_scenes::New() const {
 void scene_ns2xs_ack_online_scenes::Clear() {
   srv_types_.Clear();
   srv_ids_.Clear();
+  srv_addrs_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
 }
@@ -615,6 +684,25 @@ bool scene_ns2xs_ack_online_scenes::MergePartialFromCodedStream(
           goto handle_unusual;
         }
         if (input->ExpectTag(18)) goto parse_srv_ids;
+        if (input->ExpectTag(26)) goto parse_srv_addrs;
+        break;
+      }
+
+      // repeated string srv_addrs = 3;
+      case 3: {
+        if (tag == 26) {
+         parse_srv_addrs:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->add_srv_addrs()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+            this->srv_addrs(this->srv_addrs_size() - 1).data(),
+            this->srv_addrs(this->srv_addrs_size() - 1).length(),
+            ::google::protobuf::internal::WireFormat::PARSE,
+            "srv_addrs");
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(26)) goto parse_srv_addrs;
         if (input->ExpectAtEnd()) goto success;
         break;
       }
@@ -664,6 +752,16 @@ void scene_ns2xs_ack_online_scenes::SerializeWithCachedSizes(
       2, this->srv_ids(i), output);
   }
 
+  // repeated string srv_addrs = 3;
+  for (int i = 0; i < this->srv_addrs_size(); i++) {
+  ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+    this->srv_addrs(i).data(), this->srv_addrs(i).length(),
+    ::google::protobuf::internal::WireFormat::SERIALIZE,
+    "srv_addrs");
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      3, this->srv_addrs(i), output);
+  }
+
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -694,6 +792,16 @@ void scene_ns2xs_ack_online_scenes::SerializeWithCachedSizes(
       WriteStringToArray(2, this->srv_ids(i), target);
   }
 
+  // repeated string srv_addrs = 3;
+  for (int i = 0; i < this->srv_addrs_size(); i++) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->srv_addrs(i).data(), this->srv_addrs(i).length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "srv_addrs");
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteStringToArray(3, this->srv_addrs(i), target);
+  }
+
   if (!unknown_fields().empty()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
@@ -717,6 +825,13 @@ int scene_ns2xs_ack_online_scenes::ByteSize() const {
   for (int i = 0; i < this->srv_ids_size(); i++) {
     total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
       this->srv_ids(i));
+  }
+
+  // repeated string srv_addrs = 3;
+  total_size += 1 * this->srv_addrs_size();
+  for (int i = 0; i < this->srv_addrs_size(); i++) {
+    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+      this->srv_addrs(i));
   }
 
   if (!unknown_fields().empty()) {
@@ -746,6 +861,7 @@ void scene_ns2xs_ack_online_scenes::MergeFrom(const scene_ns2xs_ack_online_scene
   GOOGLE_CHECK_NE(&from, this);
   srv_types_.MergeFrom(from.srv_types_);
   srv_ids_.MergeFrom(from.srv_ids_);
+  srv_addrs_.MergeFrom(from.srv_addrs_);
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
 
@@ -770,6 +886,7 @@ void scene_ns2xs_ack_online_scenes::Swap(scene_ns2xs_ack_online_scenes* other) {
   if (other != this) {
     srv_types_.Swap(&other->srv_types_);
     srv_ids_.Swap(&other->srv_ids_);
+    srv_addrs_.Swap(&other->srv_addrs_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
@@ -790,6 +907,7 @@ void scene_ns2xs_ack_online_scenes::Swap(scene_ns2xs_ack_online_scenes* other) {
 #ifndef _MSC_VER
 const int scene_ns2xs_ntf_new_scenes::kSrvTypesFieldNumber;
 const int scene_ns2xs_ntf_new_scenes::kSrvIdsFieldNumber;
+const int scene_ns2xs_ntf_new_scenes::kSrvAddrsFieldNumber;
 #endif  // !_MSC_VER
 
 scene_ns2xs_ntf_new_scenes::scene_ns2xs_ntf_new_scenes()
@@ -848,6 +966,7 @@ scene_ns2xs_ntf_new_scenes* scene_ns2xs_ntf_new_scenes::New() const {
 void scene_ns2xs_ntf_new_scenes::Clear() {
   srv_types_.Clear();
   srv_ids_.Clear();
+  srv_addrs_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
 }
@@ -896,6 +1015,25 @@ bool scene_ns2xs_ntf_new_scenes::MergePartialFromCodedStream(
           goto handle_unusual;
         }
         if (input->ExpectTag(18)) goto parse_srv_ids;
+        if (input->ExpectTag(26)) goto parse_srv_addrs;
+        break;
+      }
+
+      // repeated string srv_addrs = 3;
+      case 3: {
+        if (tag == 26) {
+         parse_srv_addrs:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->add_srv_addrs()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+            this->srv_addrs(this->srv_addrs_size() - 1).data(),
+            this->srv_addrs(this->srv_addrs_size() - 1).length(),
+            ::google::protobuf::internal::WireFormat::PARSE,
+            "srv_addrs");
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(26)) goto parse_srv_addrs;
         if (input->ExpectAtEnd()) goto success;
         break;
       }
@@ -945,6 +1083,16 @@ void scene_ns2xs_ntf_new_scenes::SerializeWithCachedSizes(
       2, this->srv_ids(i), output);
   }
 
+  // repeated string srv_addrs = 3;
+  for (int i = 0; i < this->srv_addrs_size(); i++) {
+  ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+    this->srv_addrs(i).data(), this->srv_addrs(i).length(),
+    ::google::protobuf::internal::WireFormat::SERIALIZE,
+    "srv_addrs");
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      3, this->srv_addrs(i), output);
+  }
+
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -975,6 +1123,16 @@ void scene_ns2xs_ntf_new_scenes::SerializeWithCachedSizes(
       WriteStringToArray(2, this->srv_ids(i), target);
   }
 
+  // repeated string srv_addrs = 3;
+  for (int i = 0; i < this->srv_addrs_size(); i++) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->srv_addrs(i).data(), this->srv_addrs(i).length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "srv_addrs");
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteStringToArray(3, this->srv_addrs(i), target);
+  }
+
   if (!unknown_fields().empty()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
@@ -998,6 +1156,13 @@ int scene_ns2xs_ntf_new_scenes::ByteSize() const {
   for (int i = 0; i < this->srv_ids_size(); i++) {
     total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
       this->srv_ids(i));
+  }
+
+  // repeated string srv_addrs = 3;
+  total_size += 1 * this->srv_addrs_size();
+  for (int i = 0; i < this->srv_addrs_size(); i++) {
+    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+      this->srv_addrs(i));
   }
 
   if (!unknown_fields().empty()) {
@@ -1027,6 +1192,7 @@ void scene_ns2xs_ntf_new_scenes::MergeFrom(const scene_ns2xs_ntf_new_scenes& fro
   GOOGLE_CHECK_NE(&from, this);
   srv_types_.MergeFrom(from.srv_types_);
   srv_ids_.MergeFrom(from.srv_ids_);
+  srv_addrs_.MergeFrom(from.srv_addrs_);
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
 
@@ -1051,6 +1217,7 @@ void scene_ns2xs_ntf_new_scenes::Swap(scene_ns2xs_ntf_new_scenes* other) {
   if (other != this) {
     srv_types_.Swap(&other->srv_types_);
     srv_ids_.Swap(&other->srv_ids_);
+    srv_addrs_.Swap(&other->srv_addrs_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
@@ -1071,6 +1238,7 @@ void scene_ns2xs_ntf_new_scenes::Swap(scene_ns2xs_ntf_new_scenes* other) {
 #ifndef _MSC_VER
 const int scene_xs2xs_req_connection::kSrvTypeFieldNumber;
 const int scene_xs2xs_req_connection::kSrvIdFieldNumber;
+const int scene_xs2xs_req_connection::kSrvAddrFieldNumber;
 #endif  // !_MSC_VER
 
 scene_xs2xs_req_connection::scene_xs2xs_req_connection()
@@ -1094,6 +1262,7 @@ void scene_xs2xs_req_connection::SharedCtor() {
   _cached_size_ = 0;
   srv_type_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   srv_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  srv_addr_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -1108,6 +1277,9 @@ void scene_xs2xs_req_connection::SharedDtor() {
   }
   if (srv_id_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
     delete srv_id_;
+  }
+  if (srv_addr_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete srv_addr_;
   }
   if (this != default_instance_) {
   }
@@ -1135,7 +1307,7 @@ scene_xs2xs_req_connection* scene_xs2xs_req_connection::New() const {
 }
 
 void scene_xs2xs_req_connection::Clear() {
-  if (_has_bits_[0 / 32] & 3) {
+  if (_has_bits_[0 / 32] & 7) {
     if (has_srv_type()) {
       if (srv_type_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
         srv_type_->clear();
@@ -1144,6 +1316,11 @@ void scene_xs2xs_req_connection::Clear() {
     if (has_srv_id()) {
       if (srv_id_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
         srv_id_->clear();
+      }
+    }
+    if (has_srv_addr()) {
+      if (srv_addr_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+        srv_addr_->clear();
       }
     }
   }
@@ -1187,6 +1364,23 @@ bool scene_xs2xs_req_connection::MergePartialFromCodedStream(
             this->srv_id().data(), this->srv_id().length(),
             ::google::protobuf::internal::WireFormat::PARSE,
             "srv_id");
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(26)) goto parse_srv_addr;
+        break;
+      }
+
+      // optional string srv_addr = 3;
+      case 3: {
+        if (tag == 26) {
+         parse_srv_addr:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_srv_addr()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+            this->srv_addr().data(), this->srv_addr().length(),
+            ::google::protobuf::internal::WireFormat::PARSE,
+            "srv_addr");
         } else {
           goto handle_unusual;
         }
@@ -1239,6 +1433,16 @@ void scene_xs2xs_req_connection::SerializeWithCachedSizes(
       2, this->srv_id(), output);
   }
 
+  // optional string srv_addr = 3;
+  if (has_srv_addr()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->srv_addr().data(), this->srv_addr().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "srv_addr");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      3, this->srv_addr(), output);
+  }
+
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -1271,6 +1475,17 @@ void scene_xs2xs_req_connection::SerializeWithCachedSizes(
         2, this->srv_id(), target);
   }
 
+  // optional string srv_addr = 3;
+  if (has_srv_addr()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->srv_addr().data(), this->srv_addr().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "srv_addr");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        3, this->srv_addr(), target);
+  }
+
   if (!unknown_fields().empty()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
@@ -1295,6 +1510,13 @@ int scene_xs2xs_req_connection::ByteSize() const {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
           this->srv_id());
+    }
+
+    // optional string srv_addr = 3;
+    if (has_srv_addr()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->srv_addr());
     }
 
   }
@@ -1330,6 +1552,9 @@ void scene_xs2xs_req_connection::MergeFrom(const scene_xs2xs_req_connection& fro
     if (from.has_srv_id()) {
       set_srv_id(from.srv_id());
     }
+    if (from.has_srv_addr()) {
+      set_srv_addr(from.srv_addr());
+    }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
@@ -1355,6 +1580,7 @@ void scene_xs2xs_req_connection::Swap(scene_xs2xs_req_connection* other) {
   if (other != this) {
     std::swap(srv_type_, other->srv_type_);
     std::swap(srv_id_, other->srv_id_);
+    std::swap(srv_addr_, other->srv_addr_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
@@ -1375,6 +1601,7 @@ void scene_xs2xs_req_connection::Swap(scene_xs2xs_req_connection* other) {
 #ifndef _MSC_VER
 const int scene_xs2xs_ack_connection::kSrvTypeFieldNumber;
 const int scene_xs2xs_ack_connection::kSrvIdFieldNumber;
+const int scene_xs2xs_ack_connection::kSrvAddrFieldNumber;
 #endif  // !_MSC_VER
 
 scene_xs2xs_ack_connection::scene_xs2xs_ack_connection()
@@ -1398,6 +1625,7 @@ void scene_xs2xs_ack_connection::SharedCtor() {
   _cached_size_ = 0;
   srv_type_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   srv_id_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  srv_addr_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -1412,6 +1640,9 @@ void scene_xs2xs_ack_connection::SharedDtor() {
   }
   if (srv_id_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
     delete srv_id_;
+  }
+  if (srv_addr_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete srv_addr_;
   }
   if (this != default_instance_) {
   }
@@ -1439,7 +1670,7 @@ scene_xs2xs_ack_connection* scene_xs2xs_ack_connection::New() const {
 }
 
 void scene_xs2xs_ack_connection::Clear() {
-  if (_has_bits_[0 / 32] & 3) {
+  if (_has_bits_[0 / 32] & 7) {
     if (has_srv_type()) {
       if (srv_type_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
         srv_type_->clear();
@@ -1448,6 +1679,11 @@ void scene_xs2xs_ack_connection::Clear() {
     if (has_srv_id()) {
       if (srv_id_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
         srv_id_->clear();
+      }
+    }
+    if (has_srv_addr()) {
+      if (srv_addr_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+        srv_addr_->clear();
       }
     }
   }
@@ -1491,6 +1727,23 @@ bool scene_xs2xs_ack_connection::MergePartialFromCodedStream(
             this->srv_id().data(), this->srv_id().length(),
             ::google::protobuf::internal::WireFormat::PARSE,
             "srv_id");
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(26)) goto parse_srv_addr;
+        break;
+      }
+
+      // optional string srv_addr = 3;
+      case 3: {
+        if (tag == 26) {
+         parse_srv_addr:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_srv_addr()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+            this->srv_addr().data(), this->srv_addr().length(),
+            ::google::protobuf::internal::WireFormat::PARSE,
+            "srv_addr");
         } else {
           goto handle_unusual;
         }
@@ -1543,6 +1796,16 @@ void scene_xs2xs_ack_connection::SerializeWithCachedSizes(
       2, this->srv_id(), output);
   }
 
+  // optional string srv_addr = 3;
+  if (has_srv_addr()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->srv_addr().data(), this->srv_addr().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "srv_addr");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      3, this->srv_addr(), output);
+  }
+
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -1575,6 +1838,17 @@ void scene_xs2xs_ack_connection::SerializeWithCachedSizes(
         2, this->srv_id(), target);
   }
 
+  // optional string srv_addr = 3;
+  if (has_srv_addr()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->srv_addr().data(), this->srv_addr().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "srv_addr");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        3, this->srv_addr(), target);
+  }
+
   if (!unknown_fields().empty()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
@@ -1599,6 +1873,13 @@ int scene_xs2xs_ack_connection::ByteSize() const {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
           this->srv_id());
+    }
+
+    // optional string srv_addr = 3;
+    if (has_srv_addr()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->srv_addr());
     }
 
   }
@@ -1634,6 +1915,9 @@ void scene_xs2xs_ack_connection::MergeFrom(const scene_xs2xs_ack_connection& fro
     if (from.has_srv_id()) {
       set_srv_id(from.srv_id());
     }
+    if (from.has_srv_addr()) {
+      set_srv_addr(from.srv_addr());
+    }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
@@ -1659,6 +1943,7 @@ void scene_xs2xs_ack_connection::Swap(scene_xs2xs_ack_connection* other) {
   if (other != this) {
     std::swap(srv_type_, other->srv_type_);
     std::swap(srv_id_, other->srv_id_);
+    std::swap(srv_addr_, other->srv_addr_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

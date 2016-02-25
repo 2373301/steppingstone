@@ -11,6 +11,14 @@ CellSession::CellSession()
 	m_outpu_buffer.init(m_socket_buffer_length);
 }
 
+CellSession::CellSession(bool client)
+	: m_guid(0)
+	,Session(client)
+{
+	m_outpu_buffer.init(m_socket_buffer_length);
+}
+
+
 CellSession::~CellSession()
 {
 

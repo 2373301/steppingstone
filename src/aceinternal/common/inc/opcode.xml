@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <root>
 	<message opcode='1' name='smsg_timer_occur' />
-	<message opcode='2' name='RequestGuid' />
-	<message opcode='3' name='ReturnGuid' />
+	<message opcode='2' name='smsg_guid_request' />
+	<message opcode='3' name='smsg_guid_return' />
 	<message opcode='4' name='smsg_scene_inited' />
 	<message opcode='5' name='smsg_lost_gate_connection' />
 	<message opcode='6' name='smsg_receive_sigusr_1' />
+	<message opcode='7' name='scene_xs2ns_req_online_scenes' />
+	<message opcode='8' name='scene_ns2xs_ack_online_scenes' />
+	<message opcode='9' name='scene_ns2xs_ntf_new_scenes' />
+	<message opcode='10' name='scene_xs2xs_req_connection' />
+	<message opcode='11' name='scene_xs2xs_ack_connection' />
 	<message opcode='100' name='nmsg_player_is_online' />
 	<message opcode='101' name='nmsg_player_is_offline' />
 	<message opcode='102' name='nmsg_player_jump_map' />

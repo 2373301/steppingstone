@@ -16,7 +16,7 @@ typedef vector<string> SessionAddrVec_t;
 class NETSTREAM_EXOPRT HandleSessionEvent
 {
 public:
-	virtual void newConnection(Session_t session) = 0;
+	virtual void newConnection(Session_t session, bool clientSide) = 0;
 
 	virtual void connectionClosed(Session_t session, int trigger_source) = 0;
 

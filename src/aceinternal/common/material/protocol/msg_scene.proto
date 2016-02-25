@@ -4,12 +4,14 @@ message scene_xs2ns_req_online_scenes
 {
 	optional string srv_type =1;
 	optional string srv_id =2;
+	optional string srv_addr =3;
 }
 
 message scene_ns2xs_ack_online_scenes
 {
 	repeated string srv_types =1;
 	repeated string srv_ids =2;
+	repeated string srv_addrs =3;
 }
 
 // ns 向 scene 通知新上线的scene
@@ -17,19 +19,23 @@ message scene_ns2xs_ntf_new_scenes
 {
 	repeated string srv_types =1;
 	repeated string srv_ids =2;
+	repeated string srv_addrs =3;
 }
 
 // scene p2p连接
 message scene_xs2xs_req_connection
 {
 	optional string srv_type =1;
-	optional string srv_id =2;		
+	optional string srv_id =2;
+	optional string srv_addr =3;	
+	
 }
 
 message scene_xs2xs_ack_connection
 {
 	optional string srv_type =1;
-	optional string srv_id =2;		
+	optional string srv_id =2;
+	optional string srv_addr =3;	
 }
 
 

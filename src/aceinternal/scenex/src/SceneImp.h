@@ -80,7 +80,7 @@ private:
 
 
 	// handleSessionEvent
-	virtual void newConnection(netstream::Session_t session) override;
+	virtual void newConnection(netstream::Session_t session, bool clientSide) override;
 	virtual void connectionClosed(netstream::Session_t session, int trigger_source) override;
 	virtual void handleInputStream(netstream::Session_t session, ACE_Message_Block & msg_block) override;
 
@@ -134,7 +134,18 @@ private:
 
 	netstream::SessionPool *m_pool;
 
+	std::map<uint64, GOOGLE_MESSAGE_TYPE *> m_total_msg_map;
 	std::map<uint64, MsgHandler> m_input_msg_type_map;
 	std::map<uint64, GOOGLE_MESSAGE_TYPE *> m_message_type_map;
+
+	struct OnlineSceneST
+	{
+		std::string srv_type;
+		std::string srv_id;
+		netstream::Session_t session;
+		std::string srv_addr;
+	};
+
+	std::map<std::string, OnlineSceneST> m_onlines;
 };
 #endif

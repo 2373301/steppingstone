@@ -111,7 +111,7 @@ bool SessionPoolImp::connect(const SessionAddrVec_t & session_addr_vec)
 	for (SessionAddrVec_t::const_iterator it = session_addr_vec.begin(); it != session_addr_vec.end(); ++it)
 	{
 		addr.set(it->c_str());
-		CellSession * cell_session = new CellSession();
+		CellSession * cell_session = new CellSession(true);
 
 		if (connector.connect(cell_session->peer(), addr) != -1)
 		{
@@ -123,7 +123,7 @@ bool SessionPoolImp::connect(const SessionAddrVec_t & session_addr_vec)
 
 			if (NULL != m_handle_session_event)
 			{
-				m_handle_session_event->newConnection(cell_session);
+				m_handle_session_event->newConnection(cell_session, cell_session->isClientSide());
 			}
 
 			if (m_socket_intput_buffer_size > 0)
@@ -206,7 +206,7 @@ void SessionPoolImp::handleNewConnection(Session * session)
 {
 	if (NULL != m_handle_session_event)
 	{
-		m_handle_session_event->newConnection(session);
+		m_handle_session_event->newConnection(session, session->isClientSide());
 	}
 
 	{

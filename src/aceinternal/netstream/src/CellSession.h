@@ -23,6 +23,7 @@ class CellSession : public Session
 {
 public:
 	CellSession();
+	CellSession(bool client);
 	~CellSession();
 
 	virtual int open(void * p=0);
