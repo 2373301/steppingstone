@@ -21,6 +21,7 @@ public:
 		Scene * s = createScene();
 		SceneCfg cfg;
 		s->init(cfg);
+		s->startup();
 
 
 // 		netcore_ut ut;
