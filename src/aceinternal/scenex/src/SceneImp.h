@@ -14,6 +14,9 @@
 #include "SessionPool.h"
 #include "opcode.h"
 #include "protocol/msg_scene.pb.h"
+#include <thread>
+#include <mutex>
+#include <boost/lockfree/queue.hpp>
 
 typedef std::function<int(const PackInfo & pack_info) > MsgHandler;
 typedef std::map<uint64, MsgHandler> MsgHandlerMap;
@@ -66,10 +69,11 @@ public:
 
 	virtual void packInput(PackInfo * pack_info) override;
 
-	virtual int svc (void) override;
-
-
 private:
+	virtual int svc(void) override;
+	int scene_svc(void);
+	int connector_svc(void);
+
 	virtual void playerMsg(Packet * packet) override;
 	virtual void inlineBroadMsg(Packet * packet) override;
 	virtual void notifyMsgToPlugins(const PackInfo & pack_info) override;
@@ -132,7 +136,7 @@ private:
 	bool m_is_stop;
 	bool m_is_shutdown_success;
 
-	netstream::SessionPool *m_pool;
+	netstream::SessionPool *m_session_pool;
 
 	std::map<uint64, GOOGLE_MESSAGE_TYPE *> m_total_msg_map;
 	std::map<uint64, MsgHandler> m_input_msg_type_map;
@@ -147,5 +151,10 @@ private:
 	};
 
 	std::map<std::string, OnlineSceneST> m_onlines;
+	std::mutex m_connector_mutex;
+	uint32 m_connector_thread_num = 1;
+	uint32 m_cur_connector_thread_num = 0;
+
+	boost::lockfree::queue<std::string *> m_to_be_connected;
 };
 #endif

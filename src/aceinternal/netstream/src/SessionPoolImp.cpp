@@ -121,11 +121,6 @@ bool SessionPoolImp::connect(const SessionAddrVec_t & session_addr_vec)
 				return false;
 			}
 
-			if (NULL != m_handle_session_event)
-			{
-				m_handle_session_event->newConnection(cell_session, cell_session->isClientSide());
-			}
-
 			if (m_socket_intput_buffer_size > 0)
 			{
 				cell_session->setSocketBufferSize(m_socket_intput_buffer_size, m_socket_output_buffer_size);
@@ -137,7 +132,12 @@ bool SessionPoolImp::connect(const SessionAddrVec_t & session_addr_vec)
 
 			m_output_session_pool.handleSession(cell_session);
 
+
 			DEF_LOG_INFO("success to connect the addr <%s>\n", it->c_str());
+			if (NULL != m_handle_session_event)
+			{
+				m_handle_session_event->newConnection(cell_session, cell_session->isClientSide());
+			}
 		}
 		else
 		{

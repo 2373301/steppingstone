@@ -20,6 +20,7 @@
 #define  SRV_TYPE_GAME		"game"
 #define  SRV_TYPE_NAMING	"naming"
 #define  SRV_GAME(x)	SRV_TYPE_GAME#x
+#define  SRV_NAMING(x)	SRV_TYPE_NAMING#x
 
 struct SCENEX_EXOPRT SceneCfg 
 {
@@ -84,8 +85,8 @@ struct SCENEX_EXOPRT SceneCfg
 	std::string listen_addr = "127.0.0.1:1";
 	
 	std::string naming_addr = "127.0.0.1:2";
-	std::string srv_type = SRV_TYPE_GAME;
-	std::string srv_id = SRV_GAME(01);
+	std::string srv_type = SRV_TYPE_NAMING; //SRV_TYPE_GAME;
+	std::string srv_id = SRV_NAMING(01); //SRV_GAME(01);
 };
 
 class SCENEX_EXOPRT Scene 

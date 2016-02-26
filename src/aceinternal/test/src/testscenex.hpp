@@ -6,7 +6,7 @@
 class scenex_ut
 {
 public:
-	static void run()
+	static void run(int argc, char * argv[])
 	{
 
 		ManageSingleton::instance();
@@ -17,9 +17,19 @@ public:
 			std::cout << "failed to init ManageLogger" << std::endl;
 			return;
 		}
+		
+		if (5 != argc)
+		{
+			std::cout << "参数不够啊 要  nsip, listenip, type, name" << std::endl;
+			return;
+		}
 
 		Scene * s = createScene();
 		SceneCfg cfg;
+		cfg.naming_addr = argv[1];
+		cfg.listen_addr = argv[2];
+		cfg.srv_type = argv[3];
+		cfg.srv_id = argv[4];
 		s->init(cfg);
 		s->startup();
 

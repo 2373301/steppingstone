@@ -27,9 +27,10 @@ public:
 	ManageTimer(HandleInput * handle_input);
 
 	~ManageTimer();
-public:
+
 	virtual int svc();
-public:
+
+
 	int init();
 
 	int stop();
@@ -40,7 +41,7 @@ public:
 
 	long cancelTimer(long timer_id);
 
-protected:
+
 private:
 	typedef map<long, TimerEvent *> TimerEventMap_t;
 

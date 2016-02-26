@@ -72,7 +72,7 @@ int main(int argc, char * argv[])
 	//startApplication();
 	//pool_ut::run();
 	//netcore::netcore_ut::run();
-	scenex_ut::run();
+	scenex_ut::run(argc, argv);
 	return 0;
 }
 
