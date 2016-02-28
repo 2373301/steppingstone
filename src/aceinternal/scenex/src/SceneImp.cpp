@@ -198,7 +198,11 @@ int SceneImp::on_scene_ns2xs_ack_online_scenes(const PackInfo & pack_info)
 		if( findIt != m_onlines.end())
 			continue;
 
+		// 决定谁主动connect 谁
 		std::string *addr = new std::string(req->srv_addrs(i));
+		if(m_scene_cfg.srv_id < *addr)
+			continue;
+
 		if (!m_to_be_connected.bounded_push(addr))
 		{
 			SCENE_LOG_INFO("failed to push to queue to conenector other scene: srv id: %s, ip: %s", req->srv_ids(i), req->srv_addrs(i));
