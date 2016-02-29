@@ -24,28 +24,27 @@ public:
 			return;
 		}
 
+		scenex_ut ut;
 		Scene * s = createScene();
 		SceneCfg cfg;
 		cfg.naming_addr = argv[1];
 		cfg.listen_addr = argv[2];
 		cfg.srv_type = argv[3];
 		cfg.srv_id = argv[4];
+		cfg.cache_handle_output = std::bind(&scenex_ut::output, &ut, std::placeholders::_1,
+			std::placeholders::_2, std::placeholders::_3, std::placeholders::_4);
 		s->init(cfg);
 		s->startup();
-
-
-// 		netcore_ut ut;
-// 		SessionPoolx* pool = SessionPoolFactory::createSessionPool();
-// 		pool->init(1, 1, &ut, &ut, &ut);
-// 		SessionAddrVec_t vec;
-// 		vec.push_back("127.0.0.1:80");
-// 		vec.push_back("127.0.0.1:80");
-// 		pool->connect(vec);
 
 		while (true)
 		{
 			ACE_OS::sleep(1);
 		}
+	}
+
+	void output(Packet * packet, uint64 map_id, uint64 request_id, uint64 owner_guid)
+	{
+
 	}
 
 };

@@ -9,11 +9,12 @@ public:
 		pool_ut ut;
 		Pool * pool = createPool();
 		PoolCfgx cfg;
-		cfg.handle_output = std::bind(&pool_ut::output, &ut, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4);
+		cfg.handle_output = std::bind(&pool_ut::output, &ut, std::placeholders::_1,
+				std::placeholders::_2, std::placeholders::_3, std::placeholders::_4);
 		pool->init(cfg);
-		uint64 player_guid = 0;
+		uint64 player_guid = 1;
 		DECLARE_REQUEST_LIST(pool);
-		LOAD_ONCE_REQUEST(player_guid, player_guid);
+		LOAD_ONCE_REQUEST(1, 2);
 		POOL_OP_COMMIT(pool, boost::bind(&pool_ut::loadPlayerFinish, &ut, _1, player_guid));
 	}
 

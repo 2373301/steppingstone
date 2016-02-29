@@ -101,7 +101,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;POOL_EXOPRTS;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>false</SDLCheck>
-      <AdditionalIncludeDirectories>./;./inc;./src;../share/inc;../logger/inc;../netstream/inc;../../../dep/ACE_wrappers/;../../../dep/boost_1_60_0/;../../../dep/protobuf-2.6.1/src;../common/material-cpp;../common/cachesys/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./inc;./src;../share/inc;../logger/inc;../netstream/inc;../../../dep/ACE_wrappers/;../../../dep/boost_1_60_0/;../../../dep/protobuf-2.6.1/src;../common/material-cpp;../common/cachesys/inc;../cache/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

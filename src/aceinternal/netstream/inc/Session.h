@@ -112,8 +112,6 @@ protected:
 	virtual int net_connected();
 
 	virtual int net_closed();
-protected:
-	virtual void parseInputPacket();
 
 protected:
 	static int m_socket_buffer_length;

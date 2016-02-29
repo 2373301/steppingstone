@@ -172,26 +172,21 @@ protected:
 	RequestVec_t m_request_vec;
 };
 
+class Scene;
 struct PoolCfgx
 {
-	PoolCfgx()
-		: map_id(0)
-		, logger(NULL)
-		, line_id(0)
-	{}
-
-	std::function<void(Packet * packet, uint64 map_id, uint64 request_id, uint64 owner_guid)> handle_output; // cout
-	uint64				map_id;
-	uint32				line_id;
-	Logger *			logger;
+	std::function<void(Packet * packet, uint64 map_id, uint64 request_id, uint64 owner_guid)> handle_output;
+	uint64				map_id = 0;
+	uint32				line_id = 0;
+	Logger*				logger = NULL;
+	Scene*				scene = NULL;
 };
 
 struct EntityInfo;
 class POOL_EXOPRT Pool
 {
 public:
-	virtual ~Pool()
-	{}
+	virtual ~Pool(){}
 
 	virtual int init(const PoolCfgx pool_cfg) = 0;
 	virtual void cacheInput(Packet * packet, uint64 map_id, uint64 request_id) = 0; // cin

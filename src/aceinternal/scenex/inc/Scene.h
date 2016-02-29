@@ -9,6 +9,7 @@
 #include "LoadDll.h"
 #include "Plugin.h"
 #include "coredef.h"
+#include "CacheInterface.h"
 // #include "entity_ins.h"
 // #include "entity/player.pb.h"
 // #include "protocol_ins.h"
@@ -55,11 +56,11 @@ struct SCENEX_EXOPRT SceneCfg
 
 	int	cache_type;
 
-// 	ManageTerminal * manage_terminal;
-// 
-// 	CacheHandleOutput * cache_handle_output;
-// 
-// 	PluginParamConfigVec_t * plugin_param_vec;
+	//ManageTerminal * manage_terminal;
+
+	std::function<void(Packet * packet, uint64 map_id, uint64 request_id, uint64 owner_guid)> cache_handle_output;
+
+	//PluginParamConfigVec_t * plugin_param_vec;
 
 	bool save_packet;
 

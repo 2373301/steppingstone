@@ -101,12 +101,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;SCENEX_EXPORTS;PROTOBUF_USE_DLLS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>./;./inc;./src;../share/inc;../logger/inc;../cache/inc;../simplexml/inc;../terminal/inc;../gamelogic/inc;../gamelogic/src/resource;../common/inc;../common/material-cpp;../common/cachesys/inc;../netstream/inc;../../../dep/ACE_wrappers/;../../../dep/boost_1_60_0/;../../../dep/protobuf-2.6.1/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;./inc;./src;../share/inc;../logger/inc;../cache/inc;../simplexml/inc;../terminal/inc;../gamelogic/inc;../gamelogic/src/resource;../common/inc;../common/material-cpp;../common/cachesys/inc;../netstream/inc;../../../dep/ACE_wrappers/;../../../dep/boost_1_60_0/;../../../dep/protobuf-2.6.1/src;../pool/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>share.lib;logger.lib;../../../dep/ACE_wrappers/lib/ACEd.lib;simplexml.lib;netstream.lib;../../../dep/protobuf-2.6.1/lib/libprotobuf.lib;cache.lib;gamelogic.lib;terminal.lib;protocol.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>share.lib;logger.lib;../../../dep/ACE_wrappers/lib/ACEd.lib;simplexml.lib;netstream.lib;../../../dep/protobuf-2.6.1/lib/libprotobuf.lib;cache.lib;gamelogic.lib;terminal.lib;protocol.lib;pool.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(OutDir);../../../dep/boost_1_60_0/lib64-msvc-14.0/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>

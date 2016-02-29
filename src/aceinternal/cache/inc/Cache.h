@@ -32,24 +32,23 @@ struct CachePackInfo
 	Packet * packet;
 };
 
-class Scene;
-
-struct PoolCfg 
-{
-	PoolCfg()
-		: map_id(0)
-		, logger(NULL)
-		, line_id(0)
-		//,scene(NULL)
-	{}
-
-	//CacheHandleOutput * handle_output;
-	std::function<void(Packet * packet, uint64 map_id, uint64 request_id, uint64 owner_guid)> handle_output;
-	uint64				map_id;
-	uint32				line_id;
-	Logger *			logger;
-	//Scene*				scene;
-};
+// class Scene;
+// 
+// struct PoolCfg 
+// {
+// 	PoolCfg()
+// 		: map_id(0)
+// 		, line_id(0)
+// 		, logger(NULL)
+// 		,scene(NULL)
+// 	{}
+// 
+// 	std::function<void(Packet * packet, uint64 map_id, uint64 request_id, uint64 owner_guid)> handle_output;
+// 	uint64				map_id;
+// 	uint32				line_id;
+// 	Logger *			logger;
+// 	Scene*				scene;
+// };
 
 
 class CACHE_EXOPRT Cache : public Session

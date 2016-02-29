@@ -75,7 +75,7 @@ int InputSessionPool::svc()
 	InputSessionThreadInfo * session_thread_info = new InputSessionThreadInfo();
 
 #ifdef WIN32
-	session_thread_info->reactor = new ACE_Reactor(new ACE_Select_Reactor(0, 0, -1, 0, false), true);
+	session_thread_info->reactor = new ACE_Reactor(new ACE_Select_Reactor(), true);
 #else
 	session_thread_info->reactor = new ACE_Reactor(new ACE_Dev_Poll_Reactor(100000), true);
 #endif
@@ -87,7 +87,7 @@ int InputSessionPool::svc()
 	int reactor_result = 0;
 
 	while (true)
-	{
+	{	
 		reactor_result = session_thread_info->reactor->run_reactor_event_loop();
 #ifdef WIN32
 		break;

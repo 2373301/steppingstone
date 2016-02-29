@@ -9,6 +9,7 @@
 #include "SessionPoolFactory.h"
 #include "Packet.h"
 #include "Logger.h"
+#include "Cache.h"
 
 #define PLUGIN_SAVE_CONFIG_DIR	"plugin_data"
 
@@ -53,8 +54,6 @@ SceneImp::SceneImp()
 ,m_session_pool(NULL)
 ,m_to_be_connected(128)
 {
-	getInputMsgMap();
-	m_total_msg_map.insert(m_message_type_map.begin(), m_message_type_map.end());
 }
 
 SceneImp::~SceneImp()
@@ -88,7 +87,13 @@ void SceneImp::newConnection(netstream::Session_t session, bool clientSide)
 
 void SceneImp::connectionClosed(netstream::Session_t session, int trigger_source)
 {
+	PackInfo * info = new PackInfo(SCENE_XS2XS_NTF_SCENE_LOGOUT, 0, NULL);
+	info->owner = session;
+	{
+		ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_input_packet_vec_mutex, );
+		m_input_packet_vec.push_back(info);
 
+	}
 }
 
 void SceneImp::handleInputStream(netstream::Session_t session, ACE_Message_Block & msg_block)
@@ -264,6 +269,9 @@ int SceneImp::on_scene_xs2xs_req_connection(const PackInfo & pack_info)
 		st.srv_id = req->srv_id();
 		st.srv_type = req->srv_type();
 		m_onlines.insert(std::make_pair(st.srv_id, st));
+
+		SCENE_LOG_INFO("add session:%p, srv type:%s, srv id:%s",
+			st.session, st.srv_type.c_str(), st.srv_id.c_str());
 	}
 
 
@@ -295,6 +303,22 @@ int SceneImp::on_scene_xs2xs_req_connection(const PackInfo & pack_info)
 	return 0;
 }
 
+int SceneImp::on_scene_xs2xs_ntf_scene_logout(const PackInfo & pack_info)
+{	
+	for (auto it : m_onlines)
+	{
+		if( it.second.session != pack_info.owner)
+			continue;
+
+		SCENE_LOG_INFO("remove session:%p, srv type:%s, srv id:%s",
+			it.second.session, it.second.srv_type.c_str(), it.second.srv_id.c_str());
+		m_onlines.erase(it.first);
+		break;
+	}
+
+	return 0;
+}
+
 int SceneImp::on_scene_xs2xs_ack_connection(const PackInfo & pack_info)
 {	
 	scene_xs2xs_ack_connection * req = (scene_xs2xs_ack_connection*)pack_info.msg;
@@ -320,6 +344,8 @@ int SceneImp::on_scene_xs2xs_ack_connection(const PackInfo & pack_info)
 		st.srv_id = req->srv_id();
 		st.srv_type = req->srv_type();
 		m_onlines.insert(std::make_pair(st.srv_id, st));
+		SCENE_LOG_INFO("add session:%p, srv type:%s, srv id:%s",
+			st.session, st.srv_type.c_str(), st.srv_id.c_str());
 	}
 
 
@@ -342,6 +368,8 @@ int SceneImp::init(const SceneCfg & scene_cfg)
 {
 	m_scene_cfg = scene_cfg;
 
+	getInputMsgMap();
+	m_total_msg_map.insert(m_message_type_map.begin(), m_message_type_map.end());
 
 	m_session_pool = netstream::SessionPoolFactory::createSessionPool();
 	if (-1 == m_session_pool->init(1, 1, this))
@@ -391,18 +419,25 @@ int SceneImp::init(const SceneCfg & scene_cfg)
 		return -1;
 	}
 
-// 	PoolCfg pool_cfg;
-// 	pool_cfg.map_id = m_scene_cfg.map_id;
-// 	pool_cfg.line_id = m_scene_cfg.line_no;
-// 	pool_cfg.handle_output = m_scene_cfg.cache_handle_output;
-// 	pool_cfg.logger = m_scene_cfg.logger;
-// 	pool_cfg.scene = this;
-// 	if (m_session_pool->init(pool_cfg) == -1)
-// 	{
-// 		DEF_LOG_ERROR("failed to init pool\n");
-// 		return -1;
-// 	}
-// 
+	m_pool = createPool();
+	if (NULL == m_pool)
+	{
+		DEF_LOG_ERROR("failed to create pool, get NULL pointer\n");
+		return -1;
+	}
+
+	PoolCfgx pool_cfg;
+	pool_cfg.map_id = m_scene_cfg.map_id;
+	pool_cfg.line_id = m_scene_cfg.line_no;
+	pool_cfg.handle_output = m_scene_cfg.cache_handle_output;
+	pool_cfg.logger = m_scene_cfg.logger;
+	pool_cfg.scene = this;
+	if (m_pool->init(pool_cfg) == -1)
+	{
+		DEF_LOG_ERROR("failed to init pool\n");
+		return -1;
+	}
+
 // 	m_plugin_depot = SceneFactory::createPluginDepot();
 // 	if (NULL == m_plugin_depot)
 // 	{

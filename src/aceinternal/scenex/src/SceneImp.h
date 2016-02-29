@@ -17,6 +17,7 @@
 #include <thread>
 #include <mutex>
 #include <boost/lockfree/queue.hpp>
+#include "Pool.h"
 
 typedef std::function<int(const PackInfo & pack_info) > MsgHandler;
 typedef std::map<uint64, MsgHandler> MsgHandlerMap;
@@ -95,6 +96,7 @@ private:
 		SCENE_INPUT_HANDLE_MSG(SCENE_NS2XS_NTF_NEW_SCENES, &SceneImp::on_scene_ns2xs_ntf_new_scenes, new scene_ns2xs_ntf_new_scenes)
 		SCENE_INPUT_HANDLE_MSG(SCENE_XS2XS_REQ_CONNECTION, &SceneImp::on_scene_xs2xs_req_connection, new scene_xs2xs_req_connection)
 		SCENE_INPUT_HANDLE_MSG(SCENE_XS2XS_ACK_CONNECTION, &SceneImp::on_scene_xs2xs_ack_connection, new scene_xs2xs_ack_connection)
+		SCENE_INPUT_HANDLE_MSG(SCENE_XS2XS_NTF_SCENE_LOGOUT, &SceneImp::on_scene_xs2xs_ntf_scene_logout, NULL)
 	SCENE_END_INPUT_MSG_MAP()
 
 private:
@@ -103,12 +105,14 @@ private:
 	int on_scene_ns2xs_ntf_new_scenes(const PackInfo & pack_info);
 	int on_scene_xs2xs_req_connection(const PackInfo & pack_info);
 	int on_scene_xs2xs_ack_connection(const PackInfo & pack_info);
+	int on_scene_xs2xs_ntf_scene_logout(const PackInfo & pack_info);
 
 private:
 	
-	PluginDepot * m_plugin_depot;
+	PluginDepot * m_plugin_depot = NULL;
+	Pool *	m_pool = NULL;
 
-	uint32 m_save_packet_index;
+	uint32 m_save_packet_index = 0;
 	SceneCfg m_scene_cfg;
 
 	// input packet
