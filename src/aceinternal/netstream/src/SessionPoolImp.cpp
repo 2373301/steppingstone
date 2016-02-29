@@ -152,7 +152,7 @@ bool SessionPoolImp::connect(const SessionAddrVec_t & session_addr_vec)
 bool SessionPoolImp::listen(const string & listen_addr)
 {
 #ifdef WIN32
-	m_reactor = new ACE_Reactor(new ACE_Select_Reactor(), true);
+	m_reactor = new ACE_Reactor(new ACE_Select_Reactor(0, 0, -1, 0, false), true);
 #else
 	m_reactor = new ACE_Reactor(new ACE_Dev_Poll_Reactor(100000, true));
 #endif
