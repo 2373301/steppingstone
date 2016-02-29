@@ -2,9 +2,10 @@
 #ifndef CACHE_FACTORY_HPP
 #define CACHE_FACTORY_HPP
 
-#include "CacheInterface.h"
 #include "Cache_def.h"
+//#include "Cache.h"
 
+class ManageCache;
 class CACHE_EXOPRT CacheFactory
 {
 public:
