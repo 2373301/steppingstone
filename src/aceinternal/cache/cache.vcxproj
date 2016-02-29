@@ -260,7 +260,6 @@
     <ClInclude Include="inc\Cache.h" />
     <ClInclude Include="inc\cachehdr.h" />
     <ClInclude Include="inc\CacheFactory.h" />
-    <ClInclude Include="inc\CacheInterface.h" />
     <ClInclude Include="inc\cache_auto_assistant.h" />
     <ClInclude Include="inc\Cache_def.h" />
     <ClInclude Include="inc\factory.h" />
