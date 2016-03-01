@@ -11,32 +11,29 @@
 
 class HandleOutputx;
 
-namespace cached {
-	namespace service {
-
+namespace cached 
+{
+namespace service 
+{
 class EntityHander : public ACE_Task<ACE_NULL_SYNCH>, public SingletonInit
 {
 public:
 	EntityHander();
 	~EntityHander();
-public:
+
 	static EntityHander * instance()
 	{
 		return Singleton<EntityHander>::instance();
 	}
-public:
+
 	int init();
-
 	int stop();
-
 	int finit();
 
 	int svc();
-public:
+
 	void input(Packet * packet);
-
 	void setOutputHandle(HandleOutputx * handle_output);
-
 	void handleDbLoadReplay(DataRequestInfo * data_request_info);
 protected:
 	void handlePacket(Packet * packet);

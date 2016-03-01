@@ -10,8 +10,10 @@
 
 using namespace dbass;
 
-namespace cached {
-	namespace service {
+namespace cached 
+{
+namespace service 
+{
 
 struct DataRequestInfo 
 {

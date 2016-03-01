@@ -43,36 +43,8 @@
 
 #include "coredef.h"
 #define define_unordered_map std::map
-
-typedef ACE_Svc_Handler<ACE_SOCK_STREAM, ACE_MT_SYNCH> CacheMTSvcHandler;
-typedef ACE_Reactor_Notification_Strategy CacheRNS;
-typedef ACE_Task<ACE_MT_SYNCH> CacheMTask;
-typedef ACE_Message_Queue<ACE_MT_SYNCH> CacheMTQueue;
-
-typedef ::std::vector< ::std::string > CacheStrings;
-typedef ::std::map< ::std::string, ::std::string > CacheS2SMap;
 typedef uint64 CacheCGUID;
-typedef ::std::vector<CacheCGUID> CacheCGUIDS;
-typedef define_unordered_map<ACE_HANDLE, CacheMTQueue*> CacheMTQueueMap;
 
 
-struct ReqPackInfo
-{
-	ReqPackInfo()
-		: request_id(0)
-		, guid(0)
-		, map_id(0)
-	{}
-
-	ReqPackInfo(uint64 req_id, uint64 gid, uint64 mid)
-		: request_id(req_id)
-		, guid(gid)
-		, map_id(mid)
-	{}
-
-	uint64 request_id;
-	uint64 guid;
-	uint64 map_id;
-};
 
 #endif

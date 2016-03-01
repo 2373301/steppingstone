@@ -8,8 +8,10 @@
 #include "SingletonInit.h"
 #include "Singleton.h"
 
-namespace cached {
-	namespace service {
+namespace cached 
+{
+namespace service 
+{
 
 class ManageSessionPool	
 	: public HandleInputx

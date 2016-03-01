@@ -2,8 +2,10 @@
 #include "ManageSessionPool.h"
 #include "config.h"
 
-namespace cached {
-	namespace service {
+namespace cached 
+{
+namespace service 
+{
 
 ManageSessionPool::ManageSessionPool()
 : m_session_pool(NULL)
