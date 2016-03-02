@@ -294,7 +294,7 @@ bool ManageSqliteFile::processRecordSet(const string & cache_addr, RecordSet & r
 
 bool ManageSqliteFile::writeRecordToDb(Record * record, ::mysqlpp::Connection & conn)
 {
-	::dbass::CacheAssistantSPtr ca(AssFactory::create(record->object_guid));
+	::dbass::CacheAssistantSPtr ca(AssFactory::create(record->object_guid, record->entity_name));
 
 	if (!ca.get())
 	{

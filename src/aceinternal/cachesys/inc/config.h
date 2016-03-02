@@ -69,7 +69,7 @@ private:
     /// 验证xml有效性
     bool check_config_file(Element *root);
     /// 表<XPath,Value>
-    CacheS2SMap config_map_;
+    std::map<std::string, std::string> config_map_;
 };
 
 }; // namespace service

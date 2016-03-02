@@ -93,6 +93,7 @@ struct Record
 	uint32	line_id;
 	bool    last_is_flush;
 	string  cache_addr;
+	string  entity_name;
 	STAT_NUM_DEC;
 };
 

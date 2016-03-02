@@ -58,8 +58,6 @@
 #define POOL_LOG_ERROR(log_info, ...)		m_pool_cfg.logger->log(LL_ERROR, "%s" MK_POOL log_info FUNCTION_LINE_TRACE, "", ##__VA_ARGS__, __FUNCTION__, __LINE__)
 #define POOL_LOG_FATAL(log_info, ...)		m_pool_cfg.logger->log(LL_FATAL, "%s" MK_POOL log_info FUNCTION_LINE_TRACE, "", ##__VA_ARGS__, __FUNCTION__, __LINE__)
 
-TransactionInfo static_trans_info;
-
 STAT_PACKET_IMP(RequestImp);
 
 STAT_PACKET_IMP(RequestListImp);

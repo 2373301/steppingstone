@@ -2,9 +2,10 @@
 #ifndef CACHE_SESSION_HPP
 #define CACHE_SESSION_HPP
 
-#include "Session.h"
+#include "Sessionx.h"
 
-class CacheSession : public Session
+class CacheSession
+	: public Sessionx
 {
 public:
 	CacheSession();

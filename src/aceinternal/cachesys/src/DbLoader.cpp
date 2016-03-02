@@ -132,7 +132,7 @@ void DbLoader::handleLoadRequest(::mysqlpp::Connection & conn, DataRequestInfo *
 	//}
 
 	data_request_info->db_load_success = false;
-	dbass::CacheAssistant * cache_ass = AssFactory::create(data_request_info->guid);
+	dbass::CacheAssistant * cache_ass = AssFactory::instance()->create(data_request_info->guid, data_request_info->data_request->entity_name());
 	data_request_info->entity_msg = cache_ass;
 	if (NULL != cache_ass)
 	{

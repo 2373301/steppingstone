@@ -284,6 +284,18 @@ class db_data_request : public ::google::protobuf::Message {
   inline ::google::protobuf::uint64 owner_guid() const;
   inline void set_owner_guid(::google::protobuf::uint64 value);
 
+  // optional string entity_name = 7;
+  inline bool has_entity_name() const;
+  inline void clear_entity_name();
+  static const int kEntityNameFieldNumber = 7;
+  inline const ::std::string& entity_name() const;
+  inline void set_entity_name(const ::std::string& value);
+  inline void set_entity_name(const char* value);
+  inline void set_entity_name(const char* value, size_t size);
+  inline ::std::string* mutable_entity_name();
+  inline ::std::string* release_entity_name();
+  inline void set_allocated_entity_name(::std::string* entity_name);
+
   // @@protoc_insertion_point(class_scope:protocol.db_data_request)
  private:
   inline void set_has_transaction_index();
@@ -298,6 +310,8 @@ class db_data_request : public ::google::protobuf::Message {
   inline void clear_has_data_stream();
   inline void set_has_owner_guid();
   inline void clear_has_owner_guid();
+  inline void set_has_entity_name();
+  inline void clear_has_entity_name();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
@@ -309,6 +323,7 @@ class db_data_request : public ::google::protobuf::Message {
   ::google::protobuf::uint32 line_id_;
   ::std::string* data_stream_;
   ::google::protobuf::uint64 owner_guid_;
+  ::std::string* entity_name_;
   friend void  protobuf_AddDesc_protocol_2fmsg_5fcache_2eproto();
   friend void protobuf_AssignDesc_protocol_2fmsg_5fcache_2eproto();
   friend void protobuf_ShutdownFile_protocol_2fmsg_5fcache_2eproto();
@@ -622,6 +637,82 @@ inline void db_data_request::set_owner_guid(::google::protobuf::uint64 value) {
   set_has_owner_guid();
   owner_guid_ = value;
   // @@protoc_insertion_point(field_set:protocol.db_data_request.owner_guid)
+}
+
+// optional string entity_name = 7;
+inline bool db_data_request::has_entity_name() const {
+  return (_has_bits_[0] & 0x00000040u) != 0;
+}
+inline void db_data_request::set_has_entity_name() {
+  _has_bits_[0] |= 0x00000040u;
+}
+inline void db_data_request::clear_has_entity_name() {
+  _has_bits_[0] &= ~0x00000040u;
+}
+inline void db_data_request::clear_entity_name() {
+  if (entity_name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    entity_name_->clear();
+  }
+  clear_has_entity_name();
+}
+inline const ::std::string& db_data_request::entity_name() const {
+  // @@protoc_insertion_point(field_get:protocol.db_data_request.entity_name)
+  return *entity_name_;
+}
+inline void db_data_request::set_entity_name(const ::std::string& value) {
+  set_has_entity_name();
+  if (entity_name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    entity_name_ = new ::std::string;
+  }
+  entity_name_->assign(value);
+  // @@protoc_insertion_point(field_set:protocol.db_data_request.entity_name)
+}
+inline void db_data_request::set_entity_name(const char* value) {
+  set_has_entity_name();
+  if (entity_name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    entity_name_ = new ::std::string;
+  }
+  entity_name_->assign(value);
+  // @@protoc_insertion_point(field_set_char:protocol.db_data_request.entity_name)
+}
+inline void db_data_request::set_entity_name(const char* value, size_t size) {
+  set_has_entity_name();
+  if (entity_name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    entity_name_ = new ::std::string;
+  }
+  entity_name_->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:protocol.db_data_request.entity_name)
+}
+inline ::std::string* db_data_request::mutable_entity_name() {
+  set_has_entity_name();
+  if (entity_name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    entity_name_ = new ::std::string;
+  }
+  // @@protoc_insertion_point(field_mutable:protocol.db_data_request.entity_name)
+  return entity_name_;
+}
+inline ::std::string* db_data_request::release_entity_name() {
+  clear_has_entity_name();
+  if (entity_name_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    return NULL;
+  } else {
+    ::std::string* temp = entity_name_;
+    entity_name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    return temp;
+  }
+}
+inline void db_data_request::set_allocated_entity_name(::std::string* entity_name) {
+  if (entity_name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete entity_name_;
+  }
+  if (entity_name) {
+    set_has_entity_name();
+    entity_name_ = entity_name;
+  } else {
+    clear_has_entity_name();
+    entity_name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  // @@protoc_insertion_point(field_set_allocated:protocol.db_data_request.entity_name)
 }
 
 

@@ -118,7 +118,7 @@ protected:
 
 	SessionState m_session_state;
 
-	HandleInputStream * m_handle_input;
+	netstream::HandleInputStream * m_handle_input;
 
 	//SavePackInfo m_save_input_pack_info;
 

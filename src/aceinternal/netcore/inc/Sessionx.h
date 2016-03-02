@@ -54,7 +54,8 @@ public:
 	string file_name;
 };
 
-class NETCORE_EXOPRT Sessionx :public HandleOutputx
+class NETCORE_EXOPRT Sessionx 
+	:public HandleOutputx
 	, public ACE_Svc_Handler<ACE_SOCK_STREAM, ACE_NULL_SYNCH>
 {
 public:

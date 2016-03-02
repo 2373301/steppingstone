@@ -15,7 +15,9 @@ namespace cached
 {
 namespace service 
 {
-class EntityHander : public ACE_Task<ACE_NULL_SYNCH>, public SingletonInit
+class EntityHander 
+	: public ACE_Task<ACE_NULL_SYNCH>
+	, public SingletonInit
 {
 public:
 	EntityHander();

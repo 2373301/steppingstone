@@ -147,7 +147,7 @@ XCOPY ..\..\..\bin\libs\libnetcored.dll ..\output\ /Y /R /F
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./src/serialize;./src;./protocal;./inc;./protocal_factory;./;../common/inc;../common/material-cpp;../typedef/inc;../simplexml/inc/;../logger/inc;../share/inc;../netcore/inc;../../../dep/ACE_wrappers/;../../../dep/boost_1_60_0/;../../../dep/protobuf-2.6.1/src;../../../dep/mysql++-3.2.2/lib;../../../dep/mysql-connector-c-6.1.6/include;../common/cachesys/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./src/serialize;./src;./protocal;./inc;./protocal_factory;./;../common/inc;../common/material-cpp;../typedef/inc;../simplexml/inc/;../logger/inc;../share/inc;../netcore/inc;../../../dep/ACE_wrappers/;../../../dep/boost_1_60_0/;../../../dep/protobuf-2.6.1/src;../../../dep/mysql++-3.2.2/lib;../../../dep/mysql-connector-c-6.1.6/include;../common/cachesys/inc;../dynamic_parse/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;DEBUG;_DEBUG;_CONSOLE;CACHE_HAS_STAT;MYSQLPP_NO_DLL;D_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>

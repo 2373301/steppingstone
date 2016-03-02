@@ -9,7 +9,7 @@
 #include "LoadDll.h"
 #include "Plugin.h"
 #include "coredef.h"
-#include "CacheInterface.h"
+//#include "CacheInterface.h"
 // #include "entity_ins.h"
 // #include "entity/player.pb.h"
 // #include "protocol_ins.h"

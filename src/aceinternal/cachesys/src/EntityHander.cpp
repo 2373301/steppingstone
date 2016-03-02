@@ -138,7 +138,7 @@ void EntityHander::handlePacket(Packet * packet)
 
 	if (data_request->data_stream().size() > 0)
 	{
-		entity_msg = AssFactory::create(packet->guid());
+		entity_msg = AssFactory::Singleton()->create(packet->guid(), data_request->entity_name());
 		if (NULL == entity_msg)
 		{
 			DEF_LOG_ERROR("failed to create entity by guid <%llu>, opcode is <%d>\n", packet->guid(), packet->opcode());

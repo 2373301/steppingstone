@@ -82,25 +82,6 @@ enum RequestType
 	RT_ADD_WITH_FLUSH,
 };
 
-struct TransactionInfo 
-{
-	TransactionInfo()
-		: index(0)
-		, num(0)
-		, id(0)
-	{}
-
-	TransactionInfo(uint32 t_index, uint32 t_num, uint32 t_id)
-		: index(t_index)
-		, num(t_num)
-		, id(t_id)
-	{}
-
-	uint32 index;
-	uint32 num;
-	uint32 id;
-};
-
 class POOL_EXOPRT Request 
 {
 public:

@@ -5,7 +5,7 @@
 #include "ManageLogger.h"
 #include "EffectTest.h"
 #include "ManageSingletonInit.h"
-#include "dynamic_parse.h"
+#include "dynamicparse.h"
 #include "typedef.h"
 #include "testpoo.hpp"
 #include "testnetcore.hpp"
@@ -36,11 +36,11 @@ void startApplication()
 void TestProto()
 {
 	CDynamicParse parser;
-	if (!parser.init("../common/material/entity"))
+	if (!parser.init("../../common/material/entity"))
 		std::cout << "failed to init entity" << std::endl;
 
 	MsgVec msg;
-	parser.getMsgDesc("Test", msg);
+	parser.getMsgDesc("test", msg);
 
 	for (auto it = msg.begin(); it != msg.end(); ++it)
 	{	
@@ -50,29 +50,29 @@ void TestProto()
 			<< "\n";
 	}
 
-	std::map<std::string, std::set<std::string> > out;
-	parser.querydbDesc("127.0.0.1", 3306, "root", "root", "game", out);
-	
-	std::vector<std::string> changed;
-	parser.checkEntity(out, "game", changed);
-	for (auto it = changed.begin(); it != changed.end(); ++it)
-	{
-		std::cout <<"newline:" <<  *it << "\n";
-	}
-
-	if (changed.size())
-	{
-		parser.updatedbChanged("127.0.0.1", 3306, "root", "root", "game", changed);
-	}
+// 	std::map<std::string, std::set<std::string> > out;
+// 	parser.querydbDesc("127.0.0.1", 3306, "root", "root", "game", out);
+// 	
+// 	std::vector<std::string> changed;
+// 	parser.checkEntity(out, "game", changed);
+// 	for (auto it = changed.begin(); it != changed.end(); ++it)
+// 	{
+// 		std::cout <<"newline:" <<  *it << "\n";
+// 	}
+// 
+// 	if (changed.size())
+// 	{
+// 		parser.updatedbChanged("127.0.0.1", 3306, "root", "root", "game", changed);
+// 	}
 }
 
 int main(int argc, char * argv[])
 {	
-	//TestProto();
+	TestProto();
 	//startApplication();
 	//pool_ut::run();
 	//netcore::netcore_ut::run();
-	scenex_ut::run(argc, argv);
+	//scenex_ut::run(argc, argv);
 	return 0;
 }
 

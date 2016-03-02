@@ -66,7 +66,9 @@ public:
 	virtual void output(const string & addr, Packet * ps) = 0;
 };
 
-class ManageSqliteFile : public SingletonInit, public ACE_Task<ACE_NULL_SYNCH>
+class ManageSqliteFile 
+	: public SingletonInit
+	, public ACE_Task<ACE_NULL_SYNCH>
 {
 public:
 	ManageSqliteFile();

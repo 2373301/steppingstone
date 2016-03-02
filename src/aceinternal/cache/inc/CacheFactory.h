@@ -3,7 +3,6 @@
 #define CACHE_FACTORY_HPP
 
 #include "Cache_def.h"
-//#include "Cache.h"
 
 class ManageCache;
 class CACHE_EXOPRT CacheFactory

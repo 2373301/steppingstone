@@ -55,13 +55,14 @@ void protobuf_AssignDesc_protocol_2fmsg_5fcache_2eproto() {
       sizeof(OpResult));
   OpResult_status_t_descriptor_ = OpResult_descriptor_->enum_type(0);
   db_data_request_descriptor_ = file->message_type(1);
-  static const int db_data_request_offsets_[6] = {
+  static const int db_data_request_offsets_[7] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(db_data_request, transaction_index_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(db_data_request, transaction_num_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(db_data_request, transaction_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(db_data_request, line_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(db_data_request, data_stream_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(db_data_request, owner_guid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(db_data_request, entity_name_),
   };
   db_data_request_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -114,11 +115,12 @@ void protobuf_AddDesc_protocol_2fmsg_5fcache_2eproto() {
     "us_t\022\020\n\014STATE_NORMAL\020\000\022\032\n\026STATE_ENTITY_N"
     "OT_FOUND\020\001\022\027\n\023STATE_ENTITY_EXISTS\020\002\022\027\n\023S"
     "TATE_ENTITY_LOCKED\020\005\022\030\n\024STATE_PROTOCOL_E"
-    "RROR\020h\022\030\n\024STATE_INTERNAL_ERROR\020i\"\227\001\n\017db_"
+    "RROR\020h\022\030\n\024STATE_INTERNAL_ERROR\020i\"\254\001\n\017db_"
     "data_request\022\031\n\021transaction_index\030\001 \002(\r\022"
     "\027\n\017transaction_num\030\002 \002(\r\022\026\n\016transaction_"
     "id\030\003 \002(\r\022\017\n\007line_id\030\004 \001(\r\022\023\n\013data_stream"
-    "\030\005 \001(\014\022\022\n\nowner_guid\030\006 \001(\004", 426);
+    "\030\005 \001(\014\022\022\n\nowner_guid\030\006 \001(\004\022\023\n\013entity_nam"
+    "e\030\007 \001(\t", 447);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "protocol/msg_cache.proto", &protobuf_RegisterTypes);
   OpResult::default_instance_ = new OpResult();
@@ -452,6 +454,7 @@ const int db_data_request::kTransactionIdFieldNumber;
 const int db_data_request::kLineIdFieldNumber;
 const int db_data_request::kDataStreamFieldNumber;
 const int db_data_request::kOwnerGuidFieldNumber;
+const int db_data_request::kEntityNameFieldNumber;
 #endif  // !_MSC_VER
 
 db_data_request::db_data_request()
@@ -479,6 +482,7 @@ void db_data_request::SharedCtor() {
   line_id_ = 0u;
   data_stream_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   owner_guid_ = GOOGLE_ULONGLONG(0);
+  entity_name_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -490,6 +494,9 @@ db_data_request::~db_data_request() {
 void db_data_request::SharedDtor() {
   if (data_stream_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
     delete data_stream_;
+  }
+  if (entity_name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete entity_name_;
   }
   if (this != default_instance_) {
   }
@@ -527,7 +534,7 @@ void db_data_request::Clear() {
     ::memset(&first, 0, n);                                \
   } while (0)
 
-  if (_has_bits_[0 / 32] & 63) {
+  if (_has_bits_[0 / 32] & 127) {
     ZR_(transaction_index_, line_id_);
     if (has_data_stream()) {
       if (data_stream_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
@@ -535,6 +542,11 @@ void db_data_request::Clear() {
       }
     }
     owner_guid_ = GOOGLE_ULONGLONG(0);
+    if (has_entity_name()) {
+      if (entity_name_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+        entity_name_->clear();
+      }
+    }
   }
 
 #undef OFFSET_OF_FIELD_
@@ -637,6 +649,23 @@ bool db_data_request::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
+        if (input->ExpectTag(58)) goto parse_entity_name;
+        break;
+      }
+
+      // optional string entity_name = 7;
+      case 7: {
+        if (tag == 58) {
+         parse_entity_name:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_entity_name()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+            this->entity_name().data(), this->entity_name().length(),
+            ::google::protobuf::internal::WireFormat::PARSE,
+            "entity_name");
+        } else {
+          goto handle_unusual;
+        }
         if (input->ExpectAtEnd()) goto success;
         break;
       }
@@ -697,6 +726,16 @@ void db_data_request::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteUInt64(6, this->owner_guid(), output);
   }
 
+  // optional string entity_name = 7;
+  if (has_entity_name()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->entity_name().data(), this->entity_name().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "entity_name");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      7, this->entity_name(), output);
+  }
+
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -737,6 +776,17 @@ void db_data_request::SerializeWithCachedSizes(
   // optional uint64 owner_guid = 6;
   if (has_owner_guid()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(6, this->owner_guid(), target);
+  }
+
+  // optional string entity_name = 7;
+  if (has_entity_name()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->entity_name().data(), this->entity_name().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "entity_name");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        7, this->entity_name(), target);
   }
 
   if (!unknown_fields().empty()) {
@@ -793,6 +843,13 @@ int db_data_request::ByteSize() const {
           this->owner_guid());
     }
 
+    // optional string entity_name = 7;
+    if (has_entity_name()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->entity_name());
+    }
+
   }
   if (!unknown_fields().empty()) {
     total_size +=
@@ -838,6 +895,9 @@ void db_data_request::MergeFrom(const db_data_request& from) {
     if (from.has_owner_guid()) {
       set_owner_guid(from.owner_guid());
     }
+    if (from.has_entity_name()) {
+      set_entity_name(from.entity_name());
+    }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
@@ -868,6 +928,7 @@ void db_data_request::Swap(db_data_request* other) {
     std::swap(line_id_, other->line_id_);
     std::swap(data_stream_, other->data_stream_);
     std::swap(owner_guid_, other->owner_guid_);
+    std::swap(entity_name_, other->entity_name_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

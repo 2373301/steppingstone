@@ -5,27 +5,26 @@
 #include "factory.h"
 #include "coredef.h"
 #include "Logger.h"
+#include "dynamic_parse.h"
 
-namespace cached {
-namespace service {
+namespace cached
+{
+namespace service
+{
 
-dbass::CacheAssistant * AssFactory::create(CacheCGUID guid)
+dbass::CacheAssistant * AssFactory::create(CacheCGUID guid, const std::string& name)
 {
 	dbass::CacheAssistant * result = NULL;
-    ///
-    switch (EXTRACT_ENTITY_TYPE(guid)) {
-
-
-    default:
-		DEF_LOG_ERROR("Unknown guid %llu\n", guid);
-		ACE_OS::sleep(1);
-		//BOOST_ASSERT(false);
-        break;
-    }
 
 	return result;
 }
 
-};  // namespace service
-};  // namespace cached
+bool AssFactory::init(const std::string& proto_path)
+{
+	m_parse = new CDynamicParse();
+	return m_parse->init(proto_path);
+}
+
+}; 
+};
 

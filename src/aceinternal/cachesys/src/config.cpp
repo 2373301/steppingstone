@@ -73,7 +73,7 @@ void CacheConfiguration::parse(const ::std::string& path, Element* e)
 ::std::string CacheConfiguration::lookup(const ::std::string& path)
 {
     /// 在《路径-值map》中查找属性值
-    CacheS2SMap::const_iterator cit = this->config_map_.find(path);
+    auto cit = this->config_map_.find(path);
     if (cit == this->config_map_.end()) {
         return ::std::string("");
     }

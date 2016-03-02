@@ -23,6 +23,7 @@
     <RootNamespace>protobuf_dynamic_parse</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <ProjectName>dynamicparse</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -125,10 +126,10 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\dynamic_parse.cpp" />
+    <ClCompile Include="src\dynamicparse.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="inc\dynamic_parse.h" />
+    <ClInclude Include="inc\dynamicparse.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

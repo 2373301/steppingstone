@@ -29,9 +29,9 @@ int CacheSession::wt_stream()
 		while (m_output_packet.size() > 0)
 		{
 			Packet * ps = m_output_packet.front();
-			if (ps->stream_size() < m_output_msg_block.space())
+			if (ps->stream_size() < m_outputs.space())
 			{
-				m_output_msg_block.copy(ps->stream(), ps->stream_size());
+				m_outputs.copy(ps->stream(), ps->stream_size());
 				m_output_packet.pop();
 				delete ps;
 			}
@@ -42,9 +42,9 @@ int CacheSession::wt_stream()
 		}
 	}
 
-	if (m_output_msg_block.length() > 0)
+	if (m_outputs.length() > 0)
 	{
-		int send_n = this->peer().send(m_output_msg_block.rd_ptr(), m_output_msg_block.length());
+		int send_n = (int)this->peer().send(m_outputs.rd_ptr(), m_outputs.length());
 		if (send_n <= 0)
 		{
 			int last_error = ACE_OS::last_error();
@@ -59,16 +59,16 @@ int CacheSession::wt_stream()
 		}
 		else
 		{
-			m_output_msg_block.rd_ptr(send_n);
+			m_outputs.rd_ptr(send_n);
 		}
 	}
 
-	if ((m_output_msg_block.length() < 100) || (m_output_msg_block.space() < 1000))
+	if ((m_outputs.length() < 100) || (m_outputs.space() < 1000))
 	{
-		m_output_msg_block.crunch();
+		m_outputs.crunch();
 	}
 
-	if (m_output_msg_block.length() == 0)
+	if (m_outputs.length() == 0)
 	{
 		ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_output_packet_mutex, -1);
 		if (m_output_packet.size() == 0)

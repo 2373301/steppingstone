@@ -45,8 +45,8 @@
     <ClInclude Include="inc\factory.h">
       <Filter>inc</Filter>
     </ClInclude>
-    <ClInclude Include="inc\cachehdr.h">
-      <Filter>inc</Filter>
+    <ClInclude Include="src\cachehdr.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

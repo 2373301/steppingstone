@@ -9,7 +9,11 @@
 #include "ManageCacheOutput.h"
 #include "ManageSQLiteFile.h"
 
-class ManageCacheSession : public HandleInput, public SingletonInit, public ACE_Task<ACE_NULL_SYNCH>, public SqliteOutput
+class ManageCacheSession
+	: public HandleInputx
+	, public SingletonInit
+	, public ACE_Task<ACE_NULL_SYNCH>
+	, public SqliteOutput
 {
 public:
 	ManageCacheSession();
