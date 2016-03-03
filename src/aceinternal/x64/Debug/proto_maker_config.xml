@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root> 
+	<head-file path="cache_auto_assistant.h" />
+	<cpp-file path="cache_auto_assistant.cpp" />
+	<template-file path="template.txt" />
+	<proto-xml-file path="dbass.xml" />
+	<proto path="..\..\common\test\" db-out="..\..\common\test_out\">
+	</proto>
+	<db-script-file path="ass_auto_script.sql" />
+</root>

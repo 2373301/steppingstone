@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<apss>
+    <local ip="127.0.0.1" port="15100" />
+    <plugindepot dir="" />
+    <resource dir="../../config/" />
+    <guid addr="172.16.36.193:20000" />
+    <gates type="1" networkThreadNo="1">
+        <gate addr="172.16.36.193:13200" />
+    </gates>
+    <caches type="1" local_path="d:\apss_local_cache" networkThreadNo="1">
+        <cache addr="172.16.36.193:13000" />
+    </caches>
+    <exchange addr="172.16.36.193:13500" security_key="exchange security key" />
+    <datarecord addr="172.16.36.193:13600" />
+    <gmserver addr="172.16.32.140:13700" />
+    <battlereport addr="172.16.36.193:19100" security_key="battle report server security key" />
+    <crossserver type="1" addr="172.16.36.103:19000" security_key="cross server security key" />
+    <server id="8" platform="openqq" />
+    <scenes plugin_dir="./modules" save_packet="0" push_client_error_msg="1" is_first_launch="1" startupNotifyPort="24000" max_sceen_number="50" enable_gm="1">
+        <line id="8">
+            <scene id="10000" />
+            <scene id="10001" />
+            <scene id="10002" />
+            <scene id="10003" />
+            <scene id="10004" />
+            <scene id="10005" />
+            <scene id="10006" />
+            <scene id="10007" />
+            <scene id="10008" />
+            <scene id="80001" />
+            <scene id="80002" />
+            <scene id="80003" />
+            <scene id="80004" />
+            <scene id="99900" />
+            <scene id="99901" />
+            <scene id="10" />
+        </line>
+    </scenes>
+</apss>

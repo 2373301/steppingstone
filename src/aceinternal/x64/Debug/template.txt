@@ -1,0 +1,343 @@
+/*$- DBSCRIPT-TABLE-FIELD-DEF
+    `$OBJECT$` $DB-TYPE$ ,
+-$*/
+
+/*$- DBSCRIPT-TABLE-TOP
+DROP TABLE IF EXISTS `$OBJECT$`;
+CREATE TABLE `$OBJECT$` (
+-$*/
+ 
+/*$- DBSCRIPT-TABLE-BUTTOM
+  PRIMARY KEY (`guid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-$*/
+
+/*$- DBSCRIPT-PING-TABLE
+DROP TABLE IF EXISTS `ping`;
+CREATE TABLE `ping` (
+  `pt` tinyint(1) NOT NULL,
+  PRIMARY KEY  (`pt`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+INSERT INTO ping SET pt=1;
+-$*/
+
+/*$- H-WARNING
+/// cache_auto_assistant.h
+/// Generate by DB CACHE tools, PLEASE DO NOT EDIT IT!
+-$*/
+
+/*$- H-IFDEF-TOP
+#ifndef __CACHE_AUTO_ASSISTANT__
+#define __CACHE_AUTO_ASSISTANT__
+-$*/
+
+/*$- H-STATIC-INC
+#include <strstream>
+#include <boost/cstdint.hpp>
+#include <boost/lexical_cast.hpp>
+#include <boost/smart_ptr.hpp>
+#include "mysql++.h"
+#include "mysqld_error.h"
+#include "google/protobuf/message.h"
+-$*/
+
+/*$- H-ENTITY-INC
+#include "entity/$OBJECT$.pb.h"
+-$*/
+
+/*$- NAMESPACE-TOP
+namespace dbass {
+-$*/
+
+/*$- H-CACHEASSISTANT-DEFINE
+class CacheAssistant {
+public:
+    enum CACHE_ASSISTANT_ERROR {
+        CAE_UNKNOWN = 0,
+        CAE_NOT_FOUND,
+        CAE_DUP_KEY,
+        CAE_CANNOT_DEL,
+        CAE_INTERNAL
+    };
+	
+	virtual ~CacheAssistant()
+	{}
+    ///
+    virtual ::google::protobuf::Message* data(void) = 0;
+    virtual bool load(::mysqlpp::Query& query) = 0;
+    virtual bool update(::mysqlpp::Query& query) = 0;
+    virtual bool insert(::mysqlpp::Query& query) = 0;
+    virtual bool remove(::mysqlpp::Query& query) = 0;
+    size_t length(void) { return(data() ? data()->ByteSize() : 0); }
+    CACHE_ASSISTANT_ERROR last_error(void) { return er_code_; }
+    ::std::string what(void) { return er_str_; }
+    bool is_temp(void) { return is_temp_; }
+  
+protected:
+    CACHE_ASSISTANT_ERROR er_code_;
+    ::std::string er_str_;
+    bool is_temp_;
+}; /// class CacheAssistant
+typedef ::std::auto_ptr<CacheAssistant> CacheAssistantSPtr;
+-$*/
+
+/*$- H-ASS-CLASS-DEFINE
+class Ass$OBJECT$ : public CacheAssistant {
+public:
+    Ass$OBJECT$(::boost::int64_t guid = 0) {
+        obj_.set_guid(guid);
+        is_temp_ = $IS-TEMP$;
+    }
+    virtual ::google::protobuf::Message* data(void) { return &obj_; }
+    virtual bool load(::mysqlpp::Query& query);
+    virtual bool update(::mysqlpp::Query& query);
+    virtual bool insert(::mysqlpp::Query& query);
+    virtual bool remove(::mysqlpp::Query& query);
+private:
+    $OBJECT_NAMESPACE$::$OBJECT$ obj_;
+}; /// class Ass$OBJECT$
+-$*/
+
+/*$- NAMESPACE-BUTTOM
+} /// namespace dbass
+-$*/
+
+/*$- H-IFDEF-BUTTOM
+#endif /// __CACHE_AUTO_ASSISTANT__
+-$*/
+
+/*$- CPP-WARNING
+/// cache_auto_assistant.cpp
+/// Generate by DB CACHE tools, PLEASE DO NOT EDIT IT!
+-$*/
+
+/*$- CPP-INC
+#include "cache_auto_assistant.h"
+-$*/
+
+/*$- CPP-TMP-FUNC-IMPL
+bool Ass$OBJECT$::$FUNC$(::mysqlpp::Query& query) {
+    return false;
+}
+-$*/
+
+/*$- CPP-LOAD-DEFINE-TOP
+bool Ass$OBJECT$::load(::mysqlpp::Query& query) {
+    using namespace ::std;
+    try {
+        query.clear();
+        query << "SELECT $MEMBER-LIST$ FROM $OBJECT$ WHERE guid=" << ::boost::lexical_cast< ::std::string >(this->obj_.guid());
+        const ::mysqlpp::StoreQueryResult& res = query.store();
+        if (res.size() == 0) {
+             er_code_ = CAE_NOT_FOUND;
+             er_str_  = "Cannot find $OBJECT$<<" + ::boost::lexical_cast< ::std::string >(this->obj_.guid()) + ">>";
+             return false;
+        }
+-$*/
+
+/*$- CPP-LOAD-NONSTRING-MEMBER-FILL
+        obj_.set_$MEMBER$(::boost::lexical_cast< $CPP-TYPE$ >(res.at(0).at($INDEX$)));
+-$*/
+
+/*$- CPP-LOAD-STRING-MEMBER-FILL
+        obj_.set_$MEMBER$(res.at(0).at($INDEX$));
+-$*/
+
+/*$- CPP-LOAD-REPEATED-NONSTRING-MEMBER-FILL
+        if (!res.at(0).at($INDEX$).is_null()) {
+            string temp(res.at(0).at($INDEX$).data(), res.at(0).at($INDEX$).length());
+            stringstream ssm(temp);
+            ::boost::uint32_t size = 0;
+            ssm.read(reinterpret_cast<char*>(&size), sizeof(::boost::uint32_t));
+            $CPP-TYPE$ v;
+            for (::boost::uint32_t i = 0; i < size; i++) {
+                ssm.read(reinterpret_cast<char*>(&v), sizeof($CPP-TYPE$));
+                this->obj_.add_$MEMBER$(v);
+            }
+	    }
+-$*/
+
+/*$- CPP-LOAD-REPEATED-STRING-MEMBER-FILL
+        if (!res.at(0).at($INDEX$).is_null()) {
+            string temp(res.at(0).at($INDEX$).data(), res.at(0).at($INDEX$).length());
+            stringstream ssm(temp);
+            ::boost::uint32_t size = 0;
+            ssm.read(reinterpret_cast<char*>(&size), sizeof(::boost::uint32_t));
+            ::boost::uint32_t len = 0;
+            for (::boost::uint32_t i = 0; i < size; i++) { 
+                ssm.read(reinterpret_cast<char*>(&len), sizeof(::boost::uint32_t));
+                ::boost::scoped_array<char> buf(new char[len]);
+                ssm.read(buf.get(), len);
+                this->obj_.add_$MEMBER$(buf.get());
+            }
+	    }
+-$*/
+
+/*$- CPP-LOAD-REPEATED-MESSAGE-MEMBER-FILL
+
+		if (!res.at(0).at($INDEX$).is_null()) {
+			string temp(res.at(0).at($INDEX$).data(), res.at(0).at($INDEX$).length());
+			stringstream ssm(temp);
+			::boost::uint32_t size = 0;
+			ssm.read(reinterpret_cast<char*>(&size), sizeof(::boost::uint32_t));
+			for (::boost::uint32_t i = 0; i < size; i++) 
+			{
+				string v;
+				::boost::uint32_t sub_s = 0;
+				ssm.read(reinterpret_cast<char*>(&sub_s), sizeof(::boost::uint32_t));
+				v.resize(sub_s, 0);
+				ssm.read((char *)v.c_str(), v.size());
+				$CPP-TYPE$ * mem_info = this->obj_.add_$MEMBER$();
+				mem_info->ParseFromString(v);
+			}
+		}
+
+-$*/
+
+/*$- CPP-LOAD-DEFINE-BUTTOM
+        return true;
+    }
+    catch (const ::mysqlpp::BadQuery& er) {
+        er_code_ = CAE_INTERNAL;
+        er_str_  = er.what();
+        return false;
+    }
+    catch (const ::mysqlpp::Exception& er) {
+        er_code_ = CAE_INTERNAL;
+        er_str_  = er.what();
+        return false;
+    }
+} /// Ass$OBJECT$::load
+-$*/
+
+/*$- CPP-INSERT-DEFINE-TOP
+bool Ass$OBJECT$::insert(::mysqlpp::Query& query) {
+    using namespace ::std;
+    try {
+        query.clear();
+        query << "INSERT INTO $OBJECT$ SET ";
+-$*/
+
+/*$- CPP-INSERT-QUERY-SPEC
+        query << ",";
+-$*/
+
+/*$- CPP-INSERT-NONSTRING-MEMBER-QUERY		
+        query << "$MEMBER$=" << ::boost::lexical_cast< ::std::string >(this->obj_.$MEMBER$());
+-$*/
+
+/*$- CPP-INSERT-STRING-MEMBER-QUERY		
+        query << "$MEMBER$=" << ::mysqlpp::quote << this->obj_.$MEMBER$();
+-$*/
+
+/*$- CPP-INSERT-REPEATED-NONSTRING-MEMBER-QUERY		
+        {
+            ::boost::uint32_t size = this->obj_.$MEMBER$_size();
+            stringstream ssm;
+            ssm.write(reinterpret_cast<char*>(&size), sizeof(::boost::uint32_t));
+            for (::boost::uint32_t i = 0; i < size; i++) {
+                $CPP-TYPE$ v = this->obj_.$MEMBER$(i);
+                ssm.write(reinterpret_cast<char*>(&v), sizeof($CPP-TYPE$));
+            }
+            query << "$MEMBER$=" << ::mysqlpp::quote << ssm.str();
+        }
+-$*/
+
+/*$- CPP-INSERT-REPEATED-STRING-MEMBER-QUERY		
+        {
+            ::boost::uint32_t size = this->obj_.$MEMBER$_size();
+            stringstream ssm;
+            ssm.write(reinterpret_cast<char*>(&size), sizeof(::boost::uint32_t));
+            for (::boost::uint32_t i = 0; i < size; i++) {
+                ::std::string v = this->obj_.$MEMBER$(i);
+                ::boost::uint32_t len = v.size() + 1;
+                ssm.write(reinterpret_cast<char*>(&len), sizeof(::boost::uint32_t));
+                ssm.write(v.data(), len);
+            }
+            query << "$MEMBER$=" << ::mysqlpp::quote << ssm.str();
+        }
+-$*/
+
+/*$- CPP-INSERT-REPEATED-MESSAGE-MEMBER-QUERY		
+		{
+			::boost::uint32_t size = this->obj_.$MEMBER$_size();
+			stringstream ssm;
+			ssm.write(reinterpret_cast<char*>(&size), sizeof(::boost::uint32_t));
+			for (::boost::uint32_t i = 0; i < size; i++) {
+				const $CPP-TYPE$ & mem_info = this->obj_.$MEMBER$(i);
+				string v = mem_info.SerializeAsString();
+				boost::uint32_t sub_s = v.size();
+				ssm.write(reinterpret_cast<char*>(&sub_s), sizeof(boost::uint32_t));
+				ssm.write((char*)v.c_str(), v.size());
+			}
+			query << "$MEMBER$=" << ::mysqlpp::quote << ssm.str();
+		}
+
+-$*/
+
+/*$- CPP-INSERT-DEFINE-BUTTOM
+        return query.exec();
+    }
+    catch (const ::mysqlpp::BadQuery& er) {
+        if (ER_DUP_ENTRY == er.errnum())
+            er_code_ = CAE_DUP_KEY;
+        else
+            er_code_ = CAE_INTERNAL;
+        er_str_  = er.what();
+        return false;
+    }
+    catch (const ::mysqlpp::Exception& er) {
+        er_code_ = CAE_INTERNAL;
+        er_str_  = er.what();
+        return false;
+    }
+} /// Ass$OBJECT$::insert
+-$*/
+
+/*$- CPP-UPDATE-DEFINE-TOP
+bool Ass$OBJECT$::update(::mysqlpp::Query& query) {
+    using namespace ::std;
+    try {
+        query.clear();
+        query << "UPDATE $OBJECT$ SET ";
+-$*/
+
+/*$- CPP-UPDATE-DEFINE-BUTTOM
+        query << " WHERE guid=" << ::boost::lexical_cast< ::std::string >(this->obj_.guid());
+        return query.exec();
+    }
+    catch (const ::mysqlpp::BadQuery& er) {
+        er_code_ = CAE_INTERNAL;
+        er_str_  = er.what();
+        return false;
+    }
+    catch (const ::mysqlpp::Exception& er) {
+        er_code_ = CAE_INTERNAL;
+        er_str_  = er.what();
+        return false;
+    }
+} /// Ass$OBJECT$::update
+-$*/
+
+/*$- CPP-REMOVE-DEFINE
+bool Ass$OBJECT$::remove(::mysqlpp::Query& query) {
+    using namespace ::std;
+    try {
+        query << "DELETE FROM $OBJECT$ WHERE guid=" << ::boost::lexical_cast< ::std::string >(this->obj_.guid());
+        return query.exec();
+    }
+    catch (const ::mysqlpp::BadQuery& er) {
+        er_code_ = CAE_INTERNAL;
+        er_str_  = er.what();
+        return false;
+    }
+    catch (const ::mysqlpp::Exception& er) {
+        er_code_ = CAE_INTERNAL;
+        er_str_  = er.what();
+        return false;
+    }
+} /// Ass$OBJECT$::remove
+-$*/
+
+
+
