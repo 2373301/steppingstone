@@ -102,7 +102,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>../../../dep/boost_1_60_0/</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../../dep/boost_1_60_0/lib64-msvc-14.0/</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -119,7 +119,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\inc;../../../dep/boost_1_60_0/;../../../dep/protobuf-2.6.1/src;../../../dep/mysql++-3.2.2/lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeader>
@@ -128,15 +128,17 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>../../../dep/boost_1_60_0/</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../../dep/boost_1_60_0/lib64-msvc-14.0/;$(OutDir);../../../dep/mysql-connector-c-6.1.6/lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>../../../dep/protobuf-2.6.1/lib/libprotobuf.lib;../../../dep/mysql++-3.2.2/vc2008/x64/Debug/mysqlpp_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\dynamicparse.cpp" />
+    <ClCompile Include="src\dynamicparseimp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\dp_def.h" />
     <ClInclude Include="inc\dynamicparse.h" />
+    <ClInclude Include="inc\dynamicparseimp.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

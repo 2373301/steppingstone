@@ -2,7 +2,7 @@
 #include <boost/filesystem/path.hpp>
 #include <boost/filesystem.hpp>
 #include <mysql++.h>
-#include "dynamicparse.h"
+#include "dynamicparseimp.h"
 
 
 class PError : public google::protobuf::compiler::MultiFileErrorCollector
