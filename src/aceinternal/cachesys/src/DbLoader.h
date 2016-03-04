@@ -6,14 +6,10 @@
 #include <ace/Thread_Mutex.h>
 #include "Logger.h"
 #include "protocol/msg_cache.pb.h"
-#include "cache_auto_assistant.h"
-#include "factory.h"
 #include "cachesys_opcode.hpp"
 #include "DataRequestInfo.h"
 #include "Singleton.h"
 #include "SingletonInit.h"
-
-using namespace dbass;
 
 namespace cached {
 namespace service {

@@ -2,6 +2,7 @@
 #include "DbLoader.h"
 #include "EntityHander.h"
 #include "config.h"
+#include "dynamicparse.h"
 
 #define MYSQL_PING_INTERVAL_SEC 60 * 15
 
@@ -132,7 +133,7 @@ void DbLoader::handleLoadRequest(::mysqlpp::Connection & conn, DataRequestInfo *
 	//}
 
 	data_request_info->db_load_success = false;
-	dbass::CacheAssistant * cache_ass = AssFactory::instance()->create(data_request_info->guid, data_request_info->data_request->entity_name());
+	CacheAssistantx * cache_ass = CDynamicParse::instance()->create(data_request_info->guid, data_request_info->data_request->entity_name());
 	data_request_info->entity_msg = cache_ass;
 	if (NULL != cache_ass)
 	{
@@ -148,7 +149,7 @@ void DbLoader::handleLoadRequest(::mysqlpp::Connection & conn, DataRequestInfo *
 	}
 	else
 	{
-		DEF_LOG_ERROR("failed to create CacheAssistant object in DbLoader::handleLoadRequest, guid is <%llu>\n", data_request_info->guid);
+		DEF_LOG_ERROR("failed to create CacheAssistantx object in DbLoader::handleLoadRequest, guid is <%llu>\n", data_request_info->guid);
 	}
 
 	EntityHander::instance()->handleDbLoadReplay(data_request_info);

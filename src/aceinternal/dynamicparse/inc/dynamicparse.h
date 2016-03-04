@@ -8,12 +8,13 @@
 #include <vector>
 #include <map>
 #include "typedef.h"
+#include "Singleton.h"
 
 class CDynamicParse;
 class CacheAssistantx
 {
 public:
-	CacheAssistantx(CDynamicParse* p);
+	CacheAssistantx();
 	~CacheAssistantx();
 
 	enum CACHE_ASSISTANT_ERROR 
@@ -39,6 +40,7 @@ protected:
 	CACHE_ASSISTANT_ERROR er_code_ = CAE_UNKNOWN;
 	::std::string er_str_;
 	bool is_temp_ = false;
+	friend class CDynamicParse;
 	::google::protobuf::Message* msg = NULL;
 	CDynamicParse *parser = NULL;
 	uint64 myguid = 0;
@@ -80,6 +82,11 @@ public:
 	~CDynamicParse();
 
 public:
+	static CDynamicParse * instance()
+	{
+		return Singleton<CDynamicParse>::instance();
+	}
+
 	/*
 	/*功能：设置protobuf .proto文件所在文件夹，并读入文件里的类信息
 	/*参数：proto_path[in]：proto文件所在文件夹，可以是相对路径或者绝对路径
@@ -99,6 +106,8 @@ public:
 	/*参数：map_content[in, out]：待删除map指针，调用后该参数被赋值为NULL
 	*/
 	void deleteMessageContent(Map_Message*& map_content);
+
+	CacheAssistantx * create(uint64 guid, const std::string& name);
 
 
 	// 查询第一层的结构

@@ -27,9 +27,6 @@
     <Filter Include="msg">
       <UniqueIdentifier>{d1d0613e-46dd-4679-bc24-4f66939211d7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="factory">
-      <UniqueIdentifier>{cf8cfb1a-0d07-4739-9298-e301f2bae317}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="protocal\cache_auto_assistant.cpp">
@@ -77,9 +74,6 @@
     <ClCompile Include="src\EntityHander.cpp">
       <Filter>msg</Filter>
     </ClCompile>
-    <ClCompile Include="protocal_factory\factory.cpp">
-      <Filter>factory</Filter>
-    </ClCompile>
     <ClCompile Include="..\common\material-cpp\protocol\msg_binary.pb.cc">
       <Filter>procotol</Filter>
     </ClCompile>
@@ -88,9 +82,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="protocal\cache_auto_assistant.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="inc\cached.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -135,9 +126,6 @@
     </ClInclude>
     <ClInclude Include="src\EntityHander.h">
       <Filter>msg</Filter>
-    </ClInclude>
-    <ClInclude Include="protocal_factory\factory.h">
-      <Filter>factory</Filter>
     </ClInclude>
     <ClInclude Include="..\common\material-cpp\protocol\msg_binary.pb.h">
       <Filter>procotol</Filter>

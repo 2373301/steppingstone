@@ -3,17 +3,14 @@
 #define MANAGE_EXPIRED_ITEM_HPP
 
 #include <ace/Thread_Mutex.h>
-//#include "serializer.h"
-#include "cache_auto_assistant.h"
+#include "dynamicparse.h"
 #include "Singleton.h"
 #include "typedef.h"
 #include "cached.h"
 
-//using namespace cached::service;
-
 struct ExpiredItem 
 {
-	ExpiredItem(uint64 lmt, dbass::CacheAssistant * im, bool in_u)
+	ExpiredItem(uint64 lmt, CacheAssistantx * im, bool in_u)
 	: last_motify_time(lmt)
 	, in_use(in_u)
 	, is_delete(false)
@@ -23,7 +20,7 @@ struct ExpiredItem
 	uint64				last_motify_time;
 	bool				in_use;
 	bool				is_delete;
-	dbass::CacheAssistant * item;
+	CacheAssistantx * item;
 };
 
 class ManageExpiredItem
@@ -37,11 +34,11 @@ public:
 		return Singleton<ManageExpiredItem>::instance();
 	}
 public:
-	void update(CacheCGUID guid, dbass::CacheAssistant * item, uint64 last_modify_time);
+	void update(CacheCGUID guid, CacheAssistantx * item, uint64 last_modify_time);
 
 	void updateToDelete(CacheCGUID guid);
 
-	bool query(CacheCGUID guid, dbass::CacheAssistant * * item, bool delete_after_query);
+	bool query(CacheCGUID guid, CacheAssistantx * * item, bool delete_after_query);
 
 	bool query(CacheCGUID guid, ::google::protobuf::Message * * entity_msg);
 

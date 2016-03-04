@@ -493,8 +493,7 @@ void CDynamicParse::deleteMsg(Map_Message*& map_content)
 	map_content->clear();
 }
 
-CacheAssistantx::CacheAssistantx(CDynamicParse *p)
-	:parser(p)
+CacheAssistantx::CacheAssistantx()
 {
 
 }
@@ -503,6 +502,25 @@ CacheAssistantx::~CacheAssistantx()
 {
 	delete msg;
 }
+
+#define  ADD_REPEATED_NUMBER(T) \
+{ \
+string temp(colVal.data(), colVal.length());\
+stringstream ssm(temp); \
+::boost::uint32_t num = 0;\
+ssm.read(reinterpret_cast<char*>(&num), sizeof(::boost::uint32_t)); \
+for (boost::uint32_t j = 0; j < num; j++) \
+{ \
+	T val = 0; \
+	ssm.read(reinterpret_cast<char*>(&val), sizeof(T)); \
+	refl->Add##T(msg, field_des, val); \
+} \
+}
+
+typedef uint32 UInt32;
+typedef int32 Int32;
+typedef uint64 UInt64;
+typedef int64 Int64;
 
 bool CacheAssistantx::load(::mysqlpp::Query& query)
 {	
@@ -537,10 +555,66 @@ bool CacheAssistantx::load(::mysqlpp::Query& query)
 			string str_name = field_des->name();
 
 			auto colVal = res.at(0).at(i);
-			//repeated
-			if (field_des->is_repeated())
+			//repeated ----------------------------------
+			if (field_des->is_repeated()
+				&& field_des->type() == FieldDescriptor::TYPE_MESSAGE)
 			{
+				if (field_des->type() == FieldDescriptor::TYPE_STRING
+					|| field_des->type() == FieldDescriptor::TYPE_BYTES)
+				{	
+					string temp(colVal.data(), colVal.length());
+					stringstream ssm(temp);
+					::boost::uint32_t num = 0;
+					ssm.read(reinterpret_cast<char*>(&num), sizeof(::boost::uint32_t));
+					for (boost::uint32_t j = 0; j < num; j++)
+					{
+						::boost::uint32_t size = 0;
+						ssm.read(reinterpret_cast<char*>(&size), sizeof(::boost::uint32_t));
+						std::string buf;
+						buf.resize(size, 0);
+						ssm.read(&buf[0], size);
+						std::string temp = colVal;
+						refl->AddString(msg, field_des, temp);
+					}
+				}
+				else if (field_des->type() == FieldDescriptor::TYPE_MESSAGE)
+				{
+					string temp(colVal.data(), colVal.length());
+					stringstream ssm(temp);
+					::boost::uint32_t num = 0;
+					ssm.read(reinterpret_cast<char*>(&num), sizeof(::boost::uint32_t));
+					for (boost::uint32_t j = 0; j < num; j++)
+					{
+						::boost::uint32_t size = 0;
+						ssm.read(reinterpret_cast<char*>(&size), sizeof(::boost::uint32_t));
+						std::string buf;
+						buf.resize(size, 0);
+						ssm.read(&buf[0], size);
+						auto uniqueMsg = refl->AddMessage(msg, field_des);
+						uniqueMsg->ParseFromString(buf);
+					}
 
+				}
+				else
+				{
+					switch (field_des->type())
+					{
+					case FieldDescriptor::TYPE_INT32:
+						ADD_REPEATED_NUMBER(Int32);
+						break;
+					case FieldDescriptor::TYPE_UINT32:
+						ADD_REPEATED_NUMBER(UInt32);
+						break;
+					case FieldDescriptor::TYPE_INT64:
+						ADD_REPEATED_NUMBER(Int64);
+						break;
+					case FieldDescriptor::TYPE_UINT64:
+						ADD_REPEATED_NUMBER(UInt64);
+						break;
+					default:
+						break;
+					}
+				}
 			}
 			else
 			{
@@ -551,22 +625,22 @@ bool CacheAssistantx::load(::mysqlpp::Query& query)
 					refl->SetString(msg, field_des, temp);
 				}
 				else if (field_des->type() == FieldDescriptor::TYPE_MESSAGE)
-				{
-// 					#undef GetMessage 
-// 					const Message& msg_sub = refl->GetMessage(*msg, field_des);
-// 					Map_Message* map_msg;
-// 					ReadDesAndInsert(msg_sub, map_msg);
-// 					str_value->vec_message.push_back(map_msg);
-
+				{	
 					string temp(colVal.data(), colVal.length());
 					stringstream ssm(temp);
-					::boost::uint32_t size = 0;
-					ssm.read(reinterpret_cast<char*>(&size), sizeof(::boost::uint32_t));
-					::nesttest v;
-					for (::boost::uint32_t i = 0; i < size; i++) {
-						ssm.read(reinterpret_cast<char*>(&v), sizeof(::nesttest));
-						this->obj_.add_t_rep2(v);
+					::boost::uint32_t num = 0;
+					ssm.read(reinterpret_cast<char*>(&num), sizeof(::boost::uint32_t));
+					for (boost::uint32_t j = 0; j < num; j++)
+					{
+						::boost::uint32_t size = 0;
+						ssm.read(reinterpret_cast<char*>(&size), sizeof(::boost::uint32_t));
+						std::string buf;
+						buf.resize(size, 0);
+						ssm.read(&buf[0], size);
+						auto uniqueMsg = refl->MutableMessage(msg, field_des);
+						uniqueMsg->ParseFromString(buf);
 					}
+					
 				}
 				else
 				{
@@ -620,5 +694,18 @@ bool CacheAssistantx::insert(::mysqlpp::Query& query)
 bool CacheAssistantx::remove(::mysqlpp::Query& query)
 {
 	return false;
+}
+
+CacheAssistantx* CDynamicParse::create(uint64 guid, const std::string& name)
+{
+	google::protobuf::Message* msg = createMessage(name);
+	if (msg == NULL)
+		return NULL;
+
+	CacheAssistantx *x = new CacheAssistantx;
+	x->msg = msg;
+	x->parser = this;
+	x->myguid = guid;
+	return x;
 }
 

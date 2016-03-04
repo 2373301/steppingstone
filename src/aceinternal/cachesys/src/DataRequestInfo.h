@@ -4,11 +4,9 @@
 
 #include "Packet.h"
 #include "typedef.h"
-#include "cache_auto_assistant.h"
 #include "protocol/msg_cache.pb.h"
 #include "ace/OS_NS_sys_time.h"
-
-using namespace dbass;
+#include "dynamicparse.h"
 
 namespace cached 
 {
@@ -31,7 +29,7 @@ struct DataRequestInfo
 		STAT_PACKET_INC_NEW();
 	}
 
-	DataRequestInfo(int op_code, uint64 gv, protocol::db_data_request * drv, CacheAssistant * emv, void * packet_o)
+	DataRequestInfo(int op_code, uint64 gv, protocol::db_data_request * drv, CacheAssistantx * emv, void * packet_o)
 		: opcode(op_code)
 		, guid(gv)
 		, data_request(drv)
@@ -62,7 +60,7 @@ struct DataRequestInfo
 	int opcode;
 	uint64 guid;
 	protocol::db_data_request * data_request;
-	CacheAssistant * entity_msg;
+	CacheAssistantx * entity_msg;
 	uint64 last_modify_time;
 	bool	db_load_success;
 	void *	packet_owner;

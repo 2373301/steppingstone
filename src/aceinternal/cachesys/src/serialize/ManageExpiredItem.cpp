@@ -15,7 +15,7 @@ ManageExpiredItem::~ManageExpiredItem()
 	}
 }
 
-void ManageExpiredItem::update(CacheCGUID guid, dbass::CacheAssistant * item, uint64 last_modify_time)
+void ManageExpiredItem::update(CacheCGUID guid, CacheAssistantx * item, uint64 last_modify_time)
 {
 	ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_lru_map_mutex, );
 	ExpiredItemMap_t::iterator it = m_lru_map.find(guid);
@@ -39,7 +39,7 @@ void ManageExpiredItem::updateToDelete(CacheCGUID guid)
 	}
 }
 
-bool ManageExpiredItem::query(CacheCGUID guid, dbass::CacheAssistant * * item, bool delete_after_query)
+bool ManageExpiredItem::query(CacheCGUID guid, CacheAssistantx * * item, bool delete_after_query)
 {
 	ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_lru_map_mutex, false);
 	ExpiredItemMap_t::iterator it = m_lru_map.find(guid);

@@ -76,17 +76,17 @@ protected:
 
 	void replayError(DataRequestInfo * data_request_info, ::protocol::OpResult_status_t error_code);
 protected:
-	bool addEntity(CacheAssistant * entity_msg, uint64 guid);
+	bool addEntity(CacheAssistantx * entity_msg, uint64 guid);
 
 	void removeEntity(uint64 guid);
 
-	void updateEntity(CacheAssistant * entity_msg, uint64 guid);
+	void updateEntity(CacheAssistantx * entity_msg, uint64 guid);
 
-	CacheAssistant * getEntity(uint64 guid);
+	CacheAssistantx * getEntity(uint64 guid);
 
 	void outputPacket(Packet * ps);
 private:
-	typedef define_unordered_map<uint64, CacheAssistant *>	CacheAssistantMap_t;
+	typedef define_unordered_map<uint64, CacheAssistantx *>	CacheAssistantMap_t;
 
 	typedef vector<DataRequestInfo *>	DataRequestInfoVec_t;
 

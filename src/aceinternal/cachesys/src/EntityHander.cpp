@@ -4,6 +4,7 @@
 #include "ManageSerialize.h"
 #include "Sessionx.h"
 #include "ManageExpiredItem.h"
+#include "dynamicparse.h"
 
 namespace cached {
 	namespace service {
@@ -134,11 +135,11 @@ void EntityHander::handlePacket(Packet * packet)
 		return;
 	}
 
-	CacheAssistant * entity_msg = NULL;
+	CacheAssistantx * entity_msg = NULL;
 
 	if (data_request->data_stream().size() > 0)
 	{
-		entity_msg = AssFactory::Singleton()->create(packet->guid(), data_request->entity_name());
+		entity_msg = CDynamicParse::instance()->create(packet->guid(), data_request->entity_name());
 		if (NULL == entity_msg)
 		{
 			DEF_LOG_ERROR("failed to create entity by guid <%llu>, opcode is <%d>\n", packet->guid(), packet->opcode());
@@ -228,7 +229,7 @@ void EntityHander::handleLoadEntity(DataRequestInfo * data_request_info)
 {
 	std::auto_ptr<DataRequestInfo> auto_p(data_request_info);
 
-	CacheAssistant * entity_msg = getEntity(data_request_info->guid);
+	CacheAssistantx * entity_msg = getEntity(data_request_info->guid);
 	if (NULL != entity_msg)
 	{
 		DEF_LOG_DEBUG("find entity in map, start to replay load entity\n");
@@ -238,7 +239,7 @@ void EntityHander::handleLoadEntity(DataRequestInfo * data_request_info)
 	}
 	else
 	{
-		CacheAssistant * entity_msg = NULL;
+		CacheAssistantx * entity_msg = NULL;
 		if (ManageExpiredItem::instance()->query(data_request_info->guid, &entity_msg, true))
 		{
 			DEF_LOG_DEBUG("find entity in expire object, start to replay load entity\n");
@@ -288,7 +289,7 @@ void EntityHander::handleFlushEntity(DataRequestInfo * data_request_info)
 {
 	std::auto_ptr<DataRequestInfo> auto_p(data_request_info);
 
-	CacheAssistant * entity_msg = getEntity(data_request_info->guid);
+	CacheAssistantx * entity_msg = getEntity(data_request_info->guid);
 	if (NULL == entity_msg)
 	{
 		DEF_LOG_ERROR("error to get null pointer of entity while flush entity, guid is <%llu>\n", data_request_info->guid);
@@ -334,7 +335,7 @@ void EntityHander::handleLoadEntityOnce(DataRequestInfo * data_request_info)
 {
 	std::auto_ptr<DataRequestInfo> auto_p(data_request_info);
 
-	CacheAssistant * entity_msg = getEntity(data_request_info->guid);
+	CacheAssistantx * entity_msg = getEntity(data_request_info->guid);
 	if (NULL != entity_msg)
 	{
 		data_request_info->entity_msg = entity_msg;
@@ -478,7 +479,7 @@ void EntityHander::replayError(DataRequestInfo * data_request_info, ::protocol::
 	outputPacket(ps);
 }
 
-bool EntityHander::addEntity(CacheAssistant * entity_msg, uint64 guid)
+bool EntityHander::addEntity(CacheAssistantx * entity_msg, uint64 guid)
 {
 	if (NULL == entity_msg)
 	{
@@ -514,7 +515,7 @@ void EntityHander::removeEntity(uint64 guid)
 	}
 }
 
-void EntityHander::updateEntity(CacheAssistant * entity_msg, uint64 guid)
+void EntityHander::updateEntity(CacheAssistantx * entity_msg, uint64 guid)
 {
 	CacheAssistantMap_t::iterator it = m_entity_map.find(guid);
 	if (it != m_entity_map.end())
@@ -528,7 +529,7 @@ void EntityHander::updateEntity(CacheAssistant * entity_msg, uint64 guid)
 	}
 }
 
-CacheAssistant * EntityHander::getEntity(uint64 guid)
+CacheAssistantx * EntityHander::getEntity(uint64 guid)
 {
 	CacheAssistantMap_t::iterator it = m_entity_map.find(guid);
 	if (it != m_entity_map.end())
