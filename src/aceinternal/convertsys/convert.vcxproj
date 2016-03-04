@@ -165,7 +165,7 @@ XCOPY ..\..\..\bin\libs\libloggerd.dll ..\output\ /Y /R /F
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./src/serialize;./src;./protocal_factory;./protocal;./inc;../cachesys/inc;../cachesys/protocal;../cachesys/protocal_factory;../cachesys/src/serialize;./;../common/inc;../common/material-cpp;../../typedef/inc;../simplexml/inc/;../share/inc;../common/cachesys/inc;../logger/inc;../../../dep/mysql++-3.2.2/lib;../../../dep/boost_1_60_0/;../../../dep/mysql-connector-c-6.1.6/include;../../../dep/protobuf-2.6.1/src;../../../dep/ACE_wrappers/;../netcore/inc;../dynamic_parse/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./src/serialize;./src;./protocal_factory;./protocal;./inc;../cachesys/inc;../cachesys/protocal;../cachesys/protocal_factory;../cachesys/src/serialize;./;../common/inc;../common/material-cpp;../../typedef/inc;../simplexml/inc/;../share/inc;../common/cachesys/inc;../logger/inc;../../../dep/mysql++-3.2.2/lib;../../../dep/boost_1_60_0/;../../../dep/mysql-connector-c-6.1.6/include;../../../dep/protobuf-2.6.1/src;../../../dep/ACE_wrappers/;../netcore/inc;../dynamicparse/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;MYSQLPP_NO_DLL;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -175,7 +175,7 @@ XCOPY ..\..\..\bin\libs\libloggerd.dll ..\output\ /Y /R /F
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>../../../dep/ACE_wrappers/lib/ACEd.lib;SimpleXML.lib;../../../dep/protobuf-2.6.1/lib/libprotobuf.lib;../../../dep/mysql++-3.2.2/vc2008/x64/Debug/mysqlpp_d.lib;share.lib;logger.lib;netcore.lib;dynamic_parse.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../dep/ACE_wrappers/lib/ACEd.lib;SimpleXML.lib;dynamicparse.lib;../../../dep/protobuf-2.6.1/lib/libprotobuf.lib;../../../dep/mysql++-3.2.2/vc2008/x64/Debug/mysqlpp_d.lib;share.lib;logger.lib;netcore.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(OutDir);../../../dep/boost_1_60_0/lib64-msvc-14.0/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
@@ -291,8 +291,6 @@ XCOPY ..\..\..\bin\libs\liblogger.dll ..\output\ /Y /R /F
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\cachesys\protocal\cache_auto_assistant.cpp" />
-    <ClCompile Include="..\cachesys\protocal_factory\factory.cpp" />
     <ClCompile Include="..\cachesys\src\serialize\Serialize.cpp" />
     <ClCompile Include="..\cachesys\src\serialize\SerializeFactory.cpp" />
     <ClCompile Include="..\cachesys\src\serialize\sqlite3.c" />
@@ -309,8 +307,6 @@ XCOPY ..\..\..\bin\libs\liblogger.dll ..\output\ /Y /R /F
     <ClCompile Include="src\MiniDumper.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\cachesys\protocal\cache_auto_assistant.h" />
-    <ClInclude Include="..\cachesys\protocal_factory\factory.h" />
     <ClInclude Include="..\cachesys\src\serialize\Serialize.h" />
     <ClInclude Include="..\cachesys\src\serialize\SerializeFactory.h" />
     <ClInclude Include="..\cachesys\src\serialize\sqlite3.h" />

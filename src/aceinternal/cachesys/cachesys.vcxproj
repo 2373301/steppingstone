@@ -147,7 +147,7 @@ XCOPY ..\..\..\bin\libs\libnetcored.dll ..\output\ /Y /R /F
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./src/serialize;./src;./protocal;./inc;./protocal_factory;./;../common/inc;../common/material-cpp;../typedef/inc;../simplexml/inc/;../logger/inc;../share/inc;../netcore/inc;../../../dep/ACE_wrappers/;../../../dep/boost_1_60_0/;../../../dep/protobuf-2.6.1/src;../../../dep/mysql++-3.2.2/lib;../../../dep/mysql-connector-c-6.1.6/include;../common/cachesys/inc;../dynamicparse/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./src/serialize;./src;./inc;./;../common/inc;../common/material-cpp;../simplexml/inc/;../logger/inc;../share/inc;../netcore/inc;../../../dep/ACE_wrappers/;../../../dep/boost_1_60_0/;../../../dep/protobuf-2.6.1/src;../../../dep/mysql++-3.2.2/lib;../../../dep/mysql-connector-c-6.1.6/include;../common/cachesys/inc;../dynamicparse/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;DEBUG;_DEBUG;_CONSOLE;CACHE_HAS_STAT;MYSQLPP_NO_DLL;D_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -157,7 +157,7 @@ XCOPY ..\..\..\bin\libs\libnetcored.dll ..\output\ /Y /R /F
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>../../../dep/mysql++-3.2.2/vc2008/x64/Debug/mysqlpp_d.lib;../../../dep/ACE_wrappers/lib/ACEd.lib;SimpleXML.lib;../../../dep/protobuf-2.6.1/lib/libprotobuf.lib;share.lib;logger.lib;netcore.lib;dynamicparse.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../dep/ACE_wrappers/lib/ACEd.lib;SimpleXML.lib;../../../dep/protobuf-2.6.1/lib/libprotobuf.lib;share.lib;logger.lib;netcore.lib;../../../dep/mysql++-3.2.2/vc2008/x64/Debug/mysqlpp_d.lib;dynamicparse.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(OutDir);../../../dep/boost_1_60_0/lib64-msvc-14.0/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
@@ -277,7 +277,6 @@ XCOPY ..\..\..\bin\libs\libnetcore.dll ..\output\ /Y /R /F
   <ItemGroup>
     <ClCompile Include="..\common\material-cpp\protocol\msg_binary.pb.cc" />
     <ClCompile Include="..\common\material-cpp\protocol\msg_cache.pb.cc" />
-    <ClCompile Include="protocal\cache_auto_assistant.cpp" />
     <ClCompile Include="src\cached.cpp" />
     <ClCompile Include="src\config.cpp" />
     <ClCompile Include="src\DataRequestInfo.cpp" />

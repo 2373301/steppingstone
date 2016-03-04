@@ -16,12 +16,6 @@
     <Filter Include="sqlite_file">
       <UniqueIdentifier>{78140d49-64a8-4049-841a-4ec101d98d2b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="entity_to_db">
-      <UniqueIdentifier>{d33efc8b-39f0-47b8-96b0-4933c09f6382}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="factory">
-      <UniqueIdentifier>{bb2ce2d9-7ee3-41f7-884f-9635018267b4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="protocol">
       <UniqueIdentifier>{7d202e5d-5bb6-467f-bb87-87bbbb23ee4b}</UniqueIdentifier>
     </Filter>
@@ -56,12 +50,6 @@
     </ClCompile>
     <ClCompile Include="src\ManageSQLiteFileToDb.cpp">
       <Filter>sqlite_to_db</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cachesys\protocal_factory\factory.cpp">
-      <Filter>factory</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cachesys\protocal\cache_auto_assistant.cpp">
-      <Filter>entity_to_db</Filter>
     </ClCompile>
     <ClCompile Include="..\cachesys\src\serialize\Serialize.cpp">
       <Filter>serialize</Filter>
@@ -103,12 +91,6 @@
     </ClInclude>
     <ClInclude Include="src\ManageSQLiteFileToDb.h">
       <Filter>sqlite_to_db</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cachesys\protocal_factory\factory.h">
-      <Filter>factory</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cachesys\protocal\cache_auto_assistant.h">
-      <Filter>entity_to_db</Filter>
     </ClInclude>
     <ClInclude Include="..\cachesys\src\serialize\Serialize.h">
       <Filter>serialize</Filter>

@@ -1,16 +1,16 @@
 //dynamic_parse.h 
-#ifndef _DYNAMIC_PARSE_H
-#define _DYNAMIC_PARSE_H
+#ifndef _DYNAMIC_PARSE_H__
+#define _DYNAMIC_PARSE_H__
 
 #include <google/protobuf/compiler/importer.h>
 #include <google/protobuf/dynamic_message.h>
-#include <mysql++.h>
 #include <vector>
 #include <map>
 #include "typedef.h"
 #include "Singleton.h"
 
 class CDynamicParse;
+class Query;
 class CacheAssistantx
 {
 public:
@@ -27,10 +27,10 @@ public:
 	};
 
 	google::protobuf::Message* data(void) { return msg; }
-	bool load(::mysqlpp::Query& query);
-	bool update(::mysqlpp::Query& query);
-	bool insert(::mysqlpp::Query& query);
-	bool remove(::mysqlpp::Query& query);
+	bool load(void* query);
+	bool update(void* query);
+	bool insert(void* query);
+	bool remove(void* query);
 	size_t length(void) { return(data() ? data()->ByteSize() : 0); }
 	CACHE_ASSISTANT_ERROR last_error(void) { return er_code_; }
 	::std::string what(void) { return er_str_; }

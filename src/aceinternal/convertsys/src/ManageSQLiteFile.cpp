@@ -1,14 +1,14 @@
 
 #include <ace/OS.h>
 #include <boost/lexical_cast.hpp>
+#include <boost/filesystem.hpp>
 #include "ManageSQLiteFile.h"
 #include "Logger.h"
-#include "factory.h"
 #include "SQLiteSerialize.h"
 #include "Packet.h"
 #include "protocol/msg_binary.pb.h"
 #include "cachesys_opcode.hpp"
-//#include "ManageCacheSession.h"
+#include "dynamicparse.h"
 
 #define PING_MYSQL_INTERVAL 30 * 60 * 1000 * 1000
 
@@ -275,7 +275,6 @@ bool ManageSqliteFile::processSqliteFile(const string & cache_addr, const string
 bool ManageSqliteFile::processRecordSet(const string & cache_addr, RecordSet & record_set, ::mysqlpp::Connection & conn, LineTransRecord_t & line_trans_record)
 {
 	bool result = true;
-	dbass::CacheAssistantSPtr ca;
 	Record * record = NULL;
 
 	for (RecordSet::iterator it = record_set.begin(); it != record_set.end(); ++it)
@@ -294,7 +293,7 @@ bool ManageSqliteFile::processRecordSet(const string & cache_addr, RecordSet & r
 
 bool ManageSqliteFile::writeRecordToDb(Record * record, ::mysqlpp::Connection & conn)
 {
-	::dbass::CacheAssistantSPtr ca(AssFactory::create(record->object_guid, record->entity_name));
+	std::unique_ptr<CacheAssistantx> ca(CDynamicParse::instance()->create(record->object_guid, record->entity_name));
 
 	if (!ca.get())
 	{

@@ -29,9 +29,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="protocal\cache_auto_assistant.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="src\cached.cpp">
       <Filter>源文件</Filter>
     </ClCompile>

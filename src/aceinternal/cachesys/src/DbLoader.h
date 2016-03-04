@@ -10,6 +10,7 @@
 #include "DataRequestInfo.h"
 #include "Singleton.h"
 #include "SingletonInit.h"
+#include <mysql++.h>
 
 namespace cached {
 namespace service {

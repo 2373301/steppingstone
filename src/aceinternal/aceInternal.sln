@@ -19,6 +19,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "guidsys", "guidsys\guidsys.vcxproj", "{F01A57B0-0674-4762-A64A-2AAD7DC88CD8}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cachesys", "cachesys\cachesys.vcxproj", "{260B6FE8-2AEA-4B7D-A9CF-A8E3B4EAB21C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A3D29751-7405-4EF4-8FA9-3787EC471708} = {A3D29751-7405-4EF4-8FA9-3787EC471708}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "convertsys", "convertsys\convert.vcxproj", "{78CF7911-62A0-44BE-8980-360D49CBD550}"
 EndProject

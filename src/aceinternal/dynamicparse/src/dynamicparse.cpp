@@ -1,6 +1,7 @@
 #include <boost/filesystem/operations.hpp>
 #include <boost/filesystem/path.hpp>
 #include <boost/filesystem.hpp>
+#include <mysql++.h>
 #include "dynamicparse.h"
 
 
@@ -522,8 +523,9 @@ typedef int32 Int32;
 typedef uint64 UInt64;
 typedef int64 Int64;
 
-bool CacheAssistantx::load(::mysqlpp::Query& query)
+bool CacheAssistantx::load(void* q)
 {	
+	auto query = *(mysqlpp::Query*)q;
 	MsgVec vec;
 	if ( !parser->getMsgDesc(msg->GetTypeName(), vec))
 		return false;
@@ -681,17 +683,17 @@ bool CacheAssistantx::load(::mysqlpp::Query& query)
 	return false;
 }
 
-bool CacheAssistantx::update(::mysqlpp::Query& query)
+bool CacheAssistantx::update(void* query)
 {
 	return false;
 }
 
-bool CacheAssistantx::insert(::mysqlpp::Query& query)
+bool CacheAssistantx::insert(void* query)
 {
 	return false;
 }
 
-bool CacheAssistantx::remove(::mysqlpp::Query& query)
+bool CacheAssistantx::remove(void* query)
 {
 	return false;
 }
