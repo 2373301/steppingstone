@@ -7,9 +7,6 @@
     <Filter Include="Packet">
       <UniqueIdentifier>{3bc685cc-2f51-4926-be3b-773d0d740850}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Net">
-      <UniqueIdentifier>{4c1be442-3857-4fb4-a2c9-4ae33a933e8b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="share_fun">
       <UniqueIdentifier>{719ea449-db25-49a1-84ec-eabb2c9f4490}</UniqueIdentifier>
     </Filter>

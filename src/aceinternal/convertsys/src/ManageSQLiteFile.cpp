@@ -8,7 +8,7 @@
 #include "Packet.h"
 #include "protocol/msg_binary.pb.h"
 #include "cachesys_opcode.hpp"
-#include "dynamicparse.h"
+#include "ManageConfig.h"
 
 #define PING_MYSQL_INTERVAL 30 * 60 * 1000 * 1000
 
@@ -293,7 +293,7 @@ bool ManageSqliteFile::processRecordSet(const string & cache_addr, RecordSet & r
 
 bool ManageSqliteFile::writeRecordToDb(Record * record, ::mysqlpp::Connection & conn)
 {
-	std::unique_ptr<CacheAssistantx> ca(CDynamicParse::instance()->create(record->object_guid, record->entity_name));
+	std::unique_ptr<CacheAssistantx> ca(sMsgCfg->getParser()->create(record->object_guid, record->entity_name));
 
 	if (!ca.get())
 	{

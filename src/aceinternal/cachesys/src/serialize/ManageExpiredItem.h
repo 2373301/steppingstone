@@ -3,10 +3,10 @@
 #define MANAGE_EXPIRED_ITEM_HPP
 
 #include <ace/Thread_Mutex.h>
-#include "dynamicparse.h"
 #include "Singleton.h"
 #include "typedef.h"
 #include "cached.h"
+#include "dynamicparse.h"
 
 struct ExpiredItem 
 {

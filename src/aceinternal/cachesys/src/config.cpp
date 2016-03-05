@@ -10,13 +10,16 @@ namespace service {
 int CacheConfiguration::init()
 {
 	if (open(CONFIG_PATH))
-	{
-		return 0;
+	{	
+		parser_ = createDynamicParser();
+		std::string entityPath = lookup(ENTITY_PATH);
+		if (entityPath.empty())
+			return -1;
+
+		return parser_->init(entityPath);
 	}
-	else
-	{
-		return -1;
-	}
+	
+	return -1;
 }
 
 int CacheConfiguration::stop()

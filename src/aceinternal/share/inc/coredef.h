@@ -405,9 +405,7 @@ enum BufferDisappearFeature
 //////////////////////////////////////////////////////////////////////////
 
 class Packet;
-
 typedef boost::function<void()> TimerCallBack;
-
 typedef std::set<uint64>	GuidSet_t;
 
 struct MapEntity

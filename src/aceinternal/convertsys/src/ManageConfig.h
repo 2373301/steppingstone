@@ -8,6 +8,7 @@
 #include "Singleton.h"
 #include "typedef.h"
 #include "SingletonInit.h"
+#include "dynamicparse.h"
 
 using std::string;
 
@@ -97,6 +98,8 @@ public:
 
 	LogCfg & getLogCfg();
 
+	IDynamicParser* getParser() { return m_parser;  }
+
 protected:
 	bool loadConfig(const string & config_file);
 
@@ -119,6 +122,7 @@ private:
 	CacheCfg m_cache_cfg;
 
 	LogCfg m_log_cfg;
+	IDynamicParser *m_parser = NULL;
 };
 
 #define sMsgCfg ManageConfig::instance()

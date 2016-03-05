@@ -13,12 +13,12 @@ class PError : public google::protobuf::compiler::MultiFileErrorCollector
 };
 
 
-CDynamicParse::CDynamicParse()
+DynamicParserImp::DynamicParserImp()
 {
 
 }
 
-CDynamicParse::~CDynamicParse()
+DynamicParserImp::~DynamicParserImp()
 {
 	if (m_dynamic_message_factory)
 	{
@@ -30,7 +30,7 @@ CDynamicParse::~CDynamicParse()
 	}
 }
 
-int CDynamicParse::init(const string& proto_path)
+int DynamicParserImp::init(const string& proto_path)
 {
 	m_dynamic_message_factory = new google::protobuf::DynamicMessageFactory();
 	if (m_dynamic_message_factory == NULL)
@@ -65,9 +65,9 @@ int CDynamicParse::init(const string& proto_path)
 }
 
 
-void CDynamicParse::ReadDesAndInsert(const google::protobuf::Message& message, 	Map_Message*& map_content)
+void DynamicParserImp::ReadDesAndInsert(const google::protobuf::Message& message, 	MessageMap*& map_content)
 {
-	map_content = new Map_Message;
+	map_content = new MessageMap;
 
 	const google::protobuf::Descriptor* des = message.GetDescriptor();
 	const google::protobuf::Reflection* refl = message.GetReflection();
@@ -99,7 +99,7 @@ void CDynamicParse::ReadDesAndInsert(const google::protobuf::Message& message, 	
 				else if (field_des->type() == google::protobuf::FieldDescriptor::TYPE_MESSAGE)
 				{
 					const google::protobuf::Message& msg_sub = refl->GetRepeatedMessage(message, field_des, j);
-					Map_Message* map_msg;
+					MessageMap* map_msg;
 					ReadDesAndInsert(msg_sub, map_msg);
 					str_value->vec_message.push_back(map_msg);
 				}
@@ -138,7 +138,7 @@ void CDynamicParse::ReadDesAndInsert(const google::protobuf::Message& message, 	
 			{	
 				#undef GetMessage 
 				const google::protobuf::Message& msg_sub = refl->GetMessage(message, field_des);
-				Map_Message* map_msg;
+				MessageMap* map_msg;
 				ReadDesAndInsert(msg_sub, map_msg);
 				str_value->vec_message.push_back(map_msg);
 			}
@@ -169,7 +169,7 @@ void CDynamicParse::ReadDesAndInsert(const google::protobuf::Message& message, 	
 }
 
 
-google::protobuf::Message* CDynamicParse::createMessage(const std::string& typeName)
+google::protobuf::Message* DynamicParserImp::createMessage(const std::string& typeName)
 {
 
 	google::protobuf::Message* message = NULL;
@@ -186,7 +186,7 @@ google::protobuf::Message* CDynamicParse::createMessage(const std::string& typeN
 	return message;
 }
 
-void CDynamicParse::delMsgDesc(MsgVec & vec)
+void DynamicParserImp::delMsgDesc(MsgVec & vec)
 {
 	for (auto it = vec.begin(); it != vec.end(); ++it)
 		delete *it;
@@ -259,7 +259,7 @@ static std::string getTableFieldDefault(const google::protobuf::FieldDescriptor*
 	return temp_default;
 }
 
-int CDynamicParse::checkEntity(const TableColumnsMap & a_outcols, const std::string& a_db_name, std::vector<std::string>& a_changed)
+int DynamicParserImp::checkEntity(const TableColumnsMap & a_outcols, const std::string& a_db_name, std::vector<std::string>& a_changed)
 {
 	std::stringstream fn;
 
@@ -356,7 +356,7 @@ int CDynamicParse::checkEntity(const TableColumnsMap & a_outcols, const std::str
 	return 0;
 }
 
-int CDynamicParse::updatedbChanged(const std::string& a_ip, uint32 a_port, const std::string& a_user, const std::string a_pwd,
+int DynamicParserImp::updatedbChanged(const std::string& a_ip, uint32 a_port, const std::string& a_user, const std::string a_pwd,
 	const std::string& a_db_name, std::vector<std::string>& a_changed)
 {	
 	using namespace ::std;
@@ -387,7 +387,7 @@ int CDynamicParse::updatedbChanged(const std::string& a_ip, uint32 a_port, const
 	return 0;
 }
 
-int CDynamicParse::querydbDesc(const std::string& a_ip, uint32 a_port, const std::string& a_user, const std::string a_pwd,
+int DynamicParserImp::querydbDesc(const std::string& a_ip, uint32 a_port, const std::string& a_user, const std::string a_pwd,
 	const std::string& a_db_name, TableColumnsMap & a_outcols)
 {	
 	mysqlpp::Connection conn(false);
@@ -427,7 +427,7 @@ int CDynamicParse::querydbDesc(const std::string& a_ip, uint32 a_port, const std
 	return 0;
 }
 
-int CDynamicParse::getMsgDesc(const std::string& type_name, MsgVec & vec)
+int DynamicParserImp::getMsgDesc(const std::string& type_name, MsgVec & vec)
 {
 	google::protobuf::Message* msg = createMessage(type_name);
 	if (msg == NULL)
@@ -450,7 +450,7 @@ int CDynamicParse::getMsgDesc(const std::string& type_name, MsgVec & vec)
 	return 0;
 }
  
-int CDynamicParse::getMessageContent(const std::string& type_name, istream* input, Map_Message*& map_content)
+int DynamicParserImp::getMessageContent(const std::string& type_name, istream* input, MessageMap*& map_content)
 {
 	google::protobuf::Message* msg = createMessage(type_name);
 	if (msg == NULL)
@@ -465,7 +465,7 @@ int CDynamicParse::getMessageContent(const std::string& type_name, istream* inpu
 }
 
 	
-void CDynamicParse::deleteMessageContent(Map_Message*& map_content)
+void DynamicParserImp::deleteMessageContent(MessageMap*& map_content)
 {
 	if (map_content == NULL)
 	{
@@ -474,14 +474,14 @@ void CDynamicParse::deleteMessageContent(Map_Message*& map_content)
 	deleteMsg(map_content);
 }
 
-void CDynamicParse::deleteMsg(Map_Message*& map_content)
+void DynamicParserImp::deleteMsg(MessageMap*& map_content)
 {
-	for (Map_Message::iterator iter = map_content->begin(); iter != map_content->end(); ++iter)
+	for (MessageMap::iterator iter = map_content->begin(); iter != map_content->end(); ++iter)
 	{
-		vector<Map_Message*>& vec = iter->second->vec_message;
+		vector<MessageMap*>& vec = iter->second->vec_message;
 		if (!vec.empty())
 		{
-			for (vector<Map_Message*>::iterator iter_child = vec.begin(); iter_child != vec.end(); ++iter_child)
+			for (vector<MessageMap*>::iterator iter_child = vec.begin(); iter_child != vec.end(); ++iter_child)
 			{
 				deleteMsg(*iter_child);
 			}
@@ -698,7 +698,7 @@ bool CacheAssistantx::remove(void* query)
 	return false;
 }
 
-CacheAssistantx* CDynamicParse::create(uint64 guid, const std::string& name)
+CacheAssistantx* DynamicParserImp::create(uint64 guid, const std::string& name)
 {
 	google::protobuf::Message* msg = createMessage(name);
 	if (msg == NULL)
@@ -709,5 +709,10 @@ CacheAssistantx* CDynamicParse::create(uint64 guid, const std::string& name)
 	x->parser = this;
 	x->myguid = guid;
 	return x;
+}
+
+IDynamicParser* createDynamicParser()
+{
+	return new DynamicParserImp();
 }
 

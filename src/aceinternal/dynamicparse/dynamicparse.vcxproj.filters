@@ -4,17 +4,24 @@
     <ClInclude Include="inc\dp_def.h">
       <Filter>inc</Filter>
     </ClInclude>
-    <ClInclude Include="inc\dynamicparseimp.h" />
     <ClInclude Include="inc\dynamicparse.h">
       <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dynamicparseimp.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="inc">
       <UniqueIdentifier>{36bb9c13-8304-42db-8d4e-6d588e65a84c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{213fbb1f-98ee-4329-bf25-83374bbbfab3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\dynamicparseimp.cpp" />
+    <ClCompile Include="src\dynamicparseimp.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -103,6 +103,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>../../../dep/boost_1_60_0/lib64-msvc-14.0/</AdditionalLibraryDirectories>
+      <AdditionalDependencies>../../../dep/mysql++-3.2.2/vc2008/x64/Debug/mysqlpp_d.lib;../../../dep/protobuf-2.6.1/lib/libprotobuf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -138,7 +139,7 @@
   <ItemGroup>
     <ClInclude Include="inc\dp_def.h" />
     <ClInclude Include="inc\dynamicparse.h" />
-    <ClInclude Include="inc\dynamicparseimp.h" />
+    <ClInclude Include="src\dynamicparseimp.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

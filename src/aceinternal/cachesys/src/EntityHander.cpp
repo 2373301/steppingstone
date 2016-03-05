@@ -4,7 +4,7 @@
 #include "ManageSerialize.h"
 #include "Sessionx.h"
 #include "ManageExpiredItem.h"
-#include "dynamicparse.h"
+#include "config.h"
 
 namespace cached {
 	namespace service {
@@ -139,7 +139,7 @@ void EntityHander::handlePacket(Packet * packet)
 
 	if (data_request->data_stream().size() > 0)
 	{
-		entity_msg = CDynamicParse::instance()->create(packet->guid(), data_request->entity_name());
+		entity_msg = CONTAINER->getParser()->create(packet->guid(), data_request->entity_name());
 		if (NULL == entity_msg)
 		{
 			DEF_LOG_ERROR("failed to create entity by guid <%llu>, opcode is <%d>\n", packet->guid(), packet->opcode());

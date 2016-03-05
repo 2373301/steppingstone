@@ -1,13 +1,10 @@
-/// config.h
-/// 配置类头文件
-/// Eddy Zhang，2010/07/05
-
 #ifndef __CACHE_SERVICE_CONFIG__FFFF
 #define __CACHE_SERVICE_CONFIG__FFFF
 
 #include "cached.h"
 #include "Singleton.h"
 #include "SingletonInit.h"
+#include "dynamicparse.h"
 
 #define CONTAINER cached::service::CacheConfiguration::instance() 
 
@@ -29,7 +26,8 @@ const ::std::string CACHED_LOG_PRINT			= "/cached/log:print";    ///
 const ::std::string LOG_ENABLE_REMOTE	= "/cached/log:enable_remote";    /// 
 const ::std::string REMOTE_LOG_ADDR		= "/cached/remotlog:addr";    /// 
 const ::std::string REMOTE_LOG_LEVEL	= "/cached/remotlog:LL_DEBUG";    /// 
-/// 
+
+const ::std::string ENTITY_PATH = "/cached/entitypath:path";
 
 const ::std::string CONFIG_XML_ROOT_NAME        = "cached";
 const ::std::string CONFIG_XML_VERIFY_PROPERTY  = "code";
@@ -63,6 +61,8 @@ public:
     /// @return 成功,返回指定路径对应的字符串值;失败,返回空串
     ::std::string lookup(const ::std::string& path);
 
+	IDynamicParser* getParser() { return parser_; }
+
 private:
     /// 初始化表<XPath, Value>
     void parse(const ::std::string& path, Element* e);
@@ -70,6 +70,7 @@ private:
     bool check_config_file(Element *root);
     /// 表<XPath,Value>
     std::map<std::string, std::string> config_map_;
+	IDynamicParser * parser_ = NULL;
 };
 
 }; // namespace service

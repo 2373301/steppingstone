@@ -38,8 +38,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "terminal", "terminal\termin
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gamelogic", "gamelogic\gamelogic.vcxproj", "{604D9DDF-8436-4A49-8800-64659C7C25FC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{499FE19A-C832-4E66-AEF2-7EC7C2603925}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "protocol", "protocol\protocol.vcxproj", "{8D0040C3-0FEA-4536-AC3D-CA4FA12664C7}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DebugCS", "DebugClient\DebugCS.vcxproj", "{3F9DC62B-3C41-4C2C-80BF-C917A16CCF88}"
