@@ -35,7 +35,7 @@ int DynamicParserImp::init(const string& proto_path)
 	m_dynamic_message_factory = new google::protobuf::DynamicMessageFactory();
 	if (m_dynamic_message_factory == NULL)
 	{
-		return false;
+		return -1;
 	}
 
 	PError errorCollector;
@@ -61,7 +61,7 @@ int DynamicParserImp::init(const string& proto_path)
 		}
 	}
 
-	return true;
+	return 0;
 }
 
 

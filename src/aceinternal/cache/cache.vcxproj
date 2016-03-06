@@ -259,9 +259,7 @@
   <ItemGroup>
     <ClInclude Include="inc\Cache.h" />
     <ClInclude Include="inc\CacheFactory.h" />
-    <ClInclude Include="inc\cache_auto_assistant.h" />
     <ClInclude Include="inc\Cache_def.h" />
-    <ClInclude Include="inc\factory.h" />
     <ClInclude Include="src\cachehdr.h" />
     <ClInclude Include="src\LocalCache.h" />
     <ClInclude Include="src\ManageLocalCache.h" />
@@ -270,8 +268,6 @@
     <ClInclude Include="src\RemoteCache.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="inc\cache_auto_assistant.cpp" />
-    <ClCompile Include="inc\factory.cpp" />
     <ClCompile Include="src\CacheFactory.cpp" />
     <ClCompile Include="src\LocalCache.cpp" />
     <ClCompile Include="src\ManageLocalCache.cpp" />

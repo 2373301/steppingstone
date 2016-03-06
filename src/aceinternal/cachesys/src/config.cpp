@@ -9,17 +9,27 @@ namespace service {
 
 int CacheConfiguration::init()
 {
-	if (open(CONFIG_PATH))
+	if ( !open(CONFIG_PATH))
 	{	
-		parser_ = createDynamicParser();
-		std::string entityPath = lookup(ENTITY_PATH);
-		if (entityPath.empty())
-			return -1;
-
-		return parser_->init(entityPath);
+		DEF_LOG_ERROR("Cannot load cache xml: %s\n", CONFIG_PATH.c_str());
+		return -1;
 	}
 	
-	return -1;
+	parser_ = createDynamicParser();
+	std::string entityPath = lookup(ENTITY_PATH);
+	if (entityPath.empty())
+	{
+		DEF_LOG_ERROR("entity path is empty: %s\n", ENTITY_PATH.c_str());
+		return -1;
+	}
+
+	if (-1 == parser_->init(entityPath))
+	{
+		DEF_LOG_ERROR("failed to load entity proto, path: %s\n", entityPath.c_str());
+		return -1;
+	}
+
+	return 0;
 }
 
 int CacheConfiguration::stop()
