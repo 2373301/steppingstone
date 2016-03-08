@@ -1,19 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="源文件">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="头文件">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="serialize">
       <UniqueIdentifier>{88012be7-51db-4807-b00d-de0d3ec706b0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="procotol">
-      <UniqueIdentifier>{60180b3a-17e2-4888-b9d5-c4290c663574}</UniqueIdentifier>
     </Filter>
     <Filter Include="sqlite">
       <UniqueIdentifier>{e49a9afc-8bc7-434a-a999-b791fabbee8f}</UniqueIdentifier>
@@ -27,13 +16,24 @@
     <Filter Include="msg">
       <UniqueIdentifier>{d1d0613e-46dd-4679-bc24-4f66939211d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="proto">
+      <UniqueIdentifier>{60180b3a-17e2-4888-b9d5-c4290c663574}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cached.cpp">
-      <Filter>源文件</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\config.cpp">
-      <Filter>源文件</Filter>
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\serialize\FileNameGenerator.cpp">
       <Filter>serialize</Filter>
@@ -72,21 +72,21 @@
       <Filter>msg</Filter>
     </ClCompile>
     <ClCompile Include="..\common\material-cpp\protocol\msg_binary.pb.cc">
-      <Filter>procotol</Filter>
+      <Filter>proto</Filter>
     </ClCompile>
     <ClCompile Include="..\common\material-cpp\protocol\msg_cache.pb.cc">
-      <Filter>procotol</Filter>
+      <Filter>proto</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\cached.h">
-      <Filter>头文件</Filter>
+      <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="inc\config.h">
-      <Filter>头文件</Filter>
+      <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="inc\stat.h">
-      <Filter>头文件</Filter>
+      <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="src\serialize\FileNameGenerator.h">
       <Filter>serialize</Filter>
@@ -125,10 +125,10 @@
       <Filter>msg</Filter>
     </ClInclude>
     <ClInclude Include="..\common\material-cpp\protocol\msg_binary.pb.h">
-      <Filter>procotol</Filter>
+      <Filter>proto</Filter>
     </ClInclude>
     <ClInclude Include="..\common\material-cpp\protocol\msg_cache.pb.h">
-      <Filter>procotol</Filter>
+      <Filter>proto</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

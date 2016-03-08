@@ -37,7 +37,6 @@ public:
 			return;
 		}
 
-		ACE_OS::sleep(5);
 		uint64 player_guid = 1;
 		DECLARE_REQUEST_LIST(g_pool);
 		LOAD_ONCE_REQUEST(1, 2);

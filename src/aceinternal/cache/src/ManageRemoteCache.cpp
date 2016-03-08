@@ -170,6 +170,9 @@ int ManageRemoteCache::connectRemoteCache()
 		{
 			remote_cache->init("", this);
 			m_cache_vec.push_back(remote_cache);
+
+			DEF_LOG_INFO("success to connect remote cache, remote ip is <%s>\n",
+				it->c_str());
 		}
 	}
 
