@@ -41,7 +41,7 @@ private:
 	ACE_Thread_Mutex m_deferred_outputs_mutex;
 	PacketQue_t m_deferred_outputs;
 
-	//SavePackInfo m_save_output_pack_info;
+	//SavePackInfox m_save_output_pack_info;
 };
 
 }

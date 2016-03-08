@@ -3,7 +3,7 @@
 #include <ace/OS.h>
 #include "ManageSingleton.h"
 #include "ManageLogger.h"
-#include "EffectTest.h"
+#include "testlogger.h"
 #include "ManageSingletonInit.h"
 #include "dynamicparse.h"
 #include "typedef.h"
@@ -35,12 +35,12 @@ void startApplication()
 
 void TestProto()
 {
-	CDynamicParse parser;
-	if (!parser.init("../../common/material/entity"))
+	IDynamicParser *parser = createDynamicParser();
+	if (!parser->init("../../common/material/entity"))
 		std::cout << "failed to init entity" << std::endl;
 
 	MsgVec msg;
-	parser.getMsgDesc("test", msg);
+	parser->getMsgDesc("test", msg);
 
 	for (auto it = msg.begin(); it != msg.end(); ++it)
 	{	
@@ -68,9 +68,14 @@ void TestProto()
 
 int main(int argc, char * argv[])
 {	
-	TestProto();
+	ManageSingleton::instance();
+	ManageLogger::instance();
+
+	ManageSingletonInit::instance()->init();
+
+	//TestProto();
 	//startApplication();
-	//pool_ut::run();
+	pool_ut::run();
 	//netcore::netcore_ut::run();
 	//scenex_ut::run(argc, argv);
 	return 0;

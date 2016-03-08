@@ -145,7 +145,6 @@ int startCache(int argc, char * argv[])
 	EntityHander::instance();
 
 	EntityHander::instance()->setOutputHandle(ManageSessionPool::instance());
-
 	if (ManageSingletonInit::instance()->init() == -1)
 	{
 		return -1;

@@ -2,7 +2,7 @@
 #include "typedef.h"
 #include <boost/date_time.hpp>
 #include <ace/OS.h>
-#include "EffectTest.h"
+#include "testlogger.h"
 #include "Logger.h"
 #include "LoggerFactory.h"
 

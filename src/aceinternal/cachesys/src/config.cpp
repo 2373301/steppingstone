@@ -11,7 +11,7 @@ int CacheConfiguration::init()
 {
 	if ( !open(CONFIG_PATH))
 	{	
-		DEF_LOG_ERROR("Cannot load cache xml: %s\n", CONFIG_PATH.c_str());
+		printf("Cannot load cache xml: %s\n", CONFIG_PATH.c_str());
 		return -1;
 	}
 	
@@ -19,7 +19,7 @@ int CacheConfiguration::init()
 	std::string entityPath = lookup(ENTITY_PATH);
 	if (entityPath.empty())
 	{
-		DEF_LOG_ERROR("entity path is empty: %s\n", ENTITY_PATH.c_str());
+		printf("entity path is empty: %s\n", ENTITY_PATH.c_str());
 		return -1;
 	}
 
@@ -48,17 +48,17 @@ bool CacheConfiguration::open(const ::std::string& filepath)
 	::boost::scoped_ptr<Document> document(XMLFactory::create_document());
     BOOST_ASSERT(document.get() != NULL);
     if (document.get() == NULL) {
-		DEF_LOG_ERROR("Cannot create xml document object, le : <%d>\n", ACE_OS::last_error());
+		printf("Cannot create xml document object, le : <%d>\n", ACE_OS::last_error());
         return false;
     }
     if (!document->load_file(filepath)) {
-		DEF_LOG_ERROR("Cannot parse the conf file, le : <%d>\n", ACE_OS::last_error());
+		printf("Cannot parse the conf file, le : <%d>\n", ACE_OS::last_error());
         return false;
     }
     /// 验证xml文件有效性
     Element *root = document->get_root();
     if (!check_config_file(root)) {
-		DEF_LOG_ERROR("Invalid config file, le : <%d>\n", ACE_OS::last_error());
+		printf("Invalid config file, le : <%d>\n", ACE_OS::last_error());
         return false;
     }
     /// 调用 parse() 加载所有属性值

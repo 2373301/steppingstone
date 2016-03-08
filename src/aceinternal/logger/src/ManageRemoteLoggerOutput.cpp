@@ -1,10 +1,10 @@
 
 #include "ManageLogger.h"
-#include "ManageLoggerOutput.h"
+#include "ManageRemoteLoggerOutput.h"
 #include "RemoteLogger.h"
 #include "ace/OS_NS_unistd.h"
 
-ManageLoggerOutput::ManageLoggerOutput()
+ManageRemoteLoggerOutput::ManageRemoteLoggerOutput()
 : m_logger_session(NULL)
 , m_remote_logger(NULL)
 , m_inited(false)
@@ -14,7 +14,7 @@ ManageLoggerOutput::ManageLoggerOutput()
 	
 }
 
-ManageLoggerOutput::~ManageLoggerOutput()
+ManageRemoteLoggerOutput::~ManageRemoteLoggerOutput()
 {
 	for (LogBuffer_t::iterator it = m_log_buffer_vec.begin(); it != m_log_buffer_vec.end(); ++it)
 	{
@@ -22,7 +22,7 @@ ManageLoggerOutput::~ManageLoggerOutput()
 	}
 }
 
-int ManageLoggerOutput::init()
+int ManageRemoteLoggerOutput::init()
 {
 	if ((NULL == m_logger_session) || (NULL == m_remote_logger))
 	{
@@ -44,13 +44,13 @@ int ManageLoggerOutput::init()
 	return 0;
 }
 
-int ManageLoggerOutput::stop()
+int ManageRemoteLoggerOutput::stop()
 {
 	m_is_stop = true;
 	return 0;
 }
 
-int ManageLoggerOutput::svc()
+int ManageRemoteLoggerOutput::svc()
 {
 	ACE_Time_Value sleep_time(0, 10 * 1000);
 	LogBuffer_t log_buffer_vec;
@@ -95,13 +95,13 @@ int ManageLoggerOutput::svc()
 	return 0;
 }
 
-void ManageLoggerOutput::handleLogBuffer(const char * log_buffer)
+void ManageRemoteLoggerOutput::handleLogBuffer(const char * log_buffer)
 {
 	ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_log_buffer_mutex, );
 	m_log_buffer_vec.push_back((char *)log_buffer);
 }
 
-void ManageLoggerOutput::setLoggerSession(LoggerSession * logger_session, RemoteLogger * remote_logger)
+void ManageRemoteLoggerOutput::setLoggerSession(LoggerSession * logger_session, RemoteLogger * remote_logger)
 {
 	m_logger_session = logger_session;
 
@@ -110,7 +110,7 @@ void ManageLoggerOutput::setLoggerSession(LoggerSession * logger_session, Remote
 	m_read_error = false;
 }
 
-void ManageLoggerOutput::clearBuffer(LogBuffer_t & log_buffer_vec)
+void ManageRemoteLoggerOutput::clearBuffer(LogBuffer_t & log_buffer_vec)
 {
 	for (LogBuffer_t::iterator it = log_buffer_vec.begin(); it != log_buffer_vec.end(); ++it)
 	{
@@ -119,7 +119,7 @@ void ManageLoggerOutput::clearBuffer(LogBuffer_t & log_buffer_vec)
 	log_buffer_vec.clear();
 }
 
-void ManageLoggerOutput::syncReadError()
+void ManageRemoteLoggerOutput::syncReadError()
 {
 	m_read_error = true;
 }

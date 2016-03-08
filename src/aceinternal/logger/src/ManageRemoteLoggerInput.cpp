@@ -1,9 +1,9 @@
 
-#include "ManageLoggerInput.h"
+#include "ManageRemoteLoggerInput.h"
 #include "RemoteLogger.h"
 #include "ace/OS_NS_unistd.h"
 
-ManageLoggerInput::ManageLoggerInput()
+ManageRemoteLoggerInput::ManageRemoteLoggerInput()
 : m_logger_session(NULL)
 , m_remote_logger(NULL)
 , m_inited(false)
@@ -12,12 +12,12 @@ ManageLoggerInput::ManageLoggerInput()
 	m_input_block.init(1024 * 100);
 }
 
-ManageLoggerInput::~ManageLoggerInput()
+ManageRemoteLoggerInput::~ManageRemoteLoggerInput()
 {
 
 }
 
-int ManageLoggerInput::init()
+int ManageRemoteLoggerInput::init()
 {
 	if ((NULL == m_logger_session) || (NULL == m_remote_logger))
 	{
@@ -39,13 +39,13 @@ int ManageLoggerInput::init()
 	return 0;
 }
 
-int ManageLoggerInput::stop()
+int ManageRemoteLoggerInput::stop()
 {
 	m_is_stop = true;
 	return 0;
 }
 
-int ManageLoggerInput::svc()
+int ManageRemoteLoggerInput::svc()
 {
 	int read_r = 0;
 	ACE_Time_Value sleep_time(0, 10 * 1000);
@@ -71,7 +71,7 @@ int ManageLoggerInput::svc()
 	return 0;
 }
 
-void ManageLoggerInput::setLoggerSession(LoggerSession * logger_session, RemoteLogger * remote_logger)
+void ManageRemoteLoggerInput::setLoggerSession(LoggerSession * logger_session, RemoteLogger * remote_logger)
 {
 	m_logger_session = logger_session;
 	m_remote_logger = remote_logger;

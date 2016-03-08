@@ -7,11 +7,11 @@
 
 class RemoteLogger;
 
-class ManageLoggerInput : public ACE_Task<ACE_NULL_SYNCH>
+class ManageRemoteLoggerInput : public ACE_Task<ACE_NULL_SYNCH>
 {
 public:
-	ManageLoggerInput();
-	~ManageLoggerInput();
+	ManageRemoteLoggerInput();
+	~ManageRemoteLoggerInput();
 
 public:
 	int init();
@@ -21,7 +21,7 @@ public:
 	int svc();
 
 	void setLoggerSession(LoggerSession * logger_session, RemoteLogger * remote_logger);
-protected:
+
 private:
 	LoggerSession * m_logger_session;
 

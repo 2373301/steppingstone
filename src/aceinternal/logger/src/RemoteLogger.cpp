@@ -119,8 +119,6 @@ int RemoteLogger::connectRemoteServer()
 	if (connector.connect(m_logger_session->peer(), addr, &conn_time_out) == -1)
 	{
 		m_remote_logger_enable = false;
-		//delete m_logger_session;
-		//m_logger_session = NULL;
 		return -1;
 	}
 	else
@@ -166,8 +164,6 @@ void RemoteLogger::reduceReferenceNo()
 	--m_remote_session_reference_no;
 	if (0 == m_remote_session_reference_no)
 	{
-		//delete m_logger_session;
-		//m_logger_session = NULL;
 		m_remote_logger_enable = false;
 	}
 }

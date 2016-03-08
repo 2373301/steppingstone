@@ -14,12 +14,12 @@
 
 int Sessionx::m_socket_buffer_length = 102400;
 
-SavePackInfo::SavePackInfo()
+SavePackInfox::SavePackInfox()
 : is_save_stream(false)
 , file_stream(NULL)
 {}
 
-SavePackInfo::~SavePackInfo()
+SavePackInfox::~SavePackInfox()
 {
 	if (NULL != file_stream)
 	{
@@ -28,7 +28,7 @@ SavePackInfo::~SavePackInfo()
 	}
 }
 
-bool SavePackInfo::init(bool is_save, const string & file_n)
+bool SavePackInfox::init(bool is_save, const string & file_n)
 {
 	is_save_stream = is_save;
 	this->file_name = file_n;
@@ -57,7 +57,7 @@ bool SavePackInfo::init(bool is_save, const string & file_n)
 	return true;
 }
 
-void SavePackInfo::save(char * stream_buffer, int stream_len)
+void SavePackInfox::save(char * stream_buffer, int stream_len)
 {
 	if (is_save_stream && (NULL != file_stream))
 	{

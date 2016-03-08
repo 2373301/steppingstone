@@ -1,75 +1,78 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="log">
+    <Filter Include="inc">
+      <UniqueIdentifier>{70dbc04e-e3cf-46fa-9c99-27b0475b7f23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{8eef0b7e-8bc7-469f-a5bf-a4e47ec50e2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="file">
       <UniqueIdentifier>{ca972903-a600-4b00-b6d4-71671b816098}</UniqueIdentifier>
     </Filter>
     <Filter Include="remote">
       <UniqueIdentifier>{a2f44f37-c183-45e1-909a-c2ae85f1e8f8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="report">
-      <UniqueIdentifier>{17a2736b-1906-4e24-94d6-83b46053e9db}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\FileLogger.cpp">
-      <Filter>log</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Logger.cpp">
-      <Filter>log</Filter>
-    </ClCompile>
-    <ClCompile Include="src\LoggerFactory.cpp">
-      <Filter>log</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ManageLogger.cpp">
-      <Filter>log</Filter>
+      <Filter>file</Filter>
     </ClCompile>
     <ClCompile Include="src\LoggerSession.cpp">
-      <Filter>remote</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ManageLoggerInput.cpp">
-      <Filter>remote</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ManageLoggerOutput.cpp">
       <Filter>remote</Filter>
     </ClCompile>
     <ClCompile Include="src\RemoteLogger.cpp">
       <Filter>remote</Filter>
     </ClCompile>
+    <ClCompile Include="src\ManageRemoteLoggerOutput.cpp">
+      <Filter>remote</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageRemoteLoggerInput.cpp">
+      <Filter>remote</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageLogger.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LoggerFactory.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Logger.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
     <ClCompile Include="src\Report.cpp">
-      <Filter>report</Filter>
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\FileLogger.h">
-      <Filter>log</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\Logger.h">
-      <Filter>log</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\logger_def.h">
-      <Filter>log</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\LoggerFactory.h">
-      <Filter>log</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\ManageLogger.h">
-      <Filter>log</Filter>
+      <Filter>file</Filter>
     </ClInclude>
     <ClInclude Include="src\LoggerSession.h">
-      <Filter>remote</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ManageLoggerInput.h">
-      <Filter>remote</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ManageLoggerOutput.h">
       <Filter>remote</Filter>
     </ClInclude>
     <ClInclude Include="src\RemoteLogger.h">
       <Filter>remote</Filter>
     </ClInclude>
+    <ClInclude Include="src\ManageRemoteLoggerInput.h">
+      <Filter>remote</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageRemoteLoggerOutput.h">
+      <Filter>remote</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Logger.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\logger_def.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\LoggerFactory.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\ManageLogger.h">
+      <Filter>inc</Filter>
+    </ClInclude>
     <ClInclude Include="inc\Report.h">
-      <Filter>report</Filter>
+      <Filter>inc</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

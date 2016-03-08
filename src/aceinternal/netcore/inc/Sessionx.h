@@ -10,7 +10,7 @@
 
 using namespace std;
 
-enum SessionState
+enum SessionStatex
 {
 	SS_NONE = 0,
 	SS_OPEN,
@@ -38,12 +38,12 @@ public:
 	virtual void output(Packet * packet) = 0;
 };
 
-class NETCORE_EXOPRT SavePackInfo
+class NETCORE_EXOPRT SavePackInfox
 {
 public:
-	SavePackInfo();
+	SavePackInfox();
 
-	~SavePackInfo();
+	~SavePackInfox();
 
 	bool init(bool is_save, const string & file_n);
 
@@ -89,11 +89,11 @@ protected:
 protected:
 	static int m_socket_buffer_length;
 
-	SessionState m_session_state;
+	SessionStatex m_session_state;
 
 	HandleInputx * m_handle_input;
 
-	SavePackInfo m_save_input_pack_info;
+	SavePackInfox m_save_input_pack_info;
 
 	ACE_Message_Block m_inputs;
 

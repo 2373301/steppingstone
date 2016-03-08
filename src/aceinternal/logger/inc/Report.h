@@ -13,7 +13,7 @@ class LOGGER_EXOPRT ThreadReport
 public:
 	ThreadReport(const string & fun_name, const string & file_name, int file_line);
 	~ThreadReport();
-protected:
+
 private:
 	int m_file_line;
 	string m_fun_name;

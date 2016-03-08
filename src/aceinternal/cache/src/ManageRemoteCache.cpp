@@ -136,12 +136,14 @@ int ManageRemoteCache::initing()
 	}
 
 	if (m_manage_remote_cache_output.activate(THR_JOINABLE, (int)m_cache_cfg.remote_cfg.cache_addrs.size()) == -1)
-	{
+	{	
+		DEF_LOG_ERROR("failed to activate ManageRemoteCache out, thread no is <%d>, last error is <%d>\n",
+			(int)m_cache_cfg.remote_cfg.cache_addrs.size(), ACE_OS::last_error());
 		return -1;
 	}
 
 	if (connectRemoteCache() == -1)
-	{
+	{	
 		return -1;
 	}
 
@@ -159,7 +161,9 @@ int ManageRemoteCache::connectRemoteCache()
 		addr.set(it->c_str());
 		RemoteCache * remote_cache = new RemoteCache();
 		if (connector.connect(remote_cache->peer(), addr) == -1)
-		{
+		{	
+			DEF_LOG_ERROR("failed to connectRemoteCache, remote ip is <%s>, last error is <%d>\n",
+				it->c_str(), ACE_OS::last_error());
 			return -1;
 		}
 		else

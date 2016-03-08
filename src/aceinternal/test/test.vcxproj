@@ -239,13 +239,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\CorrectTest.cpp" />
-    <ClCompile Include="src\EffectTest.cpp" />
+    <ClCompile Include="src\testlogger.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\CorrectTest.h" />
-    <ClInclude Include="src\EffectTest.h" />
+    <ClInclude Include="src\testlogger.h" />
     <ClInclude Include="src\testnetcore.hpp" />
     <ClInclude Include="src\testpoo.hpp" />
     <ClInclude Include="src\testscenex.hpp" />

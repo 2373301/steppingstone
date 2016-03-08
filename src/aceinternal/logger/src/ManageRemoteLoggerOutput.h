@@ -7,13 +7,13 @@
 
 class RemoteLogger;
 
-class ManageLoggerOutput : public ACE_Task<ACE_NULL_SYNCH>
+class ManageRemoteLoggerOutput : public ACE_Task<ACE_NULL_SYNCH>
 {
 public:
-	ManageLoggerOutput();
+	ManageRemoteLoggerOutput();
 
-	~ManageLoggerOutput();
-public:
+	~ManageRemoteLoggerOutput();
+
 	int init();
 
 	int stop();

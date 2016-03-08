@@ -31,7 +31,7 @@ public:
 	{
 		return started_  && stoped_;
 	}
-protected:
+
 private:
 	int m_test_count;
 	bool started_;

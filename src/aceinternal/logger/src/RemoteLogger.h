@@ -7,8 +7,8 @@
 #include <ace/Task.h>
 #include "Logger.h"
 #include "LoggerSession.h"
-#include "ManageLoggerInput.h"
-#include "ManageLoggerOutput.h"
+#include "ManageRemoteLoggerInput.h"
+#include "ManageRemoteLoggerOutput.h"
 
 class RemoteLogger : public Logger, public ACE_Task<ACE_NULL_SYNCH>
 {
@@ -57,9 +57,9 @@ private:
 
 	string m_log_identify;
 
-	ManageLoggerInput m_manage_logger_input;
+	ManageRemoteLoggerInput m_manage_logger_input;
 
-	ManageLoggerOutput m_manage_logger_output;
+	ManageRemoteLoggerOutput m_manage_logger_output;
 
 	bool m_is_stop;
 };

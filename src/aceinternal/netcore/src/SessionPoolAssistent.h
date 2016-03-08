@@ -13,7 +13,7 @@ class CellSessionx;
 
 class SessionPoolImp;
 
-void notifySessionPool(CellSessionx * new_session, SessionState session_state);
+void notifySessionPool(CellSessionx * new_session, SessionStatex session_state);
 
 void collectSessionPool(HandleSessionOpenClosed * session_pool, ACE_Reactor * reactor);
 

@@ -136,8 +136,8 @@
     <ClCompile Include="src\LoggerFactory.cpp" />
     <ClCompile Include="src\LoggerSession.cpp" />
     <ClCompile Include="src\ManageLogger.cpp" />
-    <ClCompile Include="src\ManageLoggerInput.cpp" />
-    <ClCompile Include="src\ManageLoggerOutput.cpp" />
+    <ClCompile Include="src\ManageRemoteLoggerInput.cpp" />
+    <ClCompile Include="src\ManageRemoteLoggerOutput.cpp" />
     <ClCompile Include="src\RemoteLogger.cpp" />
     <ClCompile Include="src\Report.cpp" />
   </ItemGroup>
@@ -149,8 +149,8 @@
     <ClInclude Include="inc\Report.h" />
     <ClInclude Include="src\FileLogger.h" />
     <ClInclude Include="src\LoggerSession.h" />
-    <ClInclude Include="src\ManageLoggerInput.h" />
-    <ClInclude Include="src\ManageLoggerOutput.h" />
+    <ClInclude Include="src\ManageRemoteLoggerInput.h" />
+    <ClInclude Include="src\ManageRemoteLoggerOutput.h" />
     <ClInclude Include="src\RemoteLogger.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

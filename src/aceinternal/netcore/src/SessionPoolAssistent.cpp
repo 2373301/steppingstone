@@ -11,7 +11,7 @@ namespace netcore
 ACE_Thread_Mutex * session_pool_mutex = NULL;
 map<ACE_Reactor *, HandleSessionOpenClosed *> session_pool_reactor_map;
 
-void notifySessionPool(CellSessionx * cell_session, SessionState session_state)
+void notifySessionPool(CellSessionx * cell_session, SessionStatex session_state)
 {
 	if (NULL == session_pool_mutex)
 	{
