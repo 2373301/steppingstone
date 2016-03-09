@@ -811,7 +811,7 @@ int ManageShort::smsg_delivery_cross_player_data(const PackInfo & pack_info)
 	SHORT_LOG_INFO("delivery cross player data, platform is <%s>, line id is <%s>, player is <%llu>, entity guid is <%llu>", scd_data->platform().c_str(), 
 		scd_data->line_id().c_str(), scd_data->player_guid(), scd_data->entity_guid());
 
-	GOOGLE_MESSAGE_TYPE * entity_msg = NULL;
+	MSG_TYPE * entity_msg = NULL;
 	if (extractEntity(scd_data->entity_guid(), scd_data->entity_stream(), &entity_msg))
 	{
 		// success
@@ -2118,16 +2118,16 @@ void ManageShort::getPlayerLookupDataBack(uint64 request_guid, uint64 lookup_pla
 
 void ManageShort::lookupCrossPlayerInfo(uint64 observer, uint64 lookup_player)
 {
-	map<uint64, GOOGLE_MESSAGE_TYPE *> msg_map;
+	map<uint64, MSG_TYPE *> msg_map;
 	m_plugin_cfg.line_scene->getCrossPlayerDataInfo(lookup_player, msg_map);
-	for (map<uint64, GOOGLE_MESSAGE_TYPE *>::iterator it = msg_map.begin(); it != msg_map.end(); ++it)
+	for (map<uint64, MSG_TYPE *>::iterator it = msg_map.begin(); it != msg_map.end(); ++it)
 	{
 		m_plugin_cfg.pool->add(it->first, it->second, false, lookup_player);
 	}
 
 	getPlayerLookupDataBack(observer, lookup_player, 1, true);
 
-	for (map<uint64, GOOGLE_MESSAGE_TYPE *>::iterator it = msg_map.begin(); it != msg_map.end(); ++it)
+	for (map<uint64, MSG_TYPE *>::iterator it = msg_map.begin(); it != msg_map.end(); ++it)
 	{
 		m_plugin_cfg.pool->remove(it->first, false, false);
 	}

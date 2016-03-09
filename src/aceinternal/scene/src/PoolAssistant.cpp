@@ -62,10 +62,10 @@ STAT_PACKET_IMP(RequestImp);
 
 STAT_PACKET_IMP(RequestListImp);
 
-bool extractEntity(uint64 guid, const string & stream, GOOGLE_MESSAGE_TYPE * * entity_msg)
+bool extractEntity(uint64 guid, const string & stream, MSG_TYPE * * entity_msg)
 {
 	bool result = false;
-	GOOGLE_MESSAGE_TYPE * message = NULL;
+	MSG_TYPE * message = NULL;
 	switch(EXTRACT_ENTITY_TYPE(guid))
 	{
 	case ET_PLAYER:
@@ -646,7 +646,7 @@ bool extractEntity(uint64 guid, const string & stream, GOOGLE_MESSAGE_TYPE * * e
 	return result;
 }
 
-RequestImp::RequestImp(RequestType rt, uint64 entity_guid, GOOGLE_MESSAGE_TYPE * msg, const PoolCfg pool_cfg, uint64 owner_g)
+RequestImp::RequestImp(RequestType rt, uint64 entity_guid, MSG_TYPE * msg, const PoolCfg pool_cfg, uint64 owner_g)
 {
 	request_type = rt;
 	guid = entity_guid;
@@ -1091,17 +1091,17 @@ void RequestListImp::query(uint64 guid, uint64 owner_guid)
 	m_request_vec.push_back(new RequestImp(RT_QUERY, guid, NULL, m_pool_cfg, owner_guid));
 }
 
-void RequestListImp::add(uint64 guid, GOOGLE_MESSAGE_TYPE * message, uint64 owner_guid)
+void RequestListImp::add(uint64 guid, MSG_TYPE * message, uint64 owner_guid)
 {
 	m_request_vec.push_back(new RequestImp(RT_ADD, guid, message, m_pool_cfg, owner_guid));
 }
 
-void RequestListImp::addWithFlush(uint64 guid, GOOGLE_MESSAGE_TYPE * message, uint64 owner_guid)
+void RequestListImp::addWithFlush(uint64 guid, MSG_TYPE * message, uint64 owner_guid)
 {
 	m_request_vec.push_back(new RequestImp(RT_ADD_WITH_FLUSH, guid, message, m_pool_cfg, owner_guid));
 }
 
-void RequestListImp::update(uint64 guid, GOOGLE_MESSAGE_TYPE * message, uint64 owner_guid)
+void RequestListImp::update(uint64 guid, MSG_TYPE * message, uint64 owner_guid)
 {
 	m_request_vec.push_back(new RequestImp(RT_UPDATE, guid, message, m_pool_cfg, owner_guid));
 }
@@ -1116,7 +1116,7 @@ void RequestListImp::loadOnce(uint64 guid, uint64 owner_guid)
 	m_request_vec.push_back(new RequestImp(RT_LOADONCE, guid, NULL, m_pool_cfg, owner_guid));
 }
 
-void RequestListImp::flush(uint64 guid, GOOGLE_MESSAGE_TYPE * message, uint64 owner_guid)
+void RequestListImp::flush(uint64 guid, MSG_TYPE * message, uint64 owner_guid)
 {
 	m_request_vec.push_back(new RequestImp(RT_FLUSH, guid, message, m_pool_cfg, owner_guid));
 }

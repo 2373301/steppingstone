@@ -41,7 +41,7 @@
 #define GET_ENTITY_FROM_POOL(pool, ENTITY_TYPE, guid, entity_ins)	\
 	ENTITY_TYPE * entity_ins = NULL;	\
 	{	\
-		GOOGLE_MESSAGE_TYPE * msg = pool->get(guid);	\
+		MSG_TYPE * msg = pool->get(guid);	\
 		if (NULL != msg)	\
 		{	\
 			entity_ins = dynamic_cast<ENTITY_TYPE *>(msg);	\
@@ -258,7 +258,7 @@ struct TransactionInfo
 class SCENE_EXOPRT Request 
 {
 public:
-	//Request(RequestType rt, uint64 entity_guid, GOOGLE_MESSAGE_TYPE * msg);
+	//Request(RequestType rt, uint64 entity_guid, MSG_TYPE * msg);
 	virtual ~Request()
 	{
 		// do nothing , message should be deleted by caller
@@ -273,11 +273,11 @@ public:
 	bool		success;
 	bool		complated;
 	uint64		owner_guid;
-	GOOGLE_MESSAGE_TYPE *	message;
+	MSG_TYPE *	message;
 	//TransactionInfo	transaction_info;
 };
 
-SCENE_EXOPRT bool extractEntity(uint64 guid, const string & stream, GOOGLE_MESSAGE_TYPE * * entity_msg);
+SCENE_EXOPRT bool extractEntity(uint64 guid, const string & stream, MSG_TYPE * * entity_msg);
 
 class SCENE_EXOPRT RequestList 
 {
@@ -301,17 +301,17 @@ public:
 
 	virtual void query(uint64 guid, uint64 owner_guid) = 0;
 
-	virtual void add(uint64 guid, GOOGLE_MESSAGE_TYPE * message, uint64 owner_guid) = 0;
+	virtual void add(uint64 guid, MSG_TYPE * message, uint64 owner_guid) = 0;
 
-	virtual void addWithFlush(uint64 guid, GOOGLE_MESSAGE_TYPE * message, uint64 owner_guid) = 0;
+	virtual void addWithFlush(uint64 guid, MSG_TYPE * message, uint64 owner_guid) = 0;
 
-	virtual void update(uint64 guid, GOOGLE_MESSAGE_TYPE * message, uint64 owner_guid) = 0;
+	virtual void update(uint64 guid, MSG_TYPE * message, uint64 owner_guid) = 0;
 
 	virtual void loadOnce(uint64 guid, uint64 owner_guid) = 0;
 
 	virtual void load(uint64 guid, uint64 owner_guid) = 0;
 
-	virtual void flush(uint64 guid, GOOGLE_MESSAGE_TYPE * message, uint64 owner_guid) = 0;
+	virtual void flush(uint64 guid, MSG_TYPE * message, uint64 owner_guid) = 0;
 
 	virtual void remove(uint64 guid, uint64 owner_guid) = 0;
 
@@ -342,10 +342,10 @@ public:
 
 	virtual int init(const PoolCfg pool_cfg) = 0;
 
-	virtual GOOGLE_MESSAGE_TYPE * get(uint64 guid) = 0;
+	virtual MSG_TYPE * get(uint64 guid) = 0;
 
 	// get entity and set flush state
-	virtual GOOGLE_MESSAGE_TYPE * getWhileFlush(uint64 guid) = 0;
+	virtual MSG_TYPE * getWhileFlush(uint64 guid) = 0;
 
 	virtual void clearFlushState(uint64 guid) = 0;
 
@@ -357,7 +357,7 @@ public:
 	virtual void endtransaction() = 0;
 
 	/// add_to_db add to pool and database
-	virtual bool add(uint64 guid, GOOGLE_MESSAGE_TYPE * message, bool add_to_db, uint64 owner_guid) = 0;
+	virtual bool add(uint64 guid, MSG_TYPE * message, bool add_to_db, uint64 owner_guid) = 0;
 
 	/// remove_from_db remove from pool and database
 	virtual bool remove(uint64 guid, bool remove_from_db, bool remove_entity_msg = true) = 0;
@@ -379,7 +379,7 @@ public:
 	/// commit data to cache system, action : update, query, load, flush
 	virtual bool commit(RequestList * request_list, RequestCallBack call_back) = 0;
 
-	virtual Request * createRequset(RequestType rt, uint64 entity_guid, GOOGLE_MESSAGE_TYPE * msg) = 0;
+	virtual Request * createRequset(RequestType rt, uint64 entity_guid, MSG_TYPE * msg) = 0;
 
 	virtual RequestList * createRequestList() = 0;
 

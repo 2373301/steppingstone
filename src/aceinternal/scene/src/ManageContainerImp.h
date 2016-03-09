@@ -26,15 +26,15 @@ public:
 	virtual Uint64Vec_t getContainerGuids(EntityType et_type);
 	virtual bool isAddedGuid(EntityType et_type, uint64 guid);
 
-	virtual bool addContainer(EntityType et_type, GOOGLE_MESSAGE_TYPE * ent_msg);
-	virtual bool addContainerEntity(EntityType et_type, GOOGLE_MESSAGE_TYPE * ent_msg);
+	virtual bool addContainer(EntityType et_type, MSG_TYPE * ent_msg);
+	virtual bool addContainerEntity(EntityType et_type, MSG_TYPE * ent_msg);
 	virtual Uint64Set_t getUpdateGuids();
 	virtual MsgSet_t getAddedContainer();
 protected:
 private:
 	typedef define_unordered_map<EntityType, typed::entity::Container *> ContainerMap_t;
 
-	typedef define_unordered_map<EntityType, vector<GOOGLE_MESSAGE_TYPE *> > ContainerEntityMap_t;
+	typedef define_unordered_map<EntityType, vector<MSG_TYPE *> > ContainerEntityMap_t;
 
 	typed::entity::ContainerContainer * m_container_container;
 

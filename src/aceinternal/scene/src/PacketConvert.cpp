@@ -20,7 +20,7 @@ int PacketConvert::svc()
 	REPORT_THREAD_INFO();
 
 	Packet * packet = NULL;
-	GOOGLE_MESSAGE_TYPE * protobuf_msg = NULL;
+	MSG_TYPE * protobuf_msg = NULL;
 	PackInfo pack_info;
 	PacketVec_t packet_vec;
 

@@ -28,7 +28,7 @@ struct EntityInfo
 		STAT_PACKET_INC_NEW();
 	}
 
-	EntityInfo(EntityOpType op_type, GOOGLE_MESSAGE_TYPE * msg, uint64 owner_g)
+	EntityInfo(EntityOpType op_type, MSG_TYPE * msg, uint64 owner_g)
 		: op_type(op_type)
 		, is_flushing(false)
 		, owner_guid(owner_g)
@@ -50,7 +50,7 @@ struct EntityInfo
 	uint32	op_type;
 	bool	is_flushing;		/// is_flushing is true while flush entity to db
 	uint64	owner_guid;			// player guid
-	GOOGLE_MESSAGE_TYPE * message;
+	MSG_TYPE * message;
 	bool	is_remove_from_memory;
 
 	STAT_PACKET_DEC();
@@ -130,11 +130,11 @@ public:
 public:
 	virtual int init(const PoolCfg pool_cfg);
 
-	virtual GOOGLE_MESSAGE_TYPE * get(uint64 guid);
+	virtual MSG_TYPE * get(uint64 guid);
 
 	virtual EntityInfo * getEntityInfo(uint64 guid);
 
-	virtual GOOGLE_MESSAGE_TYPE * getWhileFlush(uint64 guid);
+	virtual MSG_TYPE * getWhileFlush(uint64 guid);
 
 	virtual void clearFlushState(uint64 guid);
 
@@ -142,7 +142,7 @@ public:
 
 	virtual void endtransaction();
 
-	virtual bool add(uint64 guid, GOOGLE_MESSAGE_TYPE * message, bool add_to_db, uint64 owner_guid);
+	virtual bool add(uint64 guid, MSG_TYPE * message, bool add_to_db, uint64 owner_guid);
 
 	virtual bool remove(uint64 guid, bool remove_from_db, bool remove_entity_msg = true);
 
@@ -160,7 +160,7 @@ public:
 
 	virtual bool commit(RequestList * request_list, RequestCallBack call_back);
 
-	virtual Request * createRequset(RequestType rt, uint64 entity_guid, GOOGLE_MESSAGE_TYPE * msg);
+	virtual Request * createRequset(RequestType rt, uint64 entity_guid, MSG_TYPE * msg);
 
 	virtual RequestList * createRequestList();
 
@@ -207,7 +207,7 @@ protected:
 
 	void checkShouldRemovedEntity(uint64 guid);
 
-	void directUpdateToDb(GOOGLE_MESSAGE_TYPE * message, uint64 guid, uint64 owner_guid);
+	void directUpdateToDb(MSG_TYPE * message, uint64 guid, uint64 owner_guid);
 //	int handle
 private:
 

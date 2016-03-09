@@ -32,17 +32,17 @@ public:
 public:
 	void setPlayerGuid(uint64 guid);
 
-	bool addEntity(uint64 guid, GOOGLE_MESSAGE_TYPE * entity_msg);
+	bool addEntity(uint64 guid, MSG_TYPE * entity_msg);
 
 	void addEntityToPool(Pool * pool);
 
 	void clearEntity();
 
-	GOOGLE_MESSAGE_TYPE * getEntity(uint64 guid);
+	MSG_TYPE * getEntity(uint64 guid);
 
 protected:
 private:
-	typedef define_unordered_map<uint64, GOOGLE_MESSAGE_TYPE *> EntityMap_t;
+	typedef define_unordered_map<uint64, MSG_TYPE *> EntityMap_t;
 
 	uint64 m_player_guid;
 
@@ -74,7 +74,7 @@ public:
 	//static void flush_player_data();
 
 public:
-	typedef define_unordered_map<uint64, GOOGLE_MESSAGE_TYPE *> EntityGuidMap_t;
+	typedef define_unordered_map<uint64, MSG_TYPE *> EntityGuidMap_t;
 
 	void init(PluginCfg & plugin_cfg);
 

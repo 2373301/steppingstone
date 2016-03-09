@@ -97,14 +97,14 @@ void fillClientItemContent(typed::entity::Item * item, typed::protocol::smsg_cre
 		create_item->add_gems(item->gems(i));
 }
 
-GOOGLE_MESSAGE_TYPE * cloneMessage(GOOGLE_MESSAGE_TYPE * msg)
+MSG_TYPE * cloneMessage(MSG_TYPE * msg)
 {
 	if (NULL == msg)
 	{
 		return NULL;
 	}
 
-	GOOGLE_MESSAGE_TYPE * clone_msg = msg->New();
+	MSG_TYPE * clone_msg = msg->New();
 	clone_msg->ParseFromString(msg->SerializeAsString());
 	return clone_msg;
 }

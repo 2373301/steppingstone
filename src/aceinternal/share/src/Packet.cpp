@@ -9,7 +9,7 @@ STAT_PACKET_IMP(PackInfo);
 
 STAT_PACKET_IMP(Packet);
 
-bool parsePacket(Packet * packet, GOOGLE_MESSAGE_TYPE * msg)
+bool parsePacket(Packet * packet, MSG_TYPE * msg)
 {
 	if (msg->ParseFromArray(packet->ch_body(), packet->body_size()))
 	{
@@ -21,7 +21,7 @@ bool parsePacket(Packet * packet, GOOGLE_MESSAGE_TYPE * msg)
 	}
 }
 
-bool parsePacket(const string & stream, GOOGLE_MESSAGE_TYPE * msg)
+bool parsePacket(const string & stream, MSG_TYPE * msg)
 {
 	if (msg->ParseFromString(stream))
 	{
@@ -77,7 +77,7 @@ PackInfo::~PackInfo()
 	STAT_PACKET_INC_DEL()
 }
 
-PackInfo::PackInfo(uint32 opcode_value, uint64 guid_value, GOOGLE_MESSAGE_TYPE * msg_value)
+PackInfo::PackInfo(uint32 opcode_value, uint64 guid_value, MSG_TYPE * msg_value)
 : opcode(opcode_value)
 , guid(guid_value)
 , msg(msg_value)
@@ -87,7 +87,7 @@ PackInfo::PackInfo(uint32 opcode_value, uint64 guid_value, GOOGLE_MESSAGE_TYPE *
 	STAT_PACKET_INC_NEW();
 }
 
-PackInfo::PackInfo(uint32 opcode_value, uint64 guid_value, GOOGLE_MESSAGE_TYPE * msg_value, int attach_d)
+PackInfo::PackInfo(uint32 opcode_value, uint64 guid_value, MSG_TYPE * msg_value, int attach_d)
 : opcode(opcode_value)
 , guid(guid_value)
 , msg(msg_value)

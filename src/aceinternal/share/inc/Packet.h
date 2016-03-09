@@ -45,13 +45,14 @@ typedef vector<Packet *> PacketVec_t;
 
 typedef queue<Packet *> PacketQue_t;
 
-#define GOOGLE_MESSAGE_TYPE	google::protobuf::Message
+#define MSG_TYPE	google::protobuf::Message
+#define MSG_NAME			const std::string
 
-#define PARSE_PACKET(src, msg) parsePacket(src, (GOOGLE_MESSAGE_TYPE *)msg)
+#define PARSE_PACKET(src, msg) parsePacket(src, (MSG_TYPE *)msg)
 
-bool SHARE_EXOPRT parsePacket(Packet * packet, GOOGLE_MESSAGE_TYPE * msg);
+bool SHARE_EXOPRT parsePacket(Packet * packet, MSG_TYPE * msg);
 
-bool SHARE_EXOPRT parsePacket(const string & stream, GOOGLE_MESSAGE_TYPE * msg);
+bool SHARE_EXOPRT parsePacket(const string & stream, MSG_TYPE * msg);
 
 void SHARE_EXOPRT cleanPacketVec(PacketVec_t & packet_vec);
 
@@ -65,9 +66,9 @@ struct SHARE_EXOPRT PackInfo
 
 	~PackInfo();
 
-	PackInfo(uint32 opcode_value, uint64 guid_value, GOOGLE_MESSAGE_TYPE * msg_value);
+	PackInfo(uint32 opcode_value, uint64 guid_value, MSG_TYPE * msg_value);
 
-	PackInfo(uint32 opcode_value, uint64 guid_value, GOOGLE_MESSAGE_TYPE * msg_value, int attach_data);
+	PackInfo(uint32 opcode_value, uint64 guid_value, MSG_TYPE * msg_value, int attach_data);
 
 private:
 	PackInfo (const PackInfo & rsh){}
@@ -77,7 +78,7 @@ public:
 
 	uint32 opcode;
 	uint64 guid;
-	GOOGLE_MESSAGE_TYPE * msg;
+	MSG_TYPE * msg;
 	int    attach_data;
 	void * owner;
 };

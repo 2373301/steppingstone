@@ -26,7 +26,7 @@ void SceneRequestAssistant::requestLoadPlayerFightData(uint64 player_guid)
 	POOL_OP_COMMIT(m_scene_request_cfg.pool, boost::bind(&SceneRequestAssistant::loadPlayerFinish, this, _1, player_guid));
 }
 
-void SceneRequestAssistant::collectMsg(uint64 player_guid, uint64 guid, GOOGLE_MESSAGE_TYPE * msg)
+void SceneRequestAssistant::collectMsg(uint64 player_guid, uint64 guid, MSG_TYPE * msg)
 {
 	CollectMsgInfoMap_t::iterator it = m_collect_msg_info_map.find(player_guid);
 	if (it != m_collect_msg_info_map.end())

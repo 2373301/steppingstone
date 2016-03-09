@@ -184,7 +184,7 @@ typedef int (Plugin::*Notify_Msg_Fun)(const PackInfo & pack_info);
 
 typedef int (Plugin::*Gmcmd_Msg_Fun)(const vector<string> & gm_param, uint64 target_guid);
 
-bool SCENEX_EXOPRT extractPacket(Packet * packet, GOOGLE_MESSAGE_TYPE *& protobuf_msg);
+bool SCENEX_EXOPRT extractPacket(Packet * packet, MSG_TYPE *& protobuf_msg);
 
 struct SCENEX_EXOPRT InputMsgInfo 
 {
@@ -280,7 +280,7 @@ typedef define_unordered_map<int, vector<NotifyMsgInfo> > Notify_Msg_Type_Map;
 
 typedef define_unordered_map<string, GmcmdMsgInfo> Gmcmd_Msg_Type_Map;
 
-typedef define_unordered_map<int, GOOGLE_MESSAGE_TYPE *> MessageTypeMap;
+typedef define_unordered_map<int, MSG_TYPE *> MessageTypeMap;
 
 
 class SCENEX_EXOPRT ParamConfig
@@ -392,7 +392,7 @@ public:
 	int transferMsgToLineScene(const PackInfo & pack_info);
 	int transferMsgToPVPScene(const PackInfo & pack_info);
 
-	static bool getProtobufMsgByOpcode(int op_code, GOOGLE_MESSAGE_TYPE *& protobuf_msg);
+	static bool getProtobufMsgByOpcode(int op_code, MSG_TYPE *& protobuf_msg);
 
 protected:
 	static MessageTypeMap m_message_type_map;

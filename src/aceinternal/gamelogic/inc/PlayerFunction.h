@@ -35,7 +35,7 @@ GAMELOGIC_EXOPRT int getRoleAttr(typed::entity::Role * role, RoleAttrType role_a
 
 GAMELOGIC_EXOPRT void fillClientItemContent(typed::entity::Item * item, typed::protocol::smsg_create_item * create_item);
 
-GAMELOGIC_EXOPRT GOOGLE_MESSAGE_TYPE * cloneMessage(GOOGLE_MESSAGE_TYPE * msg);
+GAMELOGIC_EXOPRT MSG_TYPE * cloneMessage(MSG_TYPE * msg);
 
 GAMELOGIC_EXOPRT int get_UTF8_strlen(const char* src, int length);
 

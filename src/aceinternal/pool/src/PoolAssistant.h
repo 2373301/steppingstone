@@ -12,7 +12,7 @@
 class RequestImp : public Request 
 {
 public:
-	RequestImp(RequestType rt, uint64 entity_guid, GOOGLE_MESSAGE_TYPE * msg, const PoolCfgx pool_cfg, uint64 owner_g);
+	RequestImp(RequestType rt, uint64 entity_guid, MSG_TYPE * msg, const PoolCfgx pool_cfg, uint64 owner_g);
 
 	~RequestImp();
 
@@ -35,33 +35,33 @@ public:
 
 	const RequestVec_t & getRequestList();
 
-	void query(uint64 guid, uint64 owner_guid);
+	virtual void query(uint64 guid, uint64 owner_guid, MSG_TYPE * message) override;
 
-	void add(uint64 guid, GOOGLE_MESSAGE_TYPE * message, uint64 owner_guid);
+	virtual void add(uint64 guid, MSG_TYPE * message, uint64 owner_guid) override;
 
-	void addWithFlush(uint64 guid, GOOGLE_MESSAGE_TYPE * message, uint64 owner_guid);
+	virtual void addWithFlush(uint64 guid, MSG_TYPE * message, uint64 owner_guid) override;
 
-	void update(uint64 guid, GOOGLE_MESSAGE_TYPE * message, uint64 owner_guid);
+	virtual void update(uint64 guid, MSG_TYPE * message, uint64 owner_guid) override;
 
-	void load(uint64 guid, uint64 owner_guid);
+	virtual void load(uint64 guid, uint64 owner_guid, MSG_TYPE * message) override;
 
-	void loadOnce(uint64 guid, uint64 owner_guid);
+	virtual void loadOnce(uint64 guid, uint64 owner_guid, MSG_TYPE * message) override;
 
-	void flush(uint64 guid, GOOGLE_MESSAGE_TYPE * message, uint64 owner_guid);
+	virtual void flush(uint64 guid, MSG_TYPE * message, uint64 owner_guid) override;
 
-	void remove(uint64 guid, uint64 owner_guid);
+	virtual void remove(uint64 guid, uint64 owner_guid) override;
 
-	bool is_complated();
+	virtual bool is_complated() override;
 
-	bool is_success();
+	virtual bool is_success() override;
 
-	bool is_all_failed();
+	virtual bool is_all_failed() override;
 
-	virtual void setRequestID(uint64 request_id);
+	virtual void setRequestID(uint64 request_id) override;
 
-	virtual uint64 getRequestID();
+	virtual uint64 getRequestID() override;
 
-	int handlePacket(Packet * packet);
+	virtual int handlePacket(Packet * packet) override;
 
 private:
 	PoolCfgx m_pool_cfg;

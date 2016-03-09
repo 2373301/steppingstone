@@ -18,13 +18,13 @@ struct GuidRequestInfo
 {
 	GuidRequestInfo(uint64 guid);
 
-	void addMsg(uint64 guid, GOOGLE_MESSAGE_TYPE * msg);
+	void addMsg(uint64 guid, MSG_TYPE * msg);
 
 	uint64 req_guid;
 	DataRequestType req_type;		// 1 : other scene, 2 : cache
 	bool req_back;
 	bool req_sucess;
-	typedef define_unordered_map<uint64, GOOGLE_MESSAGE_TYPE *> GuidMsgMap_t;
+	typedef define_unordered_map<uint64, MSG_TYPE *> GuidMsgMap_t;
 	GuidMsgMap_t guid_msg_map;
 	Uint64Vec_t guid_vec;
 };

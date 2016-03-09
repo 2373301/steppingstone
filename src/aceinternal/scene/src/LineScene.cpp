@@ -978,7 +978,7 @@ void LineScene::deliveryPlayerDataToGS(const string & platform, const string & l
 	m_manage_cross_player_data.deliveryCrossPlayerDataToGS(platform, line_id);
 }
 
-void LineScene::getCrossPlayerDataInfo(uint64 player_guid, map<uint64, GOOGLE_MESSAGE_TYPE *> & msg_map)
+void LineScene::getCrossPlayerDataInfo(uint64 player_guid, map<uint64, MSG_TYPE *> & msg_map)
 {
 	m_manage_cross_player_data.getCrossPlayerDataInfo(player_guid, msg_map);
 }

@@ -4,9 +4,9 @@
 
 MessageTypeMap Plugin::m_message_type_map;
 
-bool extractPacket(Packet * packet, GOOGLE_MESSAGE_TYPE *& protobuf_msg)
+bool extractPacket(Packet * packet, MSG_TYPE *& protobuf_msg)
 {
-	GOOGLE_MESSAGE_TYPE * msg = NULL;
+	MSG_TYPE * msg = NULL;
 	if (Plugin::getProtobufMsgByOpcode(packet->opcode(), msg))
 	{
 		if (NULL != msg)
@@ -135,7 +135,7 @@ PluginSceneType Plugin::getSceneType()
 
 int Plugin::transferMsgToLineScene(const PackInfo & pack_info)
 {
-	GOOGLE_MESSAGE_TYPE * msg_value = NULL;
+	MSG_TYPE * msg_value = NULL;
 	if (NULL != pack_info.msg)
 	{
 		msg_value = cloneMessage(pack_info.msg);
@@ -149,7 +149,7 @@ int Plugin::transferMsgToLineScene(const PackInfo & pack_info)
 
 int Plugin::transferMsgToPVPScene(const PackInfo & pack_info)
 {
-	GOOGLE_MESSAGE_TYPE * msg_value = NULL;
+	MSG_TYPE * msg_value = NULL;
 	if (NULL != pack_info.msg)
 	{
 		msg_value = cloneMessage(pack_info.msg);
@@ -197,7 +197,7 @@ PluginCfg & Plugin::getPluginCfg()
 	return m_plugin_cfg;
 }
 
-bool Plugin::getProtobufMsgByOpcode(int op_code, GOOGLE_MESSAGE_TYPE *& protobuf_msg)
+bool Plugin::getProtobufMsgByOpcode(int op_code, MSG_TYPE *& protobuf_msg)
 {
 	MessageTypeMap::iterator it = m_message_type_map.find(op_code);
 	if (m_message_type_map.end() != it)

@@ -12,7 +12,7 @@
 class RequestImp : public Request 
 {
 public:
-	RequestImp(RequestType rt, uint64 entity_guid, GOOGLE_MESSAGE_TYPE * msg, const PoolCfg pool_cfg, uint64 owner_g);
+	RequestImp(RequestType rt, uint64 entity_guid, MSG_TYPE * msg, const PoolCfg pool_cfg, uint64 owner_g);
 
 	~RequestImp();
 
@@ -27,7 +27,7 @@ public:
 	//uint64		guid;
 	//bool		success;
 	//bool		complated;
-	//GOOGLE_MESSAGE_TYPE *	message;
+	//MSG_TYPE *	message;
 	//string		stream_data;
 	STAT_PACKET_DEC();
 };
@@ -46,17 +46,17 @@ public:
 
 	void query(uint64 guid, uint64 owner_guid);
 
-	void add(uint64 guid, GOOGLE_MESSAGE_TYPE * message, uint64 owner_guid);
+	void add(uint64 guid, MSG_TYPE * message, uint64 owner_guid);
 
-	void addWithFlush(uint64 guid, GOOGLE_MESSAGE_TYPE * message, uint64 owner_guid);
+	void addWithFlush(uint64 guid, MSG_TYPE * message, uint64 owner_guid);
 
-	void update(uint64 guid, GOOGLE_MESSAGE_TYPE * message, uint64 owner_guid);
+	void update(uint64 guid, MSG_TYPE * message, uint64 owner_guid);
 
 	void load(uint64 guid, uint64 owner_guid);
 
 	void loadOnce(uint64 guid, uint64 owner_guid);
 
-	void flush(uint64 guid, GOOGLE_MESSAGE_TYPE * message, uint64 owner_guid);
+	void flush(uint64 guid, MSG_TYPE * message, uint64 owner_guid);
 
 	void remove(uint64 guid, uint64 owner_guid);
 

@@ -28,7 +28,7 @@ struct EntityInfo
 		STAT_PACKET_INC_NEW();
 	}
 
-	EntityInfo(EntityOpType op_type, GOOGLE_MESSAGE_TYPE * msg, uint64 owner_g)
+	EntityInfo(EntityOpType op_type, MSG_TYPE * msg, uint64 owner_g)
 		: op_type(op_type)
 		, is_flushing(false)
 		, owner_guid(owner_g)
@@ -50,7 +50,7 @@ struct EntityInfo
 	uint32	op_type;
 	bool	is_flushing;		// is_flushing is true while flush entity to db
 	uint64	owner_guid;			// player guid
-	GOOGLE_MESSAGE_TYPE * message;
+	MSG_TYPE * message;
 	bool	is_remove_from_memory;
 
 	STAT_PACKET_DEC();
@@ -148,11 +148,11 @@ public:
 
 	virtual int init(const PoolCfgx pool_cfg) override;
 
-	virtual GOOGLE_MESSAGE_TYPE * get(uint64 guid) override;
+	virtual MSG_TYPE * get(uint64 guid) override;
 
 	virtual EntityInfo * getEntityInfo(uint64 guid) override;
 
-	virtual GOOGLE_MESSAGE_TYPE * getWhileFlush(uint64 guid) override;
+	virtual MSG_TYPE * getWhileFlush(uint64 guid) override;
 
 	virtual void clearFlushState(uint64 guid) override;
 
@@ -160,7 +160,7 @@ public:
 
 	virtual void endtransaction() override;
 
-	virtual bool add(uint64 guid, GOOGLE_MESSAGE_TYPE * message, bool add_to_db, uint64 owner_guid) override;
+	virtual bool add(uint64 guid, MSG_TYPE * message, bool add_to_db, uint64 owner_guid) override;
 
 	virtual bool remove(uint64 guid, bool remove_from_db, bool remove_entity_msg = true) override;
 
@@ -209,7 +209,7 @@ protected:
 
 	void checkShouldRemovedEntity(uint64 guid);
 
-	void directUpdateToDb(GOOGLE_MESSAGE_TYPE * message, uint64 guid, uint64 owner_guid);
+	void directUpdateToDb(MSG_TYPE * message, uint64 guid, uint64 owner_guid);
 
 	void updateToDbReplay();
 

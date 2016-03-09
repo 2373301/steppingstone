@@ -16,7 +16,7 @@ struct LunchInfo;
 
 class Scene;
 
-typedef define_unordered_map<uint64, GOOGLE_MESSAGE_TYPE *> GuidMsgMap_t;
+typedef define_unordered_map<uint64, MSG_TYPE *> GuidMsgMap_t;
 
 struct SCENE_EXOPRT TransferPlayerInfo
 {
@@ -26,13 +26,13 @@ struct SCENE_EXOPRT TransferPlayerInfo
 		, target_map_id(0)
 	{}
 
-	void putMsg(uint64 guid, GOOGLE_MESSAGE_TYPE * msg)
+	void putMsg(uint64 guid, MSG_TYPE * msg)
 	{
 		msg_map.insert(std::make_pair(guid, msg));
 	}
 
 	uint64 player_guid;
-	GOOGLE_MESSAGE_TYPE * player;
+	MSG_TYPE * player;
 	uint32 target_map_id;
 	GuidMsgMap_t msg_map;
 };
@@ -73,7 +73,7 @@ struct CollectMsgInfo
 		cleanMapSecondContent(msg_map);
 	}
 
-	void addMsg(uint64 guid, GOOGLE_MESSAGE_TYPE * msg)
+	void addMsg(uint64 guid, MSG_TYPE * msg)
 	{
 		msg_map.insert(std::make_pair(guid, msg));
 		guid_vec.push_back(guid);
@@ -110,7 +110,7 @@ public:
 class SCENE_EXOPRT ManageContainer
 {
 public:
-	typedef define_unordered_set<GOOGLE_MESSAGE_TYPE *> MsgSet_t;
+	typedef define_unordered_set<MSG_TYPE *> MsgSet_t;
 
 	virtual ~ManageContainer()
 	{};
@@ -124,8 +124,8 @@ public:
 	virtual Uint64Vec_t getContainerGuids(EntityType et_type) = 0;
 	virtual bool isAddedGuid(EntityType et_type, uint64 entity_guid) = 0;
 
-	virtual bool addContainer(EntityType et_type, GOOGLE_MESSAGE_TYPE * ent_msg) = 0;
-	virtual bool addContainerEntity(EntityType et_type, GOOGLE_MESSAGE_TYPE * ent_msg) = 0;
+	virtual bool addContainer(EntityType et_type, MSG_TYPE * ent_msg) = 0;
+	virtual bool addContainerEntity(EntityType et_type, MSG_TYPE * ent_msg) = 0;
 	virtual Uint64Set_t getUpdateGuids() = 0;
 	virtual MsgSet_t getAddedContainer() = 0;
 };
@@ -271,7 +271,7 @@ public:
 
 	virtual void deliveryPlayerDataToGS(const string & platform, const string & line_id) = 0;
 
-	virtual void getCrossPlayerDataInfo(uint64 player_guid, map<uint64, GOOGLE_MESSAGE_TYPE *> & msg_map) = 0;
+	virtual void getCrossPlayerDataInfo(uint64 player_guid, map<uint64, MSG_TYPE *> & msg_map) = 0;
 
 protected:
 private:

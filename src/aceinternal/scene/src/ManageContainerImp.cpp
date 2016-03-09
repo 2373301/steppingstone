@@ -93,7 +93,7 @@ ManageContainer::MsgSet_t ManageContainerImp::getEntityMessages(EntityType et_ty
 	ContainerEntityMap_t::iterator it = m_container_entity_map.find(et_type);
 	if (it != m_container_entity_map.end())
 	{
-		vector<GOOGLE_MESSAGE_TYPE *> & con_entity_vec = it->second;
+		vector<MSG_TYPE *> & con_entity_vec = it->second;
 		for (int i = 0; i < con_entity_vec.size(); ++i)
 		{
 			result.insert(con_entity_vec[i]);
@@ -146,7 +146,7 @@ bool ManageContainerImp::isAddedGuid(EntityType et_type, uint64 guid)
 	return result;
 }
 
-bool ManageContainerImp::addContainer(EntityType et_type, GOOGLE_MESSAGE_TYPE * ent_msg)
+bool ManageContainerImp::addContainer(EntityType et_type, MSG_TYPE * ent_msg)
 {
 	ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_container_mutex, false);
 
@@ -167,7 +167,7 @@ bool ManageContainerImp::addContainer(EntityType et_type, GOOGLE_MESSAGE_TYPE * 
 	return true;
 }
 
-bool ManageContainerImp::addContainerEntity(EntityType et_type, GOOGLE_MESSAGE_TYPE * ent_msg)
+bool ManageContainerImp::addContainerEntity(EntityType et_type, MSG_TYPE * ent_msg)
 {
 	ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_container_mutex, false);
 

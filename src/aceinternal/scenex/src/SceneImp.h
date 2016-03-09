@@ -142,9 +142,9 @@ private:
 
 	netstream::SessionPool *m_session_pool;
 
-	std::map<uint64, GOOGLE_MESSAGE_TYPE *> m_total_msg_map;
+	std::map<uint64, MSG_TYPE *> m_total_msg_map;
 	std::map<uint64, MsgHandler> m_input_msg_type_map;
-	std::map<uint64, GOOGLE_MESSAGE_TYPE *> m_message_type_map;
+	std::map<uint64, MSG_TYPE *> m_message_type_map;
 
 	struct OnlineSceneST
 	{

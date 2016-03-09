@@ -38,7 +38,7 @@ public:
 
 	void requestLoadPlayerFightData(uint64 player_guid);
 
-	void collectMsg(uint64 player_guid, uint64 guid, GOOGLE_MESSAGE_TYPE * msg);
+	void collectMsg(uint64 player_guid, uint64 guid, MSG_TYPE * msg);
 
 	void collectMsgFinish(uint64 player_guid, bool collect_sucess);
 public:

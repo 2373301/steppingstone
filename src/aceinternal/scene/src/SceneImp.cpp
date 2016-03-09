@@ -297,7 +297,7 @@ int SceneImp::svc (void)
 	PackInfo * pack_info = NULL;
 	vector<PackInfo *> input_packet_vec;
 	CachePackInfoVec_t cache_input_packet_vec;
-	GOOGLE_MESSAGE_TYPE * protobuf_msg = NULL;
+	MSG_TYPE * protobuf_msg = NULL;
 
 	ACE_Time_Value start_time;
 	ACE_Time_Value diff_time;

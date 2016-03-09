@@ -72,7 +72,7 @@ int PoolImp::init(const PoolCfgx pool_cfg)
 	return 0;
 }
 
-GOOGLE_MESSAGE_TYPE * PoolImp::get(uint64 guid)
+MSG_TYPE * PoolImp::get(uint64 guid)
 {
 	EntityMap_t::iterator it = m_entity_map.find(guid);
 	if (it != m_entity_map.end())
@@ -97,7 +97,7 @@ EntityInfo * PoolImp::getEntityInfo(uint64 guid)
 	return NULL;
 }
 
-GOOGLE_MESSAGE_TYPE * PoolImp::getWhileFlush(uint64 guid)
+MSG_TYPE * PoolImp::getWhileFlush(uint64 guid)
 {
 	EntityMap_t::iterator it = m_entity_map.find(guid);
 	if (it != m_entity_map.end())
@@ -131,7 +131,7 @@ void PoolImp::endtransaction()
 	// do nothing currently
 }
 
-bool PoolImp::add(uint64 guid, GOOGLE_MESSAGE_TYPE * message, bool add_to_db, uint64 owner_guid)
+bool PoolImp::add(uint64 guid, MSG_TYPE * message, bool add_to_db, uint64 owner_guid)
 {
 	if (NULL == message)
 	{
@@ -542,7 +542,7 @@ void PoolImp::complateRequest(RequestInfo * request_info)
 bool PoolImp::updateDbEntity(DbEntityMap_t & db_entity_map)
 {
 	DECLARE_REQUEST_LIST(this);
-	GOOGLE_MESSAGE_TYPE * entity_ins = NULL;
+	MSG_TYPE * entity_ins = NULL;
 	EntityInfo * entity_info = NULL;
 	for (DbEntityMap_t::iterator it = db_entity_map.begin(); it != db_entity_map.end(); )
 	{
@@ -784,7 +784,7 @@ void PoolImp::checkShouldRemovedEntity(uint64 guid)
 	}
 }
 
-void PoolImp::directUpdateToDb(GOOGLE_MESSAGE_TYPE * message, uint64 guid, uint64 owner_guid)
+void PoolImp::directUpdateToDb(MSG_TYPE * message, uint64 guid, uint64 owner_guid)
 {
 	m_transaction_id = ++m_transaction_id % numeric_limits<uint32>::max();
 	m_transaction_id = 0 == m_transaction_id ? 1 : m_transaction_id;

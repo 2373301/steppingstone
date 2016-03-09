@@ -11,7 +11,7 @@ GuidRequestInfo::GuidRequestInfo(uint64 guid)
 , req_sucess(false)
 {}
 
-void GuidRequestInfo::addMsg(uint64 guid, GOOGLE_MESSAGE_TYPE * msg)
+void GuidRequestInfo::addMsg(uint64 guid, MSG_TYPE * msg)
 {
 	guid_msg_map.insert(std::make_pair(guid, msg));
 	guid_vec.push_back(guid);

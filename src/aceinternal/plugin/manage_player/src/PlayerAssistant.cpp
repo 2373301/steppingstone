@@ -30,7 +30,7 @@
 #define GET_ENTITY_FROM_POOL_WHILE_FLUSH(pool, ENTITY_TYPE, guid, entity_ins)	\
 	ENTITY_TYPE * entity_ins = NULL;	\
 	{	\
-	GOOGLE_MESSAGE_TYPE * msg = NULL;	\
+	MSG_TYPE * msg = NULL;	\
 	if (is_flush)	\
 		msg = pool->getWhileFlush(guid);	\
 	else	\
@@ -238,7 +238,7 @@ void PlayerLoadingData::setPlayerGuid(uint64 guid)
 	m_player_guid = guid;
 }
 
-bool PlayerLoadingData::addEntity(uint64 guid, GOOGLE_MESSAGE_TYPE * entity_msg)
+bool PlayerLoadingData::addEntity(uint64 guid, MSG_TYPE * entity_msg)
 {
 	std::pair<EntityMap_t::iterator, bool> insert_result = m_entity_map.insert(std::make_pair(guid, entity_msg));
 	return insert_result.second;
@@ -257,7 +257,7 @@ void PlayerLoadingData::clearEntity()
 	m_entity_map.clear();
 }
 
-GOOGLE_MESSAGE_TYPE * PlayerLoadingData::getEntity(uint64 guid)
+MSG_TYPE * PlayerLoadingData::getEntity(uint64 guid)
 {
 	EntityMap_t::iterator it = m_entity_map.find(guid);
 	if (it != m_entity_map.end())
@@ -830,7 +830,7 @@ void PlayerAssistant::clearPlayerStatus(uint64 player_guid)
 //{
 //	DECLARE_REQUEST_LIST(m_manage_player->getPluginCfg().pool);
 //
-//	GET_ENTITY_FROM_POOL(m_manage_player->getPluginCfg().pool, GOOGLE_MESSAGE_TYPE, player_guid, entity_ins);
+//	GET_ENTITY_FROM_POOL(m_manage_player->getPluginCfg().pool, MSG_TYPE, player_guid, entity_ins);
 //	if (NULL != entity_ins)
 //	{
 //		FLUSH_REQUEST(player_guid, entity_ins);
@@ -843,7 +843,7 @@ void PlayerAssistant::clearPlayerStatus(uint64 player_guid)
 //	//for (int i = PRT_PLAYER; i < PRT_END; ++i)
 //	//{
 //	//	uint64 guid = player_guid + i;
-//	//	GET_ENTITY_FROM_POOL(m_manage_player->getPluginCfg().pool, GOOGLE_MESSAGE_TYPE, guid, entity_ins);
+//	//	GET_ENTITY_FROM_POOL(m_manage_player->getPluginCfg().pool, MSG_TYPE, guid, entity_ins);
 //	//	if (NULL != entity_ins)
 //	//	{
 //	//		FLUSH_REQUEST(player_guid + i, entity_ins);

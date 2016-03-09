@@ -169,7 +169,7 @@ public:
 
 	virtual void deliveryPlayerDataToGS(const string & platform, const string & line_id);
 
-	virtual void getCrossPlayerDataInfo(uint64 player_guid, map<uint64, GOOGLE_MESSAGE_TYPE *> & msg_map);
+	virtual void getCrossPlayerDataInfo(uint64 player_guid, map<uint64, MSG_TYPE *> & msg_map);
 
 protected:
 

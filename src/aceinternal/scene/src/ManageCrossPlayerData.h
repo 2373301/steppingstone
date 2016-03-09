@@ -17,7 +17,7 @@ struct CrossPlayerDataInfo
 	string line_id;
 	uint64 player_guid;
 	string key;
-	typedef map<uint64, GOOGLE_MESSAGE_TYPE *> MsgMap_t;
+	typedef map<uint64, MSG_TYPE *> MsgMap_t;
 	MsgMap_t msg_map;
 };
 
@@ -39,7 +39,7 @@ public:
 
 //	void lookupCrossPlayerInfo(uint64 observer, uint64 player_guid);
 
-	void getCrossPlayerDataInfo(uint64 player_guid, map<uint64, GOOGLE_MESSAGE_TYPE *> & msg_map);
+	void getCrossPlayerDataInfo(uint64 player_guid, map<uint64, MSG_TYPE *> & msg_map);
 
 protected:
 	void initCrossPlayerData();

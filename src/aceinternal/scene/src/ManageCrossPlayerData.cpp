@@ -65,7 +65,7 @@ void ManageCrossPlayerData::collectCrossPlayerData(const string & line_id, const
 		cross_pd_info->key = key;
 		m_cross_player_data_info_map[key] = cross_pd_info;
 	}
-	GOOGLE_MESSAGE_TYPE * entity_msg = NULL;
+	MSG_TYPE * entity_msg = NULL;
 	if (extractEntity(entity_guid, entity_stream, &entity_msg))
 	{
 		cross_pd_info->msg_map[entity_guid] = entity_msg;
@@ -129,7 +129,7 @@ void ManageCrossPlayerData::deliveryCrossPlayerDataToGS(const string & platform,
 //	}
 //}
 
-void ManageCrossPlayerData::getCrossPlayerDataInfo(uint64 player_guid, map<uint64, GOOGLE_MESSAGE_TYPE *> & msg_map)
+void ManageCrossPlayerData::getCrossPlayerDataInfo(uint64 player_guid, map<uint64, MSG_TYPE *> & msg_map)
 {
 	CrossPlayerGuidDataInfoMap_t::iterator it = m_cross_player_guid_data_info_map.find(player_guid);
 	if (it != m_cross_player_guid_data_info_map.end())
@@ -199,7 +199,7 @@ void ManageCrossPlayerData::loadCrossPlayerData(const string & platform, const s
 		loadStream(*it, msg_stream);
 		boost::filesystem::path entity_path(*it);
 		uint64 entity_guid = extractGuid(entity_path.filename().string());
-		GOOGLE_MESSAGE_TYPE * entity_msg = NULL;
+		MSG_TYPE * entity_msg = NULL;
 		if (extractEntity(entity_guid, msg_stream, &entity_msg))
 		{
 			if (IS_PLAYER_GUID(entity_guid))
