@@ -31,16 +31,6 @@ void RemoteCache::output(Packet * packet)
 {
 	ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_output_packet_mutex, );
 	m_output_packet.push(packet);
-
-	//{
-	//	ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_output_packet_mutex, );
-	//	m_output_packet.push(packet);
-	//}
-
-	//if (!m_is_writing)
-	//{
-	//	this->reactor()->register_handler(this, ACE_Event_Handler::WRITE_MASK);
-	//}
 }
 
 int RemoteCache::wt_stream()
@@ -95,17 +85,6 @@ int RemoteCache::wt_stream()
 	{
 		m_output_msg_block.crunch();
 	}
-
-	//if (m_output_msg_block.length() == 0)
-	//{
-	//	ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_output_packet_mutex, -1);
-	//	if (m_output_packet.size() == 0)
-	//	{
-	//		m_is_writing = false;
-	//		//this->reactor()->remove_handler(this, ACE_Event_Handler::WRITE_MASK | ACE_Event_Handler::DONT_CALL);
-	//		result = -1;
-	//	}
-	//}
 
 	return result;
 }
