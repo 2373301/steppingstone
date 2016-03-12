@@ -26,7 +26,7 @@
 
 #define LOAD_REQUEST(guid, owner_guid)						request_list_ins->load(guid, owner_guid)
 
-#define LOAD_ONCE_REQUEST(guid, owner_guid)					request_list_ins->loadOnce(guid, owner_guid)
+#define LOAD_ONCE_REQUEST(guid, owner_guid, msg)			request_list_ins->loadOnce(guid, owner_guid, msg)
 
 #define FLUSH_REQUEST(guid, message, owner_guid)			request_list_ins->flush(guid, message, owner_guid)
 

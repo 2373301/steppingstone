@@ -3,9 +3,11 @@
 #include "CacheFactory.h"
 #include "Cache.h"
 #include "LoggerFactory.h"
+#include "dynamicparse.h"
 
 ManageCache* g_cache = NULL;
 Pool * g_pool = NULL;
+IDynamicParser * g_parser = NULL;
 class pool_ut
 	:public CacheHandleInput
 {
@@ -14,6 +16,8 @@ public:
 	{	
 		pool_ut ut;
 		g_pool = createPool();
+		g_parser = createDynamicParser();
+		g_parser->init("../../common/material/entity");
 		PoolCfgx cfg;
 		cfg.logger = LoggerFactory::createFileLogger("test.log");
 		cfg.handle_output = std::bind(&pool_ut::output, &ut, std::placeholders::_1,
@@ -39,7 +43,7 @@ public:
 
 		uint64 player_guid = 1;
 		DECLARE_REQUEST_LIST(g_pool);
-		LOAD_ONCE_REQUEST(1, 2);
+		LOAD_ONCE_REQUEST(1, 2, const_cast<MSG_TYPE *>(g_parser->GetPrototype("test")));
 		POOL_OP_COMMIT(g_pool, boost::bind(&pool_ut::loadPlayerFinish, &ut, _1, player_guid));
 
 		while (true)

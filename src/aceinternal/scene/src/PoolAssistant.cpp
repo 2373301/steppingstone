@@ -1111,9 +1111,9 @@ void RequestListImp::load(uint64 guid, uint64 owner_guid)
 	m_request_vec.push_back(new RequestImp(RT_LOAD, guid, NULL, m_pool_cfg, owner_guid));
 }
 
-void RequestListImp::loadOnce(uint64 guid, uint64 owner_guid)
+void RequestListImp::loadOnce(uint64 guid, uint64 owner_guid, const MSG_TYPE * message)
 {
-	m_request_vec.push_back(new RequestImp(RT_LOADONCE, guid, NULL, m_pool_cfg, owner_guid));
+	m_request_vec.push_back(new RequestImp(RT_LOADONCE, guid, const_cast<MSG_TYPE *>(message), m_pool_cfg, owner_guid));
 }
 
 void RequestListImp::flush(uint64 guid, MSG_TYPE * message, uint64 owner_guid)

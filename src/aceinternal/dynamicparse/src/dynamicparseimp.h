@@ -35,13 +35,15 @@ public:
 	virtual int updatedbChanged(const std::string& a_ip, uint32 a_port, const std::string& a_user, const std::string a_pwd,
 		const std::string& a_db_name, std::vector<std::string>& a_changed) override;
 
+	virtual const google::protobuf::Message* GetPrototype(const std::string& type_name) override;
+
 private:
 	google::protobuf::Message* createMessage(const std::string& typeName);
 	void ReadDesAndInsert(const google::protobuf::Message& message, MessageMap*& map_content);
 	void deleteMsg(MessageMap*& map_content);
 private:
-	google::protobuf::compiler::Importer * m_importer;
-	google::protobuf::DynamicMessageFactory* m_dynamic_message_factory;
+	google::protobuf::compiler::Importer * m_importer = NULL;
+	google::protobuf::DynamicMessageFactory* m_dynamic_message_factory = NULL;
 	std::vector<std::string> m_protofiles;
 };
 

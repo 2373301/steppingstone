@@ -54,7 +54,7 @@ public:
 
 	void load(uint64 guid, uint64 owner_guid);
 
-	void loadOnce(uint64 guid, uint64 owner_guid);
+	void loadOnce(uint64 guid, uint64 owner_guid, const MSG_TYPE * message);
 
 	void flush(uint64 guid, MSG_TYPE * message, uint64 owner_guid);
 

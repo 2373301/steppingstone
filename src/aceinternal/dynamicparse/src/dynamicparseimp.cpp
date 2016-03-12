@@ -186,6 +186,19 @@ google::protobuf::Message* DynamicParserImp::createMessage(const std::string& ty
 	return message;
 }
 
+const google::protobuf::Message* DynamicParserImp::GetPrototype(const std::string& type_name)
+{
+	const google::protobuf::Message* message = NULL;
+	const google::protobuf::DescriptorPool * des_pool = m_importer->pool();
+	const google::protobuf::Descriptor* descriptor = des_pool->FindMessageTypeByName(type_name);
+	if (descriptor)
+	{
+		message =  m_dynamic_message_factory->GetPrototype(descriptor);
+	}
+
+	return message;
+}
+
 void DynamicParserImp::delMsgDesc(MsgVec & vec)
 {
 	for (auto it = vec.begin(); it != vec.end(); ++it)

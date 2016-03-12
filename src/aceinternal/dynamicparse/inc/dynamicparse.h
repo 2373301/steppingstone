@@ -91,6 +91,8 @@ public:
 		const std::string& a_db_name, std::vector<std::string>& a_changed) = 0;
 	virtual int updatedbChanged(const std::string& a_ip, uint32 a_port, const std::string& a_user, const std::string a_pwd,
 		const std::string& a_db_name, std::vector<std::string>& a_changed) = 0;
+
+	virtual const google::protobuf::Message* GetPrototype(const std::string& type_name) = 0;
 };
 
 DYNAMIC_PARSE_EXPORT IDynamicParser* createDynamicParser();

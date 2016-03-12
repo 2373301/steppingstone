@@ -7,9 +7,8 @@
 #include <google/protobuf/message.h>
 #include "typedef.h"
 #include "Scend_def.h"
-#include "CacheInterface.h"
-#include "coredef.h"
 #include "Cache.h"
+#include "coredef.h"
 //#include "PlayerFunction.h"
 
 ////////////////  request operator         //////////////////////////////
@@ -307,7 +306,7 @@ public:
 
 	virtual void update(uint64 guid, MSG_TYPE * message, uint64 owner_guid) = 0;
 
-	virtual void loadOnce(uint64 guid, uint64 owner_guid) = 0;
+	virtual void loadOnce(uint64 guid, uint64 owner_guid, const MSG_TYPE * message) = 0;
 
 	virtual void load(uint64 guid, uint64 owner_guid) = 0;
 
