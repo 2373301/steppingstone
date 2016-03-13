@@ -33,13 +33,32 @@ public:
 		cfg.srv_id = argv[4];
 		cfg.cache_handle_output = std::bind(&scenex_ut::output, &ut, std::placeholders::_1,
 			std::placeholders::_2, std::placeholders::_3, std::placeholders::_4);
-		s->init(cfg);
-		s->startup();
-
-		while (true)
+		
+		do 
 		{
-			ACE_OS::sleep(1);
-		}
+			if (-1 == s->init(cfg))
+			{
+				std::cout << "failed to init scene" << std::endl;
+				break;
+			}
+
+			if (-1 == s->startup())
+			{
+				std::cout << "failed to startup scene" << std::endl;
+				break;
+			}
+
+			while (true)
+			{
+				ACE_OS::sleep(1);
+			}
+
+		} while (false);
+
+		s->stop();
+		s->finit();
+
+		ManageLogger::instance()->stop();
 	}
 
 	void output(Packet * packet, uint64 map_id, uint64 request_id, uint64 owner_guid)
