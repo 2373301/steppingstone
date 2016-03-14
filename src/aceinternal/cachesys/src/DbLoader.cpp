@@ -17,7 +17,30 @@ DbLoader::~DbLoader()
 }
 
 int DbLoader::init()
-{
+{	
+	// create db
+	std::string ip = CacheConfiguration::instance()->lookup(DATABASE_IP);
+	uint16 port = ::boost::lexical_cast<uint16>(CacheConfiguration::instance()->lookup(DATABASE_PORT));
+	std::string user = CacheConfiguration::instance()->lookup(DATABASE_USER);
+	std::string pwd = CacheConfiguration::instance()->lookup(DATABASE_PASSWORD);
+	std::string dbName = CacheConfiguration::instance()->lookup(DATABASE_DB_NAME);
+	TableColumnsMap tables;
+	if (-1 == CONTAINER->getParser()->querydbDesc(ip, port, user, pwd, dbName, tables))
+	{
+		return -1;
+	}
+
+	std::vector<std::string> changed;
+	if (-1 == CONTAINER->getParser()->checkEntity(tables, dbName, changed))
+	{
+		return -1;
+	}
+
+	if (-1 == CONTAINER->getParser()->updatedbChanged(ip, port, user, pwd, dbName, changed))
+	{
+		return -1;
+	}
+
 	if (this->activate(THR_NEW_LWP, 6) == -1)
 	{
 		return -1;
@@ -143,7 +166,10 @@ void DbLoader::handleLoadRequest(::mysqlpp::Connection & conn, DataRequestInfo *
 		}
 		else
 		{
-			DEF_LOG_ERROR("failed to load entity from db, guid is <%llu>, error is <%d>, err msg is <%s>\n", data_request_info->guid, cache_ass->last_error(), cache_ass->what().c_str());
+			DEF_LOG_ERROR("failed to load entity from db:%s, guid is <%llu>, error is <%d>, err msg is <%s>\n",
+				data_request_info->data_request->entity_name().c_str(),
+				data_request_info->guid, cache_ass->last_error(),
+				cache_ass->what().c_str());
 		}
 	}
 	else

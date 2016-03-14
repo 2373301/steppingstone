@@ -98,6 +98,7 @@ public:
 	bool		complated;
 	uint64		owner_guid;
 	MSG_TYPE *	message;
+	std::string	name;
 };
 
 POOL_EXOPRT bool extractEntity(uint64 guid, const string & stream, MSG_TYPE * * entity_msg);

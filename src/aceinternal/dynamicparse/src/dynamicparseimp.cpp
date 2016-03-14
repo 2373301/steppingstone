@@ -540,7 +540,7 @@ bool CacheAssistantx::load(void* q)
 {	
 	auto query = *(mysqlpp::Query*)q;
 	MsgVec vec;
-	if ( !parser->getMsgDesc(msg->GetTypeName(), vec))
+	if ( -1 == parser->getMsgDesc(msg->GetTypeName(), vec))
 		return false;
 
 	using namespace ::std;
@@ -548,11 +548,17 @@ bool CacheAssistantx::load(void* q)
 	{
 		query.clear();
 		query << "SELECT ";
+		int col = 0;
 		for (auto cell : vec)
-		{
+		{	
+			col++;
+			if (1 != col)
+				query << ",";
 			query << cell->key_name <<" ";
 		}
-		query << "WHERE guid=" << myguid;
+
+		query << " FROM " << msg->GetTypeName();
+		query << " WHERE guid=" << myguid;
 		const ::mysqlpp::StoreQueryResult& res = query.store();
 		if (res.size() == 0) {
 			er_code_ = CAE_NOT_FOUND;
@@ -572,7 +578,7 @@ bool CacheAssistantx::load(void* q)
 			auto colVal = res.at(0).at(i);
 			//repeated ----------------------------------
 			if (field_des->is_repeated()
-				&& field_des->type() == FieldDescriptor::TYPE_MESSAGE)
+				|| field_des->type() == FieldDescriptor::TYPE_MESSAGE)
 			{
 				if (field_des->type() == FieldDescriptor::TYPE_STRING
 					|| field_des->type() == FieldDescriptor::TYPE_BYTES)

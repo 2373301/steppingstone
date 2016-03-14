@@ -11,5 +11,5 @@
 	
 	<remotlog addr="127.0.0.1" level="LL_DEBUG" />
 	
-	<entitypath path="../../common/material/entity" />
+	<entitypath path="../../common/test" />
 </cached>

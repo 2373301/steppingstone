@@ -36,8 +36,6 @@ public:
 			printf("failed to init cache !\n");
 			g_cache->stop();
 			g_cache->finit();
-			
-			ManageSingleton::instance()->finit();
 			return;
 		}
 

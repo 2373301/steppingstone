@@ -403,7 +403,7 @@ bool PoolImp::commit(RequestList * request_list, RequestCallBack call_back)
 		db_request.set_line_id(m_pool_cfg.line_id);
 		db_request.set_data_stream(empty_string);
 		db_request.set_owner_guid(request->owner_guid);
-
+		db_request.set_entity_name(request->name);
 		switch(request->request_type)
 		{
 		case RT_ADD:

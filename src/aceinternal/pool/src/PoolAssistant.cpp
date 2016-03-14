@@ -53,6 +53,11 @@ RequestImp::RequestImp(RequestType rt, uint64 entity_guid, MSG_TYPE * msg, const
 	success = false;
 	complated = false;
 	message = msg;
+	if (NULL != message)
+	{
+		name = message->GetTypeName();
+	}
+
 	owner_guid = owner_g;
 	m_pool_cfg = pool_cfg;
 

@@ -64,11 +64,11 @@ public:
 	IDynamicParser* getParser() { return parser_; }
 
 private:
-    /// 初始化表<XPath, Value>
+    // 初始化表<XPath, Value>
     void parse(const ::std::string& path, Element* e);
-    /// 验证xml有效性
+    //  验证xml有效性
     bool check_config_file(Element *root);
-    /// 表<XPath,Value>
+    // 表<XPath,Value>
     std::map<std::string, std::string> config_map_;
 	IDynamicParser * parser_ = NULL;
 };
