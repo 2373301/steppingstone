@@ -2,6 +2,7 @@
 #include <boost/filesystem/path.hpp>
 #include <boost/filesystem.hpp>
 #include <mysql++.h>
+#include <mysqld_error.h>
 #include "dynamicparseimp.h"
 
 
@@ -531,6 +532,16 @@ for (boost::uint32_t j = 0; j < num; j++) \
 } \
 }
 
+#define  SERIALIZE_REPEATED_NUMBER(T) \
+::boost::uint32_t size = refl->FieldSize(*msg, field_des); \
+stringstream ssm; \
+ssm.write(reinterpret_cast<char*>(&size), sizeof(::boost::uint32_t)); \
+for (::boost::uint32_t i = 0; i < size; i++) { \
+	T v = refl->GetRepeated##T(*msg, field_des, i); \
+	ssm.write(reinterpret_cast<char*>(&v), sizeof(T)); \
+} \
+query << ::mysqlpp::quote << ssm.str();
+
 typedef uint32 UInt32;
 typedef int32 Int32;
 typedef uint64 UInt64;
@@ -707,9 +718,150 @@ bool CacheAssistantx::update(void* query)
 	return false;
 }
 
-bool CacheAssistantx::insert(void* query)
-{
-	return false;
+bool CacheAssistantx::insert(void* q)
+{	
+	auto query = *(mysqlpp::Query*)q;
+
+	MsgVec vec;
+	if (-1 == parser->getMsgDesc(msg->GetTypeName(), vec))
+		return false;
+
+	using namespace ::std;
+	try {
+		query.clear();
+		query << "INSERT INTO ";
+		query << msg->GetTypeName();
+		query << " SET ";
+
+		using namespace google::protobuf;
+		const Descriptor* des = msg->GetDescriptor();
+		const Reflection* refl = msg->GetReflection();
+		int count = des->field_count();
+		for (int i = 0; i < count; ++i)
+		{
+			const FieldDescriptor* field_des = des->field(i);
+			query << field_des->name() << "=";
+
+			//repeated ----------------------------------
+			if (field_des->is_repeated()
+				|| field_des->type() == FieldDescriptor::TYPE_MESSAGE)
+			{
+				if (field_des->type() == FieldDescriptor::TYPE_STRING
+					|| field_des->type() == FieldDescriptor::TYPE_BYTES)
+				{	
+					stringstream ssm;
+					::boost::uint32_t size = refl->FieldSize(*msg, field_des);
+					ssm.write(reinterpret_cast<char*>(&size), sizeof(::boost::uint32_t));
+					for (::boost::uint32_t i = 0; i < size; i++) {
+						std::string v = refl->GetRepeatedString(*msg, field_des, i);
+						::boost::uint32_t len = v.size() + 1;
+						ssm.write(reinterpret_cast<char*>(&len), sizeof(::boost::uint32_t));
+						ssm.write(v.data(), len);
+					}
+					query << ::mysqlpp::quote << ssm.str();
+				}
+				else if (field_des->type() == FieldDescriptor::TYPE_MESSAGE)
+				{
+					stringstream ssm;
+					::boost::int32_t size = refl->FieldSize(*msg, field_des);
+					ssm.write(reinterpret_cast<char*>(&size), sizeof(::boost::uint32_t));
+					for (boost::int32_t j = 0; j < size; j++)
+					{	
+						const auto& cell = refl->GetRepeatedMessage(*msg, field_des, j);
+						std::string v = cell.SerializeAsString();
+						::boost::uint32_t len = v.size() + 1;
+						ssm.write(reinterpret_cast<char*>(&len), sizeof(::boost::uint32_t));
+						ssm.write(v.data(), len);
+					}
+
+					query << ::mysqlpp::quote << ssm.str();
+				}
+				else
+				{
+					switch (field_des->type())
+					{
+					case FieldDescriptor::TYPE_INT32:
+					{
+						SERIALIZE_REPEATED_NUMBER(Int32);
+						break;
+					}
+					case FieldDescriptor::TYPE_UINT32:
+					{
+						SERIALIZE_REPEATED_NUMBER(UInt32);
+						break;
+					}
+					case FieldDescriptor::TYPE_INT64:
+					{
+						SERIALIZE_REPEATED_NUMBER(Int64);
+						break;
+					}
+					case FieldDescriptor::TYPE_UINT64:
+					{
+						SERIALIZE_REPEATED_NUMBER(UInt64);
+						break;
+					}
+					default:
+						break;
+					}
+				}
+			}
+			else
+			{
+				if (field_des->type() == FieldDescriptor::TYPE_STRING
+					|| field_des->type() == FieldDescriptor::TYPE_BYTES)
+				{
+					std::string v = refl->GetString(*msg, field_des);
+					query << ::mysqlpp::quote << v;
+				}
+				else if (field_des->type() == FieldDescriptor::TYPE_MESSAGE)
+				{	
+					std::stringstream ssm;
+					const auto& cell = refl->GetMessage(*msg, field_des);
+					std::string v = cell.SerializeAsString();
+					::boost::uint32_t len = v.size() + 1;
+					ssm.write(reinterpret_cast<char*>(&len), sizeof(::boost::uint32_t));
+					ssm.write(v.data(), len);
+					query << ::mysqlpp::quote << ssm.str();
+				}
+				else
+				{
+					switch (field_des->type())
+					{
+					case FieldDescriptor::TYPE_INT32:
+						query << ::boost::lexical_cast<::std::string>(refl->GetInt32(*msg, field_des));
+						break;
+					case FieldDescriptor::TYPE_UINT32:
+						query << ::boost::lexical_cast<::std::string>(refl->GetUInt32(*msg, field_des));
+						break;
+					case FieldDescriptor::TYPE_INT64:
+						query << ::boost::lexical_cast<::std::string>(refl->GetInt64(*msg, field_des));
+						break;
+					case FieldDescriptor::TYPE_UINT64:
+						query << ::boost::lexical_cast<::std::string>(refl->GetUInt64(*msg, field_des));
+						break;
+					default:
+						break;
+					}
+				}
+			}
+		}
+
+	}
+	catch (const ::mysqlpp::BadQuery& er) {
+		if (ER_DUP_ENTRY == er.errnum())
+			er_code_ = CAE_DUP_KEY;
+		else
+			er_code_ = CAE_INTERNAL;
+		er_str_ = er.what();
+		return false;
+	}
+	catch (const ::mysqlpp::Exception& er) {
+		er_code_ = CAE_INTERNAL;
+		er_str_ = er.what();
+		return false;
+	}
+
+	return true;
 }
 
 bool CacheAssistantx::remove(void* query)
