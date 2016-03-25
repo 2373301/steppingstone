@@ -147,13 +147,6 @@ void DbLoader::handleRequest(::mysqlpp::Connection & conn, DataRequestInfo * dat
 
 void DbLoader::handleLoadRequest(::mysqlpp::Connection & conn, DataRequestInfo * data_request_info)
 {
-	//if (!conn.connected())
-	//{
-	//	DEF_LOG_ERROR("the connection is disconnected, error is <%d>\n", conn.errnum());
-	//	data_request_info->db_load_success = false;
-	//	return ;
-	//}
-
 	data_request_info->db_load_success = false;
 	CacheAssistantx * cache_ass = CONTAINER->getParser()->create(data_request_info->guid, data_request_info->data_request->entity_name());
 	data_request_info->entity_msg = cache_ass;
