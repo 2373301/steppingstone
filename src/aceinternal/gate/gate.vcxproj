@@ -258,7 +258,6 @@ XCOPY ..\..\bin\libs\libnetstream.dll .\output\ /Y /R /F
     <ClCompile Include="src\AppNotifyInterface.cpp" />
     <ClCompile Include="src\Client\ClientSession.cpp" />
     <ClCompile Include="src\client\ClientStrategyCenter.cpp" />
-    <ClCompile Include="src\Client\HandleClientStream.cpp" />
     <ClCompile Include="src\client\ManageClientBeat.cpp" />
     <ClCompile Include="src\client\ManageClientConnectionTimeout.cpp" />
     <ClCompile Include="src\Client\ManageClientSession.cpp" />
@@ -308,7 +307,6 @@ XCOPY ..\..\bin\libs\libnetstream.dll .\output\ /Y /R /F
     <ClInclude Include="src\AppNotifyInterface.h" />
     <ClInclude Include="src\Client\ClientSession.h" />
     <ClInclude Include="src\client\ClientStrategyCenter.h" />
-    <ClInclude Include="src\Client\HandleClientStream.h" />
     <ClInclude Include="src\client\ManageClientBeat.h" />
     <ClInclude Include="src\client\ManageClientConnectionTimeout.h" />
     <ClInclude Include="src\Client\ManageClientSession.h" />
@@ -316,7 +314,6 @@ XCOPY ..\..\bin\libs\libnetstream.dll .\output\ /Y /R /F
     <ClInclude Include="src\client\ManageClientStreamEx.h" />
     <ClInclude Include="src\client\ManageClientStreamLimit.h" />
     <ClInclude Include="src\client\ManageProfessionConfig.h" />
-    <ClInclude Include="src\client\MessageRole.h" />
     <ClInclude Include="src\Client\RouteClientPackage.h" />
     <ClInclude Include="src\gameserver\GSSession.h" />
     <ClInclude Include="src\gameserver\GSStrategyCenter.h" />

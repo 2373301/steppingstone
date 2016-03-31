@@ -66,9 +66,6 @@
     <ClCompile Include="src\client\ClientStrategyCenter.cpp">
       <Filter>src\client</Filter>
     </ClCompile>
-    <ClCompile Include="src\Client\HandleClientStream.cpp">
-      <Filter>src\client</Filter>
-    </ClCompile>
     <ClCompile Include="src\client\ManageClientBeat.cpp">
       <Filter>src\client</Filter>
     </ClCompile>
@@ -206,9 +203,6 @@
     <ClInclude Include="src\client\ClientStrategyCenter.h">
       <Filter>src\client</Filter>
     </ClInclude>
-    <ClInclude Include="src\Client\HandleClientStream.h">
-      <Filter>src\client</Filter>
-    </ClInclude>
     <ClInclude Include="src\client\ManageClientBeat.h">
       <Filter>src\client</Filter>
     </ClInclude>
@@ -228,9 +222,6 @@
       <Filter>src\client</Filter>
     </ClInclude>
     <ClInclude Include="src\client\ManageProfessionConfig.h">
-      <Filter>src\client</Filter>
-    </ClInclude>
-    <ClInclude Include="src\client\MessageRole.h">
       <Filter>src\client</Filter>
     </ClInclude>
     <ClInclude Include="src\Client\RouteClientPackage.h">
