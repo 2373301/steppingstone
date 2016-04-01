@@ -181,9 +181,5 @@ void OutputSessionPool::registerOutputSessionThreadinfo(OutputSessionThreadInfo 
 	m_output_session_thread_info_vec.push_back(output_session_thread_info);
 }
 
-void OutputSessionPool::sessionClosed(CellSessionx * cell_session)
-{
-	
-}
 
 }

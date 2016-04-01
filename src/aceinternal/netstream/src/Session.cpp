@@ -315,11 +315,6 @@ void Session::recvError(int recv_value, int last_error)
 
 }
 
-void Session::initBufferError(int last_error)
-{
-
-}
-
 void Session::setSavePackInfo(bool is_save, const string & file_name)
 {
 	//m_save_input_pack_info.init(is_save, file_name);

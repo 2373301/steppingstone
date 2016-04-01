@@ -101,17 +101,15 @@ public:
 
 	void setHandleInput(HandleInputStream * handle_input);
 
-	virtual void recvError(int recv_value, int last_error);
-
-	virtual void initBufferError(int last_error);
+	virtual void recvError(int recv_value, int last_error);	// recv num, err
 
 	void setSavePackInfo(bool is_save, const string & file_name);
 
 	bool isClientSide() { return m_clientSide;  }
 protected:
-	virtual int net_connected();
+	virtual int net_connected();	// 已连接, 自定义的地方
 
-	virtual int net_closed();
+	virtual int net_closed();		// 已关闭, 自定义的地方
 
 protected:
 	static int m_socket_buffer_length;

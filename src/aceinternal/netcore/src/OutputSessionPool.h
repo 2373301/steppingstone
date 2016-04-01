@@ -59,8 +59,6 @@ public:
 protected:
 	void registerOutputSessionThreadinfo(OutputSessionThreadInfo * output_session_thread_info);
 
-	void sessionClosed(CellSessionx * cell_session);
-
 private:
 	typedef vector<OutputSessionThreadInfo *> OutputSessionThreadInfoVec_t;
 

@@ -11,24 +11,19 @@
 namespace netstream {
 
 typedef define_unordered_set<CellSession *> CellSessionSet_t;
-
 struct OutputSessionThreadInfo 
 {
-	OutputSessionThreadInfo()
-	{}
-
+	OutputSessionThreadInfo(){}
 	void addCellSession(CellSession * cell_session)
 	{
 		ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, mutex, );
 		add_cell_session_set.insert(cell_session);
 	}
-
 	void writeCellSession(CellSession * cell_session)
 	{
 		ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, mutex, );
 		write_cell_session_set.insert(cell_session);
 	}
-
 	void removeCellSession(CellSession * cell_session)
 	{
 		ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, mutex, );
@@ -36,11 +31,8 @@ struct OutputSessionThreadInfo
 	}
 
 	ACE_Thread_Mutex mutex;
-
 	CellSessionSet_t add_cell_session_set;
-
 	CellSessionSet_t write_cell_session_set;
-
 	CellSessionSet_t remove_cell_session_set;
 };
 
@@ -66,7 +58,7 @@ protected:
 private:
 	int m_session_thread_info_index;
 	bool m_stop;
-	bool m_wait;
+	bool m_wait; // 可以优化为thread num, 当降到0 finit完成
 	bool m_actived;
 
 	SessionPool * m_session_pool;

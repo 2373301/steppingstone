@@ -26,10 +26,11 @@ public:
 	CellSession(bool client);
 	~CellSession();
 
-	virtual int open(void * p=0);
-	virtual int rd_stream();
-	virtual bool output(char * buffer, int buff_size);
-	virtual int wt_stream();
+	virtual int open(void * p=0) override;
+	virtual int rd_stream() override;
+	virtual int wt_stream() override;
+	virtual bool output(char * buffer, int buff_size) override;
+	
 
 	uint64 getGUID();
 	void setGUID(uint64 guid);

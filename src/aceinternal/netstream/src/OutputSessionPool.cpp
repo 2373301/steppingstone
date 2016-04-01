@@ -75,7 +75,8 @@ int OutputSessionPool::svc()
 	{
 		{
 			ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, output_session_thread_info.mutex, -1);
-			for (CellSessionSet_t::iterator it = output_session_thread_info.remove_cell_session_set.begin(); it != output_session_thread_info.remove_cell_session_set.end(); ++it)
+			for (CellSessionSet_t::iterator it = output_session_thread_info.remove_cell_session_set.begin();
+				it != output_session_thread_info.remove_cell_session_set.end(); ++it)
 			{
 				CellSessionSet_t::iterator find_it = cell_session_set.find(*it);
 				if (find_it != cell_session_set.end())
@@ -92,7 +93,8 @@ int OutputSessionPool::svc()
 			}
 			output_session_thread_info.remove_cell_session_set.clear();
 
-			for (CellSessionSet_t::iterator it = output_session_thread_info.add_cell_session_set.begin(); it != output_session_thread_info.add_cell_session_set.end(); ++it)
+			for (CellSessionSet_t::iterator it = output_session_thread_info.add_cell_session_set.begin();
+				it != output_session_thread_info.add_cell_session_set.end(); ++it)
 			{
 				cell_session_set.insert(*it);
 			}
@@ -110,8 +112,6 @@ int OutputSessionPool::svc()
 			int wr = cell_session->wt_stream();
 			if (-1 == wr)
 			{
-				// net close
-				//sessionClosed(*it);
 				cell_session_set.erase(it++);
 			}
 			else if (1 == wr)
@@ -144,17 +144,13 @@ void OutputSessionPool::handleSession(CellSession * cell_session)
 	ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_cell_session_map_mutex, );
 	if (m_output_session_thread_info_vec.size() == 0)
 	{
-		// error
-
+		// never happen
 		return ;
 	}
 
 	int index = m_session_thread_info_index++ % m_output_session_thread_info_vec.size();
-
 	OutputSessionThreadInfo * session_thread_info = m_output_session_thread_info_vec[index];
-
 	session_thread_info->addCellSession(cell_session);
-
 	m_cell_session_map[cell_session] = session_thread_info;
 }
 

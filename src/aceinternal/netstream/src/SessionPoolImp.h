@@ -34,23 +34,23 @@ public:
 	SessionPoolImp();
 	virtual ~SessionPoolImp();
 
-	virtual int svc() override;
-
-	virtual void input(Session * session, ACE_Message_Block & msg_block) override;
-
-
 	virtual int init(int input_thr_no, int output_thr_no, HandleSessionEvent * handle_session_event = NULL)  override;
 	virtual void setSocketBufferSize(int input_buf_size, int output_buf_size) override;
 	virtual bool connect(const SessionAddrVec_t & session_addr_vec) override;
 	virtual bool listen(const string & listen_addr) override;
 	virtual void setHandleSessionEvent(HandleSessionEvent * handle_event) override;
 	virtual bool handleOutputStream(Session_t session, char * buffer, int buff_size) override;
+
 	virtual void stop() override;
 	virtual void finit() override;
 	virtual void removeSession(Session_t session) override;
 
-	virtual void handleNewConnection(Session * session);
-	virtual void connectionClosed(Session * session, int trigger_source);
+	void handleNewConnection(Session * session);
+	void connectionClosed(Session * session, int trigger_source);
+
+	virtual void input(Session * session, ACE_Message_Block & msg_block) override;
+
+	virtual int svc() override;
 
 private:
 	HandleSessionEvent * m_handle_session_event;
