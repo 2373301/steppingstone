@@ -13,8 +13,7 @@ class CellSession;
 
 struct CellSessionInfo
 {
-	CellSessionInfo()
-	{}
+	CellSessionInfo(){}
 
 	int reference_no;
 };
@@ -37,8 +36,8 @@ public:
 
 private:
 	uint64 m_guid;
-	ACE_Message_Block m_outpu_buffer;
-	ACE_Thread_Mutex m_outpu_buffer_mutex;
+	ACE_Message_Block cell_out_buf_;
+	ACE_Thread_Mutex cell_out_mutex_;
 };
 
 

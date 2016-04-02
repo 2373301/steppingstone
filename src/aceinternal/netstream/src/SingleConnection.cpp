@@ -124,7 +124,7 @@ void SingleConnection::newConnection(PacketQue_t & output_packet_que)
 {
 }
 
-void SingleConnection::connectionClosed()
+void SingleConnection::onSessionCloseNotify()
 {
 }
 
@@ -192,7 +192,7 @@ void SingleConnection::closeSession()
 	m_session = NULL;
 	m_connect_status = 2;
 
-	connectionClosed();
+	onSessionCloseNotify();
 }
 
 }

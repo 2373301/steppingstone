@@ -12,13 +12,13 @@ void ManageNetEventNotify::collectSessionPoolReactor(SessionPoolImp * session_po
 	m_session_pool_reactor_map.insert(std::make_pair(reactor, session_pool));
 }
 
-void ManageNetEventNotify::handleNewSession(CellSession * cell_session)
+void ManageNetEventNotify::sessionOpenNotify(CellSession * cell_session)
 {
 	ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_session_pool_mutex, );
 	SessionPoolReactorMap_t::iterator it = m_session_pool_reactor_map.find(cell_session->reactor());
 	if (it != m_session_pool_reactor_map.end())
 	{
-		it->second->handleNewConnection(cell_session);
+		it->second->onSessionOpenNotify(cell_session);
 	}
 	else
 	{
@@ -26,13 +26,13 @@ void ManageNetEventNotify::handleNewSession(CellSession * cell_session)
 	}
 }
 
-void ManageNetEventNotify::handleSessionClose(CellSession * cell_session, int trigger_source)
+void ManageNetEventNotify::sessionCloseNotify(CellSession * cell_session, int trigger_source)
 {
 	ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_session_pool_mutex, );
 	SessionPoolReactorMap_t::iterator it = m_session_pool_reactor_map.find(cell_session->reactor());
 	if (it != m_session_pool_reactor_map.end())
 	{
-		it->second->connectionClosed(cell_session, trigger_source);
+		it->second->onSessionCloseNotify(cell_session, trigger_source);
 	}
 	else
 	{

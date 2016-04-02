@@ -22,9 +22,9 @@ public:
 
 	void collectSessionPoolReactor(SessionPoolImp * session_pool, ACE_Reactor * reactor);
 
-	void handleNewSession(CellSession * cell_session);
+	void sessionOpenNotify(CellSession * cell_session);
 
-	void handleSessionClose(CellSession * cell_session, int trigger_source);
+	void sessionCloseNotify(CellSession * cell_session, int trigger_source);
 
 private:
 	ACE_Thread_Mutex m_session_pool_mutex;

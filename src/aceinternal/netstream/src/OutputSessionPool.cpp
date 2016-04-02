@@ -73,7 +73,8 @@ int OutputSessionPool::svc()
 
 	while (!m_stop)
 	{
-		{
+		{	
+			// ÒÆ³ý´ýÉ¾³ýµÄsession
 			ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, output_session_thread_info.mutex, -1);
 			for (CellSessionSet_t::iterator it = output_session_thread_info.remove_cell_session_set.begin();
 				it != output_session_thread_info.remove_cell_session_set.end(); ++it)
@@ -84,7 +85,7 @@ int OutputSessionPool::svc()
 					CellSession * cell = *find_it;
 					cell_session_set.erase(find_it);
 					cell->shutdown();
-					ManageNetEventNotify::instance()->handleSessionClose(cell, ACE_Event_Handler::WRITE_MASK);
+					ManageNetEventNotify::instance()->sessionCloseNotify(cell, ACE_Event_Handler::WRITE_MASK);
 				}
 				else
 				{
@@ -93,6 +94,7 @@ int OutputSessionPool::svc()
 			}
 			output_session_thread_info.remove_cell_session_set.clear();
 
+			// Ìí¼Ó session
 			for (CellSessionSet_t::iterator it = output_session_thread_info.add_cell_session_set.begin();
 				it != output_session_thread_info.add_cell_session_set.end(); ++it)
 			{
@@ -109,6 +111,7 @@ int OutputSessionPool::svc()
 			{
 				continue;
 			}
+			// 0 : normal, -1: socket closed, 1:empty buffer, 2:call again, still have data in buffer
 			int wr = cell_session->wt_stream();
 			if (-1 == wr)
 			{

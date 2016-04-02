@@ -29,9 +29,8 @@ extern "C" void NETSTREAM_EXOPRT parsePacketFromStream(Session_t session, ACE_Me
 enum SessionState
 {
 	SS_NONE			= 0,
-	SS_OPEN,
 	SS_CONNECTED,
-	SS_CLOSE,
+	SS_CLOSED,
 };
 
 class NETSTREAM_EXOPRT HandleInputStream
@@ -66,6 +65,7 @@ public:
 	string file_name;
 };
 
+// handle_xxx 是被 reactor框架调用
 class NETSTREAM_EXOPRT Session
 	: public HandleOutputStream
 	, public ACE_Svc_Handler<ACE_SOCK_STREAM, ACE_NULL_SYNCH>
@@ -79,52 +79,36 @@ public:
 	typedef std::list<Packet *> PacketList;
 
 	virtual int open(void * p=0) override;
-
+	
 	virtual int handle_input(ACE_HANDLE  fd = ACE_INVALID_HANDLE) override;
-
 	virtual int handle_output(ACE_HANDLE  fd = ACE_INVALID_HANDLE) override;
-
 	virtual int handle_close(ACE_HANDLE handle, ACE_Reactor_Mask close_mask) override;
 
-public:
 	virtual bool output(char * buffer, int buff_size) override;
 
 	void setSocketBufferSize(int input_buf_size, int output_buf_size);
 
-public:
-	virtual int rd_stream();
-
-	// 0 : normal, -1: socket closed, 1:empty buffer, 2:call again, still have data in buffer
-	virtual int wt_stream();
-
-	virtual int close(uint32 close_mask);
-
 	void setHandleInput(HandleInputStream * handle_input);
-
-	virtual void recvError(int recv_value, int last_error);	// recv num, err
-
-	void setSavePackInfo(bool is_save, const string & file_name);
-
-	bool isClientSide() { return m_clientSide;  }
+	bool isClientSide() { return client_side_; }
 protected:
+	friend class SingleConnection;
+	virtual int rd_stream(); // 有问题, 只reset flag
+	// 0 : normal, -1: socket closed, 1:empty buffer, 2:call again, still have data in buffer
+	virtual int wt_stream(); // 有问题则 shutdown
+	virtual void recvError(int recv_value, int last_error);	// recv num, err
+	void setSavePackInfo(bool is_save, const string & file_name);
+	
 	virtual int net_connected();	// 已连接, 自定义的地方
-
 	virtual int net_closed();		// 已关闭, 自定义的地方
 
 protected:
-	static int m_socket_buffer_length;
-
-	SessionState m_session_state;
-
-	netstream::HandleInputStream * m_handle_input;
-
+	static int s_socket_buf_len_;
+	SessionState session_state_;
+	netstream::HandleInputStream * handle_input_;
 	//SavePackInfo m_save_input_pack_info;
-
-	ACE_Message_Block m_input_msg_block;
-
-	ACE_Message_Block m_output_msg_block;
-
-	bool m_clientSide;
+	ACE_Message_Block in_buf_;
+	ACE_Message_Block out_buf_;
+	bool client_side_;
 };
 
 }

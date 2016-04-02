@@ -36,14 +36,14 @@ public:
 
 	virtual bool listen(const string & listen_addr) = 0;
 
-	virtual void setHandleSessionEvent(HandleSessionEvent * handle_event) = 0;
-
+	// send data
 	virtual bool handleOutputStream(Session_t session, char * buffer, int buff_size) = 0;
 
 	virtual void stop() = 0;
 
 	virtual void finit() = 0;
 
+	// Ö÷¶¯¹Ø±Õsession
 	virtual void removeSession(Session_t session) = 0;
 
 };

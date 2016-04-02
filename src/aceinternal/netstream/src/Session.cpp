@@ -8,12 +8,12 @@
 #include "Session.h"
 #include "Logger.h"
 
-//#define LOG_INPUT_MSG_SIZE()	DEF_LOG_DEBUG("the input msg rd_ptr is <%x>, wt_ptr is <%x>, file line is <%d>\n", m_input_msg_block.rd_ptr(), m_input_msg_block.wr_ptr(), __LINE__)
+//#define LOG_INPUT_MSG_SIZE()	DEF_LOG_DEBUG("the input msg rd_ptr is <%x>, wt_ptr is <%x>, file line is <%d>\n", in_buf_.rd_ptr(), in_buf_.wr_ptr(), __LINE__)
 #define LOG_INPUT_MSG_SIZE()
 namespace netstream
 {
 
-int Session::m_socket_buffer_length = 102400;
+int Session::s_socket_buf_len_ = 102400;
 
 void parsePacketFromStream(netstream::Session_t session, ACE_Message_Block & msg_block, PacketVec_t & packet_vec)
 {
@@ -97,21 +97,21 @@ void SavePackInfo::save(char * stream_buffer, int stream_len)
 }
 
 Session::Session()
-: m_session_state(SS_NONE)
-, m_handle_input(NULL)
-,m_clientSide(false)
+: session_state_(SS_NONE)
+, handle_input_(NULL)
+,client_side_(false)
 {
-	m_input_msg_block.init(m_socket_buffer_length);
-	m_output_msg_block.init(m_socket_buffer_length);
+	in_buf_.init(s_socket_buf_len_);
+	out_buf_.init(s_socket_buf_len_);
 }
 
 Session::Session(bool client)
-	: m_session_state(SS_NONE)
-	, m_handle_input(NULL)
-	,m_clientSide(client)
+	: session_state_(SS_NONE)
+	, handle_input_(NULL)
+	,client_side_(client)
 {
-	m_input_msg_block.init(m_socket_buffer_length);
-	m_output_msg_block.init(m_socket_buffer_length);
+	in_buf_.init(s_socket_buf_len_);
+	out_buf_.init(s_socket_buf_len_);
 }
 
 Session::~Session()
@@ -121,8 +121,6 @@ Session::~Session()
 
 int Session::open(void * p)
 {
-	m_session_state = SS_OPEN;
-	
 	this->peer().enable(ACE_NONBLOCK);
 	int flag = 1;
 	this->peer().set_option(IPPROTO_TCP, TCP_NODELAY, (char *)&flag, sizeof(flag));
@@ -132,6 +130,7 @@ int Session::open(void * p)
 		return -1;
 	}
 
+	session_state_ = SS_CONNECTED;
 	return net_connected();
 }
 
@@ -154,21 +153,29 @@ int Session::handle_output(ACE_HANDLE  fd)
 }
 
 int Session::handle_close(ACE_HANDLE handle, ACE_Reactor_Mask close_mask)
-{
+{	
+	// ÏÈÈÃread reactor ÏÈ handle close
 	if (ACE_Event_Handler::WRITE_MASK == close_mask)
 	{
 		return 0;
 	}
 
-	return close(close_mask);
+	// READ_MASK
+	if (SS_CLOSED != session_state_)
+	{
+		session_state_ = SS_CLOSED;
+		net_closed();
+	}
+	
+	return 0;
 }
 
 bool Session::output(char * buffer, int buff_size)
 {
 	// todo
-	if (m_output_msg_block.space() >= buff_size)
+	if (out_buf_.space() >= buff_size)
 	{
-		m_output_msg_block.copy(buffer, buff_size);
+		out_buf_.copy(buffer, buff_size);
 		return true;
 	}
 	else
@@ -179,14 +186,14 @@ bool Session::output(char * buffer, int buff_size)
 
 void Session::setSocketBufferSize(int input_buf_size, int output_buf_size)
 {
-	if (input_buf_size > m_socket_buffer_length)
+	if (input_buf_size > s_socket_buf_len_)
 	{
-		m_input_msg_block.init(input_buf_size);
+		in_buf_.init(input_buf_size);
 	}
 
-	if (output_buf_size > m_socket_buffer_length)
+	if (output_buf_size > s_socket_buf_len_)
 	{
-		m_output_msg_block.init(output_buf_size);
+		out_buf_.init(output_buf_size);
 	}
 }
 
@@ -196,26 +203,26 @@ int Session::rd_stream()
 
 	LOG_INPUT_MSG_SIZE();
 
-	m_input_msg_block.crunch();
+	in_buf_.crunch();
 
 	LOG_INPUT_MSG_SIZE();
 
-	int recv_n = (int)this->peer().recv(m_input_msg_block.wr_ptr(), m_input_msg_block.space());
+	int recv_n = (int)this->peer().recv(in_buf_.wr_ptr(), in_buf_.space());
 	if (recv_n > 0)
 	{
 		LOG_INPUT_MSG_SIZE();
 
-		m_input_msg_block.wr_ptr(recv_n);
+		in_buf_.wr_ptr(recv_n);
 
 		LOG_INPUT_MSG_SIZE();
 
-		m_handle_input->input(this, m_input_msg_block);
+		handle_input_->input(this, in_buf_);
 	}
 	else if (0 == recv_n)
 	{
 		// remote normal close
 		//DEF_LOG_ERROR("remote stream close normally, last error is <%d>\n", ACE_OS::last_error());
-		//string debug_str = "remote stream close normally, last error is : " + boost::lexical_cast<string>(ACE_OS::last_error()) + " buffer length : " + boost::lexical_cast<string>(m_input_msg_block.space()) + "\n";
+		//string debug_str = "remote stream close normally, last error is : " + boost::lexical_cast<string>(ACE_OS::last_error()) + " buffer length : " + boost::lexical_cast<string>(in_buf_.space()) + "\n";
 		//std::cout << debug_str;
 		recvError(recv_n, ACE_OS::last_error());
 		result = -1;
@@ -245,9 +252,9 @@ int Session::wt_stream()
 	// todo
 	int result = 0;
 
-	if (m_output_msg_block.length() > 0)
+	if (out_buf_.length() > 0)
 	{
-		auto send_n = this->peer().send(m_output_msg_block.rd_ptr(), m_output_msg_block.length());
+		auto send_n = this->peer().send(out_buf_.rd_ptr(), out_buf_.length());
 		if (send_n <= 0)
 		{
 			int last_error = ACE_OS::last_error();
@@ -263,9 +270,9 @@ int Session::wt_stream()
 		}
 		else
 		{
-			m_output_msg_block.rd_ptr(send_n);
+			out_buf_.rd_ptr(send_n);
 
-			if (m_output_msg_block.length() == 0)
+			if (out_buf_.length() == 0)
 			{
 				result = 0;
 			}
@@ -280,34 +287,17 @@ int Session::wt_stream()
 		result = 1;
 	}
 
-	if (m_output_msg_block.length() < 500)
+	if (out_buf_.length() < 500)
 	{
-		m_output_msg_block.crunch();
+		out_buf_.crunch();
 	}
 
 	return result;
 }
 
-int Session::close(uint32 close_mask)
-{
-	if (SS_CLOSE != m_session_state)
-	{
-		m_session_state = SS_CLOSE;
-
-		net_closed();
-	}
-
-	if ((close_mask & ACE_Event_Handler::READ_MASK) || (close_mask & ACE_Event_Handler::WRITE_MASK))
-	{
-		return 0;
-	}
-
-	return 0;
-}
-
 void Session::setHandleInput(HandleInputStream * handle_input)
 {
-	m_handle_input = handle_input;
+	handle_input_ = handle_input;
 }
 
 void Session::recvError(int recv_value, int last_error)

@@ -1,78 +1,78 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="ifc">
+    <Filter Include="inc">
       <UniqueIdentifier>{39ab1579-01b8-4013-a738-7629a65d5c82}</UniqueIdentifier>
     </Filter>
-    <Filter Include="stream">
-      <UniqueIdentifier>{140c9fc9-ab4e-4325-9540-6637f2bf1ad5}</UniqueIdentifier>
+    <Filter Include="src">
+      <UniqueIdentifier>{226f5e4d-4844-41bf-8954-1372e1b137e1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="netevent">
+    <Filter Include="src\netevent">
       <UniqueIdentifier>{1a0b5989-107f-4b66-84f5-5391a14d7d9f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="singleconnection">
-      <UniqueIdentifier>{53971153-f33d-4729-b6e6-0cd35d74fc7a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="pool">
+    <Filter Include="src\pool">
       <UniqueIdentifier>{fc9ea907-d695-444e-9b19-de8b614b8da7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\singleconnection">
+      <UniqueIdentifier>{53971153-f33d-4729-b6e6-0cd35d74fc7a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\CellSession.cpp">
-      <Filter>stream</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Session.cpp">
-      <Filter>stream</Filter>
-    </ClCompile>
     <ClCompile Include="src\ManageNetEventNotify.cpp">
-      <Filter>netevent</Filter>
+      <Filter>src\netevent</Filter>
     </ClCompile>
     <ClCompile Include="src\SingleConnection.cpp">
-      <Filter>singleconnection</Filter>
+      <Filter>src\singleconnection</Filter>
     </ClCompile>
     <ClCompile Include="src\InputSessionPool.cpp">
-      <Filter>pool</Filter>
+      <Filter>src\pool</Filter>
     </ClCompile>
     <ClCompile Include="src\OutputSessionPool.cpp">
-      <Filter>pool</Filter>
+      <Filter>src\pool</Filter>
     </ClCompile>
     <ClCompile Include="src\SessionPoolFactory.cpp">
-      <Filter>pool</Filter>
+      <Filter>src\pool</Filter>
     </ClCompile>
     <ClCompile Include="src\SessionPoolImp.cpp">
-      <Filter>pool</Filter>
+      <Filter>src\pool</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CellSession.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Session.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\SessionPool.h">
-      <Filter>ifc</Filter>
+      <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="inc\SessionPoolFactory.h">
-      <Filter>ifc</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CellSession.h">
-      <Filter>stream</Filter>
+      <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="src\ManageNetEventNotify.h">
-      <Filter>netevent</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\SingleConnection.h">
-      <Filter>singleconnection</Filter>
+      <Filter>src\netevent</Filter>
     </ClInclude>
     <ClInclude Include="src\InputSessionPool.h">
-      <Filter>pool</Filter>
+      <Filter>src\pool</Filter>
     </ClInclude>
     <ClInclude Include="src\OutputSessionPool.h">
-      <Filter>pool</Filter>
+      <Filter>src\pool</Filter>
     </ClInclude>
     <ClInclude Include="src\SessionPoolImp.h">
-      <Filter>pool</Filter>
+      <Filter>src\pool</Filter>
     </ClInclude>
     <ClInclude Include="inc\netstream_def.h">
-      <Filter>ifc</Filter>
+      <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="inc\Session.h">
-      <Filter>ifc</Filter>
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\SingleConnection.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CellSession.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

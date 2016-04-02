@@ -35,7 +35,7 @@ protected:
 
 	virtual void newConnection(PacketQue_t & output_packet_que);
 
-	virtual void connectionClosed();
+	virtual void onSessionCloseNotify();
 protected:
 	bool connectToServer();
 

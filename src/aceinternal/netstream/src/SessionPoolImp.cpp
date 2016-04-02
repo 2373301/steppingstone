@@ -175,11 +175,6 @@ bool SessionPoolImp::listen(const string & listen_addr)
 	return 1 == m_listen_status;
 }
 
-void SessionPoolImp::setHandleSessionEvent(HandleSessionEvent * handle_event)
-{
-	m_handle_session_event = handle_event;
-}
-
 bool SessionPoolImp::handleOutputStream(Session_t session, char * buffer, int buff_size)
 {
 	return m_output_session_pool.handleOutputStream(session, buffer, buff_size);
@@ -202,7 +197,7 @@ void SessionPoolImp::removeSession(Session_t session)
 	m_output_session_pool.removeSession((CellSession *)session);
 }
 
-void SessionPoolImp::handleNewConnection(Session * session)
+void SessionPoolImp::onSessionOpenNotify(Session * session)
 {
 	if (NULL != m_handle_session_event)
 	{
@@ -230,7 +225,7 @@ void SessionPoolImp::handleNewConnection(Session * session)
 	m_output_session_pool.handleSession((CellSession *)session);
 }
 
-void SessionPoolImp::connectionClosed(Session * session, int trigger_source)
+void SessionPoolImp::onSessionCloseNotify(Session * session, int trigger_source)
 {
 	int ref_no = 2;
 	{

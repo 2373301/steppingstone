@@ -38,19 +38,18 @@ public:
 	virtual void setSocketBufferSize(int input_buf_size, int output_buf_size) override;
 	virtual bool connect(const SessionAddrVec_t & session_addr_vec) override;
 	virtual bool listen(const string & listen_addr) override;
-	virtual void setHandleSessionEvent(HandleSessionEvent * handle_event) override;
 	virtual bool handleOutputStream(Session_t session, char * buffer, int buff_size) override;
-
 	virtual void stop() override;
 	virtual void finit() override;
 	virtual void removeSession(Session_t session) override;
 
-	void handleNewConnection(Session * session);
-	void connectionClosed(Session * session, int trigger_source);
+	// ManageNetEventNotify callback
+	void onSessionOpenNotify(Session * session);
+	void onSessionCloseNotify(Session * session, int trigger_source);
 
-	virtual void input(Session * session, ACE_Message_Block & msg_block) override;
+	virtual void input(Session * session, ACE_Message_Block & msg_block) override; // HandleInputStream
 
-	virtual int svc() override;
+	virtual int svc() override; // ACE_Task
 
 private:
 	HandleSessionEvent * m_handle_session_event;
