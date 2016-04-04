@@ -1,1 +1,2 @@
-# ace_test
+todo:
+1. reconnect

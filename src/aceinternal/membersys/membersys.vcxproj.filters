@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{0341b415-0e04-418b-88eb-384385ff1511}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="member">
+      <UniqueIdentifier>{37b2556a-9460-4679-8227-b7bac4d4d3ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gate">
+      <UniqueIdentifier>{76c01e32-dd2c-43c0-97ac-f3a1ce036a68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="config">
+      <UniqueIdentifier>{a84571b9-90e3-47c1-9a2e-61535d0f800a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="protocol">
+      <UniqueIdentifier>{0ae2e14d-5fde-4ff2-8475-2f526dcce8d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="roledb">
+      <UniqueIdentifier>{e995977f-f636-4adf-b422-d148ddabb95b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cooler">
+      <UniqueIdentifier>{58a2d42e-f319-47da-8515-2d85c9ff46f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="parser">
+      <UniqueIdentifier>{c0b5c70a-f3e7-4a7f-8968-485827167b2a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageMemberListen.cpp">
+      <Filter>member</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageMemberRegister.cpp">
+      <Filter>member</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageMemberSession.cpp">
+      <Filter>member</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageMemberSessionOutput.cpp">
+      <Filter>member</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MemberSession.cpp">
+      <Filter>member</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GateSession.cpp">
+      <Filter>gate</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageGateSession.cpp">
+      <Filter>gate</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageOnlinePlayer.cpp">
+      <Filter>gate</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageConfig.cpp">
+      <Filter>config</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MemberProtocol.cpp">
+      <Filter>protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageRoleDb.cpp">
+      <Filter>roledb</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageMemberSessionCooler.cpp">
+      <Filter>cooler</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DynamicParse.cpp">
+      <Filter>parser</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DynamicParseInterface.cpp">
+      <Filter>parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_member.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\ManageMemberListen.h">
+      <Filter>member</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageMemberRegister.h">
+      <Filter>member</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageMemberSession.h">
+      <Filter>member</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageMemberSessionOutput.h">
+      <Filter>member</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MemberSession.h">
+      <Filter>member</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GateSession.h">
+      <Filter>gate</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageGateSession.h">
+      <Filter>gate</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageOnlinePlayer.h">
+      <Filter>gate</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageConfig.h">
+      <Filter>config</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MemberProtocol.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageRoleDb.h">
+      <Filter>roledb</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageMemberSessionCooler.h">
+      <Filter>cooler</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DynamicParse.h">
+      <Filter>parser</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DynamicParseInterface.h">
+      <Filter>parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_member.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

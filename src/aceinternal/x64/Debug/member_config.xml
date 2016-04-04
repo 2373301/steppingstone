@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<membersys>
+	<account_database  server_name="account" ip="127.0.0.1" port="3306" user="root" password="root"/>
+	
+	<game_database  server_name="game" ip="127.0.0.1" port="3306" user="root" password="root"/>
+	
+	<log_database server_name="gmlog" ip="127.0.0.1" port="3306" user="root" password="root"/>
+	
+	<member addr="127.0.0.1:25000" />
+	
+	<!--type, 1 : 电信, 2:网通 -->
+	<gates client1="127.0.0.1:13100" client2="127.0.0.1:13100">
+		<gate addr="127.0.0.1:80" type="1" client="127.0.0.1:13100"/>
+	</gates>
+	
+	<line id="8" />
+	
+	<update interval="60" />
+	
+	<security_key key="testconnectkey" />
+	
+</membersys>
