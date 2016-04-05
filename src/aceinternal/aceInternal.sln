@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "logger", "logger\logger.vcxproj", "{7D2172CE-88C0-41D0-B7D0-ECF8A70C94BD}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -85,6 +85,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "proto_maker", "proto_maker\proto_maker.csproj", "{C5C76E71-77C2-4363-86CF-FFAAAB7BA720}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "membersys", "membersys\membersys.vcxproj", "{3DDF8B23-C1E0-49EE-BB9F-98EF84587891}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "charsys", "charsys\charsys.vcxproj", "{8C46ADFF-719F-4AC4-B4DB-FD46EF9A27AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -439,6 +441,19 @@ Global
 		{3DDF8B23-C1E0-49EE-BB9F-98EF84587891}.ReleaseD|x64.ActiveCfg = ReleaseD|Win32
 		{3DDF8B23-C1E0-49EE-BB9F-98EF84587891}.ReleaseD|x86.ActiveCfg = ReleaseD|Win32
 		{3DDF8B23-C1E0-49EE-BB9F-98EF84587891}.ReleaseD|x86.Build.0 = ReleaseD|Win32
+		{8C46ADFF-719F-4AC4-B4DB-FD46EF9A27AA}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{8C46ADFF-719F-4AC4-B4DB-FD46EF9A27AA}.Debug|x64.ActiveCfg = Debug|x64
+		{8C46ADFF-719F-4AC4-B4DB-FD46EF9A27AA}.Debug|x64.Build.0 = Debug|x64
+		{8C46ADFF-719F-4AC4-B4DB-FD46EF9A27AA}.Debug|x86.ActiveCfg = Debug|Win32
+		{8C46ADFF-719F-4AC4-B4DB-FD46EF9A27AA}.Debug|x86.Build.0 = Debug|Win32
+		{8C46ADFF-719F-4AC4-B4DB-FD46EF9A27AA}.Release|Any CPU.ActiveCfg = Release|Win32
+		{8C46ADFF-719F-4AC4-B4DB-FD46EF9A27AA}.Release|x64.ActiveCfg = Release|Win32
+		{8C46ADFF-719F-4AC4-B4DB-FD46EF9A27AA}.Release|x86.ActiveCfg = Release|Win32
+		{8C46ADFF-719F-4AC4-B4DB-FD46EF9A27AA}.Release|x86.Build.0 = Release|Win32
+		{8C46ADFF-719F-4AC4-B4DB-FD46EF9A27AA}.ReleaseD|Any CPU.ActiveCfg = ReleaseD|Win32
+		{8C46ADFF-719F-4AC4-B4DB-FD46EF9A27AA}.ReleaseD|x64.ActiveCfg = ReleaseD|Win32
+		{8C46ADFF-719F-4AC4-B4DB-FD46EF9A27AA}.ReleaseD|x86.ActiveCfg = ReleaseD|Win32
+		{8C46ADFF-719F-4AC4-B4DB-FD46EF9A27AA}.ReleaseD|x86.Build.0 = ReleaseD|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

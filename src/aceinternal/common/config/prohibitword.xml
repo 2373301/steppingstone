@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ProhibitWord>
+	<Account>
+		<AccountWord>conngame</AccountWord>
+		<AccountWord>Conngame</AccountWord>
+		<AccountWord>CONNGAME</AccountWord>
+		<AccountWord>ConnGame</AccountWord>
+	</Account>
+	<Chat>
+		<ChatWord>conngame</ChatWord>
+		<ChatWord>Conngame</ChatWord>
+		<ChatWord>CONNGAME</ChatWord>
+		<ChatWord>ConnGame</ChatWord>
+	</Chat>
+</ProhibitWord>

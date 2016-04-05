@@ -160,7 +160,7 @@ int GateTerminal::wt_stream()
 //
 //	{
 //		ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_output_packet_mutex, -1);
-//		if ((m_output_packet.size() == 0) && (m_output_msg_block.length() == 0))
+//		if ((m_output_packet.size() == 0) && (out_buf_.length() == 0))
 //		{
 //			return 1;
 //		}
@@ -173,9 +173,9 @@ int GateTerminal::wt_stream()
 //			}
 //
 //			Packet * ps = m_output_packet.front();
-//			if (ps->stream_size() < m_output_msg_block.space())
+//			if (ps->stream_size() < out_buf_.space())
 //			{
-//				m_output_msg_block.copy(ps->stream(), ps->stream_size());
+//				out_buf_.copy(ps->stream(), ps->stream_size());
 //				m_output_packet.pop();
 //				delete ps;
 //			}
@@ -186,9 +186,9 @@ int GateTerminal::wt_stream()
 //		}
 //	}
 //
-//	if (m_output_msg_block.length() > 0)
+//	if (out_buf_.length() > 0)
 //	{
-//		int send_n = this->peer().send(m_output_msg_block.rd_ptr(), m_output_msg_block.length());
+//		int send_n = this->peer().send(out_buf_.rd_ptr(), out_buf_.length());
 //		if (send_n <= 0)
 //		{
 //			int last_error = ACE_OS::last_error();
@@ -203,13 +203,13 @@ int GateTerminal::wt_stream()
 //		}
 //		else
 //		{
-//			 m_output_msg_block.rd_ptr(send_n);
+//			 out_buf_.rd_ptr(send_n);
 //		}
 //	}
 //
-//	if (m_output_msg_block.length() < 500)
+//	if (out_buf_.length() < 500)
 //	{
-//		m_output_msg_block.crunch();
+//		out_buf_.crunch();
 //	}
 //
 //	return result;
@@ -228,8 +228,8 @@ int GateTerminal::finit()
 
 int GateTerminal::initing()
 {
-	m_input_msg_block.init(SOCK_BUFFER_LEN);
-	m_output_msg_block.init(SOCK_BUFFER_LEN);
+	in_buf_.init(SOCK_BUFFER_LEN);
+	out_buf_.init(SOCK_BUFFER_LEN);
 
 	this->peer().enable(ACE_NONBLOCK);
 
@@ -253,13 +253,13 @@ uint32 GateTerminal::increaseNumber(uint32 src, uint32 increase_no)
 void GateTerminal::geteLostConnection()
 {
 	MAKE_NEW_PACKET(ps, SMSG_LOST_GATE_CONNECTION, 0, "");
-	if (NULL != m_handle_input)
+	if (NULL != handle_input_)
 	{
 		// todo
-		m_input_msg_block.rd_ptr(m_input_msg_block.base());
-		m_input_msg_block.wr_ptr(m_input_msg_block.base());
-		m_input_msg_block.copy(ps->stream(), ps->stream_size());
-		m_handle_input->input(this, m_input_msg_block);
+		in_buf_.rd_ptr(in_buf_.base());
+		in_buf_.wr_ptr(in_buf_.base());
+		in_buf_.copy(ps->stream(), ps->stream_size());
+		handle_input_->input(this, in_buf_);
 		delete ps;
 	}
 }

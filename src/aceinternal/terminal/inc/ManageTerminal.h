@@ -8,7 +8,7 @@ class ManageTerminal : public HandleOutput
 {
 public:
 	ManageTerminal()
-	: m_handle_input(NULL)
+	: handle_input_(NULL)
 	, m_stop(false)
 	, m_finit(false)
 	{}
@@ -23,7 +23,7 @@ public:
 	virtual int init(const TerminalCfg & terminal_cfg)
 	{
 		m_terminal_cfg = terminal_cfg;
-		m_handle_input = m_terminal_cfg.handle_input;
+		handle_input_ = m_terminal_cfg.handle_input;
 		return initing();
 	}
 
@@ -35,7 +35,7 @@ protected:
 	virtual int initing() = 0;
 
 protected:
-	HandleInput * m_handle_input;
+	HandleInput * handle_input_;
 
 	bool m_stop;
 

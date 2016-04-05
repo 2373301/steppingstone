@@ -115,7 +115,7 @@ void ManageSingleTerminal::input(Session * session, ACE_Message_Block & msg_bloc
 	////	removeRoute(packet->guid());
 	////}
 
-	//m_handle_input->input(packet);
+	//handle_input_->input(packet);
 }
 
 void ManageSingleTerminal::output(Packet * packet)

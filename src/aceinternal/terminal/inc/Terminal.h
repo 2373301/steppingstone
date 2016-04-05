@@ -6,7 +6,7 @@
 #include "Packet.h"
 #include "Session.h"
 
-using namespace netstream;;
+using namespace netstream;
 
 struct LocalAddrCfg 
 {

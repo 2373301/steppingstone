@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<classlist>
+	<!-- 通用的升级经验要求 value为等级, xp为经验点数要求 -->
+	<class type="1">
+		<!--职业类型 
+	class type // 职业类型
+	{
+	warrior = 1, // 战士
+	barbarian = 2, // 野蛮人
+	mage = 3, // 法师
+	cleric = 4, // 牧师
+	-->
+		<!--职业介绍-->
+		<desc>       在这个大陆上，很少有人能像战士那样使用武器。他们通过纯熟的格斗技巧给对手致命一击,或者利用厚重的铠甲和盾牌化解对手的攻击。他们是敌人的噩梦，没有人希望自己的对手是一个战士。
+		</desc>
+		<items>
+			<!--默认给的装备 id  装备数量number-->
+			<item id="2000024" number="99"/>
+			<item id="2000025" number="99"/>
+			<item id="8881147" number="1"/>
+		</items>
+		<vip>
+			<level value="1">
+				<!--vip账号默认给的装备 id  装备数量number-->
+			</level>
+		</vip>
+		<!--将每个职业能够学习的能力配置在角色身上,先按类型排序 (攻击) (非天赋) (天赋) 再按能力学习等级排序-->
+		<skills>
+			<spell id="1"/>		
+			<spell id="10032"/>
+			<spell id="10044"/>
+			<spell id="10033"/>
+			<spell id="10034"/>
+			<spell id="10035"/>
+			<spell id="10036"/>
+			<spell id="10037"/>
+			<spell id="10038"/>
+			<spell id="10039"/>
+			<spell id="10040"/>
+			<spell id="10047"/>
+			<spell id="10041"/>
+			<spell id="10048"/>
+			<spell id="10042"/>
+			<spell id="10043"/>
+			<spell id="10128"/>
+			<spell id="10129"/>
+			<spell id="10131"/>
+			<spell id="10132"/>
+			<spell id="19001"/>
+			<spell id="10057"/>
+			<spell id="10061"/>
+			<spell id="10062"/>
+			<spell id="10063"/>
+			<spell id="10049"/>
+			<spell id="10050"/>
+			<spell id="10058"/>
+			<spell id="10052"/>
+			<spell id="10059"/>
+			<spell id="10051"/>
+			<spell id="10053"/>
+			<spell id="10060"/>
+			<spell id="10054"/>
+			<spell id="10055"/>
+			<spell id="10056"/>
+		</skills>
+		<!--等级对属性的修改-->
+		<initiates>
+			<initiate att="18" n="2000"/>
+			<initiate att="19" n="120"/>
+			<initiate att="20" n="65"/>
+			<initiate att="21" n="32"/>
+			<initiate att="22" n="2000"/>
+			<initiate att="23" n="2000"/>
+			<initiate att="24" n="6000"/>
+			<initiate att="31" n="60"/>
+			<initiate att="32" n="100"/>
+		</initiates>
+	</class>
+	<class type="2">
+		<!--职业类型 
+	class type // 职业类型
+	{
+	warrior = 1, // 战士
+	barbarian = 2, // 野蛮人
+	mage = 3, // 法师
+	cleric = 4, // 牧师
+	-->
+		<!--职业介绍-->
+		<desc>
+对野蛮人来说进攻就是一切，他们的自信源于他们强大的力量和对于战斗的强烈渴望。怒吼也是野蛮人克敌制胜的利器，振奋激昂的战嚎能使队友斗志昂扬，震耳欲聋的咆哮能使敌人闻风丧胆溃不成军。
+		</desc>
+		<items>
+			<!--默认给的装备 id  装备数量number-->
+			<item id="2000024" number="99"/>
+			<item id="2000025" number="99"/>
+		</items>
+		<vip>
+			<level value="1">
+				<!--vip账号默认给的装备 id  装备数量number-->
+			</level>
+		</vip>
+		<!--所拥有的能力 初始化时总是选能力链上的第1级 攻击 非天赋 天赋-->
+		<skills>
+			<spell id="1"/>
+			<spell id="10000"/>
+			<spell id="10012"/>
+			<spell id="10001"/>
+			<spell id="10002"/>
+			<spell id="10013"/>
+			<spell id="10003"/>
+			<spell id="10014"/>
+			<spell id="10004"/>
+			<spell id="10005"/>
+			<spell id="10006"/>
+			<spell id="10007"/>
+			<spell id="10008"/>
+			<spell id="10015"/>
+			<spell id="10009"/>
+			<spell id="10016"/>
+			<spell id="10010"/>
+			<spell id="10011"/>
+			<spell id="10131"/>
+			<spell id="10132"/>
+			<spell id="19002"/>
+			<spell id="10025"/>
+			<spell id="10029"/>
+			<spell id="10030"/>
+			<spell id="10031"/>
+			<spell id="10017"/>
+			<spell id="10018"/>
+			<spell id="10026"/>
+			<spell id="10020"/>
+			<spell id="10027"/>
+			<spell id="10019"/>
+			<spell id="10021"/>
+			<spell id="10028"/>
+			<spell id="10022"/>
+			<spell id="10023"/>
+			<spell id="10024"/>
+		</skills>
+		<!--等级对属性的修改-->
+		<initiates>
+			<initiate att="18" n="2000"/>
+			<initiate att="19" n="112"/>
+			<initiate att="20" n="65"/>
+			<initiate att="21" n="32"/>
+			<initiate att="22" n="2000"/>
+			<initiate att="23" n="2000"/>
+			<initiate att="24" n="6000"/>
+			<initiate att="31" n="60"/>
+			<initiate att="32" n="100"/>
+		</initiates>
+	</class>
+	<class type="3">
+		<!--职业类型 
+	class type // 职业类型
+	{
+	warrior = 1, // 战士
+	barbarian = 2, // 野蛮人
+	mage = 3, // 法师
+	cleric = 4, // 牧师
+	-->
+		<!--职业介绍-->
+		<desc>
+单薄的身体却拥有操控元素力量的可怕能力，拥有威力巨大的法术，使法师在面对多个敌人时也可以从容不迫，而强大的魔法防护能力则弥补了护甲上的劣势。只要他们尚能施法，逆转局势简直就是家常便饭。
+		</desc>
+		<items>
+			<!--默认给的装备 id  装备数量number-->
+			<item id="2000024" number="99"/>
+			<item id="2000025" number="99"/>
+		</items>
+		<vip>
+			<level value="1">
+				<!--vip账号默认给的装备 id  装备数量number-->
+			</level>
+		</vip>
+		<!--所拥有的能力 初始化时总是选能力链上的第1级 攻击 非天赋 天赋-->
+		<skills>
+			<spell id="2"/>
+			<spell id="10064"/>
+			<spell id="10076"/>
+			<spell id="10065"/>
+			<spell id="10066"/>
+			<spell id="10077"/>
+			<spell id="10067"/>
+			<spell id="10078"/>
+			<spell id="10079"/>
+			<spell id="10068"/>
+			<spell id="10069"/>
+			<spell id="10070"/>
+			<spell id="10071"/>
+			<spell id="10072"/>
+			<spell id="10080"/>
+			<spell id="10073"/>
+			<spell id="10074"/>
+			<spell id="10075"/>
+			<spell id="10131"/>
+			<spell id="10132"/>
+			<spell id="19003"/>
+			<spell id="10089"/>
+			<spell id="10093"/>
+			<spell id="10094"/>
+			<spell id="10095"/>
+			<spell id="10082"/>
+			<spell id="10081"/>
+			<spell id="10090"/>
+			<spell id="10083"/>
+			<spell id="10091"/>
+			<spell id="10084"/>
+			<spell id="10086"/>
+			<spell id="10092"/>
+			<spell id="10085"/>
+			<spell id="10088"/>
+			<spell id="10087"/>
+		</skills>
+		<!--等级对属性的修改-->
+		<initiates>
+			<initiate att="18" n="2000"/>		
+			<initiate att="19" n="80"/>
+			<initiate att="20" n="65"/>
+			<initiate att="21" n="81"/>
+			<initiate att="22" n="2000"/>
+			<initiate att="23" n="2000"/>
+			<initiate att="24" n="6000"/>
+			<initiate att="31" n="60"/>
+			<initiate att="32" n="100"/>
+		</initiates>
+	</class>
+	<class type="4">
+		<!--职业类型 
+	class type // 职业类型
+	{
+	warrior = 1, // 战士
+	barbarian = 2, // 野蛮人
+	mage = 3, // 法师
+	cleric = 4, // 牧师
+	-->
+		<!--职业介绍-->
+		<desc>
+牧师是虔诚的信徒，因信仰与忠诚而进入战场，传颂其守护神。虔诚的牧师由其守护神赋予治疗的力量，并且呼唤神的愤怒重击他的敌人。不论队伍大小，牧师因他们的治疗能力备受欢迎。
+		</desc>
+		<items>
+			<!--默认给的装备 id  装备数量number-->
+			<item id="2000024" number="99"/>
+			<item id="2000025" number="99"/>
+			<item id="8881961" number="1"/>
+		</items>
+		<vip>
+			<level value="1">
+				<!--vip账号默认给的装备 id  装备数量number-->
+			</level>
+		</vip>
+		<!--所拥有的能力 初始化时总是选能力链上的第1级 攻击 非天赋 天赋-->
+		<skills>
+			<spell id="2"/>
+			<spell id="10096"/>
+			<spell id="10108"/>
+			<spell id="10097"/>
+			<spell id="10098"/>
+			<spell id="10109"/>
+			<spell id="10099"/>
+			<spell id="10110"/>
+			<spell id="10100"/>
+			<spell id="10101"/>
+			<spell id="10102"/>
+			<spell id="10103"/>
+			<spell id="10104"/>
+			<spell id="10131"/>
+			<spell id="10132"/>
+			<spell id="19004"/>
+			<spell id="10111"/>
+			<spell id="10112"/>
+			<spell id="10105"/>
+			<spell id="10106"/>
+			<spell id="10107"/>
+			<spell id="10121"/>
+			<spell id="10125"/>
+			<spell id="10126"/>
+			<spell id="10127"/>
+			<spell id="10114"/>
+			<spell id="10113"/>
+			<spell id="10122"/>
+			<spell id="10115"/>
+			<spell id="10123"/>
+			<spell id="10116"/>
+			<spell id="10118"/>
+			<spell id="10124"/>
+			<spell id="10117"/>
+			<spell id="10120"/>
+			<spell id="10119"/>
+		</skills>
+		<!--等级对属性的修改-->
+		<initiates>
+			<initiate att="18" n="2000"/>
+			<initiate att="19" n="72"/>
+			<initiate att="20" n="65"/>
+			<initiate att="21" n="75"/>
+			<initiate att="22" n="2000"/>
+			<initiate att="23" n="2000"/>
+			<initiate att="24" n="6000"/>
+			<initiate att="31" n="60"/>
+			<initiate att="32" n="100"/>
+		</initiates>
+	</class>
+</classlist>

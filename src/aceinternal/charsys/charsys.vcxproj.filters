@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="net">
+      <UniqueIdentifier>{7d72a686-32ec-4cb2-8ad9-849aec457951}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gate">
+      <UniqueIdentifier>{7c0ef05a-4550-4ddf-b5f7-75eb2bd43af6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cache">
+      <UniqueIdentifier>{affb73bd-aa07-4719-ab62-9d16c97a6319}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="protol">
+      <UniqueIdentifier>{ca388483-124d-4843-8345-c53f0f701d4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="database">
+      <UniqueIdentifier>{a47aca5b-84c5-46ce-baa9-d4406f3d5197}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="checkname">
+      <UniqueIdentifier>{b1b0dbbc-f191-4503-ad0e-68c4e6ff78f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\char.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MakeGuid.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageConfig.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageFini.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageGuid.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageJobInit.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManagePlayerInit.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageRoleRes.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageRoundomName.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MiniDumper.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Net\NetStream.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gate\GateSession.cpp">
+      <Filter>gate</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gate\ManageGateSession.cpp">
+      <Filter>gate</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gate\RouteGatePacket.cpp">
+      <Filter>gate</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cache\ManageCacheSession.cpp">
+      <Filter>cache</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cache\RouteCachePacket.cpp">
+      <Filter>cache</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_cache.pb.cc">
+      <Filter>protol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_guid.pb.cc">
+      <Filter>protol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\entity\player.pb.cc">
+      <Filter>protol</Filter>
+    </ClCompile>
+    <ClCompile Include="src\database\DatabasePool.cpp">
+      <Filter>database</Filter>
+    </ClCompile>
+    <ClCompile Include="src\database\ManageAccountDatabase.cpp">
+      <Filter>database</Filter>
+    </ClCompile>
+    <ClCompile Include="src\checkname\CheckRoleName.cpp">
+      <Filter>checkname</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_char.pb.cc">
+      <Filter>protol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_error.pb.cc">
+      <Filter>protol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_gate.pb.cc">
+      <Filter>protol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_player.pb.cc">
+      <Filter>protol</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\MakeGuid.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageConfig.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageFini.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageGuid.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageJobInit.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManagePlayerInit.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageRoleRes.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageRoundomName.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MiniDumper.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Net\NetStream.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gate\GateSession.h">
+      <Filter>gate</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gate\ManageGateSession.h">
+      <Filter>gate</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gate\RouteGatePacket.h">
+      <Filter>gate</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cache\ManageCacheSession.h">
+      <Filter>cache</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cache\RouteCachePacket.h">
+      <Filter>cache</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_cache.pb.h">
+      <Filter>protol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_guid.pb.h">
+      <Filter>protol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\entity\player.pb.h">
+      <Filter>protol</Filter>
+    </ClInclude>
+    <ClInclude Include="src\database\DatabasePool.h">
+      <Filter>database</Filter>
+    </ClInclude>
+    <ClInclude Include="src\database\ManageAccountDatabase.h">
+      <Filter>database</Filter>
+    </ClInclude>
+    <ClInclude Include="src\checkname\CheckRoleName.h">
+      <Filter>checkname</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_char.pb.h">
+      <Filter>protol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_error.pb.h">
+      <Filter>protol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_gate.pb.h">
+      <Filter>protol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_player.pb.h">
+      <Filter>protol</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

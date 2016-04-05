@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+<map_faith>
+	<!--
+	faith_id:角色创建完成后自身的信仰ID
+	faith_name:信仰名称，给策划看的
+	template: 当前模板地图ID
+	name: 地图名称
+	dst_x y: 目标地图跳转坐标
+	target_map: 目标地图实例ID
+	地图实例ID，用64位整数表示。字节含义
+	    第7字节:    代表类型，地图类型: 0x0D
+		第6个字节:  代表GS实例ID，每个GS都有一个唯一的实例ID
+		0 - 5 字节: 代表编号，所有静态地图（不同于副本地图）的编号1 - 255，不能相同。
+
+  -->
+	<map faith_id="1" faith_name="宙斯" dst_x="255" dst_y="265" template="2" name="宙斯神殿"/>
+	<map faith_id="2" faith_name="赫拉" dst_x="255" dst_y="265" template="2" name="赫拉神殿"/>
+	<map faith_id="4" faith_name="冥王哈迪斯" dst_x="255" dst_y="265" template="2" name="哈迪斯神殿"/>
+	<map faith_id="3" faith_name="海神波塞冬" dst_x="255" dst_y="265" template="2" name="波塞冬神殿"/>
+	<map faith_id="7" faith_name="智慧女神雅典娜" dst_x="255" dst_y="265" template="2" name="雅典娜神殿"/>
+	<map faith_id="6" faith_name="战神阿瑞斯" dst_x="255" dst_y="265" template="2" name="阿瑞斯神殿"/>
+	<map faith_id="10" faith_name="光明之神阿波罗" dst_x="255" dst_y="265" template="2" name="阿波罗神殿"/>
+	<map faith_id="12" faith_name="阿耳忒弥斯" dst_x="255" dst_y="265" template="2" name="狄安娜神殿"/>
+	<map faith_id="9" faith_name="赫淮斯托斯" dst_x="255" dst_y="265" template="2" name="赫淮斯托斯神殿"/>
+	<map faith_id="8" faith_name="赫耳墨斯" dst_x="255" dst_y="265" template="2" name="赫耳墨斯神殿"/>
+	<map faith_id="11" faith_name="爱与美之神维纳斯" dst_x="255" dst_y="265" template="2" name="维纳斯神殿"/>
+	<map faith_id="5" faith_name="贞洁之神维斯塔" dst_x="255" dst_y="265" template="2" name="维斯塔神殿"/>
+</map_faith>

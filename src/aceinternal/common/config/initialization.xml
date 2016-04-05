@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<initializations>
+    <initialization level="1" exp="0" money="200000" coin="0" src_x="201" src_y="374" seniority="0" coin_exp="0" frame="0" energy="200" training_slot="7" member_slot="7" curr_battle_array="500" map_id="10000" ba_role_location="1" battle_array_list="10032" wonder_skill="0;0;0;0;0;0;0" buffers="0" roles="0" bag="60001;60002" warehouse="0" can_recruit_roles="0" quest="40091" level_cap="89" checkplint="10102" itemgifts="0" itemgifts_num="0" />
+</initializations>
