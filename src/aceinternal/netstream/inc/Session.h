@@ -79,10 +79,6 @@ public:
 	typedef std::list<Packet *> PacketList;
 
 	virtual int open(void * p=0) override;
-	
-	virtual int handle_input(ACE_HANDLE  fd = ACE_INVALID_HANDLE) override;
-	virtual int handle_output(ACE_HANDLE  fd = ACE_INVALID_HANDLE) override;
-	virtual int handle_close(ACE_HANDLE handle, ACE_Reactor_Mask close_mask) override;
 
 	virtual bool output(char * buffer, int buff_size) override;
 
@@ -90,6 +86,7 @@ public:
 
 	void setHandleInput(HandleInputStream * handle_input);
 	bool isClientSide() { return client_side_; }
+
 protected:
 	friend class SingleConnection;
 	virtual int rd_stream(); // 有问题, 只reset flag
@@ -100,6 +97,10 @@ protected:
 	
 	virtual int net_connected();	// 已连接, 自定义的地方
 	virtual int net_closed();		// 已关闭, 自定义的地方
+
+	virtual int handle_input(ACE_HANDLE  fd = ACE_INVALID_HANDLE) override;
+	virtual int handle_output(ACE_HANDLE  fd = ACE_INVALID_HANDLE) override;
+	virtual int handle_close(ACE_HANDLE handle, ACE_Reactor_Mask close_mask) override;
 
 protected:
 	static int s_socket_buf_len_;

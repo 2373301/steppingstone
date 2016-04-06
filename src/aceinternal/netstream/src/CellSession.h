@@ -26,13 +26,12 @@ public:
 	~CellSession();
 
 	virtual int open(void * p=0) override;
-	virtual int rd_stream() override;
-	virtual int wt_stream() override;
 	virtual bool output(char * buffer, int buff_size) override;
-	
-
 	uint64 getGUID();
 	void setGUID(uint64 guid);
+
+	virtual int rd_stream() override;
+	virtual int wt_stream() override;
 
 private:
 	uint64 m_guid;
