@@ -24,20 +24,15 @@ CellSession::~CellSession()
 
 }
 
-int CellSession::open(void * p)
+int CellSession::on_session_connected()
 {
-	int result = Session::open(p);
-	if (-1 != result)
-	{
-		ManageNetEventNotify::instance()->sessionOpenNotify(this);
-	}
-
-	return result;
+	ManageNetEventNotify::instance()->sessionOpenNotify(this);
+	return 0;
 }
 
-int CellSession::rd_stream()
+int CellSession::on_session_read()
 {
-	int result = Session::rd_stream();
+	int result = Session::on_session_read();
 	if (-1 == result)
 	{
 		// net close
@@ -61,7 +56,7 @@ bool CellSession::output(char * buffer, int buff_size)
 	}
 }
 
-int CellSession::wt_stream()
+int CellSession::on_session_write()
 {
 	int result = 0;
 

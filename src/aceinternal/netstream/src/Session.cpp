@@ -131,25 +131,21 @@ int Session::open(void * p)
 	}
 
 	session_state_ = SS_CONNECTED;
-	return net_connected();
+	return on_session_connected();
 }
 
 int Session::handle_input(ACE_HANDLE  fd)
 {
-	return rd_stream();
+	return on_session_read();
 }
 
 int Session::handle_output(ACE_HANDLE  fd)
 {
-	int result = wt_stream();
+	int result = on_session_write();
 	if (-1 == result)
-	{
 		return -1;
-	}
-	else
-	{
-		return 0;
-	}
+
+	return 0;
 }
 
 int Session::handle_close(ACE_HANDLE handle, ACE_Reactor_Mask close_mask)
@@ -164,7 +160,7 @@ int Session::handle_close(ACE_HANDLE handle, ACE_Reactor_Mask close_mask)
 	if (SS_CLOSED != session_state_)
 	{
 		session_state_ = SS_CLOSED;
-		net_closed();
+		on_session_closed();
 	}
 	
 	return 0;
@@ -197,7 +193,7 @@ void Session::setSocketBufferSize(int input_buf_size, int output_buf_size)
 	}
 }
 
-int Session::rd_stream()
+int Session::on_session_read()
 {
 	int result = 0;
 
@@ -247,7 +243,7 @@ int Session::rd_stream()
 	return result;
 }
 
-int Session::wt_stream()
+int Session::on_session_write()
 {
 	// todo
 	int result = 0;
@@ -311,12 +307,12 @@ void Session::setSavePackInfo(bool is_save, const string & file_name)
 	//m_save_input_pack_info.init(false, file_name);
 }
 
-int Session::net_connected()
+int Session::on_session_connected()
 {
 	return 0;
 }
 
-int Session::net_closed()
+int Session::on_session_closed()
 {
 	return 0;
 }

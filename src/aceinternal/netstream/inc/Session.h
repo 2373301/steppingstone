@@ -78,7 +78,7 @@ public:
 	typedef ACE_Svc_Handler<ACE_SOCK_STREAM, ACE_NULL_SYNCH> super;
 	typedef std::list<Packet *> PacketList;
 
-	virtual int open(void * p=0) override;
+	
 
 	virtual bool output(char * buffer, int buff_size) override;
 
@@ -86,21 +86,24 @@ public:
 
 	void setHandleInput(HandleInputStream * handle_input);
 	bool isClientSide() { return client_side_; }
+	
 
 protected:
 	friend class SingleConnection;
-	virtual int rd_stream(); // 有问题, 只reset flag
-	// 0 : normal, -1: socket closed, 1:empty buffer, 2:call again, still have data in buffer
-	virtual int wt_stream(); // 有问题则 shutdown
+
 	virtual void recvError(int recv_value, int last_error);	// recv num, err
 	void setSavePackInfo(bool is_save, const string & file_name);
 	
-	virtual int net_connected();	// 已连接, 自定义的地方
-	virtual int net_closed();		// 已关闭, 自定义的地方
+	virtual int on_session_connected();
+	virtual int on_session_closed();
+	virtual int on_session_read(); // 有问题, 只reset flag
+	virtual int on_session_write();	// 0 : normal, -1: socket closed, 1:empty buffer, 2:call again, still have data in buffer
+									// 有问题则 shutdown
 
-	virtual int handle_input(ACE_HANDLE  fd = ACE_INVALID_HANDLE) override;
-	virtual int handle_output(ACE_HANDLE  fd = ACE_INVALID_HANDLE) override;
-	virtual int handle_close(ACE_HANDLE handle, ACE_Reactor_Mask close_mask) override;
+	virtual int handle_input(ACE_HANDLE  fd = ACE_INVALID_HANDLE) final;
+	virtual int handle_output(ACE_HANDLE  fd = ACE_INVALID_HANDLE) final;
+	virtual int handle_close(ACE_HANDLE handle, ACE_Reactor_Mask close_mask) final;
+	virtual int open(void * p = 0) final;
 
 protected:
 	static int s_socket_buf_len_;

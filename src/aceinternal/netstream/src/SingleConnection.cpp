@@ -45,7 +45,7 @@ int SingleConnection::svc()
 			}
 		}
 
-		read_result = m_session->rd_stream();
+		read_result = m_session->on_session_read();
 
 		write_result = processOutputPacket(packet_que);
 
@@ -181,7 +181,7 @@ int SingleConnection::processOutputPacket(PacketQue_t & packet_que)
 		}
 	}
 
-	return m_session->wt_stream();
+	return m_session->on_session_write();
 }
 
 void SingleConnection::closeSession()
