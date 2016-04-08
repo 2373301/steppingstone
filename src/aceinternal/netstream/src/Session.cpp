@@ -121,16 +121,6 @@ Session::~Session()
 
 int Session::open(void * p)
 {
-	this->peer().enable(ACE_NONBLOCK);
-	int flag = 1;
-	this->peer().set_option(IPPROTO_TCP, TCP_NODELAY, (char *)&flag, sizeof(flag));
-
-	if (super::open(p) == -1)
-	{
-		return -1;
-	}
-
-	session_state_ = SS_CONNECTED;
 	return on_session_connected();
 }
 
@@ -141,7 +131,7 @@ int Session::handle_input(ACE_HANDLE  fd)
 
 int Session::handle_output(ACE_HANDLE  fd)
 {
-	int result = on_session_write();
+	int result = session_write();
 	if (-1 == result)
 		return -1;
 
@@ -243,7 +233,7 @@ int Session::on_session_read()
 	return result;
 }
 
-int Session::on_session_write()
+int Session::session_write()
 {
 	// todo
 	int result = 0;
@@ -314,6 +304,21 @@ int Session::on_session_connected()
 
 int Session::on_session_closed()
 {
+	return 0;
+}
+
+
+int Session::regReadEvent()
+{
+	this->peer().enable(ACE_NONBLOCK);
+	int flag = 1;
+	this->peer().set_option(IPPROTO_TCP, TCP_NODELAY, (char *)&flag, sizeof(flag));
+
+	if (super::open() == -1)
+		return -1;
+
+	session_state_ = SS_CONNECTED;
+	on_session_connected();
 	return 0;
 }
 

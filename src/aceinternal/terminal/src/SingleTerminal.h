@@ -5,18 +5,19 @@
 #include <ace/Thread_Mutex.h>
 #include "Terminal.h"
 
-class SingleTerminal : public Terminal
+class SingleTerminal 
+	: public Terminal
 {
 public:
 	SingleTerminal();
 
 public:
-	virtual bool output(char * buffer, int buff_size);
+	virtual bool output(char * buffer, int buff_size) override;
 
-	virtual void outputPacket(Packet * packet);
+	virtual void outputPacket(Packet * packet) override;
 
 public:
-	virtual int wt_stream();
+	virtual int session_write() override;
 
 public:
 	virtual int finit();
@@ -30,9 +31,9 @@ protected:
 
 	virtual void parseInputPacket();
 
-	virtual int net_connected();
+	virtual int on_session_connected() override;
 
-	virtual int net_closed();
+	virtual int on_session_closed() override;
 
 protected:
 private:

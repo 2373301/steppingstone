@@ -181,7 +181,7 @@ int SingleConnection::processOutputPacket(PacketQue_t & packet_que)
 		}
 	}
 
-	return m_session->on_session_write();
+	return m_session->session_write();
 }
 
 void SingleConnection::closeSession()

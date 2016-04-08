@@ -112,7 +112,7 @@ int OutputSessionPool::svc()
 				continue;
 			}
 			// 0 : normal, -1: socket closed, 1:empty buffer, 2:call again, still have data in buffer
-			int wr = cell_session->on_session_write();
+			int wr = cell_session->session_write();
 			if (-1 == wr)
 			{
 				cell_session_set.erase(it++);

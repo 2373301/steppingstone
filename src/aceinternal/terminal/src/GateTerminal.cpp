@@ -28,9 +28,9 @@ GateTerminal::~GateTerminal()
 	}
 }
 
-int GateTerminal::handle_input(ACE_HANDLE  fd)
+int GateTerminal::on_session_read()
 {
-	int result = rd_stream();
+	int result = Session::on_session_read();
 	if (-1 == result)
 	{
 		DEF_LOG_ERROR("occur error in GateTerminal::handle_input, rd_stream return value is -1, last error is <%d>\n", ACE_OS::last_error());
@@ -85,7 +85,7 @@ void GateTerminal::outputPacket(Packet * packet)
 	m_packet_serialize_assistant.handlePacket(packet);
 }
 
-int GateTerminal::wt_stream()
+int GateTerminal::session_write()
 {
 	int result = 0;
 	if (NULL == m_current_msg_block)

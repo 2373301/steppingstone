@@ -56,7 +56,7 @@ bool CellSession::output(char * buffer, int buff_size)
 	}
 }
 
-int CellSession::on_session_write()
+int CellSession::session_write()
 {
 	int result = 0;
 

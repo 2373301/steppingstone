@@ -115,7 +115,7 @@ bool SessionPoolImp::connect(const SessionAddrVec_t & session_addr_vec)
 
 		if (connector.connect(cell_session->peer(), addr) != -1)
 		{
-			if (cell_session->open() == -1)
+			if (cell_session->regReadEvent() == -1)
 			{
 				DEF_LOG_ERROR("failed to call open of cell session, last error is <%d>\n", ACE_OS::last_error());
 				return false;

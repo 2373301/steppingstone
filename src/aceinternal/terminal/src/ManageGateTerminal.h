@@ -10,7 +10,10 @@
 #include "PlayerRoute.h"
 #include "ManageGateOutput.h"
 
-class ManageGateTerminal : public ManageTerminal , public HandleInputStream, public ACE_Task<ACE_NULL_SYNCH>
+class ManageGateTerminal 
+	: public ManageTerminal 
+	, public HandleInputStream
+	, public ACE_Task<ACE_NULL_SYNCH>
 {
 public:
 	ManageGateTerminal();

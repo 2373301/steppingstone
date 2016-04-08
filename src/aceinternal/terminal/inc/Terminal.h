@@ -42,7 +42,8 @@ struct TerminalCfg
 	GateCfg gate_cfg;
 };
 
-class Terminal : public Session
+class Terminal 
+	: public Session
 {
 public:
 	virtual int init(const string & parameter, HandleInputStream * handle_input)

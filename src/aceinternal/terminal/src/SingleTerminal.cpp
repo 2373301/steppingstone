@@ -37,7 +37,7 @@ void SingleTerminal::outputPacket(Packet * packet)
 	
 }
 
-int SingleTerminal::wt_stream()
+int SingleTerminal::session_write()
 {
 	int result = 0;
 	ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_output_msg_mutex, -1);
@@ -133,17 +133,17 @@ void SingleTerminal::parseInputPacket()
 	}
 }
 
-int SingleTerminal::net_connected()
+int SingleTerminal::on_session_connected()
 {
-	Terminal::net_connected();
+	Terminal::on_session_connected();
 
 	ManageSingleTerminal::instance()->registerSingleTerminal(this);
 	return 0;
 }
 
-int SingleTerminal::net_closed()
+int SingleTerminal::on_session_closed()
 {
-	Terminal::net_closed();
+	Terminal::on_session_closed();
 
 	m_close_time = ACE_OS::gettimeofday();
 

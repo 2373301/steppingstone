@@ -52,7 +52,7 @@ int ManageGateOutput::svc()
 	int process_result = 0;
 	while (!m_is_stop)
 	{
-		process_result = gate_terminal->wt_stream();
+		process_result = gate_terminal->session_write();
 
 		if (1 == process_result)
 		{

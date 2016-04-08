@@ -8,13 +8,15 @@
 #include "PacketSerializeAssistant.h"
 #include "typedef.h"
 
-class GateTerminal : public Terminal, public PacketProducer
+class GateTerminal 
+	: public Terminal
+	, public PacketProducer
 {
 public:
 	GateTerminal();
 	~GateTerminal();
 public:
-	virtual int handle_input(ACE_HANDLE  fd = ACE_INVALID_HANDLE);
+	virtual int on_session_read() override;
 
 public:
 	virtual void outputBuffer(uint32 msg_index, MsgBlockQue_t & msg_block_que);
@@ -26,7 +28,7 @@ public:
 
 	virtual void outputPacket(Packet * packet);
 
-	virtual int wt_stream();
+	virtual int session_write() override;
 
 	virtual void recvError(int recv_value, int last_error);
 public:
