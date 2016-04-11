@@ -9,7 +9,7 @@ SingleTerminal::SingleTerminal()
 {
 }
 
-bool SingleTerminal::output(char * buffer, int buff_size)
+bool SingleTerminal::IStream_output(char * buffer, int buff_size)
 {
 	//ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_output_msg_mutex, );
 	//if (out_buf_.space() < packet->stream_size())
@@ -133,17 +133,17 @@ void SingleTerminal::parseInputPacket()
 	}
 }
 
-int SingleTerminal::on_session_connected()
+int SingleTerminal::session_on_connected()
 {
-	Terminal::on_session_connected();
+	Terminal::session_on_connected();
 
 	ManageSingleTerminal::instance()->registerSingleTerminal(this);
 	return 0;
 }
 
-int SingleTerminal::on_session_closed()
+int SingleTerminal::session_on_closed()
 {
-	Terminal::on_session_closed();
+	Terminal::session_on_closed();
 
 	m_close_time = ACE_OS::gettimeofday();
 

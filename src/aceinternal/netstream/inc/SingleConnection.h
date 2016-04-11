@@ -27,7 +27,7 @@ public:
 
 	virtual int stop();
 
-	virtual int output(Packet * packet);
+	virtual int IStream_output(Packet * packet);
 
 	virtual void setSocketBufferSize(int input_buf_size, int output_buf_size);
 protected:

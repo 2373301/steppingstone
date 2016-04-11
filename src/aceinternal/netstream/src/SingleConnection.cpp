@@ -45,7 +45,7 @@ int SingleConnection::svc()
 			}
 		}
 
-		read_result = m_session->on_session_read();
+		read_result = m_session->session_on_read();
 
 		write_result = processOutputPacket(packet_que);
 
@@ -107,7 +107,7 @@ int SingleConnection::stop()
 	return 0;
 }
 
-int SingleConnection::output(Packet * packet)
+int SingleConnection::IStream_output(Packet * packet)
 {
 	ACE_GUARD_RETURN(ACE_Recursive_Thread_Mutex, guard, m_packet_que_mutex, 1);
 	m_packet_que.push(packet);
@@ -170,7 +170,7 @@ int SingleConnection::processOutputPacket(PacketQue_t & packet_que)
 	while (packet_que.size() > 0)
 	{
 		Packet * packet = packet_que.front();
-		if (m_session->output(packet->stream(), packet->stream_size()))
+		if (m_session->IStream_output(packet->stream(), packet->stream_size()))
 		{
 			delete packet;
 			packet_que.pop();

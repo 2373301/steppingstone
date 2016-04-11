@@ -28,9 +28,9 @@ GateTerminal::~GateTerminal()
 	}
 }
 
-int GateTerminal::on_session_read()
+int GateTerminal::session_on_read()
 {
-	int result = Session::on_session_read();
+	int result = Session::session_on_read();
 	if (-1 == result)
 	{
 		DEF_LOG_ERROR("occur error in GateTerminal::handle_input, rd_stream return value is -1, last error is <%d>\n", ACE_OS::last_error());

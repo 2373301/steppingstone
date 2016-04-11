@@ -121,12 +121,12 @@ Session::~Session()
 
 int Session::open(void * p)
 {
-	return on_session_connected();
+	return session_on_connected();
 }
 
 int Session::handle_input(ACE_HANDLE  fd)
 {
-	return on_session_read();
+	return session_on_read();
 }
 
 int Session::handle_output(ACE_HANDLE  fd)
@@ -150,13 +150,13 @@ int Session::handle_close(ACE_HANDLE handle, ACE_Reactor_Mask close_mask)
 	if (SS_CLOSED != session_state_)
 	{
 		session_state_ = SS_CLOSED;
-		on_session_closed();
+		session_on_closed();
 	}
 	
 	return 0;
 }
 
-bool Session::output(char * buffer, int buff_size)
+bool Session::IStream_output(char * buffer, int buff_size)
 {
 	// todo
 	if (out_buf_.space() >= buff_size)
@@ -183,7 +183,7 @@ void Session::setSocketBufferSize(int input_buf_size, int output_buf_size)
 	}
 }
 
-int Session::on_session_read()
+int Session::session_on_read()
 {
 	int result = 0;
 
@@ -210,7 +210,7 @@ int Session::on_session_read()
 		//DEF_LOG_ERROR("remote stream close normally, last error is <%d>\n", ACE_OS::last_error());
 		//string debug_str = "remote stream close normally, last error is : " + boost::lexical_cast<string>(ACE_OS::last_error()) + " buffer length : " + boost::lexical_cast<string>(in_buf_.space()) + "\n";
 		//std::cout << debug_str;
-		recvError(recv_n, ACE_OS::last_error());
+		session_recvError(recv_n, ACE_OS::last_error());
 		result = -1;
 	}
 	else
@@ -225,7 +225,7 @@ int Session::on_session_read()
 			//DEF_LOG_ERROR("occur error while send data, return value is <%d>, last error is <%d>\n", recv_n, last_error);
 			//string debug_str = "occur error while send data, return value is : " + boost::lexical_cast<string>(recv_n) + " last error is : " + boost::lexical_cast<string>(ACE_OS::last_error()) + "\n";
 			//std::cout << debug_str;
-			recvError(recv_n, ACE_OS::last_error());
+			session_recvError(recv_n, ACE_OS::last_error());
 			result = -1;
 		}
 	}
@@ -286,7 +286,7 @@ void Session::setHandleInput(HandleInputStream * handle_input)
 	handle_input_ = handle_input;
 }
 
-void Session::recvError(int recv_value, int last_error)
+void Session::session_recvError(int recv_value, int last_error)
 {
 
 }
@@ -297,12 +297,12 @@ void Session::setSavePackInfo(bool is_save, const string & file_name)
 	//m_save_input_pack_info.init(false, file_name);
 }
 
-int Session::on_session_connected()
+int Session::session_on_connected()
 {
 	return 0;
 }
 
-int Session::on_session_closed()
+int Session::session_on_closed()
 {
 	return 0;
 }
@@ -318,7 +318,7 @@ int Session::regReadEvent()
 		return -1;
 
 	session_state_ = SS_CONNECTED;
-	on_session_connected();
+	session_on_connected();
 	return 0;
 }
 

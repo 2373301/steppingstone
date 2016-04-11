@@ -45,10 +45,10 @@ public:
 	virtual void output(Packet * packet) = 0;
 };
 
-class NETSTREAM_EXOPRT HandleOutputStream
+class NETSTREAM_EXOPRT IStream
 {
 public:
-	virtual bool output(char * buffer, int buff_size) = 0;
+	virtual bool IStream_output(char * buffer, int buff_size) = 0;
 };
 
 class NETSTREAM_EXOPRT SavePackInfo
@@ -67,7 +67,7 @@ public:
 
 // 外静内动
 class NETSTREAM_EXOPRT Session
-	: public HandleOutputStream
+	: public IStream
 	, public ACE_Svc_Handler<ACE_SOCK_STREAM, ACE_NULL_SYNCH>
 {
 public:
@@ -87,13 +87,13 @@ public:
 protected:
 	friend class SingleConnection;
 
-	virtual int on_session_connected();
-	virtual int on_session_closed();
-	virtual int on_session_read(); // 有问题, 只reset flag
+	virtual int session_on_connected();
+	virtual int session_on_closed();
+	virtual int session_on_read(); // 有问题, 只reset flag
 	virtual int session_write();	// 0 : normal, -1: socket closed, 1:empty buffer, 2:call again, still have data in buffer
 									// 有问题则 shutdown
-	virtual void recvError(int recv_value, int last_error);	// recv num, err
-	virtual bool output(char * buffer, int buff_size) override;
+	virtual void session_recvError(int recv_value, int last_error);	// recv num, err
+	virtual bool IStream_output(char * buffer, int buff_size) override;
 
 public: // ace 的 callback, 隔离, 不用
 	virtual int handle_input(ACE_HANDLE  fd = ACE_INVALID_HANDLE) final;

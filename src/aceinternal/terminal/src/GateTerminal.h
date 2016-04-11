@@ -16,7 +16,7 @@ public:
 	GateTerminal();
 	~GateTerminal();
 public:
-	virtual int on_session_read() override;
+	virtual int session_on_read() override;
 
 public:
 	virtual void outputBuffer(uint32 msg_index, MsgBlockQue_t & msg_block_que);

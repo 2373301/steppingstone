@@ -12,7 +12,7 @@ public:
 	SingleTerminal();
 
 public:
-	virtual bool output(char * buffer, int buff_size) override;
+	virtual bool IStream_output(char * buffer, int buff_size) override;
 
 	virtual void outputPacket(Packet * packet) override;
 
@@ -31,9 +31,9 @@ protected:
 
 	virtual void parseInputPacket();
 
-	virtual int on_session_connected() override;
+	virtual int session_on_connected() override;
 
-	virtual int on_session_closed() override;
+	virtual int session_on_closed() override;
 
 protected:
 private:

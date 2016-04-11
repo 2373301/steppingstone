@@ -24,15 +24,15 @@ CellSession::~CellSession()
 
 }
 
-int CellSession::on_session_connected()
+int CellSession::session_on_connected()
 {
 	ManageNetEventNotify::instance()->sessionOpenNotify(this);
 	return 0;
 }
 
-int CellSession::on_session_read()
+int CellSession::session_on_read()
 {
-	int result = Session::on_session_read();
+	int result = Session::session_on_read();
 	if (-1 == result)
 	{
 		// net close
@@ -42,7 +42,7 @@ int CellSession::on_session_read()
 	return result;
 }
 
-bool CellSession::output(char * buffer, int buff_size)
+bool CellSession::IStream_output(char * buffer, int buff_size)
 {
 	ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, cell_out_mutex_, false);
 	if (cell_out_buf_.space() >= buff_size)
