@@ -8,7 +8,7 @@
 #include "Session.h"
 #include "Logger.h"
 
-//#define LOG_INPUT_MSG_SIZE()	DEF_LOG_DEBUG("the input msg rd_ptr is <%x>, wt_ptr is <%x>, file line is <%d>\n", in_buf_.rd_ptr(), in_buf_.wr_ptr(), __LINE__)
+//#define LOG_INPUT_MSG_SIZE()	DEF_LOG_DEBUG("the IStreamIn_read msg rd_ptr is <%x>, wt_ptr is <%x>, file line is <%d>\n", in_buf_.rd_ptr(), in_buf_.wr_ptr(), __LINE__)
 #define LOG_INPUT_MSG_SIZE()
 namespace netstream
 {
@@ -156,7 +156,7 @@ int Session::handle_close(ACE_HANDLE handle, ACE_Reactor_Mask close_mask)
 	return 0;
 }
 
-bool Session::IStream_output(char * buffer, int buff_size)
+bool Session::IStreamOut_write(char * buffer, int buff_size)
 {
 	// todo
 	if (out_buf_.space() >= buff_size)
@@ -202,7 +202,7 @@ int Session::session_on_read()
 
 		LOG_INPUT_MSG_SIZE();
 
-		handle_input_->input(this, in_buf_);
+		handle_input_->IStreamIn_read(this, in_buf_);
 	}
 	else if (0 == recv_n)
 	{
@@ -281,7 +281,7 @@ int Session::session_write()
 	return result;
 }
 
-void Session::setHandleInput(HandleInputStream * handle_input)
+void Session::setHandleInput(IStreamIn * handle_input)
 {
 	handle_input_ = handle_input;
 }

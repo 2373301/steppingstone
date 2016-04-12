@@ -259,7 +259,7 @@ void GateTerminal::geteLostConnection()
 		in_buf_.rd_ptr(in_buf_.base());
 		in_buf_.wr_ptr(in_buf_.base());
 		in_buf_.copy(ps->stream(), ps->stream_size());
-		handle_input_->input(this, in_buf_);
+		handle_input_->IStreamIn_read(this, in_buf_);
 		delete ps;
 	}
 }

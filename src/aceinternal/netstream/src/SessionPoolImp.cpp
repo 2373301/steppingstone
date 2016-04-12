@@ -74,7 +74,7 @@ int SessionPoolImp::svc()
 	return 0;
 }
 
-void SessionPoolImp::input(Session * session, ACE_Message_Block & msg_block)
+void SessionPoolImp::IStreamIn_read(Session * session, ACE_Message_Block & msg_block)
 {
 	m_handle_session_event->handleInputStream(session, msg_block);
 }
@@ -85,13 +85,13 @@ int SessionPoolImp::init(int input_thr_no, int output_thr_no, HandleSessionEvent
 
 	if (m_input_session_pool.init(input_thr_no, this) != 0)
 	{
-		DEF_LOG_ERROR("failed to init input session, input thread no is <%d>\n", input_thr_no);
+		DEF_LOG_ERROR("failed to init IStreamIn_read session, IStreamIn_read thread no is <%d>\n", input_thr_no);
 		return -1;
 	}
 
 	if (m_output_session_pool.init(output_thr_no, this) != 0)
 	{
-		DEF_LOG_ERROR("failed to init IStream_output session, IStream_output thread no is <%d>\n", output_thr_no);
+		DEF_LOG_ERROR("failed to init IStreamOut_write session, IStreamOut_write thread no is <%d>\n", output_thr_no);
 		return -1;
 	}
 

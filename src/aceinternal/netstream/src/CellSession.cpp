@@ -42,7 +42,7 @@ int CellSession::session_on_read()
 	return result;
 }
 
-bool CellSession::IStream_output(char * buffer, int buff_size)
+bool CellSession::IStreamOut_write(char * buffer, int buff_size)
 {
 	ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, cell_out_mutex_, false);
 	if (cell_out_buf_.space() >= buff_size)

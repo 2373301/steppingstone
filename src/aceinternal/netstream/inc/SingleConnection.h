@@ -12,7 +12,7 @@ namespace netstream
 {
 
 class NETSTREAM_EXOPRT SingleConnection
-	: public HandleInputStream
+	: public IStreamIn
 	, public ACE_Task<ACE_NULL_SYNCH>
 {
 public:
@@ -21,13 +21,13 @@ public:
 
 	virtual int svc() override;
 
-	virtual void input(Session * session, ACE_Message_Block & msg_block) override;;
+	virtual void IStreamIn_read(Session * session, ACE_Message_Block & msg_block) override;;
 
 	virtual int init(const string & remote_addr);
 
 	virtual int stop();
 
-	virtual int IStream_output(Packet * packet);
+	virtual int IStreamOut_write(Packet * packet);
 
 	virtual void setSocketBufferSize(int input_buf_size, int output_buf_size);
 protected:

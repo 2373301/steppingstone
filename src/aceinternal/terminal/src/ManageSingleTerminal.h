@@ -7,7 +7,7 @@
 #include "ManageTerminal.h"
 #include "SingleTerminal.h"
 
-class ManageSingleTerminal : public ManageTerminal, public ACE_Task<ACE_NULL_SYNCH>, public HandleInputStream
+class ManageSingleTerminal : public ManageTerminal, public ACE_Task<ACE_NULL_SYNCH>, public IStreamIn
 {
 public:
 	ManageSingleTerminal();
@@ -23,7 +23,7 @@ public:
 
 	virtual int handle_timeout(const ACE_Time_Value &current_time, const void *act /* = 0 */);
 public:
-	virtual void input(Session * session, ACE_Message_Block & msg_block);
+	virtual void IStreamIn_read(Session * session, ACE_Message_Block & msg_block);
 
 	virtual void output(Packet * packet);
 

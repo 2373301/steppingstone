@@ -27,7 +27,7 @@ struct SessionStatus
 
 class SessionPoolImp
 	: public SessionPool
-	, public HandleInputStream
+	, public IStreamIn
 	, public ACE_Task<ACE_NULL_SYNCH>
 {
 public:
@@ -47,7 +47,7 @@ public:
 	void onSessionOpenNotify(Session * session);
 	void onSessionCloseNotify(Session * session, int trigger_source);
 
-	virtual void input(Session * session, ACE_Message_Block & msg_block) override; // HandleInputStream
+	virtual void IStreamIn_read(Session * session, ACE_Message_Block & msg_block) override; // IStreamIn
 
 	virtual int svc() override; // ACE_Task
 

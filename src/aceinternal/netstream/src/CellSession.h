@@ -29,7 +29,7 @@ public:
 	void setGUID(uint64 guid);
 
 public:
-	virtual bool IStream_output(char * buffer, int buff_size) override;
+	virtual bool IStreamOut_write(char * buffer, int buff_size) override;
 	virtual int session_on_connected() override;
 	virtual int session_on_read() override;
 	virtual int session_write() override;

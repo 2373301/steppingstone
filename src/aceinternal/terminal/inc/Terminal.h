@@ -46,7 +46,7 @@ class Terminal
 	: public Session
 {
 public:
-	virtual int init(const string & parameter, HandleInputStream * handle_input)
+	virtual int init(const string & parameter, IStreamIn * handle_input)
 	{
 		if (NULL == handle_input)
 		{

@@ -12,14 +12,14 @@ public:
 	~RemoteCache();
 
 	// 增加log 而已
-	virtual int handle_input(ACE_HANDLE  fd = ACE_INVALID_HANDLE) override;
+	virtual int session_on_read() override;
 
 public:
 	virtual void output(Packet * packet);
 
-	virtual int wt_stream() override;
+	virtual int session_write() override;
 
-	virtual void recvError(int recv_value, int last_error) override;
+	virtual void session_recvError(int recv_value, int last_error) override;
 public:
 	virtual int finit() override;
 

@@ -9,7 +9,7 @@ SingleTerminal::SingleTerminal()
 {
 }
 
-bool SingleTerminal::IStream_output(char * buffer, int buff_size)
+bool SingleTerminal::IStreamOut_write(char * buffer, int buff_size)
 {
 	//ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_output_msg_mutex, );
 	//if (out_buf_.space() < packet->stream_size())

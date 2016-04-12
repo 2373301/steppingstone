@@ -13,9 +13,9 @@ RemoteCache::~RemoteCache()
 	cleanPacketQue(m_output_packet);
 }
 
-int RemoteCache::handle_input(ACE_HANDLE  fd)
+int RemoteCache::session_on_read()
 {
-	int result = rd_stream();
+	int result = Session::session_on_read();
 	if (-1 == result)
 	{
 		DEF_LOG_ERROR("occur error in RemoteCache::handle_input, rd_stream return value is -1, last error is <%d>\n", ACE_OS::last_error());
@@ -33,7 +33,7 @@ void RemoteCache::output(Packet * packet)
 	m_output_packet.push(packet);
 }
 
-int RemoteCache::wt_stream()
+int RemoteCache::session_write()
 {
 	int result = 0;
 
@@ -89,7 +89,7 @@ int RemoteCache::wt_stream()
 	return result;
 }
 
-void RemoteCache::recvError(int recv_value, int last_error)
+void RemoteCache::session_recvError(int recv_value, int last_error)
 {
 	DEF_LOG_ERROR("RemoteCache recv error, recv value is <%d>, last error is <%d>\n", recv_value, last_error);
 }

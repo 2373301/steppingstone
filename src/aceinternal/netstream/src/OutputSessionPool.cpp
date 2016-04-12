@@ -183,7 +183,7 @@ bool OutputSessionPool::handleOutputStream(Session_t session, char * buffer, int
 		CellSession * cell_session = it->first;
 		OutputSessionThreadInfo * output_session_ti = it->second;
 
-		bool result = cell_session->IStream_output(buffer, buff_size);
+		bool result = cell_session->IStreamOut_write(buffer, buff_size);
 		output_session_ti->writeCellSession(cell_session);
 		return result;
 	}	

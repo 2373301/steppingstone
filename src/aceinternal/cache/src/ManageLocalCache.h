@@ -9,7 +9,7 @@
 #include "LocalCache.h"
 #include "Packet.h"
 
-class ManageLocalCache : public ManageCache, public HandleInputStream, public ACE_Task<ACE_NULL_SYNCH>
+class ManageLocalCache : public ManageCache, public IStreamIn, public ACE_Task<ACE_NULL_SYNCH>
 {
 public:
 	virtual int stop();

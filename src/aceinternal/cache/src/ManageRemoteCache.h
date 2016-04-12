@@ -11,7 +11,7 @@
 
 class ManageRemoteCache 
 					: public ManageCache
-					, public HandleInputStream
+					, public IStreamIn
 					, public ACE_Task<ACE_NULL_SYNCH>
 {
 public:

@@ -12,7 +12,7 @@
 
 class ManageGateTerminal 
 	: public ManageTerminal 
-	, public HandleInputStream
+	, public IStreamIn
 	, public ACE_Task<ACE_NULL_SYNCH>
 {
 public:
@@ -21,7 +21,7 @@ public:
 public:
 	int svc();
 public:
-	virtual void input(Session * session, ACE_Message_Block & msg_block);
+	virtual void IStreamIn_read(Session * session, ACE_Message_Block & msg_block);
 
 	virtual void output(Packet * packet);
 

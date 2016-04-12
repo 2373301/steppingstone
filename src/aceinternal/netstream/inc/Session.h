@@ -33,10 +33,10 @@ enum SessionState
 	SS_CLOSED,
 };
 
-class NETSTREAM_EXOPRT HandleInputStream
+class NETSTREAM_EXOPRT IStreamIn
 {
 public:
-	virtual void input(Session * session, ACE_Message_Block & msg_block) = 0;
+	virtual void IStreamIn_read(Session * session, ACE_Message_Block & msg_block) = 0;
 };
 
 class NETSTREAM_EXOPRT HandleOutput
@@ -45,10 +45,10 @@ public:
 	virtual void output(Packet * packet) = 0;
 };
 
-class NETSTREAM_EXOPRT IStream
+class NETSTREAM_EXOPRT IStreamOut
 {
 public:
-	virtual bool IStream_output(char * buffer, int buff_size) = 0;
+	virtual bool IStreamOut_write(char * buffer, int buff_size) = 0;
 };
 
 class NETSTREAM_EXOPRT SavePackInfo
@@ -67,7 +67,7 @@ public:
 
 // 外静内动
 class NETSTREAM_EXOPRT Session
-	: public IStream
+	: public IStreamOut
 	, public ACE_Svc_Handler<ACE_SOCK_STREAM, ACE_NULL_SYNCH>
 {
 public:
@@ -79,7 +79,7 @@ public:
 	typedef std::list<Packet *> PacketList;
 
 	void setSocketBufferSize(int in_size, int out_size);
-	void setHandleInput(HandleInputStream * handle_input);
+	void setHandleInput(IStreamIn * handle_input);
 	bool isClientSide() { return client_side_; }
 	int regReadEvent();
 	void setSavePackInfo(bool is_save, const string & file_name);
@@ -93,7 +93,7 @@ protected:
 	virtual int session_write();	// 0 : normal, -1: socket closed, 1:empty buffer, 2:call again, still have data in buffer
 									// 有问题则 shutdown
 	virtual void session_recvError(int recv_value, int last_error);	// recv num, err
-	virtual bool IStream_output(char * buffer, int buff_size) override;
+	virtual bool IStreamOut_write(char * buffer, int buff_size) override;
 
 public: // ace 的 callback, 隔离, 不用
 	virtual int handle_input(ACE_HANDLE  fd = ACE_INVALID_HANDLE) final;
@@ -104,7 +104,7 @@ public: // ace 的 callback, 隔离, 不用
 protected:
 	static int s_socket_buf_len_;
 	SessionState session_state_;
-	netstream::HandleInputStream * handle_input_;
+	netstream::IStreamIn * handle_input_;
 	//SavePackInfo m_save_input_pack_info;
 	ACE_Message_Block in_buf_;
 	ACE_Message_Block out_buf_;
