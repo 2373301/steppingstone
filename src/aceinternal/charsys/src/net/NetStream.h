@@ -26,7 +26,8 @@ struct NetState
 	bool closed;
 };
 
-class NetStream : public ACE_Svc_Handler<ACE_SOCK_STREAM, ACE_NULL_SYNCH>
+class NetStream 
+	: public ACE_Svc_Handler<ACE_SOCK_STREAM, ACE_NULL_SYNCH>
 {
 public:
 	NetStream();

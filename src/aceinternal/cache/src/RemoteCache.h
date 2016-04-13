@@ -5,7 +5,8 @@
 #include "typedef.h"
 #include "Cache.h"
 
-class RemoteCache : public Cache
+class RemoteCache 
+	: public Cache
 {
 public:
 	RemoteCache();
@@ -27,10 +28,8 @@ protected:
 	virtual int initing() override;
 
 private:
-	bool m_is_writing;
-
 	ACE_Thread_Mutex m_output_packet_mutex;
 
-	PacketQue_t m_output_packet;
+	PacketQue_t m_remote_session_output;
 };
 #endif

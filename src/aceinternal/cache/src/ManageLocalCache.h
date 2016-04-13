@@ -9,7 +9,10 @@
 #include "LocalCache.h"
 #include "Packet.h"
 
-class ManageLocalCache : public ManageCache, public IStreamIn, public ACE_Task<ACE_NULL_SYNCH>
+class ManageLocalCache 
+	: public ManageCache
+	, public IStreamIn
+	, public ACE_Task<ACE_NULL_SYNCH>
 {
 public:
 	virtual int stop();
@@ -19,7 +22,7 @@ public:
 	virtual void cacheOutput(Packet * packet, uint64 map_id, uint64 request_id, uint64 owner_guid);
 
 	//virtual void input(Packet * packet);
-	virtual void input(Session * session, ACE_Message_Block & msg_block);
+	virtual void IStreamIn_read(Session * session, ACE_Message_Block & msg_block);
 public:
 	// ace svc
 	virtual int svc(); 

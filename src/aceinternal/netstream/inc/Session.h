@@ -67,8 +67,8 @@ public:
 
 // Íâ¾²ÄÚ¶¯
 class NETSTREAM_EXOPRT Session
-	: public IStreamOut
-	, public ACE_Svc_Handler<ACE_SOCK_STREAM, ACE_NULL_SYNCH>
+	: public ACE_Svc_Handler<ACE_SOCK_STREAM, ACE_NULL_SYNCH>
+	, public IStreamOut
 {
 public:
 	Session();

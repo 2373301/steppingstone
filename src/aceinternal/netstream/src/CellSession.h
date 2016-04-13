@@ -18,7 +18,8 @@ struct CellSessionInfo
 	int reference_no;
 };
 
-class CellSession : public Session
+class CellSession 
+	: public Session
 {
 public:
 	CellSession();
@@ -29,7 +30,7 @@ public:
 	void setGUID(uint64 guid);
 
 public:
-	virtual bool IStreamOut_write(char * buffer, int buff_size) override;
+	virtual bool IStreamOut_write(char * buffer, int buff_size) ;
 	virtual int session_on_connected() override;
 	virtual int session_on_read() override;
 	virtual int session_write() override;
