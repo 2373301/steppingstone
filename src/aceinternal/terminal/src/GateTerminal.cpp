@@ -65,19 +65,7 @@ uint32 GateTerminal::getMessageIndex(uint32 increase_no)
 
 void GateTerminal::output(Packet * packet)
 {
-//	ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_output_packet_mutex, );
 	m_packet_serialize_assistant.handlePacket(packet);
-	//m_output_packet.push(packet);
-
-	//{
-	//	ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_output_packet_mutex, );
-	//	m_output_packet.push(packet);
-	//}
-
-	//if (!m_is_writing)
-	//{
-	//	this->reactor()->register_handler(this, ACE_Event_Handler::WRITE_MASK);
-	//}
 }
 
 void GateTerminal::outputPacket(Packet * packet)
@@ -160,7 +148,7 @@ int GateTerminal::session_write()
 //
 //	{
 //		ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_output_packet_mutex, -1);
-//		if ((m_output_packet.size() == 0) && (out_buf_.length() == 0))
+//		if ((m_output_packet.size() == 0) && (sync_out_buf_.length() == 0))
 //		{
 //			return 1;
 //		}
@@ -173,9 +161,9 @@ int GateTerminal::session_write()
 //			}
 //
 //			Packet * ps = m_output_packet.front();
-//			if (ps->stream_size() < out_buf_.space())
+//			if (ps->stream_size() < sync_out_buf_.space())
 //			{
-//				out_buf_.copy(ps->stream(), ps->stream_size());
+//				sync_out_buf_.copy(ps->stream(), ps->stream_size());
 //				m_output_packet.pop();
 //				delete ps;
 //			}
@@ -186,9 +174,9 @@ int GateTerminal::session_write()
 //		}
 //	}
 //
-//	if (out_buf_.length() > 0)
+//	if (sync_out_buf_.length() > 0)
 //	{
-//		int send_n = this->peer().send(out_buf_.rd_ptr(), out_buf_.length());
+//		int send_n = this->peer().send(sync_out_buf_.rd_ptr(), sync_out_buf_.length());
 //		if (send_n <= 0)
 //		{
 //			int last_error = ACE_OS::last_error();
@@ -203,13 +191,13 @@ int GateTerminal::session_write()
 //		}
 //		else
 //		{
-//			 out_buf_.rd_ptr(send_n);
+//			 sync_out_buf_.rd_ptr(send_n);
 //		}
 //	}
 //
-//	if (out_buf_.length() < 500)
+//	if (sync_out_buf_.length() < 500)
 //	{
-//		out_buf_.crunch();
+//		sync_out_buf_.crunch();
 //	}
 //
 //	return result;
@@ -228,8 +216,8 @@ int GateTerminal::finit()
 
 int GateTerminal::initing()
 {
-	in_buf_.init(SOCK_BUFFER_LEN);
-	out_buf_.init(SOCK_BUFFER_LEN);
+	sync_in_buf_.init(SOCK_BUFFER_LEN);
+	sync_out_buf_.init(SOCK_BUFFER_LEN);
 
 	this->peer().enable(ACE_NONBLOCK);
 
@@ -256,10 +244,10 @@ void GateTerminal::geteLostConnection()
 	if (NULL != handle_input_)
 	{
 		// todo
-		in_buf_.rd_ptr(in_buf_.base());
-		in_buf_.wr_ptr(in_buf_.base());
-		in_buf_.copy(ps->stream(), ps->stream_size());
-		handle_input_->IStreamIn_read(this, in_buf_);
+		sync_in_buf_.rd_ptr(sync_in_buf_.base());
+		sync_in_buf_.wr_ptr(sync_in_buf_.base());
+		sync_in_buf_.copy(ps->stream(), ps->stream_size());
+		handle_input_->IStreamIn_read(this, sync_in_buf_);
 		delete ps;
 	}
 }

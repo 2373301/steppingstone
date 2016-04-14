@@ -107,7 +107,7 @@ int SingleConnection::stop()
 	return 0;
 }
 
-int SingleConnection::IStreamOut_write(Packet * packet)
+int SingleConnection::IStreamOut_async_write(Packet * packet)
 {
 	ACE_GUARD_RETURN(ACE_Recursive_Thread_Mutex, guard, m_packet_que_mutex, 1);
 	m_packet_que.push(packet);
@@ -170,7 +170,7 @@ int SingleConnection::processOutputPacket(PacketQue_t & packet_que)
 	while (packet_que.size() > 0)
 	{
 		Packet * packet = packet_que.front();
-		if (m_session->IStreamOut_write(packet->stream(), packet->stream_size()))
+		if (m_session->IStreamOut_async_write(packet->stream(), packet->stream_size()))
 		{
 			delete packet;
 			packet_que.pop();

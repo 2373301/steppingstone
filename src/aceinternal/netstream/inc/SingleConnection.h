@@ -27,7 +27,7 @@ public:
 
 	virtual int stop();
 
-	virtual int IStreamOut_write(Packet * packet);
+	virtual int IStreamOut_async_write(Packet * packet);
 
 	virtual void setSocketBufferSize(int input_buf_size, int output_buf_size);
 protected:

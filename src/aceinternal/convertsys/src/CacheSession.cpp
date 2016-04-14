@@ -73,7 +73,6 @@ int CacheSession::wt_stream()
 		ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_output_packet_mutex, -1);
 		if (m_output_packet.size() == 0)
 		{
-			//this->reactor()->remove_handler(this, ACE_Event_Handler::WRITE_MASK | ACE_Event_Handler::DONT_CALL);
 			result = -1;
 		}
 	}

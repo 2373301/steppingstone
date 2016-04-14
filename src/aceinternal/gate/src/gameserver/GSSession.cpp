@@ -49,20 +49,6 @@ int GSSession::open(void * p)
 	int flag = 1;
 	this->peer().set_option(IPPROTO_TCP, TCP_NODELAY, (char *)&flag, sizeof(flag));
 
-	//int32 send_buffer = 23658;
-
-	//this->peer().set_option(SOL_SOCKET, SO_RCVBUF, (char *)&send_buffer, sizeof(send_buffer));
-
-	//this->peer().set_option(SOL_SOCKET, SO_SNDBUF, (char *)&send_buffer, sizeof(send_buffer));
-
-//	this->reactor()->remove_handler(this, ACE_Event_Handler::READ_MASK | ACE_Event_Handler::DONT_CALL);
-
-//	this->reactor(NULL);
-
-//	ManageGSStream::instance()->handleStream(this, ACE_Event_Handler::READ_MASK);
-
-//	ManageGSStream::instance()->handleStream(this, ACE_Event_Handler::WRITE_MASK);
-
 	ManageGSSession::instance()->addGSSession(this);
 
 	return 0;
@@ -118,7 +104,6 @@ int GSSession::handle_output(ACE_HANDLE  fd)
 
 	if (0 != result)
 	{
-		//removeHandler(ACE_Event_Handler::WRITE_MASK);
 		ManageGSSessionCooler::instance()->putGSSession(this);
 		return -1;
 	}

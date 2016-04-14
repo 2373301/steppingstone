@@ -39,7 +39,7 @@ int RemoteCache::session_write()
 		while (m_remote_session_output.size() > 0)
 		{
 			Packet * ps = m_remote_session_output.front();
-			if (!Session::IStreamOut_write(ps->stream(), ps->stream_size()))
+			if (!Session::IStreamOut_async_write(ps->stream(), ps->stream_size()))
 				break;
 			m_remote_session_output.pop();
 			delete ps;
@@ -49,7 +49,7 @@ int RemoteCache::session_write()
 	return Session::session_write();
 }
 
-void RemoteCache::session_recvError(int recv_value, int last_error)
+void RemoteCache::session_on_read_error(int recv_value, int last_error)
 {
 	DEF_LOG_ERROR("RemoteCache recv error, recv value is <%d>, last error is <%d>\n", recv_value, last_error);
 }

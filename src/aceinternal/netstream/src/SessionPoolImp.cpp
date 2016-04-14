@@ -91,7 +91,7 @@ int SessionPoolImp::init(int input_thr_no, int output_thr_no, HandleSessionEvent
 
 	if (m_output_session_pool.init(output_thr_no, this) != 0)
 	{
-		DEF_LOG_ERROR("failed to init IStreamOut_write session, IStreamOut_write thread no is <%d>\n", output_thr_no);
+		DEF_LOG_ERROR("failed to init IStreamOut_async_write session, IStreamOut_async_write thread no is <%d>\n", output_thr_no);
 		return -1;
 	}
 

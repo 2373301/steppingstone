@@ -12,7 +12,7 @@ public:
 	SingleTerminal();
 
 public:
-	virtual bool IStreamOut_write(char * buffer, int buff_size) override;
+	virtual bool IStreamOut_async_write(char * buffer, int buff_size) override;
 
 	virtual void outputPacket(Packet * packet) override;
 

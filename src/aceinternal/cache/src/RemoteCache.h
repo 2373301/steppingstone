@@ -20,7 +20,7 @@ public:
 
 	virtual int session_write() override;
 
-	virtual void session_recvError(int recv_value, int last_error) override;
+	virtual void session_on_read_error(int recv_value, int last_error) override;
 public:
 	virtual int finit() override;
 

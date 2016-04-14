@@ -48,7 +48,7 @@ public:
 class NETSTREAM_EXOPRT IStreamOut
 {
 public:
-	virtual bool IStreamOut_write(char * buffer, int buff_size) = 0;
+	virtual bool IStreamOut_async_write(char * buffer, int buff_size) = 0;
 };
 
 class NETSTREAM_EXOPRT SavePackInfo
@@ -87,17 +87,21 @@ public:
 protected:
 	friend class SingleConnection;
 
-	virtual int session_on_connected();
-	virtual int session_on_closed();
-	virtual int session_on_read(); // 有问题, 只reset flag
-	virtual int session_write();	// 0 : normal, -1: socket closed, 1:empty buffer, 2:call again, still have data in buffer
-									// 有问题则 shutdown
-	virtual void session_recvError(int recv_value, int last_error);	// recv num, err
-	virtual bool IStreamOut_write(char * buffer, int buff_size) override;
+	/* 这三个callback 由 reactor 驱动 */
+	virtual int  session_on_connected();
+	virtual int  session_on_closed();
+	virtual int  session_on_read(); // 有问题, 只reset flag
+	virtual void session_on_read_error(int recv_num, int last_err);
+
+	/* 由 write thread 来调用, 所以为了性能, 这层不能加锁*/
+	// 0 : normal, -1: socket closed, 1:empty buffer, 2:call again, has more data, 有问题则 shutdown
+	virtual int session_write();	
+									
+	
+	virtual bool IStreamOut_async_write(char * buffer, int buff_size) override; // 异步调用
 
 public: // ace 的 callback, 隔离, 不用
 	virtual int handle_input(ACE_HANDLE  fd = ACE_INVALID_HANDLE) final;
-	virtual int handle_output(ACE_HANDLE  fd = ACE_INVALID_HANDLE) final;
 	virtual int handle_close(ACE_HANDLE handle, ACE_Reactor_Mask close_mask) final;
 	virtual int open(void * p = 0) final;
 
@@ -106,9 +110,12 @@ protected:
 	SessionState session_state_;
 	netstream::IStreamIn * handle_input_;
 	//SavePackInfo m_save_input_pack_info;
-	ACE_Message_Block in_buf_;
-	ACE_Message_Block out_buf_;
+	ACE_Message_Block sync_in_buf_;
+	ACE_Message_Block sync_out_buf_;
 	bool client_side_;
+
+	ACE_Message_Block async_out_buf_;
+	ACE_Thread_Mutex async_out_mutex_;
 };
 
 }

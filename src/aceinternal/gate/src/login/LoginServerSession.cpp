@@ -73,25 +73,6 @@ int LoginServerSession::handle_close(ACE_HANDLE handle, ACE_Reactor_Mask close_m
 	return 0;
 }
 
-//void LoginServerSession::handleOutputPacket(PacketStream * packet_stream)
-//{
-//	//if (m_report_current_online_accounts)
-//	//{
-//	//	delete packet_stream;
-//	//	return;
-//	//}
-//
-//	{
-//		ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_output_packet_mutex, );
-//		m_output_packet_list.push_back(packet_stream);
-//	}
-//
-//	if (!m_is_writing)
-//	{
-//		this->reactor()->register_handler(this, ACE_Event_Handler::WRITE_MASK);
-//	}
-//}
-
 int LoginServerSession::rd_stream()
 {
 	int r = this->peer().recv(m_input_msg_block.wr_ptr(), m_input_msg_block.space());

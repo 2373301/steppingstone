@@ -30,15 +30,12 @@ public:
 	void setGUID(uint64 guid);
 
 public:
-	virtual bool IStreamOut_write(char * buffer, int buff_size) ;
 	virtual int session_on_connected() override;
 	virtual int session_on_read() override;
 	virtual int session_write() override;
 
 private:
 	uint64 m_guid;
-	ACE_Message_Block cell_out_buf_;
-	ACE_Thread_Mutex cell_out_mutex_;
 };
 
 

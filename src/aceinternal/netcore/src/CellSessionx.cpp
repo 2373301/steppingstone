@@ -103,16 +103,6 @@ int CellSessionx::wt_stream()
 		m_outputs.crunch();
 	}
 
-	//if (m_outputs.length() == 0)
-	//{
-	//	ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_deferred_outputs_mutex, -1);
-	//	if (m_deferred_outputs.size() == 0)
-	//	{
-	//		//this->reactor()->remove_handler(this, ACE_Event_Handler::WRITE_MASK | ACE_Event_Handler::DONT_CALL);
-	//		result = -1;
-	//	}
-	//}
-
 	return result;
 }
 

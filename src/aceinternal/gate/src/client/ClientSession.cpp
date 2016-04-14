@@ -268,48 +268,6 @@ int ClientSession::handle_input(ACE_HANDLE fd)
 int ClientSession::handle_output(ACE_HANDLE fd)
 {
 	return 0;
-
-	//int result = 0;
-	//ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_output_mutex, -1);
-	//if (m_output_msg_block.length() > 0)
-	//{
-	//	int r = this->peer().send(m_output_msg_block.rd_ptr(), m_output_msg_block.length());
-	//	if (r > 0)
-	//	{
-	//		m_output_msg_block.rd_ptr(r);
-	//		if (m_output_msg_block.length() == 0)
-	//		{
-	//			this->reactor()->remove_handler(this, ACE_Event_Handler::WRITE_MASK | ACE_Event_Handler::DONT_CALL);
-	//			ManageStat::instance()->statClientWobbleNetwork(-1);
-	//		}
-	//	}
-	//	else
-	//	{
-	//		if ((ACE_OS::last_error() == EWOULDBLOCK) || (ACE_OS::last_error() == EINTR) || (ACE_OS::last_error() == EAGAIN))
-	//		{
-	//			// ok
-	//		}
-	//		else
-	//		{
-	//			// error
-	//			result = -1;
-	//		}
-	//	}
-	//}
-	//else
-	//{
-	//	this->reactor()->remove_handler(this, ACE_Event_Handler::WRITE_MASK | ACE_Event_Handler::DONT_CALL);
-	//	ManageStat::instance()->statClientWobbleNetwork(-1);
-	//}
-
-	//if (0 != result)
-	//{
-	//	return -1;
-	//}
-	//else
-	//{
-	//	return 0;
-	//}
 }
 
 int ClientSession::handle_close(ACE_HANDLE handle, ACE_Reactor_Mask close_mask)
