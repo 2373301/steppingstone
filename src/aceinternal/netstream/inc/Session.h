@@ -83,6 +83,10 @@ public:
 	bool isClientSide() { return client_side_; }
 	int regReadEvent();
 	void setSavePackInfo(bool is_save, const string & file_name);
+	bool IStreamOut_async_write(char * buffer, int buff_size) override; // 异步调用
+	/* 由 write thread 来调用, 所以为了性能, 这层不能加锁*/
+	// 0 : normal, -1: socket closed, 1:empty buffer, 2:call again, has more data, 有问题则 shutdown
+	int session_write();	
 
 protected:
 	friend class SingleConnection;
@@ -93,13 +97,8 @@ protected:
 	virtual int  session_on_read(); // 有问题, 只reset flag
 	virtual void session_on_read_error(int recv_num, int last_err);
 
-	/* 由 write thread 来调用, 所以为了性能, 这层不能加锁*/
-	// 0 : normal, -1: socket closed, 1:empty buffer, 2:call again, has more data, 有问题则 shutdown
-	virtual int session_write();	
-									
 	
-	virtual bool IStreamOut_async_write(char * buffer, int buff_size) override; // 异步调用
-
+									
 public: // ace 的 callback, 隔离, 不用
 	virtual int handle_input(ACE_HANDLE  fd = ACE_INVALID_HANDLE) final;
 	virtual int handle_close(ACE_HANDLE handle, ACE_Reactor_Mask close_mask) final;

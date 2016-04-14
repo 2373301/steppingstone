@@ -28,12 +28,12 @@ public:
 
 	uint64 getGUID();
 	void setGUID(uint64 guid);
+	int session_write();
 
-public:
+private:
 	virtual int session_on_connected() override;
 	virtual int session_on_read() override;
-	virtual int session_write() override;
-
+	
 private:
 	uint64 m_guid;
 };
