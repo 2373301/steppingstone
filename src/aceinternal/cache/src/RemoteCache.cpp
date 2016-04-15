@@ -9,7 +9,6 @@ RemoteCache::RemoteCache()
 
 RemoteCache::~RemoteCache()
 {
-	cleanPacketQue(m_remote_session_output);
 }
 
 int RemoteCache::session_on_read()
@@ -26,28 +25,12 @@ int RemoteCache::session_on_read()
 	}
 }
 
-void RemoteCache::output(Packet * packet)
+void RemoteCache::output(Packet * ps)
 {
-	ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_output_packet_mutex, );
-	m_remote_session_output.push(packet);
+	Session::IStreamOut_async_write(ps->stream(), ps->stream_size());
+	delete ps;
 }
 
-int RemoteCache::session_write()
-{
-	{
-		ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_output_packet_mutex, -1);
-		while (m_remote_session_output.size() > 0)
-		{
-			Packet * ps = m_remote_session_output.front();
-			if (!Session::IStreamOut_async_write(ps->stream(), ps->stream_size()))
-				break;
-			m_remote_session_output.pop();
-			delete ps;
-		}
-	}
-	
-	return Session::session_write();
-}
 
 void RemoteCache::session_on_read_error(int recv_value, int last_error)
 {

@@ -114,7 +114,8 @@ struct ReqPackInfo
 };
 
 
-class CACHE_EXOPRT Cache : public Session
+class CACHE_EXOPRT Cache 
+	: public Session
 {
 public:
 	// remote: empty, local: local path
