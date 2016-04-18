@@ -24,7 +24,7 @@ public:
 
 	uint64 getBattleReportId();
 protected:
-	virtual void newConnection(PacketQue_t & output_packet_que);
+	virtual void ISessionPoolEvent_newConnection(PacketQue_t & output_packet_que);
 
 	bool loadReportId();
 

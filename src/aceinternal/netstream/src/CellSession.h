@@ -28,7 +28,7 @@ public:
 
 	uint64 getGUID();
 	void setGUID(uint64 guid);
-	int session_write();
+	int session_sync_write();
 
 private:
 	virtual int session_on_connected() override;

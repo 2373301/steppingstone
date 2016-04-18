@@ -73,7 +73,7 @@ void GateTerminal::outputPacket(Packet * packet)
 	m_packet_serialize_assistant.handlePacket(packet);
 }
 
-int GateTerminal::session_write()
+int GateTerminal::session_sync_write()
 {
 	int result = 0;
 	if (NULL == m_current_msg_block)
@@ -247,7 +247,7 @@ void GateTerminal::geteLostConnection()
 		sync_in_buf_.rd_ptr(sync_in_buf_.base());
 		sync_in_buf_.wr_ptr(sync_in_buf_.base());
 		sync_in_buf_.copy(ps->stream(), ps->stream_size());
-		handle_input_->IStreamIn_read(this, sync_in_buf_);
+		handle_input_->ISessionIn_sync_read(this, sync_in_buf_);
 		delete ps;
 	}
 }

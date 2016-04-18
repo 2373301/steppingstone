@@ -52,7 +52,6 @@ SceneImp::SceneImp()
 , m_is_stop(false)
 , m_is_shutdown_success(false)
 ,m_session_pool(NULL)
-,m_to_be_connected(128)
 {
 }
 
@@ -73,7 +72,7 @@ SceneImp::~SceneImp()
 	delete m_scene_cfg.logger;
 }
 
-void SceneImp::newConnection(netstream::Session_t session, bool clientSide)
+void SceneImp::ISessionPoolEvent_newConnection(netstream::Session_t session, bool clientSide)
 {
 	if (!clientSide)
 		return;
@@ -85,7 +84,7 @@ void SceneImp::newConnection(netstream::Session_t session, bool clientSide)
 	SCENE_SEND_MSG(SCENE_XS2XS_REQ_CONNECTION, 0, session, req);
 }
 
-void SceneImp::connectionClosed(netstream::Session_t session, int trigger_source)
+void SceneImp::ISessionPoolEvent_connectionClosed(netstream::Session_t session, int trigger_source)
 {
 	PackInfo * info = new PackInfo(SCENE_XS2XS_NTF_SCENE_LOGOUT, 0, NULL);
 	info->owner = session;
@@ -96,7 +95,7 @@ void SceneImp::connectionClosed(netstream::Session_t session, int trigger_source
 	}
 }
 
-void SceneImp::handleInputStream(netstream::Session_t session, ACE_Message_Block & msg_block)
+void SceneImp::ISessionPoolEvent_handleInputStream(netstream::Session_t session, ACE_Message_Block & msg_block)
 {
 	PacketVec_t packet_vec;
 	netstream::parsePacketFromStream(session, msg_block, packet_vec);
@@ -208,9 +207,9 @@ int SceneImp::on_scene_ns2xs_ack_online_scenes(const PackInfo & pack_info)
 		if(m_scene_cfg.srv_id < *addr)
 			continue;
 
-		if (!m_to_be_connected.bounded_push(addr))
-		{
-			SCENE_LOG_INFO("failed to push to queue to conenector other scene: srv id: %s, ip: %s", req->srv_ids(i), req->srv_addrs(i));
+		{	
+			std::lock_guard<std::mutex> lock(m_to_be_connected_mutex);
+			m_to_be_connected.push_back(addr);
 		}
 	}
 
@@ -235,9 +234,9 @@ int SceneImp::on_scene_ns2xs_ntf_new_scenes(const PackInfo & pack_info)
 			continue;
 
 		std::string *addr = new std::string(req->srv_addrs(i));
-		if (!m_to_be_connected.bounded_push(addr))
 		{
-			SCENE_LOG_INFO("failed to push to queue to conenector other scene: srv id: %s, ip: %s", req->srv_ids(i), req->srv_addrs(i));
+			std::lock_guard<std::mutex> lock(m_to_be_connected_mutex);
+			m_to_be_connected.push_back(addr);
 		}
 	}
 
@@ -585,7 +584,7 @@ void SceneImp::cacheInput(Packet * packet, uint64 map_id, uint64 request_id)
 	//m_cache_input_packet_vec.push_back(CachePackInfo(request_id, map_id, packet));
 }
 
-void SceneImp::packInput(PackInfo * pack_info)
+void SceneImp::IMessage_packInput(PackInfo * pack_info)
 {
 	ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_input_packet_vec_mutex, );
 	m_input_packet_vec.push_back(pack_info);
@@ -603,10 +602,18 @@ int SceneImp::connector_svc(void)
 	while (!m_is_stop)
 	{	
 		std::string *req = NULL;
-		if (!m_to_be_connected.pop(req))
 		{
-			ACE_OS::sleep(idle_sleep_time);
-			continue;
+			m_to_be_connected_mutex.lock();
+			if (m_to_be_connected.empty())
+			{	
+				m_to_be_connected_mutex.unlock();
+				ACE_OS::sleep(idle_sleep_time);
+				continue;
+			}
+
+			req = m_to_be_connected.front();
+			m_to_be_connected.pop_front();
+			m_to_be_connected_mutex.unlock();
 		}
 
 		std::unique_ptr<std::string> u(req);
@@ -790,7 +797,7 @@ int SceneImp::get_random(int max_no, int min_no)
 }
 
 
-void SceneImp::playerMsg(Packet * packet)
+void SceneImp::IMessage_player(Packet * packet)
 {
 	if (m_scene_cfg.save_packet)
 	{
@@ -800,17 +807,17 @@ void SceneImp::playerMsg(Packet * packet)
 	//m_scene_cfg.manage_terminal->output(packet);
 }
 
-void SceneImp::inlineBroadMsg(Packet * packet)
+void SceneImp::IMessage_inlineBroad(Packet * packet)
 {
 	// todo
 }
 
-void SceneImp::notifyMsgToPlugins(const PackInfo & pack_info)
+void SceneImp::IMessage_notifyToPlugins(const PackInfo & pack_info)
 {
 	//m_plugin_depot->notify(pack_info);
 }
 
-bool SceneImp::requestMsgToPlugins(const PackInfo & pack_info)
+bool SceneImp::IMessage_requestToPlugins(const PackInfo & pack_info)
 {
 	int res = 0;// m_plugin_depot->request(pack_info);
 	if (res < 0)
@@ -821,7 +828,7 @@ bool SceneImp::requestMsgToPlugins(const PackInfo & pack_info)
 	return res >= 0;
 }
 
-bool SceneImp::gmcmdMsgToPlugins(const string & gm_name, const vector<string> & gm_param, uint64 target_guid)
+bool SceneImp::IMessage_gmcmdToPlugins(const string & gm_name, const vector<string> & gm_param, uint64 target_guid)
 {
 	int res = 0;// m_plugin_depot->gmcmd(gm_name, gm_param, target_guid);
 	if (res < 0)

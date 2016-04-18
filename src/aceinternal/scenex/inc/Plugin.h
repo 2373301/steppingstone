@@ -82,7 +82,7 @@
 	}
 
 ///////////////		message op			///////////////////////////////////////////////////////////
-#define SEND_PLAYER_MESSAGE(message, packet)  message->playerMsg(packet)
+#define SEND_PLAYER_MESSAGE(message, packet)  message->IMessage_player(packet)
 
 #define MAKE_AND_SEND_PLAYER_MESSAGE(op_code, guid, stream_value)	\
 	{	\
@@ -90,7 +90,7 @@
 		SEND_PLAYER_MESSAGE(m_plugin_cfg.message, ps);	\
 	}
 
-#define NOTIFY_MSG_TO_PLUGINS(message, pack_info)	message->notifyMsgToPlugins(pack_info)
+#define NOTIFY_MSG_TO_PLUGINS(message, pack_info)	message->IMessage_notifyToPlugins(pack_info)
 
 #define MAKE_AND_NOTIFY_MSG_TO_PLUGINS(op_code, guid, msg_entity)	\
 	{	\
@@ -98,9 +98,9 @@
 		NOTIFY_MSG_TO_PLUGINS(m_plugin_cfg.message, pi);	\
 	}
 
-#define REQUEST_MSG_TO_PLUGINS(message, pack_info)	message->requestMsgToPlugins(pack_info)
+#define REQUEST_MSG_TO_PLUGINS(message, pack_info)	message->IMessage_requestToPlugins(pack_info)
 
-#define GMCMD_MSG_TO_PLUGINS(message, gm_name, gm_param, target_guid)	message->gmcmdMsgToPlugins(gm_name, gm_param, target_guid)
+#define GMCMD_MSG_TO_PLUGINS(message, gm_name, gm_param, target_guid)	message->IMessage_gmcmdToPlugins(gm_name, gm_param, target_guid)
 
 #define PLUGIN_SCHEME_TIMER(scene, interval_time, call_back_fun)	scene->schemeTimer(interval_time, call_back_fun)
 
@@ -330,7 +330,7 @@ struct SCENEX_EXOPRT PluginCfg
 	//Scene *	scene;
 	//Pool *	pool;
 	//ManageGrid * manage_grid;
-	Message * message;
+	IMessage * message;
 	Logger * logger;
 	//Line * line_scene;
 	//SceneRequest * scene_request;

@@ -26,7 +26,7 @@ void CrossServerConnect::handlePacket(Packet * packet)
 	}
 }
 
-void CrossServerConnect::newConnection(PacketQue_t & output_packet_que)
+void CrossServerConnect::ISessionPoolEvent_newConnection(PacketQue_t & output_packet_que)
 {
 	typed::protocol::smsg_cross_server_register scs_register;
 	scs_register.set_line_id(m_server_cfg.server_id);
@@ -37,7 +37,7 @@ void CrossServerConnect::newConnection(PacketQue_t & output_packet_que)
 	output_packet_que.push(ps);
 }
 
-void CrossServerConnect::connectionClosed()
+void CrossServerConnect::ISessionPoolEvent_connectionClosed()
 {
 	
 }

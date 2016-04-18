@@ -65,7 +65,7 @@ int ManageGateTerminal::svc()
 	return 0;
 }
 
-void ManageGateTerminal::IStreamIn_read(Session * session, ACE_Message_Block & msg_block)
+void ManageGateTerminal::ISessionIn_sync_read(Session * session, ACE_Message_Block & msg_block)
 {
 	PacketVec_t packet_vec;
 	parsePacketFromStream(session, msg_block, packet_vec);
@@ -95,7 +95,7 @@ void ManageGateTerminal::IStreamIn_read(Session * session, ACE_Message_Block & m
 		//	removeRoute(packet->guid(), packet->getOwner());
 		//}
 
-		m_terminal_cfg.handle_input->IStreamIn_read(packet);
+		m_terminal_cfg.handle_input->input(packet);
 	}
 }
 

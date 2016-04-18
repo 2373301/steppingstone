@@ -71,7 +71,7 @@ int ManageRemoteCache::svc()
 //	}
 //}
 
-void ManageRemoteCache::IStreamIn_read(Session * session, ACE_Message_Block & msg_block)
+void ManageRemoteCache::ISessionIn_sync_read(Session * session, ACE_Message_Block & msg_block)
 {
 	PacketVec_t packet_vec;
 	parsePacketFromStream(session, msg_block, packet_vec);

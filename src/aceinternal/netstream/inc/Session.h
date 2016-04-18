@@ -9,12 +9,6 @@
 #include "Packet.h"
 #include "netstream_def.h"
 
-class NETSTREAM_EXOPRT HandleInput
-{
-public:
-	virtual void input(Packet * packet) = 0;
-};
-
 namespace netstream
 {
 
@@ -33,11 +27,18 @@ enum SessionState
 	SS_CLOSED,
 };
 
-class NETSTREAM_EXOPRT IStreamIn
+class NETSTREAM_EXOPRT ISessionIn
 {
 public:
-	virtual void IStreamIn_read(Session * session, ACE_Message_Block & msg_block) = 0;
+	virtual void ISessionIn_sync_read(Session * session, ACE_Message_Block & msg_block) = 0;
 };
+
+class NETSTREAM_EXOPRT HandleInput
+{
+public:
+	virtual void input(Packet * packet) = 0;
+};
+
 
 class NETSTREAM_EXOPRT HandleOutput
 {
@@ -45,11 +46,6 @@ public:
 	virtual void output(Packet * packet) = 0;
 };
 
-class NETSTREAM_EXOPRT IStreamOut
-{
-public:
-	virtual bool IStreamOut_async_write(char * buffer, int buff_size) = 0;
-};
 
 class NETSTREAM_EXOPRT SavePackInfo
 {
@@ -68,7 +64,6 @@ public:
 // 外静内动
 class NETSTREAM_EXOPRT Session
 	: public ACE_Svc_Handler<ACE_SOCK_STREAM, ACE_NULL_SYNCH>
-	, public IStreamOut
 {
 public:
 	Session();
@@ -79,14 +74,14 @@ public:
 	typedef std::list<Packet *> PacketList;
 
 	void setSocketBufferSize(int in_size, int out_size);
-	void setHandleInput(IStreamIn * handle_input);
+	void setHandleInput(ISessionIn * a_input);
 	bool isClientSide() { return client_side_; }
 	int regReadEvent();
 	void setSavePackInfo(bool is_save, const string & file_name);
-	bool IStreamOut_async_write(char * buffer, int buff_size) override; // 异步调用
+	bool session_async_write(char * buffer, int buff_size);
 	/* 由 write thread 来调用, 所以为了性能, 这层不能加锁*/
 	// 0 : normal, -1: socket closed, 1:empty buffer, 2:call again, has more data, 有问题则 shutdown
-	int session_write();	
+	int session_sync_write();	
 
 protected:
 	friend class SingleConnection;
@@ -107,7 +102,7 @@ public: // ace 的 callback, 隔离, 不用
 protected:
 	static int s_socket_buf_len_;
 	SessionState session_state_;
-	netstream::IStreamIn * handle_input_;
+	netstream::ISessionIn * handle_input_;
 	//SavePackInfo m_save_input_pack_info;
 	ACE_Message_Block sync_in_buf_;
 	ACE_Message_Block sync_out_buf_;

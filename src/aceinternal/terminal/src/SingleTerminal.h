@@ -12,12 +12,12 @@ public:
 	SingleTerminal();
 
 public:
-	virtual bool IStreamOut_async_write(char * buffer, int buff_size) override;
+	bool session_async_write(char * buffer, int buff_size);
 
 	virtual void outputPacket(Packet * packet) override;
 
 public:
-	virtual int session_write() override;
+	int session_sync_write();
 
 public:
 	virtual int finit();

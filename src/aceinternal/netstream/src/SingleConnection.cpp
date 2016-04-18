@@ -41,7 +41,7 @@ int SingleConnection::svc()
 			}
 			else
 			{
-				newConnection(packet_que);
+				ISessionPoolEvent_newConnection(packet_que);
 			}
 		}
 
@@ -63,7 +63,7 @@ int SingleConnection::svc()
 	return 0;
 }
 
-void SingleConnection::IStreamIn_read(Session * session, ACE_Message_Block & msg_block)
+void SingleConnection::ISessionIn_sync_read(Session * session, ACE_Message_Block & msg_block)
 {
 	PacketVec_t packet_vec;
 	parsePacketFromStream(session, msg_block, packet_vec);
@@ -107,7 +107,7 @@ int SingleConnection::stop()
 	return 0;
 }
 
-int SingleConnection::IStreamOut_async_write(Packet * packet)
+int SingleConnection::session_async_write(Packet * packet)
 {
 	ACE_GUARD_RETURN(ACE_Recursive_Thread_Mutex, guard, m_packet_que_mutex, 1);
 	m_packet_que.push(packet);
@@ -120,7 +120,7 @@ void SingleConnection::setSocketBufferSize(int input_buf_size, int output_buf_si
 	m_socket_output_buffer_size = output_buf_size;
 }
 
-void SingleConnection::newConnection(PacketQue_t & output_packet_que)
+void SingleConnection::ISessionPoolEvent_newConnection(PacketQue_t & output_packet_que)
 {
 }
 
@@ -170,7 +170,7 @@ int SingleConnection::processOutputPacket(PacketQue_t & packet_que)
 	while (packet_que.size() > 0)
 	{
 		Packet * packet = packet_que.front();
-		if (m_session->IStreamOut_async_write(packet->stream(), packet->stream_size()))
+		if (m_session->session_async_write(packet->stream(), packet->stream_size()))
 		{
 			delete packet;
 			packet_que.pop();
@@ -181,7 +181,7 @@ int SingleConnection::processOutputPacket(PacketQue_t & packet_que)
 		}
 	}
 
-	return m_session->session_write();
+	return m_session->session_sync_write();
 }
 
 void SingleConnection::closeSession()

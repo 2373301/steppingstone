@@ -16,7 +16,7 @@
 #include "protocol/msg_scene.pb.h"
 #include <thread>
 #include <mutex>
-#include <boost/lockfree/queue.hpp>
+#include <queue>
 #include "Pool.h"
 
 typedef std::function<int(const PackInfo & pack_info) > MsgHandler;
@@ -42,7 +42,7 @@ typedef std::map<uint64, MsgHandler> MsgHandlerMap;
 class SCENEX_EXOPRT SceneImp
 	: public Scene
 	, public ACE_Task<ACE_NULL_SYNCH>
-	, public netstream::HandleSessionEvent
+	, public netstream::ISessionPoolEvent
 {
 public:
 	SceneImp();
@@ -68,26 +68,26 @@ public:
 	virtual int get_random(int max_no, int min_no = 0) override;
 
 
-	virtual void packInput(PackInfo * pack_info) override;
+	virtual void IMessage_packInput(PackInfo * pack_info) override;
 
 private:
 	virtual int svc(void) override;
 	int scene_svc(void);
 	int connector_svc(void);
 
-	virtual void playerMsg(Packet * packet) override;
-	virtual void inlineBroadMsg(Packet * packet) override;
-	virtual void notifyMsgToPlugins(const PackInfo & pack_info) override;
-	virtual bool requestMsgToPlugins(const PackInfo & pack_info) override;
-	virtual bool gmcmdMsgToPlugins(const string & gm_name, const vector<string> & gm_param, uint64 target_guid) override;
+	virtual void IMessage_player(Packet * packet) override;
+	virtual void IMessage_inlineBroad(Packet * packet) override;
+	virtual void IMessage_notifyToPlugins(const PackInfo & pack_info) override;
+	virtual bool IMessage_requestToPlugins(const PackInfo & pack_info) override;
+	virtual bool IMessage_gmcmdToPlugins(const string & gm_name, const vector<string> & gm_param, uint64 target_guid) override;
 
 	void savePacket(Packet * packet);
 
 
 	// handleSessionEvent
-	virtual void newConnection(netstream::Session_t session, bool clientSide) override;
-	virtual void connectionClosed(netstream::Session_t session, int trigger_source) override;
-	virtual void handleInputStream(netstream::Session_t session, ACE_Message_Block & msg_block) override;
+	virtual void ISessionPoolEvent_newConnection(netstream::Session_t session, bool clientSide) override;
+	virtual void ISessionPoolEvent_connectionClosed(netstream::Session_t session, int trigger_source) override;
+	virtual void ISessionPoolEvent_handleInputStream(netstream::Session_t session, ACE_Message_Block & msg_block) override;
 
 
 	SCENE_BEGIN_INPUT_MSG_MAP()
@@ -159,6 +159,7 @@ private:
 	uint32 m_connector_thread_num = 1;
 	uint32 m_cur_connector_thread_num = 0;
 
-	boost::lockfree::queue<std::string *> m_to_be_connected;
+	std::deque<std::string *> m_to_be_connected;
+	std::mutex m_to_be_connected_mutex;
 };
 #endif

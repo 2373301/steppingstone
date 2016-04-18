@@ -74,24 +74,24 @@ int SessionPoolImp::svc()
 	return 0;
 }
 
-void SessionPoolImp::IStreamIn_read(Session * session, ACE_Message_Block & msg_block)
+void SessionPoolImp::ISessionIn_sync_read(Session * session, ACE_Message_Block & msg_block)
 {
-	m_handle_session_event->handleInputStream(session, msg_block);
+	m_handle_session_event->ISessionPoolEvent_handleInputStream(session, msg_block);
 }
 
-int SessionPoolImp::init(int input_thr_no, int output_thr_no, HandleSessionEvent * handle_session_event)
+int SessionPoolImp::init(int input_thr_no, int output_thr_no, ISessionPoolEvent * handle_session_event)
 {
 	m_handle_session_event = handle_session_event;
 
 	if (m_input_session_pool.init(input_thr_no, this) != 0)
 	{
-		DEF_LOG_ERROR("failed to init IStreamIn_read session, IStreamIn_read thread no is <%d>\n", input_thr_no);
+		DEF_LOG_ERROR("failed to init ISessionIn_sync_read session, ISessionIn_sync_read thread no is <%d>\n", input_thr_no);
 		return -1;
 	}
 
 	if (m_output_session_pool.init(output_thr_no, this) != 0)
 	{
-		DEF_LOG_ERROR("failed to init IStreamOut_async_write session, IStreamOut_async_write thread no is <%d>\n", output_thr_no);
+		DEF_LOG_ERROR("failed to init session_async_write session, session_async_write thread no is <%d>\n", output_thr_no);
 		return -1;
 	}
 
@@ -136,7 +136,7 @@ bool SessionPoolImp::connect(const SessionAddrVec_t & session_addr_vec)
 			DEF_LOG_INFO("success to connect the addr <%s>\n", it->c_str());
 			if (NULL != m_handle_session_event)
 			{
-				m_handle_session_event->newConnection(cell_session, cell_session->isClientSide());
+				m_handle_session_event->ISessionPoolEvent_newConnection(cell_session, cell_session->isClientSide());
 			}
 		}
 		else
@@ -201,7 +201,7 @@ void SessionPoolImp::onSessionOpenNotify(Session * session)
 {
 	if (NULL != m_handle_session_event)
 	{
-		m_handle_session_event->newConnection(session, session->isClientSide());
+		m_handle_session_event->ISessionPoolEvent_newConnection(session, session->isClientSide());
 	}
 
 	{
@@ -263,7 +263,7 @@ void SessionPoolImp::onSessionCloseNotify(Session * session, int trigger_source)
 
 	if (1 == ref_no)
 	{
-		m_handle_session_event->connectionClosed(session, trigger_source);
+		m_handle_session_event->ISessionPoolEvent_connectionClosed(session, trigger_source);
 
 		if (ACE_Event_Handler::READ_MASK == trigger_source)
 		{

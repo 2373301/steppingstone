@@ -11,7 +11,7 @@
 
 class ManageRemoteCache 
 					: public ManageCache
-					, public IStreamIn
+					, public ISessionIn
 					, public ACE_Task<ACE_NULL_SYNCH>
 {
 public:
@@ -22,7 +22,7 @@ public:
 	int svc();
 public:
 	//virtual void input(Packet * packet);
-	virtual void IStreamIn_read(Session * session, ACE_Message_Block & msg_block);
+	virtual void ISessionIn_sync_read(Session * session, ACE_Message_Block & msg_block);
 
 	virtual void cacheOutput(Packet * packet, uint64 map_id, uint64 request_id, uint64 owner_guid);
 public:

@@ -119,7 +119,7 @@ class CACHE_EXOPRT Cache
 {
 public:
 	// remote: empty, local: local path
-	virtual int init(const string & parameter, IStreamIn * handle_input)
+	virtual int init(const string & parameter, ISessionIn * handle_input)
 	{
 		if (NULL == handle_input)
 		{

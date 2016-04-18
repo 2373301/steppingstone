@@ -109,7 +109,7 @@ int CrossServerSessionPool::svc()
 	return 0;
 }
 
-void CrossServerSessionPool::newConnection(Session_t session)
+void CrossServerSessionPool::ISessionPoolEvent_newConnection(Session_t session)
 {
 	//ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_cross_session_info_map_mutex, );
 	//CrossSessionInfoMap_t::iterator it = m_cross_session_info_map.find(session);
@@ -124,7 +124,7 @@ void CrossServerSessionPool::newConnection(Session_t session)
 	//m_cross_session_info_map.insert(std::make_pair(session, info));
 }
 
-void CrossServerSessionPool::connectionClosed(Session_t session, int trigger_source)
+void CrossServerSessionPool::ISessionPoolEvent_connectionClosed(Session_t session, int trigger_source)
 {
 	ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_cross_session_info_map_mutex, );
 	for (CrossSessionInfoMap_t::iterator it = m_cross_session_info_map.begin(); it != m_cross_session_info_map.end(); ++it)
@@ -149,7 +149,7 @@ void CrossServerSessionPool::connectionClosed(Session_t session, int trigger_sou
 	m_validated_session_set.erase(session);
 }
 
-void CrossServerSessionPool::handleInputStream(Session_t session, ACE_Message_Block & msg_block)
+void CrossServerSessionPool::ISessionPoolEvent_handleInputStream(Session_t session, ACE_Message_Block & msg_block)
 {
 	PacketVec_t packet_vec;
 	parsePacketFromStream(session, msg_block, packet_vec);

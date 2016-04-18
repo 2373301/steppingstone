@@ -36,7 +36,7 @@ struct CrossServerPlayerRouteInfo
 	string platform;
 };
 
-class CrossServerSessionPool : public HandleSessionEvent, public ACE_Task<ACE_NULL_SYNCH>
+class CrossServerSessionPool : public ISessionPoolEvent, public ACE_Task<ACE_NULL_SYNCH>
 {
 public:
 	CrossServerSessionPool();
@@ -51,11 +51,11 @@ public:
 	int svc();
 
 public:
-	virtual void newConnection(Session_t session);
+	virtual void ISessionPoolEvent_newConnection(Session_t session);
 
-	virtual void connectionClosed(Session_t session, int trigger_source);
+	virtual void ISessionPoolEvent_connectionClosed(Session_t session, int trigger_source);
 
-	virtual void handleInputStream(Session_t session, ACE_Message_Block & msg_block);
+	virtual void ISessionPoolEvent_handleInputStream(Session_t session, ACE_Message_Block & msg_block);
 public:
 	
 protected:

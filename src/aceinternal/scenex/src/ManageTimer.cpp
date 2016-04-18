@@ -6,7 +6,7 @@
 #include "Logger.h"
 #include "share_fun.h"
 
-TimerEvent::TimerEvent(HandleInput * handle_input)
+TimerEvent::TimerEvent(netstream::HandleInput * handle_input)
 : m_timer_id(0)
 , m_handle_input(handle_input)
 {
@@ -25,7 +25,7 @@ void TimerEvent::set_timer_id (int timer_id)
 }
 
 
-ManageTimer::ManageTimer(HandleInput * handle_input)
+ManageTimer::ManageTimer(netstream::HandleInput * handle_input)
 : m_handle_input(handle_input)
 , m_is_trigger(false)
 , m_is_stop(false)

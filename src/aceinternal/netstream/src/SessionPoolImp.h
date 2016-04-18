@@ -27,14 +27,14 @@ struct SessionStatus
 
 class SessionPoolImp
 	: public SessionPool
-	, public IStreamIn
+	, public ISessionIn
 	, public ACE_Task<ACE_NULL_SYNCH>
 {
 public:
 	SessionPoolImp();
 	virtual ~SessionPoolImp();
 
-	virtual int init(int input_thr_no, int output_thr_no, HandleSessionEvent * handle_session_event = NULL)  override;
+	virtual int init(int input_thr_no, int output_thr_no, ISessionPoolEvent * handle_session_event = NULL)  override;
 	virtual void setSocketBufferSize(int input_buf_size, int output_buf_size) override;
 	virtual bool connect(const SessionAddrVec_t & session_addr_vec) override;
 	virtual bool listen(const string & listen_addr) override;
@@ -47,12 +47,12 @@ public:
 	void onSessionOpenNotify(Session * session);
 	void onSessionCloseNotify(Session * session, int trigger_source);
 
-	virtual void IStreamIn_read(Session * session, ACE_Message_Block & msg_block) override; // IStreamIn
+	virtual void ISessionIn_sync_read(Session * session, ACE_Message_Block & msg_block) override;
 
 	virtual int svc() override; // ACE_Task
 
 private:
-	HandleSessionEvent * m_handle_session_event;
+	ISessionPoolEvent * m_handle_session_event;
 	ACE_Reactor * m_reactor;
 
 	// default 0, 1:sucess, 2:failed

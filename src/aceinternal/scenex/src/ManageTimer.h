@@ -7,10 +7,11 @@
 #include <ace/Timer_Heap.h>
 #include "Session.h"
 
-class TimerEvent : public ACE_Event_Handler
+class TimerEvent 
+	: public ACE_Event_Handler
 {
 public:
-	TimerEvent(HandleInput * handle_input);
+	TimerEvent(netstream::HandleInput * handle_input);
 
 	virtual int handle_timeout (const ACE_Time_Value &current_time, const void *act);
 
@@ -18,13 +19,14 @@ public:
 private:
 	long m_timer_id;
 
-	HandleInput * m_handle_input;
+	netstream::HandleInput * m_handle_input;
 };
 
-class ManageTimer : public ACE_Task<ACE_NULL_SYNCH>
+class ManageTimer 
+	: public ACE_Task<ACE_NULL_SYNCH>
 {
 public:
-	ManageTimer(HandleInput * handle_input);
+	ManageTimer(netstream::HandleInput * handle_input);
 
 	~ManageTimer();
 
@@ -45,7 +47,7 @@ public:
 private:
 	typedef map<long, TimerEvent *> TimerEventMap_t;
 
-	HandleInput * m_handle_input;
+	netstream::HandleInput * m_handle_input;
 
 	ACE_Timer_Queue * m_timer_queue;
 

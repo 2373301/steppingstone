@@ -43,9 +43,9 @@ int CellSession::session_on_read()
 }
 
 
-int CellSession::session_write()
+int CellSession::session_sync_write()
 {
-	int result = Session::session_write();
+	int result = Session::session_sync_write();
 	if (-1 == result)
 	{
 		ManageNetEventNotify::instance()->sessionCloseNotify(this, ACE_Event_Handler::WRITE_MASK);

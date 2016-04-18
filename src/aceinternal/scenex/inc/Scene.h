@@ -91,9 +91,9 @@ struct SCENEX_EXOPRT SceneCfg
 };
 
 class SCENEX_EXOPRT Scene 
-	: public HandleInput
+	: public netstream::HandleInput
 	, public Timer
-	, public Message
+	, public IMessage
 {
 public:
 	virtual ~Scene(){}

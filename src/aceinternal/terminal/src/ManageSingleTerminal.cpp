@@ -103,7 +103,7 @@ int ManageSingleTerminal::handle_timeout(const ACE_Time_Value &current_time, con
 	return 0;
 }
 
-void ManageSingleTerminal::IStreamIn_read(Session * session, ACE_Message_Block & msg_block)
+void ManageSingleTerminal::ISessionIn_sync_read(Session * session, ACE_Message_Block & msg_block)
 {
 	//if (packet->opcode() == CMSG_PLAYER_ENTER_MAP)
 	//{

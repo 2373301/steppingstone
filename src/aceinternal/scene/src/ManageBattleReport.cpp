@@ -76,7 +76,7 @@ uint64 ManageBattleReport::getBattleReportId()
 	return result;
 }
 
-void ManageBattleReport::newConnection(PacketQue_t & output_packet_que)
+void ManageBattleReport::ISessionPoolEvent_newConnection(PacketQue_t & output_packet_que)
 {
 	// todo
 	typed::protocol::stor_verification sv;

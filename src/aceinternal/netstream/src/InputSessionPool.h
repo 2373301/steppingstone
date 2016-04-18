@@ -29,8 +29,8 @@ struct InputSessionThreadInfo
 
 typedef vector<InputSessionThreadInfo *> InputSessionThreadInfoVec_t;
 
-
-class InputSessionPool : public ACE_Task<ACE_NULL_SYNCH>
+class InputSessionPool 
+	: public ACE_Task<ACE_NULL_SYNCH>
 {
 public:
 	InputSessionPool();

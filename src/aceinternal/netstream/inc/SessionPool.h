@@ -10,17 +10,16 @@ namespace netstream
 {
 
 typedef void * Session_t;
-
 typedef vector<string> SessionAddrVec_t;
 
-class NETSTREAM_EXOPRT HandleSessionEvent
+class NETSTREAM_EXOPRT ISessionPoolEvent
 {
 public:
-	virtual void newConnection(Session_t session, bool clientSide) = 0;
+	virtual void ISessionPoolEvent_newConnection(Session_t session, bool clientSide) = 0;
 
-	virtual void connectionClosed(Session_t session, int trigger_source) = 0;
+	virtual void ISessionPoolEvent_connectionClosed(Session_t session, int trigger_source) = 0;
 
-	virtual void handleInputStream(Session_t session, ACE_Message_Block & msg_block) = 0;
+	virtual void ISessionPoolEvent_handleInputStream(Session_t session, ACE_Message_Block & msg_block) = 0;
 };
 
 class NETSTREAM_EXOPRT SessionPool
@@ -28,7 +27,7 @@ class NETSTREAM_EXOPRT SessionPool
 public:
 	virtual ~SessionPool(){}
 
-	virtual int init(int input_thr_no, int output_thr_no, HandleSessionEvent * handle_session_event = NULL) = 0;
+	virtual int init(int input_thr_no, int output_thr_no, ISessionPoolEvent * handle_session_event = NULL) = 0;
 
 	virtual void setSocketBufferSize(int input_buf_size, int output_buf_size) = 0;
 

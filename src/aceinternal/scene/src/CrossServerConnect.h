@@ -15,9 +15,9 @@ public:
 public:
 	virtual void handlePacket(Packet * packet);
 
-	virtual void newConnection(PacketQue_t & output_packet_que);
+	virtual void ISessionPoolEvent_newConnection(PacketQue_t & output_packet_que);
 
-	virtual void connectionClosed();
+	virtual void ISessionPoolEvent_connectionClosed();
 public:
 	void setServerInfo(const ServerCfg & server_cfg, const string & security_key, CrossServerInput * cross_server_input);
 protected:

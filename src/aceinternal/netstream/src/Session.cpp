@@ -8,7 +8,7 @@
 #include "Session.h"
 #include "Logger.h"
 
-//#define LOG_INPUT_MSG_SIZE()	DEF_LOG_DEBUG("the IStreamIn_read msg rd_ptr is <%x>, wt_ptr is <%x>, file line is <%d>\n", sync_in_buf_.rd_ptr(), sync_in_buf_.wr_ptr(), __LINE__)
+//#define LOG_INPUT_MSG_SIZE()	DEF_LOG_DEBUG("the ISessionIn_sync_read msg rd_ptr is <%x>, wt_ptr is <%x>, file line is <%d>\n", sync_in_buf_.rd_ptr(), sync_in_buf_.wr_ptr(), __LINE__)
 #define LOG_INPUT_MSG_SIZE()
 namespace netstream
 {
@@ -147,7 +147,7 @@ int Session::handle_close(ACE_HANDLE handle, ACE_Reactor_Mask close_mask)
 	return 0;
 }
 
-bool Session::IStreamOut_async_write(char * buffer, int buff_size)
+bool Session::session_async_write(char * buffer, int buff_size)
 {
 	ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, async_out_mutex_, false);
 	if (async_out_buf_.space() >= buff_size)
@@ -193,7 +193,7 @@ int Session::session_on_read()
 
 		LOG_INPUT_MSG_SIZE();
 
-		handle_input_->IStreamIn_read(this, sync_in_buf_);
+		handle_input_->ISessionIn_sync_read(this, sync_in_buf_);
 	}
 	else if (0 == recv_n)
 	{
@@ -224,7 +224,7 @@ int Session::session_on_read()
 	return result;
 }
 
-int Session::session_write()
+int Session::session_sync_write()
 {
 	// todo
 	int result = 0;
@@ -290,12 +290,12 @@ int Session::session_write()
 	return result;
 }
 
-void Session::setHandleInput(IStreamIn * handle_input)
+void Session::setHandleInput(ISessionIn * a_input)
 {
-	handle_input_ = handle_input;
+	handle_input_ = a_input;
 }
 
-void Session::session_on_read_error(int recv_value, int last_error)
+void Session::session_on_read_error(int recv_num, int last_err)
 {
 
 }

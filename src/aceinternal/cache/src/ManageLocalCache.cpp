@@ -32,7 +32,7 @@ void ManageLocalCache::cacheOutput(Packet * packet, uint64 map_id, uint64 reques
 //	m_cache_cfg.handle_input->cacheInput(packet, map_id, request_id);
 //}
 
-void ManageLocalCache::IStreamIn_read(Session * session, ACE_Message_Block & msg_block)
+void ManageLocalCache::ISessionIn_sync_read(Session * session, ACE_Message_Block & msg_block)
 {
 	
 }

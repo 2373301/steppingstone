@@ -110,8 +110,6 @@ int OutputSessionPool::svc()
 			int wr = cell_session->wt_stream();
 			if (-1 == wr)
 			{
-				// net close
-				sessionClosed(*it);
 				cell_session_set.erase(it++);
 			}
 			else if (1 == wr)
