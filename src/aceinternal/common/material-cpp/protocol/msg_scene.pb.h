@@ -76,7 +76,7 @@ class scene_xs2ns_req_online_scenes : public ::google::protobuf::Message {
 
   int ByteSize() const;
   bool MergePartialFromCodedStream(
-      ::google::protobuf::io::CodedInputStream* IInput_input);
+      ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
   ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
@@ -190,7 +190,7 @@ class scene_ns2xs_ack_online_scenes : public ::google::protobuf::Message {
 
   int ByteSize() const;
   bool MergePartialFromCodedStream(
-      ::google::protobuf::io::CodedInputStream* IInput_input);
+      ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
   ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
@@ -310,7 +310,7 @@ class scene_ns2xs_ntf_new_scenes : public ::google::protobuf::Message {
 
   int ByteSize() const;
   bool MergePartialFromCodedStream(
-      ::google::protobuf::io::CodedInputStream* IInput_input);
+      ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
   ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
@@ -430,7 +430,7 @@ class scene_xs2xs_req_connection : public ::google::protobuf::Message {
 
   int ByteSize() const;
   bool MergePartialFromCodedStream(
-      ::google::protobuf::io::CodedInputStream* IInput_input);
+      ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
   ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
@@ -544,7 +544,7 @@ class scene_xs2xs_ack_connection : public ::google::protobuf::Message {
 
   int ByteSize() const;
   bool MergePartialFromCodedStream(
-      ::google::protobuf::io::CodedInputStream* IInput_input);
+      ::google::protobuf::io::CodedInputStream* input);
   void SerializeWithCachedSizes(
       ::google::protobuf::io::CodedOutputStream* output) const;
   ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
