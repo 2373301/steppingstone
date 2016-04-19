@@ -32,7 +32,7 @@
 
 #define SCENE_SEND_MSG(id, guid, session, msg)	\
 	MAKE_NEW_PACKET(ps, id, guid, msg##.SerializeAsString().c_str());	\
-	m_session_pool->handleOutputStream(session, ps->stream(), ps->stream_size());	\
+	m_session_pool->ISessionPool_asyncWrite(session, ps->stream(), ps->stream_size());	\
 	DEF_LOG_INFO("send msg, opcode:%u\n", id);
 
 using namespace std;
@@ -159,7 +159,7 @@ int SceneImp::on_scene_xs2ns_req_online_scenes(const PackInfo & pack_info)
 	auto findIt = m_onlines.find(req->srv_id());
 	if (findIt != m_onlines.end() && pack_info.owner != findIt->second.session)
 	{
-		m_session_pool->removeSession(findIt->second.session);
+		m_session_pool->ISessionPool_removeSession(findIt->second.session);
 		SCENE_LOG_INFO("remove session:%p, srv type:%s, srv id:%s",
 				findIt->second.session, findIt->second.srv_type.c_str(), findIt->second.srv_id.c_str());
 
@@ -250,7 +250,7 @@ int SceneImp::on_scene_xs2xs_req_connection(const PackInfo & pack_info)
 	auto findIt = m_onlines.find(req->srv_id());
 	if (findIt != m_onlines.end() && pack_info.owner != findIt->second.session)
 	{
-		m_session_pool->removeSession(findIt->second.session);
+		m_session_pool->ISessionPool_removeSession(findIt->second.session);
 		SCENE_LOG_INFO("remove session:%p, srv type:%s, srv id:%s",
 			findIt->second.session, findIt->second.srv_type.c_str(), findIt->second.srv_id.c_str());
 
@@ -325,7 +325,7 @@ int SceneImp::on_scene_xs2xs_ack_connection(const PackInfo & pack_info)
 	auto findIt = m_onlines.find(req->srv_id());
 	if (findIt != m_onlines.end() && pack_info.owner != findIt->second.session)
 	{
-		m_session_pool->removeSession(findIt->second.session);
+		m_session_pool->ISessionPool_removeSession(findIt->second.session);
 		SCENE_LOG_INFO("remove session:%p, srv type:%s, srv id:%s",
 			findIt->second.session, findIt->second.srv_type.c_str(), findIt->second.srv_id.c_str());
 
@@ -371,13 +371,13 @@ int SceneImp::IScene_init(const SceneCfg & scene_cfg)
 	m_total_msg_map.insert(m_message_type_map.begin(), m_message_type_map.end());
 
 	m_session_pool = netstream::SessionPoolFactory::createSessionPool();
-	if (-1 == m_session_pool->init(1, 1, this))
+	if (-1 == m_session_pool->ISessionPool_init(1, 1, this))
 	{	
 		SCENE_LOG_ERROR("failed to init session pool\n");
 		return -1;
 	}
 
-	if (!m_session_pool->listen(m_scene_cfg.listen_addr))
+	if (!m_session_pool->ISessionPool_listen(m_scene_cfg.listen_addr))
 	{
 		DEF_LOG_ERROR("failed to listen at:%s,session pool\n", m_scene_cfg.listen_addr.c_str());
 		return -1;
@@ -388,7 +388,7 @@ int SceneImp::IScene_init(const SceneCfg & scene_cfg)
 	{	
 		netstream::SessionAddrVec_t vec;
 		vec.push_back(m_scene_cfg.naming_addr);
-		if (!m_session_pool->connect(vec))
+		if (!m_session_pool->ISessionPool_connect(vec))
 		{
 			DEF_LOG_ERROR("failed to connect naming service, ip:%s\n", m_scene_cfg.naming_addr.c_str());
 			return -1;
@@ -619,7 +619,7 @@ int SceneImp::connector_svc(void)
 		std::unique_ptr<std::string> u(req);
 		netstream::SessionAddrVec_t vec;
 		vec.push_back(*u);
-		if (!m_session_pool->connect(vec))
+		if (!m_session_pool->ISessionPool_connect(vec))
 		{
 			SCENE_LOG_ERROR("failed t connect to scene ip:%s", u->c_str());
 		}

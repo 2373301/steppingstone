@@ -140,7 +140,7 @@ private:
 	bool m_is_stop;
 	bool m_is_shutdown_success;
 
-	netstream::SessionPool *m_session_pool;
+	netstream::ISessionPool *m_session_pool;
 
 	std::map<uint64, MSG_TYPE *> m_total_msg_map;
 	std::map<uint64, MsgHandler> m_input_msg_type_map;
