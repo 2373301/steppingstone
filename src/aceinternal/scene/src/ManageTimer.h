@@ -36,9 +36,9 @@ public:
 
 	void trigger();
 
-	long schemeTimer(int interval_value);
+	long ITimer_scheme(int interval_value);
 
-	long cancelTimer(long timer_id);
+	long ITimer_cancel(long timer_id);
 
 protected:
 private:

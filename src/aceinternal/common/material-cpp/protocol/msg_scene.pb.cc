@@ -304,12 +304,12 @@ void scene_xs2ns_req_online_scenes::Clear() {
 }
 
 bool scene_xs2ns_req_online_scenes::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
+    ::google::protobuf::io::CodedInputStream* IInput_input) {
 #define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:scene_xs2ns_req_online_scenes)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = IInput_input->ReadTagWithCutoff(127);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
@@ -317,7 +317,7 @@ bool scene_xs2ns_req_online_scenes::MergePartialFromCodedStream(
       case 1: {
         if (tag == 10) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_srv_type()));
+                IInput_input, this->mutable_srv_type()));
           ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
             this->srv_type().data(), this->srv_type().length(),
             ::google::protobuf::internal::WireFormat::PARSE,
@@ -325,7 +325,7 @@ bool scene_xs2ns_req_online_scenes::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(18)) goto parse_srv_id;
+        if (IInput_input->ExpectTag(18)) goto parse_srv_id;
         break;
       }
 
@@ -334,7 +334,7 @@ bool scene_xs2ns_req_online_scenes::MergePartialFromCodedStream(
         if (tag == 18) {
          parse_srv_id:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_srv_id()));
+                IInput_input, this->mutable_srv_id()));
           ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
             this->srv_id().data(), this->srv_id().length(),
             ::google::protobuf::internal::WireFormat::PARSE,
@@ -342,7 +342,7 @@ bool scene_xs2ns_req_online_scenes::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(26)) goto parse_srv_addr;
+        if (IInput_input->ExpectTag(26)) goto parse_srv_addr;
         break;
       }
 
@@ -351,7 +351,7 @@ bool scene_xs2ns_req_online_scenes::MergePartialFromCodedStream(
         if (tag == 26) {
          parse_srv_addr:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_srv_addr()));
+                IInput_input, this->mutable_srv_addr()));
           ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
             this->srv_addr().data(), this->srv_addr().length(),
             ::google::protobuf::internal::WireFormat::PARSE,
@@ -359,7 +359,7 @@ bool scene_xs2ns_req_online_scenes::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectAtEnd()) goto success;
+        if (IInput_input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -371,7 +371,7 @@ bool scene_xs2ns_req_online_scenes::MergePartialFromCodedStream(
           goto success;
         }
         DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, mutable_unknown_fields()));
+              IInput_input, tag, mutable_unknown_fields()));
         break;
       }
     }
@@ -641,12 +641,12 @@ void scene_ns2xs_ack_online_scenes::Clear() {
 }
 
 bool scene_ns2xs_ack_online_scenes::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
+    ::google::protobuf::io::CodedInputStream* IInput_input) {
 #define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:scene_ns2xs_ack_online_scenes)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = IInput_input->ReadTagWithCutoff(127);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
@@ -655,7 +655,7 @@ bool scene_ns2xs_ack_online_scenes::MergePartialFromCodedStream(
         if (tag == 10) {
          parse_srv_types:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->add_srv_types()));
+                IInput_input, this->add_srv_types()));
           ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
             this->srv_types(this->srv_types_size() - 1).data(),
             this->srv_types(this->srv_types_size() - 1).length(),
@@ -664,8 +664,8 @@ bool scene_ns2xs_ack_online_scenes::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(10)) goto parse_srv_types;
-        if (input->ExpectTag(18)) goto parse_srv_ids;
+        if (IInput_input->ExpectTag(10)) goto parse_srv_types;
+        if (IInput_input->ExpectTag(18)) goto parse_srv_ids;
         break;
       }
 
@@ -674,7 +674,7 @@ bool scene_ns2xs_ack_online_scenes::MergePartialFromCodedStream(
         if (tag == 18) {
          parse_srv_ids:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->add_srv_ids()));
+                IInput_input, this->add_srv_ids()));
           ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
             this->srv_ids(this->srv_ids_size() - 1).data(),
             this->srv_ids(this->srv_ids_size() - 1).length(),
@@ -683,8 +683,8 @@ bool scene_ns2xs_ack_online_scenes::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(18)) goto parse_srv_ids;
-        if (input->ExpectTag(26)) goto parse_srv_addrs;
+        if (IInput_input->ExpectTag(18)) goto parse_srv_ids;
+        if (IInput_input->ExpectTag(26)) goto parse_srv_addrs;
         break;
       }
 
@@ -693,7 +693,7 @@ bool scene_ns2xs_ack_online_scenes::MergePartialFromCodedStream(
         if (tag == 26) {
          parse_srv_addrs:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->add_srv_addrs()));
+                IInput_input, this->add_srv_addrs()));
           ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
             this->srv_addrs(this->srv_addrs_size() - 1).data(),
             this->srv_addrs(this->srv_addrs_size() - 1).length(),
@@ -702,8 +702,8 @@ bool scene_ns2xs_ack_online_scenes::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(26)) goto parse_srv_addrs;
-        if (input->ExpectAtEnd()) goto success;
+        if (IInput_input->ExpectTag(26)) goto parse_srv_addrs;
+        if (IInput_input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -715,7 +715,7 @@ bool scene_ns2xs_ack_online_scenes::MergePartialFromCodedStream(
           goto success;
         }
         DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, mutable_unknown_fields()));
+              IInput_input, tag, mutable_unknown_fields()));
         break;
       }
     }
@@ -972,12 +972,12 @@ void scene_ns2xs_ntf_new_scenes::Clear() {
 }
 
 bool scene_ns2xs_ntf_new_scenes::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
+    ::google::protobuf::io::CodedInputStream* IInput_input) {
 #define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:scene_ns2xs_ntf_new_scenes)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = IInput_input->ReadTagWithCutoff(127);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
@@ -986,7 +986,7 @@ bool scene_ns2xs_ntf_new_scenes::MergePartialFromCodedStream(
         if (tag == 10) {
          parse_srv_types:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->add_srv_types()));
+                IInput_input, this->add_srv_types()));
           ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
             this->srv_types(this->srv_types_size() - 1).data(),
             this->srv_types(this->srv_types_size() - 1).length(),
@@ -995,8 +995,8 @@ bool scene_ns2xs_ntf_new_scenes::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(10)) goto parse_srv_types;
-        if (input->ExpectTag(18)) goto parse_srv_ids;
+        if (IInput_input->ExpectTag(10)) goto parse_srv_types;
+        if (IInput_input->ExpectTag(18)) goto parse_srv_ids;
         break;
       }
 
@@ -1005,7 +1005,7 @@ bool scene_ns2xs_ntf_new_scenes::MergePartialFromCodedStream(
         if (tag == 18) {
          parse_srv_ids:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->add_srv_ids()));
+                IInput_input, this->add_srv_ids()));
           ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
             this->srv_ids(this->srv_ids_size() - 1).data(),
             this->srv_ids(this->srv_ids_size() - 1).length(),
@@ -1014,8 +1014,8 @@ bool scene_ns2xs_ntf_new_scenes::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(18)) goto parse_srv_ids;
-        if (input->ExpectTag(26)) goto parse_srv_addrs;
+        if (IInput_input->ExpectTag(18)) goto parse_srv_ids;
+        if (IInput_input->ExpectTag(26)) goto parse_srv_addrs;
         break;
       }
 
@@ -1024,7 +1024,7 @@ bool scene_ns2xs_ntf_new_scenes::MergePartialFromCodedStream(
         if (tag == 26) {
          parse_srv_addrs:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->add_srv_addrs()));
+                IInput_input, this->add_srv_addrs()));
           ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
             this->srv_addrs(this->srv_addrs_size() - 1).data(),
             this->srv_addrs(this->srv_addrs_size() - 1).length(),
@@ -1033,8 +1033,8 @@ bool scene_ns2xs_ntf_new_scenes::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(26)) goto parse_srv_addrs;
-        if (input->ExpectAtEnd()) goto success;
+        if (IInput_input->ExpectTag(26)) goto parse_srv_addrs;
+        if (IInput_input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -1046,7 +1046,7 @@ bool scene_ns2xs_ntf_new_scenes::MergePartialFromCodedStream(
           goto success;
         }
         DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, mutable_unknown_fields()));
+              IInput_input, tag, mutable_unknown_fields()));
         break;
       }
     }
@@ -1329,12 +1329,12 @@ void scene_xs2xs_req_connection::Clear() {
 }
 
 bool scene_xs2xs_req_connection::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
+    ::google::protobuf::io::CodedInputStream* IInput_input) {
 #define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:scene_xs2xs_req_connection)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = IInput_input->ReadTagWithCutoff(127);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
@@ -1342,7 +1342,7 @@ bool scene_xs2xs_req_connection::MergePartialFromCodedStream(
       case 1: {
         if (tag == 10) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_srv_type()));
+                IInput_input, this->mutable_srv_type()));
           ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
             this->srv_type().data(), this->srv_type().length(),
             ::google::protobuf::internal::WireFormat::PARSE,
@@ -1350,7 +1350,7 @@ bool scene_xs2xs_req_connection::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(18)) goto parse_srv_id;
+        if (IInput_input->ExpectTag(18)) goto parse_srv_id;
         break;
       }
 
@@ -1359,7 +1359,7 @@ bool scene_xs2xs_req_connection::MergePartialFromCodedStream(
         if (tag == 18) {
          parse_srv_id:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_srv_id()));
+                IInput_input, this->mutable_srv_id()));
           ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
             this->srv_id().data(), this->srv_id().length(),
             ::google::protobuf::internal::WireFormat::PARSE,
@@ -1367,7 +1367,7 @@ bool scene_xs2xs_req_connection::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(26)) goto parse_srv_addr;
+        if (IInput_input->ExpectTag(26)) goto parse_srv_addr;
         break;
       }
 
@@ -1376,7 +1376,7 @@ bool scene_xs2xs_req_connection::MergePartialFromCodedStream(
         if (tag == 26) {
          parse_srv_addr:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_srv_addr()));
+                IInput_input, this->mutable_srv_addr()));
           ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
             this->srv_addr().data(), this->srv_addr().length(),
             ::google::protobuf::internal::WireFormat::PARSE,
@@ -1384,7 +1384,7 @@ bool scene_xs2xs_req_connection::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectAtEnd()) goto success;
+        if (IInput_input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -1396,7 +1396,7 @@ bool scene_xs2xs_req_connection::MergePartialFromCodedStream(
           goto success;
         }
         DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, mutable_unknown_fields()));
+              IInput_input, tag, mutable_unknown_fields()));
         break;
       }
     }
@@ -1692,12 +1692,12 @@ void scene_xs2xs_ack_connection::Clear() {
 }
 
 bool scene_xs2xs_ack_connection::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
+    ::google::protobuf::io::CodedInputStream* IInput_input) {
 #define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:scene_xs2xs_ack_connection)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    ::std::pair< ::google::protobuf::uint32, bool> p = IInput_input->ReadTagWithCutoff(127);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
@@ -1705,7 +1705,7 @@ bool scene_xs2xs_ack_connection::MergePartialFromCodedStream(
       case 1: {
         if (tag == 10) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_srv_type()));
+                IInput_input, this->mutable_srv_type()));
           ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
             this->srv_type().data(), this->srv_type().length(),
             ::google::protobuf::internal::WireFormat::PARSE,
@@ -1713,7 +1713,7 @@ bool scene_xs2xs_ack_connection::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(18)) goto parse_srv_id;
+        if (IInput_input->ExpectTag(18)) goto parse_srv_id;
         break;
       }
 
@@ -1722,7 +1722,7 @@ bool scene_xs2xs_ack_connection::MergePartialFromCodedStream(
         if (tag == 18) {
          parse_srv_id:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_srv_id()));
+                IInput_input, this->mutable_srv_id()));
           ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
             this->srv_id().data(), this->srv_id().length(),
             ::google::protobuf::internal::WireFormat::PARSE,
@@ -1730,7 +1730,7 @@ bool scene_xs2xs_ack_connection::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(26)) goto parse_srv_addr;
+        if (IInput_input->ExpectTag(26)) goto parse_srv_addr;
         break;
       }
 
@@ -1739,7 +1739,7 @@ bool scene_xs2xs_ack_connection::MergePartialFromCodedStream(
         if (tag == 26) {
          parse_srv_addr:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_srv_addr()));
+                IInput_input, this->mutable_srv_addr()));
           ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
             this->srv_addr().data(), this->srv_addr().length(),
             ::google::protobuf::internal::WireFormat::PARSE,
@@ -1747,7 +1747,7 @@ bool scene_xs2xs_ack_connection::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectAtEnd()) goto success;
+        if (IInput_input->ExpectAtEnd()) goto success;
         break;
       }
 
@@ -1759,7 +1759,7 @@ bool scene_xs2xs_ack_connection::MergePartialFromCodedStream(
           goto success;
         }
         DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, mutable_unknown_fields()));
+              IInput_input, tag, mutable_unknown_fields()));
         break;
       }
     }

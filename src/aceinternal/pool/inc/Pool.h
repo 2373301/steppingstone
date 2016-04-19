@@ -154,14 +154,14 @@ protected:
 	RequestVec_t m_request_vec;
 };
 
-class Scene;
+class IScene;
 struct PoolCfgx
 {
 	std::function<void(Packet * packet, uint64 map_id, uint64 request_id, uint64 owner_guid)> handle_output;
 	uint64				map_id = 0;
 	uint32				line_id = 0;
 	Logger*				logger = NULL;
-	Scene*				scene = NULL;
+	IScene*				scene = NULL;
 };
 
 struct EntityInfo;

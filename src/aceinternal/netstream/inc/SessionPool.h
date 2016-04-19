@@ -22,28 +22,28 @@ public:
 	virtual void ISessionPoolEvent_handleInputStream(Session_t session, ACE_Message_Block & msg_block) = 0;
 };
 
-class NETSTREAM_EXOPRT SessionPool
+class NETSTREAM_EXOPRT ISessionPool
 {
 public:
-	virtual ~SessionPool(){}
+	virtual ~ISessionPool(){}
 
-	virtual int init(int input_thr_no, int output_thr_no, ISessionPoolEvent * handle_session_event = NULL) = 0;
+	virtual int ISessionPool_init(int input_thr_no, int output_thr_no, ISessionPoolEvent * handle_session_event = NULL) = 0;
 
-	virtual void setSocketBufferSize(int input_buf_size, int output_buf_size) = 0;
+	virtual void ISessionPool_setBufSize(int input_buf_size, int output_buf_size) = 0;
 
-	virtual bool connect(const SessionAddrVec_t & session_addr_vec) = 0;
+	virtual bool ISessionPool_connect(const SessionAddrVec_t & session_addr_vec) = 0;
 
-	virtual bool listen(const string & listen_addr) = 0;
+	virtual bool ISessionPool_listen(const string & listen_addr) = 0;
 
 	// send data
-	virtual bool handleOutputStream(Session_t session, char * buffer, int buff_size) = 0;
+	virtual bool ISessionPool_asyncWrite(Session_t session, char * buffer, int buff_size) = 0;
 
-	virtual void stop() = 0;
+	virtual void ISessionPool_stop() = 0;
 
-	virtual void finit() = 0;
+	virtual void ISessionPool_finit() = 0;
 
 	// Ö÷¶¯¹Ø±Õsession
-	virtual void removeSession(Session_t session) = 0;
+	virtual void ISessionPool_removeSession(Session_t session) = 0;
 
 };
 

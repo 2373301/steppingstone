@@ -11,7 +11,7 @@ namespace netstream
 class NETSTREAM_EXOPRT SessionPoolFactory
 {
 public:
-	static SessionPool * createSessionPool();
+	static ISessionPool * createSessionPool();
 };
 
 }

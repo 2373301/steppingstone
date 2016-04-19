@@ -79,7 +79,7 @@ void SessionPoolImp::ISessionIn_sync_read(Session * session, ACE_Message_Block &
 	m_handle_session_event->ISessionPoolEvent_handleInputStream(session, msg_block);
 }
 
-int SessionPoolImp::init(int input_thr_no, int output_thr_no, ISessionPoolEvent * handle_session_event)
+int SessionPoolImp::ISessionPool_init(int input_thr_no, int output_thr_no, ISessionPoolEvent * handle_session_event)
 {
 	m_handle_session_event = handle_session_event;
 
@@ -98,13 +98,13 @@ int SessionPoolImp::init(int input_thr_no, int output_thr_no, ISessionPoolEvent 
 	return 0;
 }
 
-void SessionPoolImp::setSocketBufferSize(int input_buf_size, int output_buf_size)
+void SessionPoolImp::ISessionPool_setBufSize(int input_buf_size, int output_buf_size)
 {
 	m_socket_intput_buffer_size = input_buf_size;
 	m_socket_output_buffer_size = output_buf_size;
 }
 
-bool SessionPoolImp::connect(const SessionAddrVec_t & session_addr_vec)
+bool SessionPoolImp::ISessionPool_connect(const SessionAddrVec_t & session_addr_vec)
 {
 	ACE_SOCK_Connector connector;
 	ACE_INET_Addr addr;
@@ -123,7 +123,7 @@ bool SessionPoolImp::connect(const SessionAddrVec_t & session_addr_vec)
 
 			if (m_socket_intput_buffer_size > 0)
 			{
-				cell_session->setSocketBufferSize(m_socket_intput_buffer_size, m_socket_output_buffer_size);
+				cell_session->ISessionPool_setBufSize(m_socket_intput_buffer_size, m_socket_output_buffer_size);
 			}
 
 			cell_session->setHandleInput(this);
@@ -149,7 +149,7 @@ bool SessionPoolImp::connect(const SessionAddrVec_t & session_addr_vec)
 	return true;
 }
 
-bool SessionPoolImp::listen(const string & listen_addr)
+bool SessionPoolImp::ISessionPool_listen(const string & listen_addr)
 {
 #ifdef WIN32
 	m_reactor = new ACE_Reactor(new ACE_Select_Reactor(), true);
@@ -175,22 +175,22 @@ bool SessionPoolImp::listen(const string & listen_addr)
 	return 1 == m_listen_status;
 }
 
-bool SessionPoolImp::handleOutputStream(Session_t session, char * buffer, int buff_size)
+bool SessionPoolImp::ISessionPool_asyncWrite(Session_t session, char * buffer, int buff_size)
 {
 	return m_output_session_pool.handleOutputStream(session, buffer, buff_size);
 }
 
-void SessionPoolImp::stop()
+void SessionPoolImp::ISessionPool_stop()
 {
 
 }
 
-void SessionPoolImp::finit()
+void SessionPoolImp::ISessionPool_finit()
 {
 
 }
 
-void SessionPoolImp::removeSession(Session_t session)
+void SessionPoolImp::ISessionPool_removeSession(Session_t session)
 {
 	// todo
 	//m_input_session_pool.removeSession((CellSession *)session);
@@ -211,7 +211,7 @@ void SessionPoolImp::onSessionOpenNotify(Session * session)
 
 	if (m_socket_intput_buffer_size > 0)
 	{
-		session->setSocketBufferSize(m_socket_intput_buffer_size, m_socket_output_buffer_size);
+		session->ISessionPool_setBufSize(m_socket_intput_buffer_size, m_socket_output_buffer_size);
 	}
 
 	session->reactor()->remove_handler(session, ACE_Event_Handler::ALL_EVENTS_MASK);

@@ -36,7 +36,7 @@ public:
 	InputSessionPool();
 	~InputSessionPool();
 
-	int init(int thread_no, SessionPool * session_pool);
+	int init(int thread_no, ISessionPool * session_pool);
 	void stop();
 	void finit();
 
@@ -51,7 +51,7 @@ private:
 	bool m_stop;
 	bool m_wait;
 	bool m_actived;
-	SessionPool * m_session_pool;
+	ISessionPool * m_session_pool;
 	InputSessionThreadInfoVec_t	m_session_thread_info;
 	ACE_Thread_Mutex m_session_thread_info_mutex;
 

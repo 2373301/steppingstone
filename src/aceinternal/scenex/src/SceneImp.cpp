@@ -38,7 +38,7 @@
 using namespace std;
 
 
-Scene * createScene()
+IScene * createScene()
 {
 	return new SceneImp();
 }
@@ -363,7 +363,7 @@ int SceneImp::on_scene_xs2xs_ack_connection(const PackInfo & pack_info)
 	return 0;
 }
 
-int SceneImp::init(const SceneCfg & scene_cfg)
+int SceneImp::IScene_init(const SceneCfg & scene_cfg)
 {
 	m_scene_cfg = scene_cfg;
 
@@ -500,7 +500,7 @@ int SceneImp::init(const SceneCfg & scene_cfg)
 	return 0;
 }
 
-int SceneImp::startup()
+int SceneImp::IScene_startup()
 {
 	if (this->activate(0, 2) == -1)
 	{
@@ -523,7 +523,7 @@ int SceneImp::startup()
 	return 0;
 }
 
-int SceneImp::stop()
+int SceneImp::IScene_stop()
 {
 	m_is_stop = true;
 	m_manage_timer.stop();
@@ -533,32 +533,32 @@ int SceneImp::stop()
 	return 0;
 }
 
-int SceneImp::finit()
+int SceneImp::IScene_finit()
 {
 	return 0;
 }
 
 
-bool SceneImp::isShutdownSuccess()
+bool SceneImp::IScene_isShutdownSuccess()
 {
 	if (m_is_shutdown_success)
 	{
 		return m_is_shutdown_success;
 	}
 
-	//m_is_shutdown_success = m_plugin_depot->isShutdownSuccess();
+	//m_is_shutdown_success = m_plugin_depot->IScene_isShutdownSuccess();
 
 	return m_is_shutdown_success;
 }
 
-bool SceneImp::isStartupSuccess()
+bool SceneImp::IScene_isStartupSuccess()
 {
 	if (m_is_startup_success)
 	{
 		return m_is_startup_success;
 	}
 
-	//m_is_startup_success = m_plugin_depot->isStartupSuccess();
+	//m_is_startup_success = m_plugin_depot->IScene_isStartupSuccess();
 
 	if (m_is_startup_success)
 	{
@@ -569,7 +569,7 @@ bool SceneImp::isStartupSuccess()
 }
 
 
-void SceneImp::input(Packet * packet)
+void SceneImp::IInput_input(Packet * packet)
 {
 	if (m_scene_cfg.save_packet)
 	{
@@ -687,7 +687,7 @@ int SceneImp::scene_svc(void)
 			if (findIt == m_input_msg_type_map.end())
 			{
 				// ·¢ËÍ¸ø²å¼þ
-				//m_plugin_depot->input(*pack_info);
+				//m_plugin_depot->IInput_input(*pack_info);
 				continue;
 			}
 
@@ -755,9 +755,9 @@ int SceneImp::svc (void)
 	return scene_svc();
 }
 
-long SceneImp::schemeTimer(int interval_value, TimerCallBack timer_callback)
+long SceneImp::ITimer_scheme(int interval_value, TimerCallBack timer_callback)
 {
-	long timer_id = m_manage_timer.schemeTimer(interval_value);
+	long timer_id = m_manage_timer.ITimer_scheme(interval_value);
 	if (-1 != timer_id)
 	{
 		m_timer_callback_map[timer_id] = timer_callback;
@@ -770,7 +770,7 @@ long SceneImp::schemeTimer(int interval_value, TimerCallBack timer_callback)
 	return timer_id;
 }
 
-long SceneImp::cancelTimer(long timer_id)
+long SceneImp::ITimer_cancel(long timer_id)
 {
 	TimerCallBackMap_t::iterator it = m_timer_callback_map.find(timer_id);
 	if (it != m_timer_callback_map.end())
@@ -778,12 +778,12 @@ long SceneImp::cancelTimer(long timer_id)
 		m_timer_callback_map.erase(it);
 	}
 
-	return m_manage_timer.cancelTimer(timer_id);
+	return m_manage_timer.ITimer_cancel(timer_id);
 }
 
-bool SceneImp::get_guid(EntityType entity_type, uint64 & guid)
+bool SceneImp::IScene_getGuid(EntityType entity_type, uint64 & guid)
 {
-	bool result = 0;// m_make_guid.get_guid(entity_type, guid);
+	bool result = 0;// m_make_guid.IScene_getGuid(entity_type, guid);
 	if (!result)
 	{
 		SCENE_LOG_ERROR("failed to make new guid");
@@ -791,9 +791,9 @@ bool SceneImp::get_guid(EntityType entity_type, uint64 & guid)
 	return result;
 }
 
-int SceneImp::get_random(int max_no, int min_no)
+int SceneImp::IScene_getRandom(int max_no, int min_no)
 {
-	return m_manage_random.get_random(max_no, min_no);
+	return m_manage_random.IScene_getRandom(max_no, min_no);
 }
 
 

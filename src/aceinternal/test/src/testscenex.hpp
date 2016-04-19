@@ -25,7 +25,7 @@ public:
 		}
 
 		scenex_ut ut;
-		Scene * s = createScene();
+		IScene * s = createScene();
 		SceneCfg cfg;
 		cfg.naming_addr = argv[1];
 		cfg.listen_addr = argv[2];
@@ -36,13 +36,13 @@ public:
 		
 		do 
 		{
-			if (-1 == s->init(cfg))
+			if (-1 == s->IScene_init(cfg))
 			{
 				std::cout << "failed to init scene" << std::endl;
 				break;
 			}
 
-			if (-1 == s->startup())
+			if (-1 == s->IScene_startup())
 			{
 				std::cout << "failed to startup scene" << std::endl;
 				break;
@@ -55,8 +55,8 @@ public:
 
 		} while (false);
 
-		s->stop();
-		s->finit();
+		s->IScene_stop();
+		s->IScene_finit();
 
 		ManageLogger::instance()->stop();
 	}

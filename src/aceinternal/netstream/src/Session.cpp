@@ -161,7 +161,7 @@ bool Session::session_async_write(char * buffer, int buff_size)
 	}
 }
 
-void Session::setSocketBufferSize(int input_buf_size, int output_buf_size)
+void Session::ISessionPool_setBufSize(int input_buf_size, int output_buf_size)
 {
 	if (input_buf_size > s_socket_buf_len_)
 	{

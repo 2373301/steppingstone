@@ -7,7 +7,9 @@
 #include "ManageTerminal.h"
 #include "SingleTerminal.h"
 
-class ManageSingleTerminal : public ManageTerminal, public ACE_Task<ACE_NULL_SYNCH>, public ISessionIn
+class ManageSingleTerminal 
+	: public ManageTerminal, public ACE_Task<ACE_NULL_SYNCH>
+	, public ISessionIn
 {
 public:
 	ManageSingleTerminal();
@@ -25,7 +27,7 @@ public:
 public:
 	virtual void ISessionIn_sync_read(Session * session, ACE_Message_Block & msg_block);
 
-	virtual void output(Packet * packet);
+	virtual void IOutput_output(Packet * packet);
 
 	virtual void registerScene(uint64 scene_id, uint64 scend_type);
 public:

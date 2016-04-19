@@ -11,7 +11,7 @@ class TimerEvent
 	: public ACE_Event_Handler
 {
 public:
-	TimerEvent(netstream::HandleInput * handle_input);
+	TimerEvent(netstream::IInput * handle_input);
 
 	virtual int handle_timeout (const ACE_Time_Value &current_time, const void *act);
 
@@ -19,14 +19,14 @@ public:
 private:
 	long m_timer_id;
 
-	netstream::HandleInput * m_handle_input;
+	netstream::IInput * m_handle_input;
 };
 
 class ManageTimer 
 	: public ACE_Task<ACE_NULL_SYNCH>
 {
 public:
-	ManageTimer(netstream::HandleInput * handle_input);
+	ManageTimer(netstream::IInput * handle_input);
 
 	~ManageTimer();
 
@@ -39,15 +39,15 @@ public:
 
 	void trigger();
 
-	long schemeTimer(int interval_value);
+	long ITimer_scheme(int interval_value);
 
-	long cancelTimer(long timer_id);
+	long ITimer_cancel(long timer_id);
 
 
 private:
 	typedef map<long, TimerEvent *> TimerEventMap_t;
 
-	netstream::HandleInput * m_handle_input;
+	netstream::IInput * m_handle_input;
 
 	ACE_Timer_Queue * m_timer_queue;
 

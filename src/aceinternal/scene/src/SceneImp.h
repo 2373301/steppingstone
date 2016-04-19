@@ -75,9 +75,9 @@ public:
 	virtual ManageResource * getManageResource();
 public:
 	// timer's interface
-	virtual long schemeTimer(int interval_value, TimerCallBack timer_callback);
+	virtual long ITimer_scheme(int interval_value, TimerCallBack timer_callback);
 
-	virtual long cancelTimer(long timer_id);
+	virtual long ITimer_cancel(long timer_id);
 public:
 	virtual bool get_guid(EntityType entity_type, uint64 & guid);
 

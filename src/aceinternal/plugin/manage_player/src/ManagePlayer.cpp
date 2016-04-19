@@ -2590,9 +2590,9 @@ int ManagePlayer::initing()
 
 	m_intialization_res_info = (InitializationCfg *)&m_plugin_cfg.scene->getManageResource()->getInitializationCfg();
 
-	m_update_timer_id = m_plugin_cfg.scene->schemeTimer(UPDATE_CHECK_TIME, boost::bind(&ManagePlayer::update, this));
+	m_update_timer_id = m_plugin_cfg.scene->ITimer_scheme(UPDATE_CHECK_TIME, boost::bind(&ManagePlayer::update, this));
 
-	m_update_pool_timer_id = m_plugin_cfg.scene->schemeTimer(UPDATE_POOL_TIME, boost::bind(&ManagePlayer::updatePool, this));
+	m_update_pool_timer_id = m_plugin_cfg.scene->ITimer_scheme(UPDATE_POOL_TIME, boost::bind(&ManagePlayer::updatePool, this));
 
 	m_offline_hangup_res = (OfflinehangupInfo *)&m_plugin_cfg.scene->getManageResource()->getOfflinehangupInfo();
 

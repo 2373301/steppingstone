@@ -4,7 +4,8 @@
 
 #include "Terminal.h"
 
-class ManageTerminal : public HandleOutput
+class ManageTerminal 
+	: public IOutput
 {
 public:
 	ManageTerminal()
@@ -35,7 +36,7 @@ protected:
 	virtual int initing() = 0;
 
 protected:
-	HandleInput * handle_input_;
+	IInput * handle_input_;
 
 	bool m_stop;
 

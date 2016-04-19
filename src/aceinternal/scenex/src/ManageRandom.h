@@ -9,7 +9,7 @@ class ManageRandom
 public:
 	ManageRandom();
 public:
-	int get_random(int max_no, int min_no = 0);
+	int IScene_getRandom(int max_no, int min_no = 0);
 protected:
 private:
 	boost::hellekalek1995 m_rand_engineer;

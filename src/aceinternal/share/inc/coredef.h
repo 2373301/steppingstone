@@ -420,11 +420,11 @@ struct MapEntity
 	GuidSet_t	npcs;
 };
 
-class Timer
+class ITimer
 {
-	virtual long schemeTimer(int interval_value, TimerCallBack timer_callback) = 0;
+	virtual long ITimer_scheme(int interval_value, TimerCallBack timer_callback) = 0;
 
-	virtual long cancelTimer(long timer_id) = 0;
+	virtual long ITimer_cancel(long timer_id) = 0;
 };
 
 // Ç°ÖÃÉùÃ÷

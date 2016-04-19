@@ -1496,7 +1496,7 @@ int ManageShort::initing()
 	m_startup_success = false;
 	m_shutdown_success = false;
 
-	m_update_timer_id = m_plugin_cfg.scene->schemeTimer(UPDATE_CHECK_TIME, boost::bind(&ManageShort::update, this));
+	m_update_timer_id = m_plugin_cfg.scene->ITimer_scheme(UPDATE_CHECK_TIME, boost::bind(&ManageShort::update, this));
 
 	m_system_res_info = (SystemResInfo *)&m_plugin_cfg.scene->getManageResource()->getSystemResInfo();
 

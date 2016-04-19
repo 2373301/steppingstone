@@ -102,7 +102,7 @@
 
 #define GMCMD_MSG_TO_PLUGINS(message, gm_name, gm_param, target_guid)	message->gmcmdMsgToPlugins(gm_name, gm_param, target_guid)
 
-#define PLUGIN_SCHEME_TIMER(scene, interval_time, call_back_fun)	scene->schemeTimer(interval_time, call_back_fun)
+#define PLUGIN_SCHEME_TIMER(scene, interval_time, call_back_fun)	scene->ITimer_scheme(interval_time, call_back_fun)
 
 #define GET_RESOURCE_CONTENT(scene, resource_name, resource_content)	scene->loadResource(resource_name, resource_content)
 

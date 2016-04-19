@@ -8,7 +8,7 @@ ManageRandom::ManageRandom()
 , m_rand_generator(m_rand_engineer, m_rand_distribution)
 {}
 
-int ManageRandom::get_random(int max_no, int min_no)
+int ManageRandom::IScene_getRandom(int max_no, int min_no)
 {
 	if (max_no < min_no)
 	{

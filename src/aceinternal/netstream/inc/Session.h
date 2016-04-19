@@ -12,10 +12,7 @@
 namespace netstream
 {
 
-using namespace std;
-
 class Session;
-
 typedef void * Session_t;
 
 extern "C" void NETSTREAM_EXOPRT parsePacketFromStream(Session_t session, ACE_Message_Block & msg_block, PacketVec_t & packet_vec);
@@ -33,17 +30,17 @@ public:
 	virtual void ISessionIn_sync_read(Session * session, ACE_Message_Block & msg_block) = 0;
 };
 
-class NETSTREAM_EXOPRT HandleInput
+class NETSTREAM_EXOPRT IInput
 {
 public:
-	virtual void input(Packet * packet) = 0;
+	virtual void IInput_input(Packet * packet) = 0;
 };
 
 
-class NETSTREAM_EXOPRT HandleOutput
+class NETSTREAM_EXOPRT IOutput
 {
 public:
-	virtual void output(Packet * packet) = 0;
+	virtual void IOutput_output(Packet * packet) = 0;
 };
 
 
@@ -73,7 +70,7 @@ public:
 	typedef ACE_Svc_Handler<ACE_SOCK_STREAM, ACE_NULL_SYNCH> super;
 	typedef std::list<Packet *> PacketList;
 
-	void setSocketBufferSize(int in_size, int out_size);
+	void ISessionPool_setBufSize(int in_size, int out_size);
 	void setHandleInput(ISessionIn * a_input);
 	bool isClientSide() { return client_side_; }
 	int regReadEvent();

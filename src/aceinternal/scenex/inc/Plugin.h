@@ -12,7 +12,7 @@
 //#include "Line.h"
 #include "logger_category.h"
 
-/////////////////////	input msg map		/////////////////////////////////////////////////////
+/////////////////////	IInput_input msg map		/////////////////////////////////////////////////////
 #define BEGING_INPUT_MSG_MAP() \
 	const Input_Msg_Type_Map & getInputMsgMap()	\
 	{	\
@@ -24,11 +24,11 @@
 			m_message_type_map[op_code] = msg_type_ins;
 
 #define TRANSFER_MSG_TO_LS(op_code, msg_type_ins)	\
-	m_input_msg_type_map[op_code] = InputMsgInfo((Input_Msg_Fun)&Plugin::transferMsgToLineScene, this);	\
+	m_input_msg_type_map[op_code] = InputMsgInfo((Input_Msg_Fun)&IPlugin::transferMsgToLineScene, this);	\
 	m_message_type_map[op_code] = msg_type_ins;
 
 #define TRANSFER_MSG_TO_PVPSCENE(op_code, msg_type_ins)	\
-	m_input_msg_type_map[op_code] = InputMsgInfo((Input_Msg_Fun)&Plugin::transferMsgToPVPScene, this);	\
+	m_input_msg_type_map[op_code] = InputMsgInfo((Input_Msg_Fun)&IPlugin::transferMsgToPVPScene, this);	\
 	m_message_type_map[op_code] = msg_type_ins;
 
 #define END_INPUT_MSG_MAP() \
@@ -102,7 +102,7 @@
 
 #define GMCMD_MSG_TO_PLUGINS(message, gm_name, gm_param, target_guid)	message->IMessage_gmcmdToPlugins(gm_name, gm_param, target_guid)
 
-#define PLUGIN_SCHEME_TIMER(scene, interval_time, call_back_fun)	scene->schemeTimer(interval_time, call_back_fun)
+#define PLUGIN_SCHEME_TIMER(scene, interval_time, call_back_fun)	scene->ITimer_scheme(interval_time, call_back_fun)
 
 #define GET_RESOURCE_CONTENT(scene, resource_name, resource_content)	scene->loadResource(resource_name, resource_content)
 
@@ -120,7 +120,7 @@
 #define PLUGIN_LOG_FATAL(log_info, ...)			m_plugin_cfg.logger->log(LL_FATAL, log_info, ##__VA_ARGS__);
 
 
-#define MAKE_NEW_GUID(scene, entity_type, guid)	scene->get_guid(entity_type, guid)
+#define MAKE_NEW_GUID(scene, entity_type, guid)	scene->IScene_getGuid(entity_type, guid)
 #define MAKE_MONSTER_GUID(enemy_id, monster_id, monster_pos)	MAKE_GUID(ET_MONSTER, 1, ((uint64(enemy_id) << 28) | (monster_id << 8) | monster_pos))
 
 
@@ -170,19 +170,19 @@
 	}
 
 class PluginDepot;
-class Scene;
-class Plugin;
+class IScene;
+class IPlugin;
 
-typedef Plugin * (*MAKE_PLUGIN_INSTANCE)();
+typedef IPlugin * (*MAKE_PLUGIN_INSTANCE)();
 
 
-typedef int (Plugin::*Input_Msg_Fun)(const PackInfo & pack_info);
+typedef int (IPlugin::*Input_Msg_Fun)(const PackInfo & pack_info);
 
-typedef int (Plugin::*Request_Msg_Fun)(const PackInfo & pack_info);
+typedef int (IPlugin::*Request_Msg_Fun)(const PackInfo & pack_info);
 
-typedef int (Plugin::*Notify_Msg_Fun)(const PackInfo & pack_info);
+typedef int (IPlugin::*Notify_Msg_Fun)(const PackInfo & pack_info);
 
-typedef int (Plugin::*Gmcmd_Msg_Fun)(const vector<string> & gm_param, uint64 target_guid);
+typedef int (IPlugin::*Gmcmd_Msg_Fun)(const vector<string> & gm_param, uint64 target_guid);
 
 bool SCENEX_EXOPRT extractPacket(Packet * packet, MSG_TYPE *& protobuf_msg);
 
@@ -194,14 +194,14 @@ struct SCENEX_EXOPRT InputMsgInfo
 	{}
 
 	
-	InputMsgInfo(Input_Msg_Fun mf, Plugin * po)
+	InputMsgInfo(Input_Msg_Fun mf, IPlugin * po)
 	: msg_fun(mf)
 	, plugin_object(po)
 	{}
 
 	Input_Msg_Fun msg_fun;
 
-	Plugin * plugin_object;
+	IPlugin * plugin_object;
 };
 
 struct SCENEX_EXOPRT RequestMsgInfo 
@@ -212,14 +212,14 @@ struct SCENEX_EXOPRT RequestMsgInfo
 	{}
 
 
-	RequestMsgInfo(Request_Msg_Fun mf, Plugin * po)
+	RequestMsgInfo(Request_Msg_Fun mf, IPlugin * po)
 		: msg_fun(mf)
 		, plugin_object(po)
 	{}
 
 	Request_Msg_Fun msg_fun;
 
-	Plugin * plugin_object;
+	IPlugin * plugin_object;
 };
 
 struct SCENEX_EXOPRT NotifyMsgInfo 
@@ -230,14 +230,14 @@ struct SCENEX_EXOPRT NotifyMsgInfo
 	{}
 
 
-	NotifyMsgInfo(Notify_Msg_Fun mf, Plugin * po)
+	NotifyMsgInfo(Notify_Msg_Fun mf, IPlugin * po)
 		: msg_fun(mf)
 		, plugin_object(po)
 	{}
 
 	Notify_Msg_Fun msg_fun;
 
-	Plugin * plugin_object;
+	IPlugin * plugin_object;
 };
 
 struct SCENEX_EXOPRT GmcmdMsgInfo 
@@ -248,14 +248,14 @@ struct SCENEX_EXOPRT GmcmdMsgInfo
 	{}
 
 
-	GmcmdMsgInfo(Gmcmd_Msg_Fun mf, Plugin * po)
+	GmcmdMsgInfo(Gmcmd_Msg_Fun mf, IPlugin * po)
 		: msg_fun(mf)
 		, plugin_object(po)
 	{}
 
 	Gmcmd_Msg_Fun msg_fun;
 
-	Plugin * plugin_object;
+	IPlugin * plugin_object;
 };
 
 struct SCENEX_EXOPRT ServerCfg
@@ -327,7 +327,7 @@ struct SCENEX_EXOPRT PluginCfg
 	int cache_type;
 	int line_no;
 	int template_id;
-	//Scene *	scene;
+	//IScene *	scene;
 	//Pool *	pool;
 	//ManageGrid * manage_grid;
 	IMessage * message;
@@ -372,17 +372,17 @@ enum PluginType
 	PT_MANAGE_CHAR,
 };
 
-class SCENEX_EXOPRT Plugin
+class SCENEX_EXOPRT IPlugin
 {
 public:
-	Plugin();
-	virtual ~Plugin();
+	IPlugin();
+	virtual ~IPlugin();
 
-	virtual int init(const PluginCfg & plugin_cfg);
-	virtual bool isStartupSuccess();
-	virtual bool isShutdownSuccess();
+	virtual int IPlugin_init(const PluginCfg & plugin_cfg);
+	virtual bool IPlugin_isStartupSuccess();
+	virtual bool IPlugin_isShutdownSuccess();
 protected:
-	virtual int initing() = 0;
+	virtual int IPlugin_initing() = 0;
 
 public:
 	PluginCfg & getPluginCfg();

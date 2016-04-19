@@ -90,27 +90,27 @@ struct SCENEX_EXOPRT SceneCfg
 	std::string srv_id = SRV_NAMING(01); //SRV_GAME(01);
 };
 
-class SCENEX_EXOPRT Scene 
-	: public netstream::HandleInput
-	, public Timer
+class SCENEX_EXOPRT IScene 
+	: public netstream::IInput
+	, public ITimer
 	, public IMessage
 {
 public:
-	virtual ~Scene(){}
+	virtual ~IScene(){}
 
-	virtual int init(const SceneCfg & scene_cfg) = 0;
+	virtual int IScene_init(const SceneCfg & scene_cfg) = 0;
 
-	virtual int startup() = 0;
-	virtual int stop() = 0;
-	virtual int finit() = 0;
+	virtual int IScene_startup() = 0;
+	virtual int IScene_stop() = 0;
+	virtual int IScene_finit() = 0;
 
-	virtual bool isStartupSuccess() = 0;
-	virtual bool isShutdownSuccess() = 0;
+	virtual bool IScene_isStartupSuccess() = 0;
+	virtual bool IScene_isShutdownSuccess() = 0;
 
-	virtual bool get_guid(EntityType entity_type, uint64 & guid) = 0;
-	virtual int get_random(int max_no, int min_no = 0) = 0;
+	virtual bool IScene_getGuid(EntityType entity_type, uint64 & guid) = 0;
+	virtual int IScene_getRandom(int max_no, int min_no = 0) = 0;
 };
 
-SCENEX_EXOPRT Scene * createScene();
+SCENEX_EXOPRT IScene * createScene();
 
 #endif

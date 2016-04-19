@@ -114,7 +114,7 @@ int SingleConnection::session_async_write(Packet * packet)
 	return 0;
 }
 
-void SingleConnection::setSocketBufferSize(int input_buf_size, int output_buf_size)
+void SingleConnection::ISessionPool_setBufSize(int input_buf_size, int output_buf_size)
 {
 	m_socket_input_buffer_size = input_buf_size;
 	m_socket_output_buffer_size = output_buf_size;
@@ -148,7 +148,7 @@ bool SingleConnection::connectToServer()
 		DEF_LOG_INFO("success to connect the remote server <%s>\n", m_remote_addr.c_str());
 		if (m_socket_input_buffer_size > 0)
 		{
-			m_session->setSocketBufferSize(m_socket_input_buffer_size, m_socket_output_buffer_size);
+			m_session->ISessionPool_setBufSize(m_socket_input_buffer_size, m_socket_output_buffer_size);
 		}
 		m_session->open();
 		m_session->setHandleInput(this);

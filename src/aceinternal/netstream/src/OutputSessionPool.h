@@ -36,13 +36,14 @@ struct OutputSessionThreadInfo
 	CellSessionSet_t remove_cell_session_set;
 };
 
-class OutputSessionPool : public ACE_Task<ACE_NULL_SYNCH>
+class OutputSessionPool 
+	: public ACE_Task<ACE_NULL_SYNCH>
 {
 public:
 	OutputSessionPool();
 	~OutputSessionPool();
 
-	int init(int thread_no, SessionPool * session_pool);
+	int init(int thread_no, ISessionPool * session_pool);
 	void stop();
 	void finit();
 
@@ -61,7 +62,7 @@ private:
 	bool m_wait; // 可以优化为thread num, 当降到0 finit完成
 	bool m_actived;
 
-	SessionPool * m_session_pool;
+	ISessionPool * m_session_pool;
 
 	typedef vector<OutputSessionThreadInfo *> OutputSessionThreadInfoVec_t;
 	OutputSessionThreadInfoVec_t	m_output_session_thread_info_vec; // 公用

@@ -26,7 +26,7 @@ struct SessionStatus
 };
 
 class SessionPoolImp
-	: public SessionPool
+	: public ISessionPool
 	, public ISessionIn
 	, public ACE_Task<ACE_NULL_SYNCH>
 {
@@ -34,14 +34,14 @@ public:
 	SessionPoolImp();
 	virtual ~SessionPoolImp();
 
-	virtual int init(int input_thr_no, int output_thr_no, ISessionPoolEvent * handle_session_event = NULL)  override;
-	virtual void setSocketBufferSize(int input_buf_size, int output_buf_size) override;
-	virtual bool connect(const SessionAddrVec_t & session_addr_vec) override;
-	virtual bool listen(const string & listen_addr) override;
-	virtual bool handleOutputStream(Session_t session, char * buffer, int buff_size) override;
-	virtual void stop() override;
-	virtual void finit() override;
-	virtual void removeSession(Session_t session) override;
+	virtual int ISessionPool_init(int input_thr_no, int output_thr_no, ISessionPoolEvent * handle_session_event = NULL)  override;
+	virtual void ISessionPool_setBufSize(int input_buf_size, int output_buf_size) override;
+	virtual bool ISessionPool_connect(const SessionAddrVec_t & session_addr_vec) override;
+	virtual bool ISessionPool_listen(const string & listen_addr) override;
+	virtual bool ISessionPool_asyncWrite(Session_t session, char * buffer, int buff_size) override;
+	virtual void ISessionPool_stop() override;
+	virtual void ISessionPool_finit() override;
+	virtual void ISessionPool_removeSession(Session_t session) override;
 
 	// ManageNetEventNotify callback
 	void onSessionOpenNotify(Session * session);

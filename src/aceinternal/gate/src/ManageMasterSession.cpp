@@ -160,7 +160,7 @@ void ManageMasterSession::handleAllowIP(Packet * packet)
 
 	MAKE_NEW_PACKET(ps, GMSG_ALLOW_IP, packet->guid(), "");
 
-	this->output(ps);
+	this->session_async_write(ps);
 }
 
 void ManageMasterSession::handleAllowIPRemove(Packet * packet)
@@ -178,7 +178,7 @@ void ManageMasterSession::handleAllowIPRemove(Packet * packet)
 
 	MAKE_NEW_PACKET(ps, GMSG_ALLOW_IP_REMOVE, packet->guid(), "");
 
-	this->output(ps);
+	this->session_async_write(ps);
 }
 
 void ManageMasterSession::handleForbidIP(Packet * packet)
@@ -205,7 +205,7 @@ void ManageMasterSession::handleForbidIP(Packet * packet)
 
 	MAKE_NEW_PACKET(ps, GMSG_FORBID_IP, packet->guid(), "");
 
-	this->output(ps);
+	this->session_async_write(ps);
 
 }
 
@@ -231,7 +231,7 @@ void ManageMasterSession::handleForbidIPRemove(Packet * packet)
 
 	MAKE_NEW_PACKET(ps, GMSG_FORBID_IP_REMOVE, packet->guid(), "");
 
-	this->output(ps);
+	this->session_async_write(ps);
 
 }
 
@@ -257,7 +257,7 @@ void ManageMasterSession::handleQueryIPSet(Packet * packet)
 
 	MAKE_NEW_PACKET(ps, GMSG_QUERY_IP_SET, packet->guid(), gqi_set.SerializeAsString());
 
-	this->output(ps);
+	this->session_async_write(ps);
 }
 
 void ManageMasterSession::handleForbidAccount(Packet * packet)
@@ -290,7 +290,7 @@ void ManageMasterSession::handleForbidAccount(Packet * packet)
 	}
 
 	MAKE_NEW_PACKET(ps, GMSG_FORBID_ACCOUNT, packet->guid(), "");
-	this->output(ps);
+	this->session_async_write(ps);
 }
 
 void ManageMasterSession::handleForbidAccountRemove(Packet * packet)
@@ -323,7 +323,7 @@ void ManageMasterSession::handleForbidAccountRemove(Packet * packet)
 	}
 
 	MAKE_NEW_PACKET(ps, GMSG_FORBID_ACCOUNT_REMOVE, packet->guid(), gfa_remove.SerializeAsString());
-	this->output(ps);
+	this->session_async_write(ps);
 }
 
 void ManageMasterSession::handleForbidAccountQuery(Packet * packet)
@@ -340,7 +340,7 @@ void ManageMasterSession::handleForbidAccountQuery(Packet * packet)
 	}
 
 	MAKE_NEW_PACKET(ps, GMSG_FORBID_ACCOUNT_QUERY, packet->guid(), gfa_query.SerializeAsString());
-	this->output(ps);
+	this->session_async_write(ps);
 }
 
 void ManageMasterSession::handleSetGateLogLevel(Packet * packet)

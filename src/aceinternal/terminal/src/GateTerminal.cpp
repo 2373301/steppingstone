@@ -63,7 +63,7 @@ uint32 GateTerminal::getMessageIndex(uint32 increase_no)
 }
 
 
-void GateTerminal::output(Packet * packet)
+void GateTerminal::IOutput_output(Packet * packet)
 {
 	m_packet_serialize_assistant.handlePacket(packet);
 }

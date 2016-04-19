@@ -41,7 +41,9 @@ struct ForbidAccountInfo
 	string account_id;
 };
 
-class ManageMasterSession : public netstream::SingleConnection, public AppNotifyInterface
+class ManageMasterSession 
+	: public netstream::SingleConnection
+	, public AppNotifyInterface
 {
 public:
 	ManageMasterSession();

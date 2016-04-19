@@ -40,7 +40,7 @@ typedef std::map<uint64, MsgHandler> MsgHandlerMap;
 
 
 class SCENEX_EXOPRT SceneImp
-	: public Scene
+	: public IScene
 	, public ACE_Task<ACE_NULL_SYNCH>
 	, public netstream::ISessionPoolEvent
 {
@@ -48,24 +48,24 @@ public:
 	SceneImp();
 	~SceneImp();
 
-	virtual int init(const SceneCfg & scene_cfg) override;
+	virtual int IScene_init(const SceneCfg & scene_cfg) override;
 
-	virtual int startup() override;
-	virtual int stop() override;
-	virtual int finit() override;
+	virtual int IScene_startup() override;
+	virtual int IScene_stop() override;
+	virtual int IScene_finit() override;
 
-	virtual bool isShutdownSuccess() override;
-	virtual bool isStartupSuccess() override;
+	virtual bool IScene_isShutdownSuccess() override;
+	virtual bool IScene_isStartupSuccess() override;
 
 
-	virtual void input(Packet * packet) override;
+	virtual void IInput_input(Packet * packet) override;
 	virtual void cacheInput(Packet * packet, uint64 map_id, uint64 request_id);
 
-	virtual long schemeTimer(int interval_value, TimerCallBack timer_callback) override;
-	virtual long cancelTimer(long timer_id) override;
+	virtual long ITimer_scheme(int interval_value, TimerCallBack timer_callback) override;
+	virtual long ITimer_cancel(long timer_id) override;
 
-	virtual bool get_guid(EntityType entity_type, uint64 & guid) override;
-	virtual int get_random(int max_no, int min_no = 0) override;
+	virtual bool IScene_getGuid(EntityType entity_type, uint64 & guid) override;
+	virtual int IScene_getRandom(int max_no, int min_no = 0) override;
 
 
 	virtual void IMessage_packInput(PackInfo * pack_info) override;
@@ -115,11 +115,11 @@ private:
 	uint32 m_save_packet_index = 0;
 	SceneCfg m_scene_cfg;
 
-	// input packet
+	// IInput_input packet
 	ACE_Thread_Mutex	m_input_packet_vec_mutex;
 	vector<PackInfo *>	m_input_packet_vec;
 
-	// input cache packet
+	// IInput_input cache packet
 	ACE_Thread_Mutex	m_cache_input_packet_vec_mutex;
 	//typedef vector<CachePackInfo> CachePackInfoVec_t;
 	//CachePackInfoVec_t	m_cache_input_packet_vec;

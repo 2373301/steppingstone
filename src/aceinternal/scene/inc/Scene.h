@@ -167,7 +167,7 @@ public:
 	virtual void crossServerInput(Packet * packet) = 0;
 };
 
-class SCENE_EXOPRT Scene : public HandleInput, public CacheHandleInput, public Timer, public Message
+class SCENE_EXOPRT Scene : public HandleInput, public CacheHandleInput, public ITimer, public Message
 {
 public:
 	virtual ~Scene()
@@ -196,9 +196,9 @@ public:
 
 	virtual ManageResource * getManageResource() = 0;
 public:
-	virtual long schemeTimer(int interval_value, TimerCallBack timer_callback) = 0;
+	virtual long ITimer_scheme(int interval_value, TimerCallBack timer_callback) = 0;
 
-	virtual long cancelTimer(long timer_id) = 0;
+	virtual long ITimer_cancel(long timer_id) = 0;
 
 public:
 	virtual bool get_guid(EntityType entity_type, uint64 & guid) = 0;

@@ -24,7 +24,7 @@ public:
 	virtual uint32 getMessageIndex(uint32 increase_no);
 
 public:
-	virtual void output(Packet * packet);
+	virtual void IOutput_output(Packet * packet);
 
 	virtual void outputPacket(Packet * packet);
 

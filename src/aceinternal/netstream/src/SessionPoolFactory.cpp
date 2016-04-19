@@ -5,7 +5,7 @@
 namespace netstream
 {
 
-SessionPool * SessionPoolFactory::createSessionPool()
+ISessionPool * SessionPoolFactory::createSessionPool()
 {
 	return new SessionPoolImp();
 }

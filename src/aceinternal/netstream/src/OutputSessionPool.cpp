@@ -22,7 +22,7 @@ OutputSessionPool::~OutputSessionPool()
 
 }
 
-int OutputSessionPool::init(int thread_no, SessionPool * session_pool)
+int OutputSessionPool::init(int thread_no, ISessionPool * session_pool)
 {
 	if (this->activate(THR_NEW_LWP, thread_no) == -1)
 	{

@@ -29,7 +29,7 @@ public:
 
 	virtual int session_async_write(Packet * packet);
 
-	virtual void setSocketBufferSize(int input_buf_size, int output_buf_size);
+	virtual void ISessionPool_setBufSize(int input_buf_size, int output_buf_size);
 protected:
 	virtual void handlePacket(Packet * packet) = 0;
 

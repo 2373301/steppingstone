@@ -421,9 +421,9 @@ ManageResource * SceneImp::getManageResource()
 	return &m_manage_resource;
 }
 
-long SceneImp::schemeTimer(int interval_value, TimerCallBack timer_callback)
+long SceneImp::ITimer_scheme(int interval_value, TimerCallBack timer_callback)
 {
-	long timer_id = m_manage_timer.schemeTimer(interval_value);
+	long timer_id = m_manage_timer.ITimer_scheme(interval_value);
 	if (-1 != timer_id)
 	{
 		m_timer_callback_map[timer_id] = timer_callback;
@@ -436,7 +436,7 @@ long SceneImp::schemeTimer(int interval_value, TimerCallBack timer_callback)
 	return timer_id;
 }
 
-long SceneImp::cancelTimer(long timer_id)
+long SceneImp::ITimer_cancel(long timer_id)
 {
 	TimerCallBackMap_t::iterator it = m_timer_callback_map.find(timer_id);
 	if (it != m_timer_callback_map.end())
@@ -444,7 +444,7 @@ long SceneImp::cancelTimer(long timer_id)
 		m_timer_callback_map.erase(it);
 	}
 
-	return m_manage_timer.cancelTimer(timer_id);
+	return m_manage_timer.ITimer_cancel(timer_id);
 }
 
 bool SceneImp::get_guid(EntityType entity_type, uint64 & guid)

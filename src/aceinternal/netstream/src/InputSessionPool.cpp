@@ -30,7 +30,7 @@ InputSessionPool::~InputSessionPool()
 	}
 }
 
-int InputSessionPool::init(int thread_no, SessionPool * session_pool)
+int InputSessionPool::init(int thread_no, ISessionPool * session_pool)
 {
 	m_session_pool = session_pool;
 

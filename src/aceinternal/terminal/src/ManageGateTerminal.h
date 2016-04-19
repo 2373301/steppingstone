@@ -23,7 +23,7 @@ public:
 public:
 	virtual void ISessionIn_sync_read(Session * session, ACE_Message_Block & msg_block);
 
-	virtual void output(Packet * packet);
+	virtual void IOutput_output(Packet * packet);
 
 	virtual void registerScene(uint64 scene_id, uint64 scene_type);
 

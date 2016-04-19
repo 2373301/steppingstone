@@ -106,7 +106,7 @@ void ManageTimer::trigger()
 	m_is_trigger = true;
 }
 
-long ManageTimer::schemeTimer(int interval_value)
+long ManageTimer::ITimer_scheme(int interval_value)
 {
 	TimerEvent * timer_event = new TimerEvent(m_handle_input);
 	ACE_Time_Value tv(interval_value / 1000, (interval_value % 1000) * 1000);
@@ -126,7 +126,7 @@ long ManageTimer::schemeTimer(int interval_value)
 	return timer_id;
 }
 
-long ManageTimer::cancelTimer(long timer_id)
+long ManageTimer::ITimer_cancel(long timer_id)
 {
 	int cr = m_timer_queue->cancel(timer_id);
 	if (-1 == cr)

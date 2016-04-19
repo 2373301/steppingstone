@@ -2,12 +2,12 @@
 #include "Plugin.h"
 #include "PlayerFunction.h"
 
-MessageTypeMap Plugin::m_message_type_map;
+MessageTypeMap IPlugin::m_message_type_map;
 
 bool extractPacket(Packet * packet, MSG_TYPE *& protobuf_msg)
 {
 	MSG_TYPE * msg = NULL;
-	if (Plugin::getProtobufMsgByOpcode(packet->opcode(), msg))
+	if (IPlugin::getProtobufMsgByOpcode(packet->opcode(), msg))
 	{
 		if (NULL != msg)
 		{
@@ -99,7 +99,7 @@ void ParamConfig::clear()
 	m_param_pair.clear();
 }
 
-Plugin::Plugin()
+IPlugin::IPlugin()
 : m_plugin_type(PT_BASE)
 , m_plugin_scene_type(PST_BOTH)
 , m_startup_success(true)
@@ -107,28 +107,28 @@ Plugin::Plugin()
 {
 }
 
-Plugin::~Plugin()
+IPlugin::~IPlugin()
 {
 }
 
-int Plugin::init(const PluginCfg & plugin_cfg)
+int IPlugin::IPlugin_init(const PluginCfg & plugin_cfg)
 {
 	m_plugin_cfg = plugin_cfg;
 
-	return initing();
+	return IPlugin_initing();
 }
 
-PluginType Plugin::getType()
+PluginType IPlugin::getType()
 {
 	return m_plugin_type;
 }
 
-PluginSceneType Plugin::getSceneType()
+PluginSceneType IPlugin::getSceneType()
 {
 	return m_plugin_scene_type;
 }
 
-int Plugin::transferMsgToLineScene(const PackInfo & pack_info)
+int IPlugin::transferMsgToLineScene(const PackInfo & pack_info)
 {
 	MSG_TYPE * msg_value = NULL;
 	if (NULL != pack_info.msg)
@@ -141,7 +141,7 @@ int Plugin::transferMsgToLineScene(const PackInfo & pack_info)
 	return 0;
 }
 
-int Plugin::transferMsgToPVPScene(const PackInfo & pack_info)
+int IPlugin::transferMsgToPVPScene(const PackInfo & pack_info)
 {
 	MSG_TYPE * msg_value = NULL;
 	if (NULL != pack_info.msg)
@@ -155,23 +155,23 @@ int Plugin::transferMsgToPVPScene(const PackInfo & pack_info)
 	return 0;
 }
 
-bool Plugin::isStartupSuccess()
+bool IPlugin::IPlugin_isStartupSuccess()
 {
 	// default 
 	return m_startup_success;
 }
 
-bool Plugin::isShutdownSuccess()
+bool IPlugin::IPlugin_isShutdownSuccess()
 {
 	return m_shutdown_success;
 }
 
-PluginCfg & Plugin::getPluginCfg()
+PluginCfg & IPlugin::getPluginCfg()
 {
 	return m_plugin_cfg;
 }
 
-bool Plugin::getProtobufMsgByOpcode(int op_code, MSG_TYPE *& protobuf_msg)
+bool IPlugin::getProtobufMsgByOpcode(int op_code, MSG_TYPE *& protobuf_msg)
 {
 	MessageTypeMap::iterator it = m_message_type_map.find(op_code);
 	if (m_message_type_map.end() != it)

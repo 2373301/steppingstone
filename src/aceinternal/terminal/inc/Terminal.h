@@ -37,7 +37,7 @@ struct TerminalCfg
 		: handle_input(NULL)
 	{}
 
-	HandleInput * handle_input;
+	IInput * handle_input;
 	LocalAddrCfg local_addr;
 	GateCfg gate_cfg;
 };
