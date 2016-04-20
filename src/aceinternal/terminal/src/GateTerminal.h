@@ -28,7 +28,7 @@ public:
 
 	virtual void outputPacket(Packet * packet);
 
-	int session_sync_write();
+	int syncWrite();
 
 	virtual void recvError(int recv_value, int last_error);
 public:

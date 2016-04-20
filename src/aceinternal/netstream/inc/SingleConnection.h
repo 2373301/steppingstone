@@ -23,13 +23,13 @@ public:
 
 	virtual void ISessionIn_sync_read(Session * session, ACE_Message_Block & msg_block) override;;
 
-	virtual int init(const string & remote_addr);
+	int init(const string & remote_addr);
 
-	virtual int stop();
+	int stop();
 
-	virtual int session_async_write(Packet * packet);
+	int asyncWrite(Packet * packet);
 
-	virtual void ISessionPool_setBufSize(int input_buf_size, int output_buf_size);
+	void setBufSize(int input_buf_size, int output_buf_size);
 protected:
 	virtual void handlePacket(Packet * packet) = 0;
 

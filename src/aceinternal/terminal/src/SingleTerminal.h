@@ -12,12 +12,12 @@ public:
 	SingleTerminal();
 
 public:
-	bool session_async_write(char * buffer, int buff_size);
+	bool asyncWrite(char * buffer, int buff_size);
 
 	virtual void outputPacket(Packet * packet) override;
 
 public:
-	int session_sync_write();
+	int syncWrite();
 
 public:
 	virtual int finit();

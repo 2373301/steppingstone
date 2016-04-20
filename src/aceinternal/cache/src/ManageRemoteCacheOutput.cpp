@@ -54,7 +54,7 @@ int ManageRemoteCacheOutput::svc()
 	int process_result = 0;
 	while (!m_is_stop)
 	{
-		process_result = remote_cache->session_sync_write();
+		process_result = remote_cache->syncWrite();
 
 		if (1 == process_result)
 		{

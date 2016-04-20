@@ -70,15 +70,15 @@ public:
 	typedef ACE_Svc_Handler<ACE_SOCK_STREAM, ACE_NULL_SYNCH> super;
 	typedef std::list<Packet *> PacketList;
 
-	void ISessionPool_setBufSize(int in_size, int out_size);
-	void setHandleInput(ISessionIn * a_input);
-	bool isClientSide() { return client_side_; }
-	int regReadEvent();
-	void setSavePackInfo(bool is_save, const string & file_name);
-	bool session_async_write(char * buffer, int buff_size);
+	void	setBufSize(int in_size, int out_size);
+	void	setHandleInput(ISessionIn * a_input);
+	bool	isClientSide() { return client_side_; }
+	int		setReadEvent();
+	void	setSavePackInfo(bool is_save, const string & file_name);
+	bool	asyncWrite(char * buffer, int buff_size);
 	/* 由 write thread 来调用, 所以为了性能, 这层不能加锁*/
 	// 0 : normal, -1: socket closed, 1:empty buffer, 2:call again, has more data, 有问题则 shutdown
-	int session_sync_write();	
+	int		syncWrite();	
 
 protected:
 	friend class SingleConnection;

@@ -27,7 +27,7 @@ int RemoteCache::session_on_read()
 
 void RemoteCache::output(Packet * ps)
 {
-	Session::session_async_write(ps->stream(), ps->stream_size());
+	Session::asyncWrite(ps->stream(), ps->stream_size());
 	delete ps;
 }
 

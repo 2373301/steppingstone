@@ -147,7 +147,7 @@ int Session::handle_close(ACE_HANDLE handle, ACE_Reactor_Mask close_mask)
 	return 0;
 }
 
-bool Session::session_async_write(char * buffer, int buff_size)
+bool Session::asyncWrite(char * buffer, int buff_size)
 {
 	ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, async_out_mutex_, false);
 	if (async_out_buf_.space() >= buff_size)
@@ -161,7 +161,7 @@ bool Session::session_async_write(char * buffer, int buff_size)
 	}
 }
 
-void Session::ISessionPool_setBufSize(int input_buf_size, int output_buf_size)
+void Session::setBufSize(int input_buf_size, int output_buf_size)
 {
 	if (input_buf_size > s_socket_buf_len_)
 	{
@@ -224,7 +224,7 @@ int Session::session_on_read()
 	return result;
 }
 
-int Session::session_sync_write()
+int Session::syncWrite()
 {
 	// todo
 	int result = 0;
@@ -317,7 +317,7 @@ int Session::session_on_closed()
 }
 
 
-int Session::regReadEvent()
+int Session::setReadEvent()
 {
 	this->peer().enable(ACE_NONBLOCK);
 	int flag = 1;

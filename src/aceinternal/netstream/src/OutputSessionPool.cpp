@@ -112,7 +112,7 @@ int OutputSessionPool::svc()
 				continue;
 			}
 			// 0 : normal, -1: socket closed, 1:empty buffer, 2:call again, still have data in buffer
-			int wr = cell_session->session_sync_write();
+			int wr = cell_session->syncWrite();
 			if (-1 == wr)
 			{
 				cell_session_set.erase(it++);
@@ -183,7 +183,7 @@ bool OutputSessionPool::handleOutputStream(Session_t session, char * buffer, int
 		CellSession * cell_session = it->first;
 		OutputSessionThreadInfo * output_session_ti = it->second;
 
-		bool result = cell_session->session_async_write(buffer, buff_size);
+		bool result = cell_session->asyncWrite(buffer, buff_size);
 		output_session_ti->writeCellSession(cell_session);
 		return result;
 	}	

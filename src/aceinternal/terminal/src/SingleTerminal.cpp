@@ -9,7 +9,7 @@ SingleTerminal::SingleTerminal()
 {
 }
 
-bool SingleTerminal::session_async_write(char * buffer, int buff_size)
+bool SingleTerminal::asyncWrite(char * buffer, int buff_size)
 {
 	return false;
 }
@@ -19,7 +19,7 @@ void SingleTerminal::outputPacket(Packet * packet)
 	
 }
 
-int SingleTerminal::session_sync_write()
+int SingleTerminal::syncWrite()
 {
 	int result = 0;
 	ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, m_output_msg_mutex, -1);

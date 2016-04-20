@@ -107,14 +107,14 @@ int SingleConnection::stop()
 	return 0;
 }
 
-int SingleConnection::session_async_write(Packet * packet)
+int SingleConnection::asyncWrite(Packet * packet)
 {
 	ACE_GUARD_RETURN(ACE_Recursive_Thread_Mutex, guard, m_packet_que_mutex, 1);
 	m_packet_que.push(packet);
 	return 0;
 }
 
-void SingleConnection::ISessionPool_setBufSize(int input_buf_size, int output_buf_size)
+void SingleConnection::setBufSize(int input_buf_size, int output_buf_size)
 {
 	m_socket_input_buffer_size = input_buf_size;
 	m_socket_output_buffer_size = output_buf_size;
@@ -148,7 +148,7 @@ bool SingleConnection::connectToServer()
 		DEF_LOG_INFO("success to connect the remote server <%s>\n", m_remote_addr.c_str());
 		if (m_socket_input_buffer_size > 0)
 		{
-			m_session->ISessionPool_setBufSize(m_socket_input_buffer_size, m_socket_output_buffer_size);
+			m_session->setBufSize(m_socket_input_buffer_size, m_socket_output_buffer_size);
 		}
 		m_session->open();
 		m_session->setHandleInput(this);
@@ -170,7 +170,7 @@ int SingleConnection::processOutputPacket(PacketQue_t & packet_que)
 	while (packet_que.size() > 0)
 	{
 		Packet * packet = packet_que.front();
-		if (m_session->session_async_write(packet->stream(), packet->stream_size()))
+		if (m_session->asyncWrite(packet->stream(), packet->stream_size()))
 		{
 			delete packet;
 			packet_que.pop();
@@ -181,7 +181,7 @@ int SingleConnection::processOutputPacket(PacketQue_t & packet_que)
 		}
 	}
 
-	return m_session->session_sync_write();
+	return m_session->syncWrite();
 }
 
 void SingleConnection::closeSession()

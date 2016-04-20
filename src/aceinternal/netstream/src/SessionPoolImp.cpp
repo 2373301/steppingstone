@@ -91,7 +91,7 @@ int SessionPoolImp::ISessionPool_init(int input_thr_no, int output_thr_no, ISess
 
 	if (m_output_session_pool.init(output_thr_no, this) != 0)
 	{
-		DEF_LOG_ERROR("failed to init session_async_write session, session_async_write thread no is <%d>\n", output_thr_no);
+		DEF_LOG_ERROR("failed to init asyncWrite session, asyncWrite thread no is <%d>\n", output_thr_no);
 		return -1;
 	}
 
@@ -115,7 +115,7 @@ bool SessionPoolImp::ISessionPool_connect(const SessionAddrVec_t & session_addr_
 
 		if (connector.connect(cell_session->peer(), addr) != -1)
 		{
-			if (cell_session->regReadEvent() == -1)
+			if (cell_session->setReadEvent() == -1)
 			{
 				DEF_LOG_ERROR("failed to call open of cell session, last error is <%d>\n", ACE_OS::last_error());
 				return false;
@@ -123,7 +123,7 @@ bool SessionPoolImp::ISessionPool_connect(const SessionAddrVec_t & session_addr_
 
 			if (m_socket_intput_buffer_size > 0)
 			{
-				cell_session->ISessionPool_setBufSize(m_socket_intput_buffer_size, m_socket_output_buffer_size);
+				cell_session->setBufSize(m_socket_intput_buffer_size, m_socket_output_buffer_size);
 			}
 
 			cell_session->setHandleInput(this);
@@ -211,7 +211,7 @@ void SessionPoolImp::onSessionOpenNotify(Session * session)
 
 	if (m_socket_intput_buffer_size > 0)
 	{
-		session->ISessionPool_setBufSize(m_socket_intput_buffer_size, m_socket_output_buffer_size);
+		session->setBufSize(m_socket_intput_buffer_size, m_socket_output_buffer_size);
 	}
 
 	session->reactor()->remove_handler(session, ACE_Event_Handler::ALL_EVENTS_MASK);

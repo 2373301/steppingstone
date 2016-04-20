@@ -73,7 +73,7 @@ void GateTerminal::outputPacket(Packet * packet)
 	m_packet_serialize_assistant.handlePacket(packet);
 }
 
-int GateTerminal::session_sync_write()
+int GateTerminal::syncWrite()
 {
 	int result = 0;
 	if (NULL == m_current_msg_block)
