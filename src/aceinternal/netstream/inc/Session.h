@@ -27,20 +27,20 @@ enum SessionState
 class NETSTREAM_EXOPRT ISessionIn
 {
 public:
-	virtual void ISessionIn_sync_read(Session * session, ACE_Message_Block & msg_block) = 0;
+	virtual void ISessionIn_syncRead(Session * session, ACE_Message_Block & msg_block) = 0;
 };
 
 class NETSTREAM_EXOPRT IInput
 {
 public:
-	virtual void IInput_input(Packet * packet) = 0;
+	virtual void IInput_inputPacket(Packet * packet) = 0;
 };
 
 
 class NETSTREAM_EXOPRT IOutput
 {
 public:
-	virtual void IOutput_output(Packet * packet) = 0;
+	virtual void IOutput_outputPacket(Packet * packet) = 0;
 };
 
 
@@ -76,8 +76,6 @@ public:
 	int		setReadEvent();
 	void	setSavePackInfo(bool is_save, const string & file_name);
 	bool	asyncWrite(char * buffer, int buff_size);
-	/* 由 write thread 来调用, 所以为了性能, 这层不能加锁*/
-	// 0 : normal, -1: socket closed, 1:empty buffer, 2:call again, has more data, 有问题则 shutdown
 	int		syncWrite();	
 
 protected:

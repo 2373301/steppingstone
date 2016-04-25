@@ -22,7 +22,7 @@ public:
 	int svc();
 public:
 	//virtual void input(Packet * packet);
-	virtual void ISessionIn_sync_read(Session * session, ACE_Message_Block & msg_block);
+	virtual void ISessionIn_syncRead(Session * session, ACE_Message_Block & msg_block);
 
 	virtual void cacheOutput(Packet * packet, uint64 map_id, uint64 request_id, uint64 owner_guid);
 public:

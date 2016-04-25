@@ -74,7 +74,7 @@ int SessionPoolImp::svc()
 	return 0;
 }
 
-void SessionPoolImp::ISessionIn_sync_read(Session * session, ACE_Message_Block & msg_block)
+void SessionPoolImp::ISessionIn_syncRead(Session * session, ACE_Message_Block & msg_block)
 {
 	m_handle_session_event->ISessionPoolEvent_handleInputStream(session, msg_block);
 }
@@ -85,7 +85,7 @@ int SessionPoolImp::ISessionPool_init(int input_thr_no, int output_thr_no, ISess
 
 	if (m_input_session_pool.init(input_thr_no, this) != 0)
 	{
-		DEF_LOG_ERROR("failed to init ISessionIn_sync_read session, ISessionIn_sync_read thread no is <%d>\n", input_thr_no);
+		DEF_LOG_ERROR("failed to init ISessionIn_syncRead session, ISessionIn_syncRead thread no is <%d>\n", input_thr_no);
 		return -1;
 	}
 

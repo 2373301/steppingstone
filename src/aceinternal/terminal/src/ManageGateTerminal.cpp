@@ -65,7 +65,7 @@ int ManageGateTerminal::svc()
 	return 0;
 }
 
-void ManageGateTerminal::ISessionIn_sync_read(Session * session, ACE_Message_Block & msg_block)
+void ManageGateTerminal::ISessionIn_syncRead(Session * session, ACE_Message_Block & msg_block)
 {
 	PacketVec_t packet_vec;
 	parsePacketFromStream(session, msg_block, packet_vec);
@@ -95,11 +95,11 @@ void ManageGateTerminal::ISessionIn_sync_read(Session * session, ACE_Message_Blo
 		//	removeRoute(packet->guid(), packet->getOwner());
 		//}
 
-		m_terminal_cfg.handle_input->IInput_input(packet);
+		m_terminal_cfg.handle_input->IInput_inputPacket(packet);
 	}
 }
 
-void ManageGateTerminal::IOutput_output(Packet * packet)
+void ManageGateTerminal::IOutput_outputPacket(Packet * packet)
 {
 	m_player_route.input(packet);
 }
@@ -114,7 +114,7 @@ void ManageGateTerminal::registerScene(uint64 scene_id, uint64 scene_type)
 	for (TerminalVec_t::iterator it = m_terminal_vec.begin(); it != m_terminal_vec.end(); ++it)
 	{
 		MAKE_NEW_PACKET_NO_DEC(ps, GCMSG_REGISTER, scene_id, reg.SerializeAsString());
-		(*it)->IOutput_output(ps);
+		(*it)->IOutput_outputPacket(ps);
 	}
 }
 
@@ -176,7 +176,7 @@ void ManageGateTerminal::processPacketRoute(PacketRouteInfoQue_t * packet_route_
 //
 //	if (NULL != ter)
 //	{
-//		ter->IOutput_output(packet);
+//		ter->IOutput_outputPacket(packet);
 //	}
 //	else
 //	{

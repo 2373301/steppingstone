@@ -21,7 +21,7 @@ public:
 
 	virtual int svc() override;
 
-	virtual void ISessionIn_sync_read(Session * session, ACE_Message_Block & msg_block) override;;
+	virtual void ISessionIn_syncRead(Session * session, ACE_Message_Block & msg_block) override;;
 
 	int init(const string & remote_addr);
 

@@ -569,7 +569,7 @@ bool SceneImp::IScene_isStartupSuccess()
 }
 
 
-void SceneImp::IInput_input(Packet * packet)
+void SceneImp::IInput_inputPacket(Packet * packet)
 {
 	if (m_scene_cfg.save_packet)
 	{
@@ -687,7 +687,7 @@ int SceneImp::scene_svc(void)
 			if (findIt == m_input_msg_type_map.end())
 			{
 				// ·¢ËÍ¸ø²å¼þ
-				//m_plugin_depot->IInput_input(*pack_info);
+				//m_plugin_depot->IInput_inputPacket(*pack_info);
 				continue;
 			}
 

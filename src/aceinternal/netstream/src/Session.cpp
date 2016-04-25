@@ -8,7 +8,7 @@
 #include "Session.h"
 #include "Logger.h"
 
-//#define LOG_INPUT_MSG_SIZE()	DEF_LOG_DEBUG("the ISessionIn_sync_read msg rd_ptr is <%x>, wt_ptr is <%x>, file line is <%d>\n", sync_in_buf_.rd_ptr(), sync_in_buf_.wr_ptr(), __LINE__)
+//#define LOG_INPUT_MSG_SIZE()	DEF_LOG_DEBUG("the ISessionIn_syncRead msg rd_ptr is <%x>, wt_ptr is <%x>, file line is <%d>\n", sync_in_buf_.rd_ptr(), sync_in_buf_.wr_ptr(), __LINE__)
 #define LOG_INPUT_MSG_SIZE()
 namespace netstream
 {
@@ -193,7 +193,7 @@ int Session::session_on_read()
 
 		LOG_INPUT_MSG_SIZE();
 
-		handle_input_->ISessionIn_sync_read(this, sync_in_buf_);
+		handle_input_->ISessionIn_syncRead(this, sync_in_buf_);
 	}
 	else if (0 == recv_n)
 	{
@@ -224,6 +224,8 @@ int Session::session_on_read()
 	return result;
 }
 
+/* 由 write thread 来调用, 所以为了性能, 这层不能加锁*/
+// 0 : normal, -1: socket closed, 1:empty buffer, 2:call again, has more data, 有问题则 shutdown
 int Session::syncWrite()
 {
 	// todo

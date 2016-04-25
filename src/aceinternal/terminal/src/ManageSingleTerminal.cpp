@@ -103,7 +103,7 @@ int ManageSingleTerminal::handle_timeout(const ACE_Time_Value &current_time, con
 	return 0;
 }
 
-void ManageSingleTerminal::ISessionIn_sync_read(Session * session, ACE_Message_Block & msg_block)
+void ManageSingleTerminal::ISessionIn_syncRead(Session * session, ACE_Message_Block & msg_block)
 {
 	//if (packet->opcode() == CMSG_PLAYER_ENTER_MAP)
 	//{
@@ -118,7 +118,7 @@ void ManageSingleTerminal::ISessionIn_sync_read(Session * session, ACE_Message_B
 	//handle_input_->input(packet);
 }
 
-void ManageSingleTerminal::IOutput_output(Packet * packet)
+void ManageSingleTerminal::IOutput_outputPacket(Packet * packet)
 {
 	Head head(packet->opcode(), packet->body_size(), packet->guid());
 
@@ -130,7 +130,7 @@ void ManageSingleTerminal::IOutput_output(Packet * packet)
 		if (m_single_terminal_map.end() != it)
 		{
 			// todo
-			//it->second->IOutput_output(packet);
+			//it->second->IOutput_outputPacket(packet);
 		}
 		else
 		{

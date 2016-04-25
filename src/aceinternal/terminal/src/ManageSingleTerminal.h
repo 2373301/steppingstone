@@ -25,9 +25,9 @@ public:
 
 	virtual int handle_timeout(const ACE_Time_Value &current_time, const void *act /* = 0 */);
 public:
-	virtual void ISessionIn_sync_read(Session * session, ACE_Message_Block & msg_block);
+	virtual void ISessionIn_syncRead(Session * session, ACE_Message_Block & msg_block);
 
-	virtual void IOutput_output(Packet * packet);
+	virtual void IOutput_outputPacket(Packet * packet);
 
 	virtual void registerScene(uint64 scene_id, uint64 scend_type);
 public:

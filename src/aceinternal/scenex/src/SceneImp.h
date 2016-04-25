@@ -58,7 +58,7 @@ public:
 	virtual bool IScene_isStartupSuccess() override;
 
 
-	virtual void IInput_input(Packet * packet) override;
+	virtual void IInput_inputPacket(Packet * packet) override;
 	virtual void cacheInput(Packet * packet, uint64 map_id, uint64 request_id);
 
 	virtual long ITimer_scheme(int interval_value, TimerCallBack timer_callback) override;
@@ -115,11 +115,11 @@ private:
 	uint32 m_save_packet_index = 0;
 	SceneCfg m_scene_cfg;
 
-	// IInput_input packet
+	// IInput_inputPacket packet
 	ACE_Thread_Mutex	m_input_packet_vec_mutex;
 	vector<PackInfo *>	m_input_packet_vec;
 
-	// IInput_input cache packet
+	// IInput_inputPacket cache packet
 	ACE_Thread_Mutex	m_cache_input_packet_vec_mutex;
 	//typedef vector<CachePackInfo> CachePackInfoVec_t;
 	//CachePackInfoVec_t	m_cache_input_packet_vec;

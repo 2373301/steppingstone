@@ -138,7 +138,8 @@ struct TransactionInfo
 	uint32 id;
 };
 
-class PoolImp : public Pool
+class PoolImp 
+	: public Pool
 {
 public:
 	PoolImp();

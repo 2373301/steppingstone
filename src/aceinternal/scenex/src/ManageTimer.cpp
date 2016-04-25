@@ -15,7 +15,7 @@ TimerEvent::TimerEvent(netstream::IInput * handle_input)
 int TimerEvent::handle_timeout (const ACE_Time_Value &current_time, const void *act)
 {
 	MAKE_NEW_PACKET(packet, SMSG_TIMER_OCCUR, m_timer_id, Packet::empty_stream);
-	m_handle_input->IInput_input(packet);
+	m_handle_input->IInput_inputPacket(packet);
 	return 0;
 }
 
