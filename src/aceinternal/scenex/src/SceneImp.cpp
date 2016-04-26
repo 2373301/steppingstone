@@ -386,9 +386,7 @@ int SceneImp::IScene_init(const SceneCfg & scene_cfg)
 	// Á¬½Ó naming service
 	if (m_scene_cfg.srv_type != SRV_TYPE_NAMING)
 	{	
-		netstream::SessionAddrVec_t vec;
-		vec.push_back(m_scene_cfg.naming_addr);
-		if (!m_session_pool->ISessionPool_connect(vec))
+		if (!m_session_pool->ISessionPool_connect(m_scene_cfg.naming_addr))
 		{
 			DEF_LOG_ERROR("failed to connect naming service, ip:%s\n", m_scene_cfg.naming_addr.c_str());
 			return -1;
@@ -617,9 +615,7 @@ int SceneImp::connector_svc(void)
 		}
 
 		std::unique_ptr<std::string> u(req);
-		netstream::SessionAddrVec_t vec;
-		vec.push_back(*u);
-		if (!m_session_pool->ISessionPool_connect(vec))
+		if (!m_session_pool->ISessionPool_connect(*u))
 		{
 			SCENE_LOG_ERROR("failed t connect to scene ip:%s", u->c_str());
 		}

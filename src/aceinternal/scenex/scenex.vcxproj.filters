@@ -10,6 +10,12 @@
     <Filter Include="proto">
       <UniqueIdentifier>{bbc7411d-1a44-4cbd-a740-fe4822a30431}</UniqueIdentifier>
     </Filter>
+    <Filter Include="config">
+      <UniqueIdentifier>{7a8db1f6-b978-4d5d-8d26-06b653d5b235}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utility">
+      <UniqueIdentifier>{1ea88c53-8207-4d34-9e6e-27a9517a5c0a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\Scene.h">
@@ -30,14 +36,23 @@
     <ClInclude Include="inc\Plugin.h">
       <Filter>inc</Filter>
     </ClInclude>
-    <ClInclude Include="src\ManageTimer.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ManageRandom.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="..\common\material-cpp\protocol\msg_scene.pb.h">
       <Filter>proto</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\PluginDepot.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PluginDepotImp.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManagePluginConfig.h">
+      <Filter>config</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageTimer.h">
+      <Filter>utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageRandom.h">
+      <Filter>utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -50,14 +65,23 @@
     <ClCompile Include="src\Plugin.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\ManageTimer.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ManageRandom.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\common\material-cpp\protocol\msg_scene.pb.cc">
       <Filter>proto</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PluginDepotImp.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManagePluginConfig.cpp">
+      <Filter>config</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PluginDepot.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageTimer.cpp">
+      <Filter>utility</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManageRandom.cpp">
+      <Filter>utility</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

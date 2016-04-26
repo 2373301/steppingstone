@@ -184,3 +184,23 @@ bool IPlugin::getProtobufMsgByOpcode(int op_code, MSG_TYPE *& protobuf_msg)
 		return false;
 	}
 }
+
+const Input_Msg_Type_Map & IPlugin::getInputMsgMap()
+{
+	return m_input_msg_type_map;
+}
+
+const Request_Msg_Type_Map & IPlugin::getRequestMsgMap()
+{
+	return m_request_msg_type_map;
+}
+
+const Notify_Msg_Type_Map & IPlugin::getNofityMsgMap()
+{
+	return m_notify_msg_type_map;
+}
+
+const Gmcmd_Msg_Type_Map & IPlugin::getGmcmdMsgMap()
+{
+	return m_gmcmd_msg_type_map;
+}

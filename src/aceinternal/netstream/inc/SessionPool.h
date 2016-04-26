@@ -31,7 +31,7 @@ public:
 
 	virtual void ISessionPool_setBufSize(int input_buf_size, int output_buf_size) = 0;
 
-	virtual bool ISessionPool_connect(const SessionAddrVec_t & session_addr_vec) = 0;
+	virtual Session_t ISessionPool_connect(const string & connect_addr) = 0;
 
 	virtual bool ISessionPool_listen(const string & listen_addr) = 0;
 

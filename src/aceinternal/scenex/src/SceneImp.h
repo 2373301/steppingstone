@@ -109,7 +109,7 @@ private:
 
 private:
 	
-	PluginDepot * m_plugin_depot = NULL;
+	IPluginDepot * m_plugin_depot = NULL;
 	Pool *	m_pool = NULL;
 
 	uint32 m_save_packet_index = 0;

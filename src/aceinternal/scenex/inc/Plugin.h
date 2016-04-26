@@ -169,7 +169,7 @@
 		MAKE_AND_SEND_PLAYER_MESSAGE(SMSG_ERROR_MESSAGE, guid, b_e_msg_.SerializeAsString());	\
 	}
 
-class PluginDepot;
+class IPluginDepot;
 class IScene;
 class IPlugin;
 
@@ -306,24 +306,6 @@ typedef vector<ParamConfig> PluginParamConfigVec_t;
 
 struct SCENEX_EXOPRT PluginCfg 
 {
-	PluginCfg()
-	: cache_type(0)
-	, line_no(0)
-	, template_id(0)
-	//, scene(0)
-	//, pool(0)
-	//, manage_grid(0)
-	, message(0)
-	, logger(NULL)
-	//, line_scene(NULL)
-	//, scene_request(NULL)
-	, is_first_launch(false)
-	, enable_gm(false)
-	//, data_record(NULL)
-	//, cross_server(NULL)
-	//, manage_container(NULL)
-	{}
-
 	int cache_type;
 	int line_no;
 	int template_id;
@@ -393,6 +375,14 @@ public:
 	int transferMsgToPVPScene(const PackInfo & pack_info);
 
 	static bool getProtobufMsgByOpcode(int op_code, MSG_TYPE *& protobuf_msg);
+
+	virtual const Input_Msg_Type_Map & getInputMsgMap();
+
+	virtual const Request_Msg_Type_Map & getRequestMsgMap();
+
+	virtual const Notify_Msg_Type_Map & getNofityMsgMap();
+
+	virtual const Gmcmd_Msg_Type_Map & getGmcmdMsgMap();
 
 protected:
 	static MessageTypeMap m_message_type_map;

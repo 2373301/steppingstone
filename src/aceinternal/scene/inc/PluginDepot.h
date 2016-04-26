@@ -8,7 +8,7 @@
 #include "Pool.h"
 #include "Scene.h"
 
-class Scene;
+class IScene;
 
 struct SCENE_EXOPRT PluginDepotCfg 
 {

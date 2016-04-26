@@ -34,9 +34,9 @@ public:
 	SessionPoolImp();
 	virtual ~SessionPoolImp();
 
-	virtual int ISessionPool_init(int input_thr_no, int output_thr_no, ISessionPoolEvent * handle_session_event = NULL)  override;
+	virtual int	 ISessionPool_init(int input_thr_no, int output_thr_no, ISessionPoolEvent * handle_session_event = NULL)  override;
 	virtual void ISessionPool_setBufSize(int input_buf_size, int output_buf_size) override;
-	virtual bool ISessionPool_connect(const SessionAddrVec_t & session_addr_vec) override;
+	virtual Session_t	ISessionPool_connect(const string & connect_addr) override;
 	virtual bool ISessionPool_listen(const string & listen_addr) override;
 	virtual bool ISessionPool_asyncWrite(Session_t session, char * buffer, int buff_size) override;
 	virtual void ISessionPool_stop() override;

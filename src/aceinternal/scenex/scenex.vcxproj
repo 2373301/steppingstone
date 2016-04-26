@@ -149,18 +149,24 @@
     <ClInclude Include="inc\LoadDll.h" />
     <ClInclude Include="inc\Message.h" />
     <ClInclude Include="inc\Plugin.h" />
+    <ClInclude Include="inc\PluginDepot.h" />
     <ClInclude Include="inc\Scenex_def.h" />
     <ClInclude Include="inc\Scene.h" />
+    <ClInclude Include="src\ManagePluginConfig.h" />
     <ClInclude Include="src\ManageRandom.h" />
     <ClInclude Include="src\ManageTimer.h" />
+    <ClInclude Include="src\PluginDepotImp.h" />
     <ClInclude Include="src\SceneImp.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\common\material-cpp\protocol\msg_scene.pb.cc" />
     <ClCompile Include="src\LoadDll.cpp" />
+    <ClCompile Include="src\ManagePluginConfig.cpp" />
     <ClCompile Include="src\ManageRandom.cpp" />
     <ClCompile Include="src\ManageTimer.cpp" />
     <ClCompile Include="src\Plugin.cpp" />
+    <ClCompile Include="src\PluginDepot.cpp" />
+    <ClCompile Include="src\PluginDepotImp.cpp" />
     <ClCompile Include="src\SceneImp.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
