@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{806abab9-3242-4183-8ea4-32be5882028c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="proto">
+      <UniqueIdentifier>{f1eaf670-4663-47b1-83bb-3e6bbf352d77}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\ManageMove.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_player.pb.cc">
+      <Filter>proto</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\ManageMove.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ManageMove_def.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_player.pb.h">
+      <Filter>proto</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\ManageMove.def" />
+  </ItemGroup>
+</Project>
