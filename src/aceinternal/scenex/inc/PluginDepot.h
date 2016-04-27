@@ -20,9 +20,9 @@ struct SCENEX_EXOPRT PluginDepotCfg
 	PluginParamConfigVec_t * plugin_param_vec = NULL;
 	Logger * logger = NULL;
 	//SceneRequest * scene_request;
-	bool push_client_error_msg;
-	bool is_first_launch;
-	bool enable_gm;
+	bool push_client_error_msg = false;
+	bool is_first_launch = false;
+	bool enable_gm = false;
 	DllInfoVec_t plugin_dll_vec;
 	//ServerCfg server_cfg;
 };
@@ -61,4 +61,7 @@ protected:
 
 	PluginMap_t		m_plugin_map;
 };
+
+SCENEX_EXOPRT IPluginDepot* createPluginDepot();
+
 #endif

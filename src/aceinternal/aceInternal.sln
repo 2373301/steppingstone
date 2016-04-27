@@ -80,6 +80,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "membersys", "membersys\memb
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "charsys", "charsys\charsys.vcxproj", "{8C46ADFF-719F-4AC4-B4DB-FD46EF9A27AA}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ManageMove", "manage_move\ManageMove.vcxproj", "{ECF595EB-5DFA-46F4-9434-C8CDE7CBF19C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -420,6 +422,19 @@ Global
 		{8C46ADFF-719F-4AC4-B4DB-FD46EF9A27AA}.ReleaseD|x64.ActiveCfg = ReleaseD|Win32
 		{8C46ADFF-719F-4AC4-B4DB-FD46EF9A27AA}.ReleaseD|x86.ActiveCfg = ReleaseD|Win32
 		{8C46ADFF-719F-4AC4-B4DB-FD46EF9A27AA}.ReleaseD|x86.Build.0 = ReleaseD|Win32
+		{ECF595EB-5DFA-46F4-9434-C8CDE7CBF19C}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{ECF595EB-5DFA-46F4-9434-C8CDE7CBF19C}.Debug|x64.ActiveCfg = Debug|x64
+		{ECF595EB-5DFA-46F4-9434-C8CDE7CBF19C}.Debug|x64.Build.0 = Debug|x64
+		{ECF595EB-5DFA-46F4-9434-C8CDE7CBF19C}.Debug|x86.ActiveCfg = Debug|Win32
+		{ECF595EB-5DFA-46F4-9434-C8CDE7CBF19C}.Debug|x86.Build.0 = Debug|Win32
+		{ECF595EB-5DFA-46F4-9434-C8CDE7CBF19C}.Release|Any CPU.ActiveCfg = Release|Win32
+		{ECF595EB-5DFA-46F4-9434-C8CDE7CBF19C}.Release|x64.ActiveCfg = Release|Win32
+		{ECF595EB-5DFA-46F4-9434-C8CDE7CBF19C}.Release|x86.ActiveCfg = Release|Win32
+		{ECF595EB-5DFA-46F4-9434-C8CDE7CBF19C}.Release|x86.Build.0 = Release|Win32
+		{ECF595EB-5DFA-46F4-9434-C8CDE7CBF19C}.ReleaseD|Any CPU.ActiveCfg = ReleaseD|Win32
+		{ECF595EB-5DFA-46F4-9434-C8CDE7CBF19C}.ReleaseD|x64.ActiveCfg = ReleaseD|Win32
+		{ECF595EB-5DFA-46F4-9434-C8CDE7CBF19C}.ReleaseD|x86.ActiveCfg = ReleaseD|Win32
+		{ECF595EB-5DFA-46F4-9434-C8CDE7CBF19C}.ReleaseD|x86.Build.0 = ReleaseD|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -427,5 +442,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{0052C33D-02A6-4D54-85E9-B1DA18476E87} = {3989D6AE-A777-491A-9EF3-D53F758DEAAC}
 		{10CBE159-1AEE-4488-9029-B94FD45BDBA5} = {3989D6AE-A777-491A-9EF3-D53F758DEAAC}
+		{ECF595EB-5DFA-46F4-9434-C8CDE7CBF19C} = {3989D6AE-A777-491A-9EF3-D53F758DEAAC}
 	EndGlobalSection
 EndGlobal

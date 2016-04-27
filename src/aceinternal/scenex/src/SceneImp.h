@@ -18,6 +18,7 @@
 #include <mutex>
 #include <queue>
 #include "Pool.h"
+#include "SimpleXML.h"
 
 typedef std::function<int(const PackInfo & pack_info) > MsgHandler;
 typedef std::map<uint64, MsgHandler> MsgHandlerMap;
@@ -107,6 +108,16 @@ private:
 	int on_scene_xs2xs_ack_connection(const PackInfo & pack_info);
 	int on_scene_xs2xs_ntf_scene_logout(const PackInfo & pack_info);
 
+
+
+	bool loadPlugin();
+
+	bool loadPluginCfg();
+
+	bool loadPluginCfg(const string & config_path, ParamConfig & param_config);
+
+	bool loadPluginCfg(Element * root_element, ParamConfig & param_config);
+
 private:
 	
 	IPluginDepot * m_plugin_depot = NULL;
@@ -161,5 +172,8 @@ private:
 
 	std::deque<std::string *> m_to_be_connected;
 	std::mutex m_to_be_connected_mutex;
+
+	LoadDll m_load_dll;
+	PluginParamConfigVec_t m_plugin_config_vec;
 };
 #endif

@@ -6,7 +6,8 @@
 #include "PluginDepot.h"
 #include "ManagePluginConfig.h"
 
-class PluginDepotImp : public IPluginDepot
+class PluginDepotImp 
+	: public IPluginDepot
 {
 public:
 	~PluginDepotImp();

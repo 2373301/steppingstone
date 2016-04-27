@@ -25,27 +25,6 @@
 
 struct SCENEX_EXOPRT SceneCfg 
 {
-	SceneCfg()
-		: scene_id(0)
-		, map_id(0)
-		, original_map_id(0)
-		, line_no(0)
-		, cache_type(0)
-		//, manage_terminal(NULL)
-		//, cache_handle_output(NULL)
-		//, plugin_param_vec(NULL)
-		, save_packet(false)
-		, packet_dir("packet")
-		, logger(NULL)
-		//, line_scene(NULL)
-		//, scene_request(NULL)
-		, push_client_error_msg(false)
-		, is_first_launch(false)
-		, max_sceen_number(100)
-		, log_dir("logs")
-		, enable_gm(false)
-	{}
-
 	int scene_id;
 
 	int line_no;
@@ -64,8 +43,8 @@ struct SCENEX_EXOPRT SceneCfg
 
 	bool save_packet;
 
-	string packet_dir;
-
+	string packet_dir = "packet";
+	string plugin_dir;
 	Logger * logger;
 
 // 	Line * line_scene;
@@ -78,7 +57,7 @@ struct SCENEX_EXOPRT SceneCfg
 
 	int max_sceen_number;
 
-	string log_dir;
+	string log_dir = "logs";
 
 	bool enable_gm;
 

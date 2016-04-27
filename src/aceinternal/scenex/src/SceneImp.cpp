@@ -10,6 +10,7 @@
 #include "Packet.h"
 #include "Logger.h"
 #include "Cache.h"
+#include "PluginDepot.h"
 
 #define PLUGIN_SAVE_CONFIG_DIR	"plugin_data"
 
@@ -193,7 +194,7 @@ int SceneImp::on_scene_ns2xs_ack_online_scenes(const PackInfo & pack_info)
 	scene_ns2xs_ack_online_scenes *req = (scene_ns2xs_ack_online_scenes*)pack_info.msg;
 	CHECK_POINTER_LOG_RET(req, -1);
 
-	for (uint32 i = 0; i < req->srv_ids_size(); i++)
+	for (auto i = 0; i < req->srv_ids_size(); i++)
 	{
 		if(req->srv_ids(i) == m_scene_cfg.srv_id)
 			continue;
@@ -224,7 +225,7 @@ int SceneImp::on_scene_ns2xs_ntf_new_scenes(const PackInfo & pack_info)
 	scene_ns2xs_ntf_new_scenes *req = (scene_ns2xs_ntf_new_scenes*)pack_info.msg;
 	CHECK_POINTER_LOG_RET(req, -1);
 
-	for (uint32 i = 0; i < req->srv_ids_size(); i++)
+	for (auto i = 0; i < req->srv_ids_size(); i++)
 	{
 		if (req->srv_ids(i) == m_scene_cfg.srv_id)
 			continue;
@@ -435,39 +436,53 @@ int SceneImp::IScene_init(const SceneCfg & scene_cfg)
 		return -1;
 	}
 
-// 	m_plugin_depot = SceneFactory::createPluginDepot();
-// 	if (NULL == m_plugin_depot)
-// 	{
-// 		DEF_LOG_ERROR("failed to create plugin depot in SceneImp::Init\n");
-// 		return -1;
-// 	}
-// 
-// 	PluginDepotCfg plugin_depot_cfg;
-// 	plugin_depot_cfg.plugin_dll_vec = m_scene_cfg.plugin_dll_vec;
-// 	plugin_depot_cfg.plugin_param_vec = m_scene_cfg.plugin_param_vec;
-// 	plugin_depot_cfg.scene = this;
-// 	plugin_depot_cfg.pool = m_session_pool;
-// 	plugin_depot_cfg.handle_output = m_scene_cfg.manage_terminal;
-// 	plugin_depot_cfg.manage_grid = &m_manage_grid;
-// 	plugin_depot_cfg.cache_type = m_scene_cfg.cache_type;
-// 	plugin_depot_cfg.line_no = m_scene_cfg.line_no;
-// 	plugin_depot_cfg.template_id = m_scene_cfg.original_map_id;
-// 	plugin_depot_cfg.logger = m_scene_cfg.logger;
-// 	plugin_depot_cfg.line_scene = m_scene_cfg.line_scene;
-// 	plugin_depot_cfg.scene_request = m_scene_cfg.scene_request;
-// 	plugin_depot_cfg.push_client_error_msg = m_scene_cfg.push_client_error_msg;
-// 	plugin_depot_cfg.is_first_launch = m_scene_cfg.is_first_launch;
-// 	plugin_depot_cfg.enable_gm = m_scene_cfg.enable_gm;
-// 	plugin_depot_cfg.data_record = m_scene_cfg.data_record;
-// 	plugin_depot_cfg.server_cfg = m_scene_cfg.server_cfg;
-// 	plugin_depot_cfg.cross_server_cfg = m_scene_cfg.cross_server_cfg;
-// 	plugin_depot_cfg.cross_server = m_scene_cfg.cross_server;
-// 
-// 	if (m_plugin_depot->init(plugin_depot_cfg) == -1)
-// 	{
-// 		DEF_LOG_ERROR("failed to init plugin depot in SceneImp::init, scene id is <%d>\n", m_scene_cfg.scene_id);
-// 		return -1;
-// 	}
+
+	if (!loadPlugin())
+	{
+		DEF_LOG_ERROR("error to load plugin ");
+		return -1;
+	}
+
+	if (!loadPluginCfg())
+	{
+		DEF_LOG_ERROR("error to load plugin config ");
+		return -1;
+	}
+
+
+	m_plugin_depot = createPluginDepot();
+	if (NULL == m_plugin_depot)
+	{
+		DEF_LOG_ERROR("failed to create plugin depot in SceneImp::Init\n");
+		return -1;
+	}
+
+	PluginDepotCfg plugin_depot_cfg;
+	plugin_depot_cfg.plugin_dll_vec = m_scene_cfg.plugin_dll_vec;
+	//plugin_depot_cfg.plugin_param_vec = m_scene_cfg.plugin_param_vec;
+	plugin_depot_cfg.scene = this;
+	//plugin_depot_cfg.pool = m_session_pool;
+	//plugin_depot_cfg.handle_output = m_scene_cfg.manage_terminal;
+	//plugin_depot_cfg.manage_grid = &m_manage_grid;
+	//plugin_depot_cfg.cache_type = m_scene_cfg.cache_type;
+	//plugin_depot_cfg.line_no = m_scene_cfg.line_no;
+	//plugin_depot_cfg.template_id = m_scene_cfg.original_map_id;
+	//plugin_depot_cfg.logger = m_scene_cfg.logger;
+	//plugin_depot_cfg.line_scene = m_scene_cfg.line_scene;
+	//plugin_depot_cfg.scene_request = m_scene_cfg.scene_request;
+	plugin_depot_cfg.push_client_error_msg = m_scene_cfg.push_client_error_msg;
+	plugin_depot_cfg.is_first_launch = m_scene_cfg.is_first_launch;
+	plugin_depot_cfg.enable_gm = m_scene_cfg.enable_gm;
+	//plugin_depot_cfg.data_record = m_scene_cfg.data_record;
+	//plugin_depot_cfg.server_cfg = m_scene_cfg.server_cfg;
+	//plugin_depot_cfg.cross_server_cfg = m_scene_cfg.cross_server_cfg;
+	//plugin_depot_cfg.cross_server = m_scene_cfg.cross_server;
+
+	if (m_plugin_depot->IPluginDepot_init(plugin_depot_cfg) == -1)
+	{
+		DEF_LOG_ERROR("failed to init plugin depot in SceneImp::init, scene id is <%d>\n", m_scene_cfg.scene_id);
+		return -1;
+	}
 
 	std::vector<int> maps;
 	//m_manage_grid.init(&m_scene_cfg, this);
@@ -544,7 +559,7 @@ bool SceneImp::IScene_isShutdownSuccess()
 		return m_is_shutdown_success;
 	}
 
-	//m_is_shutdown_success = m_plugin_depot->IScene_isShutdownSuccess();
+	m_is_shutdown_success = m_plugin_depot->IPluginDepot_isShutdownSuccess();
 
 	return m_is_shutdown_success;
 }
@@ -556,7 +571,7 @@ bool SceneImp::IScene_isStartupSuccess()
 		return m_is_startup_success;
 	}
 
-	//m_is_startup_success = m_plugin_depot->IScene_isStartupSuccess();
+	m_is_startup_success = m_plugin_depot->IPluginDepot_isStartupSuccess();
 
 	if (m_is_startup_success)
 	{
@@ -861,4 +876,87 @@ void SceneImp::savePacket(Packet * packet)
 	file_stream.close();
 
 	m_save_packet_index += 1;
+}
+
+
+bool SceneImp::loadPlugin()
+{
+	return m_load_dll.loadByDir(m_scene_cfg.plugin_dir);
+}
+
+bool SceneImp::loadPluginCfg()
+{
+	DllInfoVec_t & dll_info_vec = m_load_dll.getDllInfoVec();
+
+	ParamConfig param_config;
+	for (DllInfoVec_t::iterator it = dll_info_vec.begin(); it != dll_info_vec.end(); ++it)
+	{
+		DEF_LOG_INFO("****** start to load plugin config, plugin is <%s>\n", (*it)->dll_path.c_str());
+		boost::filesystem::path xml_path((*it)->dll_path);
+		xml_path.replace_extension(".xml");
+		string plugin_config_path = xml_path.string();
+
+		param_config.clear();
+		if (!loadPluginCfg(plugin_config_path, param_config))
+		{
+			DEF_LOG_ERROR("failed to load the plugin config, path is <%s>\n", xml_path.string().c_str());
+			return false;
+		}
+		m_plugin_config_vec.push_back(param_config);
+	}
+
+	return true;
+}
+
+bool SceneImp::loadPluginCfg(const string & config_path, ParamConfig & param_config)
+{
+	bool result = false;
+
+	std::auto_ptr<Document> xml_doc(XMLFactory::create_document());
+	try
+	{
+		if (xml_doc->load_file(config_path))
+		{
+			Element * root_ele = xml_doc->get_root();
+
+			result = true;
+			result = loadPluginCfg(root_ele, param_config) && result;
+		}
+		else
+		{
+			DEF_LOG_ERROR("failed to load config by xml document : <%s>\n", config_path.c_str());
+		}
+	}
+	catch (...)
+	{
+		DEF_LOG_ERROR("unknown exception in SceneDepotImp::loadPluginCfg\n");
+		result = false;
+	}
+
+	return result;
+}
+
+bool SceneImp::loadPluginCfg(Element * root_element, ParamConfig & param_config)
+{
+	Elements eles = root_element->get_elements();
+	for (Elements::iterator it = eles.begin(); it != eles.end(); ++it)
+	{
+		Attribute * attr_name = (*it)->get_attribute("name");
+		if (NULL == attr_name)
+		{
+			DEF_LOG_ERROR("failed to get name attribute\n");
+			return false;
+		}
+
+		Attribute * attr_value = (*it)->get_attribute("value");
+		if (NULL == attr_value)
+		{
+			DEF_LOG_ERROR("failed to get value attribute\n");
+			return false;
+		}
+
+		param_config.append(attr_name->get_value(), attr_value->get_value());
+	}
+
+	return true;
 }

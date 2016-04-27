@@ -403,3 +403,8 @@ bool PluginDepotImp::isAvailablePlugin(IPlugin * plugin)
 
 	return false;
 }
+
+IPluginDepot*  createPluginDepot()
+{
+	return new PluginDepotImp();
+}
