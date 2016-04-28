@@ -44,7 +44,7 @@ struct SCENEX_EXOPRT SceneCfg
 	bool save_packet;
 
 	string packet_dir = "packet";
-	string plugin_dir;
+	string plugin_dir = "modules";
 	Logger * logger;
 
 // 	Line * line_scene;

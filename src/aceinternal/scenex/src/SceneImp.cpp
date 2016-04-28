@@ -458,8 +458,8 @@ int SceneImp::IScene_init(const SceneCfg & scene_cfg)
 	}
 
 	PluginDepotCfg plugin_depot_cfg;
-	plugin_depot_cfg.plugin_dll_vec = m_scene_cfg.plugin_dll_vec;
-	//plugin_depot_cfg.plugin_param_vec = m_scene_cfg.plugin_param_vec;
+	plugin_depot_cfg.plugin_dll_vec = m_load_dll.getDllInfoVec();
+	plugin_depot_cfg.plugin_param_vec = &m_plugin_config_vec;
 	plugin_depot_cfg.scene = this;
 	//plugin_depot_cfg.pool = m_session_pool;
 	//plugin_depot_cfg.handle_output = m_scene_cfg.manage_terminal;
@@ -467,7 +467,7 @@ int SceneImp::IScene_init(const SceneCfg & scene_cfg)
 	//plugin_depot_cfg.cache_type = m_scene_cfg.cache_type;
 	//plugin_depot_cfg.line_no = m_scene_cfg.line_no;
 	//plugin_depot_cfg.template_id = m_scene_cfg.original_map_id;
-	//plugin_depot_cfg.logger = m_scene_cfg.logger;
+	plugin_depot_cfg.logger = m_scene_cfg.logger;
 	//plugin_depot_cfg.line_scene = m_scene_cfg.line_scene;
 	//plugin_depot_cfg.scene_request = m_scene_cfg.scene_request;
 	plugin_depot_cfg.push_client_error_msg = m_scene_cfg.push_client_error_msg;
