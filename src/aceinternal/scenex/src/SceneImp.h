@@ -30,8 +30,11 @@ typedef std::map<uint64, MsgHandler> MsgHandlerMap;
 		{
 
 #define SCENE_INPUT_HANDLE_MSG(op_code, fun, msg_type_ins)	\
-			m_input_msg_type_map[op_code] = std::bind(fun, this, std::placeholders::_1);	\
-			m_message_type_map[op_code] = msg_type_ins;
+			{ \
+				MsgHandler it = std::bind(fun, this, std::placeholders::_1); \
+				m_input_msg_type_map[op_code] = it; \
+				m_message_type_map[op_code] = msg_type_ins; \
+			}
 
 
 #define SCENE_END_INPUT_MSG_MAP() \
