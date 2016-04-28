@@ -14,8 +14,6 @@ public:
 	// player's message
 	virtual void IMessage_player(Packet * packet) = 0;
 
-	virtual void IMessage_inlineBroad(Packet * packet) = 0;
-
 	// plugin's message
 	virtual void IMessage_notifyToPlugins(const PackInfo & pack_info) = 0;
 	virtual bool IMessage_requestToPlugins(const PackInfo & pack_info) = 0;

@@ -818,11 +818,6 @@ void SceneImp::IMessage_player(Packet * packet)
 	//m_scene_cfg.manage_terminal->output(packet);
 }
 
-void SceneImp::IMessage_inlineBroad(Packet * packet)
-{
-	// todo
-}
-
 void SceneImp::IMessage_notifyToPlugins(const PackInfo & pack_info)
 {
 	//m_plugin_depot->notify(pack_info);

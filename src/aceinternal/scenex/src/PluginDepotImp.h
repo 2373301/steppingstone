@@ -51,8 +51,7 @@ protected:
 
 	vector<IPlugin *>		m_plugin_class_vec;
 
-	ManagePluginConfig		m_manage_lugin_config;
-private:
+	ManagePluginConfig		m_manage_plugin_config;
 };
 
 #endif

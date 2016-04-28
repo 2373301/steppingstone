@@ -175,9 +175,9 @@ bool PluginDepotImp::IPluginDepot_isShutdownSuccess()
 
 int PluginDepotImp::IPluginDepot_initing()
 {
-	if (m_manage_lugin_config.init() == -1)
+	if (m_manage_plugin_config.init() == -1)
 	{
-		DEF_LOG_ERROR("failed to init m_manage_lugin_config\n");
+		DEF_LOG_ERROR("failed to init m_manage_plugin_config\n");
 		return -1;
 	}
 
@@ -391,7 +391,7 @@ bool PluginDepotImp::isAvailablePlugin(IPlugin * plugin)
 {
 	bool is_valid = false;
 
-// 	if (m_manage_lugin_config.checkPlugin(m_plugin_depot_cfg.cross_server_cfg.server_type, m_plugin_depot_cfg.template_id, plugin->getType(), is_valid))
+// 	if (m_manage_plugin_config.checkPlugin(m_plugin_depot_cfg.cross_server_cfg.server_type, m_plugin_depot_cfg.template_id, plugin->getType(), is_valid))
 // 	{
 // 		return is_valid;
 // 	}

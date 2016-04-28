@@ -80,7 +80,6 @@ private:
 	int connector_svc(void);
 
 	virtual void IMessage_player(Packet * packet) override;
-	virtual void IMessage_inlineBroad(Packet * packet) override;
 	virtual void IMessage_notifyToPlugins(const PackInfo & pack_info) override;
 	virtual bool IMessage_requestToPlugins(const PackInfo & pack_info) override;
 	virtual bool IMessage_gmcmdToPlugins(const string & gm_name, const vector<string> & gm_param, uint64 target_guid) override;
