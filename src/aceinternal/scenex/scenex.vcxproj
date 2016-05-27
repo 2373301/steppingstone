@@ -106,7 +106,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>share.lib;logger.lib;../../../dep/ACE_wrappers/lib/ACEd.lib;simplexml.lib;netstream.lib;../../../dep/protobuf-2.6.1/lib/libprotobuf.lib;cache.lib;gamelogic.lib;terminal.lib;protocol.lib;pool.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>share.lib;logger.lib;../../../dep/ACE_wrappers/lib/ACEd.lib;simplexml.lib;netstream.lib;../../../dep/protobuf-2.6.1/lib/libprotobuf.lib;cache.lib;terminal.lib;pool.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(OutDir);../../../dep/boost_1_60_0/lib64-msvc-14.0/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>

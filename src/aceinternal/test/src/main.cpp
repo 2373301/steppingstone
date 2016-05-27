@@ -1,6 +1,7 @@
 // logger_test.cpp : Defines the entry point for the console application.
 //
 #include <ace/OS.h>
+#include <ace/Init_ACE.h>
 #include "ManageSingleton.h"
 #include "ManageLogger.h"
 #include "testlogger.h"
@@ -68,6 +69,7 @@ void TestProto()
 
 int main(int argc, char * argv[])
 {	
+	ACE::init();
 	ManageSingleton::instance();
 	ManageLogger::instance();
 

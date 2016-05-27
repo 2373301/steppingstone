@@ -19,12 +19,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_cache.pb.h" />
+    <ClInclude Include="..\common\material-cpp\protocol\msg_pool.pb.h" />
     <ClInclude Include="inc\Pool.h" />
     <ClInclude Include="inc\pool_def.h" />
     <ClInclude Include="src\PoolAssistant.h" />
     <ClInclude Include="src\PoolImp.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_cache.pb.cc" />
+    <ClCompile Include="..\common\material-cpp\protocol\msg_pool.pb.cc" />
     <ClCompile Include="src\PoolAssistant.cpp" />
     <ClCompile Include="src\PoolImp.cpp" />
   </ItemGroup>

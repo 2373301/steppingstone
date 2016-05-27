@@ -128,32 +128,6 @@ PluginSceneType IPlugin::getSceneType()
 	return m_plugin_scene_type;
 }
 
-int IPlugin::transferMsgToLineScene(const PackInfo & pack_info)
-{
-	MSG_TYPE * msg_value = NULL;
-	if (NULL != pack_info.msg)
-	{
-		msg_value = cloneMessage(pack_info.msg);
-	}
-
-	PackInfo * pi = new PackInfo(pack_info.opcode, pack_info.guid, msg_value);
-	//m_plugin_cfg.line_scene->scenePackInput(pi);
-	return 0;
-}
-
-int IPlugin::transferMsgToPVPScene(const PackInfo & pack_info)
-{
-	MSG_TYPE * msg_value = NULL;
-	if (NULL != pack_info.msg)
-	{
-		msg_value = cloneMessage(pack_info.msg);
-	}
-
-	PackInfo * pi = new PackInfo(pack_info.opcode, pack_info.guid, msg_value);
-	//m_plugin_cfg.line_scene->sendSceneMsg(QUALIFY_MAP_ID, pi);
-
-	return 0;
-}
 
 bool IPlugin::IPlugin_isStartupSuccess()
 {

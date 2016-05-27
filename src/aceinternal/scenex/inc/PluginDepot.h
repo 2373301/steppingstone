@@ -37,8 +37,6 @@ public:
 	virtual int IPluginDepot_init(const PluginDepotCfg & plugin_depot_cfg);
 
 public:
-	virtual int IPluginDepot_input(Packet * packet) = 0;
-
 	virtual int IPluginDepot_input(const PackInfo & pack_info) = 0;
 
 	virtual int IPluginDepot_notify(const PackInfo & pack_info) = 0;

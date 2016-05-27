@@ -371,9 +371,6 @@ public:
 	PluginType getType();
 	PluginSceneType getSceneType();
 
-	int transferMsgToLineScene(const PackInfo & pack_info);
-	int transferMsgToPVPScene(const PackInfo & pack_info);
-
 	static bool getProtobufMsgByOpcode(int op_code, MSG_TYPE *& protobuf_msg);
 
 	virtual const Input_Msg_Type_Map & getInputMsgMap();

@@ -7,6 +7,9 @@
     <Filter Include="src">
       <UniqueIdentifier>{28e1fdf3-fc6c-44a7-bf87-274b6b69ada2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="proto">
+      <UniqueIdentifier>{312330a1-bceb-41b6-aacd-776d64e23dc5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\Pool.h">
@@ -21,6 +24,12 @@
     <ClInclude Include="inc\pool_def.h">
       <Filter>inc</Filter>
     </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_cache.pb.h">
+      <Filter>proto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\material-cpp\protocol\msg_pool.pb.h">
+      <Filter>proto</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\PoolImp.cpp">
@@ -28,6 +37,12 @@
     </ClCompile>
     <ClCompile Include="src\PoolAssistant.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_cache.pb.cc">
+      <Filter>proto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\material-cpp\protocol\msg_pool.pb.cc">
+      <Filter>proto</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

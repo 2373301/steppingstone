@@ -19,11 +19,6 @@ PluginDepotImp::~PluginDepotImp()
 	cleanVectorContent(m_plugin_class_vec);
 }
 
-int PluginDepotImp::IPluginDepot_input(Packet * packet)
-{
-	return -1;
-}
-
 int PluginDepotImp::IPluginDepot_input(const PackInfo & pack_info)
 {
 //	PDEPOT_LOG_DEBUG("enter PluginDepotImp::input, opcode is <%d>", pack_info.opcode);

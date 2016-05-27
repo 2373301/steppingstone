@@ -13,8 +13,6 @@ public:
 	~PluginDepotImp();
 
 public:
-	virtual int IPluginDepot_input(Packet * packet);
-
 	virtual int IPluginDepot_input(const PackInfo & pack_info);
 
 	virtual int IPluginDepot_notify(const PackInfo & pack_info);
