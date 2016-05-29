@@ -11,6 +11,7 @@
 #include "testpoo.hpp"
 #include "testnetcore.hpp"
 #include "testscenex.hpp"
+#include "actor.hpp"
 
 void startApplication()
 {
@@ -70,16 +71,21 @@ void TestProto()
 int main(int argc, char * argv[])
 {	
 	ACE::init();
-	ManageSingleton::instance();
-	ManageLogger::instance();
+	//ManageSingleton::instance();
+	//ManageLogger::instance();
 
-	ManageSingletonInit::instance()->init();
+	//ManageSingletonInit::instance()->init();
 
 	//TestProto();
 	//startApplication();
 	//pool_ut::run();
 	//netcore::netcore_ut::run();
-	scenex_ut::run(argc, argv);
+	//scenex_ut::run(argc, argv);
+	//ThreadPool t;
+	Actor<char> a;
+	a.Init(4);
+	getchar();
+	a.Stop();
 	return 0;
 }
 

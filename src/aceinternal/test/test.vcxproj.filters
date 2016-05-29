@@ -4,6 +4,9 @@
     <Filter Include="logger">
       <UniqueIdentifier>{cac1eacb-2107-4ad7-92b1-a6fd34cdea6b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="threadpool">
+      <UniqueIdentifier>{a0e7a10f-3fba-42b1-aee8-357e6f46f9c5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
@@ -18,5 +21,12 @@
     <ClInclude Include="src\testlogger.h">
       <Filter>logger</Filter>
     </ClInclude>
+    <ClInclude Include="src\SyncQueue.hpp">
+      <Filter>threadpool</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ThreadPool.hpp">
+      <Filter>threadpool</Filter>
+    </ClInclude>
+    <ClInclude Include="actor.hpp" />
   </ItemGroup>
 </Project>

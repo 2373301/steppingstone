@@ -243,10 +243,13 @@
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="actor.hpp" />
+    <ClInclude Include="src\SyncQueue.hpp" />
     <ClInclude Include="src\testlogger.h" />
     <ClInclude Include="src\testnetcore.hpp" />
     <ClInclude Include="src\testpoo.hpp" />
     <ClInclude Include="src\testscenex.hpp" />
+    <ClInclude Include="src\ThreadPool.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
