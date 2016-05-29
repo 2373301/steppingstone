@@ -11,19 +11,29 @@ public:
 	virtual ~Actor() {}
 	int Init(int thread_num)
 	{	
-		std::unique_lock<std::mutex > lock(reqs_mutex_);
-		m_running = true;
+		std::unique_lock<std::mutex > lock(switch_mutex_);
+		running_ = true;
 		//创建线程组
 		for (int i = 0; i < thread_num; ++i)
-		{
-			m_threadgroup.push_back(std::make_shared<std::thread>(&Actor::Svc, this));
+		{	
+			ThreadLocalQueue *q = new ThreadLocalQueue;
+			thread_que_.push_back(q);
+			threads_group_.push_back(std::make_shared<std::thread>(&Actor::Svc, this, i));
 		}
 		return 0;
 	}
 
 	void Stop()
 	{
-		std::call_once(m_flag, [this] {StopThreadGroup(); }); //保证多线程情况下只调用一次StopThreadGroup
+		std::call_once(flag_, [this] {StopThreadGroup(); }); //保证多线程情况下只调用一次StopThreadGroup
+	}
+
+	void AddTask(uint64_t id, const Task& task)
+	{
+		uint64_t index = id  % threads_group_.size();
+		ThreadLocalQueue *q = thread_que_[index];
+		std::unique_lock<std::mutex > lock(q->m);
+		q->vec.push_back(task);
 	}
 
 	virtual int DoOnce(Task& task) 
@@ -36,35 +46,41 @@ public:
 		return -1;
 	};
 
+	struct ThreadLocalQueue
+	{
+		std::mutex m;
+		vector<Task *> vec;
+	};
+
 private:
 	void StopThreadGroup()
 	{	
-		std::unique_lock<std::mutex > lock(reqs_mutex_);
-		m_running = false; //置为false，让内部线程跳出循环并退出
+		std::unique_lock<std::mutex > lock(switch_mutex_);
+		running_ = false; //置为false，让内部线程跳出循环并退出
 
-		for (auto thread : m_threadgroup) //等待线程结束
+		for (auto thread : threads_group_) //等待线程结束
 		{
 			if (thread)
 				thread->join();
 		}
-		m_threadgroup.clear();
+		threads_group_.clear();
 	}
 
-	void Svc()
+	void Svc(int i)
 	{	
-		while (m_running)
+		while (running_)
 		{
 			//取任务分别执行
-			DataRequestInfoVec_t local_reqs;
+			vector<Task *> local_reqs;
 			{
-				std::unique_lock<std::mutex > lock(reqs_mutex_);
-				local_reqs.swap(reqs_);
-				reqs_.clear();
+				std::unique_lock<std::mutex > lock(thread_que_[i]->m);
+				local_reqs.swap(thread_que_[i]->vec);
+				thread_que_[i]->vec.clear();
 			}
 
 			for (auto& task : local_reqs)
 			{
-				if (!m_running)
+				if (!running_)
 					return;
 				DoOnce(*task);
 			}
@@ -79,11 +95,11 @@ private:
 	}
 
 private:
-	typedef vector<Task *> DataRequestInfoVec_t;
-	DataRequestInfoVec_t reqs_;
-	std::mutex reqs_mutex_;
+	std::mutex switch_mutex_;
 
-	std::vector<std::shared_ptr<std::thread>> m_threadgroup; //处理任务的线程组
-	atomic_bool m_running = false; //是否停止的标志
-	std::once_flag m_flag;
+	std::vector<ThreadLocalQueue *> thread_que_;
+	std::vector<std::shared_ptr<std::thread>> threads_group_; //处理任务的线程组
+
+	atomic_bool running_ = false; //是否停止的标志
+	std::once_flag flag_;
 };
